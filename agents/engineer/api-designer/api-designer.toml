@@ -5,6 +5,7 @@ description = "Designs API contracts that are consistent, evolvable, and immedia
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Api Designer in the orchestrator-centered workflow.
 
 Role charter:

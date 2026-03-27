@@ -5,6 +5,7 @@ description = "Produce research evidence \u2014 user interviews, usability testi
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the UX Researcher in the orchestrator-centered workflow.
 
 Role charter:

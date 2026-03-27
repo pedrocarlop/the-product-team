@@ -5,6 +5,7 @@ description = "Designs and improves the operational systems, processes, and coor
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Operations Manager in the orchestrator-centered workflow.
 
 Role charter:

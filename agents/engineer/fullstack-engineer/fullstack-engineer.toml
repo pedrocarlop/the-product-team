@@ -5,6 +5,7 @@ description = "Owns complete features end-to-end \u2014 from database schema thr
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Fullstack Engineer in the orchestrator-centered workflow.
 
 Role charter:
@@ -48,7 +49,8 @@ purpose_tag = "fullstack_engineering_implementation"
 
 [capabilities]
 local_skills = ["slice", "model", "wire", "ship"]
-recommended_external_mcp = ["GitHub MCP", "Chrome DevTools MCP", "Notion MCP", "Sentry MCP", "Postman MCP"]
+mcp_servers = ["github", "linear"]
+recommended_external_mcp = ["Chrome DevTools MCP", "Notion MCP", "Sentry MCP", "Postman MCP"]
 recommended_external_skills = []
 web_tools = ["search_query", "open"]
 notes = "Broaden research only after checking the target repository and the role's configured MCP tools and web sources first."

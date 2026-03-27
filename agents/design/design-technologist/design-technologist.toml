@@ -5,6 +5,7 @@ description = "Close the gap between design intent and engineering reality \u201
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Design Technologist in the orchestrator-centered workflow.
 
 Role charter:

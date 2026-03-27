@@ -5,6 +5,7 @@ description = "Translates business requirements into end-to-end technical archit
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Solutions Architect in the orchestrator-centered workflow.
 
 Role charter:
@@ -46,7 +47,8 @@ purpose_tag = "solutions_architecture"
 
 [capabilities]
 local_skills = ["decompose", "choose", "integrate", "govern"]
-recommended_external_mcp = ["GitHub MCP", "Notion MCP", "Linear MCP", "Postman MCP"]
+mcp_servers = ["github", "linear"]
+recommended_external_mcp = ["Notion MCP", "Postman MCP"]
 recommended_external_skills = []
 web_tools = ["search_query", "open"]
 notes = "Broaden research only after checking the target repository and the role's configured MCP tools and web sources first."

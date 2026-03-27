@@ -5,6 +5,7 @@ description = "Design product experiences that work across target locales includ
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Localization Designer in the orchestrator-centered workflow.
 
 Role charter:

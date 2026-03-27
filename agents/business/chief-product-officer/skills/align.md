@@ -1,80 +1,84 @@
 ---
 name: align
-description: Translate product strategy and priorities into shared understanding across executives, product, engineering, and partner teams.
+description: Align the organization around product strategy by translating portfolio-level decisions into narratives that executives, the board, and cross-functional leaders can act on.
 ---
 
 # Align
 
 ## Purpose
 
-Use this skill to make sure the product direction is understood, supported, and acted on consistently by the people who need to move with it.
+Use this skill to ensure that product strategy decisions are understood and adopted across the executive team, the board, and the functional leaders who must execute them — not just the product organization.
 
 ## When to Use
 
-- When executives need a shared narrative for the product plan
-- When engineering, design, sales, or support need context on the why behind a decision
-- When a strategic shift needs clear communication and follow-through
+- When a strategic bet, portfolio shift, or multi-quarter commitment needs organizational buy-in
+- When the board or investors need a clear narrative connecting product direction to business outcomes
+- When cross-functional leaders (engineering, sales, marketing, finance) need to understand how the strategy changes their priorities
+- When a prior alignment is breaking down and the organization is drifting from the agreed direction
 
 ## When Not to Use
 
-- When the core issue is still choosing the strategy
-- When the task is only about prioritization within one function
-- When the work is mostly about funding allocation or portfolio mix
+- When the strategy itself has not been decided
+- When the alignment need is within a single product team, not across the organization
+- When the task is tactical prioritization rather than strategic narrative
 
 ## Required Inputs
 
-- The decision, strategy, or bet that needs alignment
-- The audiences that need to understand it
-- The likely objections, tensions, or misunderstandings
-- The business outcome or constraint that the message must preserve
+- The strategic decision, portfolio bet, or direction shift being communicated
+- The audiences: board, executive team, functional leaders, or all of the above
+- The business context: market position, competitive pressure, financial constraints
+- Known objections, competing priorities, or organizational tensions
+- The outcomes the strategy must produce and the timeline for evaluation
 
 ## Workflow
 
-1. State the decision and the reason for it in one clear sentence.
-2. Identify each audience's concern or mental model.
-3. Translate the strategy into consequences, not slogans.
-4. Surface the trade-offs that people may resist.
-5. Decide what should be said, what should be emphasized, and what should not be overexplained.
-6. Check that the final message leads to action and not just agreement.
+1. Frame the strategic decision in terms of business outcomes, not product features.
+2. Map each audience's existing mental model and the gap between it and the new direction.
+3. Build audience-specific narratives: board-level (ROI, risk, competitive position), executive-level (resource allocation, timeline, accountability), functional-level (what changes for their team).
+4. Surface the tradeoffs explicitly — what the company is choosing not to do and why.
+5. Define the evaluation criteria and timeline so alignment includes a built-in checkpoint.
+6. Identify the follow-up mechanisms that prevent drift: review cadence, decision logs, and escalation paths.
 
 ## Design Principles / Evaluation Criteria
 
-- Alignment should clarify decisions, not flatten disagreement
-- Messages should be specific enough to guide action
-- The rationale should be honest about trade-offs and uncertainty
-- Shared language matters more than polished language
-- Good alignment reduces re-litigation later
+- Strategic alignment should change behavior, not just produce agreement
+- The narrative should connect product decisions to business outcomes, not technical milestones
+- Tradeoffs should be stated at the same altitude as the strategy
+- Different audiences need different framings of the same decision
+- Alignment without follow-through is just a meeting
 
 ## Output Contract
 
-- A concise alignment message or memo
-- Audience-specific framing if needed
-- Key trade-offs and non-goals
-- Any follow-up required to keep the group aligned
+- A strategic alignment memo or narrative with audience-specific framings
+- Explicit tradeoffs and non-goals at the portfolio level
+- Evaluation criteria and review timeline
+- Follow-up mechanisms to prevent organizational drift
 
 ## Examples
 
 ### Example 1
 
 Input:
-- Decision: Pause a requested feature to focus on activation work
+- Decision: Shift investment from horizontal platform features to a vertical-specific product line
 
 Expected output:
-- Alignment message: "We are prioritizing activation because it has the highest leverage on near-term growth, which means the requested feature moves to a later cycle unless the activation work underperforms."
+- Board narrative: "This vertical focus improves our path to profitability by concentrating GTM spend on a segment where we have demonstrated product-market fit. Horizontal investment pauses for two quarters."
+- Engineering narrative: "Two platform teams will be reallocated. Current commitments that conflict will be deprioritized with specific dates."
+- Sales narrative: "New vertical positioning and pricing will be ready by Q2. Existing pipeline on horizontal deals should be managed to close or transitioned."
 
 ## Guardrails
 
-- Do not present alignment as if it were unanimous if it is not
-- Do not hide the trade-offs to make the message easier to accept
-- Do not use alignment to reopen settled strategy
-- Do not over-communicate details that dilute the core decision
+- Do not align on strategy that has not been decided — alignment is not a substitute for decision-making
+- Do not flatten disagreement into consensus language when real tensions exist
+- Do not present portfolio tradeoffs as temporary workarounds if they are structural choices
+- Do not skip the follow-up mechanisms that keep the organization on course
 
 ## Optional Tools / Resources
 
-- Executive memos and board materials
-- Team updates and planning notes
-- Customer and market evidence
-- Decision logs and strategy docs
+- Board decks and investor materials
+- Strategic planning documents and portfolio reviews
+- Executive meeting agendas and decision logs
+- Financial models and market analysis
 
 - Shared MCP servers: Notion MCP, Linear MCP, Slack MCP, GitHub MCP
 - Reference websites: [SVPG Articles (svpg.com)](https://www.svpg.com/articles/), [Lenny's Newsletter (lennysnewsletter.com)](https://www.lennysnewsletter.com/), [Harvard Business Review (hbr.org)](https://hbr.org/), [Reforge Essays (reforge.com)](https://www.reforge.com/blog), [McKinsey Insights (mckinsey.com)](https://www.mckinsey.com/featured-insights)

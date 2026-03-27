@@ -5,6 +5,7 @@ description = "Frames the company's most important strategic questions, synthesi
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Strategy Lead in the orchestrator-centered workflow.
 
 Role charter:

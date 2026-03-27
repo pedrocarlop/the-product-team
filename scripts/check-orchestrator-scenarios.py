@@ -2,14 +2,12 @@
 from __future__ import annotations
 
 import sys
-import tomllib
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.toml_utils import load_toml
+
 ROOT = Path(__file__).resolve().parents[1]
-
-
-def load_toml(path: Path) -> dict:
-    return tomllib.loads(path.read_text())
 
 
 def expect(condition: bool, message: str, failures: list[str]) -> None:

@@ -1,58 +1,60 @@
 ---
 name: position
-description: Define ICP, category positioning, and core messaging so marketing work targets the right buyers with a clear reason to buy.
+description: Define ICP, category positioning, and channel-ready messaging so marketing campaigns target the right buyers with a sharp, consistent reason to engage.
 ---
 
 # Position
 
 ## Purpose
 
-Use this skill to turn a broad market opportunity into a precise go-to-market position: who we are for, what problem we solve, why we are different, and which message should lead.
+Use this skill to turn a broad market opportunity into a campaign-ready position: who we target, what problem we lead with, why we are different, and how the message should flex across marketing channels.
 
 ## When to Use
 
-- When the ICP needs to be narrowed or clarified
-- When category positioning or messaging is inconsistent
-- When a new offer, feature, or market shift changes the narrative
-- When marketing needs a sharper point of view before content or campaigns begin
+- When the ICP needs to be narrowed or clarified before campaign planning begins
+- When category positioning or homepage messaging is inconsistent across channels
+- When a new offer, feature launch, or market shift requires a refreshed narrative
+- When marketing needs a sharper lead message before producing content, ads, or landing pages
 
 ## When Not to Use
 
-- When the audience and promise are already clear and the work is mainly execution
-- When the task is building campaigns, channels, or measurement plans
+- When the audience and promise are already clear and the work is campaign execution
+- When the task is building channel plans, attribution models, or measurement frameworks
 - When the issue is solely visual design, copy polish, or launch logistics
 
 ## Required Inputs
 
 - The product or offer being positioned
-- The target market, buyer, and buying context
-- Known alternatives, competitors, or status quo substitutes
-- Supporting proof points, differentiators, and constraints
-- Any brand voice, terminology, or legal requirements
+- The target market, buyer persona, and the trigger event or pain point that makes the message timely
+- Known alternatives, competitors, and status quo substitutes the buyer considers
+- Supporting proof points, differentiators, and customer evidence
+- Brand voice, terminology constraints, and any legal or compliance requirements
+- The channels the positioning must work across: website, paid ads, email, sales enablement
 
 ## Workflow
 
-1. Identify the most specific buyer and trigger event that makes this work relevant now.
-2. Separate the core audience from adjacent audiences that should not be the primary target.
-3. Name the problem in buyer language, not internal product language.
+1. Identify the most specific buyer and the trigger event that makes the product relevant now.
+2. Separate the primary audience from adjacent audiences that should not dilute the lead message.
+3. Name the problem in the buyer's language, not internal product vocabulary.
 4. Write the positioning statement and supporting message pillars.
-5. Check the message against alternatives to ensure the distinction is real and defensible.
-6. Validate that the position can be used consistently across web, content, paid, and sales enablement.
+5. Stress-test the message against the top 2-3 alternatives to ensure the distinction is real.
+6. Adapt the positioning into channel-appropriate formats: headline for ads, value prop for landing pages, one-liner for email subject lines.
 
 ## Design Principles / Evaluation Criteria
 
-- Specificity beats broad appeal
-- Buyer vocabulary beats internal jargon
-- Differentiation must be believable, not generic
-- Positioning should be stable enough to survive across channels
-- Messaging should be simple enough to repeat without losing meaning
+- Specificity beats broad appeal; a message for everyone persuades no one
+- Buyer vocabulary beats internal jargon in every channel
+- Differentiation must be believable and provable, not generic
+- Positioning should be stable enough to work across web, paid, email, and sales without contradicting itself
+- The message should be simple enough that a non-marketer can repeat it accurately
 
 ## Output Contract
 
-- ICP definition with the key fit and trigger criteria
-- Positioning statement and supporting message pillars
-- Short list of approved phrases, claims, and proof points
-- Notes on exclusions, tradeoffs, or messaging risks
+- ICP definition with fit criteria, trigger events, and primary pain points
+- Positioning statement and 2-4 supporting message pillars
+- Channel-adapted message variants: headline, value prop, email one-liner, ad copy direction
+- Short list of approved claims, proof points, and phrases
+- Notes on exclusions, messaging risks, and terms to avoid
 
 ## Examples
 
@@ -60,19 +62,21 @@ Use this skill to turn a broad market opportunity into a precise go-to-market po
 
 Input:
 - Product: Workflow platform for customer success teams
-- Audience confusion: Sales and CS are both being targeted with the same homepage message
+- Problem: Sales and CS are both being targeted with the same homepage message
 
 Expected output:
 - ICP: "Customer success leaders at B2B SaaS companies with churn pressure and manual renewal workflows"
-- Positioning statement: "For CS teams that need to protect recurring revenue, the product is the customer success workflow platform that surfaces risk and automates renewal playbooks because it connects account data, health signals, and execution in one place."
+- Positioning statement: "For CS teams that need to protect recurring revenue, the product is the customer success workflow platform that surfaces risk and automates renewal playbooks."
+- Channel variants: Homepage headline focuses on renewal automation; ad copy leads with churn reduction; email subject line uses "stop manual renewals"
 - Messaging note: Do not lead with generic collaboration language
 
 ## Guardrails
 
-- Do not widen the ICP to make the market look larger than it is
-- Do not claim differentiation that the product cannot prove
-- Do not turn positioning work into a feature inventory
-- Do not skip explicit exclusions when a sharper position is needed
+- Do not widen the ICP to make the addressable market look larger
+- Do not claim differentiation the product cannot demonstrate with evidence
+- Do not turn positioning work into a feature list or product spec
+- Do not skip channel adaptation; positioning that only works on a strategy slide is not useful
+- Do not position without explicit exclusions when a sharper message is needed
 
 ## Optional Tools / Resources
 

@@ -10,9 +10,11 @@ import shutil
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 
 
+PACKAGE_VERSION = "1.0.0"
 PACKAGE_SLUG = "product-team"
 PACKAGE_DIRNAME = ".codex/product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
@@ -309,6 +311,8 @@ def write_manifest(target_root: Path, roles: list[RoleSpec]) -> None:
     manifest = {
         "schema_version": 2,
         "package_name": PACKAGE_SLUG,
+        "version": PACKAGE_VERSION,
+        "installed_at": datetime.now(timezone.utc).isoformat(),
         "managed_agents_markers": {
             "start": MARKER_START,
             "end": MARKER_END,
@@ -371,7 +375,7 @@ def main() -> int:
     update_agents_md(root / "assets" / "AGENTS.fragment.md", target_root)
     write_manifest(target_root, roles)
 
-    print(f"Installed Product Team for Codex into {target_root}")
+    print(f"Installed Product Team v{PACKAGE_VERSION} for Codex into {target_root}")
     print(f"Installed {len(roles)} namespaced role definitions.")
     if created_logs_readme:
         print("Created logs/README.md from the workflow contract.")

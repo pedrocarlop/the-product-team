@@ -5,6 +5,7 @@ description = "Write the words inside the product \u2014 microcopy, CTAs, error 
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Content Designer in the orchestrator-centered workflow.
 
 Role charter:

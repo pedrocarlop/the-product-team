@@ -1,78 +1,84 @@
 ---
 name: harden
-description: Strengthen backend work for security, reliability, rollout safety, and incident readiness before it reaches users.
+description: Strengthen backend services for data integrity, concurrency safety, operational resilience, and incident readiness before they handle production traffic.
 ---
 
 # Harden
 
 ## Purpose
 
-Use this skill to make backend code safer to ship and safer to run. It focuses on security, reliability, performance guardrails, and operational readiness.
+Use this skill to make backend services safe to run under production load — handling concurrency hazards, data integrity risks, dependency failures, and operational blind spots that only surface at scale or under stress.
 
 ## When to Use
 
-- Before releasing a backend change that affects auth, data access, or external calls
-- When a feature needs rate limits, retries, timeouts, or rollback planning
-- When the code path could fail loudly or create an incident if left unguarded
+- Before releasing a service that writes to shared state, processes payments, or manages authorization
+- When a code path involves retries, queues, or external service calls that can fail or duplicate
+- When the service needs rate limiting, backpressure, or circuit breakers to survive dependency failures
+- When incident response depends on observability that has not been wired yet
 
 ## When Not to Use
 
-- When the core model is still unsettled
-- When the only remaining work is basic implementation
-- When the task is purely about observing or measuring already-shipped behavior
+- When the service design is still being shaped
+- When the work is frontend or client-side code
+- When the task is pure feature development with no production-readiness concern
 
 ## Required Inputs
 
-- The implementation or code path to harden
-- The risk area: security, reliability, performance, deployment, or incident response
-- Any known constraints around rollout, fallback, or rollback
-- The team standards for secrets, logging, and public exposure
+- The service or code path being hardened
+- The risk surface: data mutations, authorization boundaries, external integrations, async processing
+- Concurrency model: shared state, locking strategy, idempotency requirements
+- Dependency map: databases, queues, caches, third-party APIs, and their failure modes
+- Team standards for secrets management, logging levels, and alerting thresholds
 
 ## Workflow
 
-1. Review the code path for the highest-risk failure modes first.
-2. Check auth, validation, secrets handling, error messages, and public data exposure.
-3. Add resilience controls where needed: retries, timeouts, idempotency, backoff, or circuit breakers.
-4. Confirm deployment safety with feature flags, migrations, or rollback steps when relevant.
-5. Make sure the system can be operated: alerts, dashboards, runbooks, and incident notes.
-6. Re-check that the hardening did not change user-visible behavior unintentionally.
+1. Trace the code path for data integrity risks: race conditions, partial writes, missing transactions, and unguarded upserts.
+2. Verify idempotency for any operation that can be retried by clients, queues, or infrastructure.
+3. Add resilience controls for external dependencies: timeouts, circuit breakers, backoff, and fallback behavior.
+4. Check authorization at every trust boundary — not just the API edge, but internal service calls and queue consumers.
+5. Wire observability: structured logs at decision points, metrics for latency and error rates, alerts for anomalous behavior.
+6. Confirm deployment safety: migration ordering, feature flags, rollback steps, and health-check endpoints.
+7. Validate that the hardening does not change the service contract or introduce performance regressions.
 
 ## Design Principles / Evaluation Criteria
 
-- Safer defaults beat clever fixes
-- Public surfaces should be least-privilege and least-knowledge
-- Production failures should be contained, not amplified
-- Rollback should be possible without guesswork
+- Data integrity comes first — a correct slow path beats a fast corrupt one
+- Every side effect must be idempotent or explicitly documented as non-idempotent
+- Dependency failures should be contained, not cascaded
+- Authorization must be enforced at trust boundaries, not assumed from context
+- The service should be operable by someone who did not write it
 
 ## Output Contract
 
-- A concise risk review with the fixes applied or recommended
-- Any security, reliability, or rollout changes that must accompany the code
-- Residual risks that still need attention
-- A clear statement of what is now safe enough to ship
+- A hardening review covering data integrity, concurrency, resilience, auth, and observability
+- Specific fixes applied or recommended, with severity and rationale
+- Residual risks that require follow-up or monitoring
+- Confirmation of deployment safety and rollback path
 
 ## Examples
 
 ### Example 1
 
 Input:
-- Task: Prepare a job worker for production
-- Risk: retries could double-process side effects
+- Service: Payment processing worker consuming from a message queue
+- Risk: Duplicate messages could trigger double charges
 
 Expected output:
-- Add idempotency protection and explicit retry behavior
-- Confirm logs and alerts exist for failures
-- Document the rollback or disablement path
+- Add idempotency key check before processing each message
+- Add dead-letter queue routing for messages that fail after max retries
+- Wire alerts for duplicate-detection rate and processing latency
+- Document the manual replay procedure for stuck messages
 
 ## Guardrails
 
-- Do not treat hardening as a substitute for missing core functionality
-- Do not add security controls that break the contract without documenting the tradeoff
-- Do not ship public endpoints without checking for secrets, PII, and authorization gaps
+- Do not treat hardening as optional when the service touches money, PII, or authorization
+- Do not add retry logic without idempotency protection
+- Do not ship services without health checks, structured logging, and alerting
+- Do not assume infrastructure retries are safe without verifying side-effect behavior
 
 ## Optional Tools / Resources
 
-- Security review notes and threat models
-- Deployment tooling and feature flags
-- Observability dashboards and alert configuration
-- Incident runbooks and rollback procedures
+- Load testing and chaos engineering tools
+- APM and observability platforms (Datadog, Grafana, PagerDuty)
+- Database migration tooling and schema versioning
+- Incident runbooks and post-mortem templates

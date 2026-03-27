@@ -1,64 +1,69 @@
 ---
 name: wire
-description: Design wireframes and interaction scaffolding that make the structure, hierarchy, and behaviors of a flow easy to understand.
+description: Translate task flows and information architecture into low-fidelity wireframes that define screen purpose, content hierarchy, and interaction scaffolding for user-centered evaluation.
 ---
 
 # Wire
 
 ## Purpose
 
-Use this skill to translate a mapped flow into wireframes that show what appears on each screen, how it is arranged, and how the user moves through it.
+Use this skill to turn a mapped user flow into wireframes that make screen purpose, content priority, and interaction logic visible enough for early usability evaluation and stakeholder alignment.
 
 ## When to Use
 
-- When a task map exists and the next step is screen composition
-- When layout, hierarchy, or component placement needs to be defined without visual polish
-- When responsive behavior, empty states, or interaction rules need to be scaffolded
+- When a task map or IA exists and the next step is defining what appears on each screen and why
+- When layout decisions need to be grounded in user mental models and task priority
+- When responsive behavior, empty states, or conditional paths need structural definition before visual design begins
+- When the team needs a reviewable artifact to validate assumptions about user behavior
 
 ## When Not to Use
 
-- When the main problem is deciding what the experience should do, not how it should appear on screen
-- When the request is for brand styling, high-fidelity UI, or visual design detail
-- When the work is primarily about measuring usability rather than drafting the structure
+- When the problem is still about what the experience should do, not how screens should be arranged
+- When the request is for high-fidelity UI, brand styling, or visual polish
+- When the work is primarily about measuring usability of an existing implementation
 
 ## Required Inputs
 
-- The mapped flow, task structure, or IA
-- Any screenshots or existing screens the wireframe should align with
+- The mapped flow, task model, or information architecture
+- User research insights, personas, or mental model evidence that should inform hierarchy
+- Any screenshots or existing screens the wireframe must align with
 - Component constraints, platform patterns, and breakpoints
-- State requirements such as loading, empty, error, success, or disabled
-- Any known accessibility, content, or technical constraints
+- State requirements: loading, empty, error, success, disabled, and conditional paths
+- Known accessibility, content length, or localization constraints
 
 ## Workflow
 
-1. Establish the screen purpose and the user's priority task for each view.
-2. Lay out the information hierarchy from most important to least important.
-3. Place controls, content, and supporting feedback where they help the user act quickly.
-4. Define interaction behavior for primary, secondary, and conditional actions.
-5. Draft responsive variants or structural shifts for smaller and larger viewports.
-6. Annotate key decisions so implementation and review stay aligned.
+1. Restate the user's primary goal for each screen and use it to drive hierarchy decisions.
+2. Arrange content from most task-relevant to least, using research evidence to resolve priority conflicts.
+3. Place controls and feedback where they reduce decision cost and support progressive disclosure.
+4. Define interaction behavior for primary, secondary, and conditional actions, noting branching logic.
+5. Draft responsive variants that preserve task priority across viewport sizes.
+6. Annotate unresolved assumptions, open user research questions, and decisions that need validation.
 
 ## Design Principles / Evaluation Criteria
 
-- Clarity before decoration
-- Strong hierarchy with obvious primary action
-- Predictable component placement and behavior
-- States and edge cases should be visible in the scaffold
-- The wireframe should be specific enough to review, but loose enough to evolve
+- Hierarchy should reflect user task priority, not internal data structure
+- Every screen should have a single clear primary action
+- States and edge cases must be visible in the scaffold, not deferred
+- The wireframe should invite critique and iteration, not premature commitment
+- Content strategy and interaction logic matter more than pixel precision
+- Annotations should make the rationale legible to non-designers
 
 ## Output Contract
 
-- Low-fidelity wireframes or screen skeletons
-- Interaction notes for primary paths and important branches
-- Responsive or layout variants when relevant
-- Callouts for unresolved structural questions or risky assumptions
+- Low-fidelity wireframes or screen skeletons organized by flow
+- Interaction notes explaining primary paths, branches, and conditional logic
+- Responsive or layout variants when viewport changes affect hierarchy
+- A list of open assumptions or questions that need user validation
+- Callouts for areas where research evidence is thin
 
 ## Guardrails
 
-- Do not add visual styling that distracts from structure
+- Do not add visual styling that distracts from structural decisions
 - Do not leave critical interactions implied when they need to be explicit
-- Do not design every pixel if the question is still about flow or hierarchy
-- Do not ignore states that will materially change the user's path
+- Do not over-specify pixels when the question is still about flow or hierarchy
+- Do not ignore states that materially change the user's path or confidence
+- Do not treat wireframes as final; they exist to be tested and revised
 
 ## Optional Tools / Resources
 

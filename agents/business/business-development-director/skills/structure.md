@@ -1,81 +1,84 @@
 ---
 name: structure
-description: Design commercial structures, governance, and deal economics for strategic business development opportunities.
+description: Design portfolio-level deal architectures, market-entry structures, and multi-party commercial frameworks that scale across the business development pipeline.
 ---
 
 # Structure
 
 ## Purpose
 
-Use this skill to convert a promising opportunity into a durable commercial structure that is financially sound, executable, and aligned with both parties' incentives.
+Use this skill to shape the commercial architecture of a business development opportunity — choosing the right deal type, modeling the strategic economics, and building a framework that leadership can evaluate against the company's growth thesis.
 
 ## When to Use
 
-- When the parties agree there is strategic value but not yet a deal shape
-- When a standard contract will not fit the engagement
-- When the work needs economics, governance, and operating terms defined together
+- When a new market, channel, or revenue model needs a deal architecture before individual terms are negotiated
+- When multiple deal types (licensing, JV, white-label, acquisition, strategic investment) are being compared
+- When the opportunity requires cross-functional alignment on product, legal, finance, and GTM implications
+- When the structure must fit within a portfolio of existing deals and company-level commitments
 
 ## When Not to Use
 
-- When the main problem is whether the opportunity is worth pursuing
-- When the main task is finding targets or research sources
-- When the user is preparing for a negotiation conversation
+- When the deal shape is already agreed and the work is term-level negotiation
+- When the task is qualifying or sourcing new targets
+- When the main question is partner relationship management, not deal design
 
 ## Required Inputs
 
-- The thesis for the opportunity and the desired business outcome
-- The parties involved and their respective constraints
-- Any required internal approvals or feasibility checks
-- Relevant economics, timing expectations, and risk tolerances
-- The level of exclusivity, control, or customization being considered
+- The strategic thesis for pursuing this opportunity and the market context
+- The deal types under consideration and their relative merits
+- Financial model inputs: revenue potential, cost to serve, capital requirements, and payback period
+- Internal constraints: product roadmap impact, engineering capacity, legal exposure, and board-level approvals
+- Comparable deal structures from the company's history or the market
 
 ## Workflow
 
-1. Define the value exchange each side is trying to achieve.
-2. Choose the simplest structure that can still capture the strategic value.
-3. Model the base, upside, and downside economics.
-4. Define governance, obligations, milestones, and exit conditions.
-5. Check internal feasibility for product, legal, finance, and operations.
-6. Translate the structure into a form that legal and leadership can review quickly.
+1. Frame the opportunity against the company's growth thesis and competitive position.
+2. Evaluate candidate deal types and select the structure that best fits the strategic intent.
+3. Model the economics at portfolio level: how this deal interacts with existing commitments and margin targets.
+4. Define governance, decision rights, and escalation paths proportional to the deal's strategic weight.
+5. Identify the internal approvals, cross-functional dependencies, and timeline gates.
+6. Package the structure as a decision memo for executive or board review.
 
 ## Design Principles / Evaluation Criteria
 
-- Durable economics over clever deal optics
-- Simplicity over unnecessary complexity
-- Mutual clarity over ambiguous promise language
-- Operational feasibility over theoretical completeness
-- Control of downside over upside-only thinking
+- Strategic fit over transactional optimization
+- Portfolio coherence over deal-by-deal thinking
+- Downside protection built into the structure, not negotiated after the fact
+- Executive-ready framing with clear decision points
+- Operational feasibility validated before the structure is proposed
 
 ## Output Contract
 
-- A recommended deal structure
-- The economics and key assumptions behind it
-- Governance and obligation terms
-- Open risks or missing approvals
+- A deal architecture recommendation with the strategic rationale
+- Economics modeled at base, upside, and downside scenarios
+- Governance, approval path, and escalation framework
+- Portfolio impact assessment and internal dependency map
+- Open risks, missing approvals, and decision timeline
 
 ## Examples
 
 ### Example 1
 
 Input:
-- Opportunity: Strategic distribution partnership with white-label rights
+- Opportunity: Enter a new geography through a licensing deal with a regional player
 
 Expected output:
-- Structure recommendation: Revenue share with minimum commitments, limited exclusivity, and quarterly performance reviews
-- Rationale: Captures value without locking the company into open-ended risk
+- Structure recommendation: Territory-limited license with performance minimums, staged exclusivity, and annual renewal gates
+- Portfolio note: Does not conflict with existing direct-sales commitments in adjacent regions
+- Decision memo ready for executive review with risk-adjusted economics
 
 ## Guardrails
 
-- Do not design a structure that wins the negotiation but loses the business
-- Do not bake in unapproved internal commitments
-- Do not leave governance, exit, or performance terms undefined
-- Do not model only the best-case economics
+- Do not optimize a single deal at the expense of portfolio coherence
+- Do not propose structures that require approvals the company cannot realistically obtain
+- Do not leave the product or engineering impact unaddressed in the structure
+- Do not model only the upside scenario
 
 ## Optional Tools / Resources
 
-- Google Sheets for scenario modeling
-- Notion for term notes and decision records
-- Legal review artifacts and internal approval threads
+- Google Sheets for financial modeling and scenario analysis
+- Notion for deal architecture memos and decision records
+- Legal review templates and board presentation frameworks
 
 - Shared MCP servers: Notion MCP, Slack MCP, Linear MCP
 - Reference websites: [Harvard Business Review (hbr.org)](https://hbr.org/), [McKinsey Insights (mckinsey.com)](https://www.mckinsey.com/featured-insights), [Bain Insights (bain.com)](https://www.bain.com/insights/), [HubSpot Sales Resources (hubspot.com)](https://www.hubspot.com/resources/sales), [PartnerStack Blog (partnerstack.com)](https://partnerstack.com/blog)

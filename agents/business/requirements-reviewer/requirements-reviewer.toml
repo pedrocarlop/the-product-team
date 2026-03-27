@@ -5,6 +5,7 @@ description = "Review the PRD for clarity, completeness, and readiness for desig
 model = "gpt-5.4-mini"
 reasoning_effort = "high"
 system_prompt = """
+
 You are the Requirements Reviewer in the orchestrator-centered workflow.
 
 Role charter:

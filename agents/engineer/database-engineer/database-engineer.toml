@@ -5,6 +5,7 @@ description = "Designs, optimizes, and maintains database systems with a focus o
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Database Engineer in the orchestrator-centered workflow.
 
 Role charter:

@@ -1,79 +1,90 @@
 ---
 name: observe
-description: Verify backend behavior in practice using tests, logs, metrics, traces, and query inspection.
+description: Verify backend code behavior using tests, logs, query inspection, traces, and profiling to confirm correctness and performance after implementation.
 ---
 
 # Observe
 
 ## Purpose
 
-Use this skill to confirm that backend changes behave correctly in production-like conditions and are visible enough to operate safely.
+Use this skill to confirm that a backend code change behaves correctly and performs acceptably by exercising the code path with representative input and inspecting the observable evidence.
 
 ## When to Use
 
-- After implementing a backend change that needs validation
-- When adding logging, metrics, traces, dashboards, or alerts
-- When diagnosing an unexpected bug, latency spike, or failure path
+- After implementing a backend change that needs correctness or performance validation
+- When adding or verifying logging, metrics, or tracing instrumentation in application code
+- When diagnosing an unexpected bug, slow query, N+1 pattern, or data inconsistency
+- When verifying that a new endpoint, worker, or data pipeline produces the expected results
 
 ## When Not to Use
 
-- When no code exists yet and the right next step is modeling
-- When the task is primarily security hardening or rollout preparation
+- When no code exists yet and the right next step is modeling or design
+- When the task is primarily infrastructure health, scaling, or deployment verification (route to DevOps)
 - When the problem is already solved and only documentation needs updating
 
 ## Required Inputs
 
-- The code path, endpoint, worker, or query to verify
-- The expected success and failure signals
-- The observability tools available in the repo or environment
-- Any performance or correctness thresholds that matter
+- The code path, endpoint, worker, queue, or query to verify
+- The expected correct output for representative inputs
+- The expected performance characteristics: query count, response time, memory usage
+- The observability tools available: test runner, logging framework, query explain, profiler
+- Any data fixtures or staging environment needed for realistic testing
 
 ## Workflow
 
-1. Identify what proof would make the change trustworthy: tests, logs, metrics, traces, or query plans.
-2. Exercise the code path with representative input and capture the observable signals.
-3. Check that logs are structured, errors are actionable, and sensitive data is absent.
-4. Validate performance-sensitive paths with realistic data volume or query inspection.
-5. Compare actual behavior to expected behavior and note any gaps.
-6. Turn the findings into follow-up fixes if the evidence does not match the model.
+1. Identify the specific proof needed: correctness evidence, performance measurement, or both.
+2. Exercise the code path with representative and edge-case inputs, capturing all observable signals.
+3. Inspect query behavior: check for N+1 patterns, missing indexes, unnecessary joins, and excessive row scans using EXPLAIN or query logs.
+4. Verify that application logs are structured, include correlation IDs, and do not leak sensitive data.
+5. Profile performance-sensitive paths with realistic data volume, not just trivial test fixtures.
+6. Compare observed behavior against expected behavior and document any discrepancies.
+7. Turn findings into actionable follow-ups: code fixes, index additions, log improvements, or test additions.
 
 ## Design Principles / Evaluation Criteria
 
-- Production visibility is part of the feature
-- Proof should come from the real execution path, not just static reasoning
-- Missing telemetry is a delivery risk, not a nice-to-have
-- Performance claims should be backed by measurement
+- Correctness proof should come from executing the real code path, not just reasoning about it
+- Query performance claims must be backed by EXPLAIN output or profiling data, not assumptions
+- Structured logging with correlation IDs is a code quality requirement, not an infrastructure concern
+- Missing test coverage for a new code path is a delivery risk
+- Performance validation must use realistic data volume; toy fixtures hide real problems
 
 ## Output Contract
 
-- A short verification summary with the evidence gathered
-- Any logs, metrics, traces, or query findings that matter
-- Gaps in observability or correctness that still need follow-up
-- A clear pass/fail statement for the behavior under review
+- A verification summary with the evidence gathered for each code path tested
+- Query inspection results: EXPLAIN output, query count, and any problematic patterns found
+- Log quality assessment: structure, correlation ID presence, sensitive data absence
+- Performance measurements for latency-sensitive or data-heavy paths
+- A clear pass/fail statement for correctness and performance
+- Follow-up items: code fixes, missing tests, index recommendations, or instrumentation gaps
 
 ## Examples
 
 ### Example 1
 
 Input:
-- Task: Verify a new list endpoint
-- Concern: It may hide an N+1 query and lacks request tracing
+- Task: Verify a new list endpoint that joins orders with customer data
+- Concern: May have an N+1 query pattern and lacks request tracing
 
 Expected output:
-- Confirm the endpoint with representative data and inspect query behavior
-- Check that trace IDs and structured logs appear in the request path
-- Report any missing metrics or expensive query patterns
+- Run the endpoint with 100 representative records and capture query log
+- EXPLAIN output showing the join strategy and index usage
+- Finding: N+1 detected; 101 queries instead of 2. Recommend eager loading or a JOIN refactor.
+- Log check: Structured JSON logs present but missing request correlation ID
+- Follow-up: Add correlation ID middleware; refactor query to use JOIN; add integration test for the list endpoint with >50 records
 
 ## Guardrails
 
-- Do not treat passing unit tests as enough for production confidence when queries or integrations changed
-- Do not claim observability is complete if the critical path has no trace or metric
-- Do not expose secrets or PII while collecting evidence
+- Do not treat passing unit tests as sufficient when queries, integrations, or external calls changed
+- Do not claim performance is acceptable without measuring it with realistic data
+- Do not skip query inspection when the code path involves database reads or writes
+- Do not expose secrets, PII, or credentials in logs, traces, or test output
+- Do not assume the happy path is the only path that needs verification
 
 ## Optional Tools / Resources
 
-- Test runner and fixture data
-- Logging, metrics, and tracing dashboards
-- Database query explain tools
-- Incident notes or prior debugging history
-
+- Test runner and fixture data for the application
+- Database query EXPLAIN and slow query log tools
+- Application profiler for CPU and memory hotspots
+- Logging framework documentation and structured log conventions
+- APM or tracing tools for request-level visibility
+- Incident notes or prior debugging history for the affected code area

@@ -1,68 +1,72 @@
 ---
 name: wire
-description: Design the screen structure, interaction flow, and state scaffolding for a full-stack feature once the model is known.
+description: Plan the screen structure, data binding, and state scaffolding for a full-stack feature once the API contract and data model are known.
 ---
 
 # Wire
 
 ## Purpose
 
-Use this skill to turn a modeled feature into wireframes that show what each screen contains, how it is arranged, and how the user moves through it.
+Use this skill to plan how a full-stack feature maps to screens, data flows, and component structure so implementation can begin with clear boundaries between frontend rendering, API calls, and state management.
 
 ## When to Use
 
-- When the API and data shape are known and the UI needs to be planned
-- When layout, hierarchy, or component placement needs to be defined without final styling
-- When loading, empty, error, and success states must be designed into the flow
+- When the API shape and data model are known and the UI implementation needs to be planned
+- When you need to decide which data loads where, what triggers fetches, and how state flows between components
+- When loading, error, empty, and optimistic-update states must be designed into the component tree before coding starts
 
 ## When Not to Use
 
-- When the main problem is deciding the feature model or API contract
-- When the request is for final visuals, branding, or design-system decisions
-- When the work is only about backend logic or rollout safety
+- When the API contract or data model is still being decided
+- When the request is for visual design, branding, or design system decisions
+- When the work is only about backend logic, database schema, or deployment
 
 ## Required Inputs
 
-- The mapped flow, feature slice, or user task
-- Any screenshots, mocks, or existing screens to align with
-- Component constraints, platform patterns, and breakpoints
-- State requirements such as loading, empty, error, success, or disabled
-- Accessibility, content, and technical constraints that affect layout
+- The API contract, data model, or feature slice that drives the UI
+- Any existing screens, mocks, or wireframes from design
+- The component library and framework conventions in use
+- State requirements: loading, empty, error, success, disabled, and optimistic update
+- Auth, permission, and data-fetching constraints that affect rendering
+- Known performance constraints such as pagination, lazy loading, or bundle size
 
 ## Workflow
 
-1. Establish the purpose of each screen and the user's primary task.
-2. Lay out information from most important to least important.
-3. Place controls and feedback where they help the user act quickly.
-4. Define behavior for primary, secondary, and conditional actions.
-5. Draft responsive variants when viewport changes the structure.
-6. Annotate the key decisions that implementation must preserve.
+1. Map each screen to the API endpoints and data entities it depends on.
+2. Define the component tree and decide where state lives: server state, client state, URL state, or derived.
+3. Identify data-fetching boundaries and decide what loads eagerly, lazily, or optimistically.
+4. Specify how each component handles loading, error, empty, and stale-data conditions.
+5. Draft the responsive layout structure and note where server-rendered versus client-rendered boundaries apply.
+6. Annotate implementation decisions that affect backend contract expectations or require API changes.
 
 ## Design Principles / Evaluation Criteria
 
-- Clarity before decoration
-- Strong hierarchy with an obvious primary action
-- Predictable component placement and behavior
-- States and edge cases should be visible in the scaffold
-- The wireframe should be specific enough to review, but loose enough to evolve
+- Data flow clarity before visual polish
+- Each component should have a single clear data responsibility
+- State management boundaries should be explicit and minimal
+- Loading and error states must be first-class implementation concerns, not afterthoughts
+- The plan should be specific enough to code against, but flexible enough to adjust during review
 
 ## Output Contract
 
-- Low-fidelity wireframes or screen skeletons
-- Interaction notes for primary paths and important branches
-- Responsive or layout variants when relevant
-- Callouts for unresolved structural questions or risky assumptions
+- A screen-to-API mapping showing which endpoints feed which views
+- Component tree or structure sketch with state ownership annotations
+- Data-fetching and state-management notes for each major section
+- State handling specs for loading, error, empty, and edge conditions
+- Implementation notes on auth gating, permission checks, and render boundaries
+- Open questions about API contract gaps or missing backend support
 
 ## Guardrails
 
-- Do not add visual styling that distracts from structure
-- Do not leave critical interactions implied when they need to be explicit
-- Do not design every pixel if the question is still about flow or hierarchy
-- Do not ignore states that will materially change the user's path
+- Do not add visual design decisions that belong to the designer
+- Do not leave data-fetching strategy implicit when components have complex dependencies
+- Do not plan component structure without considering the real API response shape
+- Do not ignore auth, permission, or error states that will materially change the rendered output
 
 ## Optional Tools / Resources
 
 - Existing design system components and layout patterns
-- Product screenshots or prototypes
+- API documentation, OpenAPI specs, or GraphQL schemas
+- Product screenshots or prototypes from design
 - Device and breakpoint constraints
-- Accessibility guidance or interaction standards
+- Framework documentation for state management and data fetching

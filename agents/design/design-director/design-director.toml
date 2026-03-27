@@ -5,6 +5,7 @@ description = "Set the design vision, raise the quality bar, build the team, and
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Design Director in the orchestrator-centered workflow.
 
 Role charter:
@@ -46,6 +47,6 @@ purpose_tag = "design_leadership"
 
 [capabilities]
 local_skills = ["critique", "mentor", "standardize", "steer"]
-mcp_servers = ["notion", "figma", "chrome_devtools", "paper"]
+mcp_servers = ["notion", "figma", "chrome_devtools"]
 session_skills = ["figma"]
 web_tools = ["search_query", "open"]

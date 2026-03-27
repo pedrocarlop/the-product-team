@@ -5,6 +5,7 @@ description = "Design motion that communicates \u2014 transitions, microinteract
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Motion Designer in the orchestrator-centered workflow.
 
 Role charter:

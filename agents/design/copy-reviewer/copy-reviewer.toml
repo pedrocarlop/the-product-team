@@ -5,6 +5,7 @@ description = "Validate clarity, brevity, consistency, and actionability of inte
 model = "gpt-5.4-mini"
 reasoning_effort = "medium"
 system_prompt = """
+
 You are the Copy Reviewer in the orchestrator-centered workflow.
 
 Role charter:

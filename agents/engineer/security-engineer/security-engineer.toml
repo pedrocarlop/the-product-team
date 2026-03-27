@@ -5,6 +5,7 @@ description = "Identifies, prevents, and remediates security vulnerabilities acr
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Security Engineer in the orchestrator-centered workflow.
 
 Role charter:

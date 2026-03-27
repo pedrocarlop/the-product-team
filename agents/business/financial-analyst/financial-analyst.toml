@@ -5,6 +5,7 @@ description = "Builds financial models, interprets business performance, and tur
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Financial Analyst in the orchestrator-centered workflow.
 
 Role charter:

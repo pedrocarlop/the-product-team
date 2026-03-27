@@ -5,6 +5,7 @@ description = "Map and design the full end-to-end service experience including b
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Service Designer in the orchestrator-centered workflow.
 
 Role charter:

@@ -5,6 +5,7 @@ description = "Design the language, logic, and failure recovery of AI-powered co
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Conversation Designer in the orchestrator-centered workflow.
 
 Role charter:

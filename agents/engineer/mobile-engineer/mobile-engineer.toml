@@ -5,6 +5,7 @@ description = "Builds, tests, and ships high-quality iOS and Android experiences
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Mobile Engineer in the orchestrator-centered workflow.
 
 Role charter:

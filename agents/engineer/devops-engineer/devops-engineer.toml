@@ -5,6 +5,7 @@ description = "Designs, builds, and operates the infrastructure and delivery pip
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Devops Engineer in the orchestrator-centered workflow.
 
 Role charter:
@@ -48,7 +49,8 @@ purpose_tag = "devops_engineering_implementation"
 
 [capabilities]
 local_skills = ["pipeline", "release", "observe", "stabilize"]
-recommended_external_mcp = ["GitHub MCP", "Sentry MCP", "Linear MCP", "Notion MCP"]
+mcp_servers = ["github"]
+recommended_external_mcp = ["Sentry MCP", "Linear MCP", "Notion MCP"]
 recommended_external_skills = []
 web_tools = ["search_query", "open"]
 notes = "Broaden research only after checking the target repository and the role's configured MCP tools and web sources first."

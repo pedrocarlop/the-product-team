@@ -24,6 +24,26 @@ Run this from the project root:
 python3 .codex/product-team/scripts/validate-install.py
 ```
 
+## Usage Examples
+
+### Simple request (direct execution)
+
+> "Fix the typo on the login page"
+
+The orchestrator sees this is simple, self-contained work. It routes to direct execution — no specialists needed. It creates `00_routing.md` and `01_intake.md`, fixes the typo, and updates `status.md`.
+
+### Medium request (2-role orchestration)
+
+> "Add dark mode support to the dashboard"
+
+The orchestrator identifies this needs a **product-designer** (to define the theme tokens and component states) and a **frontend-engineer** (to implement the toggle and theme switching). Each specialist writes an advisory plan, the orchestrator merges them into a unified plan, asks for your approval, and then coordinates execution in sequence: design first, then engineering.
+
+### Complex request (full team)
+
+> "Redesign the checkout flow to reduce drop-off by 20%"
+
+The orchestrator staffs a full team: **product-manager** (to define success metrics and scope), **product-designer** (to redesign the flow), **frontend-engineer** (to implement), and **qa-engineer** (to validate). Each produces a plan, the orchestrator reconciles them into one execution path, gets approval, and coordinates the work stage by stage. All artifacts, decisions, and reviews are logged in `logs/active/`.
+
 ## Notes
 
 - `AGENTS.md` contains a managed Product Team block that the installer keeps up to date.

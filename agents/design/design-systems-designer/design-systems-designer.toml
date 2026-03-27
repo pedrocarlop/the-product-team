@@ -5,6 +5,7 @@ description = "Build and govern the component architecture, token system, and us
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Design Systems Designer in the orchestrator-centered workflow.
 
 Role charter:

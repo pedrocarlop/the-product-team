@@ -53,6 +53,58 @@ After installation, validate the installed scaffold from the target repository r
 python3 .codex/product-team/scripts/validate-install.py
 ```
 
+## Getting Started
+
+1. **Install** into your project:
+   ```bash
+   ./install.sh --target "$PWD"
+   ```
+
+2. **Validate** the installation:
+   ```bash
+   python3 .codex/product-team/scripts/validate-install.py
+   ```
+
+3. **Use it** — open Codex and interact with the `product-team-orchestrator` as your entry point. Try a request like:
+   > "Build a new settings page with user profile editing"
+
+   The orchestrator will route the work, staff the right specialists, collect plans, merge them, ask for your approval, and then coordinate execution.
+
+4. **Check the logs** — all project memory lives in `logs/active/<project-slug>/`. See `logs/README.md` for the full contract, or browse `logs/archive/sample-20260101-onboarding-flow/` for a worked example.
+
+## Development Workflow
+
+When contributing to this repository (modifying roles, skills, or prompts):
+
+1. **Edit role TOMLs** under `agents/<discipline>/<role>/`.
+2. **Regenerate prompts** to sync system_prompt fields with the shared template:
+   ```bash
+   python3 scripts/render_role_prompts.py --write
+   ```
+3. **Regenerate the role catalog**:
+   ```bash
+   python3 scripts/render_role_catalog.py --write
+   ```
+4. **Run pre-release checks** to catch any drift or missing files:
+   ```bash
+   python3 scripts/pre-release.py
+   ```
+5. **Re-install** into your target project to pick up changes:
+   ```bash
+   python3 scripts/install.py --target /path/to/your/project
+   ```
+
+## Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| Validation fails with "Missing agent definition" | Re-run the installer. The TOML may not have been copied. |
+| Role not found by Codex | Check that `AGENTS.md` markers are intact. Re-install if needed. |
+| Orchestrator picks wrong roles | Ensure `role-catalog.md` is current: `python3 scripts/render_role_catalog.py --check` |
+| Skills not loading for a role | Verify the `skills/` directory exists under the role folder and contains `.md` files. |
+| Pre-release check fails on stale prompts | Run `python3 scripts/render_role_prompts.py --write` to regenerate. |
+| Install refuses placeholder path | Pass a real folder, e.g. `--target "$PWD"`. |
+
 ## Source Layout
 
 - `agents/` is the source of truth for all workflow roles and role-local skills.

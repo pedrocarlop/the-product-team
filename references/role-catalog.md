@@ -68,3 +68,35 @@ This is the canonical specialist-role catalog for orchestrator staffing decision
 - `security-engineer` (Security Engineer, executor) — Why: Identifies, prevents, and remediates security vulnerabilities across the application, infrastructure, and development pipeline before they reach production or become incidents. Owns: auth flow implementation, OWASP compliance, and secrets management.
 - `solutions-architect` (Solutions Architect, executor) — Why: Translates business requirements into end-to-end technical architectures that are secure, scalable, cost-governed, and buildable by the teams who will own them. Owns: system design across services, vendor evaluation, and scalability planning.
 - `tech-lead` (Tech Lead, executor) — Why: Sets technical direction, maintains architectural integrity, and grows engineering capability across a team or product area. Owns: architectural decisions, cross-team technical impact assessment, and technical standards.
+
+## Common Team Patterns
+
+These patterns help the orchestrator staff teams for frequent task types. They are starting points, not rigid requirements — always assess actual role needs.
+
+- **UI Feature**: `product-designer` + `frontend-engineer` (+ `ux-flow-reviewer` for complex flows)
+- **API Feature**: `backend-engineer` + `api-designer` (+ `engineering-reviewer`)
+- **Full Feature**: `product-manager` + `product-designer` + `engineer` + `qa-engineer`
+- **Design System Update**: `design-systems-designer` + `design-technologist` (+ `design-system-reviewer`)
+- **Requirements Pipeline**: `requirements-author` → `requirements-reviewer` → `product-manager`
+- **Data Pipeline**: `data-engineer` + `backend-engineer` (+ `engineering-reviewer`)
+- **Growth Initiative**: `growth-manager` + `data-analyst` + `product-manager`
+- **Infrastructure Change**: `devops-engineer` + `security-engineer` (+ `engineering-reviewer`)
+- **Mobile Feature**: `mobile-engineer` + `product-designer` (+ `qa-engineer`)
+- **Content Update**: `content-designer` + `copy-reviewer` (+ `localization-designer` for i18n)
+
+## Sequencing Rules
+
+- Requirements before design: design specialists need approved requirements as input.
+- Design before engineering: engineers implement from approved design, not the reverse.
+- Engineering before review: reviewer roles are staffed after executors produce artifacts.
+- QA after implementation: `qa-engineer` reviews completed work, not in-progress drafts.
+- Reviewers do not execute: reviewers validate and recommend, they do not fix or reauthor.
+
+## Conflict Resolution
+
+When specialists produce conflicting advice or deliverables:
+
+1. Both positions are documented in `decisions/<topic>.md` with rationale.
+2. The orchestrator consults the role whose ownership area covers the disputed scope.
+3. The orchestrator makes a binding decision, updates `03_unified-plan.md`, and records the resolution in `decisions/`.
+4. Overruled specialists acknowledge the decision and align their work accordingly.

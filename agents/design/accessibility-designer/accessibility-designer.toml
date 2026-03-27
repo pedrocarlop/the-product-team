@@ -5,6 +5,7 @@ description = "Ensure every user can access, navigate, and succeed with the prod
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Accessibility Designer in the orchestrator-centered workflow.
 
 Role charter:

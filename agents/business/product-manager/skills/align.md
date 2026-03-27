@@ -1,80 +1,82 @@
 ---
 name: align
-description: Translate a product decision into shared understanding across stakeholders so teams move in the same direction.
+description: Translate a product decision into shared understanding across the immediate team and adjacent stakeholders so execution moves in one direction.
 ---
 
 # Align
 
 ## Purpose
 
-Use this skill to make sure the product decision is understood, supported, and acted on consistently by the people who need to move with it.
+Use this skill to make sure a product decision — scope change, prioritization call, or tradeoff — is understood and actionable by the people who need to build, support, and sell it.
 
 ## When to Use
 
-- When executives need a shared narrative for the product direction
-- When engineering, design, support, or sales need context on why a decision was made
-- When a roadmap or scope change needs clear communication and follow-through
+- When engineering, design, or QA need context on why a scope or priority changed
+- When sales, support, or marketing need to update their plans based on a product decision
+- When a roadmap change requires re-setting expectations with stakeholders who were counting on a different outcome
+- When a tradeoff was made and the reasoning needs to be documented before it is forgotten
 
 ## When Not to Use
 
-- When the core issue is still choosing the strategy
-- When the task is only about prioritization inside one function
-- When the work is mostly about funding allocation or portfolio math
+- When the decision has not been made yet — alignment follows decisions, it does not replace them
+- When the alignment need is at the executive or board level (escalate to CPO)
+- When the issue is cross-portfolio strategy rather than a single product area
 
 ## Required Inputs
 
-- The decision, strategy, or tradeoff that needs alignment
-- The audiences that need to understand it
-- The likely objections, tensions, or misunderstandings
-- The business outcome or constraint that the message must preserve
+- The specific decision, tradeoff, or scope change being communicated
+- The teams and stakeholders who are directly affected
+- The reasoning behind the decision, including what was considered and rejected
+- The timeline and next steps each audience needs to act on
+- Any commitments that are changing or being dropped
 
 ## Workflow
 
-1. State the decision and the reason for it in one clear sentence.
-2. Identify each audience's concern or mental model.
-3. Translate the decision into consequences, not slogans.
-4. Surface the tradeoffs that people may resist.
-5. Decide what should be emphasized and what should be intentionally left out.
-6. Check that the final message leads to action, not just agreement.
+1. State the decision and the single most important reason behind it.
+2. List who is affected and what changes for each team or stakeholder.
+3. Address the likely objection or concern head-on — do not wait for it to surface later.
+4. Define the concrete next steps: who does what by when.
+5. Document the decision and rationale where the team can find it later.
+6. Schedule a check-in if the decision has a built-in evaluation point.
 
 ## Design Principles / Evaluation Criteria
 
-- Alignment should clarify decisions, not flatten disagreement
-- Messages should be specific enough to guide action
-- The rationale should be honest about tradeoffs and uncertainty
-- Shared language matters more than polished language
-- Good alignment reduces re-litigation later
+- Alignment should result in changed behavior, not just head-nodding
+- The message should be concrete enough that each audience knows their next step
+- Dropped commitments should be acknowledged, not quietly removed
+- Rationale should be honest — if the reason is "we ran out of time," say that
+- Good alignment prevents the same question from being re-asked next week
 
 ## Output Contract
 
-- A concise alignment message or memo
-- Audience-specific framing if needed
-- Key tradeoffs and non-goals
-- Any follow-up required to keep the group aligned
+- A concise alignment message or decision note
+- Team-specific next steps where needed
+- Acknowledged tradeoffs and dropped commitments
+- Follow-up date or checkpoint if applicable
 
 ## Examples
 
 ### Example 1
 
 Input:
-- Decision: Pause a requested feature to focus on activation work
+- Decision: Cut the export feature from the current release to hit the launch date
 
 Expected output:
-- Alignment message: "We are prioritizing activation because it has the highest leverage on near-term growth, which means the requested feature moves to a later cycle unless the activation work underperforms."
+- Alignment note: "Export is moving to the post-launch cycle because the remaining work conflicts with the launch-critical accessibility fixes. Sales should set expectations with the three customers who requested it. Engineering should close the in-progress branch and document the remaining work."
 
 ## Guardrails
 
-- Do not present alignment as unanimous if it is not
-- Do not hide tradeoffs to make the message easier to accept
-- Do not use alignment to reopen settled strategy
-- Do not over-explain details that dilute the core decision
+- Do not use alignment to retroactively justify a decision that was never explicitly made
+- Do not hide dropped scope — be direct about what is no longer happening
+- Do not over-explain the strategic context when the audience just needs to know what changed
+- Do not present contested decisions as unanimous
 
 ## Optional Tools / Resources
 
-- Executive memos and roadmap notes
-- Team updates and decision logs
-- Customer and market evidence
-- Notion docs or slides for stakeholder communication
+- Decision logs and roadmap documents
+- Team standup notes and sprint plans
+- Customer feedback and sales pipeline context
+- Notion docs or Slack posts for async alignment
 
 - Shared MCP servers: Notion MCP, Linear MCP, Slack MCP, GitHub MCP
 - Reference websites: [SVPG Articles (svpg.com)](https://www.svpg.com/articles/), [Lenny's Newsletter (lennysnewsletter.com)](https://www.lennysnewsletter.com/), [Mind the Product (mindtheproduct.com)](https://www.mindtheproduct.com/), [Amplitude Blog (amplitude.com)](https://amplitude.com/blog), [Product School Resources (productschool.com)](https://productschool.com/resources)

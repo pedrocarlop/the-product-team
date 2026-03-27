@@ -5,6 +5,7 @@ description = "Translates design specs and product requirements into accessible,
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Frontend Engineer in the orchestrator-centered workflow.
 
 Role charter:
@@ -48,7 +49,8 @@ purpose_tag = "frontend_engineering_implementation"
 
 [capabilities]
 local_skills = ["translate", "stateful", "harden", "tune"]
-recommended_external_mcp = ["GitHub MCP", "Chrome DevTools MCP", "Figma MCP", "Notion MCP"]
+mcp_servers = ["github"]
+recommended_external_mcp = ["Chrome DevTools MCP", "Figma MCP", "Notion MCP"]
 recommended_external_skills = []
 web_tools = ["search_query", "open"]
 notes = "Broaden research only after checking the target repository and the role's configured MCP tools and web sources first."

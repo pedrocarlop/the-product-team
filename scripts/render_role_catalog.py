@@ -3,58 +3,14 @@ from __future__ import annotations
 
 import argparse
 import sys
-import tomllib
-from dataclasses import dataclass
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.toml_utils import DISCIPLINE_LABELS, DISCIPLINE_ORDER, load_roles
 
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "references" / "role-catalog.md"
-DISCIPLINE_ORDER = ("business", "design", "engineer")
-DISCIPLINE_LABELS = {
-    "business": "Business Roles",
-    "design": "Design Roles",
-    "engineer": "Engineering Roles",
-}
-EXCLUDED_ROLES = {"orchestrator", "reference"}
-
-
-@dataclass(frozen=True)
-class RoleEntry:
-    discipline: str
-    name: str
-    display_name: str
-    description: str
-    owns: tuple[str, ...]
-    role_kind: str
-
-
-def load_toml(path: Path) -> dict:
-    return tomllib.loads(path.read_text(encoding="utf-8"))
-
-
-def load_roles(root: Path = ROOT) -> list[RoleEntry]:
-    roles: list[RoleEntry] = []
-
-    for discipline in DISCIPLINE_ORDER:
-        for path in sorted((root / "agents" / discipline).glob("*/*.toml")):
-            data = load_toml(path)
-            role_name = data["name"]
-            if role_name in EXCLUDED_ROLES:
-                continue
-
-            roles.append(
-                RoleEntry(
-                    discipline=discipline,
-                    name=role_name,
-                    display_name=data["display_name"],
-                    description=data["description"].strip().rstrip("."),
-                    owns=tuple(data["role_boundary"]["owns"]),
-                    role_kind=data["execution_policy"]["role_kind"],
-                )
-            )
-
-    return roles
 
 
 def list_phrase(items: tuple[str, ...], limit: int = 3) -> str:
@@ -95,6 +51,47 @@ def render_catalog(root: Path = ROOT) -> str:
             )
 
         lines.append("")
+
+    # -- Common Team Patterns --
+    lines.append("## Common Team Patterns")
+    lines.append("")
+    lines.append(
+        "These patterns help the orchestrator staff teams for frequent task types. "
+        "They are starting points, not rigid requirements — always assess actual role needs."
+    )
+    lines.append("")
+    lines.append("- **UI Feature**: `product-designer` + `frontend-engineer` (+ `ux-flow-reviewer` for complex flows)")
+    lines.append("- **API Feature**: `backend-engineer` + `api-designer` (+ `engineering-reviewer`)")
+    lines.append("- **Full Feature**: `product-manager` + `product-designer` + `engineer` + `qa-engineer`")
+    lines.append("- **Design System Update**: `design-systems-designer` + `design-technologist` (+ `design-system-reviewer`)")
+    lines.append("- **Requirements Pipeline**: `requirements-author` → `requirements-reviewer` → `product-manager`")
+    lines.append("- **Data Pipeline**: `data-engineer` + `backend-engineer` (+ `engineering-reviewer`)")
+    lines.append("- **Growth Initiative**: `growth-manager` + `data-analyst` + `product-manager`")
+    lines.append("- **Infrastructure Change**: `devops-engineer` + `security-engineer` (+ `engineering-reviewer`)")
+    lines.append("- **Mobile Feature**: `mobile-engineer` + `product-designer` (+ `qa-engineer`)")
+    lines.append("- **Content Update**: `content-designer` + `copy-reviewer` (+ `localization-designer` for i18n)")
+    lines.append("")
+
+    # -- Sequencing Rules --
+    lines.append("## Sequencing Rules")
+    lines.append("")
+    lines.append("- Requirements before design: design specialists need approved requirements as input.")
+    lines.append("- Design before engineering: engineers implement from approved design, not the reverse.")
+    lines.append("- Engineering before review: reviewer roles are staffed after executors produce artifacts.")
+    lines.append("- QA after implementation: `qa-engineer` reviews completed work, not in-progress drafts.")
+    lines.append("- Reviewers do not execute: reviewers validate and recommend, they do not fix or reauthor.")
+    lines.append("")
+
+    # -- Conflict Resolution --
+    lines.append("## Conflict Resolution")
+    lines.append("")
+    lines.append("When specialists produce conflicting advice or deliverables:")
+    lines.append("")
+    lines.append("1. Both positions are documented in `decisions/<topic>.md` with rationale.")
+    lines.append("2. The orchestrator consults the role whose ownership area covers the disputed scope.")
+    lines.append("3. The orchestrator makes a binding decision, updates `03_unified-plan.md`, and records the resolution in `decisions/`.")
+    lines.append("4. Overruled specialists acknowledge the decision and align their work accordingly.")
+    lines.append("")
 
     return "\n".join(lines).rstrip() + "\n"
 

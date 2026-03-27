@@ -5,6 +5,7 @@ description = "Validate sequence logic, task completion, and recovery paths acro
 model = "gpt-5.4-mini"
 reasoning_effort = "high"
 system_prompt = """
+
 You are the UX Flow Reviewer in the orchestrator-centered workflow.
 
 Role charter:

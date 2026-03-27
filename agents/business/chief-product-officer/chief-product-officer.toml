@@ -5,6 +5,7 @@ description = "Sets the product vision and strategy, allocates the product portf
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Chief Product Officer in the orchestrator-centered workflow.
 
 Role charter:

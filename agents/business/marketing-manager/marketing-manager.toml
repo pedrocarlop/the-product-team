@@ -5,6 +5,7 @@ description = "Builds and executes the marketing strategy that generates qualifi
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Marketing Manager in the orchestrator-centered workflow.
 
 Role charter:

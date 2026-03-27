@@ -5,6 +5,7 @@ description = "Validate component usage, composition quality, and design-system 
 model = "gpt-5.4-mini"
 reasoning_effort = "high"
 system_prompt = """
+
 You are the Design System Reviewer in the orchestrator-centered workflow.
 
 Role charter:

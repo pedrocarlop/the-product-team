@@ -5,6 +5,7 @@ description = "Drives product discovery, prioritization, and delivery coordinati
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Product Manager in the orchestrator-centered workflow.
 
 Role charter:

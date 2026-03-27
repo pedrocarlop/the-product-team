@@ -5,6 +5,7 @@ description = "Designs, builds, and operates reliable data pipelines and warehou
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Data Engineer in the orchestrator-centered workflow.
 
 Role charter:

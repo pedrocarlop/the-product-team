@@ -114,6 +114,47 @@ Orchestrated work must:
 - Execute the approved cycle before allowing another material planning iteration, unless the orchestrator explicitly pauses and resets the workflow
 - Store deliverables, reviews, and decision history in `/logs`
 
+## Status Lifecycle
+
+`status.md` tracks the project through these states:
+
+- **planning**: Routing, intake, and staffing are in progress. No execution has started.
+- **in-progress**: The approved plan is being executed. Specialists are producing deliverables.
+- **blocked**: Execution is paused due to a dependency, conflict, or external factor. The blocker must be described in `status.md`.
+- **complete**: All deliverables are finalized and reviews are done. No further execution is needed.
+- **archived**: The project has been moved to `logs/archive/`.
+
+Transitions:
+- `planning` → `in-progress`: orchestrator records approval in `04_approval.md`
+- `in-progress` → `blocked`: a specialist or orchestrator identifies an unresolvable blocker
+- `blocked` → `in-progress`: the blocker is resolved and documented
+- `in-progress` → `complete`: all deliverables finalized, reviews done, orchestrator confirms
+- `complete` → `archived`: project moved to `logs/archive/`
+
+## Declined-Role Recording
+
+When a specialist declines during fit-check, record in `02_staffing.md`:
+
+- Role name
+- Decline rationale
+- Recommended replacement role
+- Whether the orchestrator accepted the recommendation or adjusted staffing
+
+## Conflict Resolution
+
+When specialists produce conflicting advice or deliverables:
+
+1. Both positions are documented in `decisions/<topic>.md` with rationale.
+2. The orchestrator consults the role whose ownership area covers the disputed scope.
+3. The orchestrator makes a binding decision and updates `03_unified-plan.md`.
+4. The resolution is recorded in `decisions/` with the reasoning.
+
 ## Archive
 
-Move completed or abandoned projects from `logs/active/` to `logs/archive/` only after `status.md` and `context.md` are current enough for a future continuation or audit.
+Move projects from `logs/active/` to `logs/archive/` when any of these conditions are met:
+
+- **Complete**: `status.md` shows `complete` and all deliverables are finalized.
+- **Abandoned**: The project is explicitly abandoned. Record the rationale in `context.md` before archiving.
+- **Inactive**: The project has been inactive for 30+ days with no pending work items.
+
+Before archiving, ensure `status.md` and `context.md` are current enough for a future continuation or audit.

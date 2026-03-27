@@ -1,68 +1,82 @@
 ---
 name: adapt
-description: Adapt mobile screens, patterns, and interactions so they work across iOS, Android, assistive technologies, and device constraints without losing product intent.
+description: Adapt mobile implementations for platform-specific behavior, device constraints, OS version differences, and native accessibility APIs across iOS and Android.
 ---
 
 # Adapt
 
 ## Purpose
 
-Use this skill to change a mobile design or interaction model so accessibility and platform constraints are built into the experience instead of layered on afterward.
+Use this skill to modify a mobile implementation so it handles real-world device diversity — screen sizes, OS versions, platform conventions, hardware capabilities, and native accessibility services — without degrading the core experience.
 
 ## When to Use
 
-- When the current layout or interaction pattern excludes some users
-- When a component needs a more accessible or device-appropriate pattern than the one originally chosen
-- When contrast, focus visibility, text size, motion, or structure needs to be redesigned
-- When the interface needs to better support assistive technologies or platform conventions without losing product intent
+- When a feature must work across iOS and Android with platform-appropriate behavior
+- When older OS versions, low-memory devices, or unusual screen dimensions need explicit handling
+- When native accessibility APIs (VoiceOver, TalkBack, Switch Control) require implementation-level changes
+- When platform navigation patterns, gesture conventions, or system controls differ from what the design assumes
 
 ## When Not to Use
 
-- When the issue is only to document an existing decision
-- When the task is to inspect for defects without changing the design
-- When the implementation already exists and only verification is needed
+- When the issue is purely a design decision with no implementation constraint
+- When the task is testing or auditing rather than changing the implementation
+- When the work is about web responsive layout, not native mobile behavior
 
 ## Required Inputs
 
-- The original mobile design, flow, or component
-- The barrier or platform mismatch that must be addressed
-- The user task and the context in which the barrier appears
-- Any product or design constraints that must be preserved
-- Relevant mobile patterns or platform primitives available for reuse
+- The feature or screen that needs adaptation
+- The platform matrix: iOS versions, Android API levels, and target device classes
+- The specific constraint or mismatch driving the adaptation (OS behavior, hardware limitation, platform convention)
+- Any design-system tokens or native component primitives available for reuse
+- Known platform-specific bugs or OS quirks that affect the feature
 
 ## Workflow
 
-1. Identify the minimum change needed to remove the barrier without breaking the product goal.
-2. Prefer established accessible and platform-native patterns over custom interaction design.
-3. Adjust structure, spacing, hierarchy, or affordance so the interaction is perceivable and operable.
-4. Ensure states such as hover, focus, disabled, error, and loading remain accessible where relevant.
-5. Recheck the design across responsive states, localization, motion preferences, and both major platforms.
-6. Capture the updated accessibility requirements so the fix can be implemented consistently.
+1. Identify where the current implementation assumes a single platform or device class.
+2. Map the differences in system behavior, gesture handling, navigation, and accessibility APIs across targets.
+3. Choose platform-native patterns over cross-platform workarounds where the difference is meaningful to the user.
+4. Handle graceful degradation for older OS versions or constrained hardware: feature gating, reduced animation, or fallback layouts.
+5. Wire native accessibility services correctly — VoiceOver actions, TalkBack content descriptions, focus order, and live regions.
+6. Test against the minimum supported OS version and the smallest supported screen to confirm nothing breaks.
 
 ## Design Principles / Evaluation Criteria
 
-- Accessibility improvements should preserve task clarity and product intent
-- Changes should reduce reliance on memory, precision, or hidden affordances
-- The adapted design should be robust across input modes and assistive technologies
-- A good adaptation avoids introducing new barriers while fixing the old one
+- Platform-native behavior should feel intentional, not accidental
+- OS version support should degrade gracefully, not crash or silently break
+- Accessibility implementation should use native APIs, not custom overlays
+- Adaptations should be maintainable — avoid per-device hacks that do not generalize
+- Performance on constrained devices matters as much as correctness
 
 ## Output Contract
 
-- Revised mobile design direction or interaction model
-- Explanation of the barrier being removed
-- Any tradeoffs introduced by the adaptation
-- Notes needed for implementation or follow-up verification
+- Platform-specific implementation changes or conditional logic
+- Degradation strategy for unsupported OS versions or device classes
+- Accessibility wiring for VoiceOver, TalkBack, and other native services
+- Any platform-specific bugs or limitations that constrain the adaptation
+
+## Examples
+
+### Example 1
+
+Input:
+- Feature: Pull-to-refresh on a list screen
+- Problem: Android and iOS handle refresh indicator positioning and haptic feedback differently
+
+Expected output:
+- iOS: Use UIRefreshControl with system haptics
+- Android: Use SwipeRefreshLayout with Material positioning
+- Both: Ensure screen readers announce the refresh state change
 
 ## Guardrails
 
-- Do not preserve inaccessible patterns just because they look familiar
-- Do not fix one barrier in a way that creates another, such as a focus trap or poor contrast
-- Do not assume a visual change is enough if keyboard or screen reader behavior is still unclear
-- Do not introduce motion or complexity when a simpler pattern works better
+- Do not use a single cross-platform implementation when the platforms behave meaningfully differently
+- Do not drop accessibility support to simplify the adaptation
+- Do not assume all users run the latest OS version
+- Do not add platform-specific code paths without documenting which platforms they cover and why
 
 ## Optional Tools / Resources
 
-- Figma MCP for screenshots, specs, and platform variants
-- Design system components and tokens
-- Contrast and typography checks
-- Keyboard, VoiceOver, and TalkBack notes from audits
+- Xcode Accessibility Inspector and Android Accessibility Scanner
+- Platform-specific Human Interface Guidelines and Material Design guidance
+- Device labs or simulators for screen-size and OS-version testing
+- Crash and ANR reports from production for adaptation priorities

@@ -5,6 +5,7 @@ description = "Sets technical direction, maintains architectural integrity, and 
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Tech Lead in the orchestrator-centered workflow.
 
 Role charter:
@@ -48,7 +49,8 @@ purpose_tag = "technical_leadership"
 
 [capabilities]
 local_skills = ["steer", "review", "sequence", "mentor"]
-recommended_external_mcp = ["GitHub MCP", "Linear MCP", "Notion MCP", "Sentry MCP", "Chrome DevTools MCP"]
+mcp_servers = ["github", "linear", "slack", "figma", "chrome_devtools"]
+recommended_external_mcp = ["Notion MCP", "Sentry MCP"]
 recommended_external_skills = []
 web_tools = ["search_query", "open"]
 notes = "Broaden research only after checking the target repository and the role's configured MCP tools and web sources first."

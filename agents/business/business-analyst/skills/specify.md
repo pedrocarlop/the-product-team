@@ -1,82 +1,85 @@
 ---
 name: specify
-description: Convert business needs and process understanding into precise requirements, business rules, and acceptance criteria that can be implemented and traced.
+description: Convert mapped business processes and stakeholder needs into traceable requirements, business rules, and acceptance criteria tied to process steps.
 ---
 
 # Specify
 
 ## Purpose
 
-Use this skill to turn a mapped business need into clear, implementable requirements that tell teams what must be true and how success will be judged.
+Use this skill to turn a documented business process into precise, implementable requirements that trace from process steps to system behavior and can be validated by stakeholders.
 
 ## When to Use
 
-- When the problem statement and process impact are already understood
-- When you need functional requirements, business rules, or user stories
-- When acceptance criteria and traceability need to be written clearly
+- When a process map or current-state analysis has been completed and needs to become actionable requirements
+- When business rules embedded in workflows, policies, or manual procedures must be formalized
+- When acceptance criteria need to reflect process-level outcomes, not just feature behavior
+- When traceability between process steps, requirements, and validation evidence is required
 
 ## When Not to Use
 
-- When the requirements are still fuzzy or contested
-- When you still need to understand the current state process
-- When you are validating the final solution rather than defining it
+- When the business process has not been mapped or is still contested
+- When the task is product-level feature definition rather than process-driven requirements
+- When you are validating the solution rather than defining what it must do
 
 ## Required Inputs
 
-- The agreed business problem and target outcome
-- The relevant process map or workflow summary
-- Known business rules, constraints, and dependencies
-- Stakeholders who will review or sign off
-- Any wording, numbering, or traceability conventions already in use
+- The process map, workflow summary, or current-state documentation
+- Business rules from policy documents, compliance mandates, or SME interviews
+- The stakeholders who own each process step and will sign off on requirements
+- Data inputs, outputs, and handoff points between process steps
+- Existing numbering, traceability, or documentation conventions
 
 ## Workflow
 
-1. Break the business need into discrete requirements that can be tested independently.
-2. State each requirement in precise, unambiguous language.
-3. Separate functional behavior, business rules, constraints, and assumptions.
-4. Add acceptance criteria that cover the happy path and meaningful edge cases.
-5. Assign identifiers and trace requirements to the business problem or process step.
-6. Review the wording for internal consistency and testability.
+1. Walk the process map step by step and extract the decision points, rules, and system interactions.
+2. Write each requirement against the process step it derives from, not as a standalone feature request.
+3. Separate functional requirements, business rules, data constraints, and assumptions.
+4. Add acceptance criteria that reflect the process outcome, including handoff conditions and exception paths.
+5. Assign identifiers and link each requirement to its source process step or policy.
+6. Review with the process owner to confirm the requirements match actual practice, not idealized flow.
 
 ## Design Principles / Evaluation Criteria
 
-- One requirement, one meaning
-- Testability over narrative style
-- Business language over technical jargon
-- Traceability from problem to requirement to validation
-- Completeness without unnecessary duplication
+- Requirements should trace to process steps, not float as orphaned features
+- Business rules should come from documented sources, not assumptions
+- Acceptance criteria should cover the handoff between process steps, not just within them
+- Exception paths matter as much as the happy path
+- Language should be business-facing and verifiable by non-technical stakeholders
 
 ## Output Contract
 
-- A numbered requirements set with unique identifiers
-- Supporting business rules and assumptions
-- Acceptance criteria for each requirement
-- A traceability summary linking requirements to the problem or process step
+- A numbered requirements set with process-step traceability
+- Business rules extracted from policy, compliance, or SME sources
+- Acceptance criteria covering happy path, exceptions, and handoff conditions
+- A traceability matrix linking requirements to process steps, owners, and validation method
 
 ## Examples
 
 ### Example 1
 
 Input:
-- Process note: "Managers need to approve requests before finance processes them."
+- Process: Expense approval workflow with manager review, finance check, and payment release
+- Source: Process map from current-state analysis
 
 Expected output:
-- Requirement: "REQ-001: The system must prevent finance processing until an approved manager decision is recorded."
-- Acceptance criteria: "Given a request is pending, when finance opens it, then processing actions remain unavailable until approval exists."
+- REQ-001: "The system must route expense submissions to the submitter's direct manager before finance review." (traces to process step 2)
+- Acceptance criteria: "Given an expense is submitted, when the manager has not yet acted, then finance review actions are unavailable."
+- Business rule: "Expenses above $5,000 require VP-level approval in addition to direct manager." (source: Finance Policy v3.1)
 
 ## Guardrails
 
-- Do not bundle multiple requirements into one paragraph
-- Do not write acceptance criteria that cannot be tested
-- Do not hide assumptions inside requirement text
-- Do not introduce solution details unless they are business constraints
+- Do not write requirements that cannot be traced to a process step or business rule
+- Do not assume process behavior without confirming with the process owner
+- Do not skip exception paths and handoff conditions
+- Do not use implementation language when business language is sufficient
 
 ## Optional Tools / Resources
 
-- BRD or FRD templates
-- Traceability matrix
-- Policy documents or compliance rules
-- Review notes from stakeholders or engineering
+- Process maps and current-state documentation
+- Policy documents and compliance references
+- BRD/FRD templates and traceability matrices
+- Stakeholder interview notes
 
 - Shared MCP servers: Notion MCP, Linear MCP, Slack MCP, GitHub MCP
 - Reference websites: [Harvard Business Review (hbr.org)](https://hbr.org/), [BA Times (batimes.com)](https://www.batimes.com/), [Atlassian Team Playbook (atlassian.com)](https://www.atlassian.com/team-playbook), [ProductPlan Glossary and Guides (productplan.com)](https://www.productplan.com/glossary/), [Google Analytics Help (support.google.com)](https://support.google.com/analytics/)

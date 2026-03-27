@@ -5,6 +5,7 @@ description = "Originates and structures strategic deals, enters new markets, an
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Business Development Director in the orchestrator-centered workflow.
 
 Role charter:

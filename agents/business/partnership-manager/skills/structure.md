@@ -1,79 +1,81 @@
 ---
 name: structure
-description: Design partnership terms, economics, governance, and operating rules that can be executed cleanly.
+description: Design the operational terms, economics, and governance for a specific partnership so both parties can execute cleanly.
 ---
 
 # Structure
 
 ## Purpose
 
-Use this skill to turn a promising partnership into a durable structure that is financially sound, executable, and aligned with both parties' incentives.
+Use this skill to turn a qualified partnership into a concrete operating agreement — defining the value exchange, day-to-day responsibilities, financial terms, and performance expectations that both parties will live with.
 
 ## When to Use
 
-- When the partner fit is clear but the deal shape is not
-- When a standard contract will not fit the engagement
-- When economics, governance, and operating terms need to be defined together
+- When the partner fit is confirmed and the relationship needs actionable terms
+- When revenue share, SLAs, integration responsibilities, or co-marketing commitments need to be defined
+- When the partnership requires a custom operating model rather than a standard vendor contract
 
 ## When Not to Use
 
-- When the main question is whether the opportunity is worth pursuing
-- When the work is still target sourcing or qualification
-- When the user is preparing for launch or activation
+- When the strategic question of whether to partner is still open
+- When the work is portfolio-level deal architecture rather than a single partnership
+- When the task is partner sourcing or qualification
 
 ## Required Inputs
 
-- The qualified partnership opportunity and desired business outcome
-- The parties involved and their constraints
-- Any required internal approvals or feasibility checks
-- Relevant economics, timing expectations, and risk tolerances
-- The level of exclusivity, control, or customization being considered
+- The qualified partner and the specific business outcome the partnership serves
+- Each party's obligations: product integration, support, marketing, data sharing, or distribution
+- Revenue model and payment mechanics (rev share splits, minimums, billing cadence)
+- SLA expectations, escalation contacts, and joint operating rhythms
+- Internal approvals needed from legal, product, finance, and engineering
 
 ## Workflow
 
-1. Define the value exchange each side is trying to achieve.
-2. Choose the simplest structure that still captures the strategic value.
-3. Model the base, upside, and downside economics.
-4. Define governance, obligations, milestones, and exit conditions.
-5. Check internal feasibility for product, legal, finance, and operations.
-6. Translate the structure into a form leadership and legal can review quickly.
+1. Define the mutual value exchange in concrete, measurable terms.
+2. Draft the operating model: who does what, how often, and how performance is measured.
+3. Set the financial terms with base, upside, and downside scenarios modeled.
+4. Establish governance: joint review cadence, escalation paths, and change-request procedures.
+5. Define exit conditions, renewal triggers, and wind-down responsibilities.
+6. Validate feasibility with each internal function before presenting the structure to the partner.
 
 ## Design Principles / Evaluation Criteria
 
-- Durable economics over clever deal optics
-- Simplicity over unnecessary complexity
-- Mutual clarity over ambiguous promise language
-- Operational feasibility over theoretical completeness
-- Control of downside over upside-only thinking
+- Operational clarity over aspirational language
+- Mutual accountability with named owners on both sides
+- Economics that work under realistic, not just best-case, conditions
+- Exit and renewal terms defined upfront, not deferred
+- Internal feasibility confirmed before external commitment
 
 ## Output Contract
 
-- A recommended partnership structure
-- The economics and key assumptions behind it
-- Governance and obligation terms
-- Open risks or missing approvals
+- A partnership term sheet or operating agreement draft
+- Revenue model with scenario analysis
+- Operating cadence, SLAs, and escalation contacts
+- Exit, renewal, and performance-review terms
+- List of internal approvals still needed
 
 ## Examples
 
 ### Example 1
 
 Input:
-- Opportunity: Strategic distribution partnership with white-label rights
+- Partner: A technology platform offering API-based integration
+- Goal: Co-sell to shared enterprise customers
 
 Expected output:
-- Structure recommendation: Revenue share with minimum commitments, limited exclusivity, and quarterly performance reviews
-- Rationale: Captures value without locking the company into open-ended risk
+- Structure: Integration SLA with defined uptime commitments, revenue share on co-sold deals, quarterly business review cadence, and 90-day termination notice
+- Rationale: Keeps both parties accountable while allowing course correction each quarter
 
 ## Guardrails
 
-- Do not design a structure that wins the negotiation but loses the business
-- Do not bake in unapproved internal commitments
-- Do not leave governance, exit, or performance terms undefined
-- Do not model only the best-case economics
+- Do not commit to partner obligations that internal teams have not confirmed
+- Do not leave SLAs, escalation paths, or performance metrics undefined
+- Do not structure terms that only work under best-case adoption
+- Do not defer exit or wind-down terms to a future discussion
 
 ## Optional Tools / Resources
 
-- Google Sheets for scenario modeling
+- Google Sheets for revenue scenario modeling
 - Notion for term notes and decision records
 - Legal review artifacts and internal approval threads
 

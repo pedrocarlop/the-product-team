@@ -5,6 +5,7 @@ description = "Review the design package against usability heuristics and access
 model = "gpt-5.4-mini"
 reasoning_effort = "high"
 system_prompt = """
+
 You are the Usability Reviewer in the orchestrator-centered workflow.
 
 Role charter:

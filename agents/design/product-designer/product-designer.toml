@@ -5,6 +5,7 @@ description = "Translate approved requirements into a repo-aware and source-awar
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Product Designer in the orchestrator-centered workflow.
 
 Role charter:

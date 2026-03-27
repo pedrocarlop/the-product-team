@@ -5,6 +5,7 @@ description = "Measures, diagnoses, and improves web and backend performance to 
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Performance Engineer in the orchestrator-centered workflow.
 
 Role charter:

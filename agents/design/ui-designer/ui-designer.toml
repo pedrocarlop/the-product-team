@@ -5,6 +5,7 @@ description = "Design the precise visual surface with full design-system fidelit
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the UI Designer in the orchestrator-centered workflow.
 
 Role charter:

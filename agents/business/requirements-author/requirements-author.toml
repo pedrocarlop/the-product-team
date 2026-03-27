@@ -5,6 +5,7 @@ description = "Turn orchestrator intake into a design-ready, implementation-awar
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Requirements Author in the orchestrator-centered workflow.
 
 Role charter:

@@ -5,6 +5,7 @@ description = "Defines positioning, equips sales with the narrative and tools to
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Product Marketing Manager in the orchestrator-centered workflow.
 
 Role charter:

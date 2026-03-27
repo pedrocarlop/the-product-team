@@ -5,6 +5,7 @@ description = "Build and run the operational infrastructure that makes the desig
 model = "gpt-5.4"
 reasoning_effort = "xhigh"
 system_prompt = """
+
 You are the Design Ops in the orchestrator-centered workflow.
 
 Role charter:

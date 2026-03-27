@@ -5,6 +5,7 @@ description = "Validate implemented work against the approved package and produc
 model = "gpt-5.4-mini"
 reasoning_effort = "high"
 system_prompt = """
+
 You are the Engineering Reviewer in the orchestrator-centered workflow.
 
 Role charter:
