@@ -1,0 +1,324 @@
+#!/usr/bin/env python3
+"""Install the Product Team Codex workflow into a target project."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import shutil
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+
+PACKAGE_SLUG = "product-team"
+PACKAGE_DIRNAME = ".codex/product-team"
+MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
+MARKER_END = "<!-- PRODUCT_TEAM_FOR_CODEX:END -->"
+COMMON_PLACEHOLDER_TARGETS = {
+    "/path/to/project",
+    "/path/to/repo",
+    "<path/to/project>",
+    "<project-path>",
+}
+NAME_PATTERN = re.compile(r'^name = "([^"]+)"$', re.MULTILINE)
+DISPLAY_NAME_PATTERN = re.compile(r'^display_name = "([^"]+)"$', re.MULTILINE)
+LOCAL_SKILLS_PATTERN = re.compile(r"^local_skills = \[(.*)\]$", re.MULTILINE)
+
+
+@dataclass(frozen=True)
+class RoleSpec:
+    source_name: str
+    installed_name: str
+    source_toml: Path
+    source_skills_dir: Path
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Install the Product Team workflow for Codex into a project folder."
+    )
+    parser.add_argument(
+        "--target",
+        default=".",
+        help="Project directory to install into. Defaults to the current directory.",
+    )
+    return parser.parse_args()
+
+
+def repo_root() -> Path:
+    return Path(__file__).resolve().parents[1]
+
+
+def placeholder_target_error(raw_target: str, resolved_target: Path) -> str | None:
+    raw_target = raw_target.strip()
+    normalized_target = raw_target.replace("\\", "/").rstrip("/")
+
+    if "<" in raw_target or ">" in raw_target:
+        return (
+            f"Refusing to install into placeholder target {raw_target!r}. "
+            'Pass the real project folder instead, for example --target "$PWD".'
+        )
+
+    if normalized_target in COMMON_PLACEHOLDER_TARGETS:
+        return (
+            f"Refusing to install into placeholder target {raw_target!r}. "
+            'Pass the real project folder instead, for example --target "$PWD".'
+        )
+
+    if resolved_target.parts[:4] == (resolved_target.anchor, "path", "to", "project"):
+        return (
+            f"Refusing to install into placeholder target {str(resolved_target)!r}. "
+            'Pass the real project folder instead, for example --target "$PWD".'
+        )
+
+    return None
+
+
+def managed_agents_block(fragment: str) -> str:
+    fragment = fragment.strip()
+    return f"{MARKER_START}\n{fragment}\n{MARKER_END}\n"
+
+
+def update_agents_md(fragment_path: Path, target_root: Path) -> None:
+    agents_path = target_root / "AGENTS.md"
+    managed_block = managed_agents_block(fragment_path.read_text(encoding="utf-8"))
+
+    if not agents_path.exists():
+        agents_path.write_text(managed_block, encoding="utf-8")
+        return
+
+    current = agents_path.read_text(encoding="utf-8")
+    has_start = MARKER_START in current
+    has_end = MARKER_END in current
+
+    if has_start != has_end:
+        raise RuntimeError("AGENTS.md contains only one Product Team marker; resolve it manually.")
+
+    if has_start and has_end:
+        start_index = current.index(MARKER_START)
+        end_index = current.index(MARKER_END) + len(MARKER_END)
+        replacement = managed_block.rstrip("\n")
+        updated = f"{current[:start_index]}{replacement}{current[end_index:]}"
+    else:
+        prefix = current.rstrip()
+        spacer = "\n\n" if prefix else ""
+        updated = f"{prefix}{spacer}{managed_block}"
+
+    agents_path.write_text(updated.rstrip() + "\n", encoding="utf-8")
+
+
+def rewrite_local_skills(match: re.Match[str]) -> str:
+    skills = match.group(1).replace('"reference"', f'"{PACKAGE_SLUG}-reference"')
+    return f"local_skills = [{skills}]"
+
+
+def transform_toml(text: str, role: RoleSpec) -> str:
+    text = NAME_PATTERN.sub(f'name = "{role.installed_name}"', text, count=1)
+    text = DISPLAY_NAME_PATTERN.sub(
+        lambda match: f'display_name = "Product Team {match.group(1)}"',
+        text,
+        count=1,
+    )
+    text = text.replace(
+        'handoff_to = ["orchestrator"]',
+        f'handoff_to = ["{PACKAGE_SLUG}-orchestrator"]',
+    )
+    text = LOCAL_SKILLS_PATTERN.sub(rewrite_local_skills, text)
+    return text
+
+
+def discover_roles(root: Path) -> list[RoleSpec]:
+    roles: list[RoleSpec] = []
+    for source_toml in sorted((root / "agents").glob("*/*/*.toml")):
+        source_name = source_toml.stem
+        installed_name = f"{PACKAGE_SLUG}-{source_name}"
+        roles.append(
+            RoleSpec(
+                source_name=source_name,
+                installed_name=installed_name,
+                source_toml=source_toml,
+                source_skills_dir=source_toml.parent / "skills",
+            )
+        )
+    return roles
+
+
+def ensure_directory(path: Path) -> None:
+    path.mkdir(parents=True, exist_ok=True)
+
+
+def remove_previous_managed_roles(target_root: Path, current_roles: list[RoleSpec]) -> None:
+    manifest_path = target_root / PACKAGE_DIRNAME / "manifest.json"
+    if not manifest_path.exists():
+        return
+
+    try:
+        previous_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return
+
+    current_installed_names = {role.installed_name for role in current_roles}
+    previous_roles = previous_manifest.get("roles", [])
+    for role in previous_roles:
+        installed_name = role.get("installed_name")
+        if not installed_name or installed_name in current_installed_names:
+            continue
+
+        toml_path = target_root / ".codex" / "agents" / f"{installed_name}.toml"
+        skills_dir = target_root / ".codex" / "agents" / installed_name
+        if toml_path.exists():
+            toml_path.unlink()
+        if skills_dir.is_dir():
+            shutil.rmtree(skills_dir)
+
+
+def copy_role(role: RoleSpec, target_root: Path) -> None:
+    codex_agents_root = target_root / ".codex" / "agents"
+    ensure_directory(codex_agents_root)
+
+    transformed_toml = transform_toml(
+        role.source_toml.read_text(encoding="utf-8"),
+        role,
+    )
+    (codex_agents_root / f"{role.installed_name}.toml").write_text(
+        transformed_toml,
+        encoding="utf-8",
+    )
+
+    target_skills_root = codex_agents_root / role.installed_name / "skills"
+    ensure_directory(target_skills_root)
+
+    if role.source_skills_dir.is_dir():
+        for source_path in sorted(role.source_skills_dir.rglob("*")):
+            if source_path.is_dir() or source_path.name == ".DS_Store":
+                continue
+
+            relative_path = source_path.relative_to(role.source_skills_dir)
+            destination_path = target_skills_root / relative_path
+            ensure_directory(destination_path.parent)
+
+            if source_path.suffix == ".md":
+                destination_path.write_text(source_path.read_text(encoding="utf-8"), encoding="utf-8")
+            else:
+                shutil.copy2(source_path, destination_path)
+
+
+def install_package_docs(root: Path, target_root: Path) -> None:
+    package_root = target_root / ".codex" / PACKAGE_SLUG
+    refs_root = package_root / "references"
+    scripts_root = package_root / "scripts"
+    ensure_directory(refs_root)
+    ensure_directory(scripts_root)
+
+    (package_root / "README.md").write_text(
+        (root / "assets" / "package-README.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    (refs_root / "logs-workflow-contract.md").write_text(
+        (root / "logs" / "README.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    validate_script_source = root / "scripts" / "validate-install.py"
+    validate_script_target = scripts_root / "validate-install.py"
+    shutil.copy2(validate_script_source, validate_script_target)
+    validate_script_target.chmod(0o755)
+
+
+def install_logs(root: Path, target_root: Path) -> bool:
+    logs_root = target_root / "logs"
+    active_dir = logs_root / "active"
+    archive_dir = logs_root / "archive"
+    ensure_directory(active_dir)
+    ensure_directory(archive_dir)
+
+    for keep_path in (active_dir / ".gitkeep", archive_dir / ".gitkeep"):
+        if not keep_path.exists():
+            keep_path.write_text("", encoding="utf-8")
+
+    readme_path = logs_root / "README.md"
+    if readme_path.exists():
+        return False
+
+    readme_path.write_text(
+        (root / "logs" / "README.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    return True
+
+
+def write_manifest(target_root: Path, roles: list[RoleSpec]) -> None:
+    package_root = target_root / ".codex" / PACKAGE_SLUG
+    ensure_directory(package_root)
+    manifest = {
+        "schema_version": 1,
+        "package_name": PACKAGE_SLUG,
+        "managed_agents_markers": {
+            "start": MARKER_START,
+            "end": MARKER_END,
+        },
+        "roles": [
+            {
+                "source_name": role.source_name,
+                "installed_name": role.installed_name,
+            }
+            for role in roles
+        ],
+    }
+    (package_root / "manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
+def main() -> int:
+    args = parse_args()
+    root = repo_root()
+    target_root = Path(args.target).expanduser().resolve()
+    target_error = placeholder_target_error(args.target, target_root)
+    roles = discover_roles(root)
+
+    required_paths = [
+        root / "assets" / "AGENTS.fragment.md",
+        root / "assets" / "package-README.md",
+        root / "logs" / "README.md",
+        root / "scripts" / "validate-install.py",
+    ]
+    missing = [path for path in required_paths if not path.exists()]
+    if missing:
+        for path in missing:
+            print(f"Missing required source file: {path}", file=sys.stderr)
+        return 1
+
+    if target_error:
+        print(target_error, file=sys.stderr)
+        return 2
+
+    if not roles:
+        print("No roles found under agents/.", file=sys.stderr)
+        return 1
+
+    target_root.mkdir(parents=True, exist_ok=True)
+
+    remove_previous_managed_roles(target_root, roles)
+    for role in roles:
+        copy_role(role, target_root)
+
+    install_package_docs(root, target_root)
+    created_logs_readme = install_logs(root, target_root)
+    update_agents_md(root / "assets" / "AGENTS.fragment.md", target_root)
+    write_manifest(target_root, roles)
+
+    print(f"Installed Product Team for Codex into {target_root}")
+    print(f"Installed {len(roles)} namespaced role definitions.")
+    if created_logs_readme:
+        print("Created logs/README.md from the workflow contract.")
+    else:
+        print("Kept the target project's existing logs/README.md.")
+    print("Next step: python3 .codex/product-team/scripts/validate-install.py")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
