@@ -1,10 +1,6 @@
 ---
 name: bridge
 description: Translate mobile design intent into implementation-ready guidance by mapping specs, tokens, states, and bridge boundaries to the code surface that should carry them.
-activation_hints:
-  - "Use when a mobile design needs to be handed off to engineering with fewer ambiguities."
-  - "Route here when platform choices, native boundaries, or token usage need explicit mapping."
-  - "Do not use for visual QA or post-implementation verification."
 ---
 
 # Bridge

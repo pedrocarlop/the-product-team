@@ -1,10 +1,6 @@
 ---
 name: onboard
 description: Design and run customer onboarding programs that reach first value quickly, establish clear ownership, and set measurable success milestones.
-activation_hints:
-  - "Use when a new customer is being kicked off or when onboarding needs to be restructured."
-  - "Route here for first-value plans, activation milestones, kickoff agendas, and 30/60/90-day onboarding programs."
-  - "Do not use for renewal, at-risk intervention, or broad portfolio health reviews."
 ---
 
 # Onboard

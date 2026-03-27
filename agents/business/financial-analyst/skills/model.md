@@ -1,10 +1,6 @@
 ---
 name: model
 description: Build reproducible financial models with explicit assumptions, clean logic, and outputs that can be audited and reused.
-activation_hints:
-  - "Use when a task requires building or restructuring a financial model."
-  - "Route here for spreadsheet logic, linked schedules, formulas, assumptions tabs, or model architecture."
-  - "Do not use for narrative explanation or for validating a model under adverse conditions."
 ---
 
 # Model

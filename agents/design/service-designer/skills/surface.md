@@ -1,10 +1,6 @@
 ---
 name: surface
 description: Specify service touchpoints across digital, human, and physical surfaces so each interaction is owned, legible, and consistent within the broader service experience.
-activation_hints:
-  - "Use when documenting or redesigning touchpoints, status updates, notifications, or service surfaces across channels."
-  - "Route here for channel-specific interaction specs that need to fit into a larger service blueprint."
-  - "Do not use for abstract service strategy without a concrete user-facing surface."
 ---
 
 # Surface

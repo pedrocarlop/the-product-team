@@ -1,10 +1,6 @@
 ---
 name: verify
 description: Verify that accessibility fixes and specs actually work through manual checks, assistive technology testing, and repeatable acceptance criteria.
-activation_hints:
-  - "Use when an accessibility change needs to be validated after design or implementation."
-  - "Route here for confirmation of keyboard, screen reader, contrast, focus, and motion requirements."
-  - "Do not use for discovering new issues or for redesigning the experience."
 ---
 
 # Verify

@@ -1,10 +1,6 @@
 ---
 name: campaign
 description: Plan and structure marketing campaigns so objectives, audiences, channels, tracking, and success metrics are aligned before launch.
-activation_hints:
-  - "Use when a campaign brief, launch plan, or coordinated marketing execution needs to be defined."
-  - "Route here before spending budget, publishing assets, or asking other teams to execute."
-  - "Do not use for long-term channel strategy or post-campaign reporting."
 ---
 
 # Campaign

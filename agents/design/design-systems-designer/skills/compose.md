@@ -1,10 +1,6 @@
 ---
 name: compose
 description: Build components and patterns from approved tokens and primitives so the design system has clear anatomy, variants, and composition rules.
-activation_hints:
-  - "Use when a component, variant set, or pattern needs to be authored or reworked."
-  - "Route here when the task is about composition, anatomy, or variant architecture."
-  - "Do not use for token naming, documentation writing, or release governance."
 ---
 
 # Compose

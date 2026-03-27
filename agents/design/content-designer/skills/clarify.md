@@ -1,10 +1,6 @@
 ---
 name: clarify
 description: Rewrite confusing labels, instructions, errors, and other interface copy so users understand what happened and what to do next.
-activation_hints:
-  - "Use when interface copy is vague, jargon-heavy, ambiguous, or hard to act on."
-  - "Route here for labels, helper text, instructions, CTA text, and state messaging that need clearer wording."
-  - "Do not use for naming strategy, content hierarchy redesign, or cross-flow terminology systems work."
 ---
 
 # Clarify

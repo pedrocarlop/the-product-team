@@ -1,10 +1,6 @@
 ---
 name: source
 description: Find, research, and qualify strategic counterparties, markets, and relationship paths for business development work.
-activation_hints:
-  - "Use when the task is to discover targets, counterparties, or market opportunities."
-  - "Route here for ecosystem mapping, lead sourcing, executive mapping, and competitive intelligence."
-  - "Do not use for thesis writing, term design, or live negotiation prep."
 ---
 
 # Source

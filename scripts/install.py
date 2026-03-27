@@ -8,6 +8,7 @@ import json
 import re
 import shutil
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -242,21 +243,17 @@ def copy_role(role: RoleSpec, target_root: Path) -> None:
     )
 
     target_skills_root = target_root / role.installed_skills_dir
-    ensure_directory(target_skills_root)
 
     if role.source_skills_dir.is_dir():
-        for source_path in sorted(role.source_skills_dir.rglob("*")):
-            if source_path.is_dir() or source_path.name == ".DS_Store":
-                continue
-
-            relative_path = source_path.relative_to(role.source_skills_dir)
-            destination_path = target_skills_root / relative_path
-            ensure_directory(destination_path.parent)
-
-            if source_path.suffix == ".md":
-                destination_path.write_text(source_path.read_text(encoding="utf-8"), encoding="utf-8")
-            else:
-                shutil.copy2(source_path, destination_path)
+        if target_skills_root.exists():
+            shutil.rmtree(target_skills_root)
+        shutil.copytree(
+            role.source_skills_dir,
+            target_skills_root,
+            ignore=shutil.ignore_patterns(".DS_Store"),
+        )
+    else:
+        ensure_directory(target_skills_root)
 
 
 def install_package_docs(root: Path, target_root: Path) -> None:
@@ -366,8 +363,8 @@ def main() -> int:
     target_root.mkdir(parents=True, exist_ok=True)
 
     remove_previous_managed_roles(target_root, roles)
-    for role in roles:
-        copy_role(role, target_root)
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        pool.map(lambda role: copy_role(role, target_root), roles)
 
     install_package_docs(root, target_root)
     created_logs_readme = install_logs(root, target_root)

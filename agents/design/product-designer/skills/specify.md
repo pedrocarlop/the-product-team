@@ -1,10 +1,6 @@
 ---
 name: specify
 description: Write a complete UI specification for screens and states, including structure, behavior, responsiveness, content, and interaction details.
-activation_hints:
-  - "Use when the task has moved from flow definition to screen-level design."
-  - "Route here when every state, variant, and interaction needs to be documented."
-  - "Do not use for strategic framing or broad flow mapping."
 ---
 
 # Specify

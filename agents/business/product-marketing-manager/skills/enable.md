@@ -1,10 +1,6 @@
 ---
 name: enable
 description: Build sales enablement and customer-facing support materials that help teams explain the product clearly and win confidently.
-activation_hints:
-  - "Use when the task involves pitch decks, objection handling, FAQ content, or sales narratives."
-  - "Route here for work that helps sales, customer success, or marketing explain the product consistently."
-  - "Do not use for launch planning, category framing, or competitor-specific battlecards."
 ---
 
 # Enable

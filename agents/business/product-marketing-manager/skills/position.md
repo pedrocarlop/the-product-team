@@ -1,10 +1,6 @@
 ---
 name: position
 description: Define who the product is for, what it uniquely means in the market, and why buyers should care.
-activation_hints:
-  - "Use when the task involves ICP definition, category framing, messaging architecture, or positioning statements."
-  - "Route here for work that clarifies the buyer, the problem, the differentiated claim, and the proof."
-  - "Do not use for launch planning, sales collateral production, or competitive battlecard maintenance."
 ---
 
 # Position

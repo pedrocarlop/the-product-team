@@ -1,10 +1,6 @@
 ---
 name: orchestrate
 description: Design and operate data workflow coordination, dependency management, retries, backfills, and alerting for reliable pipeline execution.
-activation_hints:
-  - "Use when a task involves Airflow, Prefect, DAG structure, scheduling, retries, sensors, or backfill behavior."
-  - "Route here for task dependencies, failure recovery, SLAs, or pipeline operational design."
-  - "Do not use for source loading or transformation logic unless orchestration choices are the main issue."
 ---
 
 # Orchestrate

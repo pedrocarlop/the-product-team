@@ -1,10 +1,6 @@
 ---
 name: standardize
 description: Define and document repeatable design standards so quality, critique, and handoff stay consistent across the team.
-activation_hints:
-  - "Use when the team needs a reusable standard, checklist, or design pattern."
-  - "Route here for quality bars, review criteria, handoff rules, or consistency work."
-  - "Do not use for one-off critiques, coaching, or deciding portfolio direction."
 ---
 
 # Standardize

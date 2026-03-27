@@ -1,10 +1,6 @@
 ---
 name: calibrate
 description: Align expectations for performance, growth, promotion, and team health so people decisions are consistent and evidence-based.
-activation_hints:
-  - "Use when the team needs a consistent read on performance, growth, or promotion readiness."
-  - "Route here for calibration meetings, feedback shaping, and expectation alignment."
-  - "Do not use for staffing, project planning, or one-off blocker removal."
 ---
 
 # Calibrate

@@ -1,9 +1,6 @@
 ---
 name: harden
 description: Strengthen frontend work for resilience, accessibility, performance, and release safety before it reaches users.
-activation_hints:
-  - "Use when a frontend change needs reliability work, security review, performance guardrails, or release safety."
-  - "Route here before release if the code path touches auth, secrets, public data, or browser performance risk."
 ---
 
 # Harden

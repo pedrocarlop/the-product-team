@@ -1,10 +1,6 @@
 ---
 name: bridge
 description: Translate design intent into implementation-ready guidance by mapping specs, tokens, states, and interaction details to the code surface that should carry them.
-activation_hints:
-  - "Use when a design needs to be handed off to engineering with fewer ambiguities."
-  - "Route here when component choices, token usage, or data-state constraints need explicit mapping."
-  - "Do not use for visual QA or implementation checking after code already exists."
 ---
 
 # Bridge

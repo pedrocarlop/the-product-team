@@ -1,10 +1,6 @@
 ---
 name: qualify
 description: Evaluate partnership targets for strategic fit, business value, feasibility, and readiness to engage.
-activation_hints:
-  - "Use when a sourced list needs prioritization, screening, or a go/no-go recommendation."
-  - "Route here for partner fit reviews, business case checks, and opportunity triage."
-  - "Do not use for finding new targets, structuring terms, or partner launch work."
 ---
 
 # Qualify

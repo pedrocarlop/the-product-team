@@ -1,10 +1,6 @@
 ---
 name: structure
 description: Organize headings, labels, helper text, and content hierarchy so complex screens become easier to scan, understand, and act on.
-activation_hints:
-  - "Use when a screen is text-heavy, hard to scan, or forces users to read too much before acting."
-  - "Route here for content hierarchy, grouping logic, headings, and helper-text placement."
-  - "Do not use for simple string rewrites, naming strategy, or onboarding-specific teaching flows."
 ---
 
 # Structure

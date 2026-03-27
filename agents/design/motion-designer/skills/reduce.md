@@ -1,10 +1,6 @@
 ---
 name: reduce
 description: Design reduced-motion alternatives that preserve meaning while minimizing vestibular and attention load.
-activation_hints:
-  - "Use when the interface needs a prefers-reduced-motion alternative."
-  - "Route here for motion suppression, simplified fades, static replacements, and accessibility fallbacks."
-  - "Do not use for primary animation design, sequencing, or transition choreography."
 ---
 
 # Reduce

@@ -1,10 +1,6 @@
 ---
 name: tokenize
 description: Define, name, layer, and mode design tokens so the design system expresses values as a maintainable contract instead of scattered literals.
-activation_hints:
-  - "Use when new colors, spacing, typography, radius, motion, or elevation values need to become system tokens."
-  - "Route here when token names, layers, or modes are drifting or unclear."
-  - "Do not use for component anatomy, usage documentation, or release governance."
 ---
 
 # Tokenize

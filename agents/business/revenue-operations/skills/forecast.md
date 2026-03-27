@@ -1,10 +1,6 @@
 ---
 name: forecast
 description: Build revenue forecasts that connect pipeline, stage conversion, bookings, and timing into a defensible outlook.
-activation_hints:
-  - "Use when a task requires a revenue forecast, bookings outlook, or pipeline rollup."
-  - "Route here when the user needs a forecast with assumptions, confidence, and driver visibility."
-  - "Do not use for routing decisions, CRM cleanup, or deep model design work."
 ---
 
 # Forecast

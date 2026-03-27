@@ -1,10 +1,6 @@
 ---
 name: isolate
 description: Narrow a performance issue to the browser, network, backend, or dependency causing it.
-activation_hints:
-  - "Use when a baseline exists and we need the root cause."
-  - "Use when traces, flame graphs, or waterfalls are available."
-  - "Do not use for setting targets or verifying a finished fix."
 ---
 
 # Isolate

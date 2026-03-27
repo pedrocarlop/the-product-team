@@ -1,10 +1,6 @@
 ---
 name: taxonomy
 description: Define the controlled vocabulary and classification scheme that keeps product content organized, searchable, and consistent across surfaces.
-activation_hints:
-  - "Use when content needs categories, tags, facets, or shared terminology."
-  - "Route here for controlled vocabularies, classification rules, and content-model-aligned groupings."
-  - "Do not use for isolated label copy rewrites or visual navigation styling."
 ---
 
 # Taxonomy

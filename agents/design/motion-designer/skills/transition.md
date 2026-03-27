@@ -1,10 +1,6 @@
 ---
 name: transition
 description: Design state-to-state motion that preserves continuity, clarifies cause and effect, and helps users understand what changed.
-activation_hints:
-  - "Use when a feature changes state, screen, or hierarchy and the movement needs to feel intentional."
-  - "Route here for enter/exit behavior, shared-element transitions, modal and drawer motion, and state swaps."
-  - "Do not use for pure microinteraction tuning, loading decoration, or reduced-motion fallback design."
 ---
 
 # Transition

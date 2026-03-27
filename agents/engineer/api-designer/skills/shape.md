@@ -1,10 +1,6 @@
 ---
 name: shape
 description: Shape API contracts so resources, endpoints, methods, and schemas are consistent, consumer-friendly, and ready for implementation.
-activation_hints:
-  - "Use when a new API, resource, endpoint, or schema is being designed."
-  - "Route here when the main question is what the contract should look like before implementation begins."
-  - "Do not use for versioning policy, documentation packaging, or validating an already-shaped contract."
 ---
 
 # Shape

@@ -1,10 +1,6 @@
 ---
 name: frame
 description: Turn a vague business question into a precise analytical question, a decision it will inform, and a scoped plan for answering it.
-activation_hints:
-  - "Use when a stakeholder asks a broad or ambiguous question that needs sharpening before analysis starts."
-  - "Route here before opening data, writing SQL, or defining metrics for a new analysis."
-  - "Do not use for metric calculation, validation, or final reporting once the question is already clear."
 ---
 
 # Frame

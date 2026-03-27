@@ -1,10 +1,6 @@
 ---
 name: profile
 description: Measure real-user and lab performance to identify the bottleneck before optimizing.
-activation_hints:
-  - "Use when a page, route, endpoint, or interaction feels slow and we need evidence."
-  - "Use when choosing between RUM, Lighthouse, WebPageTest, Chrome DevTools, or backend traces."
-  - "Do not use once the root cause is already isolated and the task is about the fix."
 ---
 
 # Profile

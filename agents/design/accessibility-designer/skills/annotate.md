@@ -1,10 +1,6 @@
 ---
 name: annotate
 description: Add accessibility notes, constraints, and implementation guidance to designs, specs, and handoffs so teams can build them correctly.
-activation_hints:
-  - "Use when a design or spec needs explicit accessibility annotations for handoff."
-  - "Route here for notes about labels, focus order, states, keyboard behavior, ARIA, contrast, and motion requirements."
-  - "Do not use for finding issues in a review or for rewriting the UI itself."
 ---
 
 # Annotate

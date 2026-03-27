@@ -1,10 +1,6 @@
 ---
 name: evaluate
 description: Design and interpret model, prompt, and retrieval evaluations so we know whether the system is actually good enough to ship.
-activation_hints:
-  - "Use after framing a problem and before shipping a model, prompt, or retrieval pipeline."
-  - "Route here when comparing candidates, defining metrics, or validating a proposed solution."
-  - "Do not use for serving or monitoring once the production path is already chosen."
 ---
 
 # Evaluate

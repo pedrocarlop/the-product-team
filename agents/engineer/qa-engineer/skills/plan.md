@@ -1,10 +1,6 @@
 ---
 name: plan
 description: Turn a QA request into a test strategy and execution plan with scope, risks, coverage targets, and acceptance criteria.
-activation_hints:
-  - "Use when a feature, fix, or release needs a quality plan before testing starts."
-  - "Route here for test strategy, risk assessment, exploratory charters, and coverage planning."
-  - "Do not use when the strategy is already set and the work is only about implementing tests."
 ---
 
 # Plan

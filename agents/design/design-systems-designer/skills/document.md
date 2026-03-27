@@ -1,10 +1,6 @@
 ---
 name: document
 description: Write system documentation that explains when to use an asset, when not to use it, how it works, and what adopters need to know.
-activation_hints:
-  - "Use when a component, token set, or pattern needs usage guidance."
-  - "Route here when the task is to document rationale, constraints, examples, or accessibility requirements."
-  - "Do not use for building the asset itself or for governance decisions."
 ---
 
 # Document

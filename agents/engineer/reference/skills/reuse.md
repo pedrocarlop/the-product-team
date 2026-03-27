@@ -1,10 +1,6 @@
 ---
 name: reuse
 description: Prefer existing approved patterns, helpers, and components over inventing new ones when solving a task.
-activation_hints:
-  - "Use when the codebase already contains a pattern that can be adapted instead of rebuilt."
-  - "Route here when the decision is about selecting and applying the right existing primitive."
-  - "Do not use if the task clearly requires a new abstraction or there is no reusable pattern."
 ---
 
 # Reuse

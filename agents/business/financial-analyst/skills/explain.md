@@ -1,10 +1,6 @@
 ---
 name: explain
 description: Turn financial analysis into clear, decision-ready language that helps stakeholders understand what happened, why it matters, and what to do next.
-activation_hints:
-  - "Use when a financial output needs to be communicated to executives, operators, or non-finance stakeholders."
-  - "Route here for narrative summaries, board-facing commentary, or plain-language interpretation of a model."
-  - "Do not use for building the model itself or for scenario validation."
 ---
 
 # Explain

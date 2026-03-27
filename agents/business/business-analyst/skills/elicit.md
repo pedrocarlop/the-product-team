@@ -1,10 +1,6 @@
 ---
 name: elicit
 description: Gather and refine business needs into structured, testable requirements by interviewing stakeholders, probing assumptions, and capturing edge cases.
-activation_hints:
-  - "Use when a request is still fuzzy, incomplete, or contains stakeholder opinions instead of clear needs."
-  - "Route here before writing requirements, process maps, or validation criteria."
-  - "Do not use for process mapping, solution specification, or formal validation once the need is already clear."
 ---
 
 # Elicit

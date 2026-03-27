@@ -1,10 +1,6 @@
 ---
 name: harmonize
 description: Align terminology, tone, and copy patterns across a flow so the product sounds consistent from screen to screen and state to state.
-activation_hints:
-  - "Use when the same concept is named or described inconsistently across a feature or flow."
-  - "Route here for terminology normalization, tone alignment, and reusable message patterns."
-  - "Do not use for single-string rewrites, naming a brand-new concept, or information hierarchy work."
 ---
 
 # Harmonize

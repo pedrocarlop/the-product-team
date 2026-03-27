@@ -1,10 +1,6 @@
 ---
 name: schedule
 description: Plan recurring cadences, milestones, and capacity so design operations work happens at the right time and does not overload the team.
-activation_hints:
-  - "Use when recurring rituals, reviews, or milestones need a durable cadence."
-  - "Route here for calendar planning, meeting cadence, capacity balancing, or deadline sequencing."
-  - "Do not use for process documentation or governance policy decisions."
 ---
 
 # Schedule

@@ -1,10 +1,6 @@
 ---
 name: respond
 description: Define how the interface responds to user actions and system events with timely feedback, clear recovery paths, and behavior that feels immediate, understandable, and trustworthy.
-activation_hints:
-  - "Use when user actions need feedback, confirmation, or recovery behavior defined."
-  - "Route here for success, error, pending, optimistic, and interruption responses."
-  - "Do not use for label rewriting, structural layout changes, or generic state inventories without interaction feedback."
 ---
 
 # Respond

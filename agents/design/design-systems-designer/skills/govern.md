@@ -1,10 +1,6 @@
 ---
 name: govern
 description: Define contribution paths, ownership, lifecycle policy, and deprecation rules so the design system evolves without chaos.
-activation_hints:
-  - "Use when the system needs ownership, review, versioning, or deprecation rules."
-  - "Route here when multiple contributors are changing the system and guardrails are needed."
-  - "Do not use for asset authoring, token naming, or documentation writing."
 ---
 
 # Govern

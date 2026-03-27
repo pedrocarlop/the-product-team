@@ -1,10 +1,6 @@
 ---
 name: verify
 description: Check that a design implementation matches the intended spec across layout, tokens, behavior, accessibility, and state coverage, then report the gaps that still need attention.
-activation_hints:
-  - "Use when an implementation needs final comparison against the design."
-  - "Route here when you need to confirm fidelity, behavior, or state coverage."
-  - "Do not use for proposing new design directions or rebuilding the surface."
 ---
 
 # Verify

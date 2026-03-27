@@ -1,10 +1,6 @@
 ---
 name: orient
 description: Create onboarding and in-context guidance that helps users understand the value, next step, and safest path to progress without overexplaining.
-activation_hints:
-  - "Use when users need onboarding, setup guidance, first-run messaging, or contextual teaching."
-  - "Route here for empty-state teaching, progressive guidance, and activation-oriented instructional copy."
-  - "Do not use for error-state recovery, terminology naming, or full information-architecture restructuring."
 ---
 
 # Orient

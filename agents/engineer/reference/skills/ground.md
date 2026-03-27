@@ -1,10 +1,6 @@
 ---
 name: ground
 description: Ground decisions in the actual target repository and any named source-system or design-system repositories before proposing new behavior.
-activation_hints:
-  - "Use when a task needs evidence from the codebase before any design or implementation decision."
-  - "Route here when the question is 'what already exists?' rather than 'what should we invent?'."
-  - "Do not use as a substitute for implementation, review, or artifact authoring."
 ---
 
 # Ground

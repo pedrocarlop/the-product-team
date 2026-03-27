@@ -1,10 +1,6 @@
 ---
 name: prototype
 description: Build or specify high-fidelity prototypes that exercise real interactions, state transitions, and logic so design decisions can be validated before full implementation.
-activation_hints:
-  - "Use when a concept needs a realistic prototype rather than a static mock."
-  - "Route here when interaction logic, data states, or motion need to be proven."
-  - "Do not use for final QA or for code translation after the design has already been accepted."
 ---
 
 # Prototype

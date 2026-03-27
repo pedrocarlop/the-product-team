@@ -1,10 +1,6 @@
 ---
 name: govern
 description: Define and enforce data governance for privacy, access, retention, lineage, quality controls, and auditability.
-activation_hints:
-  - "Use when a task involves PII, access control, retention, deletion, auditing, or stewardship of data assets."
-  - "Route here for governance policy, compliance evidence, or operational controls around sensitive data."
-  - "Do not use for pure ingestion, modeling, or scheduling unless governance is the core concern."
 ---
 
 # Govern

@@ -1,10 +1,6 @@
 ---
 name: flow
 description: Design task flows that cover entry points, happy paths, alternates, errors, empty states, recovery, and completion for a product experience.
-activation_hints:
-  - "Use when you need to map the user's path through a feature before UI specification."
-  - "Route here when edge cases, branching logic, or recovery steps need to be clarified."
-  - "Do not use for copy-only edits or component-level documentation."
 ---
 
 # Flow

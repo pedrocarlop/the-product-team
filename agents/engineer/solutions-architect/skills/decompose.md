@@ -1,10 +1,6 @@
 ---
 name: decompose
 description: Break ambiguous business problems into architectural requirements, bounded decisions, dependencies, constraints, and risks.
-activation_hints:
-  - "Use when a request is too broad to design directly."
-  - "Route here for scoping, requirement extraction, constraint mapping, and problem framing."
-  - "Do not use for choosing a final option, integration design, or governance policy work."
 ---
 
 # Decompose

@@ -1,9 +1,6 @@
 ---
 name: release
 description: Plan and execute safe releases, rollouts, and rollback paths for infrastructure and platform changes.
-activation_hints:
-  - "Use when a change is ready to move through staging, canary, blue/green, or production rollout."
-  - "Route here for rollout strategy, release sequencing, and rollback design."
 ---
 
 # Release

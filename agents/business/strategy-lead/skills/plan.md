@@ -1,10 +1,6 @@
 ---
 name: plan
 description: Turn a strategic choice into a concrete plan with sequencing, owners, milestones, and measurable success criteria.
-activation_hints:
-  - "Use when a strategy decision has been made and the team needs an actionable path."
-  - "Route here for annual planning, quarterly planning, OKRs, and strategic execution plans."
-  - "Do not use when the decision itself is still unresolved."
 ---
 
 # Plan

@@ -1,10 +1,6 @@
 ---
 name: measure
 description: Define, compute, and validate metrics so the numbers are correct, reproducible, and fit for decision-making.
-activation_hints:
-  - "Use when a task requires metric definition, SQL validation, funnel analysis, cohort logic, or data quality checks."
-  - "Route here after the question is framed and before results are reported."
-  - "Do not use for final storytelling or for broad scoping without a clear measurement target."
 ---
 
 # Measure

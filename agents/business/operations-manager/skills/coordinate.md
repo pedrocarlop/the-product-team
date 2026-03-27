@@ -1,10 +1,6 @@
 ---
 name: coordinate
 description: Align people, dependencies, and communication across teams so operational work moves cleanly through handoffs and decisions.
-activation_hints:
-  - "Use when work depends on multiple teams, owners, or dates staying aligned."
-  - "Route here for handoff protocols, meeting design, dependency tracking, and escalation plans."
-  - "Do not use for process mapping, SOP writing, or root-cause improvement work."
 ---
 
 # Coordinate

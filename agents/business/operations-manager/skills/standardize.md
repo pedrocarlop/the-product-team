@@ -1,10 +1,6 @@
 ---
 name: standardize
 description: Turn a working operational pattern into a durable SOP, checklist, or control with clear ownership, steps, and review cadence.
-activation_hints:
-  - "Use when a process is repeatable and needs to be made consistent across people or teams."
-  - "Route here for SOPs, runbooks, checklists, and process ownership."
-  - "Do not use for mapping the process from scratch, coordinating one-off work, or incident-driven improvement."
 ---
 
 # Standardize

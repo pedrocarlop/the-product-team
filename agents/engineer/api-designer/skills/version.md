@@ -1,10 +1,6 @@
 ---
 name: version
 description: Define API versioning, compatibility, and deprecation strategy so contract changes are deliberate and consumer impact is controlled.
-activation_hints:
-  - "Use when deciding whether a change is breaking, additive, or versioned."
-  - "Route here for migration plans, deprecation timing, and compatibility policy."
-  - "Do not use for initial resource shaping or for documentation-only tasks."
 ---
 
 # Version

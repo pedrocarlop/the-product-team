@@ -1,10 +1,6 @@
 ---
 name: tune
 description: Refine conversational tone, response style, and voice calibration so the assistant sounds appropriate, useful, and consistent.
-activation_hints:
-  - "Use when the conversation is structurally correct but the wording, tone, or response style needs refinement."
-  - "Route here for voice calibration, emotional temperature, brevity, and personality consistency."
-  - "Do not use for scope definition, script structure, or fallback design unless the issue is tone-specific."
 ---
 
 # Tune

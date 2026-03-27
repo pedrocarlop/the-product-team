@@ -1,10 +1,6 @@
 ---
 name: mentor
 description: Coach engineers through technical decisions, reviews, and pairing so the team gets stronger over time.
-activation_hints:
-  - "Use when feedback should build capability, not just fix a specific artifact."
-  - "Route here for coaching in PRs, design discussions, pairing, and stretch assignments."
-  - "Do not use for architecture direction or sequencing work."
 ---
 
 # Mentor

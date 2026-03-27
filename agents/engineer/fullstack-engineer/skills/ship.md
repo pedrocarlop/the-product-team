@@ -1,10 +1,6 @@
 ---
 name: ship
 description: Validate, harden, and release a full-stack feature safely with tests, rollout controls, and observability.
-activation_hints:
-  - "Use when the feature is implemented and needs release readiness, QA, and operational safety."
-  - "Route here for rollout planning, test coverage, monitoring, and cleanup before production."
-  - "Do not use for early modeling or wireframing work."
 ---
 
 # Ship

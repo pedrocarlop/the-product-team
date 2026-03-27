@@ -1,10 +1,6 @@
 ---
 name: script
 description: Draft and refine conversation scripts, dialogue trees, and turn-by-turn response sequences for AI-powered experiences.
-activation_hints:
-  - "Use when a conversation flow needs to be written out as actual user/system turns before implementation."
-  - "Route here for happy paths, branch logic, multi-turn scripts, and conversation state sequences."
-  - "Do not use for tone-only rewrites, scope definition, or fallback strategy work without a scripted flow."
 ---
 
 # Script

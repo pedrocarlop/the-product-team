@@ -1,10 +1,6 @@
 ---
 name: instrument
 description: Specify, audit, and verify growth tracking so funnel metrics are measurable, trustworthy, and ready for experiments.
-activation_hints:
-  - "Use when a growth metric cannot be measured reliably."
-  - "Route here for event taxonomy, tracking specs, property completeness, or instrumentation gaps."
-  - "Do not use for experiment design or growth rollouts unless measurement setup is the blocker."
 ---
 
 # Instrument

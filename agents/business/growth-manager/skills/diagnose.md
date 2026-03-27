@@ -1,10 +1,6 @@
 ---
 name: diagnose
 description: Find the binding growth constraint by reading funnel data, cohort behavior, and segment-level patterns before recommending any move.
-activation_hints:
-  - "Use when growth is stalling and the team needs to identify the real bottleneck."
-  - "Route here for funnel diagnosis, cohort analysis, retention drops, CAC shifts, or unexplained conversion changes."
-  - "Do not use for experiment design, event tracking implementation, or rollout planning."
 ---
 
 # Diagnose

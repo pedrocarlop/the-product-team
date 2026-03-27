@@ -1,10 +1,6 @@
 ---
 name: recover
 description: Design fallback responses, error recovery, escalation behavior, and repeated-failure handling for conversation flows.
-activation_hints:
-  - "Use when the conversation must recover from misunderstanding, missing data, technical failure, or repeated user frustration."
-  - "Route here for fallback copy, retry logic, escalation criteria, and dead-end prevention."
-  - "Do not use for general script drafting unless recovery behavior is part of the flow."
 ---
 
 # Recover

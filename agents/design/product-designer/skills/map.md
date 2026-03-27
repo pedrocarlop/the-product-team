@@ -1,10 +1,6 @@
 ---
 name: map
 description: Map each design decision to the source component, pattern, token, or exception it depends on so the handoff stays traceable.
-activation_hints:
-  - "Use when component choices need to be justified against the design system or source repository."
-  - "Route here when the handoff needs a traceable mapping from UI requirements to existing assets."
-  - "Do not use for flow design or problem framing."
 ---
 
 # Map

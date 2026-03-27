@@ -1,10 +1,6 @@
 ---
 name: scan
 description: Build a disciplined market and competitive scan that surfaces current signals, structural dynamics, and the strategic implications that matter.
-activation_hints:
-  - "Use when the strategy question depends on market size, growth, trends, or competitor moves."
-  - "Route here for market research, competitive intelligence, and external signal gathering."
-  - "Do not use for internal planning, option comparison, or final recommendation writing."
 ---
 
 # Scan

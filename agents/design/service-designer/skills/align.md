@@ -1,10 +1,6 @@
 ---
 name: align
 description: Align service design decisions with operational reality, stakeholder needs, and service metrics so the proposed experience can actually be delivered and measured.
-activation_hints:
-  - "Use when validating service feasibility, constraints, or tradeoffs with stakeholders and operations."
-  - "Route here for business alignment, operational readiness, metrics, and design decisions that need sign-off."
-  - "Do not use for detailed blueprinting when the problem is not alignment or feasibility."
 ---
 
 # Align

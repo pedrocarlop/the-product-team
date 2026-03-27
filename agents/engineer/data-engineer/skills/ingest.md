@@ -1,10 +1,6 @@
 ---
 name: ingest
 description: Design and operate reliable data ingestion from source systems into raw or landing zones with clear contracts, observability, and backfill safety.
-activation_hints:
-  - "Use when a task involves bringing new data into the warehouse, changing a connector, or fixing a broken extract/load path."
-  - "Route here for source contracts, incremental syncs, backfills, load validation, or ingestion incident response."
-  - "Do not use for transformation logic, marts, or downstream metric definitions."
 ---
 
 # Ingest

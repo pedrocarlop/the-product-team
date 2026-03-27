@@ -1,10 +1,6 @@
 ---
 name: specify
 description: Convert an agreed product direction into precise requirements, business rules, and acceptance criteria that can be built and tested.
-activation_hints:
-  - "Use when the product direction is chosen and you need implementable requirements."
-  - "Route here for PRDs, user stories, acceptance criteria, and traceability."
-  - "Do not use for discovery, framing, or choosing between competing options."
 ---
 
 # Specify

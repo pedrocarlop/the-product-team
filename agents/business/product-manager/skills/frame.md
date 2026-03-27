@@ -1,10 +1,6 @@
 ---
 name: frame
 description: Turn a vague product request into a precise decision question, scope, and output that the team can act on.
-activation_hints:
-  - "Use when a request is broad, ambiguous, or mixes problem discovery with solution ideas."
-  - "Route here before writing a PRD, prioritizing options, or aligning stakeholders on a new initiative."
-  - "Do not use for final requirements, roadmap decisions, or stakeholder updates once the question is already clear."
 ---
 
 # Frame

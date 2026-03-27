@@ -1,10 +1,6 @@
 ---
 name: adapt
 description: Adapt mobile screens, patterns, and interactions so they work across iOS, Android, assistive technologies, and device constraints without losing product intent.
-activation_hints:
-  - "Use when a mobile interface needs to be redesigned or adjusted for accessibility or platform constraints."
-  - "Route here for layout changes, interaction changes, component substitutions, or state redesigns."
-  - "Do not use for pure audits or for post-implementation verification."
 ---
 
 # Adapt

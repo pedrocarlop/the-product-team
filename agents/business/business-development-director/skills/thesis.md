@@ -1,10 +1,6 @@
 ---
 name: thesis
 description: Define the strategic thesis for a market move, partnership, or non-standard deal before resources are committed.
-activation_hints:
-  - "Use when evaluating whether a BD opportunity creates disproportionate value."
-  - "Route here when a deal, market entry, or alliance needs a clear why-now/why-us rationale."
-  - "Do not use for sourcing leads, drafting terms, or live negotiation tactics."
 ---
 
 # Thesis

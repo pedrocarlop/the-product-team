@@ -1,10 +1,6 @@
 ---
 name: map
 description: Translate an information architecture problem into current-state and future-state structures with hierarchy, entry points, wayfinding, and findability constraints.
-activation_hints:
-  - "Use when the work needs an AS-IS / TO-BE structural view before labels or navigation change."
-  - "Route here for sitemaps, navigation paths, content groupings, and cross-surface wayfinding."
-  - "Do not use for pure copy rewrites, visual layout polish, or implementation details."
 ---
 
 # Map

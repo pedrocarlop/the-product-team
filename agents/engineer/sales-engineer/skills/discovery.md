@@ -1,10 +1,6 @@
 ---
 name: discovery
 description: Run technical discovery that surfaces the prospect's environment, constraints, stakeholders, and success criteria before any demo, PoC, or commitment.
-activation_hints:
-  - "Use when a sales-engineering task starts with an unknown environment, unclear requirements, or an unvalidated technical fit."
-  - "Route here for discovery calls, qualification notes, technical intake, and environment mapping."
-  - "Do not use for demo design, PoC execution, or objection handling after requirements are already known."
 ---
 
 # Discovery

@@ -1,10 +1,6 @@
 ---
 name: measure
 description: Define marketing metrics, tracking, and attribution so campaign performance can be trusted and acted on.
-activation_hints:
-  - "Use when the task is to define success metrics, build a measurement plan, or interpret channel and campaign performance."
-  - "Route here before launch if tracking needs to be in place, and after launch when results need validation."
-  - "Do not use for positioning, campaign planning, or channel selection unless measurement is the limiting factor."
 ---
 
 # Measure

@@ -1,10 +1,6 @@
 ---
 name: stress-test
 description: Test financial plans and models under adverse conditions, expose weak assumptions, and quantify downside risk before decisions are made.
-activation_hints:
-  - "Use when a task needs downside analysis, sensitivity tables, or scenario comparison."
-  - "Route here when leadership wants to know what breaks, not just what works."
-  - "Do not use for building the base model or writing the executive narrative."
 ---
 
 # Stress Test

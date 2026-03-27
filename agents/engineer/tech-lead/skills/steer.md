@@ -1,10 +1,6 @@
 ---
 name: steer
 description: Set technical direction, frame tradeoffs, and align teams on the simplest architecture that solves the actual problem.
-activation_hints:
-  - "Use when a product or platform decision needs technical direction."
-  - "Route here for architecture choices, ADR-worthy decisions, cross-team dependencies, and reversibility questions."
-  - "Do not use for routine implementation tasks that do not change direction or standards."
 ---
 
 # Steer

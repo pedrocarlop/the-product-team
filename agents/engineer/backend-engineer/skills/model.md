@@ -1,9 +1,6 @@
 ---
 name: model
 description: Shape backend work into explicit domain, data, and contract decisions before implementation starts.
-activation_hints:
-  - "Use when a backend task needs domain modeling, API boundaries, persistence decisions, or state-transition planning."
-  - "Route here before coding if the shape of the service, schema, or contract is still unclear."
 ---
 
 # Model

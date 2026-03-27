@@ -1,10 +1,6 @@
 ---
 name: negotiate
 description: Prepare and run strategic negotiations with a clear BATNA, concession plan, and internal alignment.
-activation_hints:
-  - "Use when entering live deal negotiation or finalizing strategic terms."
-  - "Route here for BATNA analysis, concession sequencing, and walk-away positions."
-  - "Do not use for sourcing or high-level thesis development."
 ---
 
 # Negotiate

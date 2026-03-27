@@ -1,10 +1,6 @@
 ---
 name: model
 description: Build analytic models that structure the data correctly, expose the drivers behind a result, and keep assumptions explicit.
-activation_hints:
-  - "Use when an analysis needs cohorting, segmentation, decomposition, or a reusable analytical structure."
-  - "Route here when you need to transform raw data into a reliable table, view, or analysis model."
-  - "Do not use for final presentation copy or for first-pass question framing."
 ---
 
 # Model

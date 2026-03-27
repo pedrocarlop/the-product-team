@@ -1,10 +1,6 @@
 ---
 name: align
 description: Translate a product decision into shared understanding across stakeholders so teams move in the same direction.
-activation_hints:
-  - "Use when a decision, roadmap shift, or tradeoff needs buy-in across functions."
-  - "Route here for decision memos, executive updates, and cross-functional communication."
-  - "Do not use for deciding the strategy itself or for ranking options."
 ---
 
 # Align

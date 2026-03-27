@@ -1,10 +1,6 @@
 ---
 name: frame
 description: Turn a machine learning request into a justified problem framing with a baseline, success metric, and failure mode before any model work starts.
-activation_hints:
-  - "Use when a request could be solved by ML, rules, retrieval, or prompting and the right approach is not yet clear."
-  - "Route here before data exploration, training, prompt design, or architecture decisions."
-  - "Do not use once the objective, metric, and deployment context are already settled."
 ---
 
 # Frame

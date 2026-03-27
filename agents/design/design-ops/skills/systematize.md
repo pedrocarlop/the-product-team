@@ -1,10 +1,6 @@
 ---
 name: systematize
 description: Build repeatable design operations processes, templates, and handoffs so the team can run work with less ambiguity and less manual coordination.
-activation_hints:
-  - "Use when a design ops task keeps recurring and needs a standard process."
-  - "Route here for SOPs, playbooks, intake flows, checklists, or handoff templates."
-  - "Do not use for one-off decisions, policy enforcement, or calendar planning."
 ---
 
 # Systematize

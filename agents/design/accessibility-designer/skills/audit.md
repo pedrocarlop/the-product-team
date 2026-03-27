@@ -1,10 +1,6 @@
 ---
 name: audit
 description: Audit designs, flows, and implementations for accessibility barriers, WCAG gaps, and assistive-technology regressions before they ship.
-activation_hints:
-  - "Use when you need to evaluate a screen, flow, component, or implementation for accessibility risks."
-  - "Route here for keyboard access, screen reader support, contrast, focus order, form semantics, motion, and color-only state problems."
-  - "Do not use for simply rewriting content or making generic visual polish changes."
 ---
 
 # Audit

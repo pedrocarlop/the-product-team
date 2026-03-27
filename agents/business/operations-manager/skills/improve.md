@@ -1,10 +1,6 @@
 ---
 name: improve
 description: Diagnose recurring operational pain, identify root causes, and drive measurable process, quality, or efficiency improvements.
-activation_hints:
-  - "Use when a process keeps failing, costs too much time, or creates recurring errors."
-  - "Route here for RCA, continuous improvement, metrics review, and automation ROI decisions."
-  - "Do not use for first-time process mapping, SOP creation, or cross-team coordination setup."
 ---
 
 # Improve

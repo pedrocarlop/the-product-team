@@ -1,10 +1,6 @@
 ---
 name: blueprint
 description: Create or revise end-to-end service blueprints that map customer actions, frontstage interactions, backstage processes, and support systems across the full journey.
-activation_hints:
-  - "Use when a task requires service-level mapping across channels, teams, or time rather than a single screen."
-  - "Route here for current-state or future-state blueprints, journey maps, swim-lane diagrams, and backstage process documentation."
-  - "Do not use for local UI copy edits, component-level design, or implementation tasks without service context."
 ---
 
 # Blueprint

@@ -1,10 +1,6 @@
 ---
 name: plan
 description: Turn a research request into a defensible study plan with the right question, method, sample, and reporting path before any sessions run.
-activation_hints:
-  - "Use when a research ask is still vague and needs scope, method, or success criteria."
-  - "Route here before recruiting participants, scheduling sessions, or collecting data."
-  - "Do not use for synthesis, note-taking, or final insight reporting after the study is already complete."
 ---
 
 # Plan

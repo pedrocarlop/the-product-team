@@ -1,10 +1,6 @@
 ---
 name: align
 description: Translate product strategy and priorities into shared understanding across executives, product, engineering, and partner teams.
-activation_hints:
-  - "Use when a strategy, bet, or allocation decision needs buy-in across functions."
-  - "Route here for executive updates, decision memos, and cross-team alignment work."
-  - "Do not use for deciding the strategy itself or for resource allocation math."
 ---
 
 # Align

@@ -1,10 +1,6 @@
 ---
 name: pseudo
 description: Use pseudo-localization to expose layout breakage, clipping, and string-handling issues before real translations are available.
-activation_hints:
-  - "Use when you need a fast localization stress test without waiting for translations."
-  - "Route here for pseudo-localized previews, overflow detection, and string-handling checks."
-  - "Do not use for RTL layout design or cultural adaptation decisions."
 ---
 
 # Pseudo

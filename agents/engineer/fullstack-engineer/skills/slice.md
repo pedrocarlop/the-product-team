@@ -1,10 +1,6 @@
 ---
 name: slice
 description: Break a full-stack feature into the smallest safe end-to-end increment that can be modeled, wired, tested, and shipped without drift.
-activation_hints:
-  - "Use when a feature is too large to build in one pass and needs a thin vertical slice first."
-  - "Route here before implementation when the team needs a bounded first increment with clear scope and risk."
-  - "Do not use for pure bug fixes, isolated frontend work, or backend-only modeling."
 ---
 
 # Slice

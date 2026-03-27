@@ -1,9 +1,6 @@
 ---
 name: stabilize
 description: Reduce operational risk during incidents or fragile changes by hardening failure modes, recovery paths, and support readiness.
-activation_hints:
-  - "Use when a system is unstable, noisy, or at risk of incident recurrence."
-  - "Route here for remediation, hardening, runbooks, drift cleanup, and recovery readiness."
 ---
 
 # Stabilize

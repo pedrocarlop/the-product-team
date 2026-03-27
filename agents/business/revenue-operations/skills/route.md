@@ -1,10 +1,6 @@
 ---
 name: route
 description: Decide lead, account, opportunity, and handoff routing so revenue work lands with the right owner at the right time.
-activation_hints:
-  - "Use when a task requires lead routing, handoff routing, ownership rules, or escalation paths."
-  - "Route here when the problem is deciding who should own a record or next step."
-  - "Do not use for CRM hygiene, forecast construction, or analytical modeling."
 ---
 
 # Route

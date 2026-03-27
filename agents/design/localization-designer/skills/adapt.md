@@ -1,10 +1,6 @@
 ---
 name: adapt
 description: Adjust product behavior, content structure, and visual treatment to fit cultural, legal, and regional expectations without losing product intent.
-activation_hints:
-  - "Use when a surface needs cultural review beyond translation."
-  - "Route here for dates, currencies, forms of address, imagery, color meaning, legal disclosures, and regional conventions."
-  - "Do not use for pure string expansion or RTL mirroring."
 ---
 
 # Adapt

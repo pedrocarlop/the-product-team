@@ -1,10 +1,6 @@
 ---
 name: map
 description: Translate an operational problem into current-state and future-state process maps with roles, handoffs, decision points, and failure modes.
-activation_hints:
-  - "Use when the work needs an AS-IS / TO-BE view before anyone changes the process."
-  - "Route here for swimlanes, handoffs, bottlenecks, escalation paths, and system touchpoints."
-  - "Do not use for writing SOPs, coordinating execution, or driving continuous improvement."
 ---
 
 # Map

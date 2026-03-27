@@ -1,10 +1,6 @@
 ---
 name: plan
 description: Turn an engineering objective into an execution plan with sequencing, owners, milestones, and measurable success criteria.
-activation_hints:
-  - "Use when a delivery objective is known and the team needs a credible plan."
-  - "Route here for quarterly planning, project plans, capacity plans, and milestone sequencing."
-  - "Do not use when the objective itself is still unresolved."
 ---
 
 # Plan

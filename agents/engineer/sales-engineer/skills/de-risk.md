@@ -1,10 +1,6 @@
 ---
 name: de-risk
 description: Identify, document, and reduce technical, security, integration, and delivery risks so the buyer can commit with confidence.
-activation_hints:
-  - "Use when the deal is blocked by risk, uncertainty, procurement, security review, or implementation concerns."
-  - "Route here for objection handling, security questionnaires, architecture risk review, and delivery validation."
-  - "Do not use for first-pass discovery, demo storytelling, or executing a bounded proof."
 ---
 
 # De-risk

@@ -1,10 +1,6 @@
 ---
 name: instrument
 description: Define, audit, and verify the metrics and signals that let design operations measure process health and service quality.
-activation_hints:
-  - "Use when design ops needs visibility into throughput, latency, adoption, or quality."
-  - "Route here for metrics definitions, dashboards, service levels, or reporting gaps."
-  - "Do not use for process design unless measurement is the blocker."
 ---
 
 # Instrument

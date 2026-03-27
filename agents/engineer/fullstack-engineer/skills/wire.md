@@ -1,10 +1,6 @@
 ---
 name: wire
 description: Design the screen structure, interaction flow, and state scaffolding for a full-stack feature once the model is known.
-activation_hints:
-  - "Use when the flow is understood and the next step is screen-level layout and behavior."
-  - "Route here for wireframes, page skeletons, empty states, and responsive interaction rules."
-  - "Do not use for visual polish, branding, or contract modeling."
 ---
 
 # Wire

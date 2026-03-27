@@ -1,10 +1,6 @@
 ---
 name: tune
 description: Refine frontend tone, interaction wording, and response style so the surface feels appropriate, useful, and consistent.
-activation_hints:
-  - "Use when the UI is structurally correct but the wording, tone, or response style needs refinement."
-  - "Route here for interaction copy, state messaging, emotional temperature, and consistency across surfaces."
-  - "Do not use for scope definition, state modeling, or safety hardening unless tone is the main issue."
 ---
 
 # Tune

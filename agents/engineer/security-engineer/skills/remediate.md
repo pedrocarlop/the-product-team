@@ -1,10 +1,6 @@
 ---
 name: remediate
 description: Turn security findings into targeted fixes, tests, and follow-up work without widening scope unnecessarily.
-activation_hints:
-  - "Use when a security review, scan, or incident has identified concrete issues that need repair."
-  - "Use when the team needs a fix plan, code change, or config update for an identified vulnerability."
-  - "Do not use until the issue has been confirmed and prioritized."
 ---
 
 # Remediate

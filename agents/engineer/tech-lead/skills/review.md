@@ -1,10 +1,6 @@
 ---
 name: review
 description: Review code and designs for correctness, architecture fit, tests, risk, and mentoring value.
-activation_hints:
-  - "Use when a PR, design, or implementation needs technical review."
-  - "Route here for blocking issues, architectural concerns, missing tests, and feedback that should teach the author."
-  - "Do not use for high-level direction setting or planning order."
 ---
 
 # Review

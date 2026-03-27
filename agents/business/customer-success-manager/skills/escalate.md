@@ -1,10 +1,6 @@
 ---
 name: escalate
 description: Handle high-risk customer situations with clear criteria, fast internal routing, and a structured recovery plan.
-activation_hints:
-  - "Use when a customer is threatening churn, a critical issue is blocking value, or account risk needs immediate coordination."
-  - "Route here for executive escalation, daily communication cadences, root-cause tracking, and recovery planning."
-  - "Do not use for routine onboarding, low-risk health checks, or standard renewal prep."
 ---
 
 # Escalate

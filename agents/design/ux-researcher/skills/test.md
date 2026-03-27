@@ -1,10 +1,6 @@
 ---
 name: test
 description: Design and run usability tests that measure whether users can complete key tasks, where they struggle, and what the interface needs to change.
-activation_hints:
-  - "Use when the question is about task success, comprehension, or interaction breakdowns."
-  - "Route here for test plans, tasks, success criteria, and failure analysis."
-  - "Do not use for interviews or post-study synthesis."
 ---
 
 # Test

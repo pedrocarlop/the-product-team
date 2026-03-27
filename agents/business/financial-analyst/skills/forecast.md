@@ -1,10 +1,6 @@
 ---
 name: forecast
 description: Build assumption-driven financial forecasts, translate drivers into forward-looking revenue and cash outlooks, and make the assumptions explicit enough to defend.
-activation_hints:
-  - "Use when a task requires projecting revenue, margin, burn, runway, or headcount over time."
-  - "Route here when the user needs a forecast tied to business drivers rather than a historical report."
-  - "Do not use for sensitivity testing, deep model structure changes, or narrative explanation of an existing model."
 ---
 
 # Forecast

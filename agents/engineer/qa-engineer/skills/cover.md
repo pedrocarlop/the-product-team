@@ -1,10 +1,6 @@
 ---
 name: cover
 description: Design risk-based test coverage across layers, scenarios, and environments so the QA plan proves the feature behaves as intended.
-activation_hints:
-  - "Use when the team needs to decide what to cover and at what depth."
-  - "Route here for coverage matrices, test selection, and gap analysis."
-  - "Do not use when the coverage choices are already settled and tests just need to be written."
 ---
 
 # Cover

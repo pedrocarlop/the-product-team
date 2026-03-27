@@ -1,10 +1,6 @@
 ---
 name: find
 description: Design the search and findability experience so users can locate content through search, browse, filters, and recovery paths with minimal friction.
-activation_hints:
-  - "Use when users need to locate known items or recover from not finding something."
-  - "Route here for search behavior, zero results, filters, sorting, and browse-to-search handoff."
-  - "Do not use for unrelated content strategy or for purely visual layout decisions."
 ---
 
 # Find

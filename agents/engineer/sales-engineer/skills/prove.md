@@ -1,10 +1,6 @@
 ---
 name: prove
 description: Scope and run evidence-driven proofs of value or proof-of-concept work that answer one explicit technical question with measurable success criteria.
-activation_hints:
-  - "Use when the prospect needs a PoC, pilot, benchmark, or technical proof before buying."
-  - "Route here for success criteria, scoped validation, prototype work, and evidence packaging."
-  - "Do not use for broad discovery, generic demos, or de-risking work after the proof question is already settled."
 ---
 
 # Prove

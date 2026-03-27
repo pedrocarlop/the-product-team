@@ -1,10 +1,6 @@
 ---
 name: compose
 description: Compose mobile screens, components, and interaction states from approved app patterns, tokens, and platform conventions.
-activation_hints:
-  - "Use when a mobile screen, component, or reusable pattern needs to be assembled or reworked."
-  - "Route here when the task is about layout structure, component anatomy, variants, or state composition."
-  - "Do not use for implementation mapping, accessibility adaptation, or release readiness."
 ---
 
 # Compose

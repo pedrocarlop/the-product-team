@@ -1,10 +1,6 @@
 ---
 name: budget
 description: Define and encode performance budgets that prevent regressions from shipping.
-activation_hints:
-  - "Use when we need to set a target for Core Web Vitals, API latency, or bundle size."
-  - "Use when a metric needs a CI gate, alert threshold, or release rule."
-  - "Do not use for root-cause analysis or remediation steps."
 ---
 
 # Budget

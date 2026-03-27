@@ -1,10 +1,6 @@
 ---
 name: bet
 description: Frame strategic product bets with clear hypotheses, evidence, upside, downside, and the signals that will prove or disprove them.
-activation_hints:
-  - "Use when the team needs to decide whether a product direction is worth making a meaningful commitment to."
-  - "Route here for investment theses, launch theses, and strategy choices that carry material uncertainty."
-  - "Do not use for low-risk task ordering or day-to-day execution planning."
 ---
 
 # Bet

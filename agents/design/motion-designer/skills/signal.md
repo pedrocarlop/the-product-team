@@ -1,10 +1,6 @@
 ---
 name: signal
 description: Design motion that signals status, urgency, attention, and meaning without overwhelming the interface.
-activation_hints:
-  - "Use when motion needs to communicate status, priority, or attention shift."
-  - "Route here for error states, success states, progress cues, live updates, and notification motion."
-  - "Do not use for full state transitions, sequencing multiple elements, or reduced-motion fallback design."
 ---
 
 # Signal

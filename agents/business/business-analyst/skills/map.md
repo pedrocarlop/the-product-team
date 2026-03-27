@@ -1,10 +1,6 @@
 ---
 name: map
 description: Translate a clarified business need into an AS-IS and TO-BE process map with stakeholders, decisions, handoffs, and system touchpoints.
-activation_hints:
-  - "Use when the business problem is understood and the next step is documenting process flow."
-  - "Route here for AS-IS / TO-BE mapping, swimlanes, handoffs, and exception paths."
-  - "Do not use for requirement elicitation, formal specification, or test validation."
 ---
 
 # Map

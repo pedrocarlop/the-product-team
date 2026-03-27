@@ -1,10 +1,6 @@
 ---
 name: monitor
 description: Keep a production model or LLM workflow healthy by watching drift, performance, and business impact after launch.
-activation_hints:
-  - "Use after a model or inference workflow is in production."
-  - "Route here when defining alerts, drift checks, review cadence, or incident response."
-  - "Do not use before the system has shipped or before serving has been defined."
 ---
 
 # Monitor

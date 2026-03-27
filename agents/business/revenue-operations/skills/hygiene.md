@@ -1,10 +1,6 @@
 ---
 name: hygiene
 description: Audit, normalize, and maintain CRM and revenue data so routing, reporting, and forecasting stay reliable.
-activation_hints:
-  - "Use when a task requires CRM cleanup, field standards, deduping, or data quality checks."
-  - "Route here when the problem is data trust, not model design or routing rules."
-  - "Do not use for building forecasts or making ownership decisions."
 ---
 
 # Hygiene

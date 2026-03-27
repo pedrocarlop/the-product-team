@@ -1,9 +1,6 @@
 ---
 name: observe
 description: Verify runtime behavior using logs, metrics, traces, alerts, and production-like checks after a change ships.
-activation_hints:
-  - "Use when a change needs proof in the real execution path."
-  - "Route here for dashboards, alerts, logging, tracing, and operational validation."
 ---
 
 # Observe

@@ -1,10 +1,6 @@
 ---
 name: trace
 description: Trace features, patterns, and decisions through the codebase so the real implementation path is understood end to end.
-activation_hints:
-  - "Use when we need to follow data flow, control flow, or ownership across files."
-  - "Route here when a pattern must be traced back to its origin before reuse or change."
-  - "Do not use for broad discovery when the task is only to find existing conventions."
 ---
 
 # Trace

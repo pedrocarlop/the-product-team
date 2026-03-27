@@ -1,10 +1,6 @@
 ---
 name: health
 description: Assess customer health using leading indicators, segment-aware thresholds, and clear actions for proactive outreach or escalation.
-activation_hints:
-  - "Use when a customer's risk level needs to be assessed or refreshed."
-  - "Route here for health scores, usage signals, stakeholder engagement, and portfolio risk reviews."
-  - "Do not use for renewal negotiations or structured escalation handling unless the ask is specifically about health status."
 ---
 
 # Health

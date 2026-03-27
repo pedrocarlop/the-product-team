@@ -1,10 +1,6 @@
 ---
 name: ship
 description: Validate, harden, and release a mobile feature safely with tests, rollout controls, store submission checks, and observability.
-activation_hints:
-  - "Use when a mobile feature is implemented and needs release readiness, QA, and operational safety."
-  - "Route here for rollout planning, test coverage, monitoring, and cleanup before production."
-  - "Do not use for early modeling, wireframing, or implementation mapping."
 ---
 
 # Ship

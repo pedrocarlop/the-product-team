@@ -1,10 +1,6 @@
 ---
 name: integrate
 description: Design how systems connect through APIs, events, data contracts, sequencing, migration paths, and failure handling.
-activation_hints:
-  - "Use when two or more systems must work together."
-  - "Route here for API design, event design, data flows, compatibility, retries, and migration sequencing."
-  - "Do not use for problem framing, option selection, or policy governance."
 ---
 
 # Integrate

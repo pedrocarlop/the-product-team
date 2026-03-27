@@ -1,10 +1,6 @@
 ---
 name: govern
 description: Set architecture standards, review paths, exception handling, and decision records that keep solutions safe, consistent, and supportable.
-activation_hints:
-  - "Use when architecture needs policy, review, ownership, or exception handling."
-  - "Route here for standards, governance, architecture reviews, and guardrails."
-  - "Do not use for one-off design choices, option comparison, or system wiring."
 ---
 
 # Govern

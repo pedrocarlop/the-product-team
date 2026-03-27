@@ -1,10 +1,6 @@
 ---
 name: model
 description: Design warehouse and transformation models that produce correct, documented, testable, and analysis-ready datasets.
-activation_hints:
-  - "Use when a task involves dbt models, warehouse schemas, marts, metric layers, or transformation logic."
-  - "Route here for grain decisions, naming conventions, tests, lineage, or schema evolution."
-  - "Do not use for orchestration plumbing or source ingestion setup."
 ---
 
 # Model

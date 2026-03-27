@@ -1,10 +1,6 @@
 ---
 name: validate
 description: Validate API contracts for HTTP semantics, error handling, pagination, auth, and consumer safety before they are treated as final.
-activation_hints:
-  - "Use when reviewing a contract for correctness, completeness, or risk."
-  - "Route here when the question is whether the design is safe to ship."
-  - "Do not use for shaping the initial model or writing documentation artifacts."
 ---
 
 # Validate

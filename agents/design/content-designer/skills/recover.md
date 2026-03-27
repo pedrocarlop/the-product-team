@@ -1,10 +1,6 @@
 ---
 name: recover
 description: Write error, empty, confirmation, and success messaging that helps users recover, proceed, or feel confident about what just happened.
-activation_hints:
-  - "Use when a feature needs state-based copy for errors, loading, success, confirmations, or empty states."
-  - "Route here when users need reassurance, explanation, and a next step after something changes or fails."
-  - "Do not use for onboarding sequences, terminology naming, or general hierarchy cleanup."
 ---
 
 # Recover

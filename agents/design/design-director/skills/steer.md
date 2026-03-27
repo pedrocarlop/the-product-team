@@ -1,10 +1,6 @@
 ---
 name: steer
 description: Set design direction, surface tradeoffs, and guide portfolio decisions so effort lands where it matters most.
-activation_hints:
-  - "Use when design direction is unclear or competing priorities need a decision."
-  - "Route here for portfolio tradeoffs, alignment work, or strategic design calls."
-  - "Do not use for detailed critique, coaching, or defining shared standards."
 ---
 
 # Steer

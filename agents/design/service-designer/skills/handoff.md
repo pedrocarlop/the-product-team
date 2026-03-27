@@ -1,10 +1,6 @@
 ---
 name: handoff
 description: Design, clarify, and document transitions between channels, teams, systems, and ownership boundaries so context moves cleanly through the service.
-activation_hints:
-  - "Use when a service changes hands between digital and human channels, or between teams and systems."
-  - "Route here for escalation paths, ownership transfers, context handoff specs, and recovery moments."
-  - "Do not use for general workflow mapping when the transition points are not the core problem."
 ---
 
 # Handoff

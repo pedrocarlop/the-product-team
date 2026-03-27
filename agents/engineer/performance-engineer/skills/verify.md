@@ -1,10 +1,6 @@
 ---
 name: verify
 description: Prove a performance change improved the target metric and did not regress other constraints.
-activation_hints:
-  - "Use when a fix has been implemented and needs proof."
-  - "Use when we need before/after metrics, CI enforcement, or field validation."
-  - "Do not use before the issue has been isolated."
 ---
 
 # Verify

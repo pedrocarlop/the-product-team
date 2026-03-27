@@ -1,10 +1,6 @@
 ---
 name: critique
 description: Review design work holistically and identify the highest-value usability, quality, and strategic issues.
-activation_hints:
-  - "Use when a screen, flow, system, or portfolio needs a direct design critique."
-  - "Route here when you need to judge quality, surface risks, or decide whether work is ready to advance."
-  - "Do not use for coaching a designer, writing standards, or steering portfolio tradeoffs."
 ---
 
 # Critique

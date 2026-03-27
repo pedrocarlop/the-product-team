@@ -1,10 +1,6 @@
 ---
 name: migrate
 description: Plan and author database migrations so schema changes deploy safely, backfill cleanly, and remain reversible where possible.
-activation_hints:
-  - "Use when a task involves adding, changing, or removing schema in a live system."
-  - "Route here for rollout order, backfills, compatibility windows, or zero-downtime migration planning."
-  - "Do not use for pure schema design, index tuning, or incident remediation."
 ---
 
 # Migrate

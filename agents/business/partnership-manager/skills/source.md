@@ -1,10 +1,6 @@
 ---
 name: source
 description: Find and rank partnership targets, ecosystem players, and access paths worth pursuing.
-activation_hints:
-  - "Use when the task is to discover partner candidates, adjacent ecosystem players, or market opportunities."
-  - "Route here for ecosystem mapping, partner sourcing, executive mapping, and competitive intelligence."
-  - "Do not use for partner qualification, deal structure, or activation planning."
 ---
 
 # Source

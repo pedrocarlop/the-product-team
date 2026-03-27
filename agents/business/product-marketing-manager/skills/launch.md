@@ -1,10 +1,6 @@
 ---
 name: launch
 description: Plan, coordinate, and measure product launches so release activity turns into adoption and pipeline.
-activation_hints:
-  - "Use when the task involves launch tiers, launch plans, cross-functional checklists, or launch communications."
-  - "Route here for work that needs launch timing, owners, dependencies, and success metrics."
-  - "Do not use for positioning work, battlecards, or steady-state enablement content."
 ---
 
 # Launch

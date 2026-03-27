@@ -1,10 +1,6 @@
 ---
 name: renew
 description: Plan and run renewal work with clear timing, risk management, forecast discipline, and expansion awareness.
-activation_hints:
-  - "Use when a contract renewal is approaching or needs a plan."
-  - "Route here for renewal timing, commercial preparation, risk review, and renewal call structure."
-  - "Do not use for onboarding or generic account health unless renewal timing is part of the question."
 ---
 
 # Renew

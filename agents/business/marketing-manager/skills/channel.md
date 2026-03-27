@@ -1,10 +1,6 @@
 ---
 name: channel
 description: Choose, shape, and improve marketing channels so each one has a clear role in demand generation and a realistic operating model.
-activation_hints:
-  - "Use when deciding which channels to invest in, how each channel should work, or how to improve channel performance."
-  - "Route here after positioning is clear and before campaign plans are finalized."
-  - "Do not use for campaign briefs, measurement-only work, or brand position decisions."
 ---
 
 # Channel

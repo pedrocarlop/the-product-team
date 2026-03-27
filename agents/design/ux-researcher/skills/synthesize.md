@@ -1,10 +1,6 @@
 ---
 name: synthesize
 description: Turn research notes, transcripts, and observations into defensible themes, insights, and implications the design team can act on.
-activation_hints:
-  - "Use when research data has been collected and needs patterns, themes, or insights."
-  - "Route here for affinity mapping, coding, insight writing, and findings summaries."
-  - "Do not use for planning the study or moderating live sessions."
 ---
 
 # Synthesize

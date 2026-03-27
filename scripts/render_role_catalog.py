@@ -68,13 +68,6 @@ def list_phrase(items: tuple[str, ...], limit: int = 3) -> str:
     return f"{selected[0]}, {selected[1]}, and {selected[2]}"
 
 
-def useful_for(entry: RoleEntry) -> str:
-    owned_scope = list_phrase(entry.owns, limit=3)
-    if entry.role_kind == "reviewer":
-        return f"review passes on {owned_scope}"
-    return f"direct ownership of {owned_scope}"
-
-
 def render_catalog(root: Path = ROOT) -> str:
     roles = load_roles(root)
     lines = [
@@ -94,11 +87,11 @@ def render_catalog(root: Path = ROOT) -> str:
         lines.append("")
 
         for entry in (role for role in roles if role.discipline == discipline):
+            role_tag = "reviewer" if entry.role_kind == "reviewer" else "executor"
             lines.append(
-                f"- `{entry.name}` ({entry.display_name}) — "
+                f"- `{entry.name}` ({entry.display_name}, {role_tag}) — "
                 f"Why: {entry.description}. "
-                f"Does: {list_phrase(entry.owns)}. "
-                f"Useful for: {useful_for(entry)}."
+                f"Owns: {list_phrase(entry.owns)}."
             )
 
         lines.append("")

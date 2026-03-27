@@ -1,9 +1,6 @@
 ---
 name: pipeline
 description: Design and maintain CI/CD pipelines that build, test, scan, and promote infrastructure or delivery changes safely.
-activation_hints:
-  - "Use when a change affects GitHub Actions, build stages, branch protections, or artifact promotion."
-  - "Route here when the task is about delivery flow, not runtime operations or incident response."
 ---
 
 # Pipeline

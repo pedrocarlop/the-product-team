@@ -1,10 +1,6 @@
 ---
 name: frame
 description: Turn an ambiguous product request into a clear problem statement, scope boundary, success criteria, and design direction for the rest of the work.
-activation_hints:
-  - "Use when the request is unclear, broad, or not yet ready for flows or UI decisions."
-  - "Route here when you need to define the problem, users, constraints, and what success means."
-  - "Do not use for detailed interaction design, visual layout, or component selection."
 ---
 
 # Frame

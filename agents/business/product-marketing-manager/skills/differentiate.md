@@ -1,10 +1,6 @@
 ---
 name: differentiate
 description: Build competitive messaging, battlecards, and response patterns that explain why the product wins against alternatives.
-activation_hints:
-  - "Use when the task involves competitors, battlecards, win/loss patterns, or objection handling against alternatives."
-  - "Route here for work that clarifies where the product wins, where it loses, and what to say in response."
-  - "Do not use for core positioning unless the question is specifically about competitive contrast."
 ---
 
 # Differentiate

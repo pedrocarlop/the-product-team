@@ -1,10 +1,6 @@
 ---
 name: demo
 description: Design and deliver prospect-specific technical demos that show the product solving the buyer's real use case in a credible environment.
-activation_hints:
-  - "Use when a prospect is ready to see the product work in their context or around a defined use case."
-  - "Route here for demo narratives, environment setup, live walkthroughs, and async demo content."
-  - "Do not use for open-ended discovery, proof-of-concept execution, or objection response planning."
 ---
 
 # Demo

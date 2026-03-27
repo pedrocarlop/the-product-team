@@ -1,10 +1,6 @@
 ---
 name: activate
 description: Launch, onboard, and operationalize signed partnerships so they produce measurable results.
-activation_hints:
-  - "Use when a partnership is signed and needs onboarding, launch planning, or active management."
-  - "Route here for partner kickoffs, enablement, co-sell launch, co-marketing launch, and health tracking."
-  - "Do not use for sourcing, qualification, or deal structure."
 ---
 
 # Activate

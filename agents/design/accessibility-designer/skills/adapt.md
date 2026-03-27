@@ -1,10 +1,6 @@
 ---
 name: adapt
 description: Adapt designs, patterns, and interactions so they work for keyboard users, screen reader users, and people with low vision, motion sensitivity, or cognitive load constraints.
-activation_hints:
-  - "Use when an interface needs to be redesigned or adjusted to meet accessibility needs."
-  - "Route here for layout changes, interaction changes, component substitutions, or state redesigns for accessibility."
-  - "Do not use for pure audits or for post-implementation verification."
 ---
 
 # Adapt

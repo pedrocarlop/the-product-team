@@ -1,10 +1,6 @@
 ---
 name: verify
 description: Prove that a security fix actually blocks the issue and does not introduce a new regression.
-activation_hints:
-  - "Use when a security fix, mitigation, or configuration change needs proof after implementation."
-  - "Use when the team needs to confirm a vulnerability is closed before release or sign-off."
-  - "Do not use before the underlying issue and fix path are already defined."
 ---
 
 # Verify

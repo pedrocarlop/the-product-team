@@ -1,9 +1,6 @@
 ---
 name: implement
 description: Build backend services, handlers, migrations, and integrations from an agreed model without drifting from the contract.
-activation_hints:
-  - "Use when the backend shape is known and the task is to write or modify code."
-  - "Route here for handlers, services, persistence, jobs, and integration wiring."
 ---
 
 # Implement

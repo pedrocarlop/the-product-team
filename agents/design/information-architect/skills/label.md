@@ -1,10 +1,6 @@
 ---
 name: label
 description: Design the exact names users see in navigation, facets, headings, and other structural surfaces so each label is distinct, predictable, and usable.
-activation_hints:
-  - "Use when a section name, menu item, or facet label needs to be chosen or refined."
-  - "Route here for navigation labels, section headings, category names, and structural terminology."
-  - "Do not use for broader taxonomy modeling or for sentence-level microcopy rewrites."
 ---
 
 # Label

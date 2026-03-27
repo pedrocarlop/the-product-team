@@ -1,10 +1,6 @@
 ---
 name: translate
 description: Translate product specs, design intent, and implementation constraints into frontend code that matches the intended browser experience.
-activation_hints:
-  - "Use when a design, mock, or product requirement needs to become working frontend code."
-  - "Route here for design-to-code implementation, component translation, and browser UI assembly."
-  - "Do not use for state coverage, hardening, or tone tuning unless translation is the main task."
 ---
 
 # Translate

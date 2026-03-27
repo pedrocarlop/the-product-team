@@ -1,10 +1,6 @@
 ---
 name: scope
 description: Define the assistant's boundaries, supported intents, exclusions, and handoff rules for conversation design work.
-activation_hints:
-  - "Use when the assistant's domain boundaries or intent coverage need to be clarified."
-  - "Route here for scope limits, allowed topics, out-of-scope requests, and handoff criteria."
-  - "Do not use for script drafting, tone tuning, or post-failure recovery details unless the scope is unclear."
 ---
 
 # Scope

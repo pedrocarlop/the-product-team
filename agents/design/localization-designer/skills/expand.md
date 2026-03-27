@@ -1,10 +1,6 @@
 ---
 name: expand
 description: Design interfaces to survive text expansion across locales without truncation, clipping, or fragile fixed-width assumptions.
-activation_hints:
-  - "Use when localized text is longer than the source language or when container sizing is uncertain."
-  - "Route here for buttons, labels, tables, cards, and other surfaces that must absorb longer translated strings."
-  - "Do not use for RTL mirroring, cultural adaptation, or pseudo-localization checks."
 ---
 
 # Expand

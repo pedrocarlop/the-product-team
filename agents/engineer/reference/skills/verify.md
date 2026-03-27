@@ -1,10 +1,6 @@
 ---
 name: verify
 description: Confirm that the grounded facts, traced paths, and reused patterns are actually supported by the codebase before the decision is finalized.
-activation_hints:
-  - "Use when a proposed grounding or reuse decision needs an evidence check."
-  - "Route here when the work should be checked against the repository before handoff."
-  - "Do not use as a substitute for tracing, discovery, or implementation."
 ---
 
 # Verify

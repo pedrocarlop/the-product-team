@@ -1,10 +1,6 @@
 ---
 name: position
 description: Define ICP, category positioning, and core messaging so marketing work targets the right buyers with a clear reason to buy.
-activation_hints:
-  - "Use when the task is to define or refine ICP, positioning, messaging, value propositions, or category narrative."
-  - "Route here before launching campaigns or creating channel content if the audience or promise is still unclear."
-  - "Do not use for channel execution, campaign operations, or post-launch measurement."
 ---
 
 # Position

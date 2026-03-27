@@ -1,10 +1,6 @@
 ---
 name: stateful
 description: Specify the complete set of UI states for a surface so every control, container, and flow has defined idle, loading, empty, success, error, disabled, and transition behavior.
-activation_hints:
-  - "Use when a UI surface needs explicit state coverage beyond its default visual appearance."
-  - "Route here when controls, forms, data regions, or system feedback need complete state definitions."
-  - "Do not use for wording cleanup, brand direction, or general layout work without state implications."
 ---
 
 # Stateful

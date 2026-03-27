@@ -1,10 +1,6 @@
 ---
 name: narrate
 description: Turn validated analysis into a clear business story that leads with the finding, explains the implication, and supports the decision.
-activation_hints:
-  - "Use when the analysis is complete and the result needs to be communicated to stakeholders."
-  - "Route here for memos, dashboards, updates, or executive summaries that need a business narrative."
-  - "Do not use for framing, measurement, or data validation work."
 ---
 
 # Narrate

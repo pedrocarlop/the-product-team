@@ -1,9 +1,6 @@
 ---
 name: observe
 description: Verify backend behavior in practice using tests, logs, metrics, traces, and query inspection.
-activation_hints:
-  - "Use when the code exists and you need to prove it works in real conditions."
-  - "Route here for instrumentation, debugging, test verification, and performance checks."
 ---
 
 # Observe

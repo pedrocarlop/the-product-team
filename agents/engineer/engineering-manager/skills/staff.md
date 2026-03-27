@@ -1,10 +1,6 @@
 ---
 name: staff
 description: Shape team staffing, role scope, and headcount choices so engineering capacity matches the work that matters most.
-activation_hints:
-  - "Use when the team needs to decide whether to hire, rebalance, split, or clarify ownership."
-  - "Route here for headcount requests, role definitions, team topology, and staffing tradeoffs."
-  - "Do not use for short-term delivery planning, unblock work, or performance calibration."
 ---
 
 # Staff

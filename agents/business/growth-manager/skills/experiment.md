@@ -1,10 +1,6 @@
 ---
 name: experiment
 description: Design, size, and evaluate growth experiments with clear hypotheses, guardrails, and a decision rule before launch.
-activation_hints:
-  - "Use when a growth hypothesis needs a controlled test."
-  - "Route here for experiment framing, sample sizing, success criteria, and result readouts."
-  - "Do not use for bottleneck diagnosis, tracking setup, or rollout scaling."
 ---
 
 # Experiment

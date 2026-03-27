@@ -1,10 +1,6 @@
 ---
 name: structure
 description: Design partnership terms, economics, governance, and operating rules that can be executed cleanly.
-activation_hints:
-  - "Use when a qualified opportunity needs a commercial model, term sheet, or operating structure."
-  - "Route here for revenue share, referral fees, exclusivity, governance, and SLA design."
-  - "Do not use for sourcing new partners or making the qualify decision."
 ---
 
 # Structure

@@ -1,10 +1,6 @@
 ---
 name: structure
 description: Design commercial structures, governance, and deal economics for strategic business development opportunities.
-activation_hints:
-  - "Use when a deal needs a custom commercial model or governance design."
-  - "Route here for term sheets, LOIs, JVs, revenue shares, exclusivity, and OEM-style structures."
-  - "Do not use for sourcing or early thesis work."
 ---
 
 # Structure

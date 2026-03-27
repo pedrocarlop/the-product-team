@@ -1,10 +1,6 @@
 ---
 name: interview
 description: Prepare for, run, and debrief user interviews so the team learns how people actually work, think, and decide in context.
-activation_hints:
-  - "Use when you need firsthand user perspectives, workflows, motivations, or constraints."
-  - "Route here for discussion guides, moderation, note-taking structure, and post-interview debriefs."
-  - "Do not use for survey design, usability test execution, or synthesis of completed studies."
 ---
 
 # Interview

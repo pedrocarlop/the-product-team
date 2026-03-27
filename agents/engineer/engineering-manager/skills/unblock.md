@@ -1,10 +1,6 @@
 ---
 name: unblock
 description: Remove delivery blockers by clarifying ownership, negotiating tradeoffs, and escalating only when the team cannot solve the issue locally.
-activation_hints:
-  - "Use when work is stuck because of dependencies, ambiguity, or conflicting priorities."
-  - "Route here for blocker triage, dependency negotiation, and escalation decisions."
-  - "Do not use for long-range planning, staffing, or performance calibration."
 ---
 
 # Unblock

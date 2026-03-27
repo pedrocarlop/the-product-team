@@ -1,10 +1,6 @@
 ---
 name: govern
 description: Set the standards, decision rights, review paths, and exception handling that keep design operations consistent and defensible over time.
-activation_hints:
-  - "Use when a design ops system needs policy, ownership, or enforcement."
-  - "Route here for standards, governance charters, approvals, deprecation, or exceptions."
-  - "Do not use for one-off troubleshooting or simple process documentation."
 ---
 
 # Govern

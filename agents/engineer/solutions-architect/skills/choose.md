@@ -1,10 +1,6 @@
 ---
 name: choose
 description: Compare architecture options, vendors, and patterns, then select the best fit using explicit tradeoffs, risks, and decision criteria.
-activation_hints:
-  - "Use when multiple implementation paths are viable."
-  - "Route here for option analysis, vendor selection, make-vs-buy decisions, and recommendation writing."
-  - "Do not use for breaking down the problem, wiring systems together, or setting policy."
 ---
 
 # Choose

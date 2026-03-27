@@ -1,10 +1,6 @@
 ---
 name: compare
 description: Compare strategic options with explicit criteria, tradeoffs, risks, and decision consequences so the best path is visible.
-activation_hints:
-  - "Use when multiple strategic options need to be evaluated against the same decision criteria."
-  - "Route here after the problem is framed and the outside-in scan is complete."
-  - "Do not use when there is only one viable path or when the work is still discovery."
 ---
 
 # Compare

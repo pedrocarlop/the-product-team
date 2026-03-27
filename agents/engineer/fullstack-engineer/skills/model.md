@@ -1,10 +1,6 @@
 ---
 name: model
 description: Shape the domain, API contract, persistence, and state transitions for a full-stack feature before any layer is built.
-activation_hints:
-  - "Use when a feature needs explicit domain rules, API boundaries, or persistence decisions."
-  - "Route here before coding if the request still has contract drift, unclear invariants, or risky schema changes."
-  - "Do not use for release-only work or for UI structure once the model is settled."
 ---
 
 # Model

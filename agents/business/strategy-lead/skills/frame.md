@@ -1,10 +1,6 @@
 ---
 name: frame
 description: Turn ambiguous strategic problems into a decision-ready frame with the real question, constraints, success criteria, and testable hypotheses.
-activation_hints:
-  - "Use when the strategy question is fuzzy, overloaded, or not yet decision-ready."
-  - "Route here before analysis, research, scenario building, or planning begins."
-  - "Do not use when the problem frame is already agreed and the work is now analysis, comparison, or planning."
 ---
 
 # Frame

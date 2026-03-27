@@ -1,10 +1,6 @@
 ---
 name: recover
 description: Restore database service after failures by diagnosing impact, choosing a safe recovery path, and validating the system is healthy again.
-activation_hints:
-  - "Use when a database change, outage, corruption, or failed migration needs recovery steps."
-  - "Route here for restore, failover, rollback, or incident stabilization work."
-  - "Do not use for normal schema design or proactive performance tuning."
 ---
 
 # Recover

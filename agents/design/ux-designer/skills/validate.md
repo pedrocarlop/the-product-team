@@ -1,10 +1,6 @@
 ---
 name: validate
 description: Validate a UX direction with heuristics, scenarios, and usability checks before the design is handed off or implemented.
-activation_hints:
-  - "Use when a flow or wireframe needs review against user goals, usability risks, or requirement fit."
-  - "Route here for validation plans, heuristic checks, test scenarios, and issue prioritization."
-  - "Do not use for defining the structure from scratch or for visual polish work."
 ---
 
 # Validate

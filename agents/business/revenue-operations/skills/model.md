@@ -1,10 +1,6 @@
 ---
 name: model
 description: Build revenue operating models that connect pipeline, bookings, conversion, and capacity into a structure leadership can trust.
-activation_hints:
-  - "Use when a task requires a revenue model, pipeline model, quota model, or capacity model."
-  - "Route here when the user needs the drivers behind revenue performance made explicit."
-  - "Do not use for routing decisions, CRM cleanup, or publishing a forecast from an existing model."
 ---
 
 # Model

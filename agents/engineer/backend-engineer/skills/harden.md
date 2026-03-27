@@ -1,9 +1,6 @@
 ---
 name: harden
 description: Strengthen backend work for security, reliability, rollout safety, and incident readiness before it reaches users.
-activation_hints:
-  - "Use when a backend change needs security review, resilience work, deployment safety, or operational guardrails."
-  - "Route here before release if the code path touches auth, secrets, public endpoints, or production risk."
 ---
 
 # Harden

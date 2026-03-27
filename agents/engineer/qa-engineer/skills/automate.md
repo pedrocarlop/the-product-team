@@ -1,10 +1,6 @@
 ---
 name: automate
 description: Turn QA coverage into reliable automated tests, fixtures, and CI checks that run with strong signal and low maintenance cost.
-activation_hints:
-  - "Use when a coverage decision needs to become automated test code or CI enforcement."
-  - "Route here for Playwright, API tests, fixtures, mocking, and regression suites."
-  - "Do not use when the work is only planning coverage or deciding a release gate."
 ---
 
 # Automate

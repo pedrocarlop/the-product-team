@@ -1,10 +1,6 @@
 ---
 name: threat-model
 description: Map attack surface, trust boundaries, and realistic threats before implementation so security decisions are explicit instead of implicit.
-activation_hints:
-  - "Use when a new feature, integration, data flow, or privilege model needs a security threat model."
-  - "Use when the team needs STRIDE analysis, attack surface mapping, or a mitigation plan before build work starts."
-  - "Do not use after implementation is already underway unless the design has materially changed."
 ---
 
 # Threat Model

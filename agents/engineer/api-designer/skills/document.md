@@ -1,10 +1,6 @@
 ---
 name: document
 description: Document API contracts clearly in OpenAPI, examples, and supporting artifacts so consumers can understand and use the interface without extra explanation.
-activation_hints:
-  - "Use when the contract is ready to be written down for consumers."
-  - "Route here for OpenAPI docs, examples, Postman collections, and catalog entries."
-  - "Do not use for the first-pass modeling of the API shape."
 ---
 
 # Document

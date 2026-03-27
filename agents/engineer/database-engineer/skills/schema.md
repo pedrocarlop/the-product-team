@@ -1,10 +1,6 @@
 ---
 name: schema
 description: Design and review database schemas so tables, columns, constraints, and relationships stay correct, queryable, and evolvable.
-activation_hints:
-  - "Use when a task asks for a new table, column, relationship, constraint, or normalization change."
-  - "Route here when schema shape, naming, nullability, or ownership needs to be defined or revised."
-  - "Do not use for pure index tuning, migration rollout mechanics, or incident recovery."
 ---
 
 # Schema

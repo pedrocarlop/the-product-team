@@ -1,10 +1,6 @@
 ---
 name: serve
 description: Turn a validated model or LLM workflow into a production-ready serving path with clear latency, reliability, and rollback expectations.
-activation_hints:
-  - "Use after evaluation has shown a candidate is ready to be deployed."
-  - "Route here when defining APIs, batching, infrastructure, or release strategy for inference."
-  - "Do not use for initial problem framing or offline evaluation work."
 ---
 
 # Serve

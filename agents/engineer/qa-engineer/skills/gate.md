@@ -1,10 +1,6 @@
 ---
 name: gate
 description: Evaluate QA evidence against release criteria and decide whether the build is ready to move forward.
-activation_hints:
-  - "Use when a feature or release needs a final quality decision."
-  - "Route here for pass/fail calls, release readiness, and sign-off summaries."
-  - "Do not use for test planning, coverage selection, or writing automation."
 ---
 
 # Gate

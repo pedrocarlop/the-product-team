@@ -1,10 +1,6 @@
 ---
 name: mirror
 description: Adapt layouts, navigation, and directional UI so RTL locales read and operate naturally instead of appearing flipped as an afterthought.
-activation_hints:
-  - "Use when designing for Arabic, Hebrew, Persian, Urdu, or other RTL locales."
-  - "Route here for mirrored layout order, directional icons, alignment, and reading order decisions."
-  - "Do not use for text expansion alone or for general localization copy work."
 ---
 
 # Mirror

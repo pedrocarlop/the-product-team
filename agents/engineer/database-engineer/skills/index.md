@@ -1,10 +1,6 @@
 ---
 name: index
 description: Choose and validate database indexes that improve the right queries without introducing unnecessary write overhead or maintenance risk.
-activation_hints:
-  - "Use when a query is slow and the answer may be an index, partial index, covering index, or index removal."
-  - "Route here when index strategy, planner behavior, or index bloat is part of the task."
-  - "Do not use for schema modeling, migration sequencing, or disaster recovery work."
 ---
 
 # Index

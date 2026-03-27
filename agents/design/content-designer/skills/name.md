@@ -1,10 +1,6 @@
 ---
 name: name
 description: Create clear, scalable names for features, settings, concepts, and navigation labels that match user vocabulary and stay consistent over time.
-activation_hints:
-  - "Use when a new feature, concept, setting, or navigation item needs a clear user-facing name."
-  - "Route here for terminology choices that will appear across multiple screens or documents."
-  - "Do not use for local microcopy edits, flow consistency passes, or hierarchy cleanup."
 ---
 
 # Name

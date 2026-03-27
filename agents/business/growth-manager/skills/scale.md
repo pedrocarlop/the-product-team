@@ -1,10 +1,6 @@
 ---
 name: scale
 description: Turn proven growth wins into repeatable systems, rollouts, and operating habits that compound safely.
-activation_hints:
-  - "Use when an experiment or fix has shown lift and now needs broader rollout."
-  - "Route here for scaling playbooks, rollout sequencing, automation, and guardrail checks."
-  - "Do not use for first-pass diagnosis or initial experiment design."
 ---
 
 # Scale

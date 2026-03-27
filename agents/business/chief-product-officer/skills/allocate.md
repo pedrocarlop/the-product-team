@@ -1,10 +1,6 @@
 ---
 name: allocate
 description: Distribute product investment across the portfolio with explicit rationale, trade-offs, and review cadence.
-activation_hints:
-  - "Use when deciding how much time, headcount, or budget each product area should receive."
-  - "Route here when the portfolio needs balancing between growth, retention, platform, and maintenance."
-  - "Do not use for a single bet or for messaging alignment."
 ---
 
 # Allocate

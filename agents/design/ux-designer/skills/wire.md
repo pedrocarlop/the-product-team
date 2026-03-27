@@ -1,10 +1,6 @@
 ---
 name: wire
 description: Design wireframes and interaction scaffolding that make the structure, hierarchy, and behaviors of a flow easy to understand.
-activation_hints:
-  - "Use when the flow structure is known and you need screen-level layout, hierarchy, and interaction behavior."
-  - "Route here for wireframes, page skeletons, responsive behavior, and interaction annotations."
-  - "Do not use for final visual styling, branding, or copy-only edits."
 ---
 
 # Wire

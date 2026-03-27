@@ -1,10 +1,6 @@
 ---
 name: specify
 description: Convert business needs and process understanding into precise requirements, business rules, and acceptance criteria that can be implemented and traced.
-activation_hints:
-  - "Use when the business need and process are known and you need testable requirements."
-  - "Route here for BRDs, FRDs, user stories, business rules, and traceability."
-  - "Do not use for discovery or process mapping."
 ---
 
 # Specify

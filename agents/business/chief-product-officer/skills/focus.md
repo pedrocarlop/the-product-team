@@ -1,10 +1,6 @@
 ---
 name: focus
 description: Identify the highest-leverage product priorities, cut distractions, and define what the organization should pay attention to now.
-activation_hints:
-  - "Use when multiple product opportunities compete for attention and the team needs a clear strategic filter."
-  - "Route here when a product choice needs tighter scope, sharper sequencing, or explicit trade-offs."
-  - "Do not use for org design, portfolio funding, or board-level positioning decisions."
 ---
 
 # Focus

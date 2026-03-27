@@ -1,10 +1,6 @@
 ---
 name: map
 description: Map user goals, system rules, and content into a clear task structure, information architecture, and screen-level flow.
-activation_hints:
-  - "Use when a feature needs its structure, sequence, or screen breakdown clarified before wireframing."
-  - "Route here for task mapping, information architecture, user journeys, and decision-point analysis."
-  - "Do not use for visual polish, interface copy rewrites, or usability testing plans."
 ---
 
 # Map

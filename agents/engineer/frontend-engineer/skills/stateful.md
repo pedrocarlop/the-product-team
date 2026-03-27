@@ -1,10 +1,6 @@
 ---
 name: stateful
 description: Define the full set of frontend states so every surface has clear idle, loading, empty, success, error, disabled, and transition behavior.
-activation_hints:
-  - "Use when a frontend surface needs explicit state coverage beyond its default visual appearance."
-  - "Route here when forms, controls, data regions, or feedback surfaces need complete state definition."
-  - "Do not use for copy cleanup, layout-only work, or safety hardening without state implications."
 ---
 
 # Stateful

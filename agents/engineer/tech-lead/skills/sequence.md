@@ -1,10 +1,6 @@
 ---
 name: sequence
 description: Break technical work into the right order, surface dependencies, and plan the safest path to delivery.
-activation_hints:
-  - "Use when work needs to be decomposed, ordered, or staged."
-  - "Route here for dependencies, migration sequencing, rollout plans, and scope breakdown."
-  - "Do not use for architecture choices or detailed code review."
 ---
 
 # Sequence

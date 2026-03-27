@@ -1,10 +1,6 @@
 ---
 name: validate
 description: Confirm that a proposed or built solution matches agreed business requirements through structured review, UAT planning, and sign-off criteria.
-activation_hints:
-  - "Use when requirements are written and the team needs to check solution fit."
-  - "Route here for UAT scripts, traceability checks, and acceptance sign-off."
-  - "Do not use for discovery, mapping, or drafting requirements from scratch."
 ---
 
 # Validate

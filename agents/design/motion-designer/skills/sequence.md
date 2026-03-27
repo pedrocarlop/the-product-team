@@ -1,10 +1,6 @@
 ---
 name: sequence
 description: Plan ordered motion across multiple elements so timing, hierarchy, and attention flow feel deliberate.
-activation_hints:
-  - "Use when more than one element animates and the order matters."
-  - "Route here for staggered reveals, choreographed entrances, multi-step loading, and cascading feedback."
-  - "Do not use for a single transition, a single signal, or reduced-motion fallback design."
 ---
 
 # Sequence

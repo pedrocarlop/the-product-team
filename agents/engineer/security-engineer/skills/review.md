@@ -1,10 +1,6 @@
 ---
 name: review
 description: Inspect implemented code, configuration, and architecture for security weaknesses before merge or release.
-activation_hints:
-  - "Use when a PR, design, infra change, or dependency update needs a security review."
-  - "Use when we need to check authentication, authorization, input validation, secrets, headers, or data exposure risks."
-  - "Do not use for first-pass threat modeling or for implementing the fix itself."
 ---
 
 # Review

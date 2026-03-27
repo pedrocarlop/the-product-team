@@ -1,10 +1,6 @@
 ---
 name: prioritize
 description: Rank product opportunities using explicit criteria, tradeoffs, and evidence so the team can decide what to do next.
-activation_hints:
-  - "Use when multiple product bets compete for time, capacity, or roadmap space."
-  - "Route here before committing to a roadmap, sprint goal, or resourcing decision."
-  - "Do not use for problem framing, detailed specification, or stakeholder communication."
 ---
 
 # Prioritize
