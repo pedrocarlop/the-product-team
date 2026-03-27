@@ -31,3 +31,20 @@ Use this skill to keep project memory concise, current, and sufficient for futur
 - Latest deliverables
 - Open questions
 - Next step
+
+## Timeline Maintenance
+
+`logs/TIMELINE.md` is the chronological project index. The orchestrator is the sole writer.
+
+### When to write
+
+- **New project**: Append a row immediately after creating `00_routing.md`. Set Status to `planning`. Set Outcome to `—`.
+- **Status change**: Update the Status column when `status.md` transitions.
+- **Completion or archival**: Fill in the Outcome column with a one-sentence summary of what was delivered, any notable scope changes, or why the project was abandoned.
+- **Archival move**: Update the Slug link from `active/<slug>/` to `archive/<slug>/`.
+
+### Row format
+
+```
+| YYYY-MM-DD | [slug](active/slug/ or archive/slug/) | objective | direct or orchestrated | role1, role2 | status | outcome |
+```

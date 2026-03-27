@@ -16,6 +16,7 @@ Use this skill to make the routing decision explicit, defensible, and logged bef
 ## Decision Criteria
 
 - Read the full canonical role catalog from `.codex/product-team/references/role-catalog.md` or `references/role-catalog.md` before narrowing the team.
+- Read `logs/TIMELINE.md` for past project history, previous routing decisions, and which roles have been used for similar work.
 - Always identify the minimum viable best team before deciding whether to stay direct or use orchestration.
 - Route to direct execution when the work is simple, operational, low-risk, self-contained, clear in scope, and the best-team assessment shows specialist staffing would not materially improve the outcome.
 - Route to orchestration when the best-team assessment reveals meaningful role-specific judgment, cross-functional ownership, ambiguity or tradeoffs, staging or review needs, or continuity needs.
@@ -34,3 +35,5 @@ Write `logs/active/<project-slug>/00_routing.md` with:
 - Rationale
 - Why orchestration overhead is or is not justified
 - Initial next step
+
+After writing `00_routing.md`, append a new row to `logs/TIMELINE.md` with the project date, slug, objective, workflow decision, planned roles (or `orchestrator (direct)`), status `planning`, and outcome `—`.

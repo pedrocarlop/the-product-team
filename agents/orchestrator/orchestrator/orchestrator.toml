@@ -25,6 +25,7 @@ Core responsibilities:
 - If execution reveals a material change, finish the current cycle or explicitly reset into a new full planning cycle — no piecemeal replanning.
 
 Routing rules:
+- Read `logs/TIMELINE.md` for past project history before routing. Use it to inform complexity assessment, identify related prior work, and avoid redundant staffing decisions.
 - Determine the minimum viable best team first: which specialist roles would most improve quality, speed, risk handling, and judgment.
 - Direct execution: work is simple, operational, low-risk, self-contained, clear in scope, and specialist staffing would not materially improve the outcome. Still maintain `00_routing.md`, `01_intake.md`, `status.md`, `context.md`, and record the best-team assessment.
 - Orchestration: best-team assessment reveals meaningful role-specific judgment, cross-functional ownership, ambiguity, staging, review, or continuity needs. Create `02_staffing.md`, `03_unified-plan.md`, `04_approval.md`.
@@ -43,6 +44,7 @@ Workflow phases:
 Logging rules:
 - Project slug format: `YYYYMMDD-<kebab-case-objective>`, append `-2`, `-3` on collision.
 - Record routing decisions, assumptions, staffing changes, approvals, decision history, deliverables, reviews, unresolved questions, and next steps.
+- Maintain `logs/TIMELINE.md` as the chronological project index. Append a row after creating `00_routing.md`, update status on transitions, fill outcome on completion or archival, and update links when archiving.
 - `/logs` is the source of truth.
 
 Guardrails:
@@ -56,14 +58,14 @@ Guardrails:
 """
 
 [inputs]
-optional_files = ["references/role-catalog.md", ".codex/product-team/references/role-catalog.md", "logs/active/<project-slug>/00_routing.md", "logs/active/<project-slug>/01_intake.md", "logs/active/<project-slug>/02_staffing.md", "logs/active/<project-slug>/03_unified-plan.md", "logs/active/<project-slug>/04_approval.md", "logs/active/<project-slug>/status.md", "logs/active/<project-slug>/context.md"]
+optional_files = ["references/role-catalog.md", ".codex/product-team/references/role-catalog.md", "logs/TIMELINE.md", "logs/active/<project-slug>/00_routing.md", "logs/active/<project-slug>/01_intake.md", "logs/active/<project-slug>/02_staffing.md", "logs/active/<project-slug>/03_unified-plan.md", "logs/active/<project-slug>/04_approval.md", "logs/active/<project-slug>/status.md", "logs/active/<project-slug>/context.md"]
 required_files = []
 
 [outputs]
-artifact_paths = ["logs/active/<project-slug>/00_routing.md", "logs/active/<project-slug>/01_intake.md", "logs/active/<project-slug>/02_staffing.md", "logs/active/<project-slug>/03_unified-plan.md", "logs/active/<project-slug>/04_approval.md", "logs/active/<project-slug>/status.md", "logs/active/<project-slug>/context.md"]
+artifact_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/00_routing.md", "logs/active/<project-slug>/01_intake.md", "logs/active/<project-slug>/02_staffing.md", "logs/active/<project-slug>/03_unified-plan.md", "logs/active/<project-slug>/04_approval.md", "logs/active/<project-slug>/status.md", "logs/active/<project-slug>/context.md"]
 
 [permissions]
-may_write_paths = ["logs/active/<project-slug>/00_routing.md", "logs/active/<project-slug>/01_intake.md", "logs/active/<project-slug>/02_staffing.md", "logs/active/<project-slug>/03_unified-plan.md", "logs/active/<project-slug>/04_approval.md", "logs/active/<project-slug>/status.md", "logs/active/<project-slug>/context.md", "logs/active/<project-slug>/plans/", "logs/active/<project-slug>/deliverables/", "logs/active/<project-slug>/reviews/", "logs/active/<project-slug>/decisions/", "logs/archive/"]
+may_write_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/00_routing.md", "logs/active/<project-slug>/01_intake.md", "logs/active/<project-slug>/02_staffing.md", "logs/active/<project-slug>/03_unified-plan.md", "logs/active/<project-slug>/04_approval.md", "logs/active/<project-slug>/status.md", "logs/active/<project-slug>/context.md", "logs/active/<project-slug>/plans/", "logs/active/<project-slug>/deliverables/", "logs/active/<project-slug>/reviews/", "logs/active/<project-slug>/decisions/", "logs/archive/"]
 
 [execution_policy]
 role_kind = "orchestrator"

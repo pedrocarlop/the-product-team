@@ -13,6 +13,7 @@ Use `logs/active/<project-slug>/` for active work.
 
 ```text
 logs/
+  TIMELINE.md
   active/
     <project-slug>/
       00_routing.md
@@ -158,3 +159,27 @@ Move projects from `logs/active/` to `logs/archive/` when any of these condition
 - **Inactive**: The project has been inactive for 30+ days with no pending work items.
 
 Before archiving, ensure `status.md` and `context.md` are current enough for a future continuation or audit.
+
+## Timeline
+
+`TIMELINE.md` is a chronological index of all projects maintained by the orchestrator.
+
+Each row records:
+
+| Column | Content |
+|---|---|
+| Date | Project start date (YYYY-MM-DD) |
+| Slug | Project slug, linked to the project folder |
+| Objective | One-line project goal |
+| Workflow | `direct` or `orchestrated` |
+| Roles | Comma-separated list of staffed roles, or `orchestrator (direct)` |
+| Status | Current lifecycle status (`planning`, `in-progress`, `blocked`, `complete`, `archived`) |
+| Outcome | One-sentence summary of what was delivered or why the project ended |
+
+Maintenance rules:
+
+- Append a new row when `00_routing.md` is created.
+- Update Status when the project transitions (see Status Lifecycle above).
+- Update Outcome when the project reaches `complete` or `archived`.
+- Update the Slug link when a project moves from `active/` to `archive/`.
+- Newest entries go at the bottom.
