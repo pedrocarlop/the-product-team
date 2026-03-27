@@ -20,6 +20,8 @@ Use this skill to keep execution orderly, staged, and traceable once work is app
 - Request reviews only when they are justified
 - Update `status.md` as execution changes
 - Route unresolved questions and decision changes into `/logs`
+- Treat `03_unified-plan.md` as the authoritative plan for the active cycle
+- If a material change is needed, pause and reroute through a new full planning cycle instead of improvising repeated rework
 
 ## Output Contract
 

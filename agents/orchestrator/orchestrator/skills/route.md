@@ -15,10 +15,12 @@ Use this skill to make the routing decision explicit, defensible, and logged bef
 
 ## Decision Criteria
 
+- Read the full canonical role catalog from `.codex/product-team/references/role-catalog.md` or `references/role-catalog.md` before narrowing the team.
 - Always identify the minimum viable best team before deciding whether to stay direct or use orchestration.
 - Route to direct execution when the work is simple, operational, low-risk, self-contained, clear in scope, and the best-team assessment shows specialist staffing would not materially improve the outcome.
 - Route to orchestration when the best-team assessment reveals meaningful role-specific judgment, cross-functional ownership, ambiguity or tradeoffs, staging or review needs, or continuity needs.
 - Treat substantial builds and rebuilds as strong evidence that the best team includes specialists, but make the call from actual role needs rather than keywords alone.
+- Make the solo/direct vs multi-agent decision before any specialist planning starts.
 
 ## Output Contract
 
@@ -26,8 +28,9 @@ Write `logs/active/<project-slug>/00_routing.md` with:
 
 - Original request
 - Complexity assessment
+- Role catalog consulted
 - Best possible team assessment
-- Direct execution vs workflow decision
+- Solo/direct vs multi-agent workflow decision
 - Rationale
 - Why orchestration overhead is or is not justified
 - Initial next step

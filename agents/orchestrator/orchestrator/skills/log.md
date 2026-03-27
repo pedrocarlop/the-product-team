@@ -24,6 +24,7 @@ Use this skill to keep project memory concise, current, and sufficient for futur
 `context.md` should summarize:
 
 - Project goal
+- Current cycle and authoritative plan version
 - Current state
 - Approved direction
 - Active roles

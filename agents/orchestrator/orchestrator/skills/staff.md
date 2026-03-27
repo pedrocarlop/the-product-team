@@ -15,11 +15,14 @@ Use this skill to staff work deliberately and keep ownership crisp across busine
 
 ## Rules
 
+- Read the full canonical role catalog again before locking staffing, even if you have a preliminary team in mind.
 - One role = one subagent
 - Prefer the minimum viable set of specialists
 - Include reviewers only when they materially reduce risk
 - Require each staffed specialist to complete the fit-check protocol before ownership is accepted
 - Start from the best-team assessment recorded during routing, then trim to the minimum viable staffed team for execution.
+- During planning, staffed specialists act as advisors first. They contribute their best approach in `plans/<role>.md`; the orchestrator owns the merged process.
+- Do not bounce incomplete plans back and forth between specialists. Collect advice independently, then let the orchestrator merge it once into the cycle plan.
 
 ## Staffing Heuristics
 
@@ -35,6 +38,7 @@ Write `logs/active/<project-slug>/02_staffing.md` with:
 - Selected roles
 - Launched subagents
 - Fit-check summaries
+- Advisory assignments for planning
 - Rejected or replaced roles
 - Final ownership map
 - Staffing rationale

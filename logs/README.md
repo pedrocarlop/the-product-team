@@ -50,11 +50,13 @@ logs/
 - Selected roles
 - One role per subagent
 - Fit-check outcomes
+- Advisory assignments for planning
 - Final ownership map
 
 `03_unified-plan.md`
 - Created only when orchestration is used
 - Unified staged plan
+- Authoritative execution process for the current cycle
 - Ownership by role
 - Dependencies and sequence
 - Review points
@@ -77,6 +79,7 @@ logs/
 
 `context.md`
 - Project goal
+- Current cycle and authoritative plan version
 - Current state
 - Approved direction
 - Active roles
@@ -104,8 +107,11 @@ Orchestrated work must:
 - Use one role per subagent
 - Require fit-check before ownership is accepted
 - Require a role plan in `plans/<role>.md`
+- Treat role plans as advisory input to the orchestrator, not as permission to execute or redefine the team process
+- Merge role advice into one authoritative `03_unified-plan.md` before execution starts
 - Pause for approval before substantial execution
 - Start from the best-team assessment and staff only the minimum viable team
+- Execute the approved cycle before allowing another material planning iteration, unless the orchestrator explicitly pauses and resets the workflow
 - Store deliverables, reviews, and decision history in `/logs`
 
 ## Archive

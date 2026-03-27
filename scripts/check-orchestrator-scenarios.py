@@ -34,11 +34,18 @@ def main() -> int:
     expect("status.md" in orchestrator_prompt and "context.md" in orchestrator_prompt, "Continuity files missing from orchestrator prompt.", failures)
     expect("Do not begin substantial orchestrated execution until approval is explicit." in orchestrator_prompt, "Approval gate missing from orchestrator prompt.", failures)
     expect("decline and recommend another role" in orchestrator_prompt, "Misfit staffing path missing from orchestrator prompt.", failures)
+    expect("Listen to specialist advice, then define the process" in orchestrator_prompt, "Orchestrator prompt missing authoritative merge behavior.", failures)
+    expect("Do not allow repeated plan churn in place." in orchestrator_prompt, "Orchestrator prompt missing anti-churn guardrail.", failures)
+    expect("read the canonical role catalog" in orchestrator_prompt.lower(), "Orchestrator prompt missing role-catalog-first staffing rule.", failures)
     expect("Always identify the minimum viable best team" in route_skill, "Route skill missing best-team-first decision rule.", failures)
     expect("actual role needs rather than keywords alone" in route_skill, "Route skill missing anti-keyword-routing guidance.", failures)
+    expect("Read the full canonical role catalog" in route_skill, "Route skill missing role-catalog read requirement.", failures)
     expect("Start from the best-team assessment recorded during routing" in staff_skill, "Staff skill missing routing-to-staffing continuity.", failures)
+    expect("staffed specialists act as advisors first" in staff_skill, "Staff skill missing advisory-first specialist behavior.", failures)
+    expect("read `.codex/product-team/references/role-catalog.md` end to end" in agents_fragment, "Managed AGENTS guidance missing role catalog instruction.", failures)
     expect("reason about the best possible team for the job" in agents_fragment, "Managed AGENTS guidance missing best-team-first instruction.", failures)
     expect("actual role needs, not task keywords alone" in agents_fragment, "Managed AGENTS guidance missing anti-keyword staffing rule.", failures)
+    expect("Treat role plans as advisory input" in agents_fragment, "Managed AGENTS guidance missing advisory-plan rule.", failures)
 
     specialist_files = sorted((ROOT / "agents").glob("*/*/*.toml"))
     for path in specialist_files:
@@ -52,6 +59,8 @@ def main() -> int:
       expect("accept ownership, accept partial ownership, or decline and recommend another role" in prompt, f"{role}: missing ownership decision contract.", failures)
       expect("Do not begin substantial work until the orchestrator has reconciled plans and user approval exists" in prompt, f"{role}: missing approval gating language.", failures)
       expect(f"logs/active/<project-slug>/plans/{role}.md" in prompt, f"{role}: missing plan path in prompt.", failures)
+      expect("Treat this plan as advisory input to the orchestrator." in prompt, f"{role}: missing advisory-plan rule.", failures)
+      expect("If the plan needs to change materially, escalate to the orchestrator" in prompt, f"{role}: missing escalation-before-replan rule.", failures)
 
       if data["execution_policy"]["role_kind"] == "reviewer":
           expect(f"logs/active/<project-slug>/reviews/{role}.md" in prompt, f"{role}: missing review path in prompt.", failures)
@@ -65,6 +74,11 @@ def main() -> int:
     expect("Best possible team assessment" in logs_readme, "logs/README.md missing best-team routing field.", failures)
     expect("best-team assessment shows specialist staffing would not materially improve the outcome" in logs_readme, "logs/README.md does not limit direct execution through best-team assessment.", failures)
     expect("Orchestrated work must" in logs_readme, "logs/README.md does not define orchestration requirements.", failures)
+    expect("Treat role plans as advisory input to the orchestrator" in logs_readme, "logs/README.md missing advisory-plan contract.", failures)
+    expect("Execute the approved cycle before allowing another material planning iteration" in logs_readme, "logs/README.md missing anti-churn execution rule.", failures)
+
+    role_catalog = ROOT / "references" / "role-catalog.md"
+    expect(role_catalog.exists(), "references/role-catalog.md is missing.", failures)
 
     if failures:
         for failure in failures:

@@ -274,6 +274,10 @@ def install_package_docs(root: Path, target_root: Path) -> None:
         (root / "logs" / "README.md").read_text(encoding="utf-8"),
         encoding="utf-8",
     )
+    (refs_root / "role-catalog.md").write_text(
+        (root / "references" / "role-catalog.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
     validate_script_source = root / "scripts" / "validate-install.py"
     validate_script_target = scripts_root / "validate-install.py"
     shutil.copy2(validate_script_source, validate_script_target)
@@ -342,6 +346,7 @@ def main() -> int:
         root / "assets" / "AGENTS.fragment.md",
         root / "assets" / "package-README.md",
         root / "logs" / "README.md",
+        root / "references" / "role-catalog.md",
         root / "scripts" / "validate-install.py",
     ]
     missing = [path for path in required_paths if not path.exists()]

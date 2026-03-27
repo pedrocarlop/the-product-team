@@ -88,6 +88,7 @@ def main() -> int:
 
     refs_root = root / ".codex" / PACKAGE_SLUG / "references"
     expect((refs_root / "logs-workflow-contract.md").exists(), "Missing installed logs contract reference doc.", failures)
+    expect((refs_root / "role-catalog.md").exists(), "Missing installed role catalog reference doc.", failures)
 
     orchestrator_name = f"{PACKAGE_SLUG}-orchestrator"
     reference_name = f"{PACKAGE_SLUG}-reference"

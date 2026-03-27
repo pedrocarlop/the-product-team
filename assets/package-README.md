@@ -2,6 +2,10 @@
 
 This repository has the Product Team Codex workflow installed.
 
+The workflow runs in phases: the orchestrator decides solo/direct vs multi-agent work, gathers one advisory planning pass from the selected specialists, merges that advice into a single approved work plan, and then coordinates execution. Material replanning should happen through a new full cycle, not by repeated mid-flight rework.
+
+Before the orchestrator narrows the team, it should read the full canonical role catalog in `.codex/product-team/references/role-catalog.md`.
+
 ## Installed Layout
 
 - `.codex/agents/product-team-<discipline>/<role>/<role>.toml`
@@ -25,4 +29,4 @@ python3 .codex/product-team/scripts/validate-install.py
 - `AGENTS.md` contains a managed Product Team block that the installer keeps up to date.
 - `logs/README.md` is created only when the target repo does not already have one.
 - Installed roles stay grouped by discipline so the target repo mirrors the source package structure.
-- Shared business and engineering source lists live under `.codex/product-team/references/`.
+- Shared workflow references, including the role catalog and `/logs` contract, live under `.codex/product-team/references/`.

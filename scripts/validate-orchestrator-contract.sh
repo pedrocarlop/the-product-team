@@ -27,8 +27,14 @@ if rg -n "$legacy_pattern" agents logs >/tmp/orchestrator-legacy-check.txt; then
 fi
 
 [[ -f logs/README.md ]] || fail "Missing logs/README.md."
+[[ -f references/role-catalog.md ]] || fail "Missing references/role-catalog.md."
 [[ -d logs/active ]] || fail "Missing logs/active directory."
 [[ -d logs/archive ]] || fail "Missing logs/archive directory."
+
+python3 scripts/render_role_catalog.py --check >/tmp/role-catalog-check.txt || {
+  fail "Role catalog is missing or stale."
+  cat /tmp/role-catalog-check.txt >&2
+}
 
 orchestrator_file="agents/orchestrator/orchestrator/orchestrator.toml"
 [[ -f "$orchestrator_file" ]] || fail "Missing orchestrator role file."

@@ -11,7 +11,7 @@ if [[ -n "${SELF_DIR}" && -f "${SELF_DIR}/scripts/install.py" ]]; then
 fi
 
 REPO_OWNER="pedrocarlop"
-REPO_NAME="product-team"
+REPO_NAME="the-product-team"
 REPO_REF="${PRODUCT_TEAM_REF:-main}"
 
 TMP_DIR="$(mktemp -d)"

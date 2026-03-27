@@ -19,6 +19,7 @@ Use this skill to make approval visible, editable, and durable so execution star
 - Capture edits, scope reductions, added constraints, or specialist changes
 - Record the approval state explicitly
 - Stop substantial orchestrated execution when approval is missing
+- If approval feedback materially changes staffing, scope, or sequence, rerun the full planning cycle before execution starts
 
 ## Output Contract
 
