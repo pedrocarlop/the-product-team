@@ -2,12 +2,12 @@
 
 Product Team is an installable multi-agent workflow for Codex projects.
 
-It packages this repository's orchestrator, specialist roles, shared references, and `/logs` contract so you can install them into any project folder and use them from Codex without mirroring this source repo's layout.
+It packages this repository's orchestrator, specialist roles, shared references, and `/logs` contract so you can install them into any project folder and use them from Codex while preserving the source role-folder structure.
 
 ## What It Installs
 
-- `.codex/agents/product-team-*.toml` for the namespaced role definitions
-- `.codex/agents/product-team-*/skills/*.md` for each role's bundled local skills
+- `.codex/agents/product-team-<discipline>/<role>/<role>.toml` for the namespaced role definitions
+- `.codex/agents/product-team-<discipline>/<role>/skills/*.md` for each role's bundled local skills
 - `.codex/product-team/` for package docs, shared references, manifest data, and install validation
 - `logs/active/` and `logs/archive/`
 - A managed `Product Team for Codex` block inside `AGENTS.md`
@@ -55,7 +55,7 @@ python3 .codex/product-team/scripts/validate-install.py
 - `logs/README.md` is the source of truth for the runtime `/logs` contract.
 - `assets/AGENTS.fragment.md` is the managed `AGENTS.md` block injected during install.
 - `assets/package-README.md` is copied into the installed package.
-- `scripts/install.py` transforms the source layout into the target repo's Codex layout.
+- `scripts/install.py` preserves the source role-folder structure inside the target repo's Codex layout.
 
 ## Notes
 

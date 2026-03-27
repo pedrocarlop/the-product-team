@@ -16,5 +16,5 @@ This repository has the Product Team workflow installed.
 - Require the fit-check protocol before a specialist accepts ownership.
 - Reconcile role plans before substantial orchestrated execution.
 - Get explicit approval before substantial orchestrated execution.
-- Read installed role definitions in `.codex/agents/`.
+- Read installed role definitions in `.codex/agents/product-team-<discipline>/<role>/`.
 - Use `.codex/product-team/references/logs-workflow-contract.md` as the canonical `/logs` contract reference when the target repo's own docs are silent.

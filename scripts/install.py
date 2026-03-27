@@ -29,10 +29,35 @@ LOCAL_SKILLS_PATTERN = re.compile(r"^local_skills = \[(.*)\]$", re.MULTILINE)
 
 @dataclass(frozen=True)
 class RoleSpec:
+    discipline: str
     source_name: str
     installed_name: str
     source_toml: Path
     source_skills_dir: Path
+
+    @property
+    def installed_namespace(self) -> str:
+        return f"{PACKAGE_SLUG}-{self.discipline}"
+
+    @property
+    def installed_role_dir(self) -> Path:
+        return Path(".codex") / "agents" / self.installed_namespace / self.source_name
+
+    @property
+    def installed_toml_path(self) -> Path:
+        return self.installed_role_dir / self.source_toml.name
+
+    @property
+    def installed_skills_dir(self) -> Path:
+        return self.installed_role_dir / "skills"
+
+    @property
+    def legacy_flat_toml_path(self) -> Path:
+        return Path(".codex") / "agents" / f"{self.installed_name}.toml"
+
+    @property
+    def legacy_flat_role_dir(self) -> Path:
+        return Path(".codex") / "agents" / self.installed_name
 
 
 def parse_args() -> argparse.Namespace:
@@ -132,10 +157,12 @@ def transform_toml(text: str, role: RoleSpec) -> str:
 def discover_roles(root: Path) -> list[RoleSpec]:
     roles: list[RoleSpec] = []
     for source_toml in sorted((root / "agents").glob("*/*/*.toml")):
+        discipline = source_toml.parent.parent.name
         source_name = source_toml.stem
         installed_name = f"{PACKAGE_SLUG}-{source_name}"
         roles.append(
             RoleSpec(
+                discipline=discipline,
                 source_name=source_name,
                 installed_name=installed_name,
                 source_toml=source_toml,
@@ -149,45 +176,72 @@ def ensure_directory(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
 
+def remove_managed_path(path: Path) -> None:
+    if path.is_file() or path.is_symlink():
+        path.unlink()
+    elif path.is_dir():
+        shutil.rmtree(path)
+
+
+def prune_empty_parents(path: Path, stop: Path) -> None:
+    current = path
+    while current != stop and current.exists():
+        try:
+            current.rmdir()
+        except OSError:
+            break
+        current = current.parent
+
+
 def remove_previous_managed_roles(target_root: Path, current_roles: list[RoleSpec]) -> None:
     manifest_path = target_root / PACKAGE_DIRNAME / "manifest.json"
-    if not manifest_path.exists():
-        return
+    managed_paths: set[Path] = set()
 
-    try:
-        previous_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return
+    if manifest_path.exists():
+        try:
+            previous_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            previous_manifest = {}
 
-    current_installed_names = {role.installed_name for role in current_roles}
-    previous_roles = previous_manifest.get("roles", [])
-    for role in previous_roles:
-        installed_name = role.get("installed_name")
-        if not installed_name or installed_name in current_installed_names:
-            continue
+        for role in previous_manifest.get("roles", []):
+            installed_name = role.get("installed_name")
+            if installed_name:
+                managed_paths.add(target_root / ".codex" / "agents" / f"{installed_name}.toml")
+                managed_paths.add(target_root / ".codex" / "agents" / installed_name)
 
-        toml_path = target_root / ".codex" / "agents" / f"{installed_name}.toml"
-        skills_dir = target_root / ".codex" / "agents" / installed_name
-        if toml_path.exists():
-            toml_path.unlink()
-        if skills_dir.is_dir():
-            shutil.rmtree(skills_dir)
+            relative_toml_path = role.get("relative_toml_path")
+            relative_role_dir = role.get("relative_role_dir")
+            if relative_toml_path:
+                managed_paths.add(target_root / Path(relative_toml_path))
+            if relative_role_dir:
+                managed_paths.add(target_root / Path(relative_role_dir))
+
+    for role in current_roles:
+        managed_paths.add(target_root / role.legacy_flat_toml_path)
+        managed_paths.add(target_root / role.legacy_flat_role_dir)
+        managed_paths.add(target_root / role.installed_role_dir)
+
+    for path in sorted(managed_paths, key=lambda candidate: len(candidate.parts), reverse=True):
+        remove_managed_path(path)
+
+    for namespace_dir in {target_root / ".codex" / "agents" / role.installed_namespace for role in current_roles}:
+        prune_empty_parents(namespace_dir, target_root / ".codex" / "agents")
 
 
 def copy_role(role: RoleSpec, target_root: Path) -> None:
-    codex_agents_root = target_root / ".codex" / "agents"
-    ensure_directory(codex_agents_root)
+    role_root = target_root / role.installed_role_dir
+    ensure_directory(role_root)
 
     transformed_toml = transform_toml(
         role.source_toml.read_text(encoding="utf-8"),
         role,
     )
-    (codex_agents_root / f"{role.installed_name}.toml").write_text(
+    (target_root / role.installed_toml_path).write_text(
         transformed_toml,
         encoding="utf-8",
     )
 
-    target_skills_root = codex_agents_root / role.installed_name / "skills"
+    target_skills_root = target_root / role.installed_skills_dir
     ensure_directory(target_skills_root)
 
     if role.source_skills_dir.is_dir():
@@ -252,7 +306,7 @@ def write_manifest(target_root: Path, roles: list[RoleSpec]) -> None:
     package_root = target_root / ".codex" / PACKAGE_SLUG
     ensure_directory(package_root)
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "package_name": PACKAGE_SLUG,
         "managed_agents_markers": {
             "start": MARKER_START,
@@ -260,8 +314,13 @@ def write_manifest(target_root: Path, roles: list[RoleSpec]) -> None:
         },
         "roles": [
             {
+                "discipline": role.discipline,
                 "source_name": role.source_name,
                 "installed_name": role.installed_name,
+                "installed_namespace": role.installed_namespace,
+                "relative_role_dir": role.installed_role_dir.as_posix(),
+                "relative_toml_path": role.installed_toml_path.as_posix(),
+                "relative_skills_dir": role.installed_skills_dir.as_posix(),
             }
             for role in roles
         ],

@@ -14,6 +14,7 @@ This repository packages an installable Codex workflow called `Product Team`.
 
 - Keep the package project agnostic and Codex specific.
 - Keep installed assets namespaced under `.codex/product-team/` and `.codex/agents/product-team-*`.
+- Preserve the source discipline/role folder structure in installed role assets when materializing into `.codex/agents/`.
 - Preserve the current source layout as the authoring surface; do not create a second hand-maintained template tree.
 - Keep installer behavior idempotent. It may update workflow-owned namespaced files and the managed `AGENTS.md` block, but it must not overwrite unrelated target-project files.
 - If you add, remove, or rename a role, update the installer transforms, managed docs, and install validator together.

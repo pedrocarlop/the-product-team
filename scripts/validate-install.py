@@ -38,6 +38,20 @@ def load_toml(path: Path) -> dict:
     return tomllib.loads(path.read_text(encoding="utf-8"))
 
 
+def installed_role_paths(root: Path, role: dict) -> tuple[Path, Path]:
+    installed_name = role["installed_name"]
+    relative_toml_path = role.get("relative_toml_path")
+    relative_skills_dir = role.get("relative_skills_dir")
+
+    if relative_toml_path and relative_skills_dir:
+        return root / Path(relative_toml_path), root / Path(relative_skills_dir)
+
+    return (
+        root / ".codex" / "agents" / f"{installed_name}.toml",
+        root / ".codex" / "agents" / installed_name / "skills",
+    )
+
+
 def main() -> int:
     failures: list[str] = []
 
@@ -56,6 +70,7 @@ def main() -> int:
 
     manifest = load_manifest(root)
     expected_roles = manifest.get("roles", [])
+    roles_by_name = {role["installed_name"]: role for role in expected_roles}
     installed_names = {role["installed_name"] for role in expected_roles}
 
     expect(manifest.get("package_name") == PACKAGE_SLUG, "Manifest package_name is incorrect.", failures)
@@ -80,8 +95,7 @@ def main() -> int:
     for role in expected_roles:
         source_name = role["source_name"]
         installed_name = role["installed_name"]
-        toml_path = root / ".codex" / "agents" / f"{installed_name}.toml"
-        skills_dir = root / ".codex" / "agents" / installed_name / "skills"
+        toml_path, skills_dir = installed_role_paths(root, role)
 
         expect(toml_path.exists(), f"Missing agent definition: {toml_path}", failures)
         expect(skills_dir.is_dir(), f"Missing skills directory: {skills_dir}", failures)
@@ -108,7 +122,8 @@ def main() -> int:
         expect("reference" not in local_skills, f"{toml_path}: local_skills must not contain bare 'reference'.", failures)
 
         if source_name != "reference" and reference_name in local_skills:
-            reference_path = root / ".codex" / "agents" / f"{reference_name}.toml"
+            reference_role = roles_by_name.get(reference_name, {"installed_name": reference_name})
+            reference_path, _ = installed_role_paths(root, reference_role)
             expect(reference_path.exists(), f"{toml_path}: references shared skill {reference_name!r}, but the shared role is missing.", failures)
 
     if failures:
