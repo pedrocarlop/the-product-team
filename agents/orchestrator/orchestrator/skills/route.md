@@ -15,6 +15,7 @@ Use this skill to make the routing decision explicit, cheap, defensible, and log
 
 ## Decision Criteria
 
+- Before routing, quickly scan the orchestrator's own `skill-catalog.md` and open the matching orchestrator-local skill files relevant to the request. Do this even if the workflow stays direct.
 - Start from the request and repository context, not the full role catalog.
 - Classify likely domain(s) first.
 - If the task is clearly single-domain, consult only the relevant discipline slice from `.codex/product-team/references/role-catalog.md` or `references/role-catalog.md` when staffing is actually being considered.

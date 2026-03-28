@@ -117,6 +117,8 @@ Direct execution still requires:
 - `status.md`
 - `context.md`
 
+Before meaningful work, the orchestrator must quickly scan its own role-local `skill-catalog.md`, open the matching orchestrator skills relevant to the request, and use them as best-practice guidance for routing, logging, coordination, approval, or direct execution choices.
+
 It does not require `02_staffing.md`, `03_unified-plan.md`, or `04_approval.md` unless the work is upgraded into orchestration.
 
 Direct execution is the default for single-domain, implementation-first, clearly scoped or easily inferable work where the best-team assessment shows specialist staffing would not materially improve the outcome.
@@ -142,6 +144,7 @@ Orchestrated work must:
 - Use one archetype per subagent
 - Start from the best-team assessment and staff only the minimum viable team
 - Let specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict
+- On every request, the orchestrator must also quickly scan its own role-local `skill-catalog.md` and open the matching orchestrator skills relevant to the current phase, even when specialists are staffed
 - Before meaningful work, each staffed archetype must quickly scan its own role-local `skill-catalog.md`, read only the matching skill files in its role folder, and note those reads in its closing handoff
 - Request a role plan in `plans/<role>.md` only when written specialist advice will improve ambiguity, tradeoff, or sequencing decisions
 - When role plans are requested, require execution-grade detail, a `Role-local skills consulted` section, and a final `Critical details that must survive merge` section

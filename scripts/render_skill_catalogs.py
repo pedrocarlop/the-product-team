@@ -86,11 +86,15 @@ def render_catalog_for_toml(toml_path: Path) -> str:
     display_name = data["display_name"]
     role_name = data["name"]
     skills_dir = toml_path.parent / "skills"
+    role_kind = data.get("execution_policy", {}).get("role_kind")
+    first_read_line = "Read this file first when you are staffed for orchestrated work."
+    if role_kind == "orchestrator":
+        first_read_line = "Read this file first on every request before meaningful work."
 
     lines = [
         f"# {display_name} Skill Catalog",
         "",
-        "Read this file first when you are staffed for orchestrated work.",
+        first_read_line,
         "It lists only the role-local skills in this folder and keeps descriptions short so you can scan cheaply.",
         "Open only the matching skill files under `skills/`, then end your closing handoff with `Read <skill-paths> skills for this task.`",
         "",

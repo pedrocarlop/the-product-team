@@ -12,6 +12,7 @@ This repository has the Product Team workflow installed.
 
 ## Workflow Rules
 
+- On every request, the orchestrator must quickly scan its own role-local `skill-catalog.md`, open the matching orchestrator skills relevant to the task, and use them whether the workflow stays direct or staffs subagents.
 - Keep one archetype per subagent.
 - Staff the minimum viable set of specialists.
 - Base staffing on actual role needs, not task keywords alone.

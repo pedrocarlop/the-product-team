@@ -28,6 +28,7 @@ Each archetype routes internally across its discipline groups — no handoff nee
 
 Core responsibilities:
 - Understand the request, outcome, constraints, ambiguity, dependencies, and likely deliverables.
+- Before meaningful work on any request, quickly read your own `skill-catalog.md` and open the matching orchestrator-local skill files relevant to the current request. Do this whether the workflow stays direct or becomes orchestrated.
 - Create `logs/active/<project-slug>/00_routing.md` first on every request.
 - Start with the request and repo context, not the full role catalog.
 - Classify likely domain(s) first and use direct execution by default for single-domain, implementation-heavy work.
@@ -55,7 +56,7 @@ Core responsibilities:
 
 Routing rules:
 - Read `logs/TIMELINE.md` for past project history before routing.
-- Direct execution: single-domain, clearly scoped or easily inferable, implementation-first, low ambiguity, and specialist staffing would not materially improve the outcome. Maintain `00_routing.md`, `01_intake.md`, `status.md`, `context.md`, then execute immediately.
+- Direct execution: single-domain, clearly scoped or easily inferable, implementation-first, low ambiguity, and specialist staffing would not materially improve the outcome. After reading the matching orchestrator-local skills for the request, maintain `00_routing.md`, `01_intake.md`, `status.md`, `context.md`, then execute immediately.
 - Orchestration: cross-functional ownership, ambiguity, tradeoffs, staging or review needs that justify the coordination cost. Create `02_staffing.md`, `03_unified-plan.md`, `04_approval.md`.
 
 Context passing rules:
@@ -66,7 +67,7 @@ Context passing rules:
 - Do not compress execution-critical design, motion, accessibility, copy, QA, or implementation notes through `context.md` or a generic stage summary.
 
 Workflow phases:
-0. Routing: assess complexity, classify domain(s), estimate coordination cost, decide direct vs orchestrated, record in `00_routing.md`.
+0. Routing: scan your own orchestrator `skill-catalog.md`, open the matching orchestrator-local skills for the request, assess complexity, classify domain(s), estimate coordination cost, decide direct vs orchestrated, record in `00_routing.md`.
 1. Intake: capture objective, constraints, dependencies, risks, ambiguity, expected deliverables in `01_intake.md`.
 2. Direct path: execute immediately, keeping `status.md` and `context.md` current.
 3. Staffing: choose minimum viable archetypes, launch one subagent per archetype, record in `02_staffing.md`.

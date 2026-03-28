@@ -1,6 +1,6 @@
 # Orchestrator Skill Catalog
 
-Read this file first when you are staffed for orchestrated work.
+Read this file first on every request before meaningful work.
 It lists only the role-local skills in this folder and keeps descriptions short so you can scan cheaply.
 Open only the matching skill files under `skills/`, then end your closing handoff with `Read <skill-paths> skills for this task.`
 

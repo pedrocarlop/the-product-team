@@ -19,6 +19,7 @@ def main() -> int:
     failures: list[str] = []
     orchestrator = load_toml(ROOT / "agents/orchestrator/orchestrator/orchestrator.toml")
     orchestrator_prompt = orchestrator["system_prompt"]
+    orchestrator_catalog = (ROOT / "agents/orchestrator/orchestrator/skill-catalog.md").read_text()
     route_skill = (ROOT / "agents/orchestrator/orchestrator/skills/route.md").read_text()
     staff_skill = (ROOT / "agents/orchestrator/orchestrator/skills/staff.md").read_text()
     reconcile_skill = (ROOT / "agents/orchestrator/orchestrator/skills/reconcile.md").read_text()
@@ -73,6 +74,7 @@ def main() -> int:
         "Orchestrator prompt missing optional specialist-planning rule.",
         failures,
     )
+    expect("your own `skill-catalog.md`" in orchestrator_prompt, "Orchestrator prompt missing own-skill scan rule.", failures)
     expect("read each staffed role's `skill-catalog.md`" in orchestrator_prompt, "Orchestrator prompt missing staffed-role skill-reading rule.", failures)
     expect("best-practice source material" in orchestrator_prompt, "Orchestrator prompt missing skill-derived best-practice rule.", failures)
     expect("Preserve all material implementation detail" in orchestrator_prompt, "Orchestrator prompt missing detail-preservation rule.", failures)
@@ -81,6 +83,8 @@ def main() -> int:
     expect("author `03_unified-plan.md`" in orchestrator_prompt or "authors `03_unified-plan.md`" in orchestrator_prompt, "Orchestrator prompt missing authoritative plan ownership.", failures)
     expect("no piecemeal replanning" in orchestrator_prompt or "no repeated plan churn" in orchestrator_prompt, "Orchestrator prompt missing anti-churn guardrail.", failures)
     expect("role catalog" in orchestrator_prompt.lower(), "Orchestrator prompt missing role-catalog guidance.", failures)
+    expect("Read this file first on every request before meaningful work." in orchestrator_catalog, "Orchestrator skill catalog missing every-request scan rule.", failures)
+    expect("orchestrator's own `skill-catalog.md`" in route_skill, "Route skill missing orchestrator self-scan rule.", failures)
     expect("Classify likely domain(s) first" in route_skill, "Route skill missing domain-first decision rule.", failures)
     expect("actual role needs rather than keywords alone" in route_skill, "Route skill missing anti-keyword-routing guidance.", failures)
     expect("Read the full canonical role catalog only when" in route_skill, "Route skill missing lazy role-catalog rule.", failures)
@@ -102,6 +106,7 @@ def main() -> int:
     expect("Default to direct Codex execution" in agents_fragment, "Managed AGENTS guidance missing direct-first instruction.", failures)
     expect("actual role needs, not task keywords alone" in agents_fragment, "Managed AGENTS guidance missing anti-keyword staffing rule.", failures)
     expect("skill-catalog.md" in agents_fragment, "Managed AGENTS guidance missing role-local skill catalog rule.", failures)
+    expect("the orchestrator must quickly scan its own role-local `skill-catalog.md`" in agents_fragment, "Managed AGENTS guidance missing orchestrator self-scan rule.", failures)
     expect("Request role plans only when" in agents_fragment, "Managed AGENTS guidance missing optional advisory-plan rule.", failures)
     expect("preserve all material specialist detail" in agents_fragment.lower(), "Managed AGENTS guidance missing detail-preservation rule.", failures)
     expect("best-practice source material" in agents_fragment.lower() or "use the skills as best-practice source material" in agents_fragment.lower(), "Managed AGENTS guidance missing skill-derived best-practice rule.", failures)
@@ -158,6 +163,7 @@ def main() -> int:
     expect("Treat role plans as optional advisory input to the orchestrator" in logs_readme, "logs/README.md missing optional advisory-plan contract.", failures)
     expect("Execution-grade specialist plan" in logs_readme, "logs/README.md missing detailed specialist plan contract.", failures)
     expect("Role-local skills consulted" in logs_readme, "logs/README.md missing skills-consulted plan contract.", failures)
+    expect("the orchestrator must quickly scan its own role-local `skill-catalog.md`" in logs_readme, "logs/README.md missing orchestrator self-scan rule.", failures)
     expect("read each staffed role's `skill-catalog.md`" in logs_readme, "logs/README.md missing orchestrator skill-reading rule.", failures)
     expect("Build `03_unified-plan.md` from both role plans and staffed-role skills" in logs_readme, "logs/README.md missing combined-plan-and-skills rule.", failures)
     expect("Critical detail register" in logs_readme, "logs/README.md missing unified-plan detail register contract.", failures)
