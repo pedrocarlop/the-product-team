@@ -1,9 +1,10 @@
 # Role Catalog
 
-This is the canonical specialist-role catalog for orchestrator staffing decisions.
+This is the canonical specialist-role catalog for orchestrator staffing decisions when orchestration is actually warranted.
 
-- Read the full catalog before any best-team assessment or staffing decision.
-- Review every business, design, and engineering role before narrowing the team.
+- Route by domain first.
+- If the task is clearly single-domain, consult only the relevant discipline slice before staffing.
+- Read the full catalog only when the work is ambiguous, cross-functional, or the right team is genuinely unclear.
 - `orchestrator` and `reference` are intentionally excluded because they are workflow support roles, not staffed specialists.
 - Generated from `agents/*/*/*.toml`. Refresh with `python3 scripts/render_role_catalog.py --write`.
 

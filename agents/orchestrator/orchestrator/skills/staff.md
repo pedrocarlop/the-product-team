@@ -15,14 +15,15 @@ Use this skill to staff work deliberately and keep ownership crisp across busine
 
 ## Rules
 
-- Read the full canonical role catalog again before locking staffing, even if you have a preliminary team in mind.
+- Start from the domain classification and best-team assessment recorded during routing.
+- Re-open the full canonical role catalog only if the task is ambiguous or crosses domains in a way the routing slice did not resolve.
 - One role = one subagent
 - Prefer the minimum viable set of specialists
 - Include reviewers only when they materially reduce risk
-- Require each staffed specialist to complete the fit-check protocol before ownership is accepted
+- Specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict.
 - Start from the best-team assessment recorded during routing, then trim to the minimum viable staffed team for execution.
-- During planning, staffed specialists act as advisors first. They contribute their best approach in `plans/<role>.md`; the orchestrator owns the merged process.
-- Do not bounce incomplete plans back and forth between specialists. Collect advice independently, then let the orchestrator merge it once into the cycle plan.
+- Request `plans/<role>.md` only when written specialist advice is needed to resolve ambiguity, sequencing, or tradeoffs. Otherwise, move straight to orchestrator planning and execution.
+- Do not bounce incomplete plans back and forth between specialists. Collect advice only when needed, then let the orchestrator merge it once into the cycle plan.
 
 ## Staffing Heuristics
 
@@ -37,8 +38,8 @@ Write `logs/active/<project-slug>/02_staffing.md` with:
 
 - Selected roles
 - Launched subagents
-- Fit-check summaries
-- Advisory assignments for planning
+- Assignment confirmations or mismatch notes
+- Advisory planning requests, if any
 - Rejected or replaced roles
 - Final ownership map
 - Staffing rationale

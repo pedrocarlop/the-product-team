@@ -11,7 +11,7 @@ activation_hints:
 
 ## Purpose
 
-Use this skill to keep execution orderly, staged, and traceable once work is approved.
+Use this skill to keep execution orderly, staged, and traceable once direct work is underway or an orchestrated plan has been approved.
 
 ## Rules
 
@@ -20,8 +20,8 @@ Use this skill to keep execution orderly, staged, and traceable once work is app
 - Request reviews only when they are justified
 - Update `status.md` as execution changes
 - Route unresolved questions and decision changes into `/logs`
-- Treat `03_unified-plan.md` as the authoritative plan for the active cycle
-- If a material change is needed, pause and reroute through a new full planning cycle instead of improvising repeated rework
+- Treat `00_routing.md` plus `01_intake.md` as the authoritative plan for direct work, and `03_unified-plan.md` as the authoritative plan for orchestrated work
+- If a material change is needed in an orchestrated cycle, pause and reroute through a new full planning cycle instead of improvising repeated rework
 
 ## Output Contract
 

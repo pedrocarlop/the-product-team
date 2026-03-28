@@ -1,6 +1,6 @@
 # `/logs` Workflow Contract
 
-`/logs` is the only persistent project-memory and handoff surface for the orchestrator-centered workflow.
+`/logs` is the only persistent project-memory and handoff surface for the direct-first orchestrator workflow.
 
 ## Project Slug
 
@@ -35,8 +35,10 @@ logs/
 `00_routing.md`
 - Original request
 - Complexity assessment
+- Domain classification
 - Best possible team assessment
 - Direct execution vs workflow decision
+- Coordination cost estimate
 - Rationale
 
 `01_intake.md`
@@ -50,8 +52,8 @@ logs/
 - Created only when orchestration is used
 - Selected roles
 - One role per subagent
-- Fit-check outcomes
-- Advisory assignments for planning
+- Assignment confirmations or mismatch notes
+- Advisory planning requests, if any
 - Final ownership map
 
 `03_unified-plan.md`
@@ -99,19 +101,32 @@ Direct execution still requires:
 
 It does not require `02_staffing.md`, `03_unified-plan.md`, or `04_approval.md` unless the work is upgraded into orchestration.
 
-Direct execution is for bounded tactical work and should be chosen only after the best-team assessment shows specialist staffing would not materially improve the outcome.
+Direct execution is the default for single-domain, implementation-first, clearly scoped or easily inferable work where the best-team assessment shows specialist staffing would not materially improve the outcome.
+
+Bypass orchestration when the task is:
+
+- Single-domain
+- Implementation-heavy
+- Clearly specified or easily inferable
+- Unlikely to benefit from cross-functional negotiation
+
+## Role Catalog Usage
+
+- Route by domain before staffing.
+- If the domain is obvious, consult only the relevant discipline slice of `references/role-catalog.md`.
+- Read the full role catalog only when the task is ambiguous, cross-functional, or the right team is genuinely unclear.
 
 ## Orchestrated Execution
 
 Orchestrated work must:
 
 - Use one role per subagent
-- Require fit-check before ownership is accepted
-- Require a role plan in `plans/<role>.md`
-- Treat role plans as advisory input to the orchestrator, not as permission to execute or redefine the team process
-- Merge role advice into one authoritative `03_unified-plan.md` before execution starts
-- Pause for approval before substantial execution
 - Start from the best-team assessment and staff only the minimum viable team
+- Let specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict
+- Request a role plan in `plans/<role>.md` only when written specialist advice will improve ambiguity, tradeoff, or sequencing decisions
+- Treat role plans as optional advisory input to the orchestrator, not as permission to execute or redefine the team process
+- Let the orchestrator author one authoritative `03_unified-plan.md` before execution starts
+- Pause for approval before substantial execution
 - Execute the approved cycle before allowing another material planning iteration, unless the orchestrator explicitly pauses and resets the workflow
 - Store deliverables, reviews, and decision history in `/logs`
 
@@ -134,7 +149,7 @@ Transitions:
 
 ## Declined-Role Recording
 
-When a specialist declines during fit-check, record in `02_staffing.md`:
+When a specialist declines or flags a mismatch during staffing, record in `02_staffing.md`:
 
 - Role name
 - Decline rationale
