@@ -41,10 +41,10 @@ def expect(condition: bool, message: str, failures: list[str]) -> None:
 
 
 def check_generated_artifacts(failures: list[str]) -> None:
-    """Verify role catalog and prompts are current."""
+    """Verify role catalog and managed archetype prompts are current."""
     for script, label in [
         ("scripts/render_role_catalog.py", "Role catalog"),
-        ("scripts/render_role_prompts.py", "Specialist prompts"),
+        ("scripts/render_role_prompts.py", "Archetype prompts"),
     ]:
         result = subprocess.run(
             [sys.executable, str(ROOT / script), "--check"],
@@ -91,7 +91,7 @@ def check_skills_integrity(failures: list[str]) -> None:
                 )
             continue
 
-        existing_skill_files = {p.stem for p in skills_dir.glob("*.md")}
+        existing_skill_files = {p.stem for p in skills_dir.rglob("*.md")}
 
         for skill in local_skills:
             if skill == "reference" or skill.startswith("product-team-"):

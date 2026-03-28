@@ -6,10 +6,12 @@ The workflow is direct-first: the orchestrator routes work cheaply, executes dir
 
 Route by domain before staffing. Consult only the relevant discipline slice of `.codex/product-team/references/role-catalog.md` when the task is clearly single-domain; read the full catalog only for ambiguous or cross-functional work.
 
+The workflow is organized around a small set of archetypes. Each archetype routes internally across its own discipline groups, so `designer` can cover research → UX → UI → content in one staffed role and `engineer` can cover frontend → backend → fullstack work without extra same-domain handoffs.
+
 ## Installed Layout
 
 - `.codex/agents/product-team-<discipline>/<role>/<role>.toml`
-- `.codex/agents/product-team-<discipline>/<role>/skills/*.md`
+- `.codex/agents/product-team-<discipline>/<role>/skills/<discipline-group>/*.md`
 - `.codex/product-team/references/`
 - `.codex/product-team/scripts/validate-install.py`
 - `.codex/product-team/manifest.json`
@@ -42,13 +44,13 @@ The orchestrator sees this is substantial but still narrow, implementation-first
 
 > "Add dark mode support to the dashboard"
 
-The orchestrator identifies this needs a **product-designer** (to define the theme tokens and component states) and a **frontend-engineer** (to implement the toggle and theme switching). It staffs only those roles, asks for written specialist advice only if the design and implementation sequencing is unclear, authors a unified plan, asks for your approval, and then coordinates execution in sequence: design first, then engineering.
+The orchestrator identifies this needs a **designer** (to define theme tokens, states, and copy) and an **engineer** (to implement the toggle and theme switching). It staffs only those archetypes, asks for written specialist advice only if the design and implementation sequencing is unclear, authors a unified plan, asks for your approval, and then coordinates execution in sequence: design first, then engineering.
 
 ### Complex request (full team)
 
 > "Redesign the checkout flow to reduce drop-off by 20%"
 
-The orchestrator staffs a full team: **product-manager** (to define success metrics and scope), **product-designer** (to redesign the flow), **frontend-engineer** (to implement), and **qa-engineer** (to validate). It may request written advice from those roles if tradeoffs or sequencing are unclear, then authors one execution path, gets approval, and coordinates the work stage by stage. All artifacts, decisions, and reviews are logged in `logs/active/`.
+The orchestrator staffs a full team: **product-lead** (to define scope and success metrics), **designer** (to redesign the flow), **engineer** (to implement), and **reviewer** (to validate). It may request written advice from those archetypes if tradeoffs or sequencing are unclear, then authors one execution path, gets approval, and coordinates the work stage by stage. All artifacts, decisions, and reviews are logged in `logs/active/`.
 
 ## Notes
 

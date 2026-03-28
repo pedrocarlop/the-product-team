@@ -50,8 +50,8 @@ logs/
 
 `02_staffing.md`
 - Created only when orchestration is used
-- Selected roles
-- One role per subagent
+- Selected archetypes
+- One archetype per subagent
 - Assignment confirmations or mismatch notes
 - Advisory planning requests, if any
 - Final ownership map
@@ -60,7 +60,7 @@ logs/
 - Created only when orchestration is used
 - Unified staged plan
 - Authoritative execution process for the current cycle
-- Ownership by role
+- Ownership by archetype
 - Dependencies and sequence
 - Review points
 - Approval gate
@@ -85,7 +85,7 @@ logs/
 - Current cycle and authoritative plan version
 - Current state
 - Approved direction
-- Active roles
+- Active archetypes
 - Latest deliverables
 - Open questions
 - Next step
@@ -115,12 +115,13 @@ Bypass orchestration when the task is:
 - Route by domain before staffing.
 - If the domain is obvious, consult only the relevant discipline slice of `references/role-catalog.md`.
 - Read the full role catalog only when the task is ambiguous, cross-functional, or the right team is genuinely unclear.
+- Treat each staffed role in the catalog as an archetype that can route internally across its own discipline groups.
 
 ## Orchestrated Execution
 
 Orchestrated work must:
 
-- Use one role per subagent
+- Use one archetype per subagent
 - Start from the best-team assessment and staff only the minimum viable team
 - Let specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict
 - Request a role plan in `plans/<role>.md` only when written specialist advice will improve ambiguity, tradeoff, or sequencing decisions
@@ -151,9 +152,9 @@ Transitions:
 
 When a specialist declines or flags a mismatch during staffing, record in `02_staffing.md`:
 
-- Role name
+- Archetype name
 - Decline rationale
-- Recommended replacement role
+- Recommended replacement archetype
 - Whether the orchestrator accepted the recommendation or adjusted staffing
 
 ## Conflict Resolution
@@ -161,7 +162,7 @@ When a specialist declines or flags a mismatch during staffing, record in `02_st
 When specialists produce conflicting advice or deliverables:
 
 1. Both positions are documented in `decisions/<topic>.md` with rationale.
-2. The orchestrator consults the role whose ownership area covers the disputed scope.
+2. The orchestrator consults the archetype whose ownership area covers the disputed scope.
 3. The orchestrator makes a binding decision and updates `03_unified-plan.md`.
 4. The resolution is recorded in `decisions/` with the reasoning.
 
@@ -187,7 +188,7 @@ Each row records:
 | Slug | Project slug, linked to the project folder |
 | Objective | One-line project goal |
 | Workflow | `direct` or `orchestrated` |
-| Roles | Comma-separated list of staffed roles, or `orchestrator (direct)` |
+| Roles | Comma-separated list of staffed archetypes, or `orchestrator (direct)` |
 | Status | Current lifecycle status (`planning`, `in-progress`, `blocked`, `complete`, `archived`) |
 | Outcome | One-sentence summary of what was delivered or why the project ended |
 

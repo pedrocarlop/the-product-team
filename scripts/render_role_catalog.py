@@ -29,13 +29,14 @@ def render_catalog(root: Path = ROOT) -> str:
     lines = [
         "# Role Catalog",
         "",
-        "This is the canonical specialist-role catalog for orchestrator staffing decisions when orchestration is actually warranted.",
+        "This is the canonical archetype catalog for orchestrator staffing decisions when orchestration is actually warranted.",
         "",
         "- Route by domain first.",
         "- If the task is clearly single-domain, consult only the relevant discipline slice before staffing.",
         "- Read the full catalog only when the work is ambiguous, cross-functional, or the right team is genuinely unclear.",
-        "- `orchestrator` and `reference` are intentionally excluded because they are workflow support roles, not staffed specialists.",
-        f"- Generated from `agents/*/*/*.toml`. Refresh with `python3 {Path('scripts/render_role_catalog.py').as_posix()} --write`.",
+        "- `orchestrator` and `reference` are intentionally excluded because they are workflow support roles, not staffed archetypes.",
+        "- Each archetype organizes skills into discipline groups and routes internally, so one staffed role can cover multiple specialties without handoff.",
+        f"- Generated from the managed archetype TOMLs under `agents/`. Refresh with `python3 {Path('scripts/render_role_catalog.py').as_posix()} --write`.",
         "",
     ]
 
@@ -58,40 +59,58 @@ def render_catalog(root: Path = ROOT) -> str:
     lines.append("")
     lines.append(
         "These patterns help the orchestrator staff teams for frequent task types. "
-        "They are starting points, not rigid requirements — always assess actual role needs."
+        "They are starting points, not rigid requirements — always assess actual role needs. "
+        "Each archetype routes internally to the right discipline group, so a single `designer` "
+        "handles research → UX → UI → content without separate handoffs."
     )
     lines.append("")
-    lines.append("- **UI Feature**: `product-designer` + `frontend-engineer` (+ `ux-flow-reviewer` for complex flows)")
-    lines.append("- **API Feature**: `backend-engineer` + `api-designer` (+ `engineering-reviewer`)")
-    lines.append("- **Full Feature**: `product-manager` + `product-designer` + `engineer` + `qa-engineer`")
-    lines.append("- **Design System Update**: `design-systems-designer` + `design-technologist` (+ `design-system-reviewer`)")
-    lines.append("- **Requirements Pipeline**: `requirements-author` → `requirements-reviewer` → `product-manager`")
-    lines.append("- **Data Pipeline**: `data-engineer` + `backend-engineer` (+ `engineering-reviewer`)")
-    lines.append("- **Growth Initiative**: `growth-manager` + `data-analyst` + `product-manager`")
-    lines.append("- **Infrastructure Change**: `devops-engineer` + `security-engineer` (+ `engineering-reviewer`)")
-    lines.append("- **Mobile Feature**: `mobile-engineer` + `product-designer` (+ `qa-engineer`)")
-    lines.append("- **Content Update**: `content-designer` + `copy-reviewer` (+ `localization-designer` for i18n)")
+    lines.append("- **UI Feature**: `designer` → `engineer` (+ `reviewer` for complex flows)")
+    lines.append("- **API Feature**: `engineer` + `platform-engineer` (+ `reviewer`)")
+    lines.append("- **Full Feature**: `product-lead` → `designer` → `engineer` (+ `reviewer`)")
+    lines.append("- **Design System Update**: `design-systems` (+ `reviewer`)")
+    lines.append("- **Data Pipeline**: `platform-engineer` (+ `reviewer`)")
+    lines.append("- **Growth Initiative**: `go-to-market` + `analyst` + `product-lead`")
+    lines.append("- **Infrastructure Change**: `platform-engineer` (+ `reviewer`)")
+    lines.append("- **Mobile Feature**: `designer` → `engineer` (+ `reviewer`)")
+    lines.append("- **Content Update**: `designer` (content/ + localization/ discipline groups)")
+    lines.append("- **Strategy**: `product-lead` + `analyst`")
     lines.append("")
 
     # -- Sequencing Rules --
     lines.append("## Sequencing Rules")
     lines.append("")
-    lines.append("- Requirements before design: design specialists need approved requirements as input.")
+    lines.append("- Product-lead before design: designers need approved requirements as input.")
     lines.append("- Design before engineering: engineers implement from approved design, not the reverse.")
-    lines.append("- Engineering before review: reviewer roles are staffed after executors produce artifacts.")
-    lines.append("- QA after implementation: `qa-engineer` reviews completed work, not in-progress drafts.")
-    lines.append("- Reviewers do not execute: reviewers validate and recommend, they do not fix or reauthor.")
+    lines.append("- Engineering before review: the reviewer is staffed after executors produce artifacts.")
+    lines.append("- Reviewers do not execute: the reviewer validates and recommends, it does not fix or reauthor.")
+    lines.append("- Each archetype chains discipline groups internally — no handoff needed within a single role.")
+    lines.append("")
+
+    # -- Skill Routing --
+    lines.append("## Skill Routing")
+    lines.append("")
+    lines.append("Each archetype organizes skills into discipline groups. The archetype routes internally to the right group:")
+    lines.append("")
+    lines.append("- `designer`: research/ → ux/ → ui/ → content/ → motion/ → accessibility/ → architecture/ → localization/ → service/")
+    lines.append("- `design-systems`: system/ → technology/ → direction/ → operations/")
+    lines.append("- `product-lead`: strategy/ → product/ → portfolio/ → requirements/")
+    lines.append("- `analyst`: data/ → financial/ → revenue/")
+    lines.append("- `go-to-market`: growth/ → marketing/ → product-marketing/ → partnerships/ → customer-success/ → sales/")
+    lines.append("- `business-ops`: analysis/ → operations/")
+    lines.append("- `engineer`: frontend/ → backend/ → fullstack/ → mobile/ → ml/ → implementation/")
+    lines.append("- `platform-engineer`: api/ → database/ → data/ → devops/ → performance/ → security/ → architecture/ → leadership/")
+    lines.append("- `reviewer`: requirements/ → ux-flow/ → usability/ → copy/ → design-system/ → engineering/ → qa/")
     lines.append("")
 
     # -- Conflict Resolution --
     lines.append("## Conflict Resolution")
     lines.append("")
-    lines.append("When specialists produce conflicting advice or deliverables:")
+    lines.append("When archetypes produce conflicting advice or deliverables:")
     lines.append("")
     lines.append("1. Both positions are documented in `decisions/<topic>.md` with rationale.")
-    lines.append("2. The orchestrator consults the role whose ownership area covers the disputed scope.")
+    lines.append("2. The orchestrator consults the archetype whose ownership area covers the disputed scope.")
     lines.append("3. The orchestrator makes a binding decision, updates `03_unified-plan.md`, and records the resolution in `decisions/`.")
-    lines.append("4. Overruled specialists acknowledge the decision and align their work accordingly.")
+    lines.append("4. Overruled archetypes acknowledge the decision and align their work accordingly.")
     lines.append("")
 
     return "\n".join(lines).rstrip() + "\n"

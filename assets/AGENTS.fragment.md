@@ -12,7 +12,7 @@ This repository has the Product Team workflow installed.
 
 ## Workflow Rules
 
-- Keep one role per subagent.
+- Keep one archetype per subagent.
 - Staff the minimum viable set of specialists.
 - Base staffing on actual role needs, not task keywords alone.
 - Let specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict.
@@ -20,6 +20,7 @@ This repository has the Product Team workflow installed.
 - Let the orchestrator define the merged process in `03_unified-plan.md`.
 - Get explicit approval before substantial multi-role execution.
 - Do not reopen the process piecemeal during execution. If the plan materially changes, rerun the full cycle through the orchestrator.
+- Let staffed archetypes route internally across their discipline groups instead of spawning extra same-domain handoffs.
 - Read installed role definitions in `.codex/agents/product-team-<discipline>/<role>/`.
 - Use `.codex/product-team/references/role-catalog.md` as the canonical staffing reference.
 - Use `.codex/product-team/references/logs-workflow-contract.md` as the canonical `/logs` contract reference when the target repo's own docs are silent.

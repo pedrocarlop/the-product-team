@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render specialist system_prompt fields from TOML metadata and the shared baseline template."""
+"""Render managed archetype system_prompt fields from TOML metadata and the shared baseline template."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lib.toml_utils import EXCLUDED_ROLES, load_toml
+from lib.toml_utils import EXCLUDED_ROLES, discover_toml_paths, load_toml
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +34,22 @@ SYSTEM_PROMPT_RE = re.compile(
 )
 
 
+def render_skill_routing(skill_groups: dict[str, list[str]]) -> str:
+    """Render skill routing section from skill_groups config."""
+    if not skill_groups:
+        return ""
+    lines = [
+        "",
+        "Skill routing — select the right discipline group for each part of the task:",
+    ]
+    for group_name, skills in skill_groups.items():
+        skills_str = ", ".join(skills)
+        lines.append(f"- {group_name}/ → {skills_str}.")
+    lines.append("")
+    lines.append("You may chain multiple discipline groups in a single execution without handoff.")
+    return "\n".join(lines)
+
+
 def render_prompt(data: dict) -> str:
     display_name = data["display_name"]
     description = data["description"].strip().rstrip(".")
@@ -54,6 +70,10 @@ def render_prompt(data: dict) -> str:
         output_type = "deliverables"
         reviewer_extra = ""
 
+    # Build skill routing section if skill_groups exist
+    skill_groups = data.get("capabilities", {}).get("skill_groups", {})
+    skill_routing = render_skill_routing(skill_groups)
+
     prompt = f"""
 You are the {display_name} in the direct-first orchestrator workflow.
 
@@ -61,7 +81,7 @@ Role charter:
 - {description}.
 - Primary ownership: {owns_str}.
 - Work only from orchestrator-issued assignments for the active project at `logs/active/<project-slug>/`.
-
+{skill_routing}
 Default behavior:
 - Start from the orchestrator-issued assignment and execute within your owned scope.
 - If the assignment is clearly mismatched, blocked by missing inputs, or overlaps another role, stop and return a brief mismatch note for `02_staffing.md` with the reason and recommended adjustment.
@@ -91,7 +111,7 @@ def update_toml_text(original: str, new_prompt: str) -> str:
 
 def discover_specialist_tomls(root: Path = ROOT) -> list[Path]:
     paths: list[Path] = []
-    for toml_path in sorted((root / "agents").glob("*/*/*.toml")):
+    for toml_path in discover_toml_paths(root):
         data = load_toml(toml_path)
         if data["name"] not in EXCLUDED_ROLES:
             paths.append(toml_path)
@@ -100,7 +120,7 @@ def discover_specialist_tomls(root: Path = ROOT) -> list[Path]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Render specialist system_prompt fields from TOML metadata."
+        description="Render managed archetype system_prompt fields from TOML metadata."
     )
     parser.add_argument(
         "--write", action="store_true",
@@ -142,16 +162,16 @@ def main() -> int:
     if args.check:
         if stale:
             print(
-                f"FAIL: {len(stale)} role(s) have stale system_prompt: {', '.join(stale)}. "
+                f"FAIL: {len(stale)} managed archetype role(s) have stale system_prompt: {', '.join(stale)}. "
                 "Run `python3 scripts/render_role_prompts.py --write`.",
                 file=sys.stderr,
             )
             return 1
-        print(f"All {len(toml_paths)} specialist prompts are current.")
+        print(f"All {len(toml_paths)} managed archetype prompts are current.")
         return 0
 
     if args.write:
-        print(f"Updated {updated} of {len(toml_paths)} specialist prompts.")
+        print(f"Updated {updated} of {len(toml_paths)} managed archetype prompts.")
         return 0
 
     if not stale and updated == 0:

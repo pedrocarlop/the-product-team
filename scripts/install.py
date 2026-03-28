@@ -13,6 +13,9 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.toml_utils import discover_toml_paths, load_toml
+
 
 PACKAGE_VERSION = "1.0.0"
 PACKAGE_SLUG = "product-team"
@@ -159,9 +162,9 @@ def transform_toml(text: str, role: RoleSpec) -> str:
 
 def discover_roles(root: Path) -> list[RoleSpec]:
     roles: list[RoleSpec] = []
-    for source_toml in sorted((root / "agents").glob("*/*/*.toml")):
+    for source_toml in discover_toml_paths(root):
         discipline = source_toml.parent.parent.name
-        source_name = source_toml.stem
+        source_name = load_toml(source_toml)["name"]
         installed_name = f"{PACKAGE_SLUG}-{source_name}"
         roles.append(
             RoleSpec(

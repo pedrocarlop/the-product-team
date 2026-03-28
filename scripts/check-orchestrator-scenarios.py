@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lib.toml_utils import load_toml
+from lib.toml_utils import discover_toml_paths, load_toml
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -24,17 +24,43 @@ def main() -> int:
     agents_fragment = (ROOT / "assets/AGENTS.fragment.md").read_text()
 
     expect("direct execution by default" in orchestrator_prompt.lower(), "Orchestrator prompt missing direct-first rule.", failures)
-    expect("single-domain, clearly scoped or easily inferable, implementation-first" in orchestrator_prompt, "Direct-routing criteria missing from orchestrator prompt.", failures)
-    expect("specialist staffing would not materially improve the outcome" in orchestrator_prompt, "Orchestrator prompt missing direct-execution best-team gate.", failures)
-    expect("underlying role needs" in orchestrator_prompt and "not keywords" in orchestrator_prompt, "Orchestrator prompt missing anti-keyword-routing guidance.", failures)
+    expect(
+        "single-domain" in orchestrator_prompt
+        and "implementation-first" in orchestrator_prompt
+        and ("clearly scoped" in orchestrator_prompt or "easily inferable" in orchestrator_prompt),
+        "Direct-routing criteria missing from orchestrator prompt.",
+        failures,
+    )
+    expect("materially improve the outcome" in orchestrator_prompt, "Orchestrator prompt missing direct-execution best-team gate.", failures)
+    expect(
+        ("actual role needs" in orchestrator_prompt or "actual archetype needs" in orchestrator_prompt)
+        and "keywords" in orchestrator_prompt,
+        "Orchestrator prompt missing anti-keyword-routing guidance.",
+        failures,
+    )
     expect("full catalog only when the task is ambiguous" in orchestrator_prompt.lower(), "Orchestrator prompt missing lazy role-catalog rule.", failures)
     expect("coordination cost" in orchestrator_prompt.lower(), "Orchestrator prompt missing coordination-cost check.", failures)
-    expect("one role = one subagent" in orchestrator_prompt.lower(), "One-role-per-subagent rule missing from orchestrator prompt.", failures)
+    expect(
+        "one role = one subagent" in orchestrator_prompt.lower()
+        or "one archetype = one subagent" in orchestrator_prompt.lower(),
+        "One-subagent-per-staffed-owner rule missing from orchestrator prompt.",
+        failures,
+    )
     expect("02_staffing.md" in orchestrator_prompt and "03_unified-plan.md" in orchestrator_prompt and "04_approval.md" in orchestrator_prompt, "Unified planning and approval files missing from orchestrator prompt.", failures)
     expect("status.md" in orchestrator_prompt and "context.md" in orchestrator_prompt, "Continuity files missing from orchestrator prompt.", failures)
-    expect("substantial multi-role execution" in orchestrator_prompt, "Approval gate missing from orchestrator prompt.", failures)
+    expect(
+        "substantial multi-role execution" in orchestrator_prompt
+        or "substantial multi-archetype execution" in orchestrator_prompt,
+        "Approval gate missing from orchestrator prompt.",
+        failures,
+    )
     expect("mismatch note" in orchestrator_prompt.lower(), "Misfit staffing path missing from orchestrator prompt.", failures)
-    expect("Request `plans/<role>.md` only when" in orchestrator_prompt, "Orchestrator prompt missing optional specialist-planning rule.", failures)
+    expect(
+        "Request `plans/<role>.md` only when" in orchestrator_prompt
+        or "Request `plans/<archetype>.md` only when" in orchestrator_prompt,
+        "Orchestrator prompt missing optional specialist-planning rule.",
+        failures,
+    )
     expect("author `03_unified-plan.md`" in orchestrator_prompt or "authors `03_unified-plan.md`" in orchestrator_prompt, "Orchestrator prompt missing authoritative plan ownership.", failures)
     expect("no piecemeal replanning" in orchestrator_prompt or "no repeated plan churn" in orchestrator_prompt, "Orchestrator prompt missing anti-churn guardrail.", failures)
     expect("role catalog" in orchestrator_prompt.lower(), "Orchestrator prompt missing role-catalog guidance.", failures)
@@ -51,7 +77,7 @@ def main() -> int:
     expect("actual role needs, not task keywords alone" in agents_fragment, "Managed AGENTS guidance missing anti-keyword staffing rule.", failures)
     expect("Request role plans only when" in agents_fragment, "Managed AGENTS guidance missing optional advisory-plan rule.", failures)
 
-    specialist_files = sorted((ROOT / "agents").glob("*/*/*.toml"))
+    specialist_files = discover_toml_paths(ROOT)
     for path in specialist_files:
       data = load_toml(path)
       role = data["name"]

@@ -69,7 +69,18 @@ while IFS= read -r file; do
   else
     rg -q "logs/active/<project-slug>/deliverables/$role\\.md" "$file" || fail "Executor missing deliverable artifact path: $file"
   fi
-done < <(find agents -name '*.toml' | sort)
+done < <(python3 - <<'PY'
+from pathlib import Path
+import sys
+
+root = Path.cwd()
+sys.path.insert(0, str(root / "scripts"))
+from lib.toml_utils import discover_toml_paths
+
+for path in discover_toml_paths(root):
+    print(path.as_posix())
+PY
+)
 
 if (( errors > 0 )); then
   exit 1
