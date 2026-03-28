@@ -126,6 +126,7 @@ Orchestrated work must:
 - Use one archetype per subagent
 - Start from the best-team assessment and staff only the minimum viable team
 - Let specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict
+- Before meaningful work, each staffed archetype must quickly scan its own role-local `skill-catalog.md`, read only the matching skill files in its role folder, and note those reads in its closing handoff
 - Request a role plan in `plans/<role>.md` only when written specialist advice will improve ambiguity, tradeoff, or sequencing decisions
 - Treat role plans as optional advisory input to the orchestrator, not as permission to execute or redefine the team process
 - Let the orchestrator author one authoritative `03_unified-plan.md` before execution starts

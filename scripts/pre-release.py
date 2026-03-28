@@ -44,6 +44,7 @@ def check_generated_artifacts(failures: list[str]) -> None:
     """Verify role catalog and managed archetype prompts are current."""
     for script, label in [
         ("scripts/render_role_catalog.py", "Role catalog"),
+        ("scripts/render_skill_catalogs.py", "Skill catalogs"),
         ("scripts/render_role_prompts.py", "Archetype prompts"),
     ]:
         result = subprocess.run(

@@ -36,6 +36,11 @@ python3 scripts/render_role_catalog.py --check >/tmp/role-catalog-check.txt || {
   cat /tmp/role-catalog-check.txt >&2
 }
 
+python3 scripts/render_skill_catalogs.py --check >/tmp/skill-catalog-check.txt || {
+  fail "Skill catalogs are missing or stale."
+  cat /tmp/skill-catalog-check.txt >&2
+}
+
 orchestrator_file="agents/orchestrator/orchestrator/orchestrator.toml"
 [[ -f "$orchestrator_file" ]] || fail "Missing orchestrator role file."
 

@@ -85,6 +85,7 @@ def main() -> int:
     expect("Route by domain before staffing" in agents_fragment, "Managed AGENTS guidance missing domain-first routing instruction.", failures)
     expect("Default to direct Codex execution" in agents_fragment, "Managed AGENTS guidance missing direct-first instruction.", failures)
     expect("actual role needs, not task keywords alone" in agents_fragment, "Managed AGENTS guidance missing anti-keyword staffing rule.", failures)
+    expect("skill-catalog.md" in agents_fragment, "Managed AGENTS guidance missing role-local skill catalog rule.", failures)
     expect("Request role plans only when" in agents_fragment, "Managed AGENTS guidance missing optional advisory-plan rule.", failures)
     expect("Do you want to proceed?" in agents_fragment, "Managed AGENTS guidance missing explicit approval handoff question.", failures)
 
@@ -109,6 +110,8 @@ def main() -> int:
           continue
 
       expect("Default behavior" in prompt, f"{role}: missing default behavior heading.", failures)
+      expect("skill-catalog.md" in prompt, f"{role}: missing role-local skill catalog instruction.", failures)
+      expect("Read <skill-paths> skills for this task." in prompt, f"{role}: missing closing skill-read note contract.", failures)
       expect("assignment is clearly mismatched" in prompt, f"{role}: missing mismatch handling contract.", failures)
       expect("Only write `logs/active/<project-slug>/plans/" in prompt, f"{role}: missing optional plan trigger.", failures)
       expect("approval gate is in place" in prompt, f"{role}: missing conditional approval gating language.", failures)
@@ -129,6 +132,7 @@ def main() -> int:
     expect("best-team assessment shows specialist staffing would not materially improve the outcome" in logs_readme, "logs/README.md does not limit direct execution through best-team assessment.", failures)
     expect("Role Catalog Usage" in logs_readme, "logs/README.md missing role-catalog usage guidance.", failures)
     expect("Orchestrated work must" in logs_readme, "logs/README.md does not define orchestration requirements.", failures)
+    expect("skill-catalog.md" in logs_readme, "logs/README.md missing role-local skill catalog guidance.", failures)
     expect("Treat role plans as optional advisory input to the orchestrator" in logs_readme, "logs/README.md missing optional advisory-plan contract.", failures)
     expect("Execute the approved cycle before allowing another material planning iteration" in logs_readme, "logs/README.md missing anti-churn execution rule.", failures)
     expect("This is the plan" in logs_readme, "logs/README.md missing explicit approval handoff opener.", failures)

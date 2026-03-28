@@ -38,17 +38,23 @@ def load_toml(path: Path) -> dict:
     return tomllib.loads(path.read_text(encoding="utf-8"))
 
 
-def installed_role_paths(root: Path, role: dict) -> tuple[Path, Path]:
+def installed_role_paths(root: Path, role: dict) -> tuple[Path, Path, Path]:
     installed_name = role["installed_name"]
     relative_toml_path = role.get("relative_toml_path")
     relative_skills_dir = role.get("relative_skills_dir")
+    relative_catalog_path = role.get("relative_catalog_path")
 
-    if relative_toml_path and relative_skills_dir:
-        return root / Path(relative_toml_path), root / Path(relative_skills_dir)
+    if relative_toml_path and relative_skills_dir and relative_catalog_path:
+        return (
+            root / Path(relative_toml_path),
+            root / Path(relative_skills_dir),
+            root / Path(relative_catalog_path),
+        )
 
     return (
         root / ".codex" / "agents" / f"{installed_name}.toml",
         root / ".codex" / "agents" / installed_name / "skills",
+        root / ".codex" / "agents" / installed_name / "skill-catalog.md",
     )
 
 
@@ -109,12 +115,17 @@ def main() -> int:
     for role in expected_roles:
         source_name = role["source_name"]
         installed_name = role["installed_name"]
-        toml_path, skills_dir = installed_role_paths(root, role)
+        toml_path, skills_dir, catalog_path = installed_role_paths(root, role)
 
         expect(toml_path.exists(), f"Missing agent definition: {toml_path}", failures)
         expect(skills_dir.is_dir(), f"Missing skills directory: {skills_dir}", failures)
+        expect(catalog_path.exists(), f"Missing skill catalog: {catalog_path}", failures)
         if skills_dir.is_dir():
             expect(any(path.suffix == ".md" for path in skills_dir.rglob("*.md")), f"No markdown skills found in {skills_dir}", failures)
+        if catalog_path.exists():
+            catalog_text = catalog_path.read_text(encoding="utf-8")
+            expect("Read this file first" in catalog_text, f"{catalog_path}: skill catalog missing quick-scan guidance.", failures)
+            expect("Read <skill-paths> skills for this task." in catalog_text, f"{catalog_path}: skill catalog missing handoff note contract.", failures)
 
         if not toml_path.exists():
             continue
@@ -140,7 +151,7 @@ def main() -> int:
 
         if source_name != "reference" and reference_name in local_skills:
             reference_role = roles_by_name.get(reference_name, {"installed_name": reference_name})
-            reference_path, _ = installed_role_paths(root, reference_role)
+            reference_path, _, _ = installed_role_paths(root, reference_role)
             expect(reference_path.exists(), f"{toml_path}: references shared skill {reference_name!r}, but the shared role is missing.", failures)
 
     if failures:

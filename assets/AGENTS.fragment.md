@@ -23,5 +23,6 @@ This repository has the Product Team workflow installed.
 - Do not reopen the process piecemeal during execution. If the plan materially changes, rerun the full cycle through the orchestrator.
 - Let staffed archetypes route internally across their discipline groups instead of spawning extra same-domain handoffs.
 - Read installed role definitions in `.codex/agents/product-team-<discipline>/<role>/`.
+- Each staffed archetype must quickly scan its own role-local `skill-catalog.md`, open only the matching local skill files, and end its closing handoff with `Read <skill-paths> skills for this task.`
 - Use `.codex/product-team/references/role-catalog.md` as the canonical staffing reference.
 - Use `.codex/product-team/references/logs-workflow-contract.md` as the canonical `/logs` contract reference when the target repo's own docs are silent.

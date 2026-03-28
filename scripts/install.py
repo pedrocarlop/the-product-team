@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.toml_utils import discover_toml_paths, load_toml
 
 
-PACKAGE_VERSION = "1.1.1"
+PACKAGE_VERSION = "1.1.2"
 PACKAGE_SLUG = "product-team"
 PACKAGE_DIRNAME = ".codex/product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
@@ -57,6 +57,14 @@ class RoleSpec:
     @property
     def installed_skills_dir(self) -> Path:
         return self.installed_role_dir / "skills"
+
+    @property
+    def source_catalog_path(self) -> Path:
+        return self.source_toml.parent / "skill-catalog.md"
+
+    @property
+    def installed_catalog_path(self) -> Path:
+        return self.installed_role_dir / "skill-catalog.md"
 
     @property
     def legacy_flat_toml_path(self) -> Path:
@@ -342,6 +350,9 @@ def copy_role(role: RoleSpec, target_root: Path) -> None:
     else:
         ensure_directory(target_skills_root)
 
+    if role.source_catalog_path.exists():
+        shutil.copy2(role.source_catalog_path, target_root / role.installed_catalog_path)
+
 
 def install_package_docs(root: Path, target_root: Path) -> None:
     package_root = target_root / ".codex" / PACKAGE_SLUG
@@ -420,6 +431,7 @@ def write_manifest(
                 "relative_role_dir": role.installed_role_dir.as_posix(),
                 "relative_toml_path": role.installed_toml_path.as_posix(),
                 "relative_skills_dir": role.installed_skills_dir.as_posix(),
+                "relative_catalog_path": role.installed_catalog_path.as_posix(),
             }
             for role in roles
         ],
@@ -443,6 +455,7 @@ def main() -> int:
         root / "assets" / "package-README.md",
         root / "logs" / "README.md",
         root / "references" / "role-catalog.md",
+        root / "scripts" / "render_skill_catalogs.py",
         root / "scripts" / "validate-install.py",
         root / "scripts" / "update-install.py",
     ]

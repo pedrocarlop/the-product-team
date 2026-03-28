@@ -7,10 +7,12 @@ The workflow is direct-first: the orchestrator routes work cheaply, executes dir
 Route by domain before staffing. Consult only the relevant discipline slice of `.codex/product-team/references/role-catalog.md` when the task is clearly single-domain; read the full catalog only for ambiguous or cross-functional work.
 
 The workflow is organized around a small set of archetypes. Each archetype routes internally across its own discipline groups, so `designer` can cover research → UX → UI → content in one staffed role and `engineer` can cover frontend → backend → fullstack work without extra same-domain handoffs.
+When an archetype is staffed, it first scans its own role-local `skill-catalog.md`, reads only the matching local skill files, and reports those reads in its closing handoff.
 
 ## Installed Layout
 
 - `.codex/agents/product-team-<discipline>/<role>/<role>.toml`
+- `.codex/agents/product-team-<discipline>/<role>/skill-catalog.md`
 - `.codex/agents/product-team-<discipline>/<role>/skills/<discipline-group>/*.md`
 - `.codex/product-team/references/`
 - `.codex/product-team/scripts/validate-install.py`
