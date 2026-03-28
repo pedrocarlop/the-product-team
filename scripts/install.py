@@ -7,6 +7,7 @@ import argparse
 import json
 import re
 import shutil
+import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
@@ -17,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.toml_utils import discover_toml_paths, load_toml
 
 
-PACKAGE_VERSION = "1.0.0"
+PACKAGE_VERSION = "1.1.1"
 PACKAGE_SLUG = "product-team"
 PACKAGE_DIRNAME = ".codex/product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
@@ -75,6 +76,22 @@ def parse_args() -> argparse.Namespace:
         default=".",
         help="Project directory to install into. Defaults to the current directory.",
     )
+    parser.add_argument(
+        "--source-root",
+        help="Absolute or relative path to the source Product Team checkout used for this install.",
+    )
+    parser.add_argument(
+        "--source-repo-url",
+        help="Canonical repository URL for the Product Team source.",
+    )
+    parser.add_argument(
+        "--source-ref",
+        help="Branch or tag to track when updating from a remote archive.",
+    )
+    parser.add_argument(
+        "--source-archive-url",
+        help="Archive URL that can be used to fetch the latest Product Team package.",
+    )
     return parser.parse_args()
 
 
@@ -105,6 +122,71 @@ def placeholder_target_error(raw_target: str, resolved_target: Path) -> str | No
         )
 
     return None
+
+
+def run_git(root: Path, *args: str) -> str | None:
+    try:
+        completed = subprocess.run(
+            ["git", *args],
+            cwd=root,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return None
+    return completed.stdout.strip() or None
+
+
+def normalize_repo_url(url: str | None) -> str | None:
+    if not url:
+        return None
+
+    normalized = url.strip()
+    if normalized.startswith("git@github.com:"):
+        normalized = f"https://github.com/{normalized.removeprefix('git@github.com:')}"
+    elif normalized.startswith("ssh://git@github.com/"):
+        normalized = f"https://github.com/{normalized.removeprefix('ssh://git@github.com/')}"
+
+    if normalized.endswith(".git"):
+        normalized = normalized[:-4]
+
+    return normalized
+
+
+def github_archive_url(repo_url: str | None, ref: str | None) -> str | None:
+    if not repo_url or not ref:
+        return None
+    if not repo_url.startswith("https://github.com/"):
+        return None
+    return f"{repo_url}/archive/refs/heads/{ref}.tar.gz"
+
+
+def detect_install_source(root: Path, args: argparse.Namespace) -> dict[str, str | None]:
+    local_source_root: str | None = None
+    if args.source_root:
+        local_source_root = str(Path(args.source_root).expanduser().resolve())
+    elif not args.source_repo_url and not args.source_archive_url:
+        local_source_root = str(root)
+
+    repo_url = normalize_repo_url(args.source_repo_url) or normalize_repo_url(
+        run_git(root, "remote", "get-url", "origin")
+    )
+    ref = args.source_ref or run_git(root, "rev-parse", "--abbrev-ref", "HEAD")
+    if ref == "HEAD":
+        ref = None
+    if not ref:
+        ref = "main"
+
+    archive_url = args.source_archive_url or github_archive_url(repo_url, ref)
+
+    return {
+        "install_mode": "local_checkout" if local_source_root else "archive",
+        "local_source_root": local_source_root,
+        "repo_url": repo_url,
+        "ref": ref,
+        "archive_url": archive_url,
+    }
 
 
 def managed_agents_block(fragment: str) -> str:
@@ -284,6 +366,10 @@ def install_package_docs(root: Path, target_root: Path) -> None:
     validate_script_target = scripts_root / "validate-install.py"
     shutil.copy2(validate_script_source, validate_script_target)
     validate_script_target.chmod(0o755)
+    update_script_source = root / "scripts" / "update-install.py"
+    update_script_target = scripts_root / "update-install.py"
+    shutil.copy2(update_script_source, update_script_target)
+    update_script_target.chmod(0o755)
 
 
 def install_logs(root: Path, target_root: Path) -> bool:
@@ -308,14 +394,19 @@ def install_logs(root: Path, target_root: Path) -> bool:
     return True
 
 
-def write_manifest(target_root: Path, roles: list[RoleSpec]) -> None:
+def write_manifest(
+    target_root: Path,
+    roles: list[RoleSpec],
+    install_source: dict[str, str | None],
+) -> None:
     package_root = target_root / ".codex" / PACKAGE_SLUG
     ensure_directory(package_root)
     manifest = {
-        "schema_version": 2,
+        "schema_version": 3,
         "package_name": PACKAGE_SLUG,
         "version": PACKAGE_VERSION,
         "installed_at": datetime.now(timezone.utc).isoformat(),
+        "install_source": install_source,
         "managed_agents_markers": {
             "start": MARKER_START,
             "end": MARKER_END,
@@ -345,6 +436,7 @@ def main() -> int:
     target_root = Path(args.target).expanduser().resolve()
     target_error = placeholder_target_error(args.target, target_root)
     roles = discover_roles(root)
+    install_source = detect_install_source(root, args)
 
     required_paths = [
         root / "assets" / "AGENTS.fragment.md",
@@ -352,6 +444,7 @@ def main() -> int:
         root / "logs" / "README.md",
         root / "references" / "role-catalog.md",
         root / "scripts" / "validate-install.py",
+        root / "scripts" / "update-install.py",
     ]
     missing = [path for path in required_paths if not path.exists()]
     if missing:
@@ -376,7 +469,7 @@ def main() -> int:
     install_package_docs(root, target_root)
     created_logs_readme = install_logs(root, target_root)
     update_agents_md(root / "assets" / "AGENTS.fragment.md", target_root)
-    write_manifest(target_root, roles)
+    write_manifest(target_root, roles, install_source)
 
     print(f"Installed Product Team v{PACKAGE_VERSION} for Codex into {target_root}")
     print(f"Installed {len(roles)} namespaced role definitions.")

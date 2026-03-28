@@ -72,10 +72,16 @@ def main() -> int:
     expected_roles = manifest.get("roles", [])
     roles_by_name = {role["installed_name"]: role for role in expected_roles}
     installed_names = {role["installed_name"] for role in expected_roles}
+    install_source = manifest.get("install_source", {})
 
     expect(manifest.get("package_name") == PACKAGE_SLUG, "Manifest package_name is incorrect.", failures)
     expect(f"{PACKAGE_SLUG}-orchestrator" in installed_names, "Manifest is missing the orchestrator role.", failures)
     expect(f"{PACKAGE_SLUG}-reference" in installed_names, "Manifest is missing the reference role.", failures)
+    expect(
+        any(install_source.get(key) for key in ("local_source_root", "repo_url", "archive_url")),
+        "Manifest is missing install_source metadata for future updates.",
+        failures,
+    )
 
     agents_md = root / "AGENTS.md"
     expect(agents_md.exists(), "Missing AGENTS.md in target project.", failures)
@@ -87,8 +93,15 @@ def main() -> int:
     expect((root / "logs" / "archive").is_dir(), "Missing logs/archive directory.", failures)
 
     refs_root = root / ".codex" / PACKAGE_SLUG / "references"
+    scripts_root = root / ".codex" / PACKAGE_SLUG / "scripts"
     expect((refs_root / "logs-workflow-contract.md").exists(), "Missing installed logs contract reference doc.", failures)
     expect((refs_root / "role-catalog.md").exists(), "Missing installed role catalog reference doc.", failures)
+    expect((scripts_root / "validate-install.py").exists(), "Missing installed validate-install.py script.", failures)
+    expect((scripts_root / "update-install.py").exists(), "Missing installed update-install.py script.", failures)
+    if (refs_root / "logs-workflow-contract.md").exists():
+        logs_contract = (refs_root / "logs-workflow-contract.md").read_text(encoding="utf-8")
+        expect("This is the plan" in logs_contract, "Installed logs contract is missing the approval handoff opener.", failures)
+        expect("Do you want to proceed?" in logs_contract, "Installed logs contract is missing the approval handoff question.", failures)
 
     orchestrator_name = f"{PACKAGE_SLUG}-orchestrator"
     reference_name = f"{PACKAGE_SLUG}-reference"
@@ -116,6 +129,9 @@ def main() -> int:
         if source_name == "orchestrator":
             execution_policy = data.get("execution_policy", {})
             expect(execution_policy.get("role_kind") == "orchestrator", f"{toml_path}: orchestrator role_kind must be orchestrator.", failures)
+            prompt = data.get("system_prompt", "")
+            expect("This is the plan" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff opener.", failures)
+            expect("Do you want to proceed?" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff question.", failures)
         else:
             handoff_to = role_boundary.get("handoff_to", [])
             expect(orchestrator_name in handoff_to, f"{toml_path}: handoff_to must include {orchestrator_name!r}.", failures)

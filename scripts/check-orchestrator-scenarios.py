@@ -54,6 +54,16 @@ def main() -> int:
         "Approval gate missing from orchestrator prompt.",
         failures,
     )
+    expect("This is the plan" in orchestrator_prompt, "Orchestrator prompt missing explicit approval handoff opener.", failures)
+    expect("Do you want to proceed?" in orchestrator_prompt, "Orchestrator prompt missing explicit approval handoff question.", failures)
+    expect(
+        "03_unified-plan.md" in orchestrator_prompt
+        and "04_approval.md" in orchestrator_prompt
+        and "status.md" in orchestrator_prompt
+        and "context.md" in orchestrator_prompt,
+        "Orchestrator prompt missing required approval handoff log references.",
+        failures,
+    )
     expect("mismatch note" in orchestrator_prompt.lower(), "Misfit staffing path missing from orchestrator prompt.", failures)
     expect(
         "Request `plans/<role>.md` only when" in orchestrator_prompt
@@ -76,6 +86,19 @@ def main() -> int:
     expect("Default to direct Codex execution" in agents_fragment, "Managed AGENTS guidance missing direct-first instruction.", failures)
     expect("actual role needs, not task keywords alone" in agents_fragment, "Managed AGENTS guidance missing anti-keyword staffing rule.", failures)
     expect("Request role plans only when" in agents_fragment, "Managed AGENTS guidance missing optional advisory-plan rule.", failures)
+    expect("Do you want to proceed?" in agents_fragment, "Managed AGENTS guidance missing explicit approval handoff question.", failures)
+
+    approve_skill = (ROOT / "agents/orchestrator/orchestrator/skills/approve.md").read_text()
+    expect("This is the plan" in approve_skill, "Approve skill missing explicit approval handoff opener.", failures)
+    expect("Do you want to proceed?" in approve_skill, "Approve skill missing explicit approval handoff question.", failures)
+    expect(
+        "03_unified-plan.md" in approve_skill
+        and "04_approval.md" in approve_skill
+        and "status.md" in approve_skill
+        and "context.md" in approve_skill,
+        "Approve skill missing required approval handoff log references.",
+        failures,
+    )
 
     specialist_files = discover_toml_paths(ROOT)
     for path in specialist_files:
@@ -108,6 +131,8 @@ def main() -> int:
     expect("Orchestrated work must" in logs_readme, "logs/README.md does not define orchestration requirements.", failures)
     expect("Treat role plans as optional advisory input to the orchestrator" in logs_readme, "logs/README.md missing optional advisory-plan contract.", failures)
     expect("Execute the approved cycle before allowing another material planning iteration" in logs_readme, "logs/README.md missing anti-churn execution rule.", failures)
+    expect("This is the plan" in logs_readme, "logs/README.md missing explicit approval handoff opener.", failures)
+    expect("Do you want to proceed?" in logs_readme, "logs/README.md missing explicit approval handoff question.", failures)
 
     role_catalog = ROOT / "references" / "role-catalog.md"
     expect(role_catalog.exists(), "references/role-catalog.md is missing.", failures)

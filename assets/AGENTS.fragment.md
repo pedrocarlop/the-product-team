@@ -19,6 +19,7 @@ This repository has the Product Team workflow installed.
 - Request role plans only when written specialist advice is genuinely needed.
 - Let the orchestrator define the merged process in `03_unified-plan.md`.
 - Get explicit approval before substantial multi-role execution.
+- If the orchestrator pauses for approval, it must summarize the plan, point to `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and end by asking "Do you want to proceed?"
 - Do not reopen the process piecemeal during execution. If the plan materially changes, rerun the full cycle through the orchestrator.
 - Let staffed archetypes route internally across their discipline groups instead of spawning extra same-domain handoffs.
 - Read installed role definitions in `.codex/agents/product-team-<discipline>/<role>/`.

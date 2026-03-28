@@ -2,7 +2,7 @@
 
 This repository has the Product Team Codex workflow installed.
 
-The workflow is direct-first: the orchestrator routes work cheaply, executes directly when the task is single-domain and implementation-heavy, and only escalates into multi-agent coordination when the coordination payoff is worth the cost. When orchestration is justified, the orchestrator staffs the minimum viable team, asks for specialist planning only when it is genuinely useful, authors one approved work plan, and then coordinates execution. Material replanning should happen through a new full cycle, not by repeated mid-flight rework.
+The workflow is direct-first: the orchestrator routes work cheaply, executes directly when the task is single-domain and implementation-heavy, and only escalates into multi-agent coordination when the coordination payoff is worth the cost. When orchestration is justified, the orchestrator staffs the minimum viable team, asks for specialist planning only when it is genuinely useful, authors one approved work plan, and then coordinates execution. If execution is paused for approval, the orchestrator must summarize the plan, reference the active log files, and explicitly ask "Do you want to proceed?" Material replanning should happen through a new full cycle, not by repeated mid-flight rework.
 
 Route by domain before staffing. Consult only the relevant discipline slice of `.codex/product-team/references/role-catalog.md` when the task is clearly single-domain; read the full catalog only for ambiguous or cross-functional work.
 
@@ -14,6 +14,7 @@ The workflow is organized around a small set of archetypes. Each archetype route
 - `.codex/agents/product-team-<discipline>/<role>/skills/<discipline-group>/*.md`
 - `.codex/product-team/references/`
 - `.codex/product-team/scripts/validate-install.py`
+- `.codex/product-team/scripts/update-install.py`
 - `.codex/product-team/manifest.json`
 - `logs/active/`
 - `logs/archive/`
@@ -25,6 +26,16 @@ Run this from the project root:
 ```bash
 python3 .codex/product-team/scripts/validate-install.py
 ```
+
+## Update To The Latest Package
+
+Run this from the project root:
+
+```bash
+python3 .codex/product-team/scripts/update-install.py
+```
+
+The updater reuses the recorded install source. If the original source checkout is still available, it updates from that checkout. Otherwise it falls back to the recorded remote archive.
 
 ## Usage Examples
 
@@ -44,7 +55,7 @@ The orchestrator sees this is substantial but still narrow, implementation-first
 
 > "Add dark mode support to the dashboard"
 
-The orchestrator identifies this needs a **designer** (to define theme tokens, states, and copy) and an **engineer** (to implement the toggle and theme switching). It staffs only those archetypes, asks for written specialist advice only if the design and implementation sequencing is unclear, authors a unified plan, asks for your approval, and then coordinates execution in sequence: design first, then engineering.
+The orchestrator identifies this needs a **designer** (to define theme tokens, states, and copy) and an **engineer** (to implement the toggle and theme switching). It staffs only those archetypes, asks for written specialist advice only if the design and implementation sequencing is unclear, authors a unified plan, points you to `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, asks "Do you want to proceed?", and then coordinates execution in sequence after approval: design first, then engineering.
 
 ### Complex request (full team)
 
@@ -58,3 +69,4 @@ The orchestrator staffs a full team: **product-lead** (to define scope and succe
 - `logs/README.md` is created only when the target repo does not already have one.
 - Installed roles stay grouped by discipline so the target repo mirrors the source package structure.
 - Shared workflow references, including the role catalog and `/logs` contract, live under `.codex/product-team/references/`.
+- `.codex/product-team/manifest.json` records enough source metadata for installed repos to self-update later.

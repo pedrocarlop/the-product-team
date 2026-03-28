@@ -70,6 +70,8 @@ logs/
 - Presented plan version
 - User feedback
 - Approval state
+- Referenced log files used in the approval handoff
+- Pending approval question when awaiting execution
 - Approved scope
 
 `status.md`
@@ -128,6 +130,7 @@ Orchestrated work must:
 - Treat role plans as optional advisory input to the orchestrator, not as permission to execute or redefine the team process
 - Let the orchestrator author one authoritative `03_unified-plan.md` before execution starts
 - Pause for approval before substantial execution
+- When pausing for approval, the orchestrator must not stop at files alone. The user-facing handoff must say "This is the plan", reference `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and end with "Do you want to proceed?"
 - Execute the approved cycle before allowing another material planning iteration, unless the orchestrator explicitly pauses and resets the workflow
 - Store deliverables, reviews, and decision history in `/logs`
 
@@ -135,7 +138,7 @@ Orchestrated work must:
 
 `status.md` tracks the project through these states:
 
-- **planning**: Routing, intake, and staffing are in progress. No execution has started.
+- **planning**: Routing, intake, and staffing are in progress, or the workflow is waiting on explicit approval. No execution has started.
 - **in-progress**: The approved plan is being executed. Specialists are producing deliverables.
 - **blocked**: Execution is paused due to a dependency, conflict, or external factor. The blocker must be described in `status.md`.
 - **complete**: All deliverables are finalized and reviews are done. No further execution is needed.

@@ -112,7 +112,7 @@ Cuando intervienen varios roles, Product Team no quiere que cada uno invente su 
 
 ### Paso 6. Pide aprobación antes de una ejecución grande con varios roles
 
-En los trabajos coordinados más grandes, el sistema se detiene antes de empezar la ejecución principal. Así la persona usuaria puede confirmar antes la dirección.
+En los trabajos coordinados más grandes, el sistema se detiene antes de empezar la ejecución principal. Así la persona usuaria puede confirmar antes la dirección. Esa pausa debe ser explícita: el orquestador debe resumir el plan, señalar `03_unified-plan.md`, `04_approval.md`, `status.md` y `context.md`, y terminar preguntando "Do you want to proceed?"
 
 ### Paso 7. Coordina la ejecución y mantiene el registro al día
 
@@ -153,6 +153,7 @@ Las cosas principales que instala son:
 - las definiciones de agentes
 - sus habilidades y guías locales
 - la documentación compartida del paquete
+- un actualizador para traer más adelante la última versión del paquete
 - la estructura de `logs/`
 - un bloque gestionado dentro de `AGENTS.md`
 
@@ -195,7 +196,17 @@ Desde la raíz del proyecto donde lo instalaste:
 python3 .codex/product-team/scripts/validate-install.py
 ```
 
-### 3. Pídele trabajo al coordinador
+### 3. Actualiza más adelante un proyecto ya instalado
+
+Desde la raíz del proyecto instalado:
+
+```bash
+python3 .codex/product-team/scripts/update-install.py
+```
+
+El manifiesto de instalación guarda de dónde salió el paquete. Si el checkout original de la fuente sigue existiendo, el actualizador usa ese checkout para propagar al proyecto los cambios que hagas en tu repo de agentes. Si no existe, recurre al archivo remoto registrado.
+
+### 4. Pídele trabajo al coordinador
 
 Una vez instalado, usa `product-team-orchestrator` en Codex.
 
@@ -209,7 +220,7 @@ Ejemplos:
 
 El orquestador decidirá si conviene mantenerlo como trabajo directo o convertirlo en un flujo coordinado.
 
-### 4. Mira `logs/` si quieres entender qué ha pasado
+### 5. Mira `logs/` si quieres entender qué ha pasado
 
 Si quieres ver por qué el sistema tomó una decisión, cuál era el plan o en qué punto se quedó el trabajo, `logs/` es el lugar al que mirar.
 

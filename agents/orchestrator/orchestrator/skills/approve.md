@@ -16,6 +16,7 @@ Use this skill to make approval visible, editable, and durable so substantial or
 ## Required Behavior
 
 - Present the unified plan clearly
+- When approval is still pending, end the user-facing handoff with: "This is the plan", references to `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and the exact closing question "Do you want to proceed?"
 - Capture edits, scope reductions, added constraints, or specialist changes
 - Record the approval state explicitly
 - Stop substantial multi-role execution when approval is missing
@@ -28,5 +29,7 @@ Write `logs/active/<project-slug>/04_approval.md` with:
 - Presented plan version
 - User feedback
 - Approval state
+- Referenced log files for the pending handoff
+- Pending approval question when approval is not yet explicit
 - Requested edits
 - Approved scope

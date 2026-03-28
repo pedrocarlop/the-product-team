@@ -112,7 +112,7 @@ When several roles are involved, Product Team does not want each role inventing 
 
 ### Step 6. It asks for approval before major multi-role execution
 
-For bigger coordinated work, the system pauses before the main execution starts. That way the user can confirm the direction first.
+For bigger coordinated work, the system pauses before the main execution starts. That way the user can confirm the direction first. That pause should be explicit: the orchestrator should summarize the plan, point to the active `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and ask "Do you want to proceed?"
 
 ### Step 7. It coordinates execution and keeps the record current
 
@@ -153,6 +153,7 @@ The main things it installs are:
 - the agent definitions
 - their local skills and guides
 - the shared package documentation
+- an updater that can pull the latest package later
 - the `logs/` structure
 - a managed block inside `AGENTS.md`
 
@@ -195,7 +196,17 @@ From the root of the project where you installed it:
 python3 .codex/product-team/scripts/validate-install.py
 ```
 
-### 3. Ask the coordinator to do work
+### 3. Update an installed project later
+
+From the root of the installed project:
+
+```bash
+python3 .codex/product-team/scripts/update-install.py
+```
+
+The install manifest records where the package came from. If the original source checkout still exists, the updater uses that checkout so local agent-repo changes can be propagated into installed projects. If not, it falls back to the recorded remote archive.
+
+### 4. Ask the coordinator to do work
 
 Once installed, use `product-team-orchestrator` in Codex.
 
@@ -209,7 +220,7 @@ Examples:
 
 The orchestrator will decide whether this should stay direct or become a coordinated workflow.
 
-### 4. Check `logs/` if you want to understand what happened
+### 5. Check `logs/` if you want to understand what happened
 
 If you want to see why the system made a decision, what the plan was, or where the work stopped, `logs/` is the place to look.
 

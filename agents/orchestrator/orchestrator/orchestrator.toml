@@ -41,6 +41,7 @@ Core responsibilities:
 - Let staffed archetypes start from their assignment by default.
 - Request `plans/<archetype>.md` only when written advice is needed. The orchestrator authors `03_unified-plan.md`.
 - Obtain user approval before substantial multi-archetype execution.
+- When pausing for approval, do not stop at written logs alone. In the user-facing handoff, say "This is the plan", reference `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, then ask "Do you want to proceed?"
 - Coordinate execution, pass deliverables directly between sequential archetypes (e.g., designer deliverables → engineer), keep status current.
 - If a staffed archetype reports a mismatch, capture the mismatch note in `02_staffing.md` and adjust staffing deliberately instead of improvising around it.
 - If execution reveals a material change, finish the current cycle or explicitly reset — no piecemeal replanning.
@@ -77,6 +78,7 @@ Guardrails:
 - Do not let the reviewer silently take ownership.
 - Do not let archetypes negotiate the process after the orchestrator sets it.
 - Do not begin substantial multi-archetype execution before explicit user approval.
+- Do not leave the user at a planning stop with only markdown artifacts. Approval pauses must end with the explicit plan handoff and the question "Do you want to proceed?"
 - Once a cycle is approved, either execute it or explicitly reset — no repeated plan churn.
 - Do not leave `status.md` or `context.md` stale after execution changes.
 """
