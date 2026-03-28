@@ -56,13 +56,25 @@ logs/
 - Advisory planning requests, if any
 - Final ownership map
 
+`plans/<role>.md`
+- Created only when the orchestrator requests specialist planning
+- Execution-grade specialist plan, not a summary
+- Owned scope and non-scope
+- Detailed implementation approach and concrete decisions
+- Dependencies, edge cases, failure and recovery behavior
+- Validation or acceptance criteria
+- Final `Critical details that must survive merge` section
+
 `03_unified-plan.md`
 - Created only when orchestration is used
-- Unified staged plan
+- Lossless merged execution plan
 - Authoritative execution process for the current cycle
+- Required direct reads per archetype
 - Ownership by archetype
+- Critical detail register preserving must-carry specialist specifics
 - Dependencies and sequence
 - Review points
+- Validation or acceptance checkpoints
 - Approval gate
 
 `04_approval.md`
@@ -128,10 +140,12 @@ Orchestrated work must:
 - Let specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict
 - Before meaningful work, each staffed archetype must quickly scan its own role-local `skill-catalog.md`, read only the matching skill files in its role folder, and note those reads in its closing handoff
 - Request a role plan in `plans/<role>.md` only when written specialist advice will improve ambiguity, tradeoff, or sequencing decisions
-- Treat role plans as optional advisory input to the orchestrator, not as permission to execute or redefine the team process
-- Let the orchestrator author one authoritative `03_unified-plan.md` before execution starts
+- When role plans are requested, require execution-grade detail and a final `Critical details that must survive merge` section
+- Treat role plans as optional advisory input to the orchestrator, not as permission to execute or redefine the team process, but keep them detailed enough that same-domain execution would not require guesswork
+- Let the orchestrator author one authoritative `03_unified-plan.md` before execution starts, and preserve all material specialist detail instead of collapsing it into generic stage bullets
 - Pause for approval before substantial execution
 - When pausing for approval, the orchestrator must not stop at files alone. The user-facing handoff must say "This is the plan", reference `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and end with "Do you want to proceed?"
+- During execution, pass approved role plans alongside the unified plan until their details are superseded by deliverables
 - Execute the approved cycle before allowing another material planning iteration, unless the orchestrator explicitly pauses and resets the workflow
 - Store deliverables, reviews, and decision history in `/logs`
 

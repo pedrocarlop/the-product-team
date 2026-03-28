@@ -15,6 +15,12 @@ Each step has 4 states: empty (first visit), in-progress (partially filled), com
 - `FormField`: standard text input with validation, existing component
 - `ChecklistItem`: checkbox + label, uses `--color-success` on complete
 
+## Motion and Transition Spec
+- Step completion: current `StepIndicator` segment fills over 180ms ease-out once the step validates successfully.
+- Step change: next-step label fades in over 120ms after a 40ms delay; no horizontal slide is used.
+- Reduced motion: progress state updates instantly with no fill or fade animation.
+- Error handling: no forward progress motion fires when validation fails; only inline field errors appear.
+
 ## Responsive Behavior
 - Desktop: side-by-side layout for step indicator + content (min-width: 768px)
 - Mobile: stacked layout, step indicator becomes compact dots

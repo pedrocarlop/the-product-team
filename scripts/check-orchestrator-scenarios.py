@@ -21,6 +21,8 @@ def main() -> int:
     orchestrator_prompt = orchestrator["system_prompt"]
     route_skill = (ROOT / "agents/orchestrator/orchestrator/skills/route.md").read_text()
     staff_skill = (ROOT / "agents/orchestrator/orchestrator/skills/staff.md").read_text()
+    reconcile_skill = (ROOT / "agents/orchestrator/orchestrator/skills/reconcile.md").read_text()
+    coordinate_skill = (ROOT / "agents/orchestrator/orchestrator/skills/coordinate.md").read_text()
     agents_fragment = (ROOT / "assets/AGENTS.fragment.md").read_text()
 
     expect("direct execution by default" in orchestrator_prompt.lower(), "Orchestrator prompt missing direct-first rule.", failures)
@@ -71,6 +73,8 @@ def main() -> int:
         "Orchestrator prompt missing optional specialist-planning rule.",
         failures,
     )
+    expect("Preserve all material implementation detail" in orchestrator_prompt, "Orchestrator prompt missing detail-preservation rule.", failures)
+    expect("Critical details that must survive merge" in orchestrator_prompt, "Orchestrator prompt missing must-carry detail contract.", failures)
     expect("author `03_unified-plan.md`" in orchestrator_prompt or "authors `03_unified-plan.md`" in orchestrator_prompt, "Orchestrator prompt missing authoritative plan ownership.", failures)
     expect("no piecemeal replanning" in orchestrator_prompt or "no repeated plan churn" in orchestrator_prompt, "Orchestrator prompt missing anti-churn guardrail.", failures)
     expect("role catalog" in orchestrator_prompt.lower(), "Orchestrator prompt missing role-catalog guidance.", failures)
@@ -82,11 +86,18 @@ def main() -> int:
     expect("Start from the best-team assessment recorded during routing" in staff_skill, "Staff skill missing routing-to-staffing continuity.", failures)
     expect("accept assignments directly unless" in staff_skill, "Staff skill missing assignment-first specialist behavior.", failures)
     expect("Request `plans/<role>.md` only when" in staff_skill, "Staff skill missing optional advisory-planning rule.", failures)
+    expect("execution-grade detail" in staff_skill, "Staff skill missing detailed role-plan request rule.", failures)
+    expect("Critical details that must survive merge" in staff_skill, "Staff skill missing must-carry detail request rule.", failures)
+    expect("lossless" in reconcile_skill.lower(), "Reconcile skill missing lossless merge rule.", failures)
+    expect("Critical detail register" in reconcile_skill, "Reconcile skill missing critical detail register output.", failures)
+    expect("approved role plans alongside `03_unified-plan.md`" in coordinate_skill, "Coordinate skill missing role-plan carry-forward rule.", failures)
+    expect("Do not replace execution-critical detail" in coordinate_skill, "Coordinate skill missing anti-summary guardrail.", failures)
     expect("Route by domain before staffing" in agents_fragment, "Managed AGENTS guidance missing domain-first routing instruction.", failures)
     expect("Default to direct Codex execution" in agents_fragment, "Managed AGENTS guidance missing direct-first instruction.", failures)
     expect("actual role needs, not task keywords alone" in agents_fragment, "Managed AGENTS guidance missing anti-keyword staffing rule.", failures)
     expect("skill-catalog.md" in agents_fragment, "Managed AGENTS guidance missing role-local skill catalog rule.", failures)
     expect("Request role plans only when" in agents_fragment, "Managed AGENTS guidance missing optional advisory-plan rule.", failures)
+    expect("preserve all material specialist detail" in agents_fragment.lower(), "Managed AGENTS guidance missing detail-preservation rule.", failures)
     expect("Do you want to proceed?" in agents_fragment, "Managed AGENTS guidance missing explicit approval handoff question.", failures)
 
     approve_skill = (ROOT / "agents/orchestrator/orchestrator/skills/approve.md").read_text()
@@ -117,6 +128,9 @@ def main() -> int:
       expect("approval gate is in place" in prompt, f"{role}: missing conditional approval gating language.", failures)
       expect(f"logs/active/<project-slug>/plans/{role}.md" in prompt, f"{role}: missing plan path in prompt.", failures)
       expect("optional specialist input" in prompt.lower(), f"{role}: missing optional advisory-plan rule.", failures)
+      expect("execution-grade plan" in prompt, f"{role}: missing detailed planning rule.", failures)
+      expect("Critical details that must survive merge" in prompt, f"{role}: missing must-carry detail section contract.", failures)
+      expect("Do not silently drop planned concrete details" in prompt, f"{role}: missing execution detail preservation rule.", failures)
       expect("Escalate blockers" in prompt or "escalate to the orchestrator" in prompt, f"{role}: missing escalation-before-replan rule.", failures)
 
       if data["execution_policy"]["role_kind"] == "reviewer":
@@ -134,6 +148,9 @@ def main() -> int:
     expect("Orchestrated work must" in logs_readme, "logs/README.md does not define orchestration requirements.", failures)
     expect("skill-catalog.md" in logs_readme, "logs/README.md missing role-local skill catalog guidance.", failures)
     expect("Treat role plans as optional advisory input to the orchestrator" in logs_readme, "logs/README.md missing optional advisory-plan contract.", failures)
+    expect("Execution-grade specialist plan" in logs_readme, "logs/README.md missing detailed specialist plan contract.", failures)
+    expect("Critical detail register" in logs_readme, "logs/README.md missing unified-plan detail register contract.", failures)
+    expect("preserve all material specialist detail" in logs_readme.lower(), "logs/README.md missing detail-preservation rule.", failures)
     expect("Execute the approved cycle before allowing another material planning iteration" in logs_readme, "logs/README.md missing anti-churn execution rule.", failures)
     expect("This is the plan" in logs_readme, "logs/README.md missing explicit approval handoff opener.", failures)
     expect("Do you want to proceed?" in logs_readme, "logs/README.md missing explicit approval handoff question.", failures)

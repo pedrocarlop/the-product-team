@@ -16,6 +16,7 @@ Use this skill to make approval visible, editable, and durable so substantial or
 ## Required Behavior
 
 - Present the unified plan clearly
+- Keep the user-facing summary concise if needed, but keep `03_unified-plan.md` detailed enough that specialists can execute without re-deriving missing detail
 - When approval is still pending, end the user-facing handoff with: "This is the plan", references to `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and the exact closing question "Do you want to proceed?"
 - Capture edits, scope reductions, added constraints, or specialist changes
 - Record the approval state explicitly

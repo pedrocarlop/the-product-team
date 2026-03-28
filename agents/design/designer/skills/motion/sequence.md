@@ -27,6 +27,7 @@ Use this skill to choreograph motion across multiple elements so the user can fo
 - The intended attention order
 - The trigger and completion condition
 - The maximum acceptable total duration
+- Any interruption, cancellation, or reverse path
 - Reduced-motion behavior for the same interaction
 
 ## Workflow
@@ -36,7 +37,8 @@ Use this skill to choreograph motion across multiple elements so the user can fo
 3. Assign offsets so the sequence feels intentional rather than random.
 4. Keep the total motion budget short enough to preserve task momentum.
 5. Check the sequence from the user's perspective, not the animator's.
-6. Define the reduced-motion version so the order still reads clearly.
+6. Define interruption, reverse, and cancellation behavior so the sequence does not break under real use.
+7. Define the reduced-motion version so the order still reads clearly.
 
 ## Design Principles / Evaluation Criteria
 
@@ -48,8 +50,9 @@ Use this skill to choreograph motion across multiple elements so the user can fo
 
 ## Output Contract
 
-- A sequence map listing the ordered steps and offsets
-- Timing and easing guidance for each step
+- A sequence map listing the ordered steps, affected elements, offsets, and completion conditions
+- Timing and easing guidance for each step, including what runs in parallel and what must wait
+- Reverse, interruption, and cancellation behavior where relevant
 - Reduced-motion fallback that keeps the order understandable
 
 ## Examples
@@ -72,6 +75,7 @@ Expected output:
 - Do not let stagger durations become long enough to feel slow
 - Do not use sequence to hide poor hierarchy
 - Do not ignore the reverse or cancellation path
+- Do not describe a cascade without saying which elements move at each step
 
 ## Optional Tools / Resources
 

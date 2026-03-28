@@ -34,9 +34,10 @@ Use this skill to design motion as a signal: to tell users that something needs 
 1. Define the message in one sentence: what should the user understand?
 2. Classify the signal by urgency, frequency, and importance.
 3. Choose the smallest motion that makes the meaning legible.
-4. Set the duration, repeat behavior, and stopping condition.
+4. Set the trigger, changed properties, duration, repeat behavior, and stopping condition.
 5. Make sure the signal supports the content instead of overpowering it.
-6. Specify reduced-motion behavior and verify the meaning survives without movement.
+6. Specify implementation constraints such as maximum repeats, cooldowns, and no-loop defaults.
+7. Specify reduced-motion behavior and verify the meaning survives without movement.
 
 ## Design Principles / Evaluation Criteria
 
@@ -48,9 +49,10 @@ Use this skill to design motion as a signal: to tell users that something needs 
 
 ## Output Contract
 
-- A motion signal spec with trigger, intent, duration, and repeat behavior
+- A motion signal spec with trigger, intent, affected surface, changed properties, duration, repeat behavior, and stopping condition
 - Guidance for prominence, color, and accompanying copy if needed
 - Reduced-motion fallback that preserves the message
+- Guardrails for how often the signal may appear and when it must stay static
 
 ## Examples
 
@@ -71,6 +73,7 @@ Expected output:
 - Do not create looping motion unless it is necessary and bounded
 - Do not use the same signal treatment for success, warning, and error
 - Do not make users chase status with distracting movement
+- Do not specify a pulse or bounce without saying amplitude, count, and stop condition
 
 ## Optional Tools / Resources
 

@@ -33,10 +33,11 @@ Use this skill to design motion between states so users can track what changed, 
 
 1. Identify the exact state pair being designed.
 2. Decide whether the motion should preserve spatial continuity, confirm causality, or simply minimize abruptness.
-3. Define the entry, exit, and overlap behavior for every moving piece.
-4. Set duration, easing, delay, and interruption rules for each state change.
+3. Define the entry, exit, overlap, and unchanged behavior for every moving piece.
+4. Set duration, easing, delay, interruption, and reverse rules for each state change.
 5. Check that the motion direction matches the interface model and does not create false affordances.
-6. Specify the reduced-motion version and confirm it still communicates the change clearly.
+6. Specify implementation constraints such as allowed properties, performance limits, and focus behavior if relevant.
+7. Specify the reduced-motion version and confirm it still communicates the change clearly.
 
 ## Design Principles / Evaluation Criteria
 
@@ -48,9 +49,10 @@ Use this skill to design motion between states so users can track what changed, 
 
 ## Output Contract
 
-- A state-transition spec covering entry, exit, timing, easing, and overlap
+- A state-transition spec covering trigger, affected elements, entry, exit, overlap, unchanged elements, timing, easing, delay, interruption, and reverse behavior
 - Any shared-element or morphing guidance needed for engineering or prototyping
 - Reduced-motion fallback behavior for the same transition
+- Implementation notes for performance, focus, and interaction safety
 
 ## Examples
 
@@ -73,6 +75,7 @@ Expected output:
 - Do not design only the forward transition and ignore the reverse
 - Do not rely on long durations to disguise unclear state logic
 - Do not skip reduced-motion behavior
+- Do not summarize the transition as "slides in" without specifying from where, how fast, and what happens to the rest of the UI
 
 ## Optional Tools / Resources
 

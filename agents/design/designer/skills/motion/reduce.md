@@ -36,7 +36,8 @@ Use this skill to define how motion should behave when users prefer reduced moti
 3. Replace complex motion with instant state changes or minimal fades where needed.
 4. Preserve timing only if it still improves comprehension.
 5. Check for vestibular risk, repetition, and attention overload.
-6. Verify that the reduced version is still understandable on its own.
+6. Specify what stays identical to the full-motion path, including state timing, focus behavior, and screen-reader-relevant changes.
+7. Verify that the reduced version is still understandable on its own.
 
 ## Design Principles / Evaluation Criteria
 
@@ -48,8 +49,9 @@ Use this skill to define how motion should behave when users prefer reduced moti
 
 ## Output Contract
 
-- A reduced-motion spec paired to the original motion
+- A reduced-motion spec paired to the original motion, ideally as a side-by-side mapping
 - Notes on which effects are removed, simplified, or replaced
+- Notes on what remains identical, including focus, hierarchy, and state visibility
 - Any accessibility rationale needed for engineering or QA
 
 ## Examples
@@ -71,6 +73,7 @@ Expected output:
 - Do not preserve decorative effects that are not necessary
 - Do not leave the reduced path undocumented
 - Do not assume opacity fades are always sufficient if the meaning becomes unclear
+- Do not describe reduced motion only as "less motion" without stating the exact fallback behavior
 
 ## Optional Tools / Resources
 

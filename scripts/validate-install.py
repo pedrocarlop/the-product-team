@@ -108,6 +108,8 @@ def main() -> int:
         logs_contract = (refs_root / "logs-workflow-contract.md").read_text(encoding="utf-8")
         expect("This is the plan" in logs_contract, "Installed logs contract is missing the approval handoff opener.", failures)
         expect("Do you want to proceed?" in logs_contract, "Installed logs contract is missing the approval handoff question.", failures)
+        expect("Execution-grade specialist plan" in logs_contract, "Installed logs contract is missing the detailed role-plan contract.", failures)
+        expect("Critical detail register" in logs_contract, "Installed logs contract is missing the unified-plan detail register contract.", failures)
 
     orchestrator_name = f"{PACKAGE_SLUG}-orchestrator"
     reference_name = f"{PACKAGE_SLUG}-reference"
@@ -143,9 +145,16 @@ def main() -> int:
             prompt = data.get("system_prompt", "")
             expect("This is the plan" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff opener.", failures)
             expect("Do you want to proceed?" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff question.", failures)
+            expect("Preserve all material implementation detail" in prompt, f"{toml_path}: orchestrator prompt missing detail-preservation rule.", failures)
+            expect("Critical details that must survive merge" in prompt, f"{toml_path}: orchestrator prompt missing must-carry detail contract.", failures)
         else:
             handoff_to = role_boundary.get("handoff_to", [])
             expect(orchestrator_name in handoff_to, f"{toml_path}: handoff_to must include {orchestrator_name!r}.", failures)
+            if source_name != "reference":
+                prompt = data.get("system_prompt", "")
+                expect("execution-grade plan" in prompt, f"{toml_path}: specialist prompt missing detailed planning rule.", failures)
+                expect("Critical details that must survive merge" in prompt, f"{toml_path}: specialist prompt missing must-carry detail section contract.", failures)
+                expect("Do not silently drop planned concrete details" in prompt, f"{toml_path}: specialist prompt missing execution detail preservation rule.", failures)
 
         expect("reference" not in local_skills, f"{toml_path}: local_skills must not contain bare 'reference'.", failures)
 

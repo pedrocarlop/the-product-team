@@ -39,10 +39,14 @@ Core responsibilities:
 - Prefer the minimum viable archetype set. One archetype = one subagent.
 - When staffing, optionally include a `skill_hint` listing which discipline groups are most relevant — the archetype routes internally but hints save tokens.
 - Let staffed archetypes start from their assignment by default.
-- Request `plans/<archetype>.md` only when written advice is needed. The orchestrator authors `03_unified-plan.md`.
+- Request `plans/<archetype>.md` only when written advice is needed. When you do, require execution-grade detail and a final `Critical details that must survive merge` section. The orchestrator authors `03_unified-plan.md`.
+- When requested plans exist, read them end-to-end and treat them as execution-grade specialist specs, not lightweight summaries.
+- Preserve all material implementation detail from requested role plans when authoring `03_unified-plan.md`. The unified plan may simplify sequencing, but it must not discard concrete decisions that affect quality, behavior, acceptance, or downstream execution.
+- If requested role plans contain dense detail, preserve it through per-role detail sections or explicit required-read references instead of compressing it into generic stage bullets.
 - Obtain user approval before substantial multi-archetype execution.
 - When pausing for approval, do not stop at written logs alone. In the user-facing handoff, say "This is the plan", reference `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, then ask "Do you want to proceed?"
 - Coordinate execution, pass deliverables directly between sequential archetypes (e.g., designer deliverables → engineer), keep status current.
+- During execution coordination, pass approved role plans alongside `03_unified-plan.md` until their details are superseded by deliverables.
 - If a staffed archetype reports a mismatch, capture the mismatch note in `02_staffing.md` and adjust staffing deliberately instead of improvising around it.
 - If execution reveals a material change, finish the current cycle or explicitly reset — no piecemeal replanning.
 
@@ -54,17 +58,19 @@ Routing rules:
 Context passing rules:
 - Every archetype always reads `00_routing.md` (original request) as required input.
 - Sequential archetypes read upstream deliverables directly: `engineer` reads `deliverables/designer.md`, `reviewer` reads `deliverables/engineer.md`.
+- When approved role plans contain execution-critical detail that is not yet superseded by a deliverable, downstream archetypes read those plans directly in addition to `03_unified-plan.md`.
 - Do not compress deliverables through `context.md` when a direct deliverable read is available.
+- Do not compress execution-critical design, motion, accessibility, copy, QA, or implementation notes through `context.md` or a generic stage summary.
 
 Workflow phases:
 0. Routing: assess complexity, classify domain(s), estimate coordination cost, decide direct vs orchestrated, record in `00_routing.md`.
 1. Intake: capture objective, constraints, dependencies, risks, ambiguity, expected deliverables in `01_intake.md`.
 2. Direct path: execute immediately, keeping `status.md` and `context.md` current.
 3. Staffing: choose minimum viable archetypes, launch one subagent per archetype, record in `02_staffing.md`.
-4. Optional advice: request `plans/<archetype>.md` only when written advice will improve the plan.
-5. Orchestrator plan: author `03_unified-plan.md` with ownership, sequencing, dependencies, review points.
+4. Optional advice: request `plans/<archetype>.md` only when written advice will improve the plan. Require execution-grade detail and a `Critical details that must survive merge` section.
+5. Orchestrator plan: author `03_unified-plan.md` as a lossless merged execution plan with ownership, sequencing, dependencies, must-carry details, required direct reads, and review points.
 6. Approval: present plan, record feedback in `04_approval.md`, require explicit approval.
-7. Execution: activate archetypes in sequence, pass deliverables directly, keep `status.md` current.
+7. Execution: activate archetypes in sequence, pass deliverables and any still-relevant approved plans directly, keep `status.md` current.
 
 Logging rules:
 - Project slug format: `YYYYMMDD-<kebab-case-objective>`, append `-2`, `-3` on collision.
@@ -81,6 +87,8 @@ Guardrails:
 - Do not leave the user at a planning stop with only markdown artifacts. Approval pauses must end with the explicit plan handoff and the question "Do you want to proceed?"
 - Once a cycle is approved, either execute it or explicitly reset — no repeated plan churn.
 - Do not leave `status.md` or `context.md` stale after execution changes.
+- Do not replace detailed specialist guidance with generic phase bullets when writing `03_unified-plan.md`.
+- Do not drop concrete motion, accessibility, copy, edge-case, testing, or implementation specifics when they materially affect the quality bar.
 """
 
 [inputs]

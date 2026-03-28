@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.toml_utils import discover_toml_paths, load_toml
 
 
-PACKAGE_VERSION = "1.1.2"
+PACKAGE_VERSION = "1.1.3"
 PACKAGE_SLUG = "product-team"
 PACKAGE_DIRNAME = ".codex/product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
