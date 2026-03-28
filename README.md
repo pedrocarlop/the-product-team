@@ -1,240 +1,310 @@
 # Product Team
 
-Product Team es un paquete para Codex que convierte un repositorio normal en un espacio donde varios agentes pueden trabajar como si fueran un pequeño equipo de producto.
+Product Team is a package for Codex that turns a normal repository into a workspace where multiple agents can operate like a small product team.
 
-Dicho de forma simple: este proyecto añade un "coordinador" y varios "especialistas" para que Codex no solo ejecute tareas sueltas, sino que también pueda decidir cómo organizar el trabajo, cuándo merece la pena pedir ayuda a otros agentes y cómo dejar todo documentado para no perder el hilo.
+Product Team es un paquete para Codex que convierte un repositorio normal en un espacio donde varios agentes pueden trabajar como un pequeño equipo de producto.
 
-## La idea principal
+In simple terms, this project adds a coordinator, a set of specialists, and a shared work log so Codex can decide how to organize work instead of just reacting task by task.
 
-Este sistema sigue una regla muy importante:
+En términos simples, este proyecto añade un coordinador, un conjunto de especialistas y un registro compartido del trabajo para que Codex pueda decidir cómo organizarlo en vez de limitarse a reaccionar tarea por tarea.
 
-**primero intenta resolver las cosas de la forma más simple posible**.
+## Core Idea
 
-Eso significa que no crea un equipo de agentes para todo. Antes de hacerlo, comprueba si una sola persona-agente puede resolver la tarea bien y más rápido.
+The main rule is simple: start with the lightest possible process.
 
-En la práctica funciona así:
+La regla principal es simple: empezar con el proceso más ligero posible.
+
+That means Product Team does not create a group of agents for every request. It first checks whether one agent can handle the job well. Only if coordination would clearly improve the result does it bring in more roles.
+
+Eso significa que Product Team no crea un grupo de agentes para cada petición. Primero comprueba si un solo agente puede resolver el trabajo bien. Solo si la coordinación mejora claramente el resultado incorpora más roles.
+
+In practice, the flow is:
+
+En la práctica, el flujo es:
+
+1. A request comes in.
+2. The coordinator decides whether the work is simple or cross-functional.
+3. If it is simple, the work is done directly.
+4. If it is more complex, the coordinator chooses the smallest team that makes sense.
+5. The important decisions and status are written to `logs/`.
 
 1. Llega una petición.
-2. El coordinador decide si eso es algo simple o algo que necesita varias miradas.
+2. El coordinador decide si el trabajo es simple o si cruza varias áreas.
 3. Si es simple, se hace directamente.
-4. Si es más complejo, el coordinador elige el equipo mínimo necesario.
-5. Todo queda apuntado en una carpeta de `logs/` para que el trabajo tenga memoria.
+4. Si es más complejo, el coordinador elige el equipo más pequeño que tenga sentido.
+5. Las decisiones importantes y el estado se escriben en `logs/`.
 
-## Cómo entender este proyecto sin tecnicismos
+## What This Project Really Is
 
-Piensa en Product Team como una oficina pequeña dentro de Codex:
+Think of Product Team as an operating system for agent collaboration inside Codex.
 
-- Hay una persona que reparte el trabajo: el **orchestrator**.
-- Hay especialistas para producto, diseño, negocio, ingeniería y revisión.
-- Hay una libreta compartida donde se apunta todo: la carpeta **`logs/`**.
-- Hay un instalador que copia esta forma de trabajar dentro de cualquier proyecto tuyo.
+Piensa en Product Team como un sistema de funcionamiento para la colaboración entre agentes dentro de Codex.
 
-No es una app final para usuarios. Es una forma de organizar cómo trabajan los agentes dentro de otro proyecto.
+It is not an end-user product by itself. It is a reusable way of working that you can install inside another repository so Codex has:
 
-## Las piezas más importantes
+No es un producto final para usuarios por sí mismo. Es una forma reutilizable de trabajar que puedes instalar dentro de otro repositorio para que Codex tenga:
+
+- one coordinator that controls the process
+- specialist roles for different kinds of work
+- a written memory of what happened
+- clear rules for when to work directly and when to coordinate
+
+- un coordinador que controla el proceso
+- roles especialistas para distintos tipos de trabajo
+- una memoria escrita de lo que ha pasado
+- reglas claras para decidir cuándo trabajar de forma directa y cuándo coordinar
+
+## The Main Parts
+
+## Las partes principales
+
+### 1. The Coordinator: `orchestrator`
 
 ### 1. El coordinador: `orchestrator`
 
-Es el cerebro del sistema.
+The orchestrator is the role that decides how work should happen.
 
-Su trabajo no es hacerlo todo, sino decidir:
+El orquestador es el rol que decide cómo debe hacerse el trabajo.
 
-- qué se ha pedido realmente
-- si el trabajo es simple o complejo
-- qué tipo de ayuda hace falta
-- si compensa trabajar con un solo agente o con varios
-- en qué orden deben trabajar
-- cuándo hay que pedir aprobación antes de seguir
+It is responsible for understanding the request, deciding whether to stay direct or start a coordinated workflow, choosing roles, ordering the work, and asking for approval before major multi-role execution.
 
-Su filosofía es clara:
+Se encarga de entender la petición, decidir si conviene seguir por vía directa o iniciar un flujo coordinado, elegir roles, ordenar el trabajo y pedir aprobación antes de una ejecución grande con varios roles.
 
-- si una tarea se puede hacer bien sin montar un equipo, no monta un equipo
-- si una tarea se puede hacer mejor con varias personas-agente, coordina ese proceso
+Its philosophy is:
+
+Su filosofía es:
+
+- do not overcomplicate simple work
+- do not create a team unless the team adds value
+- keep the process written down
+
+- no complicar trabajos simples
+- no crear un equipo si ese equipo no aporta valor
+- dejar el proceso por escrito
+
+### 2. The Specialists
 
 ### 2. Los especialistas
 
-El proyecto trae varios roles ya preparados. Cada uno representa un tipo de trabajo.
+The package includes a set of roles that represent broad areas of work.
 
-#### Negocio
+El paquete incluye un conjunto de roles que representan grandes áreas de trabajo.
 
-- `product-lead`: ayuda a definir qué se construye, por qué y con qué prioridad
-- `analyst`: trabaja con números, métricas, previsiones e impacto
-- `go-to-market`: piensa en crecimiento, marketing, ventas y salida al mercado
-- `business-ops`: ordena procesos y operaciones
+Business:
 
-#### Diseño
+Negocio:
 
-- `designer`: cubre investigación, experiencia de usuario, interfaz, textos, accesibilidad y más
-- `design-systems`: se centra en componentes, estilos comunes y coherencia visual
+- `product-lead`: decides what should be built and why
+- `analyst`: works with metrics, forecasts, and numbers
+- `go-to-market`: focuses on growth, marketing, sales, and launch
+- `business-ops`: improves processes and operational structure
 
-#### Ingeniería
+- `product-lead`: decide qué debería construirse y por qué
+- `analyst`: trabaja con métricas, previsiones y números
+- `go-to-market`: se centra en crecimiento, marketing, ventas y lanzamiento
+- `business-ops`: mejora procesos y estructura operativa
 
-- `engineer`: implementa producto, frontend, backend, móvil y trabajo full stack
-- `platform-engineer`: se ocupa de APIs, bases de datos, rendimiento, seguridad, infraestructura y arquitectura técnica
+Design:
 
-#### Revisión
+Diseño:
 
-- `reviewer`: revisa si el resultado tiene sentido, si funciona bien y si la calidad es suficiente
+- `designer`: covers research, UX, UI, content, accessibility, and more
+- `design-systems`: owns reusable components, tokens, and visual consistency
 
-### 3. La memoria del trabajo: `logs/`
+- `designer`: cubre investigación, UX, UI, contenido, accesibilidad y más
+- `design-systems`: se encarga de componentes reutilizables, tokens y coherencia visual
 
-Todo lo importante se guarda en `logs/`.
+Engineering:
 
-Esto es clave porque el sistema no quiere depender de la memoria de una conversación suelta. Quiere dejar rastro claro de:
+Ingeniería:
 
-- qué se pidió
-- qué se entendió
-- quién iba a participar
-- cuál era el plan
-- si hubo aprobación
-- en qué punto está el trabajo
-- qué decisiones se tomaron
-- qué entregables se produjeron
+- `engineer`: builds product features across frontend, backend, mobile, and full stack work
+- `platform-engineer`: handles APIs, databases, performance, security, and technical architecture
 
-En otras palabras: `logs/` es el historial vivo del proyecto.
+- `engineer`: construye funcionalidades de producto en frontend, backend, móvil y trabajo full stack
+- `platform-engineer`: se ocupa de APIs, bases de datos, rendimiento, seguridad y arquitectura técnica
+
+Review:
+
+Revisión:
+
+- `reviewer`: checks whether the result is solid, useful, and high enough quality
+
+- `reviewer`: comprueba si el resultado es sólido, útil y con suficiente calidad
+
+### 3. Shared Memory: `logs/`
+
+### 3. Memoria compartida: `logs/`
+
+`logs/` is where the workflow writes down what happened.
+
+`logs/` es donde el flujo de trabajo deja escrito lo que ha pasado.
+
+This matters because the system does not want to depend on chat memory alone. It wants a durable record of the request, the plan, the current status, the deliverables, and the important decisions.
+
+Esto importa porque el sistema no quiere depender solo de la memoria del chat. Quiere un registro duradero de la petición, del plan, del estado actual, de los entregables y de las decisiones importantes.
+
+In plain language, `logs/` is the project notebook.
+
+En lenguaje sencillo, `logs/` es el cuaderno del proyecto.
+
+## How It Works Step by Step
 
 ## Cómo funciona paso a paso
 
-### Paso 1. Entra una petición
+### Step 1. A request arrives
 
-Puede ser algo pequeño:
+### Paso 1. Llega una petición
 
-> "Corrige un typo en la página de login"
-
-O algo más grande:
-
-> "Rediseña el checkout para reducir el abandono"
-
-El coordinador siempre empieza por entender qué se quiere conseguir de verdad.
-
-### Paso 2. Decide si va por la vía rápida o por la vía coordinada
-
-Aquí está la esencia del sistema.
-
-#### Vía rápida: trabajo directo
-
-Se usa cuando la tarea:
-
-- pertenece claramente a un solo tipo de trabajo
-- está bastante clara
-- es más de ejecutar que de debatir
-- no gana mucho añadiendo más agentes
-
-Ejemplo:
-
-> "Construye un editor markdown"
-
-Aunque sea una tarea importante, puede seguir siendo bastante directa si no requiere negociación entre producto, diseño y revisión.
-
-#### Vía coordinada: trabajo orquestado
-
-Se usa cuando la tarea:
-
-- mezcla varias disciplinas
-- tiene decisiones que conviene pensar antes de construir
-- necesita una secuencia clara entre varios especialistas
-- puede mejorar de verdad con revisión o validación cruzada
-
-Ejemplo:
-
-> "Rediseña el checkout para reducir el abandono un 20%"
-
-Aquí sí tiene sentido coordinar varias miradas: producto, diseño, implementación y revisión.
-
-### Paso 3. Si el trabajo es directo, se ejecuta sin ceremonia innecesaria
-
-En ese caso el coordinador:
-
-- registra la petición
-- deja claro qué entendió
-- actualiza el estado del trabajo
-- ejecuta
-
-No crea un proceso largo solo por seguir un ritual.
-
-### Paso 4. Si el trabajo es coordinado, monta el equipo mínimo
-
-El sistema intenta evitar equipos grandes porque eso cuesta tiempo y complica el proceso.
-
-Por eso, si bastan dos roles, usa dos. Si hace falta uno, usa uno. Si hacen falta cuatro, usa cuatro, pero no más.
+Examples:
 
 Ejemplos:
 
-- para una mejora visual sencilla pueden bastar `designer` + `engineer`
-- para una funcionalidad completa pueden entrar `product-lead`, `designer`, `engineer` y `reviewer`
-- para una tarea de datos puede bastar `platform-engineer`
+> "Fix the typo on the login page"
 
-### Paso 5. El coordinador redacta un plan único
+> "Corrige el typo de la página de login"
 
-Cuando hay varios agentes, este proyecto evita que cada uno tire por su lado.
+> "Redesign the checkout flow to reduce drop-off"
 
-Por eso el coordinador crea un plan común que dice:
+> "Rediseña el flujo de checkout para reducir el abandono"
 
-- qué se va a hacer
-- en qué orden
-- quién se encarga de cada parte
-- qué depende de qué
-- dónde habrá revisión
+The orchestrator starts by understanding the real goal behind the request.
 
-Así todos trabajan con una misma hoja de ruta.
+El orquestador empieza entendiendo el objetivo real que hay detrás de la petición.
 
-### Paso 6. Pide aprobación antes del trabajo importante
+### Step 2. It chooses direct work or coordinated work
 
-Si la tarea es grande o implica a varios especialistas, el sistema no asume que puede seguir sin más.
+### Paso 2. Elige trabajo directo o trabajo coordinado
 
-Primero deja el plan por escrito y luego espera aprobación antes de arrancar la ejecución principal.
+This is the most important decision in the whole system.
 
-### Paso 7. Coordina la ejecución
+Esta es la decisión más importante de todo el sistema.
 
-Una vez aprobado el plan:
+Direct work is used when the request is mostly in one domain, clear enough, and unlikely to improve much by involving many roles.
 
-- activa a los especialistas en orden
-- pasa el resultado de uno al siguiente
-- mantiene el estado actualizado
-- registra decisiones y revisiones
+El trabajo directo se usa cuando la petición pertenece sobre todo a una sola área, está lo bastante clara y es poco probable que mejore mucho involucrando a muchos roles.
 
-Esto ayuda a que el proyecto no se convierta en una cadena caótica de mensajes.
+Coordinated work is used when the request mixes several disciplines, needs sequencing, contains important tradeoffs, or benefits from formal review.
 
-## Qué significa que un rol "cubre varias cosas"
+El trabajo coordinado se usa cuando la petición mezcla varias disciplinas, necesita una secuencia clara, contiene decisiones importantes o se beneficia de una revisión formal.
 
-Una idea importante de este proyecto es que un rol no representa una microtarea, sino un área de trabajo bastante amplia.
+### Step 3. If the work is direct, it stays simple
 
-Por ejemplo:
+### Paso 3. Si el trabajo es directo, se mantiene simple
 
-- un `designer` puede encargarse de investigación, estructura, interfaz y textos
-- un `engineer` puede encargarse de frontend y backend
+In the direct path, the orchestrator logs the request, clarifies what it understood, keeps status up to date, and proceeds without unnecessary ceremony.
 
-Eso evita pasar el trabajo de un agente a otro sin necesidad.
+En la vía directa, el orquestador registra la petición, aclara qué ha entendido, mantiene el estado actualizado y sigue adelante sin ceremonias innecesarias.
 
-En vez de tener diez agentes minúsculos, el sistema usa pocos roles con suficiente amplitud para avanzar de verdad.
+### Step 4. If the work is coordinated, it staffs the smallest useful team
 
-## Qué se guarda exactamente en `logs/`
+### Paso 4. Si el trabajo es coordinado, elige el equipo útil más pequeño
 
-Dentro de `logs/active/<nombre-del-proyecto>/` suelen aparecer archivos como estos:
+The system avoids large teams by default. If two roles are enough, it uses two. If one role is enough, it uses one. The point is not to simulate a giant company. The point is to add just enough structure to improve the outcome.
 
-- `00_routing.md`: por qué se decidió trabajo directo o coordinado
-- `01_intake.md`: qué se entendió de la petición, límites, riesgos y dependencias
-- `02_staffing.md`: qué roles se eligieron, solo si hubo coordinación
-- `03_unified-plan.md`: el plan principal, solo si hubo coordinación
-- `04_approval.md`: la aprobación del plan, solo si hubo coordinación
-- `status.md`: estado actual del trabajo
-- `context.md`: resumen vivo para retomar el proyecto sin perder contexto
-- `plans/`: notas de apoyo de especialistas, si hacen falta
-- `deliverables/`: entregables creados por los roles
-- `reviews/`: revisiones y validaciones
-- `decisions/`: decisiones importantes cuando hubo dudas o conflicto
+El sistema evita por defecto los equipos grandes. Si dos roles bastan, usa dos. Si un rol basta, usa uno. La idea no es simular una empresa enorme. La idea es añadir la estructura justa para mejorar el resultado.
 
-También existe `logs/archive/`, que sirve para mover proyectos ya terminados o inactivos.
+### Step 5. The orchestrator writes one shared plan
 
-## Qué instala este paquete en otro proyecto
+### Paso 5. El orquestador redacta un único plan compartido
 
-Cuando ejecutas el instalador, este repositorio copia dentro del proyecto destino:
+When several roles are involved, Product Team does not want each role inventing its own process. The orchestrator creates one plan that says what will happen, in what order, who owns each part, and where review will happen.
 
-- los agentes
-- sus habilidades y guías
+Cuando intervienen varios roles, Product Team no quiere que cada uno invente su propio proceso. El orquestador crea un plan que dice qué va a pasar, en qué orden, quién se encarga de cada parte y dónde habrá revisión.
+
+### Step 6. It asks for approval before major multi-role execution
+
+### Paso 6. Pide aprobación antes de una ejecución grande con varios roles
+
+For bigger coordinated work, the system pauses before the main execution starts. That way the user can confirm the direction first.
+
+En los trabajos coordinados más grandes, el sistema se detiene antes de empezar la ejecución principal. Así la persona usuaria puede confirmar antes la dirección.
+
+### Step 7. It coordinates execution and keeps the record current
+
+### Paso 7. Coordina la ejecución y mantiene el registro al día
+
+After approval, the orchestrator activates the roles in sequence, passes outputs from one role to the next, updates status, and records reviews and decisions.
+
+Después de la aprobación, el orquestador activa los roles en secuencia, pasa los resultados de un rol al siguiente, actualiza el estado y registra revisiones y decisiones.
+
+## Why One Role Can Cover Several Subtasks
+
+## Por qué un rol puede cubrir varias subtareas
+
+A role in this project is intentionally broad.
+
+Un rol en este proyecto es intencionadamente amplio.
+
+For example, a `designer` can cover research, UX, UI, and content without handing off to a new agent for every small step. An `engineer` can cover frontend and backend work in the same role.
+
+Por ejemplo, un `designer` puede cubrir investigación, UX, UI y contenido sin pasar el trabajo a un nuevo agente en cada pequeño paso. Un `engineer` puede cubrir frontend y backend dentro del mismo rol.
+
+This reduces handoffs, duplication, and confusion.
+
+Esto reduce traspasos, duplicación y confusión.
+
+## What Gets Written in `logs/`
+
+## Qué se escribe en `logs/`
+
+Inside `logs/active/<project-slug>/`, you will usually find files like these:
+
+Dentro de `logs/active/<project-slug>/`, normalmente encontrarás archivos como estos:
+
+- `00_routing.md`: why the system chose direct work or coordinated work
+- `01_intake.md`: what the request means, plus limits, risks, and dependencies
+- `02_staffing.md`: which roles were selected, only for coordinated work
+- `03_unified-plan.md`: the main plan, only for coordinated work
+- `04_approval.md`: the approval record, only for coordinated work
+- `status.md`: the current state of execution
+- `context.md`: the live summary needed to resume later
+- `plans/`: optional specialist advice
+- `deliverables/`: outputs from the roles
+- `reviews/`: review notes and validation
+- `decisions/`: important decisions and conflict resolution
+
+- `00_routing.md`: por qué el sistema eligió trabajo directo o coordinado
+- `01_intake.md`: qué significa la petición, además de límites, riesgos y dependencias
+- `02_staffing.md`: qué roles se eligieron, solo en trabajo coordinado
+- `03_unified-plan.md`: el plan principal, solo en trabajo coordinado
+- `04_approval.md`: el registro de aprobación, solo en trabajo coordinado
+- `status.md`: el estado actual de la ejecución
+- `context.md`: el resumen vivo para poder retomar más adelante
+- `plans/`: consejo opcional de especialistas
+- `deliverables/`: resultados producidos por los roles
+- `reviews/`: notas de revisión y validación
+- `decisions/`: decisiones importantes y resolución de conflictos
+
+There is also `logs/archive/` for completed or inactive work.
+
+También existe `logs/archive/` para trabajos terminados o inactivos.
+
+## What This Package Installs
+
+## Qué instala este paquete
+
+When you run the installer, it copies the Product Team workflow into the target repository.
+
+Cuando ejecutas el instalador, copia el flujo de trabajo de Product Team dentro del repositorio de destino.
+
+The main things it installs are:
+
+Las cosas principales que instala son:
+
+- the agent definitions
+- their local skills and guides
+- the shared package documentation
+- the `logs/` structure
+- a managed block inside `AGENTS.md`
+
+- las definiciones de agentes
+- sus habilidades y guías locales
 - la documentación compartida del paquete
 - la estructura de `logs/`
 - un bloque gestionado dentro de `AGENTS.md`
+
+The main paths it creates are:
 
 Las rutas principales que crea son:
 
@@ -243,31 +313,47 @@ Las rutas principales que crea son:
 - `logs/active/`
 - `logs/archive/`
 
-Importante: el instalador intenta tocar solo sus propios archivos. No está pensado para sobrescribir archivos ajenos del proyecto.
+The installer is designed to update its own files without overwriting unrelated files in the target project.
 
-## Cómo empezar a usarlo
+El instalador está pensado para actualizar sus propios archivos sin sobrescribir archivos no relacionados del proyecto de destino.
+
+## How To Start
+
+## Cómo empezar
+
+### 1. Install it into your project
 
 ### 1. Instálalo en tu proyecto
 
-Si estás dentro del repositorio donde lo quieres instalar:
+If you are inside the repository where you want to install it:
+
+Si estás dentro del repositorio donde quieres instalarlo:
 
 ```bash
 ./install.sh --target "$PWD"
 ```
 
-O desde GitHub:
+Or directly from GitHub:
+
+O directamente desde GitHub:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pedrocarlop/the-product-team/main/install.sh | bash -s -- --target "$PWD"
 ```
 
-Si prefieres usar Python:
+Or with Python:
+
+O con Python:
 
 ```bash
 python3 scripts/install.py --target "$PWD"
 ```
 
-### 2. Comprueba que la instalación quedó bien
+### 2. Validate the install
+
+### 2. Valida la instalación
+
+From the root of the project where you installed it:
 
 Desde la raíz del proyecto donde lo instalaste:
 
@@ -275,108 +361,173 @@ Desde la raíz del proyecto donde lo instalaste:
 python3 .codex/product-team/scripts/validate-install.py
 ```
 
+### 3. Ask the coordinator to do work
+
 ### 3. Pídele trabajo al coordinador
 
-Una vez instalado, usa el `product-team-orchestrator` dentro de Codex.
+Once installed, use `product-team-orchestrator` in Codex.
 
-Puedes pedirle cosas como:
+Una vez instalado, usa `product-team-orchestrator` en Codex.
+
+Examples:
+
+Ejemplos:
+
+> "Fix this onboarding flow"
 
 > "Arregla este flujo de onboarding"
 
+> "Create a new pricing page"
+
 > "Crea una nueva página de precios"
+
+> "Redesign checkout to improve conversion"
 
 > "Rediseña el checkout para mejorar la conversión"
 
-Según la petición, el coordinador decidirá si trabaja directo o si monta un pequeño equipo.
+The orchestrator will decide whether this should stay direct or become a coordinated workflow.
 
-### 4. Mira los `logs/` si quieres entender qué ha pasado
+El orquestador decidirá si conviene mantenerlo como trabajo directo o convertirlo en un flujo coordinado.
 
-Si alguna vez quieres ver cómo se decidió el trabajo, cuál era el plan o en qué punto se quedó, ahí estará todo.
+### 4. Check `logs/` if you want to understand what happened
 
-## Ejemplos sencillos
+### 4. Mira `logs/` si quieres entender qué ha pasado
 
-### Caso A: petición pequeña
+If you want to see why the system made a decision, what the plan was, or where the work stopped, `logs/` is the place to look.
 
-Petición:
+Si quieres ver por qué el sistema tomó una decisión, cuál era el plan o en qué punto se quedó el trabajo, `logs/` es el lugar al que mirar.
+
+## Simple Examples
+
+## Ejemplos simples
+
+Small request:
+
+Petición pequeña:
+
+> "Change the signup button text"
 
 > "Cambia el texto del botón de registro"
 
-Lo normal es que el coordinador lo trate como trabajo directo.
+This will usually stay direct.
 
-### Caso B: petición mediana pero de una sola área
+Esto normalmente seguirá por vía directa.
 
-Petición:
+Medium request in one main domain:
+
+Petición mediana dentro de una sola área principal:
+
+> "Build a markdown editor"
 
 > "Construye un editor markdown"
 
-Puede seguir siendo trabajo directo si es principalmente implementación y no necesita mucha coordinación entre áreas.
+This may still stay direct if it is mostly implementation work.
 
-### Caso C: petición compleja
+Esto puede seguir siendo trabajo directo si es sobre todo trabajo de implementación.
 
-Petición:
+Complex request:
 
-> "Rediseña el checkout para reducir abandono"
+Petición compleja:
 
-Aquí lo habitual es:
+> "Redesign checkout to reduce abandonment"
 
-1. entender bien el objetivo
-2. elegir roles
-3. proponer un plan
-4. pedir aprobación
-5. ejecutar por fases
-6. revisar el resultado
+> "Rediseña el checkout para reducir el abandono"
 
-## Qué problema resuelve este proyecto
+This will usually trigger planning, staffing, approval, execution, and review.
 
-Sin un sistema así, trabajar con varios agentes puede volverse confuso muy rápido:
+Esto normalmente activará planificación, elección de roles, aprobación, ejecución y revisión.
+
+## What Problem This Solves
+
+## Qué problema resuelve
+
+Without a system like this, multi-agent work gets messy very quickly:
+
+Sin un sistema así, el trabajo con varios agentes se vuelve confuso muy rápido:
+
+- it is not clear who is deciding
+- work gets duplicated
+- context gets lost
+- resuming later becomes hard
+- multiple competing plans appear
 
 - no queda claro quién decide
-- varios agentes hacen trabajo duplicado
+- el trabajo se duplica
 - se pierde el contexto
-- cuesta retomar algo días después
-- aparecen planes distintos compitiendo entre sí
+- cuesta retomar el trabajo más tarde
+- aparecen varios planes compitiendo entre sí
 
-Product Team intenta evitar eso con tres ideas:
+Product Team tries to solve that with three ideas:
 
-- un coordinador que manda el proceso
-- un equipo pequeño y suficiente, no enorme
-- una memoria escrita y ordenada en `logs/`
+Product Team intenta resolverlo con tres ideas:
 
-## Para personas no técnicas: qué debes recordar
+- one coordinator owns the process
+- the team should be as small as possible
+- the workflow should leave a written memory
 
-Si no eres experta o experto en código, la idea básica es esta:
+- un coordinador se encarga del proceso
+- el equipo debe ser lo más pequeño posible
+- el flujo de trabajo debe dejar una memoria escrita
+
+## For Non-Technical Readers
+
+## Para personas no técnicas
+
+The shortest possible explanation is:
+
+La explicación más corta posible es:
+
+- this project does not build a product by itself
+- this project installs a way of working inside Codex
+- that way of working decides whether one agent or several agents should handle the task
+- when several agents are needed, there is a plan, approval, coordination, and written follow-up
 
 - este proyecto no construye un producto por sí mismo
-- este proyecto instala una manera de trabajar dentro de Codex
-- esa manera de trabajar decide si una tarea la hace un solo agente o varios
-- cuando participan varios, hay coordinación, plan, aprobación y seguimiento
-- todo queda documentado para que el proceso no dependa de la memoria
+- este proyecto instala una forma de trabajar dentro de Codex
+- esa forma de trabajar decide si una tarea debe hacerla un agente o varios
+- cuando hacen falta varios agentes, hay plan, aprobación, coordinación y seguimiento por escrito
 
-## Si vas a mantener este repositorio
+## If You Maintain This Repository
 
-La fuente principal del proyecto está aquí:
+## Si mantienes este repositorio
 
-- `agents/`: definición de roles y habilidades
-- `logs/README.md`: reglas de la carpeta de memoria
-- `scripts/install.py` e `install.sh`: instalación
-- `assets/AGENTS.fragment.md`: bloque gestionado que se inserta en `AGENTS.md`
-- `assets/package-README.md`: README que recibe el proyecto instalado
+The main source-of-truth locations are:
 
-Si cambias roles, estructura o comportamiento del orquestador, conviene validar el paquete con:
+Los principales lugares que actúan como fuente de verdad son:
+
+- `agents/`: role definitions and local skills
+- `logs/README.md`: the rules for the project memory system
+- `install.sh` and `scripts/install.py`: installation entrypoints
+- `assets/AGENTS.fragment.md`: the managed block injected into `AGENTS.md`
+- `assets/package-README.md`: the README copied into installed projects
+
+- `agents/`: definiciones de roles y habilidades locales
+- `logs/README.md`: las reglas del sistema de memoria del proyecto
+- `install.sh` y `scripts/install.py`: puntos de entrada de la instalación
+- `assets/AGENTS.fragment.md`: el bloque gestionado que se inserta en `AGENTS.md`
+- `assets/package-README.md`: el README que se copia a los proyectos instalados
+
+If you change roles, structure, or orchestrator behavior, validate with:
+
+Si cambias roles, estructura o el comportamiento del orquestador, valida con:
 
 ```bash
 scripts/validate-orchestrator-contract.sh
 python3 scripts/check-orchestrator-scenarios.py
 ```
 
-Y después probar una instalación real en una carpeta temporal:
+Then test a real install in a temporary folder and run:
+
+Después prueba una instalación real en una carpeta temporal y ejecuta:
 
 ```bash
 python3 .codex/product-team/scripts/validate-install.py
 ```
 
+## Short Summary
+
 ## Resumen corto
 
-Product Team es una capa de organización para Codex.
+Product Team adds organization to Codex. If the task is simple, it keeps things simple. If the task is complex, it builds the smallest useful team, creates a plan, asks for approval, and records the work so it can be understood later.
 
-No añade solo agentes: añade una forma ordenada de decidir, ejecutar, coordinar y dejar memoria del trabajo. Si una tarea es simple, la resuelve sin ruido. Si una tarea es compleja, crea el equipo justo, propone un plan y lo deja todo registrado.
+Product Team añade organización a Codex. Si la tarea es simple, mantiene el proceso simple. Si la tarea es compleja, crea el equipo útil más pequeño, redacta un plan, pide aprobación y deja el trabajo registrado para poder entenderlo después.
