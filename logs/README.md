@@ -61,6 +61,7 @@ logs/
 - Execution-grade specialist plan, not a summary
 - Owned scope and non-scope
 - Detailed implementation approach and concrete decisions
+- `Role-local skills consulted` section with the best-practice implications pulled from those skills
 - Dependencies, edge cases, failure and recovery behavior
 - Validation or acceptance criteria
 - Final `Critical details that must survive merge` section
@@ -69,9 +70,12 @@ logs/
 - Created only when orchestration is used
 - Lossless merged execution plan
 - Authoritative execution process for the current cycle
+- Skill sources read and the best-practice implications they contributed
 - Required direct reads per archetype
 - Ownership by archetype
+- Detailed merged implementation sections by archetype
 - Critical detail register preserving must-carry specialist specifics
+- Overlap resolutions and conflict decisions
 - Dependencies and sequence
 - Review points
 - Validation or acceptance checkpoints
@@ -140,9 +144,12 @@ Orchestrated work must:
 - Let specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict
 - Before meaningful work, each staffed archetype must quickly scan its own role-local `skill-catalog.md`, read only the matching skill files in its role folder, and note those reads in its closing handoff
 - Request a role plan in `plans/<role>.md` only when written specialist advice will improve ambiguity, tradeoff, or sequencing decisions
-- When role plans are requested, require execution-grade detail and a final `Critical details that must survive merge` section
+- When role plans are requested, require execution-grade detail, a `Role-local skills consulted` section, and a final `Critical details that must survive merge` section
 - Treat role plans as optional advisory input to the orchestrator, not as permission to execute or redefine the team process, but keep them detailed enough that same-domain execution would not require guesswork
+- Before authoring `03_unified-plan.md`, the orchestrator must read each staffed role's `skill-catalog.md` and the matching role-local skills relevant to the planned work
 - Let the orchestrator author one authoritative `03_unified-plan.md` before execution starts, and preserve all material specialist detail instead of collapsing it into generic stage bullets
+- Build `03_unified-plan.md` from both role plans and staffed-role skills so the merged plan reflects best practices as well as role-specific decisions
+- Combine all non-conflicting specialist detail, merge overlapping detail once at the strongest level of specificity, and explicitly resolve conflicts instead of deleting or flattening them away
 - Pause for approval before substantial execution
 - When pausing for approval, the orchestrator must not stop at files alone. The user-facing handoff must say "This is the plan", reference `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and end with "Do you want to proceed?"
 - During execution, pass approved role plans alongside the unified plan until their details are superseded by deliverables

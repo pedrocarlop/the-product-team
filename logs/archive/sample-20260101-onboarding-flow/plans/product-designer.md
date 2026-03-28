@@ -24,6 +24,13 @@
 - Specify every state needed for implementation: first visit, partial progress, validation error, success, and revisit after completion.
 - Define progress motion as guidance, not decoration, so the user can tell which step changed without slowing the task down.
 
+**Role-local skills consulted**:
+- `ux/flow`: Ensure the plan covers happy path, alternates, validation errors, recovery, and completion without hidden state transitions.
+- `ux/specify`: Turn the flow into an implementation-grade spec with screen behavior, state coverage, and responsive rules.
+- `ui/stateful`: Define the complete state model for each step and for the progress indicator, not just the default appearance.
+- `motion/transition` and `motion/reduce`: Make step changes perceptible while keeping reduced-motion behavior first-class.
+- `accessibility/annotate`: Ensure progress feedback, validation, and focus movement do not rely on color or animation alone.
+
 **Steps**:
 1. Map end-to-end task flow with entry/exit conditions per step
 2. Design screen layouts for desktop and mobile, including the compact mobile progress treatment

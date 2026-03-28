@@ -109,7 +109,9 @@ def main() -> int:
         expect("This is the plan" in logs_contract, "Installed logs contract is missing the approval handoff opener.", failures)
         expect("Do you want to proceed?" in logs_contract, "Installed logs contract is missing the approval handoff question.", failures)
         expect("Execution-grade specialist plan" in logs_contract, "Installed logs contract is missing the detailed role-plan contract.", failures)
+        expect("Role-local skills consulted" in logs_contract, "Installed logs contract is missing the skills-consulted plan contract.", failures)
         expect("Critical detail register" in logs_contract, "Installed logs contract is missing the unified-plan detail register contract.", failures)
+        expect("Overlap resolutions and conflict decisions" in logs_contract, "Installed logs contract is missing the overlap-resolution contract.", failures)
 
     orchestrator_name = f"{PACKAGE_SLUG}-orchestrator"
     reference_name = f"{PACKAGE_SLUG}-reference"
@@ -145,14 +147,18 @@ def main() -> int:
             prompt = data.get("system_prompt", "")
             expect("This is the plan" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff opener.", failures)
             expect("Do you want to proceed?" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff question.", failures)
+            expect("read each staffed role's `skill-catalog.md`" in prompt, f"{toml_path}: orchestrator prompt missing staffed-role skill-reading rule.", failures)
+            expect("best-practice source material" in prompt, f"{toml_path}: orchestrator prompt missing skill-derived best-practice rule.", failures)
             expect("Preserve all material implementation detail" in prompt, f"{toml_path}: orchestrator prompt missing detail-preservation rule.", failures)
             expect("Critical details that must survive merge" in prompt, f"{toml_path}: orchestrator prompt missing must-carry detail contract.", failures)
+            expect("Do not delete detail from specialist plans during merge" in prompt, f"{toml_path}: orchestrator prompt missing no-detail-deletion rule.", failures)
         else:
             handoff_to = role_boundary.get("handoff_to", [])
             expect(orchestrator_name in handoff_to, f"{toml_path}: handoff_to must include {orchestrator_name!r}.", failures)
             if source_name != "reference":
                 prompt = data.get("system_prompt", "")
                 expect("execution-grade plan" in prompt, f"{toml_path}: specialist prompt missing detailed planning rule.", failures)
+                expect("Role-local skills consulted" in prompt, f"{toml_path}: specialist prompt missing skills-consulted planning section.", failures)
                 expect("Critical details that must survive merge" in prompt, f"{toml_path}: specialist prompt missing must-carry detail section contract.", failures)
                 expect("Do not silently drop planned concrete details" in prompt, f"{toml_path}: specialist prompt missing execution detail preservation rule.", failures)
 

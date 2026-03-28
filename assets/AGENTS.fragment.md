@@ -16,8 +16,10 @@ This repository has the Product Team workflow installed.
 - Staff the minimum viable set of specialists.
 - Base staffing on actual role needs, not task keywords alone.
 - Let specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict.
-- Request role plans only when written specialist advice is genuinely needed. When requested, plans must be execution-grade and include `Critical details that must survive merge`.
+- Request role plans only when written specialist advice is genuinely needed. When requested, plans must be execution-grade, include `Role-local skills consulted`, and include `Critical details that must survive merge`.
+- Before writing `03_unified-plan.md`, the orchestrator must read each staffed role's `skill-catalog.md` and the matching role-local skills relevant to the planned work.
 - Let the orchestrator define the merged process in `03_unified-plan.md`, but preserve all material specialist detail instead of flattening it into generic bullets.
+- Merge all non-conflicting detail from the staffed roles, use the skills as best-practice source material, and resolve overlaps or conflicts explicitly instead of deleting detail.
 - Get explicit approval before substantial multi-role execution.
 - If the orchestrator pauses for approval, it must summarize the plan, point to `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and end by asking "Do you want to proceed?"
 - During execution, keep approved role-plan detail alive until a newer deliverable supersedes it.

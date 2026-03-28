@@ -23,7 +23,8 @@ Use this skill to staff work deliberately and keep ownership crisp across busine
 - Specialists accept assignments directly unless there is a clear mismatch, missing dependency, or ownership conflict.
 - Start from the best-team assessment recorded during routing, then trim to the minimum viable staffed team for execution.
 - Request `plans/<role>.md` only when written specialist advice is needed to resolve ambiguity, sequencing, or tradeoffs. Otherwise, move straight to orchestrator planning and execution.
-- When you request a role plan, ask for execution-grade detail: concrete decisions, edge cases, validation expectations, and a final `Critical details that must survive merge` section.
+- When you request a role plan, ask for execution-grade detail: concrete decisions, edge cases, validation expectations, a `Role-local skills consulted` section, and a final `Critical details that must survive merge` section.
+- Record skill hints precisely enough that the orchestrator can later open the matching staffed-role skill files before writing `03_unified-plan.md`.
 - Do not bounce incomplete plans back and forth between specialists. Collect advice only when needed, then let the orchestrator merge it once into the cycle plan.
 - Base staffing on actual archetype needs rather than task keywords alone.
 

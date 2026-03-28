@@ -22,6 +22,7 @@ Use this skill to keep execution orderly, staged, and traceable once direct work
 - Route unresolved questions and decision changes into `/logs`
 - Treat `00_routing.md` plus `01_intake.md` as the authoritative plan for direct work, and `03_unified-plan.md` as the authoritative plan for orchestrated work
 - Pass approved role plans alongside `03_unified-plan.md` whenever those plans contain execution-critical detail not yet superseded by a deliverable
+- Pass any skill-derived implementation constraints captured in `03_unified-plan.md` forward with the handoff instead of relying on downstream roles to rediscover them
 - Do not replace execution-critical detail with shorter status summaries or `context.md` notes
 - If a material change is needed in an orchestrated cycle, pause and reroute through a new full planning cycle instead of improvising repeated rework
 
