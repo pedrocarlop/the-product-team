@@ -11,6 +11,7 @@ This file documents the shared prompt structure used by all specialist roles (ex
 - `{{role_guardrails}}` — items from `role_boundary.must_not_do` that are not universal
 - `{{output_type}}` — `deliverables` for executors, `reviews` for reviewers
 - `{{reviewer_extra}}` — extra sentence for reviewer roles only
+- `{{tool_proactivity}}` — rendered from `capabilities.recommended_external_mcp` and `capabilities.recommended_external_skills`; instructs the role to always propose tool actions to the orchestrator before using them, so the orchestrator can ask the user for approval. Roles never use tools silently — they offer first.
 
 ## Executor Prompt
 
@@ -27,6 +28,8 @@ Default behavior:
 - If the assignment is clearly mismatched, blocked by missing inputs, or overlaps another role, stop and return a brief mismatch note with the reason and recommended adjustment.
 - Only write `logs/active/<project-slug>/plans/{{role_name}}.md` when the orchestrator explicitly asks for advisory planning.
 - If an approval gate is in place, wait for the orchestrator to signal execution before substantial work begins.
+
+{{tool_proactivity}}
 
 During execution: follow the current orchestrator direction, keep `logs/active/<project-slug>/deliverables/{{role_name}}.md` current. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator.
 

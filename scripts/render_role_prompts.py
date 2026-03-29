@@ -50,6 +50,38 @@ def render_skill_routing(skill_groups: dict[str, list[str]]) -> str:
     return "\n".join(lines)
 
 
+def render_tool_proactivity(capabilities: dict) -> str:
+    """Render tool proactivity section from recommended_external_mcp and recommended_external_skills."""
+    rec_mcp = capabilities.get("recommended_external_mcp", [])
+    rec_skills = capabilities.get("recommended_external_skills", [])
+    if not rec_mcp and not rec_skills:
+        return ""
+
+    lines = [
+        "",
+        "Tool proactivity — always offer before acting:",
+        "- At each stage of your work, check which tools from your capabilities would improve the outcome. Before using any tool or MCP server, propose the action to the orchestrator so it can ask the user. Format: \"Would you like me to [action] using [tool]? This would [benefit].\" Examples:",
+        "  - \"Would you like me to send this wireframe to Paper.Design so you can review and iterate on the canvas?\"",
+        "  - \"Would you like me to push this prototype to Google Stitch for interactive exploration?\"",
+        "  - \"Would you like me to run a Lighthouse audit via Chrome DevTools to check accessibility scores?\"",
+        "  - \"Would you like me to pull the latest analytics from Amplitude to inform this decision?\"",
+        "- If a tool or MCP server from your capabilities is not yet configured, include setup requirements in your proposal: what the user needs to provide (API key, account, install command).",
+        "- Do not silently skip tools that would materially improve output quality or speed — always surface the option.",
+        "- Do not use tools without offering first. The user decides whether to proceed.",
+    ]
+    if rec_mcp:
+        lines.append("")
+        lines.append("Recommended external MCP servers (propose setup when relevant):")
+        for mcp in rec_mcp:
+            lines.append(f"- {mcp['display_name']} (`{mcp['name']}`) — {mcp['purpose']}. Setup: {mcp['setup']}.")
+    if rec_skills:
+        lines.append("")
+        lines.append("Recommended session skills (propose activation when relevant):")
+        for skill in rec_skills:
+            lines.append(f"- `{skill['name']}` — {skill['purpose']}.")
+    return "\n".join(lines)
+
+
 def render_prompt(data: dict) -> str:
     display_name = data["display_name"]
     description = data["description"].strip().rstrip(".")
@@ -74,6 +106,10 @@ def render_prompt(data: dict) -> str:
     skill_groups = data.get("capabilities", {}).get("skill_groups", {})
     skill_routing = render_skill_routing(skill_groups)
 
+    # Build tool proactivity section
+    capabilities = data.get("capabilities", {})
+    tool_proactivity = render_tool_proactivity(capabilities)
+
     prompt = f"""
 You are the {display_name} in the direct-first orchestrator workflow.
 
@@ -90,7 +126,7 @@ Default behavior:
 - If the assignment is clearly mismatched, blocked by missing inputs, or overlaps another role, stop and return a brief mismatch note with the reason and recommended adjustment.
 - Only write `logs/active/<project-slug>/plans/{role_name}.md` when the orchestrator explicitly asks for advisory planning or sequencing input.
 - If an approval gate is in place, wait for the orchestrator to signal execution before substantial work begins.
-
+{tool_proactivity}
 When advisory planning is requested: write `logs/active/<project-slug>/plans/{role_name}.md` as an execution-grade plan, not a summary. Cover objective, constraints, assumptions, owned scope, non-scope, detailed implementation approach, concrete decisions, step-by-step work breakdown, deliverables, dependencies, edge cases, failure and recovery behavior, validation or acceptance criteria, risks, and status. Include a `Role-local skills consulted` section naming the matching role-local skills you read and the best-practice implications that materially shape the plan. Include a final `Critical details that must survive merge` section with the exact specifics downstream work depends on, such as states, copy, thresholds, timings, token names, interaction rules, file touchpoints, test expectations, rollout constraints, or other non-negotiable implementation details. Plans are optional specialist input — the orchestrator decides how to merge and sequence them, but requested plans must be detailed enough that another strong practitioner in your domain could execute without guessing.
 
 During execution: follow the current orchestrator direction, keep `logs/active/<project-slug>/{output_type}/{role_name}.md` current.{reviewer_extra} If you authored an approved plan for this cycle, use it as the detailed spec for your work unless the orchestrator explicitly changes it. Do not silently drop planned concrete details for brevity; escalate needed changes first. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator. In your closing handoff, append `Read <skill-paths> skills for this task.` with the role-local skills you opened from `skills/`; if none matched, append `Read no additional role-local skills for this task.`

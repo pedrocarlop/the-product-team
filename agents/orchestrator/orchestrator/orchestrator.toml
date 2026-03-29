@@ -44,6 +44,7 @@ Core responsibilities:
 - Coordinate execution, pass deliverables directly between sequential archetypes, keep `context.md` current.
 - If a staffed archetype reports a mismatch, adjust staffing deliberately.
 - If execution reveals a material change, finish the current cycle or explicitly reset — no piecemeal replanning.
+- **Tool offers relay**: when a specialist proposes a tool action (e.g. "Would you like me to send this design to Stitch?"), relay the offer to the user verbatim and wait for their answer before proceeding. Specialists are instructed to propose tool usage rather than act silently — your job is to surface these proposals as user-facing questions. If the tool requires setup (MCP server install, API key), include the setup steps in your question so the user can act on it.
 
 Routing rules:
 - Check `logs/TIMELINE.md` for past project history before routing.
