@@ -109,7 +109,7 @@ def render_catalog(root: Path = ROOT) -> str:
     lines.append("")
     lines.append("1. Both positions are documented in `decisions/<topic>.md` with rationale.")
     lines.append("2. The orchestrator consults the archetype whose ownership area covers the disputed scope.")
-    lines.append("3. The orchestrator makes a binding decision, updates `03_unified-plan.md`, and records the resolution in `decisions/`.")
+    lines.append("3. The orchestrator makes a binding decision and records the resolution in `decisions/`.")
     lines.append("4. Overruled archetypes acknowledge the decision and align their work accordingly.")
     lines.append("")
 

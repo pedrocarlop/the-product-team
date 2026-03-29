@@ -2,17 +2,17 @@
 
 [Read this in English](./README.md)
 
-Product Team es un paquete para Codex que convierte un repositorio normal en un espacio donde varios agentes pueden trabajar como un pequeño equipo de producto.
+Product Team es un paquete de Codex que convierte un repositorio normal en un espacio donde varios agentes pueden trabajar como un pequeño equipo de producto.
 
-En términos simples, este proyecto añade un coordinador, un conjunto de especialistas y un registro compartido del trabajo para que Codex pueda decidir cómo organizarlo en vez de limitarse a reaccionar tarea por tarea.
+Añade un coordinador, un conjunto de especialistas y un registro compartido para que Codex pueda decidir cómo organizar el trabajo en vez de reaccionar tarea por tarea.
 
-Tras la instalación, cada petición en ese repositorio debe pasar por defecto por el coordinador de Product Team. El trabajo simple puede seguir resolviéndose de forma directa, pero esa decisión se toma dentro del flujo; la vía normal para saltárselo es solo que la persona usuaria diga explícitamente que no quiere usar Product Team en esa petición.
+Tras la instalación, las peticiones de ese repositorio pasan por defecto por el coordinador de Product Team. El trabajo simple puede seguir resolviéndose de forma directa, pero esa decisión se toma dentro del flujo salvo que la persona usuaria se excluya explícitamente en esa petición.
 
 ## Idea principal
 
-La regla principal es simple: empezar con el proceso más ligero posible.
+La regla principal es simple: empezar con el proceso más ligero que funcione.
 
-Eso significa que Product Team no crea un grupo de agentes para cada petición. Primero comprueba si un solo agente puede resolver el trabajo bien. Solo si la coordinación mejora claramente el resultado incorpora más roles.
+Eso significa que Product Team no crea un grupo de agentes para cada petición. Primero comprueba si un solo agente puede resolver el trabajo bien. Solo incorpora más roles cuando la coordinación mejora claramente el resultado.
 
 En la práctica, el flujo es:
 
@@ -26,7 +26,7 @@ En la práctica, el flujo es:
 
 Piensa en Product Team como un sistema de funcionamiento para la colaboración entre agentes dentro de Codex.
 
-No es un producto final para usuarios por sí mismo. Es una forma reutilizable de trabajar que puedes instalar dentro de otro repositorio para que Codex tenga:
+No es un producto final para usuarios por sí mismo. Es un flujo reutilizable que puedes instalar dentro de otro repositorio para que Codex tenga:
 
 - un coordinador que controla el proceso
 - roles especialistas para distintos tipos de trabajo
@@ -76,7 +76,7 @@ Revisión:
 
 `logs/` es donde el flujo de trabajo deja escrito lo que ha pasado.
 
-Esto importa porque el sistema no quiere depender solo de la memoria del chat. Quiere un registro duradero de la petición, del plan, del estado actual, de los entregables y de las decisiones importantes.
+Existe para que el sistema no dependa solo de la memoria del chat. Guarda un registro duradero de la petición, el estado, los entregables y las decisiones importantes.
 
 En lenguaje sencillo, `logs/` es el cuaderno del proyecto.
 
@@ -94,11 +94,11 @@ El orquestador empieza entendiendo el objetivo real que hay detrás de la petici
 
 ### Paso 2. Elige trabajo directo o trabajo coordinado
 
-Esta es la decisión más importante de todo el sistema.
+Esta es la decisión clave de todo el sistema.
 
 El trabajo directo se usa cuando la petición pertenece sobre todo a una sola área, está lo bastante clara y es poco probable que mejore mucho involucrando a muchos roles.
 
-El trabajo coordinado se usa cuando la petición mezcla varias disciplinas, necesita una secuencia clara, contiene decisiones importantes o se beneficia de una revisión formal.
+El trabajo coordinado se usa cuando la petición mezcla disciplinas, necesita una secuencia clara, contiene decisiones importantes o se beneficia de una revisión formal.
 
 ### Paso 3. Si el trabajo es directo, se mantiene simple
 
@@ -106,15 +106,15 @@ En la vía directa, el orquestador registra la petición, aclara qué ha entendi
 
 ### Paso 4. Si el trabajo es coordinado, elige el equipo útil más pequeño
 
-El sistema evita por defecto los equipos grandes. Si dos roles bastan, usa dos. Si un rol basta, usa uno. La idea no es simular una empresa enorme. La idea es añadir la estructura justa para mejorar el resultado.
+El sistema evita por defecto los equipos grandes. Si dos roles bastan, usa dos. Si un rol basta, usa uno. La idea es añadir la estructura justa para mejorar el resultado.
 
 ### Paso 5. El orquestador redacta un único plan compartido
 
-Cuando intervienen varios roles, Product Team no quiere que cada uno invente su propio proceso. El orquestador crea un plan que dice qué va a pasar, en qué orden, quién se encarga de cada parte y dónde habrá revisión.
+Cuando intervienen varios roles, el orquestador crea un único plan compartido: qué va a pasar, en qué orden, quién se encarga de cada parte y dónde habrá revisión.
 
 ### Paso 6. Pide aprobación antes de una ejecución grande con varios roles
 
-En los trabajos coordinados más grandes, el sistema se detiene antes de empezar la ejecución principal. Así la persona usuaria puede confirmar antes la dirección. Esa pausa debe ser explícita: el orquestador debe resumir el plan, señalar `03_unified-plan.md`, `04_approval.md`, `status.md` y `context.md`, y terminar preguntando "Do you want to proceed?"
+En los trabajos coordinados más grandes, el sistema se detiene antes de empezar la ejecución principal para que la persona usuaria pueda confirmar la dirección. El orquestador debe resumir el plan y preguntar "Do you want to proceed?"
 
 ### Paso 7. Coordina la ejecución y mantiene el registro al día
 
@@ -124,25 +124,19 @@ Después de la aprobación, el orquestador activa los roles en secuencia, pasa l
 
 Un rol en este proyecto es intencionadamente amplio.
 
-Por ejemplo, un `designer` puede cubrir investigación, UX, UI y contenido sin pasar el trabajo a un nuevo agente en cada pequeño paso. Un `engineer` puede cubrir frontend y backend dentro del mismo rol.
+Por ejemplo, un `designer` puede cubrir investigación, UX, UI y contenido sin pasar cada pequeño paso a un nuevo agente. Un `engineer` puede cubrir frontend y backend dentro del mismo rol.
 
 Esto reduce traspasos, duplicación y confusión.
 
 ## Qué se escribe en `logs/`
 
-Dentro de `logs/active/<project-slug>/`, normalmente encontrarás archivos como estos:
+Dentro de `logs/active/<project-slug>/`, normalmente encontrarás:
 
-- `00_routing.md`: por qué el sistema eligió trabajo directo o coordinado
-- `01_intake.md`: qué significa la petición, además de límites, riesgos y dependencias
-- `02_staffing.md`: qué roles se eligieron, solo en trabajo coordinado
-- `03_unified-plan.md`: el plan principal, solo en trabajo coordinado
-- `04_approval.md`: el registro de aprobación, solo en trabajo coordinado
-- `status.md`: el estado actual de la ejecución
-- `context.md`: el resumen vivo para poder retomar más adelante
-- `plans/`: consejo opcional de especialistas
+- `context.md`: objetivo del proyecto, estado, decisiones, roles, entregables y preguntas abiertas
 - `deliverables/`: resultados producidos por los roles
-- `reviews/`: notas de revisión y validación
 - `decisions/`: decisiones importantes y resolución de conflictos
+
+El enrutamiento, la selección de roles, la planificación y la aprobación ocurren en la ventana de contexto — solo el contexto del proyecto y los entregables se persisten en disco.
 
 También existe `logs/archive/` para trabajos terminados o inactivos.
 
@@ -166,7 +160,7 @@ Las rutas principales que crea son:
 - `logs/active/`
 - `logs/archive/`
 
-El instalador está pensado para actualizar sus propios archivos sin sobrescribir archivos no relacionados del proyecto de destino.
+El instalador actualiza sus propios archivos sin sobrescribir archivos no relacionados del proyecto de destino.
 
 ## Cómo empezar
 

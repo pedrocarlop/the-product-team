@@ -73,5 +73,5 @@ When archetypes produce conflicting advice or deliverables:
 
 1. Both positions are documented in `decisions/<topic>.md` with rationale.
 2. The orchestrator consults the archetype whose ownership area covers the disputed scope.
-3. The orchestrator makes a binding decision, updates `03_unified-plan.md`, and records the resolution in `decisions/`.
+3. The orchestrator makes a binding decision and records the resolution in `decisions/`.
 4. Overruled archetypes acknowledge the decision and align their work accordingly.

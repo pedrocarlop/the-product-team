@@ -2,17 +2,17 @@
 
 [Read this in Spanish](./README.es.md)
 
-Product Team is a package for Codex that turns a normal repository into a workspace where multiple agents can operate like a small product team.
+Product Team is a Codex package that turns a normal repository into a workspace where agents can operate like a small product team.
 
-In simple terms, this project adds a coordinator, a set of specialists, and a shared work log so Codex can decide how to organize work instead of just reacting task by task.
+It adds a coordinator, a set of specialists, and a shared work log so Codex can choose how to organize work instead of reacting task by task.
 
-After installation, every request in that repository is meant to go through the Product Team coordinator by default. Simple work may still stay direct, but the coordinator makes that call inside the workflow; the normal bypass is only when the user explicitly says not to use Product Team for that request.
+After installation, requests in that repository go through the Product Team coordinator by default. Simple work may still stay direct, but that choice is made inside the workflow unless the user explicitly opts out for that request.
 
 ## Core Idea
 
-The main rule is simple: start with the lightest possible process.
+The main rule is simple: start with the lightest process that will work.
 
-That means Product Team does not create a group of agents for every request. It first checks whether one agent can handle the job well. Only if coordination would clearly improve the result does it bring in more roles.
+Product Team does not create a group of agents for every request. It first checks whether one agent can handle the job well. Only when coordination would clearly help does it bring in more roles.
 
 In practice, the flow is:
 
@@ -26,7 +26,7 @@ In practice, the flow is:
 
 Think of Product Team as an operating system for agent collaboration inside Codex.
 
-It is not an end-user product by itself. It is a reusable way of working that you can install inside another repository so Codex has:
+It is not an end-user product by itself. It is a reusable workflow you install inside another repository so Codex has:
 
 - one coordinator that controls the process
 - specialist roles for different kinds of work
@@ -74,9 +74,9 @@ Review:
 
 ### 3. Shared Memory: `logs/`
 
-`logs/` is where the workflow writes down what happened.
+`logs/` is where the workflow records what happened.
 
-This matters because the system does not want to depend on chat memory alone. It wants a durable record of the request, the plan, the current status, the deliverables, and the important decisions.
+It exists so the system does not depend on chat memory alone. It keeps a durable record of the request, status, deliverables, and important decisions.
 
 In plain language, `logs/` is the project notebook.
 
@@ -94,11 +94,11 @@ The orchestrator starts by understanding the real goal behind the request.
 
 ### Step 2. It chooses direct work or coordinated work
 
-This is the most important decision in the whole system.
+This is the key decision in the system.
 
-Direct work is used when the request is mostly in one domain, clear enough, and unlikely to improve much by involving many roles.
+Direct work is used when the request is mostly in one domain, clear enough, and unlikely to benefit much from involving many roles.
 
-Coordinated work is used when the request mixes several disciplines, needs sequencing, contains important tradeoffs, or benefits from formal review.
+Coordinated work is used when the request mixes disciplines, needs sequencing, contains important tradeoffs, or benefits from formal review.
 
 ### Step 3. If the work is direct, it stays simple
 
@@ -106,15 +106,15 @@ In the direct path, the orchestrator logs the request, clarifies what it underst
 
 ### Step 4. If the work is coordinated, it staffs the smallest useful team
 
-The system avoids large teams by default. If two roles are enough, it uses two. If one role is enough, it uses one. The point is not to simulate a giant company. The point is to add just enough structure to improve the outcome.
+The system avoids large teams by default. If two roles are enough, it uses two. If one role is enough, it uses one. The goal is to add just enough structure to improve the outcome.
 
 ### Step 5. The orchestrator writes one shared plan
 
-When several roles are involved, Product Team does not want each role inventing its own process. The orchestrator creates one plan that says what will happen, in what order, who owns each part, and where review will happen.
+When several roles are involved, the orchestrator creates one shared plan: what will happen, in what order, who owns each part, and where review will happen.
 
 ### Step 6. It asks for approval before major multi-role execution
 
-For bigger coordinated work, the system pauses before the main execution starts. That way the user can confirm the direction first. That pause should be explicit: the orchestrator should summarize the plan, point to the active `03_unified-plan.md`, `04_approval.md`, `status.md`, and `context.md`, and ask "Do you want to proceed?"
+For bigger coordinated work, the system pauses before main execution starts so the user can confirm the direction. The orchestrator should summarize the plan and ask "Do you want to proceed?"
 
 ### Step 7. It coordinates execution and keeps the record current
 
@@ -124,25 +124,19 @@ After approval, the orchestrator activates the roles in sequence, passes outputs
 
 A role in this project is intentionally broad.
 
-For example, a `designer` can cover research, UX, UI, and content without handing off to a new agent for every small step. An `engineer` can cover frontend and backend work in the same role.
+For example, a `designer` can cover research, UX, UI, and content without handing off every small step. An `engineer` can cover frontend and backend work in the same role.
 
 This reduces handoffs, duplication, and confusion.
 
 ## What Gets Written in `logs/`
 
-Inside `logs/active/<project-slug>/`, you will usually find files like these:
+Inside `logs/active/<project-slug>/`, you will usually find:
 
-- `00_routing.md`: why the system chose direct work or coordinated work
-- `01_intake.md`: what the request means, plus limits, risks, and dependencies
-- `02_staffing.md`: which roles were selected, only for coordinated work
-- `03_unified-plan.md`: the main plan, only for coordinated work
-- `04_approval.md`: the approval record, only for coordinated work
-- `status.md`: the current state of execution
-- `context.md`: the live summary needed to resume later
-- `plans/`: optional specialist advice
+- `context.md`: project goal, state, decisions, roles, deliverables, and open questions
 - `deliverables/`: outputs from the roles
-- `reviews/`: review notes and validation
 - `decisions/`: important decisions and conflict resolution
+
+Routing, staffing, planning, and approval happen in the context window — only project context and deliverables persist to disk.
 
 There is also `logs/archive/` for completed or inactive work.
 
@@ -166,7 +160,7 @@ The main paths it creates are:
 - `logs/active/`
 - `logs/archive/`
 
-The installer is designed to update its own files without overwriting unrelated files in the target project.
+The installer updates its own files without overwriting unrelated files in the target project.
 
 ## How To Start
 

@@ -46,9 +46,7 @@ orchestrator_file="agents/orchestrator/orchestrator/orchestrator.toml"
 
 if [[ -f "$orchestrator_file" ]]; then
   rg -q 'role_kind = "orchestrator"' "$orchestrator_file" || fail "Orchestrator role_kind must be orchestrator."
-  rg -q '00_routing\.md' "$orchestrator_file" || fail "Orchestrator must own 00_routing.md."
-  rg -q '03_unified-plan\.md' "$orchestrator_file" || fail "Orchestrator must own 03_unified-plan.md."
-  rg -q '04_approval\.md' "$orchestrator_file" || fail "Orchestrator must own 04_approval.md."
+  rg -q 'context\.md' "$orchestrator_file" || fail "Orchestrator must reference context.md."
 fi
 
 while IFS= read -r file; do
@@ -67,7 +65,6 @@ while IFS= read -r file; do
 
   rg -q 'subagent_requirement = "required"' "$file" || fail "Specialist must require subagent execution: $file"
   rg -q 'handoff_to = \["orchestrator"\]' "$file" || fail "Specialist must hand off to orchestrator: $file"
-  rg -q "logs/active/<project-slug>/plans/$role\\.md" "$file" || fail "Missing per-role plan path: $file"
 
   if rg -q 'role_kind = "reviewer"' "$file"; then
     rg -q "logs/active/<project-slug>/reviews/$role\\.md" "$file" || fail "Reviewer missing review artifact path: $file"

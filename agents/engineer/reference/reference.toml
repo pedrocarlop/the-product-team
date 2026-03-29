@@ -24,7 +24,7 @@ Guardrails:
 """
 
 [inputs]
-optional_files = ["logs/active/<project-slug>/context.md", "logs/active/<project-slug>/status.md"]
+optional_files = ["logs/active/<project-slug>/context.md"]
 required_files = []
 
 [outputs]

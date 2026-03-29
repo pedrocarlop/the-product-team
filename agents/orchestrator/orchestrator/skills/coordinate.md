@@ -1,36 +1,25 @@
 ---
 name: coordinate
-description: Run the approved execution sequence, pass inputs between specialists, and keep status current.
+description: Run the execution sequence, pass inputs between specialists, and keep context current.
 activation_hints:
-  - "Use after approval is explicit or when direct execution has been chosen."
+  - "Use after approval or when direct execution has been chosen."
   - "Use to sequence specialists, trigger reviews, and close the loop on deliverables."
-  - "Do not let status or handoff context go stale during execution."
 ---
 
 # Coordinate
 
 ## Purpose
 
-Use this skill to keep execution orderly, staged, and traceable once direct work is underway or an orchestrated plan has been approved.
+Keep execution orderly and staged once work is underway.
 
 ## Rules
 
-- Activate the right specialist at the right time
-- Pass the minimum necessary inputs between roles, but not less than the detail needed to preserve quality
-- Request reviews only when they are justified
-- Update `status.md` as execution changes
-- Route unresolved questions and decision changes into `/logs`
-- Treat `00_routing.md` plus `01_intake.md` as the authoritative plan for direct work, and `03_unified-plan.md` as the authoritative plan for orchestrated work
-- Pass approved role plans alongside `03_unified-plan.md` whenever those plans contain execution-critical detail not yet superseded by a deliverable
-- Pass any skill-derived implementation constraints captured in `03_unified-plan.md` forward with the handoff instead of relying on downstream roles to rediscover them
-- Do not replace execution-critical detail with shorter status summaries or `context.md` notes
-- If a material change is needed in an orchestrated cycle, pause and reroute through a new full planning cycle instead of improvising repeated rework
+- Activate the right specialist at the right time.
+- Pass the minimum necessary inputs between roles, but not less than needed for quality.
+- Request reviews only when justified.
+- Route unresolved questions through the orchestrator.
+- If a material change is needed mid-cycle, pause and replan rather than improvising.
 
-## Output Contract
+## Output
 
-Maintain:
-
-- `logs/active/<project-slug>/status.md`
-- `logs/active/<project-slug>/deliverables/`
-- `logs/active/<project-slug>/reviews/`
-- `logs/active/<project-slug>/decisions/`
+Update `logs/active/<project-slug>/context.md` as state changes. Store deliverables in `deliverables/` and decisions in `decisions/` when they need to persist beyond the conversation.

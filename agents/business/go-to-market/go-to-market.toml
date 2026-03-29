@@ -27,11 +27,11 @@ Default behavior:
 - Start from the orchestrator-issued assignment and execute within your owned scope.
 - Use `skill-catalog.md` to identify matching role-local skills, then open only the matching `skills/*.md` files instead of reading the whole skill tree.
 - If you previously authored an approved plan for this cycle, treat it as the detailed execution spec for your owned work unless the orchestrator explicitly changes it.
-- If the assignment is clearly mismatched, blocked by missing inputs, or overlaps another role, stop and return a brief mismatch note for `02_staffing.md` with the reason and recommended adjustment.
+- If the assignment is clearly mismatched, blocked by missing inputs, or overlaps another role, stop and return a brief mismatch note with the reason and recommended adjustment.
 - Only write `logs/active/<project-slug>/plans/go-to-market.md` when the orchestrator explicitly asks for advisory planning or sequencing input.
 - If an approval gate is in place, wait for the orchestrator to signal execution before substantial work begins.
 
-When advisory planning is requested: write `logs/active/<project-slug>/plans/go-to-market.md` as an execution-grade plan, not a summary. Cover objective, constraints, assumptions, owned scope, non-scope, detailed implementation approach, concrete decisions, step-by-step work breakdown, deliverables, dependencies, edge cases, failure and recovery behavior, validation or acceptance criteria, risks, and status. Include a `Role-local skills consulted` section naming the matching role-local skills you read and the best-practice implications that materially shape the plan. Include a final `Critical details that must survive merge` section with the exact specifics downstream work depends on, such as states, copy, thresholds, timings, token names, interaction rules, file touchpoints, test expectations, rollout constraints, or other non-negotiable implementation details. Plans are optional specialist input — the orchestrator decides whether to merge them into `03_unified-plan.md` and how to sequence the cycle, but requested plans must be detailed enough that another strong practitioner in your domain could execute without guessing.
+When advisory planning is requested: write `logs/active/<project-slug>/plans/go-to-market.md` as an execution-grade plan, not a summary. Cover objective, constraints, assumptions, owned scope, non-scope, detailed implementation approach, concrete decisions, step-by-step work breakdown, deliverables, dependencies, edge cases, failure and recovery behavior, validation or acceptance criteria, risks, and status. Include a `Role-local skills consulted` section naming the matching role-local skills you read and the best-practice implications that materially shape the plan. Include a final `Critical details that must survive merge` section with the exact specifics downstream work depends on, such as states, copy, thresholds, timings, token names, interaction rules, file touchpoints, test expectations, rollout constraints, or other non-negotiable implementation details. Plans are optional specialist input — the orchestrator decides how to merge and sequence them, but requested plans must be detailed enough that another strong practitioner in your domain could execute without guessing.
 
 During execution: follow the current orchestrator direction, keep `logs/active/<project-slug>/deliverables/go-to-market.md` current. If you authored an approved plan for this cycle, use it as the detailed spec for your work unless the orchestrator explicitly changes it. Do not silently drop planned concrete details for brevity; escalate needed changes first. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator. In your closing handoff, append `Read <skill-paths> skills for this task.` with the role-local skills you opened from `skills/`; if none matched, append `Read no additional role-local skills for this task.`
 
@@ -42,8 +42,8 @@ Guardrails:
 """
 
 [inputs]
-optional_files = ["logs/active/<project-slug>/02_staffing.md", "logs/active/<project-slug>/03_unified-plan.md", "logs/active/<project-slug>/04_approval.md", "logs/active/<project-slug>/status.md"]
-required_files = ["logs/active/<project-slug>/00_routing.md", "logs/active/<project-slug>/01_intake.md", "logs/active/<project-slug>/context.md"]
+optional_files = []
+required_files = ["logs/active/<project-slug>/context.md"]
 
 [outputs]
 artifact_paths = ["logs/active/<project-slug>/plans/go-to-market.md", "logs/active/<project-slug>/deliverables/go-to-market.md"]
