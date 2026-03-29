@@ -6,6 +6,8 @@ Product Team is a package for Codex that turns a normal repository into a worksp
 
 In simple terms, this project adds a coordinator, a set of specialists, and a shared work log so Codex can decide how to organize work instead of just reacting task by task.
 
+After installation, every request in that repository is meant to go through the Product Team coordinator by default. Simple work may still stay direct, but the coordinator makes that call inside the workflow; the normal bypass is only when the user explicitly says not to use Product Team for that request.
+
 ## Core Idea
 
 The main rule is simple: start with the lightest possible process.
@@ -208,7 +210,7 @@ The install manifest records where the package came from. If the original source
 
 ### 4. Ask the coordinator to do work
 
-Once installed, use `product-team-orchestrator` in Codex.
+Once installed, Product Team becomes the default entrypoint for requests in that repository unless the user explicitly opts out for a request. `product-team-orchestrator` still decides whether the work stays direct or becomes coordinated.
 
 Examples:
 

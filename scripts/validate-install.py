@@ -94,16 +94,27 @@ def main() -> int:
     if agents_md.exists():
         agents_text = agents_md.read_text(encoding="utf-8")
         expect(MARKER_START in agents_text and MARKER_END in agents_text, "AGENTS.md is missing Product Team markers.", failures)
+        expect("Route every request in this repository through `product-team-orchestrator` by default." in agents_text, "AGENTS.md is missing the all-requests-through-orchestrator rule.", failures)
+        expect("Only bypass Product Team when the user explicitly says not to use Product Team" in agents_text, "AGENTS.md is missing the explicit Product Team opt-out rule.", failures)
+        expect("Do not infer an opt-out from simplicity, urgency, or implementation bias alone." in agents_text, "AGENTS.md is missing the no-inferred-opt-out rule.", failures)
+        expect("stay direct within the orchestrator" in agents_text, "AGENTS.md is missing the direct-inside-orchestrator clarification.", failures)
 
     expect((root / "logs" / "active").is_dir(), "Missing logs/active directory.", failures)
     expect((root / "logs" / "archive").is_dir(), "Missing logs/archive directory.", failures)
 
     refs_root = root / ".codex" / PACKAGE_SLUG / "references"
     scripts_root = root / ".codex" / PACKAGE_SLUG / "scripts"
+    package_readme_path = root / ".codex" / PACKAGE_SLUG / "README.md"
     expect((refs_root / "logs-workflow-contract.md").exists(), "Missing installed logs contract reference doc.", failures)
     expect((refs_root / "role-catalog.md").exists(), "Missing installed role catalog reference doc.", failures)
     expect((scripts_root / "validate-install.py").exists(), "Missing installed validate-install.py script.", failures)
     expect((scripts_root / "update-install.py").exists(), "Missing installed update-install.py script.", failures)
+    expect(package_readme_path.exists(), "Missing installed package README.", failures)
+    if package_readme_path.exists():
+        package_readme = package_readme_path.read_text(encoding="utf-8")
+        expect("Every request in this repository should go through `product-team-orchestrator` by default." in package_readme, "Installed package README is missing the default-all-requests-through-orchestrator rule.", failures)
+        expect("Only an explicit user opt-out" in package_readme, "Installed package README is missing the explicit opt-out rule.", failures)
+        expect("direct path is chosen inside the orchestrator" in package_readme, "Installed package README is missing the direct-inside-orchestrator clarification.", failures)
     if (refs_root / "logs-workflow-contract.md").exists():
         logs_contract = (refs_root / "logs-workflow-contract.md").read_text(encoding="utf-8")
         expect("This is the plan" in logs_contract, "Installed logs contract is missing the approval handoff opener.", failures)

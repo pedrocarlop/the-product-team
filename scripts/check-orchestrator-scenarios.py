@@ -25,6 +25,7 @@ def main() -> int:
     reconcile_skill = (ROOT / "agents/orchestrator/orchestrator/skills/reconcile.md").read_text()
     coordinate_skill = (ROOT / "agents/orchestrator/orchestrator/skills/coordinate.md").read_text()
     agents_fragment = (ROOT / "assets/AGENTS.fragment.md").read_text()
+    package_readme = (ROOT / "assets/package-README.md").read_text()
 
     expect("direct execution by default" in orchestrator_prompt.lower(), "Orchestrator prompt missing direct-first rule.", failures)
     expect(
@@ -102,8 +103,12 @@ def main() -> int:
     expect("Overlap resolutions and conflict decisions" in reconcile_skill, "Reconcile skill missing overlap-resolution output.", failures)
     expect("approved role plans alongside `03_unified-plan.md`" in coordinate_skill, "Coordinate skill missing role-plan carry-forward rule.", failures)
     expect("Do not replace execution-critical detail" in coordinate_skill, "Coordinate skill missing anti-summary guardrail.", failures)
+    expect("Route every request in this repository through `product-team-orchestrator` by default." in agents_fragment, "Managed AGENTS guidance missing all-requests-through-orchestrator rule.", failures)
+    expect("Only bypass Product Team when the user explicitly says not to use Product Team" in agents_fragment, "Managed AGENTS guidance missing explicit opt-out rule.", failures)
+    expect("Do not infer an opt-out from simplicity, urgency, or implementation bias alone." in agents_fragment, "Managed AGENTS guidance missing no-inferred-opt-out rule.", failures)
     expect("Route by domain before staffing" in agents_fragment, "Managed AGENTS guidance missing domain-first routing instruction.", failures)
     expect("Default to direct Codex execution" in agents_fragment, "Managed AGENTS guidance missing direct-first instruction.", failures)
+    expect("stay direct within the orchestrator" in agents_fragment, "Managed AGENTS guidance missing direct-inside-orchestrator rule.", failures)
     expect("actual role needs, not task keywords alone" in agents_fragment, "Managed AGENTS guidance missing anti-keyword staffing rule.", failures)
     expect("skill-catalog.md" in agents_fragment, "Managed AGENTS guidance missing role-local skill catalog rule.", failures)
     expect("the orchestrator must quickly scan its own role-local `skill-catalog.md`" in agents_fragment, "Managed AGENTS guidance missing orchestrator self-scan rule.", failures)
@@ -111,6 +116,9 @@ def main() -> int:
     expect("preserve all material specialist detail" in agents_fragment.lower(), "Managed AGENTS guidance missing detail-preservation rule.", failures)
     expect("best-practice source material" in agents_fragment.lower() or "use the skills as best-practice source material" in agents_fragment.lower(), "Managed AGENTS guidance missing skill-derived best-practice rule.", failures)
     expect("Do you want to proceed?" in agents_fragment, "Managed AGENTS guidance missing explicit approval handoff question.", failures)
+    expect("Every request in this repository should go through `product-team-orchestrator` by default." in package_readme, "Package README missing default-all-requests-through-orchestrator rule.", failures)
+    expect("Only an explicit user opt-out" in package_readme, "Package README missing explicit opt-out rule.", failures)
+    expect("direct path is chosen inside the orchestrator" in package_readme, "Package README missing direct-inside-orchestrator clarification.", failures)
 
     approve_skill = (ROOT / "agents/orchestrator/orchestrator/skills/approve.md").read_text()
     expect("This is the plan" in approve_skill, "Approve skill missing explicit approval handoff opener.", failures)

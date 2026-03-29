@@ -2,6 +2,8 @@
 
 This repository has the Product Team Codex workflow installed.
 
+Every request in this repository should go through `product-team-orchestrator` by default. Only an explicit user opt-out for the current request should bypass Product Team. Simple work can still stay direct, but that direct path is chosen inside the orchestrator rather than by skipping the workflow.
+
 The workflow is direct-first: the orchestrator routes work cheaply, executes directly when the task is single-domain and implementation-heavy, and only escalates into multi-agent coordination when the coordination payoff is worth the cost. On every request, the orchestrator also scans its own role-local `skill-catalog.md` and opens the matching orchestrator skills that can improve routing, logging, planning, approval, or execution quality. When orchestration is justified, the orchestrator staffs the minimum viable team, asks for specialist planning only when it is genuinely useful, requires execution-grade role plans when it does ask, reads the relevant staffed-role skills, authors one lossless merged implementation plan, and then coordinates execution. If execution is paused for approval, the orchestrator must summarize the plan, reference the active log files, and explicitly ask "Do you want to proceed?" Material replanning should happen through a new full cycle, not by repeated mid-flight rework.
 
 Route by domain before staffing. Consult only the relevant discipline slice of `.codex/product-team/references/role-catalog.md` when the task is clearly single-domain; read the full catalog only for ambiguous or cross-functional work.
@@ -45,13 +47,13 @@ The updater reuses the recorded install source. If the original source checkout 
 
 > "Fix the typo on the login page"
 
-The orchestrator sees this is simple, self-contained work. It routes to direct execution — no specialists needed. It creates `00_routing.md` and `01_intake.md`, fixes the typo, and updates `status.md`.
+The request still enters through `product-team-orchestrator`. The orchestrator sees this is simple, self-contained work, routes to direct execution, creates `00_routing.md` and `01_intake.md`, fixes the typo, and updates `status.md`.
 
 ### Single-domain build (still direct)
 
 > "Build a markdown editor"
 
-The orchestrator sees this is substantial but still narrow, implementation-first, and unlikely to benefit from cross-functional negotiation. It routes to direct execution, records the reasoning in `00_routing.md`, and starts building without staffing specialists or creating planning ceremony.
+The request still enters through `product-team-orchestrator`. The orchestrator sees this is substantial but still narrow, implementation-first, and unlikely to benefit from cross-functional negotiation. It routes to direct execution, records the reasoning in `00_routing.md`, and starts building without staffing specialists or creating planning ceremony.
 
 ### Cross-functional request (2-role orchestration)
 
@@ -67,7 +69,7 @@ The orchestrator staffs a full team: **product-lead** (to define scope and succe
 
 ## Notes
 
-- `AGENTS.md` contains a managed Product Team block that the installer keeps up to date.
+- `AGENTS.md` contains a managed Product Team block that the installer keeps up to date and uses to make Product Team the default entrypoint for repo requests unless the user explicitly opts out.
 - `logs/README.md` is created only when the target repo does not already have one.
 - Installed roles stay grouped by discipline so the target repo mirrors the source package structure.
 - Shared workflow references, including the role catalog and `/logs` contract, live under `.codex/product-team/references/`.

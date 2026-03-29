@@ -4,11 +4,13 @@ This repository has the Product Team workflow installed.
 
 ## Entry Point
 
-- Use `product-team-orchestrator` as the coordination entrypoint for cross-functional, ambiguous, staged, or review-heavy work.
-- Default to direct Codex execution for single-domain, implementation-first, clearly scoped work.
+- Route every request in this repository through `product-team-orchestrator` by default.
+- Only bypass Product Team when the user explicitly says not to use Product Team, not to use the orchestrator, or otherwise asks to work outside the workflow for that request.
+- Do not infer an opt-out from simplicity, urgency, or implementation bias alone.
+- Default to direct Codex execution inside `product-team-orchestrator` for single-domain, implementation-first, clearly scoped work.
 - Route by domain before staffing. Consult only the relevant discipline slice of `.codex/product-team/references/role-catalog.md` when the domain is obvious; read the full catalog only for ambiguous or cross-functional work.
-- On every request, estimate whether specialist coordination will materially improve the outcome over direct execution. If not, stay direct.
-- If you engage the workflow, `/logs` is the only persistent project-memory and handoff surface.
+- On every request, estimate whether specialist coordination will materially improve the outcome over direct execution. If not, stay direct within the orchestrator.
+- When Product Team is active, `/logs` is the only persistent project-memory and handoff surface.
 
 ## Workflow Rules
 
