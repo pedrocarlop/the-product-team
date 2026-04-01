@@ -95,6 +95,7 @@ For each staffed role, specify:
 - **Owns**: what artifacts and decisions this role is accountable for.
 - **Reads from**: what upstream deliverables this role consumes.
 - **Blocked by**: what must complete before this role starts (if sequential).
+- **Repo write authority**: whether this role may edit repo-tracked code for the current stage. Default is `none`. Assign a single explicit repo-write owner per stage unless you deliberately split disjoint scopes.
 
 ```
 Example:
@@ -102,11 +103,13 @@ Example:
     owns: deliverables/designer.md
     reads from: context.md
     blocked by: nothing (can start immediately)
+    repo writes: none
   
   engineer:
     owns: deliverables/engineer.md, working code
     reads from: context.md, deliverables/designer.md
     blocked by: designer (needs design specs first)
+    repo writes: explicit owner for app code in `app/settings/**`
 ```
 
 ### Step 7: Update Context
@@ -121,9 +124,9 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Staffing
-| Role | Skill Hint | Reasoning | Owns |
-|------|-----------|-----------|------|
-| <role> | <hint or —> | <medium/high> | <deliverable> |
+| Role | Skill Hint | Reasoning | Owns | Repo Writes |
+|------|-----------|-----------|------|-------------|
+| <role> | <hint or —> | <medium/high> | <deliverable> | <none / explicit owner + scope> |
 
 ## Sequencing
 <sequential / parallel / mixed>
@@ -137,6 +140,7 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 
 **Staffing:**
 - `engineer` (skill_hint: frontend/translate, frontend/stateful) — reasoning: medium
+- `engineer` is the only repo-write owner for this stage.
 - No designer needed — toggle is a standard pattern.
 - No reviewer needed — low risk, one-page change.
 
@@ -150,6 +154,10 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - `engineer` (skill_hint: fullstack/model, fullstack/wire) — reasoning: high
 - `platform-engineer` (skill_hint: api/shape, database/schema) — reasoning: high
 
+**Repo writes:**
+- `engineer` owns feature code in the app surface.
+- `platform-engineer` may own repo writes only if the orchestrator assigns a disjoint backend or infrastructure scope.
+
 **Sequencing:** designer → engineer + platform-engineer (parallel) → orchestrator review.
 **Team size:** 3 roles.
 
@@ -159,6 +167,10 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 **Staffing:**
 - `analyst` (skill_hint: data/frame, data/measure) — reasoning: medium
 - `engineer` (skill_hint: frontend/translate) — reasoning: medium
+
+**Repo writes:**
+- `analyst`: none
+- `engineer`: explicit owner for dashboard implementation scope
 
 **Sequencing:** analyst defines metrics → engineer implements the dashboard.
 **Team size:** 2 roles.
@@ -184,6 +196,7 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - Do not staff `reference` — it is a helper archetype, not an autonomous agent.
 - Do not require specialist advisory plans by habit — only when ambiguity genuinely demands them.
 - Do not duplicate capabilities across roles — if `engineer` can handle API work for a feature, don't also staff `platform-engineer`.
+- Do not assign more than one repo-write owner in the same stage unless the scopes are explicitly disjoint.
 
 ## Troubleshooting
 

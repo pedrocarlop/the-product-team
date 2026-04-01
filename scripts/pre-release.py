@@ -25,6 +25,7 @@ KNOWN_MCP_SERVERS = {
     "slack",
     "github",
     "paper",
+    "stitch",
 }
 
 REQUIRED_TOML_FIELDS = {
@@ -144,6 +145,11 @@ def check_required_fields(failures: list[str]) -> None:
         expect(
             "execution_policy" in data and "role_kind" in data.get("execution_policy", {}),
             f"{role_name}: missing execution_policy.role_kind.",
+            failures,
+        )
+        expect(
+            "execution_policy" in data and "repo_write_policy" in data.get("execution_policy", {}),
+            f"{role_name}: missing execution_policy.repo_write_policy.",
             failures,
         )
 

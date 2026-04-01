@@ -52,6 +52,7 @@ orchestrator_file="agents/orchestrator/orchestrator/orchestrator.toml"
 if [[ -f "$orchestrator_file" ]]; then
   grep -q 'role_kind = "orchestrator"' "$orchestrator_file" || fail "Orchestrator role_kind must be orchestrator."
   grep -q 'context\.md' "$orchestrator_file" || fail "Orchestrator must reference context.md."
+  grep -q 'repo_write_policy = "direct_only"' "$orchestrator_file" || fail "Orchestrator repo_write_policy must be direct_only."
 fi
 
 while IFS= read -r file; do
@@ -65,11 +66,20 @@ while IFS= read -r file; do
     grep -q 'role_kind = "reference"' "$file" || fail "Reference role must use role_kind = \"reference\": $file"
     grep -q 'artifact_paths = \[\]' "$file" || fail "Reference role must not own artifacts: $file"
     grep -q 'may_write_paths = \[\]' "$file" || fail "Reference role must not write logs or repo artifacts: $file"
+    grep -q 'repo_write_policy = "never"' "$file" || fail "Reference role repo_write_policy must be never: $file"
     continue
   fi
 
   grep -q 'subagent_requirement = "required"' "$file" || fail "Specialist must require subagent execution: $file"
   grep -q 'handoff_to = \["orchestrator"\]' "$file" || fail "Specialist must hand off to orchestrator: $file"
+
+  expected_repo_write_policy='never'
+  case "$role" in
+    engineer|platform-engineer)
+      expected_repo_write_policy='explicit_owner_only'
+      ;;
+  esac
+  grep -q "repo_write_policy = \"$expected_repo_write_policy\"" "$file" || fail "Unexpected repo_write_policy for $role: expected $expected_repo_write_policy in $file"
 
   # GIANT Standards: Capability Cards
   [[ -f "$(dirname "$file")/capabilities.md" ]] || fail "Missing capabilities.md for role: $role"

@@ -22,6 +22,9 @@ This repository has the Product Team workflow installed.
 - Request role plans only when written specialist advice is genuinely needed.
 - Orchestration, routing, staffing, and planning happen in the context window. Only persist the project context (`context.md`) and deliverables to `/logs`.
 - Get explicit approval before substantial multi-role execution.
+- When staffing specialists, every assignment must define `assignment_mode`, `owned_outputs`, `reads_from`, `repo_write_owner`, `repo_write_scope`, and `return_expected`.
+- Staffed specialists may always write their owned `/logs` artifacts. Repo-tracked app code must have one explicit implementation owner per stage.
+- If a staffed implementation owner exists for the current stage, the orchestrator must stop main-thread repo implementation unless it explicitly resets routing back to direct execution.
 - During execution, keep approved detail alive until a newer deliverable supersedes it.
 - Do not reopen the process piecemeal during execution. If the plan materially changes, rerun the full cycle through the orchestrator.
 - Let staffed archetypes route internally across their discipline groups instead of spawning extra same-domain handoffs.

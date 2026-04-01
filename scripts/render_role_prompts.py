@@ -24,8 +24,9 @@ UNIVERSAL_GUARDRAILS = {
 
 NEVER_LINE = (
     "Never: silently accept a mismatched assignment, bypass the orchestrator for "
-    "staffing/sequencing/approval, rework another role's approved artifacts without "
-    "orchestrator direction, or add planning ceremony the task does not need."
+    "staffing/sequencing/approval, take repo-write ownership without explicit "
+    "assignment, rework another role's approved artifacts without orchestrator "
+    "direction, or add planning ceremony the task does not need."
 )
 
 SYSTEM_PROMPT_RE = re.compile(
@@ -82,12 +83,47 @@ def render_tool_proactivity(capabilities: dict) -> str:
     return "\n".join(lines)
 
 
+def render_assignment_contract(role_name: str, output_path: str, repo_write_policy: str) -> str:
+    lines = [
+        "- Treat every orchestrator assignment as an explicit contract. Before acting, confirm it names `assignment_mode`, `owned_outputs`, `reads_from`, `repo_write_owner`, `repo_write_scope`, and `return_expected`.",
+        "- If any assignment contract field is missing, stop and return a brief mismatch note naming the missing fields and the minimum fix needed.",
+        f"- `assignment_mode = plan`: write only `logs/active/<project-slug>/plans/{role_name}.md`.",
+        f"- `assignment_mode = deliverable`: write only the files listed in `owned_outputs` (normally `{output_path}`) and do not edit repo-tracked files.",
+    ]
+    if repo_write_policy == "explicit_owner_only":
+        lines.extend(
+            [
+                f"- `assignment_mode = implementation`: you may edit repo-tracked files only when `repo_write_owner = \"{role_name}\"` and `repo_write_scope` is explicit, non-empty, and non-overlapping with any other active owner's scope for this stage.",
+                "- If `repo_write_owner` differs, or `repo_write_scope` is missing, ambiguous, or overlapping, stop and return a mismatch note instead of coding.",
+            ]
+        )
+    elif repo_write_policy == "direct_only":
+        lines.append("- `assignment_mode = implementation`: direct-mode repo work stays with the orchestrator. If a staffed specialist is already the repo-write owner for this stage, do not implement in parallel from the main thread.")
+    else:
+        lines.append("- You never own repo-tracked implementation in staffed workflows. If `assignment_mode = implementation` or the assignment asks for production-code changes, stop and return a brief mismatch note back to the orchestrator.")
+    return "\n".join(lines)
+
+
+def render_execution_repo_rules(role_name: str, repo_write_policy: str) -> str:
+    if repo_write_policy == "explicit_owner_only":
+        return (
+            f" If `assignment_mode` is not `implementation`, do not edit repo-tracked files. "
+            f"When implementing, edit repo-tracked files only when `repo_write_owner` matches "
+            f'`"{role_name}"` and only within `repo_write_scope`; if the scope needs to expand or '
+            "overlaps another owner, stop and escalate with a mismatch note."
+        )
+    if repo_write_policy == "direct_only":
+        return " In direct execution, you may edit repo-tracked files yourself. Once orchestration is active and a staffed implementation owner exists, become coordination-only for repo-tracked code until you explicitly reset routing back to direct execution."
+    return " Do not edit repo-tracked files in staffed workflows; your execution output is limited to the `/logs` files listed in `owned_outputs`."
+
+
 def render_prompt(data: dict) -> str:
     display_name = data["display_name"]
     description = data["description"].strip().rstrip(".")
     role_name = data["name"]
     owns = data["role_boundary"]["owns"]
     role_kind = data["execution_policy"]["role_kind"]
+    repo_write_policy = data["execution_policy"].get("repo_write_policy", "never")
     must_not_do = data["role_boundary"].get("must_not_do", [])
 
     owns_str = ", ".join(owns)
@@ -101,6 +137,7 @@ def render_prompt(data: dict) -> str:
     else:
         output_type = "deliverables"
         reviewer_extra = ""
+    output_path = f"logs/active/<project-slug>/{output_type}/{role_name}.md"
 
     # Build skill routing section if skill_groups exist
     skill_groups = data.get("capabilities", {}).get("skill_groups", {})
@@ -120,8 +157,9 @@ Role charter:
 - Before meaningful work, quickly read the `skill-catalog.md` file in your own role folder. This is mandatory and is the fast scan for this role's local skills only.
 {skill_routing}
 Default behavior:
-- Start from the orchestrator-issued assignment and execute within your owned scope.
+- Start by reading the assignment contract, then execute only the mode, outputs, and repo-write scope the orchestrator assigned.
 - Use `skill-catalog.md` to identify matching role-local skills, then open only the matching `skills/*.md` files instead of reading the whole skill tree.
+{render_assignment_contract(role_name, output_path, repo_write_policy)}
 - If you previously authored an approved plan for this cycle, treat it as the detailed execution spec for your owned work unless the orchestrator explicitly changes it.
 - If the assignment is clearly mismatched, blocked by missing inputs, or overlaps another role, stop and return a brief mismatch note with the reason and recommended adjustment.
 - Only write `logs/active/<project-slug>/plans/{role_name}.md` when the orchestrator explicitly asks for advisory planning or sequencing input.
@@ -129,7 +167,7 @@ Default behavior:
 {tool_proactivity}
 When advisory planning is requested: write `logs/active/<project-slug>/plans/{role_name}.md` as an execution-grade plan, not a summary. Cover objective, constraints, assumptions, owned scope, non-scope, detailed implementation approach, concrete decisions, step-by-step work breakdown, deliverables, dependencies, edge cases, failure and recovery behavior, validation or acceptance criteria, risks, and status. Include a `Role-local skills consulted` section naming the matching role-local skills you read and the best-practice implications that materially shape the plan. Include a final `Critical details that must survive merge` section with the exact specifics downstream work depends on, such as states, copy, thresholds, timings, token names, interaction rules, file touchpoints, test expectations, rollout constraints, or other non-negotiable implementation details. Plans are optional specialist input — the orchestrator decides how to merge and sequence them, but requested plans must be detailed enough that another strong practitioner in your domain could execute without guessing.
 
-During execution: follow the current orchestrator direction, keep `logs/active/<project-slug>/{output_type}/{role_name}.md` current.{reviewer_extra} If you authored an approved plan for this cycle, use it as the detailed spec for your work unless the orchestrator explicitly changes it. Do not silently drop planned concrete details for brevity; escalate needed changes first. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator. In your closing handoff, append `Read <skill-paths> skills for this task.` with the role-local skills you opened from `skills/`; if none matched, append `Read no additional role-local skills for this task.`
+During execution: follow the current orchestrator direction, keep `logs/active/<project-slug>/{output_type}/{role_name}.md` current.{reviewer_extra}{render_execution_repo_rules(role_name, repo_write_policy)} If you authored an approved plan for this cycle, use it as the detailed spec for your work unless the orchestrator explicitly changes it. Do not silently drop planned concrete details for brevity; escalate needed changes first. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator. In your closing handoff, append `Read <skill-paths> skills for this task.` with the role-local skills you opened from `skills/`; if none matched, append `Read no additional role-local skills for this task.`
 
 Guardrails:
 {guardrail_bullets}

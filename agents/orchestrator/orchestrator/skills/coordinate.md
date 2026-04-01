@@ -68,6 +68,24 @@ For each specialist in the execution order:
    - Any upstream deliverable paths they should read.
    - The `skill_hint` from staffing (if set).
    - Specific constraints or decisions from the orchestrator.
+   - The explicit assignment contract fields: `assignment_mode`, `owned_outputs`, `reads_from`, `repo_write_owner`, `repo_write_scope`, and `return_expected`.
+
+   Use this contract shape:
+
+   ```text
+   assignment_mode: <plan | deliverable | implementation>
+   owned_outputs:
+   - <path>
+   reads_from:
+   - <path>
+   repo_write_owner: <role-name | none>
+   repo_write_scope:
+   - <repo path or bounded area>
+   return_expected: <deliverable | mismatch note | blocker | completion signal>
+   ```
+
+   If `assignment_mode` is not `implementation`, set `repo_write_owner: none` and leave `repo_write_scope` empty.
+   If a specialist is the repo-write owner, make the scope explicit and bounded.
 
 2. **Spawn the subagent** with the assignment.
 
@@ -87,6 +105,8 @@ engineer reads  → logs/active/<slug>/deliverables/designer.md (directly)
 - Do not compress, summarize, or relay deliverable content through `context.md` — this loses critical detail.
 - The orchestrator passes the _path_, not the _content_.
 - Each specialist is responsible for reading its input deliverables at execution start.
+- Repo-tracked app code has a separate handoff rule: one explicit `repo_write_owner` per stage by default.
+- If you intentionally run parallel repo writers, their `repo_write_scope` values must be disjoint and stated in both assignments.
 
 ### Step 5: Monitor Execution and Verify Handoffs
 
@@ -97,6 +117,7 @@ While specialists are running:
     1. **Check YAML Header**: Does `logs/active/<slug>/deliverables/<role>.md` start with the required YAML block?
     2. **Check Reflection**: Does the file end with a `## Reflection` section?
     3. **Evaluate Confidence**: If the specialist reported `confidence < 0.7` in the header, the Orchestrator must read the reflection to decide if remedial action is needed.
+    4. **Check Repo Ownership**: Did only the named `repo_write_owner` edit repo-tracked code for this stage, and did it stay within the assigned `repo_write_scope`?
 
 - If a specialist returns a **mismatch note**: pause, evaluate, and decide whether to reassign, adjust scope, or escalate to the user.
 - If a specialist returns a **blocker**: pause the sequence, resolve the blocker, then resume.
@@ -183,6 +204,7 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - Do not compress deliverable content through orchestrator context — pass file paths and let specialists read directly.
 - Do not launch a downstream specialist before its upstream dependency has completed (unless parallelize is explicitly justified).
 - Do not continue execution after a specialist reports a material mismatch — pause and evaluate.
+- Do not allow duplicate repo owners for the same stage unless you have explicitly assigned disjoint `repo_write_scope` values.
 - Do not let `context.md` go stale — update after every significant state change.
 - Do not orphan deliverables — every specialist output must be either consumed by a downstream role or presented to the user.
 - Do not allow specialists to negotiate the process after the orchestrator sets it — coordination is the orchestrator's job.

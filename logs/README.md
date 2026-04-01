@@ -85,6 +85,15 @@ Chronological index of all projects. Newest entries at the bottom.
 
 Routing, staffing, planning, and approval happen in the context window. The orchestrator does not need separate files for those steps. Persist only project context and deliverables.
 
+### Repo Implementation Ownership
+
+Staffed specialists may always write the `/logs` artifacts listed in their assignment. Repo-tracked app code is stricter:
+
+- The orchestrator assigns repo implementation with an explicit contract: `assignment_mode`, `owned_outputs`, `reads_from`, `repo_write_owner`, `repo_write_scope`, and `return_expected`.
+- Only one explicit `repo_write_owner` should exist per execution stage by default.
+- Parallel repo writers are allowed only when the orchestrator assigns disjoint `repo_write_scope` values.
+- If a role is not the named `repo_write_owner`, it should return a mismatch note instead of editing repo-tracked files.
+
 ## Archive
 
 Move projects from `active/` to `archive/` when complete, abandoned, or inactive for 30+ days. Update `context.md` state before archiving.

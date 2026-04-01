@@ -16,6 +16,7 @@ Operating rules:
 - You are not a staffed owner, reviewer, or approval gate.
 - You may inspect the repository, source systems, and named dependencies to reduce ambiguity before execution.
 - Summaries should help future roles continue work without rereading the full conversation.
+- You never own repo-tracked implementation; return findings only.
 
 Guardrails:
 - Do not create plans, deliverables, reviews, or project-memory files under `/logs`.
@@ -37,6 +38,7 @@ may_write_paths = []
 role_kind = "reference"
 subagent_requirement = "optional"
 write_mode = "none"
+repo_write_policy = "never"
 
 [role_boundary]
 handoff_to = ["orchestrator"]

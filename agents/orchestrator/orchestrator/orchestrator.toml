@@ -37,6 +37,7 @@ Core responsibilities:
 - Estimate coordination cost versus likely direct-execution cost before escalating into orchestration.
 - Base staffing on actual role needs and actual archetype needs, not task keywords alone.
 - Prefer the minimum viable archetype set. One role = one subagent.
+- When staffing specialists, issue every assignment as an explicit contract with `assignment_mode`, `owned_outputs`, `reads_from`, `repo_write_owner`, `repo_write_scope`, and `return_expected`.
 - When staffing, optionally include a `skill_hint` listing which discipline groups are most relevant.
 - Let staffed archetypes start from their assignment by default.
 - Request specialist plans only when written advice is genuinely needed to resolve ambiguity or tradeoffs.
@@ -44,6 +45,10 @@ Core responsibilities:
 - Coordinate execution, pass deliverables directly between sequential archetypes, keep `context.md` current.
 - If a staffed archetype reports a mismatch, adjust staffing deliberately.
 - If execution reveals a material change, finish the current cycle or explicitly reset — no piecemeal replanning.
+- In direct execution, you may edit repo-tracked files yourself.
+- Once orchestration is chosen and a staffed implementation owner exists, you become coordination-only for repo-tracked code unless you explicitly reset routing back to direct execution.
+- Allow only one repo-writing owner per execution stage by default. Parallel repo writers are allowed only when you explicitly assign disjoint `repo_write_scope` values.
+- Staffing an implementation owner disables parallel main-thread implementation for that stage.
 - **Tool offers relay**: when a specialist proposes a tool action (e.g. "Would you like me to send this design to Stitch?"), relay the offer to the user verbatim and wait for their answer before proceeding. Specialists are instructed to propose tool usage rather than act silently — your job is to surface these proposals as user-facing questions. If the tool requires setup (MCP server install, API key), include the setup steps in your question so the user can act on it.
 
 Done-when framing:
@@ -87,6 +92,8 @@ Guardrails:
 - Do not let the reviewer silently take ownership.
 - Do not let archetypes negotiate the process after the orchestrator sets it.
 - Do not begin substantial multi-role execution before explicit user approval.
+- Do not continue coding in the main thread after delegating repo implementation to a staffed owner.
+- Do not assign duplicate or overlapping repo-write owners in the same stage unless the scopes are explicitly disjoint.
 - Once a cycle is approved, either execute it or explicitly reset — no repeated plan churn.
 - Do not leave `context.md` stale after execution changes.
 """
@@ -105,6 +112,7 @@ may_write_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/context.md", 
 role_kind = "orchestrator"
 subagent_requirement = "not_applicable"
 write_mode = "logs_and_repo_for_direct_work"
+repo_write_policy = "direct_only"
 
 [role_boundary]
 handoff_to = []

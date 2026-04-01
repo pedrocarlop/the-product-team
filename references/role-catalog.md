@@ -11,24 +11,24 @@ This is the canonical archetype catalog for orchestrator staffing decisions when
 
 ## Business Roles
 
-- `product-lead` (Product Lead, executor) — Why: Own product vision, strategy, discovery, prioritization, requirements authoring, and delivery coordination. Owns: product vision and strategy, product discovery and prioritization, and requirements authoring and PRD.
-- `analyst` (Analyst, executor) — Why: Transform data into decisions through metrics analysis, financial modeling, forecasting, and revenue operations. Owns: data analysis and metrics, financial modeling and forecasting, and revenue operations and pipeline.
-- `go-to-market` (Go-to-Market, executor) — Why: Drive growth, marketing, positioning, partnerships, customer success, sales engineering, and go-to-market execution. Owns: growth and acquisition funnel, marketing and demand generation, and positioning and GTM strategy.
-- `business-ops` (Business Ops, executor) — Why: Own business analysis, process mapping, operational systems design, and coordination mechanisms. Owns: business analysis and requirements elicitation, process mapping and gap analysis, and operational systems design.
+- `product-lead` (Product Lead, executor) — Why: Own product vision, strategy, discovery, prioritization, requirements authoring, and delivery coordination. Owns: product vision and strategy, product discovery and prioritization, and requirements authoring and PRD. Repo writes: never in staffed workflows.
+- `analyst` (Analyst, executor) — Why: Transform data into decisions through metrics analysis, financial modeling, forecasting, and revenue operations. Owns: data analysis and metrics, financial modeling and forecasting, and revenue operations and pipeline. Repo writes: never in staffed workflows.
+- `go-to-market` (Go-to-Market, executor) — Why: Drive growth, marketing, positioning, partnerships, customer success, sales engineering, and go-to-market execution. Owns: growth and acquisition funnel, marketing and demand generation, and positioning and GTM strategy. Repo writes: never in staffed workflows.
+- `business-ops` (Business Ops, executor) — Why: Own business analysis, process mapping, operational systems design, and coordination mechanisms. Owns: business analysis and requirements elicitation, process mapping and gap analysis, and operational systems design. Repo writes: never in staffed workflows.
 
 ## Design Roles
 
-- `designer` (Designer, executor) — Why: Own all design execution from research through visual delivery — UX flows, UI surfaces, content, motion, accessibility, information architecture, localization, and service design. Owns: UX flows and interaction models, UI surfaces and visual design, and content and microcopy.
-- `design-systems` (Design Systems, executor) — Why: Build and govern the design system — token architecture, component library, prototyping, design tooling, and quality standards. Owns: token architecture, component library specs, and design-system governance.
+- `designer` (Designer, executor) — Why: Own all design execution from research through visual delivery — UX flows, UI surfaces, content, motion, accessibility, information architecture, localization, and service design. Owns: UX flows and interaction models, UI surfaces and visual design, and content and microcopy. Repo writes: never in staffed workflows.
+- `design-systems` (Design Systems, executor) — Why: Build and govern the design system — token architecture, component library, prototyping, design tooling, and quality standards. Owns: token architecture, component library specs, and design-system governance. Repo writes: never in staffed workflows.
 
 ## Engineering Roles
 
-- `engineer` (Engineer, executor) — Why: Own all implementation from UI components through backend services, mobile apps, and ML systems. Owns: frontend component architecture, backend services and business logic, and fullstack feature implementation.
-- `platform-engineer` (Platform Engineer, executor) — Why: Own API design, database, data pipelines, DevOps, performance, security, architecture, and engineering leadership. Owns: API contract design, database systems, and data pipelines and warehousing.
+- `engineer` (Engineer, executor) — Why: Own all implementation from UI components through backend services, mobile apps, and ML systems. Owns: frontend component architecture, backend services and business logic, and fullstack feature implementation. Repo writes: only when explicitly assigned implementation ownership for a bounded repo scope.
+- `platform-engineer` (Platform Engineer, executor) — Why: Own API design, database, data pipelines, DevOps, performance, security, architecture, and engineering leadership. Owns: API contract design, database systems, and data pipelines and warehousing. Repo writes: only when explicitly assigned implementation ownership for a bounded repo scope.
 
 ## Review Roles
 
-- `reviewer` (Reviewer, reviewer) — Why: Validate work across all disciplines — requirements, UX flows, usability, copy, design system, engineering, and quality assurance. Owns: requirements review, UX flow validation, and usability review.
+- `reviewer` (Reviewer, reviewer) — Why: Validate work across all disciplines — requirements, UX flows, usability, copy, design system, engineering, and quality assurance. Owns: requirements review, UX flow validation, and usability review. Repo writes: never in staffed workflows.
 
 ## Common Team Patterns
 
@@ -51,6 +51,7 @@ These patterns help the orchestrator staff teams for frequent task types. They a
 - Design before engineering: engineers implement from approved design, not the reverse.
 - Engineering before review: the reviewer is staffed after executors produce artifacts.
 - Reviewers do not execute: the reviewer validates and recommends, it does not fix or reauthor.
+- Repo-tracked app code has one explicit implementation owner per stage; parallel repo writers need disjoint scopes.
 - Each archetype chains discipline groups internally — no handoff needed within a single role.
 
 ## Skill Routing

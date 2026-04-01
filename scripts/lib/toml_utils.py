@@ -43,6 +43,7 @@ class RoleEntry:
     description: str
     owns: tuple[str, ...]
     role_kind: str
+    repo_write_policy: str
 
 
 def discover_toml_paths(root: Path) -> list[Path]:
@@ -75,6 +76,7 @@ def load_roles(root: Path) -> list[RoleEntry]:
                     description=data["description"].strip().rstrip("."),
                     owns=tuple(data["role_boundary"]["owns"]),
                     role_kind=data["execution_policy"]["role_kind"],
+                    repo_write_policy=data["execution_policy"].get("repo_write_policy", "never"),
                 )
             )
 

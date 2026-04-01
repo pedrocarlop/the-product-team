@@ -2,13 +2,30 @@
 
 This repository has the Product Team Codex workflow installed.
 
-Requests in this repository should go through `product-team-orchestrator` by default. Only an explicit user opt-out for the current request should bypass Product Team. Simple work can still stay direct, but that choice is made inside the orchestrator.
+Every request in this repository should go through `product-team-orchestrator` by default. Only an explicit user opt-out for the current request should bypass Product Team. Simple work can still stay direct, but the direct path is chosen inside the orchestrator.
 
 The workflow is direct-first: the orchestrator routes work cheaply, executes directly when the task is single-domain and implementation-heavy, and only escalates into multi-agent coordination when the payoff is worth the cost. Orchestration, routing, staffing, and planning happen in the context window — only project context and deliverables are persisted to `/logs`.
 
 Route by domain before staffing. Consult only the relevant discipline slice of `.codex/product-team/references/role-catalog.md` when the task is clearly single-domain; read the full catalog only for ambiguous or cross-functional work.
 
 The workflow is organized around a small set of archetypes. Each archetype routes internally across its own discipline groups, so `designer` can cover research → UX → UI → content in one staffed role and `engineer` can cover frontend → backend → fullstack work without extra same-domain handoffs.
+
+## Repo Implementation Ownership
+
+When the orchestrator staffs specialists, it assigns work with an explicit contract:
+
+- `assignment_mode`
+- `owned_outputs`
+- `reads_from`
+- `repo_write_owner`
+- `repo_write_scope`
+- `return_expected`
+
+Staffed specialists may always write their owned `/logs` artifacts. Repo-tracked app code is stricter: one explicit implementation owner per stage by default.
+
+- In direct execution, the orchestrator may edit repo-tracked code itself.
+- In orchestrated execution, once a staffed implementation owner is assigned, the orchestrator becomes coordination-only for repo-tracked code until it explicitly resets back to direct execution.
+- Parallel repo writers are allowed only when the orchestrator assigns disjoint `repo_write_scope` values.
 
 ## Installed Layout
 
@@ -59,12 +76,14 @@ The orchestrator sees this is substantial but narrow and implementation-first. I
 > "Add dark mode support to the dashboard"
 
 The orchestrator identifies this needs a **designer** and an **engineer**. It staffs only those archetypes, presents the plan in conversation, asks "Do you want to proceed?", and coordinates execution after approval.
+The `designer` writes design artifacts in `/logs`, the `engineer` owns repo implementation for the assigned scope, and the orchestrator does not build the same code in parallel.
 
 ### Complex request (full team)
 
 > "Redesign the checkout flow to reduce drop-off by 20%"
 
 The orchestrator staffs a full team: **product-lead**, **designer**, **engineer**, and **reviewer**. It presents the plan, gets approval, and coordinates work stage by stage. Context and deliverables are logged in `logs/active/`.
+Only the explicit implementation owner edits repo-tracked app code for a given stage; the other roles stay artifact-first.
 
 ## Notes
 

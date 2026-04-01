@@ -24,6 +24,14 @@ def list_phrase(items: tuple[str, ...], limit: int = 3) -> str:
     return f"{selected[0]}, {selected[1]}, and {selected[2]}"
 
 
+def repo_write_phrase(policy: str) -> str:
+    if policy == "explicit_owner_only":
+        return "only when explicitly assigned implementation ownership for a bounded repo scope"
+    if policy == "direct_only":
+        return "direct execution only"
+    return "never in staffed workflows"
+
+
 def render_catalog(root: Path = ROOT) -> str:
     roles = load_roles(root)
     lines = [
@@ -49,7 +57,8 @@ def render_catalog(root: Path = ROOT) -> str:
             lines.append(
                 f"- `{entry.name}` ({entry.display_name}, {role_tag}) — "
                 f"Why: {entry.description}. "
-                f"Owns: {list_phrase(entry.owns)}."
+                f"Owns: {list_phrase(entry.owns)}. "
+                f"Repo writes: {repo_write_phrase(entry.repo_write_policy)}."
             )
 
         lines.append("")
@@ -83,6 +92,7 @@ def render_catalog(root: Path = ROOT) -> str:
     lines.append("- Design before engineering: engineers implement from approved design, not the reverse.")
     lines.append("- Engineering before review: the reviewer is staffed after executors produce artifacts.")
     lines.append("- Reviewers do not execute: the reviewer validates and recommends, it does not fix or reauthor.")
+    lines.append("- Repo-tracked app code has one explicit implementation owner per stage; parallel repo writers need disjoint scopes.")
     lines.append("- Each archetype chains discipline groups internally — no handoff needed within a single role.")
     lines.append("")
 

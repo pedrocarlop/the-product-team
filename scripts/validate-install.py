@@ -10,6 +10,16 @@ from pathlib import Path
 PACKAGE_SLUG = "product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
 MARKER_END = "<!-- PRODUCT_TEAM_FOR_CODEX:END -->"
+EXPECTED_REPO_WRITE_POLICIES = {
+    "orchestrator": "direct_only",
+    "engineer": "explicit_owner_only",
+    "platform-engineer": "explicit_owner_only",
+    "reference": "never",
+}
+
+
+def expected_repo_write_policy(role: str) -> str:
+    return EXPECTED_REPO_WRITE_POLICIES.get(role, "never")
 
 
 def project_root() -> Path:
@@ -98,6 +108,8 @@ def main() -> int:
         expect("Only bypass Product Team when the user explicitly says not to use Product Team" in agents_text, "AGENTS.md is missing the explicit Product Team opt-out rule.", failures)
         expect("Do not infer an opt-out from simplicity, urgency, or implementation bias alone." in agents_text, "AGENTS.md is missing the no-inferred-opt-out rule.", failures)
         expect("stay direct within the orchestrator" in agents_text, "AGENTS.md is missing the direct-inside-orchestrator clarification.", failures)
+        expect("repo_write_owner" in agents_text and "repo_write_scope" in agents_text, "AGENTS.md is missing the explicit repo ownership contract.", failures)
+        expect("Repo-tracked app code must have one explicit implementation owner per stage." in agents_text, "AGENTS.md is missing the one-owner repo rule.", failures)
 
     expect((root / "logs" / "active").is_dir(), "Missing logs/active directory.", failures)
     expect((root / "logs" / "archive").is_dir(), "Missing logs/archive directory.", failures)
@@ -114,16 +126,13 @@ def main() -> int:
         package_readme = package_readme_path.read_text(encoding="utf-8")
         expect("Every request in this repository should go through `product-team-orchestrator` by default." in package_readme, "Installed package README is missing the default-all-requests-through-orchestrator rule.", failures)
         expect("Only an explicit user opt-out" in package_readme, "Installed package README is missing the explicit opt-out rule.", failures)
-        expect("direct path is chosen inside the orchestrator" in package_readme, "Installed package README is missing the direct-inside-orchestrator clarification.", failures)
+        expect("the direct path is chosen inside the orchestrator" in package_readme, "Installed package README is missing the direct-inside-orchestrator clarification.", failures)
+        expect("Repo-tracked app code is stricter: one explicit implementation owner per stage by default." in package_readme, "Installed package README is missing the repo ownership rule.", failures)
     if (refs_root / "logs-workflow-contract.md").exists():
         logs_contract = (refs_root / "logs-workflow-contract.md").read_text(encoding="utf-8")
-        expect("This is the plan" in logs_contract, "Installed logs contract is missing the approval handoff opener.", failures)
-        expect("Do you want to proceed?" in logs_contract, "Installed logs contract is missing the approval handoff question.", failures)
-        expect("Execution-grade specialist plan" in logs_contract, "Installed logs contract is missing the detailed role-plan contract.", failures)
-        expect("Role-local skills consulted" in logs_contract, "Installed logs contract is missing the skills-consulted plan contract.", failures)
-        expect("the orchestrator must quickly scan its own role-local `skill-catalog.md`" in logs_contract, "Installed logs contract is missing the orchestrator self-scan rule.", failures)
-        expect("Critical detail register" in logs_contract, "Installed logs contract is missing the unified-plan detail register contract.", failures)
-        expect("Overlap resolutions and conflict decisions" in logs_contract, "Installed logs contract is missing the overlap-resolution contract.", failures)
+        expect("The orchestrator assigns repo implementation with an explicit contract" in logs_contract, "Installed logs contract is missing the repo ownership contract.", failures)
+        expect("Only one explicit `repo_write_owner` should exist per execution stage by default." in logs_contract, "Installed logs contract is missing the one-owner repo rule.", failures)
+        expect("return a mismatch note instead of editing repo-tracked files" in logs_contract, "Installed logs contract is missing the mismatch-on-repo-write rule.", failures)
 
     orchestrator_name = f"{PACKAGE_SLUG}-orchestrator"
     reference_name = f"{PACKAGE_SLUG}-reference"
@@ -156,15 +165,14 @@ def main() -> int:
         if source_name == "orchestrator":
             execution_policy = data.get("execution_policy", {})
             expect(execution_policy.get("role_kind") == "orchestrator", f"{toml_path}: orchestrator role_kind must be orchestrator.", failures)
+            expect(execution_policy.get("repo_write_policy") == "direct_only", f"{toml_path}: orchestrator repo_write_policy must be direct_only.", failures)
             prompt = data.get("system_prompt", "")
             expect("your own `skill-catalog.md`" in prompt, f"{toml_path}: orchestrator prompt missing own-skill scan rule.", failures)
-            expect("This is the plan" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff opener.", failures)
             expect("Do you want to proceed?" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff question.", failures)
-            expect("read each staffed role's `skill-catalog.md`" in prompt, f"{toml_path}: orchestrator prompt missing staffed-role skill-reading rule.", failures)
-            expect("best-practice source material" in prompt, f"{toml_path}: orchestrator prompt missing skill-derived best-practice rule.", failures)
-            expect("Preserve all material implementation detail" in prompt, f"{toml_path}: orchestrator prompt missing detail-preservation rule.", failures)
-            expect("Critical details that must survive merge" in prompt, f"{toml_path}: orchestrator prompt missing must-carry detail contract.", failures)
-            expect("Do not delete detail from specialist plans during merge" in prompt, f"{toml_path}: orchestrator prompt missing no-detail-deletion rule.", failures)
+            expect("assignment_mode" in prompt and "repo_write_owner" in prompt and "repo_write_scope" in prompt, f"{toml_path}: orchestrator prompt missing explicit assignment contract.", failures)
+            expect("In direct execution, you may edit repo-tracked files yourself." in prompt, f"{toml_path}: orchestrator prompt missing direct repo-write rule.", failures)
+            expect("Once orchestration is chosen and a staffed implementation owner exists" in prompt, f"{toml_path}: orchestrator prompt missing coordination-only-after-delegation rule.", failures)
+            expect("Allow only one repo-writing owner per execution stage by default." in prompt, f"{toml_path}: orchestrator prompt missing one-owner-per-stage rule.", failures)
             if catalog_path.exists():
                 catalog_text = catalog_path.read_text(encoding="utf-8")
                 expect("Read this file first on every request before meaningful work." in catalog_text, f"{catalog_path}: orchestrator skill catalog missing every-request scan rule.", failures)
@@ -177,6 +185,17 @@ def main() -> int:
                 expect("Role-local skills consulted" in prompt, f"{toml_path}: specialist prompt missing skills-consulted planning section.", failures)
                 expect("Critical details that must survive merge" in prompt, f"{toml_path}: specialist prompt missing must-carry detail section contract.", failures)
                 expect("Do not silently drop planned concrete details" in prompt, f"{toml_path}: specialist prompt missing execution detail preservation rule.", failures)
+                expect(all(token in prompt for token in ("assignment_mode", "owned_outputs", "reads_from", "repo_write_owner", "repo_write_scope", "return_expected")), f"{toml_path}: specialist prompt missing explicit assignment contract.", failures)
+                expect("repo-tracked files" in prompt, f"{toml_path}: specialist prompt missing repo-tracked-file guardrail.", failures)
+                expected_policy = expected_repo_write_policy(source_name)
+                expect(data.get("execution_policy", {}).get("repo_write_policy") == expected_policy, f"{toml_path}: repo_write_policy must be {expected_policy!r}.", failures)
+                if expected_policy == "explicit_owner_only":
+                    expect(f'`repo_write_owner = "{source_name}"`' in prompt, f"{toml_path}: specialist prompt missing explicit repo-write-owner match rule.", failures)
+                else:
+                    expect("You never own repo-tracked implementation in staffed workflows." in prompt, f"{toml_path}: specialist prompt missing artifact-only repo refusal rule.", failures)
+            else:
+                expect(data.get("execution_policy", {}).get("repo_write_policy") == "never", f"{toml_path}: reference repo_write_policy must be 'never'.", failures)
+                expect("You never own repo-tracked implementation" in data.get("system_prompt", ""), f"{toml_path}: reference prompt missing no-repo-write rule.", failures)
 
         expect("reference" not in local_skills, f"{toml_path}: local_skills must not contain bare 'reference'.", failures)
 
