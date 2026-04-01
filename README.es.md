@@ -75,6 +75,12 @@ Lo que es consistente en los roles especialistas:
 - etiquetan la evidencia como `sourced`, `fallback` o `inferred`
 - escriben en un artefacto propio dentro de `logs/active/<project-slug>/...`
 
+La parte de diseño ahora tiene además un relevo explícito alrededor del sistema de diseño:
+
+- `ui-designer` puede sembrar `logs/active/<project-slug>/deliverables/project-ds-spec.md` en trabajo greenfield
+- esa semilla se construye a partir de hasta 3 referencias solo-inspiracionales de la librería incluida de design-system kits
+- `design-systems-designer` convierte después esa especificación compartida en tokens, primitivas, familias de componentes, reglas de layouts/widgets, gobernanza y QA
+
 El límite entre disciplinas es intencional:
 
 - Los roles de negocio y diseño son propietarios de artefactos de asesoramiento. En flujos coordinados no son dueños de la implementación del repo.
@@ -92,12 +98,21 @@ El límite entre disciplinas es intencional:
 
 Para trabajo de diseño nuevo, el flujo no debe ir en línea recta de idea a acabado. La parte de diseño debe divergir antes de converger: explorar direcciones materialmente distintas, compararlas y solo entonces pasar a diseño de producción e implementación.
 
+En diseño de producto greenfield, eso normalmente significa:
+
+1. `ui-designer` explora direcciones visuales y elige una.
+2. `ui-designer` siembra `project-ds-spec.md` a partir de la librería de referencias de design-system kits.
+3. `design-systems-designer` operacionaliza esa spec compartida en las reglas del sistema del producto.
+4. El trabajo posterior de pantallas y componentes hereda de `project-ds-spec.md`, no directamente de referencias de compañías.
+
 ## Layout Instalado
 
 El instalador mantiene Product Team con namespace propio e idempotencia. Las rutas principales que instala son:
 
 - `.codex/agents/product-team-<disciplina>/<rol>/`
 - `.codex/product-team/`
+- `.codex/product-team/references/project-ds-spec-template.md`
+- `.codex/product-team/references/reference-design-systems/`
 - `logs/active/`
 - `logs/archive/`
 
@@ -111,6 +126,7 @@ En la práctica:
 
 - `context.md` registra el objetivo, el estado, los roles staffeados, los `skill_paths` exactos y los criterios de finalización
 - `deliverables/` guarda los entregables de los roles
+- `deliverables/project-ds-spec.md` puede actuar como artefacto de diseño compartido entre `ui-designer` y `design-systems-designer`
 - `decisions/` guarda decisiones duraderas
 - `TIMELINE.md` indexa el trabajo del proyecto a lo largo del tiempo
 

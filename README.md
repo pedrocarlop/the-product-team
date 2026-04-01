@@ -75,6 +75,12 @@ What is consistent across the specialist roles:
 - they label evidence as `sourced`, `fallback`, or `inferred`
 - they write to an owned project artifact in `logs/active/<project-slug>/...`
 
+The design side now has an explicit shared design-system handoff:
+
+- `ui-designer` can seed `logs/active/<project-slug>/deliverables/project-ds-spec.md` for greenfield work
+- that seed is built from up to 3 inspiration-only references in the bundled reference design-system library
+- `design-systems-designer` then turns that shared spec into tokens, primitives, component families, layout/widget rules, governance, and QA guidance
+
 The main discipline boundary is intentional:
 
 - Business and design roles are advisory artifact owners. In coordinated workflows they do not own repo-tracked implementation.
@@ -92,12 +98,21 @@ The main discipline boundary is intentional:
 
 For new design work, the workflow is intentionally not linear from idea to polish. The design path should diverge before it converges: explore materially different directions first, compare them, and only then move into production design and implementation.
 
+For greenfield product design, that usually means:
+
+1. `ui-designer` explores concept directions and chooses a direction.
+2. `ui-designer` seeds `project-ds-spec.md` from the reference design-system kits/library.
+3. `design-systems-designer` operationalizes that shared spec into the product's own system rules.
+4. Later screen and component work inherits from `project-ds-spec.md`, not directly from company references.
+
 ## Installed Layout
 
 The installer keeps Product Team namespaced and idempotent. The main installed paths are:
 
 - `.codex/agents/product-team-<discipline>/<role>/`
 - `.codex/product-team/`
+- `.codex/product-team/references/project-ds-spec-template.md`
+- `.codex/product-team/references/reference-design-systems/`
 - `logs/active/`
 - `logs/archive/`
 
@@ -111,6 +126,7 @@ In practice:
 
 - `context.md` tracks the objective, status, staffed roles, exact `skill_paths`, and done-when criteria
 - `deliverables/` holds role deliverables
+- `deliverables/project-ds-spec.md` can act as a shared design artifact across `ui-designer` and `design-systems-designer`
 - `decisions/` holds durable decisions
 - `TIMELINE.md` indexes project work over time
 
