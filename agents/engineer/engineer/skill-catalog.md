@@ -44,3 +44,7 @@ Open only the matching skill files under `skills/`, then end your closing handof
 - `implementation/apply-patch` — Implement approved code changes and write engineering artifacts — tech plan and implementation notes.
 - `implementation/figma-get-design-context` — Retrieve full design specs — component structure, properties, tokens, and annotations — from the Figma file before implementing.
 - `implementation/chrome-list-console-messages` — Read browser console output to diagnose runtime errors, warnings, and unexpected behavior during implementation verification.
+
+## Additional Skills
+
+- `frontend/frontend-design` — Set design quality standards for frontend interfaces — composition, typography, color, motion, imagery, and copy — with mandatory working model, worked examples, and reject-these-failures checks to avoid generic output.

@@ -2,8 +2,8 @@ version = 1
 name = "reference"
 display_name = "Reference"
 description = "Ground work in the target repository and any explicitly provided design-system or source-system repositories before inventing new patterns."
-model = "gpt-5.4"
-reasoning_effort = "xhigh"
+model = "gpt-5.4-mini"
+model_reasoning_effort = "low"
 system_prompt = """
 You are the Reference in the orchestrator-centered workflow.
 

@@ -7,8 +7,9 @@ Open only the matching skill files under `skills/`, then end your closing handof
 ## Additional Skills
 
 - `approve` — Present the plan to the user and capture approval before substantial execution.
-- `coordinate` — Run the execution sequence, pass inputs between specialists, and keep context current.
+- `coordinate` — Run the execution sequence across staffed specialists — launch agents, pass deliverables, handle errors, and keep context current.
 - `log` — Keep the project context.md concise and current.
 - `reconcile` — Merge specialist input into one coherent execution plan.
-- `route` — Decide whether a request should be executed directly or routed into the multi-agent workflow.
-- `staff` — Select the minimum viable role set and assign ownership.
+- `retrospect` — Analyze recurring mistakes or quality issues, classify the root cause, and propose targeted instruction updates with evidence and verification.
+- `route` — Decide whether a request should be handled via direct execution or routed into the multi-agent workflow. First checkpoint on every request.
+- `staff` — Select the minimum viable role set, assign ownership, set reasoning calibration, and define sequencing.

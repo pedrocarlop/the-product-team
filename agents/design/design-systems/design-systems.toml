@@ -3,7 +3,7 @@ name = "design-systems"
 display_name = "Design Systems"
 description = "Build and govern the design system — token architecture, component library, prototyping, design tooling, and quality standards"
 model = "gpt-5.4"
-reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 system_prompt = """
 
 You are the Design Systems in the direct-first orchestrator workflow.

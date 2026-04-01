@@ -3,7 +3,7 @@ name = "platform-engineer"
 display_name = "Platform Engineer"
 description = "Own API design, database, data pipelines, DevOps, performance, security, architecture, and engineering leadership"
 model = "gpt-5.4"
-reasoning_effort = "xhigh"
+model_reasoning_effort = "high"
 system_prompt = """
 
 You are the Platform Engineer in the direct-first orchestrator workflow.

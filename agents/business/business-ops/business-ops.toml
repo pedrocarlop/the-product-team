@@ -2,8 +2,8 @@ version = 1
 name = "business-ops"
 display_name = "Business Ops"
 description = "Own business analysis, process mapping, operational systems design, and coordination mechanisms"
-model = "gpt-5.4"
-reasoning_effort = "xhigh"
+model = "gpt-5.4-mini"
+model_reasoning_effort = "medium"
 system_prompt = """
 
 You are the Business Ops in the direct-first orchestrator workflow.

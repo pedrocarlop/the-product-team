@@ -3,7 +3,7 @@ name = "analyst"
 display_name = "Analyst"
 description = "Transform data into decisions through metrics analysis, financial modeling, forecasting, and revenue operations"
 model = "gpt-5.4"
-reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 system_prompt = """
 
 You are the Analyst in the direct-first orchestrator workflow.

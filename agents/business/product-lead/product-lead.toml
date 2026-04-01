@@ -3,7 +3,7 @@ name = "product-lead"
 display_name = "Product Lead"
 description = "Own product vision, strategy, discovery, prioritization, requirements authoring, and delivery coordination"
 model = "gpt-5.4"
-reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 system_prompt = """
 
 You are the Product Lead in the direct-first orchestrator workflow.

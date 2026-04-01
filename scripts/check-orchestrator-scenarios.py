@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -53,6 +54,25 @@ def main() -> int:
     expect("Do you want to proceed?" in orchestrator_prompt, "Orchestrator prompt missing explicit approval handoff question.", failures)
     expect("skill-catalog.md" in orchestrator_prompt, "Orchestrator prompt missing skill-catalog scan rule.", failures)
     expect("role catalog" in orchestrator_prompt.lower(), "Orchestrator prompt missing role-catalog guidance.", failures)
+    expect(
+        "parallel subagent" in orchestrator_prompt.lower() or "parallel agents" in orchestrator_prompt.lower(),
+        "Orchestrator prompt missing parallel subagent delegation guidance.",
+        failures,
+    )
+
+    # Orchestrator must use model_reasoning_effort (not reasoning_effort)
+    orchestrator_raw = (ROOT / "agents/orchestrator/orchestrator/orchestrator.toml").read_text()
+    expect(
+        "model_reasoning_effort" in orchestrator_raw,
+        "Orchestrator must use model_reasoning_effort (not reasoning_effort).",
+        failures,
+    )
+    bare_key = re.search(r'^reasoning_effort\s*=', orchestrator_raw, re.MULTILINE)
+    expect(
+        bare_key is None,
+        "Orchestrator uses legacy reasoning_effort key instead of model_reasoning_effort.",
+        failures,
+    )
 
     # Skill catalog checks
     expect("Read this file first on every request before meaningful work." in orchestrator_catalog, "Orchestrator skill catalog missing every-request scan rule.", failures)
@@ -96,6 +116,20 @@ def main() -> int:
           expect(f"logs/active/<project-slug>/reviews/{role}.md" in prompt, f"{role}: missing review path in prompt.", failures)
       else:
           expect(f"logs/active/<project-slug>/deliverables/{role}.md" in prompt, f"{role}: missing deliverable path in prompt.", failures)
+
+      # Verify Codex-native model_reasoning_effort key is used
+      raw_toml = path.read_text()
+      expect(
+          "model_reasoning_effort" in raw_toml,
+          f"{role}: must use model_reasoning_effort (not reasoning_effort).",
+          failures,
+      )
+      bare_key = re.search(r'^reasoning_effort\s*=', raw_toml, re.MULTILINE)
+      expect(
+          bare_key is None,
+          f"{role}: uses legacy reasoning_effort key instead of model_reasoning_effort.",
+          failures,
+      )
 
     # Logs README checks
     logs_readme = (ROOT / "logs/README.md").read_text()

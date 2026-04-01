@@ -34,7 +34,7 @@ Open only the matching skill files under `skills/`, then end your closing handof
 - `ui/polish` — Run a final UI quality pass to correct spacing, alignment, states, typography, and other small details that separate acceptable work from ship-ready work.
 - `ui/quieter` — Reduce visual intensity in an overstimulating interface while preserving hierarchy, clarity, and the product's intended character.
 - `ui/typeset` — Improve typography so text feels deliberate, readable, and structurally clear across the full UI surface.
-- `ui/frontend-design` — Set the overall visual direction for new UI work so the surface feels intentional, distinctive, brand-aligned, and ready for production handoff.
+- `ui/frontend-design` — Set the overall visual direction for new UI work — composition, typography, color, motion, and quality standards — so surfaces feel intentional, distinctive, and premium, not generic AI slop.
 
 ## content/
 

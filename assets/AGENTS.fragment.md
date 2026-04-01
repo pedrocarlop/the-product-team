@@ -28,3 +28,26 @@ This repository has the Product Team workflow installed.
 - Read installed role definitions in `.codex/agents/product-team-<discipline>/<role>/`.
 - Each staffed archetype must quickly scan its own role-local `skill-catalog.md`, open only the matching local skill files, and end its closing handoff with `Read <skill-paths> skills for this task.`
 - Use `.codex/product-team/references/role-catalog.md` as the canonical staffing reference.
+
+## Verification
+
+- Before considering any task complete, verify that all changes pass the relevant tests, linting, formatting, and type-checks.
+- Every project `context.md` must include a `Done when` section with concrete, verifiable completion criteria.
+- If the user did not specify completion criteria, infer reasonable defaults (tests pass, behavior verified, linting clean) and write them explicitly.
+- Do not close a project until every `Done when` item is satisfied or explicitly marked as deferred with a reason.
+- For frontend work, additionally verify that pages load on both desktop and mobile and that design litmus checks pass (see role-local frontend-design skills).
+
+## Prompt Structure
+
+For best results, structure requests with:
+- **Goal**: what you want to achieve
+- **Context**: relevant background, files, prior decisions
+- **Constraints**: timelines, technologies, patterns to follow
+- **Done when**: concrete criteria for when the task is complete
+
+## Reasoning Calibration
+
+Not every task needs maximum reasoning. The orchestrator will calibrate reasoning effort when staffing specialists:
+- **Medium**: simple, well-scoped, single-domain tasks (fix a typo, add a field, rename a variable)
+- **High**: typical implementation and design tasks (default for most work)
+- **Extra-high**: genuinely complex coordination, long-horizon autonomous work, novel architecture

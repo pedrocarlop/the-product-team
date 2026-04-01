@@ -3,7 +3,7 @@ name = "go-to-market"
 display_name = "Go-to-Market"
 description = "Drive growth, marketing, positioning, partnerships, customer success, sales engineering, and go-to-market execution"
 model = "gpt-5.4"
-reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 system_prompt = """
 
 You are the Go-to-Market in the direct-first orchestrator workflow.
