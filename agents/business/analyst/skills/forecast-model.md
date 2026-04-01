@@ -6,6 +6,7 @@ primary_mcp: notion
 fallback_tools: search_query, analyst/metric-definition
 best_guess_output: A forecast model summary with assumptions and scenarios.
 output_artifacts: logs/active/<project-slug>/deliverables/analyst.md
+section_anchor: "## Skill: forecast-model"
 done_when: The forecast is decision-usable and assumption-driven.
 ---
 
@@ -15,47 +16,39 @@ done_when: The forecast is decision-usable and assumption-driven.
 
 Create a forecast with assumptions, ranges, and sensitivity analysis.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: analyst
-project: <slug>
-deliverable: analyst.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When planning depends on future volume, revenue, or adoption.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: forecast-model`, include:
+- `### Forecast question`: State the business question the forecast is meant to answer.
+- `### Assumptions`: List the core assumptions, including any external inputs or planned changes.
+- `### Driver model`: Explain the main forecast drivers and how they connect.
+- `### Base/upside/downside scenarios`: Give scenario ranges rather than a single unqualified number.
+- `### Sensitivity analysis`: Identify which assumptions change the result the most.
+- `### Decision implication`: Translate the forecast into what the team should do or watch.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion`.
+## Tool Path
+
+- Start with `notion`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, analyst/metric-definition`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A forecast model summary with assumptions and scenarios.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A forecast model summary with assumptions and scenarios.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Keep the model assumption-driven instead of presenting a single-point estimate as fact.
+- Make sure the drivers can be traced back to known metrics or explicit judgment calls.
+- Emphasize what would most likely invalidate the forecast.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/analyst.md`.
+- Keep all work for this skill inside `## Skill: forecast-model`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The forecast is decision-usable and assumption-driven.
+- Ensure the section meets this done-when bar: The forecast is decision-usable and assumption-driven.

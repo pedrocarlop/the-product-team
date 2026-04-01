@@ -19,7 +19,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Description: Define how the UI behaves across breakpoints and meaningful interface states.
 - Trigger: When a design must survive real devices and async/system states.
 - Primary MCP/tool: figma
-- Fallback: paper, repository inspection
+- Fallback: paper, reference/trace
 - Best guess: A responsive and state specification for the screen or flow.
 - Output: logs/active/<project-slug>/deliverables/ui-designer.md
 - Done when: Desktop, mobile, and critical states are explicitly covered.
@@ -59,7 +59,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Description: Run the final pass on alignment, hierarchy, typography, spacing, and consistency.
 - Trigger: When a design works structurally but needs a ship-ready polish pass.
 - Primary MCP/tool: figma
-- Fallback: paper, browser inspection
+- Fallback: paper, chrome_devtools
 - Best guess: A polished design with corrected visual inconsistencies.
 - Output: logs/active/<project-slug>/deliverables/ui-designer.md
 - Done when: The design reads as deliberate and consistent, not provisional.

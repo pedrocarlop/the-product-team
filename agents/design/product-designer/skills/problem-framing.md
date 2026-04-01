@@ -6,6 +6,7 @@ primary_mcp: notion, repository
 fallback_tools: reference/ground, search_query
 best_guess_output: A design framing artifact with users, task, constraints, and success criteria.
 output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
+section_anchor: "## Skill: problem-framing"
 done_when: Downstream design work has a stable framing.
 ---
 
@@ -15,47 +16,38 @@ done_when: Downstream design work has a stable framing.
 
 Translate product goals and user context into a design-ready framing.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: product-designer
-project: <slug>
-deliverable: product-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When design work needs a crisp problem statement and design lens.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: problem-framing`, include:
+- `### Problem statement`: State the design problem in one crisp, bounded statement.
+- `### Users and context`: Describe who the user is, what context they are in, and what job they are trying to do.
+- `### Constraints and risks`: List the non-negotiables, unknowns, and delivery risks.
+- `### Success criteria`: Define how the team will know the design solved the right problem.
+- `### Open questions`: Call out unresolved product questions that still affect the framing.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion, repository`.
+## Tool Path
+
+- Start with `notion, repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/ground, search_query`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A design framing artifact with users, task, constraints, and success criteria.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A design framing artifact with users, task, constraints, and success criteria.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Anchor the framing in evidence and delivery constraints, not only aspiration.
+- Preserve exact goals, metrics, or product language that downstream roles must not lose.
+- State whether the eventual UI work should be treated as `new design` or an extension.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
+- Keep all work for this skill inside `## Skill: problem-framing`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Downstream design work has a stable framing.
+- Ensure the section meets this done-when bar: Downstream design work has a stable framing.

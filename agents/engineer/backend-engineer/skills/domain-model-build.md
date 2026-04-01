@@ -6,6 +6,7 @@ primary_mcp: repository
 fallback_tools: reference/ground, reference/trace
 best_guess_output: A backend domain model implementation or design.
 output_artifacts: logs/active/<project-slug>/deliverables/backend-engineer.md
+section_anchor: "## Skill: domain-model-build"
 done_when: Core rules are explicit and live in a clear source of truth.
 ---
 
@@ -15,47 +16,39 @@ done_when: Core rules are explicit and live in a clear source of truth.
 
 Implement the core backend domain logic and data transformations for a feature.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: backend-engineer
-project: <slug>
-deliverable: backend-engineer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When business rules or backend state transitions must be encoded.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: domain-model-build`, include:
+- `### Domain entities or concepts`: Define the key entities, records, or concepts involved.
+- `### Core rules`: State the domain rules or business logic that must hold.
+- `### State transitions`: Describe lifecycle changes, transitions, or guarded mutations.
+- `### Data transformations`: Explain derived data, normalization, or transformation logic.
+- `### Code touchpoints`: Identify the modules, services, or model files involved.
+- `### Open risks`: Call out ambiguity, edge cases, or domain gaps that remain.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `repository`.
+## Tool Path
+
+- Start with `repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/ground, reference/trace`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A backend domain model implementation or design.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A backend domain model implementation or design.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Keep the core rules explicit enough that later changes do not splinter the domain model.
+- Separate foundational domain logic from transport or API concerns.
+- Preserve exact model or service names where downstream roles need a stable source of truth.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/backend-engineer.md`.
+- Keep all work for this skill inside `## Skill: domain-model-build`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Core rules are explicit and live in a clear source of truth.
+- Ensure the section meets this done-when bar: Core rules are explicit and live in a clear source of truth.

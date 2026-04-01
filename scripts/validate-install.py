@@ -7,6 +7,9 @@ import sys
 import tomllib
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.skill_validation import SkillValidationContext, validate_skill_contexts
+
 
 PACKAGE_SLUG = "product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
@@ -59,6 +62,7 @@ def installed_role_paths(root: Path, role: dict) -> tuple[Path, Path, Path]:
 
 def main() -> int:
     failures: list[str] = []
+    skill_contexts: list[SkillValidationContext] = []
 
     try:
         root = project_root()
@@ -114,6 +118,17 @@ def main() -> int:
         expect("model_reasoning_effort" in toml_path.read_text(encoding="utf-8"), f"{toml_path}: must use model_reasoning_effort.", failures)
         expect(re.search(r"^reasoning_effort\\s*=", toml_path.read_text(encoding="utf-8"), re.MULTILINE) is None, f"{toml_path}: uses legacy reasoning_effort.", failures)
 
+        skill_files = tuple(sorted(skills_dir.rglob("*.md")))
+        skill_contexts.append(
+            SkillValidationContext(
+                discipline=role["discipline"],
+                role_name=source_name,
+                mcp_servers=tuple(sorted(data.get("capabilities", {}).get("mcp_servers", []))),
+                web_tools=tuple(sorted(data.get("capabilities", {}).get("web_tools", []))),
+                skill_files=skill_files,
+            )
+        )
+
         if source_name == "orchestrator":
             expect("skill_paths" in prompt and "primary_tools" in prompt and "fallback_policy" in prompt and "evidence_mode" in prompt, f"{toml_path}: orchestrator prompt missing new assignment fields.", failures)
             continue
@@ -132,6 +147,8 @@ def main() -> int:
         expect("Primary MCP/tool:" in catalog_text, f"{catalog_path}: skill catalog missing primary tool summary.", failures)
         expect("Fallback:" in catalog_text, f"{catalog_path}: skill catalog missing fallback summary.", failures)
         expect("Done when:" in catalog_text, f"{catalog_path}: skill catalog missing done-when summary.", failures)
+
+    validate_skill_contexts(skill_contexts, failures, enforce_banned_names=False)
 
     if failures:
         for failure in failures:

@@ -6,56 +6,51 @@ primary_mcp: notion, repository
 fallback_tools: reference/ground, search_query
 best_guess_output: A PRD or equivalent product specification.
 output_artifacts: logs/active/<project-slug>/deliverables/product-lead.md
+section_anchor: "## Skill: write-prd"
 done_when: Executors can build without product ambiguity.
 ---
 
-# Write Prd
+# Write PRD
 
 ## Purpose
 
 Write a delivery-grade PRD with scope, scenarios, decisions, and acceptance criteria.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: product-lead
-project: <slug>
-deliverable: product-lead.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When engineering or design need a precise product spec.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: write-prd`, include:
+- `### Objective`: State the product objective and the user or business outcome the work should create.
+- `### Scope`: Define what is included in this delivery slice.
+- `### Non-goals`: Clarify nearby ideas that are explicitly not part of this effort.
+- `### Key scenarios`: Describe the user scenarios or workflows the solution must support.
+- `### Requirements and decisions`: Capture concrete product requirements and any settled decisions the team should treat as fixed.
+- `### Acceptance criteria`: Give testable criteria that downstream executors can build and validate against.
+- `### Dependencies and risks`: List cross-team dependencies, assumptions, and delivery risks.
+- `### Open questions`: Flag unresolved decisions that still need follow-through.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion, repository`.
+## Tool Path
+
+- Start with `notion, repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/ground, search_query`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A PRD or equivalent product specification.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A PRD or equivalent product specification.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Write requirements that are specific enough for execution without turning the deliverable into implementation pseudo-code.
+- Preserve exact constraints, dates, and commitments from upstream source material.
+- Keep open questions tight and actionable so the orchestrator can route follow-up cleanly.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/product-lead.md`.
+- Keep all work for this skill inside `## Skill: write-prd`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Executors can build without product ambiguity.
+- Ensure the section meets this done-when bar: Executors can build without product ambiguity.

@@ -6,6 +6,7 @@ primary_mcp: stitch
 fallback_tools: paper, figma
 best_guess_output: A variant comparison with recommendation and rationale.
 output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md
+section_anchor: "## Skill: ui-variant-exploration"
 done_when: The chosen direction clearly beats the alternatives on the intended goal.
 ---
 
@@ -15,47 +16,38 @@ done_when: The chosen direction clearly beats the alternatives on the intended g
 
 Generate and compare multiple visual variants against the same product goal.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: ui-designer
-project: <slug>
-deliverable: ui-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When the team needs options before committing to a single UI direction.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: ui-variant-exploration`, include:
+- `### Variant comparison`: Provide a comparison table with at least `Variant`, `Core idea`, `Divergence axes`, `Strengths`, `Weaknesses`, `Risks`, `Best use case`, and `Why not chosen`.
+- `### Winning direction`: Choose a single recommended direction and explain why it wins.
+- `### Traits to carry forward`: List any qualities from losing variants that should survive into convergence.
+- `### Similarity check`: Call out where variants drifted too close together or failed to diverge enough.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `stitch`.
+## Tool Path
+
+- Start with `stitch`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, figma`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A variant comparison with recommendation and rationale.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A variant comparison with recommendation and rationale.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- This skill is the comparison gate before convergence for `new design` work.
+- Compare at least 3 variants and end with one recommendation, not a tie.
+- Use the `Similarity check` to prove the set explored real space rather than near-duplicates.
+- If the variants are not meaningfully different, say so and broaden them before convergence.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
+- Keep all work for this skill inside `## Skill: ui-variant-exploration`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The chosen direction clearly beats the alternatives on the intended goal.
+- Ensure the section meets this done-when bar: The chosen direction clearly beats the alternatives on the intended goal.

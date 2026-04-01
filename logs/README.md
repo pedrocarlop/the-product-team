@@ -48,6 +48,12 @@ status: <planning|executing|blocked|complete>
 
 Deliverables are the primary output of staffed specialists.
 
+When multiple skills for the same role write into one shared deliverable, each skill must own a stable anchored section in the format:
+
+`## Skill: <skill-name>`
+
+Each skill updates only its own anchored section and preserves the rest of the file.
+
 ### Deliverable Header (YAML)
 
 Every deliverable file must begin with:
@@ -65,11 +71,18 @@ evidence_mode: <sourced|fallback|inferred>
 
 ### Mandatory Reflection
 
-Every deliverable must end with a `## Reflection` section:
+Every deliverable must end with one trailing `## Reflection` section:
 
 - **What worked**
 - **What didn't**
 - **Next steps**
+
+For shared role deliverables, each skill should update its own subsection inside that footer:
+
+- `### <skill-name>`
+- `What worked`
+- `What didn't`
+- `Next steps`
 
 ## Assignment Contract
 

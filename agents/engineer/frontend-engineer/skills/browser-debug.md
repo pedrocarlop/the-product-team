@@ -6,6 +6,7 @@ primary_mcp: chrome_devtools
 fallback_tools: repository, reference/trace
 best_guess_output: A debugging summary with cause and fix direction.
 output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
+section_anchor: "## Skill: browser-debug"
 done_when: The issue is localized to a concrete source of truth.
 ---
 
@@ -15,47 +16,39 @@ done_when: The issue is localized to a concrete source of truth.
 
 Reproduce and isolate a frontend issue using browser evidence.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: frontend-engineer
-project: <slug>
-deliverable: frontend-engineer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When UI behavior is wrong and browser evidence is required.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: browser-debug`, include:
+- `### Observed issue`: State the visible bug or incorrect behavior.
+- `### Reproduction steps`: Give the exact steps, environment, or setup needed to reproduce.
+- `### Browser evidence`: Capture the relevant console, network, DOM, or runtime evidence.
+- `### Suspected source of truth`: Identify the likely file, component, state boundary, or upstream dependency involved.
+- `### Fix direction`: Describe the likely correction path or next engineering move.
+- `### Open unknowns`: Call out anything still unresolved before a fix can safely land.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `chrome_devtools`.
+## Tool Path
+
+- Start with `chrome_devtools`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `repository, reference/trace`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A debugging summary with cause and fix direction.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A debugging summary with cause and fix direction.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Prefer concrete browser evidence over speculative root-cause guesses.
+- Separate what is observed from what is inferred so downstream implementation work can trust the artifact.
+- Preserve exact URLs, selectors, requests, or component names when they matter to reproduction.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
+- Keep all work for this skill inside `## Skill: browser-debug`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The issue is localized to a concrete source of truth.
+- Ensure the section meets this done-when bar: The issue is localized to a concrete source of truth.

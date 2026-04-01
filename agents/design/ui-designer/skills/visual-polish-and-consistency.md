@@ -3,9 +3,10 @@ name: visual-polish-and-consistency
 description: Run the final pass on alignment, hierarchy, typography, spacing, and consistency.
 trigger: When a design works structurally but needs a ship-ready polish pass.
 primary_mcp: figma
-fallback_tools: paper, browser inspection
+fallback_tools: paper, chrome_devtools
 best_guess_output: A polished design with corrected visual inconsistencies.
 output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md
+section_anchor: "## Skill: visual-polish-and-consistency"
 done_when: The design reads as deliberate and consistent, not provisional.
 ---
 
@@ -15,47 +16,38 @@ done_when: The design reads as deliberate and consistent, not provisional.
 
 Run the final pass on alignment, hierarchy, typography, spacing, and consistency.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: ui-designer
-project: <slug>
-deliverable: ui-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When a design works structurally but needs a ship-ready polish pass.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: visual-polish-and-consistency`, include:
+- `### Visual issues`: List the concrete hierarchy, spacing, alignment, and typography issues found.
+- `### Proposed fixes`: Pair each issue with the exact correction to apply.
+- `### Consistency checks`: Describe the system-level checks used to confirm the surface aligns with adjacent work.
+- `### Risk of over-polish`: Note where further polish would start to distort the chosen concept or consume disproportionate effort.
+- `### Final readiness notes`: State what is now ship-ready and what still feels provisional.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `figma`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, browser inspection`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A polished design with corrected visual inconsistencies.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+## Tool Path
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+- Start with `figma`.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, chrome_devtools`.
+- If both paths fail, produce the best-guess output described as: A polished design with corrected visual inconsistencies.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+## Workflow Notes
+
+- Use a concrete issue/fix list instead of a vague polish summary.
+- Polish should sharpen the chosen direction, not sand it down into something generic.
+- Use `chrome_devtools` when real browser evidence is needed for the final consistency pass.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
+- Keep all work for this skill inside `## Skill: visual-polish-and-consistency`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The design reads as deliberate and consistent, not provisional.
+- Ensure the section meets this done-when bar: The design reads as deliberate and consistent, not provisional.

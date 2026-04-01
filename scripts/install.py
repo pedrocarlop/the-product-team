@@ -358,6 +358,7 @@ def install_package_docs(root: Path, target_root: Path) -> None:
     package_root = target_root / ".codex" / PACKAGE_SLUG
     refs_root = package_root / "references"
     scripts_root = package_root / "scripts"
+    scripts_lib_root = scripts_root / "lib"
     ensure_directory(refs_root)
     ensure_directory(scripts_root)
 
@@ -381,6 +382,13 @@ def install_package_docs(root: Path, target_root: Path) -> None:
     update_script_target = scripts_root / "update-install.py"
     shutil.copy2(update_script_source, update_script_target)
     update_script_target.chmod(0o755)
+    if scripts_lib_root.exists():
+        shutil.rmtree(scripts_lib_root)
+    shutil.copytree(
+        root / "scripts" / "lib",
+        scripts_lib_root,
+        ignore=shutil.ignore_patterns(".DS_Store", "__pycache__"),
+    )
 
 
 def install_logs(root: Path, target_root: Path) -> bool:

@@ -6,6 +6,7 @@ primary_mcp: repository
 fallback_tools: search_query, reference/verify
 best_guess_output: A security hardening change or remediation plan.
 output_artifacts: logs/active/<project-slug>/deliverables/platform-engineer.md
+section_anchor: "## Skill: security-hardening"
 done_when: The security issue and fix path are explicit.
 ---
 
@@ -15,47 +16,39 @@ done_when: The security issue and fix path are explicit.
 
 Identify and implement a concrete security improvement or remediation.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: platform-engineer
-project: <slug>
-deliverable: platform-engineer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When the system needs a specific security fix or hardening step.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: security-hardening`, include:
+- `### Threat or weakness`: Define the security issue being addressed.
+- `### Affected surface`: Identify the systems, paths, or assets affected.
+- `### Hardening change`: Describe the remediation or protection being added.
+- `### Residual risk`: Capture what risk remains after the change.
+- `### Operational impact`: Note deployment, usability, or maintenance implications.
+- `### Verification notes`: Explain how the fix should be verified.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `repository`.
+## Tool Path
+
+- Start with `repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, reference/verify`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A security hardening change or remediation plan.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A security hardening change or remediation plan.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Keep the remediation tied to a concrete threat or weakness, not general hardening aspirations.
+- Make residual risk explicit so follow-up work can prioritize correctly.
+- Preserve any exact configuration, endpoint, or control names needed for implementation and review.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/platform-engineer.md`.
+- Keep all work for this skill inside `## Skill: security-hardening`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The security issue and fix path are explicit.
+- Ensure the section meets this done-when bar: The security issue and fix path are explicit.

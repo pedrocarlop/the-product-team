@@ -6,6 +6,7 @@ primary_mcp: notion
 fallback_tools: ux-researcher/research-synthesis, open
 best_guess_output: A research readout deck or memo with findings and actions.
 output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
+section_anchor: "## Skill: research-readout-deck"
 done_when: A stakeholder can understand the key findings in one pass.
 ---
 
@@ -15,47 +16,38 @@ done_when: A stakeholder can understand the key findings in one pass.
 
 Package research findings into a readout that aligns stakeholders quickly.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: ux-researcher
-project: <slug>
-deliverable: ux-researcher.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When research must be socialized to decision-makers.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: research-readout-deck`, include:
+- `### Audience and decision`: State who the readout is for and what decision they need to make.
+- `### Key findings`: Present the headline findings in a stakeholder-friendly structure.
+- `### Evidence highlights`: Include the strongest supporting evidence and examples.
+- `### Recommendations`: Translate findings into clear recommendations or implications.
+- `### Stakeholder asks`: List the decisions, approvals, or follow-up actions needed after the readout.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion`.
+## Tool Path
+
+- Start with `notion`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `ux-researcher/research-synthesis, open`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A research readout deck or memo with findings and actions.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A research readout deck or memo with findings and actions.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Package the story for fast comprehension rather than exhaustive note-dumping.
+- Keep recommendations traceable back to evidence.
+- Make the stakeholder ask explicit so the readout leads to action.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
+- Keep all work for this skill inside `## Skill: research-readout-deck`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: A stakeholder can understand the key findings in one pass.
+- Ensure the section meets this done-when bar: A stakeholder can understand the key findings in one pass.

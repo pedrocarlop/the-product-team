@@ -6,6 +6,7 @@ primary_mcp: repository, figma
 fallback_tools: reference/reuse, chrome_devtools
 best_guess_output: A reusable component implementation with intended states and props.
 output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
+section_anchor: "## Skill: component-implementation"
 done_when: The component is reusable and aligned to system expectations.
 ---
 
@@ -15,47 +16,39 @@ done_when: The component is reusable and aligned to system expectations.
 
 Build or extend reusable frontend components that align with the design system.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: frontend-engineer
-project: <slug>
-deliverable: frontend-engineer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When implementation needs a reusable component, not just a one-off screen.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: component-implementation`, include:
+- `### Component purpose`: Describe what the component should solve and where it should be reused.
+- `### API or props`: Define the public API, props, slots, or configuration surface.
+- `### Variants and states`: List the supported variants, interactive states, and edge conditions.
+- `### Composition and reuse constraints`: Explain composition boundaries, dependencies, and what should stay outside the component.
+- `### Code touchpoints`: Identify the files, modules, or component families involved.
+- `### Adoption notes`: Capture migration or usage guidance for downstream implementers.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `repository, figma`.
+## Tool Path
+
+- Start with `repository, figma`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/reuse, chrome_devtools`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A reusable component implementation with intended states and props.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A reusable component implementation with intended states and props.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Optimize for reusability boundaries, not just visual parity for one screen.
+- Keep the API explicit enough that later consumers do not infer unsupported patterns.
+- Preserve exact design-system or existing-component references when reuse is the right path.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
+- Keep all work for this skill inside `## Skill: component-implementation`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The component is reusable and aligned to system expectations.
+- Ensure the section meets this done-when bar: The component is reusable and aligned to system expectations.

@@ -41,6 +41,10 @@ Deliverables must label the actual evidence path as:
 
 Repo-tracked app code is stricter: one explicit implementation owner per stage by default.
 
+Shared role deliverables use skill-owned anchors in the form `## Skill: <skill-name>` and preserve one trailing `## Reflection` footer for the role.
+
+For new design work, the design flow must diverge before it converges. `ui-designer` should explore multiple materially different high-level directions first, compare them explicitly, and only then move into `screen-production-design`.
+
 ## Installed Layout
 
 - `.codex/agents/product-team-<discipline>/<role>/<role>.toml`
@@ -49,6 +53,7 @@ Repo-tracked app code is stricter: one explicit implementation owner per stage b
 - `.codex/product-team/references/`
 - `.codex/product-team/scripts/validate-install.py`
 - `.codex/product-team/scripts/update-install.py`
+- `.codex/product-team/scripts/lib/`
 - `.codex/product-team/manifest.json`
 - `logs/active/`
 - `logs/archive/`
@@ -74,6 +79,8 @@ python3 .codex/product-team/scripts/update-install.py
 - Greenfield visual concept: `product-designer` -> `ui-designer` -> `frontend-engineer` -> `design-reviewer`
 - Research-heavy discovery: `ux-researcher` -> `product-designer` -> `product-lead`
 - API/platform delivery: `backend-engineer` or `platform-engineer` -> `qa-reviewer`
+
+For greenfield or otherwise net-new UI work, `ui-designer` should normally move through `ui-concept-direction` -> `ui-variant-exploration` -> `screen-production-design` rather than jumping straight to polished screens.
 
 ## Notes
 

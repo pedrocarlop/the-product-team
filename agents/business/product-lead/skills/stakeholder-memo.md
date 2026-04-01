@@ -6,6 +6,7 @@ primary_mcp: notion
 fallback_tools: search_query, reference/verify
 best_guess_output: A stakeholder memo with recommendation, risks, and asks.
 output_artifacts: logs/active/<project-slug>/deliverables/product-lead.md
+section_anchor: "## Skill: stakeholder-memo"
 done_when: A stakeholder can read once and know the decision required.
 ---
 
@@ -15,47 +16,40 @@ done_when: A stakeholder can read once and know the decision required.
 
 Prepare a concise decision memo or update for stakeholders.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: product-lead
-project: <slug>
-deliverable: product-lead.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When a product decision needs alignment or reporting.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: stakeholder-memo`, include:
+- `### Audience and purpose`: Name who the memo is for and what decision or update it supports.
+- `### Recommendation`: State the recommended action or conclusion up front.
+- `### Why now`: Explain the timing, urgency, or forcing function.
+- `### Evidence`: Summarize the key facts, signals, or sources backing the recommendation.
+- `### Risks and tradeoffs`: Spell out the downside, uncertainty, and competing options.
+- `### Asks or decisions needed`: List what approvals, choices, or support are being requested.
+- `### Next steps`: Define the immediate follow-through after the memo lands.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion`.
+## Tool Path
+
+- Start with `notion`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, reference/verify`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A stakeholder memo with recommendation, risks, and asks.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A stakeholder memo with recommendation, risks, and asks.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Optimize for one-pass comprehension; stakeholders should not have to infer the ask.
+- Keep the memo decision-oriented even when the trigger is a status update.
+- Distinguish confirmed facts from assumptions or in-flight work.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/product-lead.md`.
+- Keep all work for this skill inside `## Skill: stakeholder-memo`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: A stakeholder can read once and know the decision required.
+- Ensure the section meets this done-when bar: A stakeholder can read once and know the decision required.

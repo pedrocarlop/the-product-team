@@ -6,6 +6,7 @@ primary_mcp: notion, repository
 fallback_tools: search_query, reference/ground
 best_guess_output: A framing brief with objective, constraints, and success criteria.
 output_artifacts: logs/active/<project-slug>/deliverables/product-lead.md
+section_anchor: "## Skill: frame-problem"
 done_when: The team can tell what problem is being solved and what is out of scope.
 ---
 
@@ -15,47 +16,38 @@ done_when: The team can tell what problem is being solved and what is out of sco
 
 Turn a raw request into a clear product problem, constraints, success criteria, and decision frame.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: product-lead
-project: <slug>
-deliverable: product-lead.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When the request is vague or outcome-first.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: frame-problem`, include:
+- `### Problem statement`: State the core problem in one crisp, bounded sentence.
+- `### Objective and success criteria`: Define the intended outcome and the measures that would make the team call this successful.
+- `### Constraints and non-goals`: Capture constraints, dependencies, and what should explicitly stay out of scope.
+- `### Decision frame`: Explain the decision the team must make next and the tradeoffs that matter.
+- `### Open questions`: List unresolved issues that still affect product direction or execution.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion, repository`.
+## Tool Path
+
+- Start with `notion, repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, reference/ground`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A framing brief with objective, constraints, and success criteria.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A framing brief with objective, constraints, and success criteria.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Preserve exact language for goals, constraints, and decision asks when those details will shape downstream design, analysis, or engineering work.
+- Make non-goals explicit so later roles do not quietly expand scope.
+- Call out any ambiguity that should be escalated before the team commits to delivery.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/product-lead.md`.
+- Keep all work for this skill inside `## Skill: frame-problem`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The team can tell what problem is being solved and what is out of scope.
+- Ensure the section meets this done-when bar: The team can tell what problem is being solved and what is out of scope.

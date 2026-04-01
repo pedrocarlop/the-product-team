@@ -66,7 +66,7 @@ purpose_tag = "design_systems_designer"
 [capabilities]
 developer_tools = ["exec_command", "read_thread_terminal", "view_image"]
 local_skills = ["reference"]
-mcp_servers = ["figma", "paper", "stitch", "github", "chrome_devtools"]
+mcp_servers = ["figma", "notion", "paper", "stitch", "github", "chrome_devtools"]
 mcp_tools = []
 recommended_external_mcp = []
 recommended_external_skills = []

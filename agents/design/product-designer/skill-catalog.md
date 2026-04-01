@@ -49,7 +49,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Description: Build and validate a prototype to test whether the proposed interaction actually works.
 - Trigger: When a flow or concept should be tested before full build.
 - Primary MCP/tool: paper
-- Fallback: figma, browser inspection
+- Fallback: figma, chrome_devtools
 - Best guess: A prototype summary with validation findings.
 - Output: logs/active/<project-slug>/deliverables/product-designer.md
 - Done when: The prototype answers a real decision and any unresolved risk is explicit.
@@ -59,7 +59,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Description: Build low-to-mid fidelity structural wireframes that clarify hierarchy and task flow.
 - Trigger: When teams need screen structure before visual polish.
 - Primary MCP/tool: figma
-- Fallback: paper, repository grounding
+- Fallback: paper, reference/ground
 - Best guess: A wireframe set aligned to the approved flow.
 - Output: logs/active/<project-slug>/deliverables/product-designer.md
 - Done when: Screen structure is clear enough for review or prototyping.

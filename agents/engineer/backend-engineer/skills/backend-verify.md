@@ -6,6 +6,7 @@ primary_mcp: repository
 fallback_tools: reference/verify, search_query
 best_guess_output: A backend verification result with open risks if any.
 output_artifacts: logs/active/<project-slug>/deliverables/backend-engineer.md
+section_anchor: "## Skill: backend-verify"
 done_when: The backend behavior is validated or unresolved issues are explicit.
 ---
 
@@ -15,47 +16,39 @@ done_when: The backend behavior is validated or unresolved issues are explicit.
 
 Verify backend behavior against the intended contract and operational risk.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: backend-engineer
-project: <slug>
-deliverable: backend-engineer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When backend work needs a final verification pass.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: backend-verify`, include:
+- `### Verification scope`: Define what service, endpoint, job, or flow was verified.
+- `### Contract checks`: Record checks against the intended contract or spec.
+- `### Failure-path checks`: Capture negative-path, validation, or recovery checks.
+- `### Operational checks`: Note runtime, observability, or deployment-related checks.
+- `### Findings`: Summarize the issues found or key passes.
+- `### Residual risk`: State what remains unresolved or unverified.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `repository`.
+## Tool Path
+
+- Start with `repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/verify, search_query`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A backend verification result with open risks if any.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A backend verification result with open risks if any.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Tie each verification claim to a present-state source of truth.
+- Keep residual risk explicit so release or follow-up decisions do not overstate confidence.
+- Distinguish contract correctness from operational readiness when both are being checked.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/backend-engineer.md`.
+- Keep all work for this skill inside `## Skill: backend-verify`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The backend behavior is validated or unresolved issues are explicit.
+- Ensure the section meets this done-when bar: The backend behavior is validated or unresolved issues are explicit.

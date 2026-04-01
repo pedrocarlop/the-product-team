@@ -6,6 +6,7 @@ primary_mcp: refero
 fallback_tools: search_query, open
 best_guess_output: A benchmark report with patterns, screenshots, and implications.
 output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
+section_anchor: "## Skill: competitor-research"
 done_when: Relevant competitor patterns are documented with evidence or clearly marked inference.
 ---
 
@@ -15,47 +16,38 @@ done_when: Relevant competitor patterns are documented with evidence or clearly 
 
 Benchmark adjacent products and patterns to inform UX decisions.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: ux-researcher
-project: <slug>
-deliverable: ux-researcher.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When the team needs external pattern or competitor evidence.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: competitor-research`, include:
+- `### Comparison set`: List the products, surfaces, or patterns benchmarked.
+- `### Pattern inventory`: Summarize the relevant patterns each competitor uses.
+- `### Screens and evidence`: Link the evidence, screenshots, or citations supporting the benchmark.
+- `### Implications`: Explain what the benchmark means for the current product decision.
+- `### Gaps in evidence`: Call out what could not be verified directly.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `refero`.
+## Tool Path
+
+- Start with `refero`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, open`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A benchmark report with patterns, screenshots, and implications.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A benchmark report with patterns, screenshots, and implications.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Distinguish sourced evidence from inference clearly.
+- Benchmark the parts of the market that actually matter to the current decision.
+- Avoid turning the output into a gallery dump without product implications.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
+- Keep all work for this skill inside `## Skill: competitor-research`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Relevant competitor patterns are documented with evidence or clearly marked inference.
+- Ensure the section meets this done-when bar: Relevant competitor patterns are documented with evidence or clearly marked inference.

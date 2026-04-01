@@ -59,7 +59,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Description: Prepare the participant screener or intake form needed to recruit the right people.
 - Trigger: When a study needs recruitment or intake filtering.
 - Primary MCP/tool: google_forms
-- Fallback: notion, docs-style questionnaire
+- Fallback: notion, ux-researcher/research-plan
 - Best guess: A screener form or equivalent structured questionnaire.
 - Output: logs/active/<project-slug>/deliverables/ux-researcher.md
 - Done when: Recruiting can start with clear inclusion and exclusion criteria.

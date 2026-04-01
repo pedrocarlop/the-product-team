@@ -6,56 +6,48 @@ primary_mcp: repository, figma
 fallback_tools: chrome_devtools, reference/verify
 best_guess_output: A system QA and adoption plan with key issues and rollout guidance.
 output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
+section_anchor: "## Skill: system-qa-and-adoption"
 done_when: System issues and adoption blockers are concrete and prioritized.
 ---
 
-# System Qa And Adoption
+# System QA And Adoption
 
 ## Purpose
 
 Validate the live system for consistency and define how teams should adopt it.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: design-systems-designer
-project: <slug>
-deliverable: design-systems-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When the system exists but adoption or QA is weak.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: system-qa-and-adoption`, include:
+- `### QA checklist`: Define the checks used to verify system consistency.
+- `### Adoption blockers`: List what prevents teams from using the system cleanly today.
+- `### Rollout guidance`: Describe how teams should adopt or re-adopt the system.
+- `### Verification method`: Explain how future QA should be run and evidenced.
+- `### Exit criteria`: State what must be true before the adoption push is considered complete.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `repository, figma`.
+## Tool Path
+
+- Start with `repository, figma`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `chrome_devtools, reference/verify`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A system QA and adoption plan with key issues and rollout guidance.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A system QA and adoption plan with key issues and rollout guidance.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Treat adoption as an operational problem, not only a design-quality problem.
+- Tie QA checks to concrete surfaces or implementation evidence.
+- Make the rollout path realistic for teams with existing product commitments.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
+- Keep all work for this skill inside `## Skill: system-qa-and-adoption`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: System issues and adoption blockers are concrete and prioritized.
+- Ensure the section meets this done-when bar: System issues and adoption blockers are concrete and prioritized.

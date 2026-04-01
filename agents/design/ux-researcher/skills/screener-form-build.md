@@ -3,9 +3,10 @@ name: screener-form-build
 description: Prepare the participant screener or intake form needed to recruit the right people.
 trigger: When a study needs recruitment or intake filtering.
 primary_mcp: google_forms
-fallback_tools: notion, docs-style questionnaire
+fallback_tools: notion, ux-researcher/research-plan
 best_guess_output: A screener form or equivalent structured questionnaire.
 output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
+section_anchor: "## Skill: screener-form-build"
 done_when: Recruiting can start with clear inclusion and exclusion criteria.
 ---
 
@@ -15,47 +16,38 @@ done_when: Recruiting can start with clear inclusion and exclusion criteria.
 
 Prepare the participant screener or intake form needed to recruit the right people.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: ux-researcher
-project: <slug>
-deliverable: ux-researcher.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When a study needs recruitment or intake filtering.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: screener-form-build`, include:
+- `### Recruitment criteria`: Define the inclusion and exclusion criteria clearly.
+- `### Screening questions`: List the actual screener questions in order.
+- `### Inclusion and exclusion logic`: Explain how answers qualify or disqualify participants.
+- `### Ops notes`: Capture compensation, cadence, and handling notes needed for recruiting.
+- `### Backup plan`: State what to do if the ideal sample is hard to recruit.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `google_forms`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `notion, docs-style questionnaire`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A screener form or equivalent structured questionnaire.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+## Tool Path
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+- Start with `google_forms`.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `notion, ux-researcher/research-plan`.
+- If both paths fail, produce the best-guess output described as: A screener form or equivalent structured questionnaire.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+## Workflow Notes
+
+- Use `ux-researcher/research-plan` as the fallback support instead of an undocumented questionnaire alias.
+- Make qualification logic explicit so recruiters do not have to infer intent.
+- Keep the screener short enough to complete, but precise enough to filter well.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
+- Keep all work for this skill inside `## Skill: screener-form-build`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Recruiting can start with clear inclusion and exclusion criteria.
+- Ensure the section meets this done-when bar: Recruiting can start with clear inclusion and exclusion criteria.

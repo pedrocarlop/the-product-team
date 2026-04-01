@@ -18,6 +18,8 @@ This repository has the Product Team workflow installed.
 - Specialists do not ask whether to use the required MCP/tool path. They use it automatically when the skill requires it.
 - Global fallback rule: `primary MCP -> alternative tool/MCP -> best guess inferred output`.
 - Deliverables must label the actual evidence path as `sourced`, `fallback`, or `inferred`.
+- Shared role deliverables use stable skill-owned anchors in the form `## Skill: <skill-name>` and one trailing `## Reflection` footer.
+- For net-new design work, the design flow must diverge before it converges: explore materially different directions first, compare them explicitly, and only then move into concrete production design.
 - Escalate only for setup, account access, destructive actions, or external publishing/sharing.
 - Staff the minimum viable set of roles and keep one explicit repo-write owner per stage by default.
 - Read installed role definitions in `.codex/agents/product-team-<discipline>/<role>/`.

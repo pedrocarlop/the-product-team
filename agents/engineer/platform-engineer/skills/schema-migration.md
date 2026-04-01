@@ -6,6 +6,7 @@ primary_mcp: repository
 fallback_tools: reference/trace, search_query
 best_guess_output: A migration plan or implementation with rollback considerations.
 output_artifacts: logs/active/<project-slug>/deliverables/platform-engineer.md
+section_anchor: "## Skill: schema-migration"
 done_when: Schema changes are bounded and operationally safe.
 ---
 
@@ -15,47 +16,39 @@ done_when: Schema changes are bounded and operationally safe.
 
 Design and implement schema changes with migration and rollback awareness.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: platform-engineer
-project: <slug>
-deliverable: platform-engineer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When persistent data models must change safely.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: schema-migration`, include:
+- `### Schema change summary`: Define the structural change being made.
+- `### Migration steps`: Describe the migration sequence and any staged rollout.
+- `### Compatibility window`: State how old and new schema shapes coexist during transition.
+- `### Rollback plan`: Explain rollback conditions and procedure.
+- `### Operational risks`: Capture data loss, lock, latency, or deployment risks.
+- `### Verification plan`: Explain how the migration outcome should be checked.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `repository`.
+## Tool Path
+
+- Start with `repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/trace, search_query`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A migration plan or implementation with rollback considerations.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A migration plan or implementation with rollback considerations.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Keep migration sequencing concrete enough that operators and reviewers can reason about it safely.
+- Treat compatibility and rollback as required design elements, not optional notes.
+- Preserve exact table, collection, or schema identifiers where they affect execution safety.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/platform-engineer.md`.
+- Keep all work for this skill inside `## Skill: schema-migration`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Schema changes are bounded and operationally safe.
+- Ensure the section meets this done-when bar: Schema changes are bounded and operationally safe.

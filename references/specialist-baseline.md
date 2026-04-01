@@ -13,6 +13,17 @@ This file documents the shared prompt structure used by all specialist roles (ex
 - `{{reviewer_extra}}` — extra sentence for reviewer roles only
 - `{{tool_proactivity}}` — rendered from `capabilities.recommended_external_mcp` and `capabilities.recommended_external_skills`; instructs the role to always propose tool actions to the orchestrator before using them, so the orchestrator can ask the user for approval. Roles never use tools silently — they offer first.
 
+## Allowed Skill Tool Labels
+
+Skill frontmatter fields such as `primary_mcp` and `fallback_tools` must resolve to one of these categories:
+
+- A tool or MCP server declared by the role in `capabilities.mcp_servers`
+- A declared web tool such as `search_query` or `open`
+- A cross-skill reference in `<role>/<skill>` format such as `reference/ground` or `ux-researcher/research-plan`
+- An approved virtual alias such as `repository`, `deliverables`, `logs`, `context`, `timeline`, `subagents`, `role metadata`, `conversation context`, `named source systems`, `repository review`, `context review`, or `role-catalog review`
+
+`paper` is a valid concrete MCP/tool path when the role declares it in `capabilities.mcp_servers`; it should never be treated as an abstract placeholder.
+
 ## Executor Prompt
 
 ```

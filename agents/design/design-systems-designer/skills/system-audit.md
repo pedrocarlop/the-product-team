@@ -6,6 +6,7 @@ primary_mcp: figma, repository
 fallback_tools: paper, reference/ground
 best_guess_output: A system audit with prioritized gaps and recommendations.
 output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
+section_anchor: "## Skill: system-audit"
 done_when: The team knows the real system health and next moves.
 ---
 
@@ -15,47 +16,38 @@ done_when: The team knows the real system health and next moves.
 
 Assess the current design system for gaps, drift, duplication, and adoption risks.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: design-systems-designer
-project: <slug>
-deliverable: design-systems-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When the system needs a baseline before extension or cleanup.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: system-audit`, include:
+- `### Audit scope`: State which products, libraries, files, or surfaces were audited.
+- `### Findings table`: Summarize the major findings with severity and affected areas.
+- `### Duplication and drift`: Call out redundant patterns and design/code divergence.
+- `### Adoption risks`: Explain what makes the system hard to use or trust today.
+- `### Recommended next moves`: List the highest-leverage cleanup or investment steps.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `figma, repository`.
+## Tool Path
+
+- Start with `figma, repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, reference/ground`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A system audit with prioritized gaps and recommendations.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A system audit with prioritized gaps and recommendations.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Prioritize evidence-backed findings over broad opinions.
+- Separate cosmetic inconsistency from structural system failure.
+- Make the next moves small enough to act on, not just admire.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
+- Keep all work for this skill inside `## Skill: system-audit`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The team knows the real system health and next moves.
+- Ensure the section meets this done-when bar: The team knows the real system health and next moves.

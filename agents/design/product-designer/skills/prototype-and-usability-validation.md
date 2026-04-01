@@ -3,9 +3,10 @@ name: prototype-and-usability-validation
 description: Build and validate a prototype to test whether the proposed interaction actually works.
 trigger: When a flow or concept should be tested before full build.
 primary_mcp: paper
-fallback_tools: figma, browser inspection
+fallback_tools: figma, chrome_devtools
 best_guess_output: A prototype summary with validation findings.
 output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
+section_anchor: "## Skill: prototype-and-usability-validation"
 done_when: The prototype answers a real decision and any unresolved risk is explicit.
 ---
 
@@ -15,47 +16,38 @@ done_when: The prototype answers a real decision and any unresolved risk is expl
 
 Build and validate a prototype to test whether the proposed interaction actually works.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: product-designer
-project: <slug>
-deliverable: product-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When a flow or concept should be tested before full build.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: prototype-and-usability-validation`, include:
+- `### Prototype scope`: Define what was prototyped and what was intentionally left out.
+- `### Test plan`: State the task, scenario, or question the prototype is meant to answer.
+- `### Participant or walkthrough setup`: Describe who interacted with it or how the scenario was exercised.
+- `### Findings`: Summarize what worked, what failed, and where users hesitated.
+- `### Decision and outstanding risk`: State what the team can now decide and what still remains unresolved.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `paper`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `figma, browser inspection`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A prototype summary with validation findings.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+## Tool Path
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+- Start with `paper`.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `figma, chrome_devtools`.
+- If both paths fail, produce the best-guess output described as: A prototype summary with validation findings.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+## Workflow Notes
+
+- Use `paper` first when available; if not, fall back to `figma, chrome_devtools` instead of abstract browser wording.
+- Tie findings back to a concrete product decision instead of a vague sense of confidence.
+- Keep unresolved risk explicit so the prototype is not mistaken for proof of completeness.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
+- Keep all work for this skill inside `## Skill: prototype-and-usability-validation`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The prototype answers a real decision and any unresolved risk is explicit.
+- Ensure the section meets this done-when bar: The prototype answers a real decision and any unresolved risk is explicit.

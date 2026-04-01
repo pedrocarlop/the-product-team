@@ -6,6 +6,7 @@ primary_mcp: notion, figma
 fallback_tools: repository, reference/reuse
 best_guess_output: A governance model for component lifecycle and usage.
 output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
+section_anchor: "## Skill: component-governance"
 done_when: Teams know how components enter, change, and leave the system.
 ---
 
@@ -15,47 +16,38 @@ done_when: Teams know how components enter, change, and leave the system.
 
 Define the rules for component ownership, variants, contribution, and deprecation.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: design-systems-designer
-project: <slug>
-deliverable: design-systems-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When system growth needs operating rules, not just files.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: component-governance`, include:
+- `### Ownership model`: Define who owns design, code, and release decisions for shared components.
+- `### Contribution flow`: Describe how new components or changes are proposed and reviewed.
+- `### Variant rules`: Set the rules for when to add, split, or reject variants.
+- `### Deprecation policy`: Explain how components are sunset and migrated safely.
+- `### Exception handling`: Document how urgent or one-off exceptions are approved and tracked.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion, figma`.
+## Tool Path
+
+- Start with `notion, figma`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `repository, reference/reuse`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A governance model for component lifecycle and usage.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A governance model for component lifecycle and usage.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Write governance as an operating system teams can follow, not a slogan.
+- Make ownership boundaries between design and engineering explicit.
+- Prefer fewer, more durable rules over exhaustive bureaucracy.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
+- Keep all work for this skill inside `## Skill: component-governance`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Teams know how components enter, change, and leave the system.
+- Ensure the section meets this done-when bar: Teams know how components enter, change, and leave the system.

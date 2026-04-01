@@ -7,22 +7,22 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 ## `dashboard-story`
 
 - Description: Turn operational or product metrics into a narrative summary for the team.
-- Trigger: When raw metrics exist but the decision story is missing.
-- Primary MCP/tool: notion
+- Trigger: When a dashboard exists but the team needs the story behind the numbers.
+- Primary MCP/tool: notion, repository
 - Fallback: analyst/funnel-analysis, search_query
 - Best guess: A narrative metrics readout with key insights and actions.
 - Output: logs/active/<project-slug>/deliverables/analyst.md
-- Done when: The audience understands the story behind the numbers.
+- Done when: A reader can understand the important story without opening the dashboard first.
 
 ## `experiment-readout`
 
 - Description: Interpret an experiment and translate the result into a decision.
-- Trigger: When a test or rollout needs analysis and recommendation.
+- Trigger: When an experiment has completed and the team needs a decision-ready summary.
 - Primary MCP/tool: notion, repository
 - Fallback: analyst/metric-definition, search_query
 - Best guess: An experiment readout with result, confidence, and next step.
 - Output: logs/active/<project-slug>/deliverables/analyst.md
-- Done when: A decision-maker can accept, reject, or iterate the experiment.
+- Done when: The team can tell what happened, how confident to be, and what to do next.
 
 ## `forecast-model`
 
@@ -47,9 +47,9 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 ## `metric-definition`
 
 - Description: Define the business or product metric model so downstream analysis measures the right thing.
-- Trigger: When a team needs crisp metric definitions before analysis or instrumentation.
+- Trigger: When the team is debating how success or performance should be measured.
 - Primary MCP/tool: notion, repository
 - Fallback: search_query, reference/ground
 - Best guess: A metric definition pack with formulas, segments, and caveats.
 - Output: logs/active/<project-slug>/deliverables/analyst.md
-- Done when: The metric can be implemented or reported consistently.
+- Done when: The metric can be computed and interpreted consistently.

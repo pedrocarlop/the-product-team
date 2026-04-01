@@ -6,6 +6,7 @@ primary_mcp: notion, repository
 fallback_tools: search_query, reference/ground
 best_guess_output: A tooling audit with keep/change/remove recommendations.
 output_artifacts: logs/active/<project-slug>/deliverables/business-ops.md
+section_anchor: "## Skill: tooling-audit"
 done_when: The stack decision is actionable and justified.
 ---
 
@@ -15,47 +16,39 @@ done_when: The stack decision is actionable and justified.
 
 Assess tool sprawl, gaps, and ownership across the operating stack.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: business-ops
-project: <slug>
-deliverable: business-ops.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When systems or tools are slowing execution down.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: tooling-audit`, include:
+- `### Tool inventory`: List the relevant tools or systems in the current stack.
+- `### Current owner`: Identify the owner or owning team for each important tool or area.
+- `### Keep/change/remove recommendation`: Give the recommendation for the major tools or overlaps.
+- `### Gap analysis`: Note missing capabilities or unsupported workflows.
+- `### Integration issues`: Capture handoff, sync, or duplication problems between tools.
+- `### Recommended roadmap`: Suggest a practical sequence for cleanup or change.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion, repository`.
+## Tool Path
+
+- Start with `notion, repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, reference/ground`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A tooling audit with keep/change/remove recommendations.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A tooling audit with keep/change/remove recommendations.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Optimize for a decision-ready audit, not a catalog of every tool anyone has ever touched.
+- Make ownership gaps explicit because they are often the root cause of tool sprawl.
+- Differentiate between replace-now issues and longer-term platform cleanups.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/business-ops.md`.
+- Keep all work for this skill inside `## Skill: tooling-audit`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The stack decision is actionable and justified.
+- Ensure the section meets this done-when bar: The stack decision is actionable and justified.

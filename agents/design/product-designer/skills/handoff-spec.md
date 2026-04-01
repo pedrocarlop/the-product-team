@@ -6,6 +6,7 @@ primary_mcp: notion, figma
 fallback_tools: paper, reference/verify
 best_guess_output: A handoff spec linking flow, structure, and open questions.
 output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
+section_anchor: "## Skill: handoff-spec"
 done_when: A downstream role can continue without reopening the design problem.
 ---
 
@@ -15,47 +16,39 @@ done_when: A downstream role can continue without reopening the design problem.
 
 Prepare the structured design handoff for downstream UI, content, and engineering work.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: product-designer
-project: <slug>
-deliverable: product-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When discovery and flow work must be handed downstream.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: handoff-spec`, include:
+- `### Assignment type`: Classify the work as `new design` or `extension of existing pattern`.
+- `### Experience summary`: Summarize the user job, flow, and intended outcome.
+- `### Flow and screen inventory`: List the screens, states, and flow stages the downstream team must preserve.
+- `### Downstream contracts`: Call out what UI, content, and engineering each need to deliver.
+- `### Exploration prerequisites`: For `new design`, point to the exploration and comparison sections required before concrete UI production.
+- `### Open questions`: List unresolved decisions that still need explicit follow-up.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion, figma`.
+## Tool Path
+
+- Start with `notion, figma`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, reference/verify`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A handoff spec linking flow, structure, and open questions.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A handoff spec linking flow, structure, and open questions.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Make the handoff specific enough that downstream roles do not need to rediscover the problem.
+- When the assignment is `new design`, explicitly require divergent exploration before screen production.
+- Preserve edge cases, dependencies, and assumptions that could be lost in a compressed summary.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
+- Keep all work for this skill inside `## Skill: handoff-spec`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: A downstream role can continue without reopening the design problem.
+- Ensure the section meets this done-when bar: A downstream role can continue without reopening the design problem.

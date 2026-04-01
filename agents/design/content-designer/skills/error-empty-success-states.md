@@ -6,6 +6,7 @@ primary_mcp: notion, figma
 fallback_tools: reference/trace, search_query
 best_guess_output: A state-message set for error, empty, loading, and success moments.
 output_artifacts: logs/active/<project-slug>/deliverables/content-designer.md
+section_anchor: "## Skill: error-empty-success-states"
 done_when: Critical states have explicit user-facing messaging.
 ---
 
@@ -15,47 +16,38 @@ done_when: Critical states have explicit user-facing messaging.
 
 Design the messaging for non-happy-path states so users can recover or proceed confidently.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: content-designer
-project: <slug>
-deliverable: content-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When a feature needs state-specific messaging beyond the default path.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: error-empty-success-states`, include:
+- `### State inventory`: List the states covered and the user task affected in each one.
+- `### Message set`: Provide the actual headline, body, CTA, and helper copy per state.
+- `### Recovery actions`: Explain what action the user should take next, if any.
+- `### Voice notes`: Capture tone constraints for stressful, celebratory, or ambiguous moments.
+- `### Missing states`: Note uncovered states, assumptions, or states that still need product input.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion, figma`.
+## Tool Path
+
+- Start with `notion, figma`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/trace, search_query`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A state-message set for error, empty, loading, and success moments.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A state-message set for error, empty, loading, and success moments.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Cover error, empty, loading, and success states unless a state genuinely does not exist.
+- Make recovery pathways explicit instead of only restating the problem.
+- Keep state copy aligned with the product voice and severity of the situation.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/content-designer.md`.
+- Keep all work for this skill inside `## Skill: error-empty-success-states`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Critical states have explicit user-facing messaging.
+- Ensure the section meets this done-when bar: Critical states have explicit user-facing messaging.

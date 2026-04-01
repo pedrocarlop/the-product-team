@@ -1,12 +1,13 @@
 ---
 name: metric-definition
 description: Define the business or product metric model so downstream analysis measures the right thing.
-trigger: When a team needs crisp metric definitions before analysis or instrumentation.
+trigger: When the team is debating how success or performance should be measured.
 primary_mcp: notion, repository
 fallback_tools: search_query, reference/ground
 best_guess_output: A metric definition pack with formulas, segments, and caveats.
 output_artifacts: logs/active/<project-slug>/deliverables/analyst.md
-done_when: The metric can be implemented or reported consistently.
+section_anchor: "## Skill: metric-definition"
+done_when: The metric can be computed and interpreted consistently.
 ---
 
 # Metric Definition
@@ -15,47 +16,39 @@ done_when: The metric can be implemented or reported consistently.
 
 Define the business or product metric model so downstream analysis measures the right thing.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: analyst
-project: <slug>
-deliverable: analyst.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When a team needs crisp metric definitions before analysis or instrumentation.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: metric-definition`, include:
+- `### Metric name and purpose`: Define the metric and what decision it should support.
+- `### Formula`: Specify the formula, inputs, exclusions, and aggregation logic.
+- `### Segments and cuts`: List the segment dimensions or slices the team should use.
+- `### Source of truth`: Name the source systems, tables, dashboards, or artifacts that should anchor the number.
+- `### Caveats`: Capture interpretation limits, lag, or known blind spots.
+- `### Instrumentation gaps`: Call out missing tracking or data-quality issues that weaken confidence.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `notion, repository`.
+## Tool Path
+
+- Start with `notion, repository`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, reference/ground`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A metric definition pack with formulas, segments, and caveats.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A metric definition pack with formulas, segments, and caveats.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Prefer one operational definition over a long list of alternatives unless the ambiguity itself is the key finding.
+- Be explicit about denominator choices, exclusions, and time windows.
+- Preserve source-system naming where downstream analysts or engineers need exact traceability.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/analyst.md`.
+- Keep all work for this skill inside `## Skill: metric-definition`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The metric can be implemented or reported consistently.
+- Ensure the section meets this done-when bar: The metric can be computed and interpreted consistently.

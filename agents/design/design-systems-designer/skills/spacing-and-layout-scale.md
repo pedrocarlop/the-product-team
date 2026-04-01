@@ -6,6 +6,7 @@ primary_mcp: figma
 fallback_tools: paper, repository
 best_guess_output: A spacing and layout scale with usage guidance.
 output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
+section_anchor: "## Skill: spacing-and-layout-scale"
 done_when: Designers can compose surfaces without inventing spacing ad hoc.
 ---
 
@@ -15,47 +16,38 @@ done_when: Designers can compose surfaces without inventing spacing ad hoc.
 
 Define the spacing, sizing, and layout scale that underpins UI consistency.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: design-systems-designer
-project: <slug>
-deliverable: design-systems-designer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When system consistency depends on clearer spatial rules.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: spacing-and-layout-scale`, include:
+- `### Scale definition`: Define the core spacing and sizing values and how they relate.
+- `### Semantic usage`: Map raw values to semantic layout roles such as stack, inset, gap, or section spacing.
+- `### Breakpoint adjustments`: Describe any breakpoint-specific spacing behavior.
+- `### Exceptions`: Call out where the scale should intentionally bend or stop.
+- `### Migration notes`: Explain how existing layouts should move onto the scale.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `figma`.
+## Tool Path
+
+- Start with `figma`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, repository`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A spacing and layout scale with usage guidance.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A spacing and layout scale with usage guidance.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Prefer a scale that can survive real product layouts, not just tidy examples.
+- Keep layout rules connected to the component system and breakpoints.
+- Document where the scale is normative versus advisory.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
+- Keep all work for this skill inside `## Skill: spacing-and-layout-scale`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Designers can compose surfaces without inventing spacing ad hoc.
+- Ensure the section meets this done-when bar: Designers can compose surfaces without inventing spacing ad hoc.
