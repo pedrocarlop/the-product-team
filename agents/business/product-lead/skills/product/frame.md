@@ -1,85 +1,111 @@
 ---
 name: frame
-description: Turn a vague product request into a precise decision question, scope, and output that the team can act on.
+description: "Turn a vague product request into a precise problem statement, boundary, and explicit decision to be made. Use when a request is ambiguous, when success criteria are missing, or when the team disagrees on what problem is actually being solved."
 ---
 
 # Frame
 
-## Purpose
+## Overview
 
-Use this skill to turn a messy product ask into a crisp product question: what decision needs to be made, what problem is actually being solved, what scope is in or out, and what output will support the next step.
+"Framing" is the most critical upstream skill. A poorly framed request leads to wasted design and engineering cycles solving the wrong problem. A well-framed request turns a vague idea ("We need a dashboard") into a precise, scoped problem statement ("Operators need to identify and retry failed payments within 5 minutes without writing SQL").
 
 ## When to Use
 
-- When the request is vague, multi-part, or comes in as a feature idea without a clear problem statement
-- When different interpretations of the same ask would lead to different product decisions
-- When the owner, audience, or success criteria are not yet explicit
+- When a new feature request comes in with a proposed solution but no documented problem.
+- When an initiative's scope feels "leaky" or unbounded.
+- When leadership, design, and engineering disagree on what success looks like.
+- When you need to decide if an initiative is actually worth staffing.
 
 ## When Not to Use
 
-- When the problem statement is already clear and the work is mainly prioritization or specification
-- When the task is to choose among known options rather than define the decision itself
-- When the work is final messaging or execution handoff
+- When the problem is already explicitly defined, the boundaries are locked, and the task is pure execution.
+- When the task is a known bug fix or technical debt item.
+- When the expected output is a full PRD (use `specify` instead).
 
-## Required Inputs
+## Required Workflow
 
-- The request in the stakeholder's own words
-- The product decision this work should inform
-- The audience or decision maker who will use the answer
-- Known constraints on timing, scope, dependencies, or delivery format
-- Any existing context, metrics, or prior decisions that shape the ask
+**Follow these steps in order. Do not skip steps.**
 
-## Workflow
+### Step 1: Extract the Core Decision
 
-1. Restate the request as a decision-oriented question.
-2. Identify the decision maker and the action the answer should change.
-3. Split broad asks into smaller questions that can actually be answered.
-4. Define the minimum scope needed to answer the question credibly.
-5. State the expected output format, such as a memo, table, recommendation, or PRD input.
-6. Call out assumptions, exclusions, and open questions before moving forward.
+Identify what action this work will ultimately drive:
+- **Good**: "Should we invest in a native mobile app or optimize the responsive web experience?"
+- **Bad**: "We need to research mobile usage." (Not a decision).
 
-## Design Principles / Evaluation Criteria
+### Step 2: Define the Problem Statement
 
-- Specific beats broad
-- Decision-first framing over feature-first thinking
-- Smallest scope that still supports the decision
-- Clear boundaries around what this work will and will not claim
-- Outputs should be easy to act on, not just easy to read
+State the user or business pain in under two sentences.
+- Use the format: *[Who] is struggling to [Do What] because [Why], which results in [Impact].*
+- **Example**: "Customer Success Managers are struggling to identify churning accounts early because health scores update weekly, resulting in preventable revenue loss."
 
-## Output Contract
+### Step 3: Set Scope Boundaries (In/Out)
 
-- A rewritten product question
-- The decision it supports and the intended audience
-- Scope, assumptions, and exclusions
-- The expected output format
-- Any open questions that must be resolved next
+Explicitly define what the team will *not* do:
+- **In Scope**: The exact personas, use cases, or platforms being targeted.
+- **Out of Scope**: Adjacent problems, future features, or edge cases that will be deliberately ignored for now. *If the "Out of Scope" list is empty, the frame is too weak.*
 
-## Examples
+### Step 4: Define Success Criteria
 
-### Example 1
+State how the team will know if the problem is solved:
+- **Quantitative**: "Activation rate increases from 20% to 25%."
+- **Qualitative**: "Users can complete the onboarding flow without contacting support."
 
-Input:
-- Stakeholder ask: "Can we add a dashboard for churn?"
-- Context: Leadership wants to understand whether churn is being caused by activation or by usage drop-off
+### Step 5: Identify the 'Next Step' Output
 
-Expected output:
-- Framed question: "Among newly activated users in the last 90 days, what is the main driver of churn, and which segment shows the largest drop?"
-- Decision: Whether to invest in activation, retention, or reporting
-- Scope: New users only, with comparison by cohort and segment
+Define what artifact will close this framing exercise:
+- A 1-pager for leadership approval.
+- A "How Might We" brief for design exploration.
+- A kill decision (stopping the work because the problem isn't worth solving).
+
+## Decision Tree: Is the Frame Strong Enough?
+
+```
+Is the Problem Statement focused on a user/business pain (not a missing feature)?
+├── YES → Does the "Out of Scope" list explicitly forbid at least one related idea?
+│   ├── YES → Are the Success Criteria measurable?
+│   │   ├── YES → The frame is strong. Proceed.
+│   │   └── NO → Rewrite Success Criteria (Step 4).
+│   └── NO → The scope is too leaky. Define what we won't do (Step 3).
+└── NO → You are building a solution in search of a problem. Go back to Step 2.
+```
+
+## Worked Examples
+
+### Example 1: "Add AI to the Editor" (Vague Request)
+
+**Input:** Leadership asks, "Can we add an AI writing assistant to our text editor?"
+**Workflow Application:**
+- **Problem Statement**: Users are abandoning drafts because they struggle to format raw meeting notes into structured project updates.
+- **In Scope**: Reformatting existing text, extracting action items.
+- **Out of Scope**: Generating novel content from scratch, AI image generation, chatbot interfaces.
+- **Success Criteria**: 30% increase in draft completion rate.
+- **Output**: A 1-page scoping brief for the design team.
+
+### Example 2: "Churn Dashboard" (Feature-first Request)
+
+**Input:** Support team asks for a "churn dashboard."
+**Workflow Application:**
+- **Core Decision**: How should we route accounts that are at risk of non-renewal?
+- **Problem Statement**: Account managers don't know which accounts to call today because renewal data lives in Stripe while usage data lives in Mixpanel.
+- **Out of Scope**: Predicting churn with machine learning; building custom charting UI.
+- **Success Criteria**: AMs can view a daily list of at-risk accounts in their existing CRM.
 
 ## Guardrails
 
-- Do not jump into solution ideas before the question is specific
-- Do not expand scope just because more data or more features are available
-- Do not silently choose a metric or segment when the decision context is ambiguous
-- Do not hide uncertainty; surface it explicitly
+- **Never accept a feature as a problem statement.** "We lack a dashboard" is not a problem. "Users cannot see their data" is the problem.
+- **Always force a constraint.** If everything is in scope, nothing will ship.
+- **Do not write a full PRD during framing.** Keep it under 1 page. If it takes 5 pages, you are designing the solution, not framing the problem.
 
-## Optional Tools / Resources
+## Troubleshooting
 
-- Notion for documenting the question and decision frame
-- Existing product briefs, PRDs, or decision logs
-- Metrics dashboards or customer evidence
-- Stakeholder notes and prior launch reviews
+### Issue: The team ignores the framing and builds everything anyway
+**Cause**: The "Out of Scope" section was too vague or missing.
+**Solution**: Make the exclusions painful and explicit. Write "We will explicitly NOT build X, even if users ask for it."
 
-- Shared MCP servers: Notion MCP, Linear MCP, Slack MCP, GitHub MCP
-- Reference websites: [SVPG Articles (svpg.com)](https://www.svpg.com/articles/), [Lenny's Newsletter (lennysnewsletter.com)](https://www.lennysnewsletter.com/), [Mind the Product (mindtheproduct.com)](https://www.mindtheproduct.com/), [Amplitude Blog (amplitude.com)](https://amplitude.com/blog), [Product School Resources (productschool.com)](https://productschool.com/resources)
+### Issue: Leadership rejects the framing
+**Cause**: The Core Decision (Step 1) didn't align with business strategy.
+**Solution**: Re-interview the stakeholder. Ask: "If this project succeeds perfectly, what metric on your dashboard moves?"
+
+### Issue: The problem statement is too broad
+**Cause**: "Boiling the ocean" (e.g., "Users want the product to be easier").
+**Solution**: Narrow the persona. Narrow the usecase. Change "Users" to "First-time administrators setting up SAML."

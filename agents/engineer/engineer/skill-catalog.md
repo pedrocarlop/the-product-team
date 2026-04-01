@@ -14,7 +14,7 @@ Open only the matching skill files under `skills/`, then end your closing handof
 ## backend/
 
 - `backend/implement` — Build backend services, handlers, migrations, and integrations from an agreed model without drifting from the contract.
-- `backend/model` — Shape backend work into explicit domain, data, and contract decisions before implementation starts.
+- `backend/model` — Shape backend work into explicit domain, data, and contract decisions before implementation starts. Use when building a new API endpoint, designing a database schema, or defining a business process handler.
 - `backend/observe` — Verify backend code behavior using tests, logs, query inspection, traces, and profiling to confirm correctness and performance after implementation.
 - `backend/harden` — Strengthen backend services for data integrity, concurrency safety, operational resilience, and incident readiness before they handle production traffic.
 

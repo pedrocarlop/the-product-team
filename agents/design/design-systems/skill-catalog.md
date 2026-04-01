@@ -11,7 +11,7 @@ Open only the matching skill files under `skills/`, then end your closing handof
 - `system/extract` — Identify reusable components, tokens, and patterns and promote them into the design system with clear ownership, structure, and migration intent.
 - `system/govern` — Define contribution paths, ownership, lifecycle policy, and deprecation rules so the design system evolves without chaos.
 - `system/normalize` — Bring a drifting feature back into alignment with the design system by replacing ad hoc decisions with approved components, tokens, and patterns.
-- `system/tokenize` — Define, name, layer, and mode design tokens so the design system expresses values as a maintainable contract instead of scattered literals.
+- `system/tokenize` — Define, name, layer, and mode design tokens so the design system expresses values as a maintainable contract instead of scattered literals. Use when a feature has repeated hard-coded values, when light/dark modes need better structure, or when tokens are drift from design/code.
 
 ## technology/
 

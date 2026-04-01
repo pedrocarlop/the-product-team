@@ -14,9 +14,9 @@ Open only the matching skill files under `skills/`, then end your closing handof
 ## product/
 
 - `product/align` — Translate a product decision into shared understanding across the immediate team and adjacent stakeholders so execution moves in one direction.
-- `product/frame` — Turn a vague product request into a precise decision question, scope, and output that the team can act on.
-- `product/prioritize` — Rank product opportunities using explicit criteria, tradeoffs, and evidence so the team can decide what to do next.
-- `product/specify` — Convert an agreed product direction into precise requirements, business rules, and acceptance criteria that can be built and tested.
+- `product/frame` — Turn a vague product request into a precise problem statement, boundary, and explicit decision to be made. Use when a request is ambiguous, when success criteria are missing, or when the team disagrees on what problem is actually being solved.
+- `product/prioritize` — Rank product opportunities using explicit criteria, tradeoffs, and evidence so the team can decide what to do next. Use when a roadmap is full, engineering is constrained, or the team disagrees on the highest ROI effort.
+- `product/specify` — Convert an agreed product direction into precise requirements, business rules, and acceptance criteria that can be built and tested. Use when handing off work to engineering, or when a high-level concept needs rigorous functional definition.
 
 ## portfolio/
 

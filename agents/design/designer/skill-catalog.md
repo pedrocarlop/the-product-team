@@ -13,7 +13,7 @@ Open only the matching skill files under `skills/`, then end your closing handof
 
 ## ux/
 
-- `ux/flow` — Design task flows that cover entry points, happy paths, alternates, errors, empty states, recovery, and completion for a product experience.
+- `ux/flow` — Design task flows that cover entry points, happy paths, alternates, errors, empty states, recovery, and completion for a product experience. Use when mapping a new user journey, refactoring complex branching, or documenting state-dependent transitions.
 - `ux/frame` — Turn an ambiguous product request into a clear problem statement, scope boundary, success criteria, and design direction for the rest of the work.
 - `ux/map` — Map each design decision to the source component, pattern, token, or exception it depends on so the handoff stays traceable.
 - `ux/wire` — Translate task flows and information architecture into low-fidelity wireframes that define screen purpose, content hierarchy, and interaction scaffolding for user-centered evaluation.
@@ -25,7 +25,7 @@ Open only the matching skill files under `skills/`, then end your closing handof
 
 ## ui/
 
-- `ui/stateful` — Specify the complete visual state model for a UI surface so every control, container, and feedback area has defined appearance, content, and transition behavior across all interactive and data-driven states.
+- `ui/stateful` — Specify the complete visual state model for a UI surface so every control, container, and feedback area has defined appearance, content, and transition behavior across all interactive and data-driven states. Use when a feature has async moments, many interaction points, or high state variability.
 - `ui/respond` — Define how the interface responds to user actions and system events with timely feedback, clear recovery paths, and behavior that feels immediate, understandable, and trustworthy.
 - `ui/adapt` — Adapt an approved UI surface across breakpoints, devices, and contexts without losing hierarchy, usability, or design-system fidelity.
 - `ui/arrange` — Improve layout, spacing, grouping, and visual rhythm so the surface feels intentional, legible, and structurally strong.

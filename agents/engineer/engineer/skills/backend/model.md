@@ -1,79 +1,118 @@
 ---
 name: model
-description: Shape backend work into explicit domain, data, and contract decisions before implementation starts.
+description: "Shape backend work into explicit domain, data, and contract decisions before implementation starts. Use when building a new API endpoint, designing a database schema, or defining a business process handler."
 ---
 
 # Model
 
-## Purpose
+## Overview
 
-Use this skill to turn a request into a clear backend model: resources, invariants, state transitions, persistence boundaries, and error shapes. The goal is to remove ambiguity before code is written.
+"Model" defines the core logic, resources, and rules that govern a backend system. A good model separates the abstract "business rules" (Invariants) from the "persistence layer" (Database) and the "delivery contract" (API). Without modeling, code often becomes a collection of ad-hoc scripts that fight each other for state control.
 
 ## When to Use
 
-- When a new endpoint, background job, or integration needs a stable contract
-- When schema changes, cache strategy, or transaction boundaries are part of the work
-- When business rules could be implemented in multiple places and need one source of truth
+- When a new business capability needs a stable API or service interface.
+- When existing logic is "leaky" or hard to test due to complex dependencies.
+- When changing a database schema, transaction boundary, or caching strategy.
+- When building an idempotent handler for asynchronous operations.
 
 ## When Not to Use
 
-- When the contract and data model are already settled and the task is pure implementation
-- When the work is only about observability, rollout safety, or production hardening
-- When the issue is a small bug fix with no meaningful modeling decisions
+- When the task is a simple bug fix (e.g., incorrect string formatting) with no logic changes.
+- When the work is purely administrative (e.g., updating a dependency version).
+- When the problem is only about rollout (e.g., a feature flag or CI/CD tweak).
 
-## Required Inputs
+## Required Workflow
 
-- The business operation or user action being supported
-- Any existing API schema, database schema, or service boundary
-- Known constraints around auth, consistency, scale, idempotency, and latency
-- Production failure modes that matter, if they are already known
+**Follow these steps in order. Do not skip steps.**
 
-## Workflow
+### Step 1: Define Actors and Resources
 
-1. Restate the operation in backend terms: actors, resources, states, and outcomes.
-2. Identify the core invariants that must never be violated.
-3. Decide where each rule belongs: handler, service, persistence layer, queue, or external system.
-4. Define the request and response contract, including validation and error cases.
-5. Map the data model: tables, indexes, migrations, transactions, and any cache or async boundaries.
-6. Call out the assumptions, tradeoffs, and open questions before implementation starts.
+Identify the "Who" and the "What":
+- **Actors**: Users, system tasks, external webhooks (e.g., "Workspace Admin", "Billing Service").
+- **Resources**: The entities that change state (e.g., "Invoice", "TeamMember", "Workspace").
 
-## Design Principles / Evaluation Criteria
+### Step 2: Establish Domain Invariants
 
-- Explicit boundaries are better than implicit behavior
-- One domain rule should have one owner
-- Idempotency and rollback should be designed early, not patched later
-- The model should be easy to test without a live production dependency
+Specify the rules that must **never** be violated, regardless of how the data is stored or accessed:
+- "An invoice cannot be paid twice." (Idempotency)
+- "A team must have exactly one owner." (Cardinality)
+- "A user cannot join a workspace without a valid invite." (Authorization)
 
-## Output Contract
+### Step 3: Draw state transitions
 
-- A concise backend model with actors, resources, and state transitions
-- The proposed API contract or service interface
-- Data and migration notes, including indexes and transaction boundaries when relevant
-- A short list of open questions or tradeoffs that still need confirmation
+For every resource, map its lifecycle:
+- `Initialized` → `Pending` → `Active` → `Archived`
+- Define the **triggers** (User Action vs. System Timeout) and the **conditions** (Balance > 0) that cause a transition.
 
-## Examples
+### Step 4: Define the API Contract (Delivery)
 
-### Example 1
+Specify how the outside world interacts with the model:
+- **Request**: URL, Verb (POST/PUT/GET), Payload fields, Types, and mandatory/optional flags.
+- **Response**: Success payload, Status codes (200/201/204), and **structured Error objects**.
 
-Input:
-- Task: Add an endpoint to create invoice payments
-- Constraints: Duplicate submissions are possible and payments must not double-charge
+### Step 5: Design the Persistence Strategy (Database)
 
-Expected output:
-- Model: idempotent create-payment flow keyed by an external payment token
-- Contract: validation for token, amount, and currency, with conflict handling on reuse
-- Data notes: unique constraint on the idempotency key and a transaction around payment state update
+Decide how the model is stored:
+- **Relational (SQL)**: Tables, columns, foreign keys, indexes, and migrations.
+- **Transaction Boundaries**: Which operations must succeed or fail together?
+- **Concurrency**: How do we handle race conditions? (e.g., Optimistic Locking / Transaction Isolation).
+
+### Step 6: Identify External Dependencies and Side Effects
+
+List everything the model depends on or affects:
+- **Inputs**: Third-party APIs (Stripe, Slack), other services.
+- **Side Effects**: Emails sent, webhooks fired, background jobs enqueued.
+
+## Decision Tree: Is the model "stable"?
+
+```
+Is the Data Schema decoupled from the API Contract?
+├── YES → Can you change a database column name without breaking the API?
+│   ├── YES → OK (Stable).
+│   └── NO → Redraw the mapping layer.
+└── NO → High risk of "Leaky Model." Add a DTO (Data Transfer Object) layer.
+```
+
+## Worked Examples
+
+### Example 1: Invoice Payment Handler
+
+**Input:** Endpoint to process a customer payment.
+**Model:**
+- **Resource**: `PaymentTransaction` (Pending → Succeeded/Failed).
+- **Invariants**: `idempotency_key` must be unique to prevent double-charging.
+- **Contract**: `POST /payments` { `amount`, `currency`, `card_token`, `payment_id` }.
+- **Persistence**: `transactions` table with a `UNIQUE INDEX` on `payment_id + idempotency_key`.
+- **Side Effect**: Update `Invoice` state to `PAID` via a background job after payment success.
+
+### Example 2: Team Invite Creation
+
+**Input:** Invite a user to a private workspace.
+**Model:**
+- **Resource**: `WorkspaceInvite` (Created → Sent → Accepted/Expired).
+- **Invariants**: Invited email must not already be an active member. Workspace must not exceed member limit.
+- **Contract**: `POST /invites` { `email`, `role` }.
+- **Persistence**: `invites` table. Transaction includes: 1) Check member count, 2) Write invite record.
+- **Side Effect**: Fire `SendInviteEmail` event.
 
 ## Guardrails
 
-- Do not skip modeling and jump into code when the contract is still unstable
-- Do not hide data-loss or consistency tradeoffs behind vague phrases like "handle it in code"
-- Do not place business rules in the database if they need to be testable in the service layer
+- **Never place business rules in the Database layer.** Rules belong in the Domain/Service layer for testability.
+- **Always design for Idempotency.** Assume every request might be retried (Network loss, timeout).
+- **Do not return raw Database objects in the API.** Use explicit DTOs to avoid leaking sensitive or internal fields.
+- **Always define an "Error Shape."** 400 Errors should include a machine-readable code and a human-readable message.
 
-## Optional Tools / Resources
+## Troubleshooting
 
-- Existing API specs or service docs
-- Database schema and migration history
-- Product requirements or incident notes
-- GitHub, if repo conventions or prior implementations need to be checked
+### Issue: The model is too "leaky" (API tied to DB)
+**Cause**: Using the same objects for persistence and delivery.
+**Solution**: Introduce a mapping layer. Translate DB rows into API Responses explicitly.
 
+### Issue: Race conditions during state updates
+**Cause**: No transaction boundaries or missing unique constraints.
+**Solution**: Wrap the update in a database transaction. Use `SELECT FOR UPDATE` or optimistic versioning.
+
+### Issue: Side effects failing silently
+**Cause**: Sync processing of external calls without retry logic.
+**Solution**: Move side effects to background queues (e.g., Bull, Sidekiq, Celery). Use transactional outboxes where possible.

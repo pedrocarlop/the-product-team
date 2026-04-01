@@ -1,84 +1,122 @@
 ---
 name: tokenize
-description: Define, name, layer, and mode design tokens so the design system expresses values as a maintainable contract instead of scattered literals.
+description: "Define, name, layer, and mode design tokens so the design system expresses values as a maintainable contract instead of scattered literals. Use when a feature has repeated hard-coded values, when light/dark modes need better structure, or when tokens are drift from design/code."
 ---
 
 # Tokenize
 
-## Purpose
+## Overview
 
-Use this skill to turn raw design values into a structured token system that supports consistency, theming, and code alignment.
+"Tokenize" turns raw design values (Hex, Pixels, Rem) into a structured system of names and roles. A good token system is a "shared contract" between design and code. Without tokens, every UI change requires finding and replacing scattered literals, leading to "Visual Debt" and broken themes.
 
 ## When to Use
 
-- When a feature exposes repeated hard-coded values that should become tokens
-- When token names, scopes, or layers need to be clarified or reorganized
-- When light/dark or brand modes need to be represented in a durable way
-- When primitive values need to be normalized into semantic or component tokens
+- When a new feature or design pattern introduces new visual values (e.g., a "Neutral Grey 500").
+- When audit or migration reveals hard-coded literals that should be centralized.
+- When the design system needs to support multiple modes: Light/Dark, High Contrast, Compact/Comfortable.
+- When the existing naming taxonomy is confusing or "one-level deep" (e.g., only `blue-500`).
 
 ## When Not to Use
 
-- When the main problem is how components are assembled rather than how values are named
-- When the task is writing usage guidance or documentation for adopters
-- When the issue is release policy, ownership, or approval rather than token structure
+- When the task is purely about component layout or assembly logic.
+- When the visual value is a one-off exception (e.g., a specific marketing illustration color).
+- When the problem is the distribution or installation of tokens, not their definition.
 
-## Required Inputs
+## Required Workflow
 
-- The source values, screenshots, or files that expose the token need
-- The current token taxonomy, if one exists
-- Theme or mode requirements such as light, dark, brand, or density variants
-- The code target or toolchain that will consume the tokens
-- Any naming conventions, prohibitions, or compatibility constraints already in force
+**Follow these steps in order. Do not skip steps.**
 
-## Workflow
+### Step 1: Discover and Inventory Raw Values
 
-1. Inventory the values in play and separate repeated system candidates from one-off exceptions.
-2. Decide whether each value belongs at the primitive, semantic, or component layer.
-3. Name tokens so their role, scope, and intent are obvious without tribal knowledge.
-4. Define mode behavior and inheritance so themes can remap semantics cleanly.
-5. Check token coverage against component and pattern needs to avoid hidden literals.
-6. Verify that the resulting structure can be transformed or exported to code without ambiguity.
+Collect any visual literals that need systematic naming:
+- **Colors**: Hex, HSL, RGB.
+- **Spacing/Size**: Px, Rem, %, absolute grid values.
+- **Typography**: Font size, Weight, Letterspacing, Line height.
+- **Shadows/Elevation**: Blur, Spread, Opacity, Y-offset.
 
-## Design Principles / Evaluation Criteria
+### Step 2: Categorize by Taxonomy Layer
 
-- Semantic tokens should carry meaning, not implementation detail
-- Names should be predictable, scannable, and self-documenting
-- Modes should remap intent, not fork the system
-- Primitive values should be minimized in authored components
-- Token layers should reduce drift, not multiply exceptions
+Assign every value to its correct level in the system:
 
-## Output Contract
+| Layer | Type | When to Use | Example |
+| :--- | :--- | :--- | :--- |
+| **Primitive** | Reference | For internal context only. Hard-coded values. | `palette-blue-500` |
+| **Semantic** | Alias | For application-wide logic. Use in 90% of cases. | `color-action-primary` |
+| **Component** | Specific | For one specific control type only. | `button-primary-bg` |
 
-- A token inventory with proposed names, layers, and values
-- A clear mapping from raw values to primitive, semantic, or component tokens
-- Notes on modes, inheritance, and any migration impact
-- Any unresolved naming or compatibility questions that need governance
+### Step 3: Apply Naming Taxonomy (The System)
 
-## Examples
+Follow a consistent naming structure:
+- `{category}-{property}-{intent}-{state}`
+- **Examples**:
+  - `color-text-primary`
+  - `space-system-layout-inline-xl`
+  - `color-surface-danger-hover`
 
-### Example 1
+Avoid naming by "how it looks" (e.g., `blue`, `bold`, `large`). Name by **intent** (e.g., `brand`, `critical`, `headline`).
 
-Input:
-- A button feature uses `#2563EB`, `16px`, and `8px` directly in multiple files
-- The system already has color, space, and radius token layers
+### Step 4: Define Mode Behavior (The Map)
 
-Expected output:
-- `color-action-primary`
-- `space-component-inline`
-- `radius-control-default`
-- Rationale for each mapping and any migration notes for adopters
+Specify how tokens change based on system mode (Light/Dark):
+- **Base (Light)**: `color-surface-primary` → White (`#FFFFFF`).
+- **Mode (Dark)**: `color-surface-primary` → Deep Grey (`#121212`).
+- Check contrast ratios for **both** modes.
+
+### Step 5: Verify the Map and Contract
+
+Ensure the token is ready for adoption:
+- **Design Alignment**: Can a designer select this token in Figma?
+- **Code Alignment**: Is there a corresponding CSS variable or JS constant name?
+- **Redundancy**: Does this token already exist under a different name? (Minimize tokens).
+
+## Decision Tree: Is this a new token?
+
+```
+Is the visual value reused more than 3 times in the product?
+├── YES → Does a semantic token with the same intent exist?
+│   ├── YES → Use the existing token (Skip).
+│   └── NO → Is it a one-off for a specific component?
+│       ├── YES → Create a Component Token.
+│       └── NO → Create a Semantic Token.
+└── NO → Use a Local Literal (No token).
+```
+
+## Worked Examples
+
+### Example 1: Action Color Token
+
+**Inventory**: Hex `#1E40AF`.
+**Taxonomy**:
+- **Primitive**: `palette-blue-600` → `#1E40AF`.
+- **Semantic**: `color-action-primary` → `palette-blue-600`.
+- **Component**: `button-primary-bg` → `color-action-primary`.
+**Rationale**: By linking the button to the semantic "Action Primary," we can change the whole product's accent color in one place.
+
+### Example 2: Spacing Logic (Layout)
+
+**Inventory**: `24px` padding on sections.
+**Taxonomy**:
+- **Primitive**: `size-primitive-24` → `1.5rem`.
+- **Semantic**: `space-system-section-padding` → `size-primitive-24`.
+**Rationale**: If we change the "Section Padding" token, every section across the platform updates instantly.
 
 ## Guardrails
 
-- Do not create tokens for values that are unlikely to be reused
-- Do not encode implementation details in semantic names
-- Do not introduce duplicate tokens that represent the same intent
-- Do not skip mode definitions when the surface must support multiple themes
-- Do not leave authored components dependent on raw values
+- **Never name a semantic token by its value.** (e.g., `color-brand-blue` is a failure; `color-brand-primary` is a success).
+- **Always handle both Light and Dark modes.** If a token works in one but breaks in the other, it is an incomplete token.
+- **Do not create "Token Sprawl."** If an existing token works, reuse it. Every new token adds maintenance debt.
+- **Always check contrast.** Semantic text tokens must meet WCAG AA contrast against their intended surfaces.
 
-## Optional Tools / Resources
+## Troubleshooting
 
-- Figma MCP for inspecting current usage and publishing token references
-- Token management tooling such as Tokens Studio or Style Dictionary
-- Existing design system glossary or naming conventions
-- Code token consumers, snapshots, or exports for validation
+### Issue: Token names are too long or confusing
+**Cause**: Over-categorization or including too many modifiers.
+**Solution**: Flat naming where intent is clear is usually better than deep nested hierarchies. Use `{category}-{intent}-{state}` as the baseline.
+
+### Issue: Design and Code are drifting
+**Cause**: Manual updates to tokens in one place but not the other.
+**Solution**: Use a single source of truth (e.g., Style Dictionary or Tokens Studio) to export tokens into both CSS and Figma.
+
+### Issue: Confusion between Semantic vs. Component tokens
+**Cause**: Using component tokens for general layout or vice versa.
+**Solution**: If it's used on more than one component type (e.g., on both a Button and a Link), it MUST be a Semantic token.

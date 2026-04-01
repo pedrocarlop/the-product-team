@@ -7,7 +7,7 @@ Open only the matching skill files under `skills/`, then end your closing handof
 ## data/
 
 - `data/frame` — Turn a vague business question into a precise analytical question, a decision it will inform, and a scoped plan for answering it.
-- `data/measure` — Define, compute, and validate metrics so the numbers are correct, reproducible, and fit for decision-making.
+- `data/measure` — Define, compute, and validate metrics so the numbers are correct, reproducible, and fit for decision-making. Use when building a new metric, verifying KPI accuracy, or designing analytical logic for a dashboard or report.
 - `data/model` — Build analytic models that structure the data correctly, expose the drivers behind a result, and keep assumptions explicit.
 - `data/narrate` — Turn validated analysis into a clear business story that leads with the finding, explains the implication, and supports the decision.
 

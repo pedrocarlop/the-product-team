@@ -1,84 +1,132 @@
 ---
 name: stateful
-description: Specify the complete visual state model for a UI surface so every control, container, and feedback area has defined appearance, content, and transition behavior across all interactive and data-driven states.
+description: "Specify the complete visual state model for a UI surface so every control, container, and feedback area has defined appearance, content, and transition behavior across all interactive and data-driven states. Use when a feature has async moments, many interaction points, or high state variability."
 ---
 
 # Stateful
 
-## Purpose
+## Overview
 
-Use this skill to define the full visual state model of a UI surface so every element has a designed appearance for every moment the user might encounter. A good interface is not one screen at its best; it is every visual state that can appear when the product is used, interrupted, delayed, or partially complete.
+A "stateful" design defines every visual moment a user might encounter. Good UI is not a static screen; it's a dynamic collection of states: idle, hover, focus, active, loading, empty, success, and error. Without explicit state coverage, engineering must guess how to indicate progress or failures, leading to "broken" or inconsistent user experiences.
 
 ## When to Use
 
-- When a screen, component, or flow needs explicit visual coverage for idle, hover, focus, active, pressed, loading, empty, success, error, disabled, and partial states
-- When a design is structurally complete but state appearance, content, and affordance are still ambiguous
-- When the design system lacks state variants for a surface and new visual definitions are needed
+- When a new feature or component has a lifecycle (e.g., "Requesting" → "Processing" → "Completed").
+- When a UI surface depends on external data that could be missing, slow, or unauthorized.
+- When an interaction model requires complex feedback (e.g., multi-file uploads, multi-step forms).
+- When a design system's primitive states are insufficient for a custom component's needs.
 
 ## When Not to Use
 
-- When the main issue is component logic, data flow, or state management architecture rather than visual state definition
-- When the task is only to refine copy, naming, or label wording within an already-specified state
-- When interaction behavior is already fully specified and the remaining work is implementation
+- When a surface's visual treatment is already defined and only layout logic or architecture is being changed.
+- When the task is a copy/wording update with no visual state changes.
+- When the interaction model is already standard (e.g., a simple native button) and designers only need to point to the system.
 
-## Required Inputs
+## Required Workflow
 
-- The exact surface or component boundary that needs state coverage
-- User goals and the emotional context of each state (confidence during loading, reassurance during error)
-- Any screenshots, flows, or specs that show the current visual treatment
-- Existing design system state variants, tokens, and visual conventions
-- Constraints: async latency expectations, data absence likelihood, permission gating, form validation rules
+**Follow these steps in order. Do not skip steps.**
 
-## Workflow
+### Step 1: Inventory the Stateful Entities
 
-1. Inventory every visual entity that can change state: page sections, components, fields, action buttons, and feedback areas.
-2. Enumerate the full visual lifecycle for each entity: default appearance, interaction states (hover, focus, active, pressed), data states (loading, empty, populated, partial), and outcome states (success, error, disabled).
-3. Check the design system for existing state variants and tokens before creating new visual treatments.
-4. Specify each state with its visual treatment: colors, opacity, iconography, content swap, placeholder style, and affordance changes.
-5. Define visual transition rules: what changes instantly, what fades, what animates, and what uses skeleton or shimmer patterns.
-6. Verify that edge states preserve visual hierarchy, layout stability, and accessibility (contrast ratios, focus indicators, screen reader announcements).
+List every UI element on the surface that can change based on data or user interaction:
+- **Interactive controls**: Buttons, inputs, links, tabs.
+- **Data containers**: Lists, grids, detail panels, charts.
+- **Feedback areas**: Toast notifications, inline banners, empty-state placeholders.
 
-## Design Principles / Evaluation Criteria
+### Step 2: Establish the State Matrix
 
-- No visible state should be left to engineering interpretation
-- State transitions should communicate change clearly without being distracting
-- Loading and empty states should feel designed, not placeholder-like
-- Error states should use visual emphasis proportional to severity and include recovery guidance
-- Disabled states must be visually distinguishable and semantically correct for assistive technology
-- Partial and recovery states should visually preserve progress and reduce user anxiety
+For each entity, define its appearance across the four primary state categories:
 
-## Output Contract
+| Category | States to Define |
+| :--- | :--- |
+| **Interactive** | Default, Hover, Focus, Pressed, Active, Disabled |
+| **Data-Driven** | Loading (skeleton/shimmer), Empty, Populated, Partial, Unauthorized |
+| **Outcome** | Success (confirmation), Error (error message, retry affordance) |
+| **Lifecycle** | Initializing, Processing, Stale, Expired |
 
-- A state inventory matrix for every interactive or data-driven element in scope
-- Visual specs for each state: color, opacity, iconography, content, and affordance treatment
-- Transition and animation notes for state changes
-- Any state gaps in the design system that need new token or variant definitions
-- A rationale for any visual state that deviates from existing system conventions
+### Step 3: Reference the Design System
 
-## Examples
+Before creating new visual treatments, check the design system for existing state variants and tokens:
+- Use system-defined **Interactive Tokens** for standard hover/focus states.
+- Use system-defined **Feedback Tokens** for success (green/positive) vs. error (red/critical) moments.
+- Inherit **Global States** (e.g., standard "No results found" pattern) where possible.
 
-### Example 1
+### Step 4: Define Visual and Content Transformations
 
-Input:
-- Surface: File upload panel with multi-file support
-- Context: Users can add multiple files; some may fail validation
+For every state in the matrix, specify:
+- **Visual change**: Color shift, opacity, border, iconography, or hidden/visible toggle.
+- **Content change**: Placeholder text, error copy, specific instruction, or icon swap.
+- **Affordance change**: Is the element interactive? Is it blocked? Does it have a tooltip?
 
-Expected output:
-- State inventory: idle (drop zone visible), drag-over (highlighted border), uploading (progress indicator per file), upload-success (checkmark, file preview), upload-failed (error icon, inline retry affordance), disabled (muted, no drop zone)
-- Visual notes: Failed files show red accent with retry button; successful uploads remain visible; primary action disabled during active uploads
-- Transition: Upload progress uses determinate bar; success state fades in checkmark over 200ms
+### Step 5: Define State Transitions (Motion Logic)
+
+Identify how states change from one to another:
+- **Immediate**: Instant switch for high-urgency feedback.
+- **Eased**: Standard fade/slide/scale (e.g., 200ms) for most interactive states.
+- **Progressive**: Skeleton screens or shimmers for data-driven loading states.
+- **Destructive**: Visual removal or "crunching" of elements.
+
+### Step 6: Verify Accessibility and Stability
+
+Test each state for:
+- **Contrast**: Does the error text meet AA standards? Is the disabled state distinguishable enough?
+- **Hierarchy**: Does the primary action remain obvious in a "partial success" state?
+- **Layout Stability**: Does adding an error message or loading spinner shift the rest of the UI (Layout Shift)?
+
+## Decision Tree: Do I need a State Matrix?
+
+```
+Does the UI depend on an asynchronous data fetch?
+├── YES → Do you have an "Empty" and "Error" state mapped?
+│   ├── NO → Create a State Matrix.
+│   └── YES → Is the "Loading" transition defined?
+│       ├── NO → Create a State Matrix.
+│       └── YES → OK (Skip).
+└── NO → Are there more than 3 interactive elements on the page?
+    ├── YES → Create a State Matrix.
+    └── NO → OK (Manual check only).
+```
+
+## Worked Examples
+
+### Example 1: Profile Image Upload
+
+**Input:** A user wants to change their profile photo.
+**States:**
+- **Idle**: Current photo (or initials) with "Change" button.
+- **Selecting**: Native file picker open (no UI change yet).
+- **Processing**: Hero image blurred, circular spinner overlay, primary "Save" button disabled.
+- **Success**: New image fades in, 1s "Success" toast, return to Idle.
+- **Error (File too large)**: "Image is larger than 5MB" inline red text, retry button, "Save" disabled.
+
+### Example 2: Search Results List
+
+**Input:** A real-time filtered list of entries.
+**States:**
+- **Initial**: Empty state with "Start typing to search" guidance.
+- **Loading**: 3-row skeleton shimmer replacing the list area.
+- **Populated**: Results displayed with highlighted matches.
+- **No Results**: "No matches for 'XYZ'" illustration + "Clear search" link.
+- **Partial**: "Showing 50 of 2,400 results" with "Load more" button at bottom.
+- **Unauthorized**: "Upgrade to Pro to see all results" banner + blurred list.
 
 ## Guardrails
 
-- Do not define visual states that imply system behavior the product does not support
-- Do not collapse distinct visual states into one generic fallback appearance
-- Do not leave asynchronous moments without a designed loading or transition treatment
-- Do not use state visual language inconsistently across related surfaces
-- Do not skip accessibility review for contrast, focus visibility, and screen reader state announcements
+- **Never leave an async moment without a designed treatment.** Engineering should never have to invent a "loading spinner" or "generic alert."
+- **Always design for the empty state first.** It is the most frequent first impression.
+- **Do not collapse distinct visual states.** "Disabled" and "Error" are not the same; they require different user paths.
+- **Always provide a recovery affordance for error states.** State alone isn't enough; the user needs to know how to fix it (e.g., "Retry", "Contact Support").
 
-## Optional Tools / Resources
+## Troubleshooting
 
-- Design system component library, variant documentation, and token definitions
-- Figma MCP for inspecting existing state treatments
-- Screenshots or prototype flows showing current interaction moments
-- Accessibility guidance for focus indicators, disabled patterns, and error announcement behavior
+### Issue: State descriptions are too vague
+**Cause**: Using words like "Clean" or "Modern" instead of "Background: --token-brand-primary".
+**Solution**: Force usage of design tokens or specific CSS properties (color, opacity, border-radius).
+
+### Issue: Layout shifts during state transitions
+**Cause**: Elements are added/removed from the DOM without reserved space.
+**Solution**: Define fixed heights or use "ghost" shells that reserve space for error messages or spinners.
+
+### Issue: The UI feels "broken" during slow loads
+**Cause**: Missing skeleton screens or meaningful progress feedback.
+**Solution**: Apply the "Progressive" transition rule — shimmers are better than blank white space.

@@ -1,85 +1,114 @@
 ---
 name: plan
-description: Turn a QA request into a test strategy and execution plan with scope, risks, coverage targets, and acceptance criteria.
+description: "Turn a QA request into a structured test strategy with scope, risk boundaries, coverage targets, and executable matrices. Use when an epic or feature needs a defensible verification approach before it hits production."
 ---
 
-# Plan
+# Plan (QA Review)
 
-## Purpose
+## Overview
 
-Use this skill to turn a QA request into a clear test plan that the team can execute, review, and trust.
+"Plan" creates a structured framework for verifying quality. Abstract testing ("poke around and see if it breaks") is insufficient. A rigorous QA Plan maps requirements to specific test methodologies (Unit, Integration, E2E, Manual), defines the boundaries of testing, and systematically targets high-risk code paths before release.
 
 ## When to Use
 
-- When a feature needs a quality strategy before implementation or release
-- When risk, scope, and test layers need to be decided
-- When acceptance criteria must be translated into concrete test cases
-- When a release needs an explicit QA approach and sign-off path
+- When a new, complex feature or epic requires a comprehensive test strategy before engineering handoff.
+- When organizing a pre-release regression cycle.
+- When transitioning an ad-hoc QA request into a structured matrix.
+- When determining which checks should be automated versus manual exploratory.
 
 ## When Not to Use
 
-- When the task is already a concrete test implementation
-- When the main need is automated execution or CI wiring
-- When the work is only about pass/fail gate evaluation
-- When the request is broader product planning rather than QA planning
+- When writing the actual line-by-line automated code (Cypress, Playwright).
+- When merely executing an already-established test plan (use an execution skill).
+- When the task is a simple typo/copy fix with near-zero regression risk.
 
-## Required Inputs
+## Required Workflow
 
-- The feature, bug, or release being tested
-- The acceptance criteria or expected user behavior
-- The known risks, edge cases, and dependencies
-- The target environments, devices, or browsers
-- Any existing test coverage or prior bugs that matter
+**Follow these steps in order. Do not skip steps.**
 
-## Workflow
+### Step 1: Define the Scope and Risk Profile
 
-1. Restate what must be proven true from a quality perspective.
-2. Break the request into risk areas, user paths, and test layers.
-3. Decide which checks belong in unit, integration, E2E, exploratory, or manual review.
-4. Identify the minimum test data and environment setup needed.
-5. Map each acceptance criterion to one or more test cases.
-6. Note open questions, assumptions, and gaps before testing begins.
-7. Write the plan so another QA engineer or developer can follow it without extra context.
+Explicitly state the boundaries of the test plan based on the product requirements.
+- **In Scope**: The exact feature, API routes, or UI components.
+- **Out of Scope**: Unrelated systems not touched by the PR.
+- **High-Risk Subsystems**: E.g., "Billing calculation logic", "Auth token generation."
 
-## Design Principles / Evaluation Criteria
+### Step 2: Extract Acceptance Criteria into Test Scenarios
 
-- Risk should drive coverage, not habit
-- The plan should trace directly back to acceptance criteria
-- Test layers should be chosen for signal and maintainability
-- Missing assumptions should be visible early
-- The plan should be executable by someone other than the author
+Convert each PRD requirement into a testable scenario.
+- Break them down by Functional vs. Non-Functional (Performance, Accessibility, Security).
+- Include Negative Paths: What happens when the database is unreachable?
 
-## Output Contract
+### Step 3: Assign the Test Pyramid Layers
 
-- Test strategy with scope, risk areas, and coverage targets
-- Test cases mapped to acceptance criteria
-- Assumptions, dependencies, and open questions
-- Recommended test layers and sequencing
+Determine *where* each scenario should be tested to ensure speed and stability.
+- **Unit (Eng)**: Algorithm edge cases, mathematical validations.
+- **Integration (Eng/QA)**: API endpoints, database transactions, service boundaries.
+- **End-to-End (QA)**: Critical user flows via UI automation (e.g., checkout).
+- **Exploratory (QA)**: Visual edge cases, accessibility quirks, unique device inputs.
 
-## Examples
+### Step 4: Define Test Data and Environment Needs
 
-### Example 1
+List the exact prerequisites for execution:
+- "Need an AWS staging environment with Stripe sandbox keys."
+- "Need a mock database seeded with 10k 'Expired Trial' user accounts."
 
-Input:
-- Request: "QA the new billing update flow before release."
+### Step 5: Create the Execution Matrix
 
-Expected output:
-- Plan: high-risk paths, environment needs, and priority test cases
-- Coverage: what belongs in automation versus exploratory checks
-- Gaps: any missing requirements that need clarification first
+Produce a structured grid or list that maps: 
+`[Scenario ID]` | `[Description]` | `[Type (Happy/Edge)]` | `[Execution Method]`
+
+## Decision Tree: Is the Test Plan complete?
+
+```
+Are all Product Acceptance Criteria mapped to at least one Test Scenario?
+├── YES → Have you explicitly defined the Negative/Error paths?
+│   ├── YES → Is every scenario assigned a layer (Unit, API, E2E, Manual)?
+│   │   ├── YES → The QA Plan is ready for review.
+│   │   └── NO → Assign layers (Step 3). Do not default to 100% manual UI testing.
+│   └── NO → Add edge case scenarios (Step 2).
+└── NO → Map the missing ACs. A plan without full coverage is incomplete.
+```
+
+## Worked Examples
+
+### Example 1: Payment Gateway Integration
+
+**Input:** "Engineer finished the new Stripe Checkout flow. Please QA."
+**Workflow Application:**
+- **Risk Profile**: High. Financial data loss possible.
+- **Test Scenarios (Happy)**: User completes purchase with a valid card.
+- **Test Scenarios (Negative)**: Card declined, expired card, network timeout during processing.
+- **Test Layers**: 
+  - Unit: Calculate tax totals.
+  - Integration: Stripe webhook payload handling.
+  - E2E: Full UI checkout flow with sandbox cards.
+- **Matrix Output**: A 15-row test matrix defining inputs, expected states, and verification methods.
+
+### Example 2: Marketing Page Update
+
+**Input:** "Added a new 'Enterprise Solutions' landing page."
+**Workflow Application:**
+- **Risk Profile**: Low. Static content.
+- **Test Scenarios**: Responsive layout checks, broken links, SEO tags, dark mode support.
+- **Test Layers**: 100% Exploratory/Manual visual review and Lighthouse auditing.
 
 ## Guardrails
 
-- Do not start testing without a shared understanding of success
-- Do not spread coverage evenly when the risk is uneven
-- Do not skip edge cases just because the happy path is well understood
-- Do not turn a test plan into a change log or implementation checklist
+- **Never default to "100% E2E UI testing".** UI tests are slow and brittle. Push logic tests down to the API or Unit layer.
+- **Always require explicit Test Data definitions.** "Log in as user" is bad. "Log in as user with `role=admin` and `status=banned`" is good.
+- **Do not plan tests for unspecified requirements.** If the PRD doesn't mention something, clarify it rather than inventing a strict test for it.
 
-## Optional Tools / Resources
+## Troubleshooting
 
-- MCP: Chrome DevTools MCP, GitHub MCP, Notion MCP, Linear MCP
-- Websites: [Playwright Docs](https://playwright.dev/docs/intro), [Cypress Docs](https://docs.cypress.io/), [Selenium Documentation](https://www.selenium.dev/documentation/), [Testing Library Docs](https://testing-library.com/docs/), [BrowserStack Guide](https://www.browserstack.com/guide)
-- Product requirements and acceptance criteria
-- Prior bug reports and incident notes
-- Existing test suites and coverage reports
-- Release checklists and environment inventories
+### Issue: The test plan takes 3 weeks to execute manually
+**Cause**: Overuse of UI-driven exploratory testing, or testing every micro-permutation manually.
+**Solution**: Shift testing left. Move 80% of data-driven permutations to the API/Integration layer.
+
+### Issue: New bugs constantly reported in production that weren't in the plan
+**Cause**: The QA plan only mapped the "Happy Path" supplied by the Product Lead.
+**Solution**: Instantiate a mandatory "Destructive Testing" session in every plan (e.g., simulating 500 errors, null inputs, and concurrent clicks).
+
+### Issue: Engineers ignore the test plan because "it's QA's job"
+**Cause**: The plan was created in a silo after development finished.
+**Solution**: Shift the plan upstream. The QA plan must be written and agreed upon during the `Specify` phase, before coding begins.

@@ -1,86 +1,112 @@
 ---
 name: critique
-description: Evaluate a design through structured heuristic analysis, scoring usability across cognitive load, discoverability, affordance, error prevention, and task completion to produce actionable findings.
+description: "Evaluate a design through structured heuristic analysis, scoring usability across cognitive load, discoverability, affordance, and error prevention to produce actionable findings. Use when reviewing wireframes, prototypes, or implemented frontend screens."
 ---
 
-# Critique
+# Critique (Usability Review)
 
-## Purpose
+## Overview
 
-Use this skill to deliver a structured, heuristic-grounded usability critique that identifies the specific barriers most likely to prevent users from understanding, navigating, and completing their tasks.
+"Critique" replaces subjective design opinions ("I don't like this color") with objective, heuristic-grounded evaluation. A strong usability critique identifies barriers that prevent users from reaching their goals, scores their severity, and traces failures back to established human-computer interaction principles (e.g., Nielsen's Heuristics).
 
 ## When to Use
 
-- When a design needs a systematic usability review before refinement or approval
-- When the team wants findings grounded in established heuristics, not just opinion
-- When it is important to identify the few issues most likely to hurt task success, ranked by severity
-- When a design needs evaluation against specific user modes: first-time use, expert efficiency, error recovery, or high-anxiety moments
+- When a designer submits wireframes, flows, or high-fidelity UI for team review.
+- When auditing an existing, legacy screen for friction or high drop-off rates.
+- When evaluating if a complex technical requirement was translated well into the UI.
+- When standardizing UI components against accessibility or usability norms.
 
 ## When Not to Use
 
-- When the review needs strategic alignment judgment or portfolio-level quality assessment (route to design director)
-- When the main need is visual polish, brand consistency, or art direction feedback
-- When the task is to redesign rather than evaluate
+- When the task requires validating the underlying business requirements or product strategy.
+- When reviewing backend APIs or non-visual systems.
+- When generating original designs from scratch (use a `designer` skill).
 
-## Required Inputs
+## Required Workflow
 
-- The design artifact: screens, prototype, or live implementation to review
-- The primary user task and success criteria for the surface being evaluated
-- The relevant user modes or personas: first-time user, power user, stressed user, returning user
-- Any task flows, wireframes, or specs that define the intended interaction model
-- Known constraints: platform conventions, accessibility requirements, or design system rules
+**Follow these steps in order. Do not skip steps.**
 
-## Workflow
+### Step 1: Align on the Primary Task and Persona
 
-1. Identify the primary user task and the critical path the user must complete.
-2. Check for generic or low-intent design signals that suggest the surface is derivative rather than thoughtfully composed.
-3. Score the interface against Nielsen's 10 heuristics, noting the specific element and the specific violation for each finding.
-4. Evaluate cognitive load: is the user asked to remember, interpret, or decide more than necessary at any step?
-5. Assess discoverability and affordance: can the user find the primary action and understand what interactive elements do?
-6. Check error prevention and recovery: does the UI prevent mistakes and provide clear recovery when they occur?
-7. Rank findings by severity (how badly it hurts task success) and frequency (how many users will encounter it).
+Identify what the critique is measuring against:
+- "Can an *enterprise administrator* successfully *bulk-delete user accounts*?"
+- "Can a *first-time mobile user* complete *checkout* in under 3 minutes?"
 
-## Design Principles / Evaluation Criteria
+### Step 2: Execute the Heuristic Sweep
 
-- Findings must cite a specific heuristic or usability principle, not just personal preference
-- Severity should reflect actual task impact: can the user complete the task, or are they blocked?
-- Frequency matters: an issue that affects every user is more severe than one that affects edge cases
-- The critique should distinguish between design intent failures and implementation bugs
-- Positive patterns should be named specifically so the designer knows what to preserve
+Evaluate the design against standard usability heuristics. Look explicitly for:
+- **Discoverability**: Can the user clearly see the primary action?
+- **Cognitive Load**: Is the user forced to memorize information from previous screens? (Recognition over Recall).
+- **System Status**: Is the system providing immediate feedback (loading, success, error)?
+- **Consistency**: Are patterns used identically here as they are elsewhere in the app?
 
-## Output Contract
+### Step 3: Stress-Test Affordances and Error Prevention
 
-- A usability health score grounded in the heuristic review
-- The 3-5 highest-severity findings, each with: the specific element, the heuristic violated, the user impact, and a concrete fix direction
-- Relevant persona or user-mode red flags: first-time confusion, expert inefficiency, high-anxiety failure points
-- The strongest positive patterns worth preserving
-- A clear recommendation: ready, needs revision with specific items, or needs significant rework
+Analyze the physical and destructive interactions:
+- **Affordance**: Does a button look clickable? Does a disabled element clearly explain *why* it is disabled?
+- **Error Prevention**: Are destructive actions safeguarded (e.g., confirmation modals, required typing)?
+- **Recovery**: If an error occurs, does the UI provide a clear, actionable path to fix it?
 
-## Examples
+### Step 4: Rank Findings by Severity and Frequency
 
-### Example 1
+Do not list 50 equal issues. Categorize them:
+- **Critical/Blocker**: Prevents task completion. Must fix.
+- **High**: Major friction or high probability of error.
+- **Medium**: Annoyance or cognitive strain.
+- **Low**: Polish or minor visual inconsistency.
 
-Input:
-- A settings page with 15 toggles, no grouping, and no confirmation on destructive changes
+### Step 5: Deliver Actionable Recommendations
 
-Expected output:
-- Finding 1 (Severity: High): Lack of grouping violates "Recognition over recall" -- users must read every toggle to find the one they need. Fix: Group by category with section headers.
-- Finding 2 (Severity: High): No confirmation on destructive toggles violates "Error prevention" -- users can accidentally disable critical features. Fix: Add confirmation dialog for destructive changes.
-- Finding 3 (Severity: Medium): All toggles use identical visual weight, violating "Visibility of system status" -- the user cannot distinguish high-impact from low-impact settings. Fix: Use visual hierarchy to differentiate.
-- Positive: Toggle labels are clear and use consistent verb structure.
+For every finding, provide: `[The Flaw]` + `[The Broken Heuristic]` + `[The Suggested Fix]`.
+
+## Decision Tree: Is the Critique Objective?
+
+```
+Is the finding grounded in a usability heuristic or accessibility standard?
+├── YES → Does it evaluate a specific element or flow?
+│   ├── YES → Is there a concrete, actionable fix suggested?
+│   │   ├── YES → The critique is valid.
+│   │   └── NO → Provide a fix (Step 5). Saying "this is bad" is insufficient.
+│   └── NO → Narrow the scope. Don't say "the page is busy." Say "the 3 sidebars distract."
+└── NO → Discard the finding. Personal preference is not a design critique.
+```
+
+## Worked Examples
+
+### Example 1: Critiquing a Destructive Settings Panel
+
+**Input:** A settings page with a red "Delete Account" button next to "Save Changes."
+**Workflow Application:**
+- **Primary Task**: User updating their email address safely.
+- **Heuristic Sweep**: Violates *Error Prevention*. The proximity of a destructive action to a primary action is dangerous.
+- **Severity**: High (Accidental deletion is catastrophic).
+- **Recommendation**: "Move 'Delete Account' into a separated 'Danger Zone' section at the bottom of the page, and require the user to manually type 'DELETE' to confirm."
+
+### Example 2: Critiquing a Data-Heavy Dashboard
+
+**Input:** A reporting dashboard that shows raw UUIDs instead of User Names.
+**Workflow Application:**
+- **Primary Task**: Admin identifying highly active users.
+- **Heuristic Sweep**: Violates *Recognition over Recall*. A human cannot parse UUIDs easily.
+- **Severity**: Medium (Creates friction, forces tab-switching).
+- **Recommendation**: "Resolve the UUIDs to human-readable 'First/Last Name' strings, and place the UUID in a secondary tooltip or copy-to-clipboard icon."
 
 ## Guardrails
 
-- Do not soften findings into generic encouragement; specificity serves the designer
-- Do not confuse a usability critique with a full redesign brief
-- Do not evaluate visual aesthetics unless the aesthetic choice causes a measurable usability problem
-- Do not skip error states, edge cases, or recovery paths in the evaluation
-- Do not rank findings by personal annoyance; rank by user task impact and frequency
+- **Never use "I like" or "I feel" language.** Use "This violates [Heuristic]" or "This increases cognitive load."
+- **Always provide a specific fix.** A critique without a proposed solution is just complaining.
+- **Do not evaluate visual aesthetics (brand colors, illustration style) unless it directly impacts usability (e.g., contrast accessibility).**
 
-## Optional Tools / Resources
+## Troubleshooting
 
-- [Nielsen Norman Group Heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/)
-- [Maze](https://maze.co/) for remote usability testing
-- [Dovetail](https://dovetail.com/) for research synthesis
-- Figma MCP and Chrome DevTools MCP for inspecting the live or prototyped interface
-- Task flow documentation for the surface being reviewed
+### Issue: The designer is defensive about the critique
+**Cause**: The critique attacked the author or focused on subjective opinions.
+**Solution**: Relentlessly anchor feedback to the *User Task* and the *Established Heuristics*. Evaluate the artifact, not the designer.
+
+### Issue: The critique list has 40 minor issues but misses blockers
+**Cause**: The reviewer got distracted by pixel alignment instead of checking the user flow.
+**Solution**: Enforce Step 1. You must walk through the *Primary Task* start-to-finish before critiquing padding or font sizes.
+
+### Issue: The critique asks for changes that violate the design system
+**Cause**: The reviewer evaluated the screen in a vacuum.
+**Solution**: Always check the proposed fix against global Design System tokens and components. If the system is flawed, propose a system update, not a local override.

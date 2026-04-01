@@ -18,7 +18,7 @@ Open only the matching skill files under `skills/`, then end your closing handof
 
 ## usability/
 
-- `usability/critique` — Evaluate a design through structured heuristic analysis, scoring usability across cognitive load, discoverability, affordance, error prevention, and task completion to produce actionable findings.
+- `usability/critique` — Evaluate a design through structured heuristic analysis, scoring usability across cognitive load, discoverability, affordance, and error prevention to produce actionable findings. Use when reviewing wireframes, prototypes, or implemented frontend screens.
 - `usability/chrome-click` — Interact with the live product UI to validate discoverability, affordance, feedback, and reversibility heuristics by exercising real interactions.
 - `usability/chrome-lighthouse-audit` — Run an automated Lighthouse audit to surface accessibility baseline risks that indicate usability and interaction quality issues.
 - `usability/figma-get-screenshot` — Capture design comps to evaluate usability heuristics in the designed visual layout before implementation.
@@ -46,4 +46,4 @@ Open only the matching skill files under `skills/`, then end your closing handof
 - `qa/automate` — Turn QA coverage into reliable automated tests, fixtures, and CI checks that run with strong signal and low maintenance cost.
 - `qa/cover` — Design risk-based test coverage across layers, scenarios, and environments so the QA plan proves the feature behaves as intended.
 - `qa/gate` — Evaluate QA evidence against release criteria and decide whether the build is ready to move forward.
-- `qa/plan` — Turn a QA request into a test strategy and execution plan with scope, risks, coverage targets, and acceptance criteria.
+- `qa/plan` — Turn a QA request into a structured test strategy with scope, risk boundaries, coverage targets, and executable matrices. Use when an epic or feature needs a defensible verification approach before it hits production.
