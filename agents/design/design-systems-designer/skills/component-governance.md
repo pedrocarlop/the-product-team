@@ -5,7 +5,7 @@ trigger: When system growth needs operating rules, not just files.
 primary_mcp: notion, figma
 fallback_tools: repository, reference/reuse
 best_guess_output: A governance model for component lifecycle and usage.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
+output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 section_anchor: "## Skill: component-governance"
 done_when: Teams know how components enter, change, and leave the system.
 ---
@@ -44,10 +44,13 @@ Within `## Skill: component-governance`, include:
 - Write governance as an operating system teams can follow, not a slogan.
 - Make ownership boundaries between design and engineering explicit.
 - Prefer fewer, more durable rules over exhaustive bureaucracy.
+- Treat `project-ds-spec.md` as the canonical handoff into the product's DS folder, and write governance that preserves that contract.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
+- Also update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
 - Keep all work for this skill inside `## Skill: component-governance`.
+- In `project-ds-spec.md`, update `## Governance And Adoption`.
 - Record which tool path was used and why.
 - Ensure the section meets this done-when bar: Teams know how components enter, change, and leave the system.

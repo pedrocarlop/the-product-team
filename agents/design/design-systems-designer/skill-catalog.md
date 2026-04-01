@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma
 - Fallback: paper, repository
 - Best guess: An atomic component library plan or build description.
-- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md
+- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 - Done when: Atoms, molecules, organisms, and higher-level patterns are clearly organized.
 
 ## `component-governance`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: notion, figma
 - Fallback: repository, reference/reuse
 - Best guess: A governance model for component lifecycle and usage.
-- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md
+- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 - Done when: Teams know how components enter, change, and leave the system.
 
 ## `design-code-mapping`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma
 - Fallback: paper, repository
 - Best guess: A spacing and layout scale with usage guidance.
-- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md
+- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 - Done when: Designers can compose surfaces without inventing spacing ad hoc.
 
 ## `system-audit`
@@ -51,7 +51,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma, repository
 - Fallback: paper, reference/ground
 - Best guess: A system audit with prioritized gaps and recommendations.
-- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md
+- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 - Done when: The team knows the real system health and next moves.
 
 ## `system-qa-and-adoption`
@@ -61,7 +61,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, figma
 - Fallback: chrome_devtools, reference/verify
 - Best guess: A system QA and adoption plan with key issues and rollout guidance.
-- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md
+- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 - Done when: System issues and adoption blockers are concrete and prioritized.
 
 ## `token-architecture`
@@ -71,5 +71,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma
 - Fallback: paper, repository
 - Best guess: A token architecture proposal tied to system usage.
-- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md
+- Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 - Done when: Tokens are structured well enough to scale consistently.

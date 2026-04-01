@@ -71,7 +71,7 @@ def render_catalog(root: Path = ROOT) -> str:
             "",
             "- Roles are selected first by job function, then by exact `skill_paths`.",
             "- Do not assign a role without also assigning the core action it must execute.",
-            "- Use `ui-designer` for Stitch-first concept work, `design-systems-designer` for token/library governance, `ux-researcher` for research operations and synthesis, and `qa-reviewer` for release readiness.",
+            "- Use `ui-designer` for Stitch-first concept work and for seeding `project-ds-spec.md` from company references, `design-systems-designer` for operationalizing that spec into token/library governance, `ux-researcher` for research operations and synthesis, and `qa-reviewer` for release readiness.",
             "",
         ]
     )

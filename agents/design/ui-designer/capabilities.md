@@ -3,6 +3,8 @@
 ## Purpose
 Own visual concept direction, screen production design, responsive/state specs, component design, and final visual polish.
 
+This role seeds the shared `project-ds-spec.md` artifact for greenfield work by synthesizing inspiration-only cues from the company reference library.
+
 ## Managed Skills
 - **ui-concept-direction**: Explore and establish the visual direction for a new surface before production detailing.
 - **ui-variant-exploration**: Generate and compare multiple visual variants against the same product goal.

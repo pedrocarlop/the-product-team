@@ -26,7 +26,7 @@ Generate and compare multiple visual variants against the same product goal.
 ## Required Deliverable Sections
 
 Within `## Skill: ui-variant-exploration`, include:
-- `### Variant comparison`: Provide a comparison table with at least `Variant`, `Core idea`, `Divergence axes`, `Strengths`, `Weaknesses`, `Risks`, `Best use case`, and `Why not chosen`.
+- `### Variant comparison`: Provide a comparison table with at least `Variant`, `Reference mix`, `Core idea`, `Divergence axes`, `Strengths`, `Weaknesses`, `Risks`, `Best use case`, and `Why not chosen`.
 - `### Winning direction`: Choose a single recommended direction and explain why it wins.
 - `### Traits to carry forward`: List any qualities from losing variants that should survive into convergence.
 - `### Similarity check`: Call out where variants drifted too close together or failed to diverge enough.
@@ -42,6 +42,7 @@ Within `## Skill: ui-variant-exploration`, include:
 
 - This skill is the comparison gate before convergence for `new design` work.
 - Compare at least 3 variants and end with one recommendation, not a tie.
+- Give each variant an explicit reference mix so the team can trace which borrowed principles produced the result.
 - Use the `Similarity check` to prove the set explored real space rather than near-duplicates.
 - If the variants are not meaningfully different, say so and broaden them before convergence.
 

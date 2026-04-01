@@ -5,7 +5,7 @@ trigger: When the system exists but adoption or QA is weak.
 primary_mcp: repository, figma
 fallback_tools: chrome_devtools, reference/verify
 best_guess_output: A system QA and adoption plan with key issues and rollout guidance.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
+output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 section_anchor: "## Skill: system-qa-and-adoption"
 done_when: System issues and adoption blockers are concrete and prioritized.
 ---
@@ -42,12 +42,15 @@ Within `## Skill: system-qa-and-adoption`, include:
 ## Workflow Notes
 
 - Treat adoption as an operational problem, not only a design-quality problem.
+- Treat `project-ds-spec.md` as the canonical adoption artifact teams should consume before the product DS folder or code implementation.
 - Tie QA checks to concrete surfaces or implementation evidence.
 - Make the rollout path realistic for teams with existing product commitments.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
+- Also update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
 - Keep all work for this skill inside `## Skill: system-qa-and-adoption`.
+- In `project-ds-spec.md`, update `## Governance And Adoption` and `## QA Notes And Open Questions`.
 - Record which tool path was used and why.
 - Ensure the section meets this done-when bar: System issues and adoption blockers are concrete and prioritized.

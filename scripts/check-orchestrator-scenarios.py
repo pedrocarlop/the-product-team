@@ -52,8 +52,11 @@ def main() -> int:
     expect("skill_paths" in agents_fragment, "Managed AGENTS fragment missing skill_paths rule.", failures)
     expect("primary MCP -> alternative tool/MCP -> best guess inferred output" in agents_fragment, "Managed AGENTS fragment missing fallback rule.", failures)
     expect("ui-designer" in package_readme and "ux-researcher" in package_readme, "Package README missing new role examples.", failures)
+    expect("project-ds-spec.md" in package_readme, "Package README missing project ds-spec guidance.", failures)
+    expect("reference-design-systems" in package_readme, "Package README missing reference design systems library guidance.", failures)
     expect("evidence_mode" in logs_readme, "logs/README.md missing evidence_mode in deliverable header.", failures)
     expect("skill_paths" in logs_readme, "logs/README.md missing assignment contract update.", failures)
+    expect("shared-design" in logs_readme, "logs/README.md missing shared deliverable guidance.", failures)
 
     for path in discover_toml_paths(ROOT):
         data = load_toml(path)

@@ -164,13 +164,17 @@ def validate_design_contract(
 
     if skill_path.stem == "ui-concept-direction":
         for snippet in (
+            "### Reference selection",
             "### Direction 1",
             "### Direction 2",
             "### Direction 3",
+            "### Project ds-spec seed",
             "Divergence axes",
             "Why this is materially different",
             "3 meaningfully different high-level directions",
             "at least 3 axes chosen from",
+            "reference-design-systems",
+            "project-ds-spec.md",
         ):
             if snippet not in text:
                 failures.append(f"{context.role_name}: {skill_path.name} is missing '{snippet}'.")
@@ -179,6 +183,7 @@ def validate_design_contract(
         for snippet in (
             "### Variant comparison",
             "Core idea",
+            "Reference mix",
             "Divergence axes",
             "Strengths",
             "Weaknesses",
@@ -198,9 +203,25 @@ def validate_design_contract(
             "### Chosen direction",
             "### Inherited principles",
             "### Non-goals",
+            "### Project ds-spec alignment",
             "new design",
             "If no upstream direction exists",
+            "project-ds-spec.md",
         ):
+            if snippet not in text:
+                failures.append(f"{context.role_name}: {skill_path.name} is missing '{snippet}'.")
+
+    if context.role_name == "design-systems-designer":
+        required_by_skill = {
+            "system-audit": ("project-ds-spec.md", "reference-design-systems"),
+            "token-architecture": ("project-ds-spec.md", "Color And Token Direction"),
+            "spacing-and-layout-scale": ("project-ds-spec.md", "Spacing And Layout Rules"),
+            "atomic-library-build": ("project-ds-spec.md", "Atomic Primitives", "Widget And Layout Patterns"),
+            "component-governance": ("project-ds-spec.md", "Governance And Adoption"),
+            "system-qa-and-adoption": ("project-ds-spec.md", "QA Notes And Open Questions"),
+            "design-code-mapping": ("Do not treat the company reference library or the project ds-spec as proof",),
+        }
+        for snippet in required_by_skill.get(skill_path.stem, ()):
             if snippet not in text:
                 failures.append(f"{context.role_name}: {skill_path.name} is missing '{snippet}'.")
 

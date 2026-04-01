@@ -5,7 +5,7 @@ trigger: When the system needs a durable token foundation.
 primary_mcp: figma
 fallback_tools: paper, repository
 best_guess_output: A token architecture proposal tied to system usage.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
+output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 section_anchor: "## Skill: token-architecture"
 done_when: Tokens are structured well enough to scale consistently.
 ---
@@ -30,6 +30,7 @@ Within `## Skill: token-architecture`, include:
 - `### Naming conventions`: Document how tokens are named and grouped.
 - `### Semantic aliases`: Explain how semantic tokens map to raw primitives.
 - `### Cross-platform mapping`: Note any constraints or naming differences that affect implementation.
+- `### Project ds-spec translation`: Explain how the project direction becomes an operational token model.
 - `### Migration notes`: Describe how existing tokens or styles should be normalized into the new model.
 
 ## Tool Path
@@ -42,12 +43,15 @@ Within `## Skill: token-architecture`, include:
 ## Workflow Notes
 
 - Optimize for long-term semantic clarity, not only current file cleanliness.
+- Treat `logs/active/<project-slug>/deliverables/project-ds-spec.md` as the primary design foundation for token decisions.
 - Keep token layers shallow enough that teams can reason about them.
 - Document which token decisions are stable foundations versus transitional compromises.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
+- Also update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
 - Keep all work for this skill inside `## Skill: token-architecture`.
+- In `project-ds-spec.md`, update `## Color And Token Direction`.
 - Record which tool path was used and why.
 - Ensure the section meets this done-when bar: Tokens are structured well enough to scale consistently.

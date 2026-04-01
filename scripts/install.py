@@ -374,6 +374,19 @@ def install_package_docs(root: Path, target_root: Path) -> None:
         (root / "references" / "role-catalog.md").read_text(encoding="utf-8"),
         encoding="utf-8",
     )
+    (refs_root / "project-ds-spec-template.md").write_text(
+        (root / "references" / "project-ds-spec-template.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    reference_library_source = root / "agents" / "design" / "ui-designer" / "reference-design-systems"
+    reference_library_target = refs_root / "reference-design-systems"
+    if reference_library_target.exists():
+        shutil.rmtree(reference_library_target)
+    shutil.copytree(
+        reference_library_source,
+        reference_library_target,
+        ignore=shutil.ignore_patterns(".DS_Store"),
+    )
     validate_script_source = root / "scripts" / "validate-install.py"
     validate_script_target = scripts_root / "validate-install.py"
     shutil.copy2(validate_script_source, validate_script_target)

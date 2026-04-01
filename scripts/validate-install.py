@@ -100,6 +100,18 @@ def main() -> int:
         expect("evidence_mode" in logs_text, "Installed logs contract missing evidence_mode.", failures)
         expect("skill_paths" in logs_text, "Installed logs contract missing skill_paths.", failures)
 
+    project_ds_spec_template = root / ".codex" / PACKAGE_SLUG / "references" / "project-ds-spec-template.md"
+    expect(project_ds_spec_template.exists(), "Missing installed project ds-spec template.", failures)
+    if project_ds_spec_template.exists():
+        template_text = project_ds_spec_template.read_text(encoding="utf-8")
+        expect("project-ds-spec.md" in template_text, "Installed project ds-spec template missing artifact path guidance.", failures)
+
+    reference_library_readme = root / ".codex" / PACKAGE_SLUG / "references" / "reference-design-systems" / "README.md"
+    expect(reference_library_readme.exists(), "Missing installed reference design systems library index.", failures)
+    if reference_library_readme.exists():
+        library_text = reference_library_readme.read_text(encoding="utf-8")
+        expect("inspiration-only" in library_text or "inspiration only" in library_text, "Installed reference design systems library index missing reference-only guidance.", failures)
+
     for role in expected_roles:
         source_name = role["source_name"]
         toml_path, skills_dir, catalog_path = installed_role_paths(root, role)
@@ -147,6 +159,27 @@ def main() -> int:
         expect("Primary MCP/tool:" in catalog_text, f"{catalog_path}: skill catalog missing primary tool summary.", failures)
         expect("Fallback:" in catalog_text, f"{catalog_path}: skill catalog missing fallback summary.", failures)
         expect("Done when:" in catalog_text, f"{catalog_path}: skill catalog missing done-when summary.", failures)
+
+        if source_name == "ui-designer":
+            concept_skill = skills_dir / "ui-concept-direction.md"
+            screen_skill = skills_dir / "screen-production-design.md"
+            if concept_skill.exists():
+                concept_text = concept_skill.read_text(encoding="utf-8")
+                expect("project-ds-spec.md" in concept_text, f"{concept_skill}: missing project ds-spec guidance.", failures)
+                expect("reference-design-systems" in concept_text, f"{concept_skill}: missing reference design systems guidance.", failures)
+            if screen_skill.exists():
+                screen_text = screen_skill.read_text(encoding="utf-8")
+                expect("project-ds-spec.md" in screen_text, f"{screen_skill}: missing project ds-spec alignment guidance.", failures)
+
+        if source_name == "design-systems-designer":
+            token_skill = skills_dir / "token-architecture.md"
+            audit_skill = skills_dir / "system-audit.md"
+            if token_skill.exists():
+                token_text = token_skill.read_text(encoding="utf-8")
+                expect("project-ds-spec.md" in token_text, f"{token_skill}: missing project ds-spec translation guidance.", failures)
+            if audit_skill.exists():
+                audit_text = audit_skill.read_text(encoding="utf-8")
+                expect("project-ds-spec.md" in audit_text, f"{audit_skill}: missing project ds-spec audit guidance.", failures)
 
     validate_skill_contexts(skill_contexts, failures, enforce_banned_names=False)
 

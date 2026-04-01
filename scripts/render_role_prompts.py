@@ -37,6 +37,8 @@ def render_prompt(data: dict) -> str:
     skill_groups = data.get("capabilities", {}).get("skill_groups", {})
     output_type = "reviews" if role_kind == "reviewer" else "deliverables"
     output_path = f"logs/active/<project-slug>/{output_type}/{role_name}.md"
+    configured_artifacts = data.get("outputs", {}).get("artifact_paths", [])
+    extra_artifacts = [path for path in configured_artifacts if path != output_path]
 
     routing_lines = []
     if skill_groups:
@@ -44,6 +46,10 @@ def render_prompt(data: dict) -> str:
         for group_name, skills in skill_groups.items():
             routing_lines.append(f"- `{group_name}/`: {', '.join(skills)}")
     skill_routing = "\n".join(routing_lines)
+    shared_artifact_line = ""
+    if extra_artifacts:
+        formatted = ", ".join(f"`{path}`" for path in extra_artifacts)
+        shared_artifact_line = f"\n- When the assignment explicitly includes a shared workflow artifact you own, you may also update {formatted}."
 
     prompt = f"""
 You are the {display_name} in the Product Team workflow.
@@ -80,6 +86,11 @@ Guardrails:
 - Do not present inferred output as sourced evidence.
 - Do not edit outside your owned artifact or assigned repo scope.
 """.strip()
+    if shared_artifact_line:
+        prompt = prompt.replace(
+            f"- Keep your owned output current at `{output_path}`.",
+            f"- Keep your owned output current at `{output_path}`.{shared_artifact_line}",
+        )
     return prompt
 
 

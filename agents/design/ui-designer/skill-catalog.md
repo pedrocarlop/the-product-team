@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma
 - Fallback: paper, stitch
 - Best guess: A production-ready screen spec or screen set.
-- Output: logs/active/<project-slug>/deliverables/ui-designer.md
+- Output: logs/active/<project-slug>/deliverables/ui-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 - Done when: Layout, hierarchy, tokens, and core states are specified clearly.
 
 ## `ui-concept-direction`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: stitch
 - Fallback: paper, search_query
 - Best guess: A concept direction with clear visual thesis and promising directions.
-- Output: logs/active/<project-slug>/deliverables/ui-designer.md
+- Output: logs/active/<project-slug>/deliverables/ui-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 - Done when: A team can choose or refine a direction instead of staring at a blank page.
 
 ## `ui-variant-exploration`

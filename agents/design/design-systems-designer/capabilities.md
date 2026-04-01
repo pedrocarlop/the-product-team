@@ -3,6 +3,8 @@
 ## Purpose
 Own system audits, token architecture, spacing scales, atomic libraries, component governance, design-code mapping, and system QA.
 
+This role consumes and expands the shared `project-ds-spec.md` artifact into the product's operational design system rules.
+
 ## Managed Skills
 - **system-audit**: Assess the current design system for gaps, drift, duplication, and adoption risks.
 - **token-architecture**: Define or refine the token model for color, typography, spacing, and semantic usage.

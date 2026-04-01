@@ -43,6 +43,7 @@ Within `## Skill: visual-polish-and-consistency`, include:
 
 - Use a concrete issue/fix list instead of a vague polish summary.
 - Polish should sharpen the chosen direction, not sand it down into something generic.
+- Use `project-ds-spec.md` as the system of record for polish decisions. The company reference library is only a sanity check against generic drift.
 - Use `chrome_devtools` when real browser evidence is needed for the final consistency pass.
 
 ## Output Contract

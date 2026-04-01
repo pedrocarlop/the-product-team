@@ -69,6 +69,8 @@ evidence_mode: <sourced|fallback|inferred>
 ---
 ```
 
+Shared cross-role deliverables may use `role: shared-design` and an `owners: [<role-name>, ...]` field when the workflow intentionally routes multiple specialists into one canonical artifact such as `project-ds-spec.md`.
+
 ### Mandatory Reflection
 
 Every deliverable must end with one trailing `## Reflection` section:
@@ -83,6 +85,8 @@ For shared role deliverables, each skill should update its own subsection inside
 - `What worked`
 - `What didn't`
 - `Next steps`
+
+For cross-role shared deliverables, define stable section ownership inside the document template itself and update only the owned sections.
 
 ## Assignment Contract
 

@@ -5,7 +5,7 @@ trigger: When a new UI direction or concept needs exploration.
 primary_mcp: stitch
 fallback_tools: paper, search_query
 best_guess_output: A concept direction with clear visual thesis and promising directions.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md
+output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 section_anchor: "## Skill: ui-concept-direction"
 done_when: A team can choose or refine a direction instead of staring at a blank page.
 ---
@@ -27,9 +27,11 @@ Explore and establish the visual direction for a new surface before production d
 
 Within `## Skill: ui-concept-direction`, include:
 - `### New design check`: Confirm whether the assignment is truly `new design` or only an extension of an existing pattern.
+- `### Reference selection`: List up to 3 inspiration-only company references from `.codex/product-team/references/reference-design-systems/` and why each one is relevant.
 - `### Direction 1`: Include `Visual thesis`, `Style pillars`, `Token direction`, `Reference cues`, `Divergence axes`, and `Why this is materially different`.
 - `### Direction 2`: Include `Visual thesis`, `Style pillars`, `Token direction`, `Reference cues`, `Divergence axes`, and `Why this is materially different`.
 - `### Direction 3`: Include `Visual thesis`, `Style pillars`, `Token direction`, `Reference cues`, `Divergence axes`, and `Why this is materially different`.
+- `### Project ds-spec seed`: Include `Design principles and brand posture`, `Reference inspirations`, `Typography direction`, `Color and token direction`, `Spacing and layout rules`, and `State, motion, and accessibility rules`.
 - `### Recommended direction`: Name the most promising direction and why it is the best next step.
 - `### Anti-patterns to avoid`: List the generic or over-polished traps the team should avoid during convergence.
 
@@ -43,14 +45,19 @@ Within `## Skill: ui-concept-direction`, include:
 ## Workflow Notes
 
 - This skill is the first-stage requirement for `new design` work.
+- Read up to 3 reference systems from `.codex/product-team/references/reference-design-systems/` before generating directions.
 - Produce 3 meaningfully different high-level directions, not cosmetic variations of one idea.
 - Each direction must differ on at least 3 axes chosen from layout model, density, interaction tone, visual language, typography strategy, color strategy, hierarchy model, or framing metaphor.
+- Treat company references as inspiration-only cues. Borrow principles, not brand identity, named tokens, or exact visual replicas.
+- For greenfield work, seed `logs/active/<project-slug>/deliverables/project-ds-spec.md` using the shared template at `.codex/product-team/references/project-ds-spec-template.md` when available.
 - Keep the output high-level and exploratory; do not polish into final implementation-ready comps here.
 - If the work is only an extension of an existing pattern, record that and redirect to the more concrete UI skill instead of forcing fake divergence.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
+- For greenfield work, also write or update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
 - Keep all work for this skill inside `## Skill: ui-concept-direction`.
+- In `project-ds-spec.md`, update only `## Design Principles And Brand Posture`, `## Reference Inspirations`, `## Typography Direction`, `## Color And Token Direction`, `## Spacing And Layout Rules`, and `## State, Motion, And Accessibility Rules`.
 - Record which tool path was used and why.
 - Ensure the section meets this done-when bar: A team can choose or refine a direction instead of staring at a blank page.

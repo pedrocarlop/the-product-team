@@ -44,6 +44,7 @@ Within `## Skill: component-design`, include:
 - Design for reuse, not for one screen only.
 - Avoid proliferating variants when layout rules or tokens would solve the problem more cleanly.
 - Tie component decisions back to the broader system and intended adoption.
+- If reusable component families or widget patterns materially change, call out the required `project-ds-spec.md` follow-up instead of letting the component drift away from the shared system.
 
 ## Output Contract
 

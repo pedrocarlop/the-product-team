@@ -2,292 +2,143 @@
 
 [Read this in Spanish](./README.es.md)
 
-Product Team is a Codex package that turns a normal repository into a workspace where agents can operate like a small product team.
+## Install
 
-It adds a coordinator, a set of specialists, and a shared work log so Codex can choose how to organize work instead of reacting task by task.
-
-After installation, requests in that repository go through the Product Team coordinator by default. Simple work may still stay direct, but that choice is made inside the workflow unless the user explicitly opts out for that request.
-
-## Core Idea
-
-The main rule is simple: start with the lightest process that will work.
-
-Product Team does not create a group of agents for every request. It first checks whether one agent can handle the job well. Only when coordination would clearly help does it bring in more roles.
-
-In practice, the flow is:
-
-1. A request comes in.
-2. The coordinator decides whether the work is simple or cross-functional.
-3. If it is simple, the work is done directly.
-4. If it is more complex, the coordinator chooses the smallest team that makes sense.
-5. The important decisions and status are written to `logs/`.
-
-## What This Project Really Is
-
-Think of Product Team as an operating system for agent collaboration inside Codex.
-
-It is not an end-user product by itself. It is a reusable workflow you install inside another repository so Codex has:
-
-- one coordinator that controls the process
-- specialist roles for different kinds of work
-- a written memory of what happened
-- clear rules for when to work directly and when to coordinate
-
-## The Main Parts
-
-### 1. The Coordinator: `orchestrator`
-
-The orchestrator is the role that decides how work should happen.
-
-It is responsible for understanding the request, deciding whether to stay direct or start a coordinated workflow, choosing roles, ordering the work, and asking for approval before major multi-role execution.
-
-Its philosophy is:
-
-- do not overcomplicate simple work
-- do not create a team unless the team adds value
-- keep the process written down
-
-### 2. The Specialists
-
-The package includes a set of roles that represent broad areas of work.
-
-Business:
-
-- `product-lead`: decides what should be built and why
-- `analyst`: works with metrics, forecasts, and numbers
-- `go-to-market`: focuses on growth, marketing, sales, and launch
-- `business-ops`: improves processes and operational structure
-
-Design:
-
-- `designer`: covers research, UX, UI, content, accessibility, and more
-- `design-systems`: owns reusable components, tokens, and visual consistency
-
-Engineering:
-
-- `engineer`: builds product features across frontend, backend, mobile, and full stack work
-- `platform-engineer`: handles APIs, databases, performance, security, and technical architecture
-
-Review:
-
-- `reviewer`: checks whether the result is solid, useful, and high enough quality
-
-### 3. Shared Memory: `logs/`
-
-`logs/` is where the workflow records what happened.
-
-It exists so the system does not depend on chat memory alone. It keeps a durable record of the request, status, deliverables, and important decisions.
-
-In plain language, `logs/` is the project notebook.
-
-## How It Works Step by Step
-
-### Step 1. A request arrives
-
-Examples:
-
-> "Fix the typo on the login page"
->
-> "Redesign the checkout flow to reduce drop-off"
-
-The orchestrator starts by understanding the real goal behind the request.
-
-### Step 2. It chooses direct work or coordinated work
-
-This is the key decision in the system.
-
-Direct work is used when the request is mostly in one domain, clear enough, and unlikely to benefit much from involving many roles.
-
-Coordinated work is used when the request mixes disciplines, needs sequencing, contains important tradeoffs, or benefits from formal review.
-
-### Step 3. If the work is direct, it stays simple
-
-In the direct path, the orchestrator logs the request, clarifies what it understood, keeps status up to date, and proceeds without unnecessary ceremony.
-
-### Step 4. If the work is coordinated, it staffs the smallest useful team
-
-The system avoids large teams by default. If two roles are enough, it uses two. If one role is enough, it uses one. The goal is to add just enough structure to improve the outcome.
-
-### Step 5. The orchestrator writes one shared plan
-
-When several roles are involved, the orchestrator creates one shared plan: what will happen, in what order, who owns each part, and where review will happen.
-
-### Step 6. It asks for approval before major multi-role execution
-
-For bigger coordinated work, the system pauses before main execution starts so the user can confirm the direction. The orchestrator should summarize the plan and ask "Do you want to proceed?"
-
-### Step 7. It coordinates execution and keeps the record current
-
-After approval, the orchestrator activates the roles in sequence, passes outputs from one role to the next, updates status, and records reviews and decisions.
-
-## Why One Role Can Cover Several Subtasks
-
-A role in this project is intentionally broad.
-
-For example, a `designer` can cover research, UX, UI, and content without handing off every small step. An `engineer` can cover frontend and backend work in the same role.
-
-This reduces handoffs, duplication, and confusion.
-
-## What Gets Written in `logs/`
-
-Inside `logs/active/<project-slug>/`, you will usually find:
-
-- `context.md`: project goal, state, decisions, roles, deliverables, and open questions
-- `deliverables/`: outputs from the roles
-- `decisions/`: important decisions and conflict resolution
-
-Routing, staffing, planning, and approval happen in the context window — only project context and deliverables persist to disk.
-
-There is also `logs/archive/` for completed or inactive work.
-
-## What This Package Installs
-
-When you run the installer, it copies the Product Team workflow into the target repository.
-
-The main things it installs are:
-
-- the agent definitions
-- their local skills and guides
-- the shared package documentation
-- an updater that can pull the latest package later
-- the `logs/` structure
-- a managed block inside `AGENTS.md`
-
-The main paths it creates are:
-
-- `.codex/agents/product-team-...`
-- `.codex/product-team/`
-- `logs/active/`
-- `logs/archive/`
-
-The installer updates its own files without overwriting unrelated files in the target project.
-
-## How To Start
-
-### 1. Install it into your project
-
-If you are inside the repository where you want to install it:
+From a local checkout:
 
 ```bash
 ./install.sh --target "$PWD"
 ```
 
-Or directly from GitHub:
+From GitHub:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pedrocarlop/the-product-team/main/install.sh | bash -s -- --target "$PWD"
 ```
 
-Or with Python:
+With Python:
 
 ```bash
 python3 scripts/install.py --target "$PWD"
 ```
 
-### 2. Validate the install
-
-From the root of the project where you installed it:
+Validate an installed project:
 
 ```bash
 python3 .codex/product-team/scripts/validate-install.py
 ```
 
-### 3. Update an installed project later
-
-From the root of the installed project:
+Update an installed project later:
 
 ```bash
 python3 .codex/product-team/scripts/update-install.py
 ```
 
-The install manifest records where the package came from. If the original source checkout still exists, the updater uses that checkout so local agent-repo changes can be propagated into installed projects. If not, it falls back to the recorded remote archive.
+## What It Does
 
-### 4. Ask the coordinator to do work
+Product Team is an installable Codex workflow for repositories that want agent work to behave more like a real product team.
 
-Once installed, Product Team becomes the default entrypoint for requests in that repository unless the user explicitly opts out for a request. `product-team-orchestrator` still decides whether the work stays direct or becomes coordinated.
+It installs:
 
-Examples:
+- one orchestrator that routes the request
+- a split set of specialist roles across business, design, engineering, and review
+- a shared `/logs` memory surface for context, deliverables, decisions, and status
+- a managed `AGENTS.md` block that makes Product Team the default entrypoint in the target repo
 
-> "Fix this onboarding flow"
->
-> "Create a new pricing page"
->
-> "Redesign checkout to improve conversion"
+The main operating rule is: use the lightest process that will still do the job well.
 
-The orchestrator will decide whether this should stay direct or become a coordinated workflow.
+That means Product Team does not staff a team for every request. The orchestrator first decides whether the work should stay direct or become coordinated. When coordination helps, it staffs the smallest useful set of roles.
 
-### 5. Check `logs/` if you want to understand what happened
+## How The Roles Work
 
-If you want to see why the system made a decision, what the plan was, or where the work stopped, `logs/` is the place to look.
+The repo is structured around role-local assets under `agents/<discipline>/<role>/`. Across business, design, and engineering, the roles follow the same pattern:
 
-## Simple Examples
+- one role TOML with the system prompt and execution policy
+- one `capabilities.md` card
+- one `skill-catalog.md` that must be read first
+- a set of role-local `skills/*.md` workflows
 
-Small request:
+The current role topology is:
 
-> "Change the signup button text"
+- Business: `product-lead`, `analyst`, `business-ops`, `go-to-market`
+- Design: `ux-researcher`, `product-designer`, `ui-designer`, `content-designer`, `design-systems-designer`
+- Engineering: `frontend-engineer`, `backend-engineer`, `platform-engineer`
+- Review: `design-reviewer`, `qa-reviewer`
+- Support: `orchestrator`, `reference`
 
-This will usually stay direct.
+What is consistent across the specialist roles:
 
-Medium request in one main domain:
+- they work from orchestrator-issued assignments only
+- they read `skill-catalog.md` first and then the assigned `skill_paths`
+- they execute a concrete skill workflow, not a generic role summary
+- they follow the same fallback rule: `primary MCP -> alternative tool/MCP -> best guess inferred output`
+- they label evidence as `sourced`, `fallback`, or `inferred`
+- they write to an owned project artifact in `logs/active/<project-slug>/...`
 
-> "Build a markdown editor"
+The main discipline boundary is intentional:
 
-This may still stay direct if it is mostly implementation work.
+- Business and design roles are advisory artifact owners. In coordinated workflows they do not own repo-tracked implementation.
+- Engineering roles may edit repo-tracked files only when the orchestrator gives explicit implementation ownership and a bounded `repo_write_scope`.
+- `reference` is read-only support for grounding, tracing, reuse, and verification.
 
-Complex request:
+## How Requests Flow
 
-> "Redesign checkout to reduce abandonment"
+1. A request enters through `product-team-orchestrator`.
+2. The orchestrator reads its own skill catalog and chooses direct or coordinated execution.
+3. If the work is simple and clearly single-role, it may stay direct.
+4. If the work is cross-functional or high-risk, the orchestrator staffs the minimum viable set of roles.
+5. Staffed roles receive an explicit assignment contract with fields like `skill_paths`, `owned_outputs`, `primary_tools`, `fallback_policy`, `repo_write_owner`, and `evidence_mode`.
+6. Work is recorded in `logs/active/<project-slug>/` so the state survives beyond chat context.
 
-This will usually trigger planning, staffing, approval, execution, and review.
+For new design work, the workflow is intentionally not linear from idea to polish. The design path should diverge before it converges: explore materially different directions first, compare them, and only then move into production design and implementation.
 
-## What Problem This Solves
+## Installed Layout
 
-Without a system like this, multi-agent work gets messy very quickly:
+The installer keeps Product Team namespaced and idempotent. The main installed paths are:
 
-- it is not clear who is deciding
-- work gets duplicated
-- context gets lost
-- resuming later becomes hard
-- multiple competing plans appear
+- `.codex/agents/product-team-<discipline>/<role>/`
+- `.codex/product-team/`
+- `logs/active/`
+- `logs/archive/`
 
-Product Team tries to solve that with three ideas:
+It may update workflow-owned files and the managed `AGENTS.md` block, but it should not overwrite unrelated project files.
 
-- one coordinator owns the process
-- the team should be as small as possible
-- the workflow should leave a written memory
+## Logs And Memory
 
-## For Non-Technical Readers
+`logs/README.md` is the contract for persistent project memory.
 
-The shortest possible explanation is:
+In practice:
 
-- this project does not build a product by itself
-- this project installs a way of working inside Codex
-- that way of working decides whether one agent or several agents should handle the task
-- when several agents are needed, there is a plan, approval, coordination, and written follow-up
+- `context.md` tracks the objective, status, staffed roles, exact `skill_paths`, and done-when criteria
+- `deliverables/` holds role deliverables
+- `decisions/` holds durable decisions
+- `TIMELINE.md` indexes project work over time
 
-## If You Maintain This Repository
+Routing, staffing, and approval happen in context, but the durable project record lives under `/logs`.
 
-The main source-of-truth locations are:
+## Maintaining This Package
 
-- `agents/`: role definitions and local skills
-- `logs/README.md`: the rules for the project memory system
-- `install.sh` and `scripts/install.py`: installation entrypoints
-- `assets/AGENTS.fragment.md`: the managed block injected into `AGENTS.md`
-- `assets/package-README.md`: the README copied into installed projects
+Source of truth:
 
-If you change roles, structure, or orchestrator behavior, validate with:
+- `agents/`: role definitions and role-local skills
+- `logs/README.md`: runtime `/logs` contract
+- `install.sh` and `scripts/install.py`: installer entrypoints
+- `assets/AGENTS.fragment.md`: managed `AGENTS.md` block injected into target repos
+- `assets/package-README.md`: README copied into installed projects
+
+If you change role structure, prompts, routing, or installer behavior, validate with:
 
 ```bash
 scripts/validate-orchestrator-contract.sh
 python3 scripts/check-orchestrator-scenarios.py
 ```
 
-Then test a real install in a temporary folder and run:
+Then run a real install into a temporary folder and validate it:
 
 ```bash
 python3 .codex/product-team/scripts/validate-install.py
 ```
 
-## Short Summary
+## Short Version
 
-Product Team adds organization to Codex. If the task is simple, it keeps things simple. If the task is complex, it builds the smallest useful team, creates a plan, asks for approval, and records the work so it can be understood later.
+Product Team installs a coordinated Codex workflow into another repository. It keeps simple work simple, adds coordination only when it helps, routes through real business/design/engineering roles, and leaves a written operating record in `/logs`.

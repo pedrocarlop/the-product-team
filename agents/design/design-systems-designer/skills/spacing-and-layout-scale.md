@@ -5,7 +5,7 @@ trigger: When system consistency depends on clearer spatial rules.
 primary_mcp: figma
 fallback_tools: paper, repository
 best_guess_output: A spacing and layout scale with usage guidance.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
+output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 section_anchor: "## Skill: spacing-and-layout-scale"
 done_when: Designers can compose surfaces without inventing spacing ad hoc.
 ---
@@ -42,12 +42,15 @@ Within `## Skill: spacing-and-layout-scale`, include:
 ## Workflow Notes
 
 - Prefer a scale that can survive real product layouts, not just tidy examples.
+- Treat `logs/active/<project-slug>/deliverables/project-ds-spec.md` as the canonical source for layout intent, and use company references only to benchmark density or rhythm when the product spec is still underspecified.
 - Keep layout rules connected to the component system and breakpoints.
 - Document where the scale is normative versus advisory.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
+- Also update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
 - Keep all work for this skill inside `## Skill: spacing-and-layout-scale`.
+- In `project-ds-spec.md`, update `## Spacing And Layout Rules`.
 - Record which tool path was used and why.
 - Ensure the section meets this done-when bar: Designers can compose surfaces without inventing spacing ad hoc.

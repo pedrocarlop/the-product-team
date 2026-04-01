@@ -43,6 +43,7 @@ Within `## Skill: design-code-mapping`, include:
 - Use concrete Figma identifiers, token names, component names, or code file paths whenever available.
 - Do not satisfy this skill with prose alone; the mapping table is mandatory.
 - Mark uncertain mappings explicitly instead of guessing silently.
+- Do not treat the company reference library or the project ds-spec as proof that a component or token exists in code. This skill must stay grounded in actual design/code evidence.
 
 ## Output Contract
 

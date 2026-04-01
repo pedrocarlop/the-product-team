@@ -20,6 +20,7 @@ This repository has the Product Team workflow installed.
 - Deliverables must label the actual evidence path as `sourced`, `fallback`, or `inferred`.
 - Shared role deliverables use stable skill-owned anchors in the form `## Skill: <skill-name>` and one trailing `## Reflection` footer.
 - For net-new design work, the design flow must diverge before it converges: explore materially different directions first, compare them explicitly, and only then move into concrete production design.
+- For greenfield product work, `ui-designer` seeds `logs/active/<project-slug>/deliverables/project-ds-spec.md` from up to 3 inspiration-only company references in `.codex/product-team/references/reference-design-systems/`; `design-systems-designer` then operationalizes that shared spec for tokens, components, widget layouts, governance, and QA.
 - Escalate only for setup, account access, destructive actions, or external publishing/sharing.
 - Staff the minimum viable set of roles and keep one explicit repo-write owner per stage by default.
 - Read installed role definitions in `.codex/agents/product-team-<discipline>/<role>/`.
