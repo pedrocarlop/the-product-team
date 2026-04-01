@@ -1,65 +1,65 @@
 # Platform Engineer Skill Catalog
 
 Read this file first when you are staffed for orchestrated work.
-It lists only the role-local skills in this folder and keeps descriptions short so you can scan cheaply.
-Open only the matching skill files under `skills/`, then end your closing handoff with `Read <skill-paths> skills for this task.`
+Use this catalog to choose or confirm the exact role-local workflow to run.
+Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
 
-## api/
+## `ci-cd-governance`
 
-- `api/document` — Document API contracts clearly in OpenAPI, examples, and supporting artifacts so consumers can understand and use the interface without extra explanation.
-- `api/shape` — Shape API contracts so resources, endpoints, methods, and schemas are consistent, consumer-friendly, and ready for implementation.
-- `api/validate` — Validate API contracts for HTTP semantics, error handling, pagination, auth, and consumer safety before they are treated as final.
-- `api/version` — Define API versioning, compatibility, and deprecation strategy so contract changes are deliberate and consumer impact is controlled.
+- Description: Define or improve the quality gates and governance around delivery pipelines.
+- Trigger: When releases need better automation and control.
+- Primary MCP/tool: repository
+- Fallback: reference/reuse, search_query
+- Best guess: A CI/CD governance proposal or implementation.
+- Output: logs/active/<project-slug>/deliverables/platform-engineer.md
+- Done when: Delivery rules are concrete enough to enforce repeatedly.
 
-## database/
+## `infra-release`
 
-- `database/index` — Choose and validate database indexes that improve the right queries without introducing unnecessary write overhead or maintenance risk.
-- `database/migrate` — Plan and author database migrations so schema changes deploy safely, backfill cleanly, and remain reversible where possible.
-- `database/recover` — Restore database service after failures by diagnosing impact, choosing a safe recovery path, and validating the system is healthy again.
-- `database/schema` — Design and review database schemas so tables, columns, constraints, and relationships stay correct, queryable, and evolvable.
+- Description: Plan or implement an infrastructure or platform release with operational safeguards.
+- Trigger: When infra or deployment changes must be executed safely.
+- Primary MCP/tool: repository
+- Fallback: search_query, reference/verify
+- Best guess: An infra release plan or implementation summary.
+- Output: logs/active/<project-slug>/deliverables/platform-engineer.md
+- Done when: The release path and rollback posture are explicit.
 
-## data/
+## `performance-investigation`
 
-- `data/govern` — Define and enforce data governance for privacy, access, retention, lineage, quality controls, and auditability.
-- `data/ingest` — Design and operate reliable data ingestion from source systems into raw or landing zones with clear contracts, observability, and backfill safety.
-- `data/model` — Design warehouse and transformation models that produce correct, documented, testable, and analysis-ready datasets.
-- `data/orchestrate` — Design and operate data workflow coordination, dependency management, retries, backfills, and alerting for reliable pipeline execution.
+- Description: Diagnose a platform or system performance issue and localize the bottleneck.
+- Trigger: When performance is degraded and root cause is unclear.
+- Primary MCP/tool: repository
+- Fallback: search_query, reference/trace
+- Best guess: A performance investigation with bottleneck and next step.
+- Output: logs/active/<project-slug>/deliverables/platform-engineer.md
+- Done when: The main performance constraint is identified credibly.
 
-## devops/
+## `pipeline-orchestration`
 
-- `devops/observe` — Verify infrastructure and service health using logs, metrics, traces, alerts, and deployment checks after a change ships to production.
-- `devops/pipeline` — Design and maintain CI/CD pipelines that build, test, scan, and promote infrastructure or delivery changes safely.
-- `devops/release` — Plan and execute safe releases, rollouts, and rollback paths for infrastructure and platform changes.
-- `devops/stabilize` — Reduce operational risk during incidents or fragile changes by hardening failure modes, recovery paths, and support readiness.
+- Description: Design or improve platform pipelines and long-running processing flows.
+- Trigger: When data or build pipelines need clearer orchestration.
+- Primary MCP/tool: repository
+- Fallback: reference/ground, search_query
+- Best guess: A pipeline orchestration design or implementation.
+- Output: logs/active/<project-slug>/deliverables/platform-engineer.md
+- Done when: The sequence, retries, and ownership are explicit.
 
-## performance/
+## `schema-migration`
 
-- `performance/budget` — Define and encode performance budgets that prevent regressions from shipping.
-- `performance/isolate` — Narrow a performance issue to the browser, network, backend, or dependency causing it.
-- `performance/profile` — Measure real-user and lab performance to identify the bottleneck before optimizing.
-- `performance/verify` — Prove a performance change improved the target metric and did not regress other constraints.
+- Description: Design and implement schema changes with migration and rollback awareness.
+- Trigger: When persistent data models must change safely.
+- Primary MCP/tool: repository
+- Fallback: reference/trace, search_query
+- Best guess: A migration plan or implementation with rollback considerations.
+- Output: logs/active/<project-slug>/deliverables/platform-engineer.md
+- Done when: Schema changes are bounded and operationally safe.
 
-## security/
+## `security-hardening`
 
-- `security/remediate` — Turn security findings into targeted fixes, tests, and follow-up work without widening scope unnecessarily.
-- `security/review` — Inspect implemented code, configuration, and architecture for security weaknesses before merge or release.
-- `security/threat-model` — Map attack surface, trust boundaries, and realistic threats before implementation so security decisions are explicit instead of implicit.
-- `security/verify` — Prove that a security fix actually blocks the issue and does not introduce a new regression.
-
-## architecture/
-
-- `architecture/choose` — Compare architecture options, vendors, and patterns, then select the best fit using explicit tradeoffs, risks, and decision criteria.
-- `architecture/decompose` — Break ambiguous business problems into architectural requirements, bounded decisions, dependencies, constraints, and risks.
-- `architecture/govern` — Set architecture standards, review paths, exception handling, and decision records that keep solutions safe, consistent, and supportable.
-- `architecture/integrate` — Design how systems connect through APIs, events, data contracts, sequencing, migration paths, and failure handling.
-
-## leadership/
-
-- `leadership/mentor` — Coach engineers through technical decisions, reviews, and pairing so the team gets stronger over time.
-- `leadership/review` — Review code and designs for correctness, architecture fit, tests, risk, and mentoring value.
-- `leadership/sequence` — Break technical work into the right order, surface dependencies, and plan the safest path to delivery.
-- `leadership/steer` — Set technical direction, frame tradeoffs, and align teams on the simplest architecture that solves the actual problem.
-- `leadership/calibrate` — Align expectations for performance, growth, promotion, and team health so people decisions are consistent and evidence-based.
-- `leadership/plan` — Turn an engineering objective into an execution plan with sequencing, owners, milestones, and measurable success criteria.
-- `leadership/staff` — Shape team staffing, role scope, and headcount choices so engineering capacity matches the work that matters most.
-- `leadership/unblock` — Remove delivery blockers by clarifying ownership, negotiating tradeoffs, and escalating only when the team cannot solve the issue locally.
+- Description: Identify and implement a concrete security improvement or remediation.
+- Trigger: When the system needs a specific security fix or hardening step.
+- Primary MCP/tool: repository
+- Fallback: search_query, reference/verify
+- Best guess: A security hardening change or remediation plan.
+- Output: logs/active/<project-slug>/deliverables/platform-engineer.md
+- Done when: The security issue and fix path are explicit.

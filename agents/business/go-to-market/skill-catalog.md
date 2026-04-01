@@ -1,49 +1,65 @@
-# Go-to-Market Skill Catalog
+# Go-To-Market Skill Catalog
 
 Read this file first when you are staffed for orchestrated work.
-It lists only the role-local skills in this folder and keeps descriptions short so you can scan cheaply.
-Open only the matching skill files under `skills/`, then end your closing handoff with `Read <skill-paths> skills for this task.`
+Use this catalog to choose or confirm the exact role-local workflow to run.
+Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
 
-## growth/
+## `campaign-brief`
 
-- `growth/diagnose` — Find the binding growth constraint by reading funnel data, cohort behavior, and segment-level patterns before recommending any move.
-- `growth/experiment` — Design, size, and evaluate growth experiments with clear hypotheses, guardrails, and a decision rule before launch.
-- `growth/instrument` — Specify, audit, and verify growth tracking so funnel metrics are measurable, trustworthy, and ready for experiments.
-- `growth/scale` — Turn proven growth wins into repeatable systems, rollouts, and operating habits that compound safely.
+- Description: Prepare a campaign brief with audience, channel, creative direction, and KPI.
+- Trigger: When marketing execution needs a crisp brief.
+- Primary MCP/tool: notion
+- Fallback: search_query, go-to-market/positioning-brief
+- Best guess: A campaign brief ready for creative or channel execution.
+- Output: logs/active/<project-slug>/deliverables/go-to-market.md
+- Done when: Execution teams know the target, message, and metric.
 
-## marketing/
+## `customer-signal-synthesis`
 
-- `marketing/campaign` — Plan and structure marketing campaigns so objectives, audiences, channels, tracking, and success metrics are aligned before launch.
-- `marketing/channel` — Choose, shape, and improve marketing channels so each one has a clear role in demand generation and a realistic operating model.
-- `marketing/measure` — Define marketing metrics, tracking, and attribution so campaign performance can be trusted and acted on.
-- `marketing/position` — Define ICP, category positioning, and channel-ready messaging so marketing campaigns target the right buyers with a sharp, consistent reason to engage.
+- Description: Turn customer conversations, escalations, or feedback into market-ready insights.
+- Trigger: When field signals need to be distilled into GTM action.
+- Primary MCP/tool: notion, github
+- Fallback: search_query, reference/ground
+- Best guess: A synthesis of customer signals tied to GTM implications.
+- Output: logs/active/<project-slug>/deliverables/go-to-market.md
+- Done when: The team knows what to change in message, launch, or enablement.
 
-## product-marketing/
+## `launch-plan`
 
-- `product-marketing/differentiate` — Build competitive messaging, battlecards, and response patterns that explain why the product wins against alternatives.
-- `product-marketing/enable` — Build sales enablement and customer-facing support materials that help teams explain the product clearly and win confidently.
-- `product-marketing/launch` — Plan, coordinate, and measure product launches so release activity turns into adoption and pipeline.
-- `product-marketing/position` — Define the market narrative, buyer segmentation, competitive differentiation, and proof structure so the product has a defensible, sales-ready position.
+- Description: Build the launch plan with milestones, owners, dependencies, and readiness checks.
+- Trigger: When a feature or product is moving toward release.
+- Primary MCP/tool: notion, linear
+- Fallback: go-to-market/positioning-brief, search_query
+- Best guess: A launch plan with owners and launch gates.
+- Output: logs/active/<project-slug>/deliverables/go-to-market.md
+- Done when: The launch can be run without missing critical steps.
 
-## partnerships/
+## `partner-thesis`
 
-- `partnerships/activate` — Launch, onboard, and operationalize signed partnerships so they produce measurable results.
-- `partnerships/negotiate` — Prepare and run strategic negotiations with a clear BATNA, concession plan, and internal alignment.
-- `partnerships/qualify` — Evaluate partnership targets for strategic fit, business value, feasibility, and readiness to engage.
-- `partnerships/source` — Identify and qualify strategic counterparties, market opportunities, and M&A or investment targets for business development initiatives.
-- `partnerships/structure` — Design portfolio-level deal architectures, market-entry structures, and multi-party commercial frameworks that scale across the business development pipeline.
-- `partnerships/thesis` — Define the strategic thesis for a market move, partnership, or non-standard deal before resources are committed.
+- Description: Define which partners matter, why, and what structure best fits the opportunity.
+- Trigger: When partnership exploration or prioritization is needed.
+- Primary MCP/tool: notion
+- Fallback: search_query, go-to-market/positioning-brief
+- Best guess: A partner thesis with targets and rationale.
+- Output: logs/active/<project-slug>/deliverables/go-to-market.md
+- Done when: The partnership strategy is specific enough to start outreach.
 
-## customer-success/
+## `positioning-brief`
 
-- `customer-success/escalate` — Handle high-risk customer situations with clear criteria, fast internal routing, and a structured recovery plan.
-- `customer-success/health` — Assess customer health using leading indicators, segment-aware thresholds, and clear actions for proactive outreach or escalation.
-- `customer-success/onboard` — Design and run customer onboarding programs that reach first value quickly, establish clear ownership, and set measurable success milestones.
-- `customer-success/renew` — Plan and run renewal work with clear timing, risk management, forecast discipline, and expansion awareness.
+- Description: Define how the product should be positioned against alternatives for a target audience.
+- Trigger: When a market-facing message needs sharpening.
+- Primary MCP/tool: notion
+- Fallback: search_query, reference/ground
+- Best guess: A positioning brief with audience, alternatives, and message pillars.
+- Output: logs/active/<project-slug>/deliverables/go-to-market.md
+- Done when: The team can reuse the positioning consistently.
 
-## sales/
+## `sales-enablement`
 
-- `sales/de-risk` — Identify, document, and reduce technical, security, integration, and delivery risks so the buyer can commit with confidence.
-- `sales/demo` — Design and deliver prospect-specific technical demos that show the product solving the buyer's real use case in a credible environment.
-- `sales/discovery` — Run technical discovery that surfaces the prospect's environment, constraints, stakeholders, and success criteria before any demo, PoC, or commitment.
-- `sales/prove` — Scope and run evidence-driven proofs of value or proof-of-concept work that answer one explicit technical question with measurable success criteria.
+- Description: Produce the core sales narrative, objections, and proof points for the field.
+- Trigger: When sales needs to communicate and defend the product clearly.
+- Primary MCP/tool: notion
+- Fallback: search_query, go-to-market/positioning-brief
+- Best guess: A sales enablement pack with talk track and objection handling.
+- Output: logs/active/<project-slug>/deliverables/go-to-market.md
+- Done when: A seller can use it directly in discovery or demo.

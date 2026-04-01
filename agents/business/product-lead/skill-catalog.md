@@ -1,32 +1,55 @@
 # Product Lead Skill Catalog
 
 Read this file first when you are staffed for orchestrated work.
-It lists only the role-local skills in this folder and keeps descriptions short so you can scan cheaply.
-Open only the matching skill files under `skills/`, then end your closing handoff with `Read <skill-paths> skills for this task.`
+Use this catalog to choose or confirm the exact role-local workflow to run.
+Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
 
-## strategy/
+## `experiment-brief`
 
-- `strategy/compare` — Compare strategic options with explicit criteria, tradeoffs, risks, and decision consequences so the best path is visible.
-- `strategy/frame` — Turn ambiguous strategic problems into a decision-ready frame with the real question, constraints, success criteria, and testable hypotheses.
-- `strategy/plan` — Turn a strategic choice into a concrete plan with sequencing, owners, milestones, and measurable success criteria.
-- `strategy/scan` — Build a disciplined market and competitive scan that surfaces current signals, structural dynamics, and the strategic implications that matter.
+- Description: Define a product experiment with hypothesis, metrics, scope, and decision rules.
+- Trigger: When the team wants to validate an idea before full commitment.
+- Primary MCP/tool: notion, linear
+- Fallback: analyst/experiment-readout, search_query
+- Best guess: An experiment brief with metrics and stop/go criteria.
+- Output: logs/active/<project-slug>/deliverables/product-lead.md
+- Done when: The experiment can be run and judged without inventing criteria later.
 
-## product/
+## `frame-problem`
 
-- `product/align` — Translate a product decision into shared understanding across the immediate team and adjacent stakeholders so execution moves in one direction.
-- `product/frame` — Turn a vague product request into a precise problem statement, boundary, and explicit decision to be made. Use when a request is ambiguous, when success criteria are missing, or when the team disagrees on what problem is actually being solved.
-- `product/prioritize` — Rank product opportunities using explicit criteria, tradeoffs, and evidence so the team can decide what to do next. Use when a roadmap is full, engineering is constrained, or the team disagrees on the highest ROI effort.
-- `product/specify` — Convert an agreed product direction into precise requirements, business rules, and acceptance criteria that can be built and tested. Use when handing off work to engineering, or when a high-level concept needs rigorous functional definition.
+- Description: Turn a raw request into a clear product problem, constraints, success criteria, and decision frame.
+- Trigger: When the request is vague or outcome-first.
+- Primary MCP/tool: notion, repository
+- Fallback: search_query, reference/ground
+- Best guess: A framing brief with objective, constraints, and success criteria.
+- Output: logs/active/<project-slug>/deliverables/product-lead.md
+- Done when: The team can tell what problem is being solved and what is out of scope.
 
-## portfolio/
+## `prioritize-roadmap`
 
-- `portfolio/align` — Align the organization around product strategy by translating portfolio-level decisions into narratives that executives, the board, and cross-functional leaders can act on.
-- `portfolio/allocate` — Distribute product investment across the portfolio with explicit rationale, trade-offs, and review cadence.
-- `portfolio/bet` — Frame strategic product bets with clear hypotheses, evidence, upside, downside, and the signals that will prove or disprove them.
-- `portfolio/focus` — Identify the highest-leverage product priorities, cut distractions, and define what the organization should pay attention to now.
+- Description: Rank work against impact, effort, sequencing, and strategic fit.
+- Trigger: When multiple candidate bets compete for attention.
+- Primary MCP/tool: notion, linear
+- Fallback: analyst/metric-definition, search_query
+- Best guess: A ranked roadmap or priority decision with rationale.
+- Output: logs/active/<project-slug>/deliverables/product-lead.md
+- Done when: The ordering is explicit and tradeoffs are documented.
 
-## requirements/
+## `stakeholder-memo`
 
-- `requirements/apply-patch` — Write and iterate on the Product Lead plan and requirements deliverable artifacts inside `/logs`.
-- `requirements/chrome-navigate-page` — Explore the current product to ground requirements in the actual experience, existing patterns, and real constraints.
-- `requirements/search-query` — Research domain patterns, regulatory requirements, and industry precedents to ground PRD decisions in evidence.
+- Description: Prepare a concise decision memo or update for stakeholders.
+- Trigger: When a product decision needs alignment or reporting.
+- Primary MCP/tool: notion
+- Fallback: search_query, reference/verify
+- Best guess: A stakeholder memo with recommendation, risks, and asks.
+- Output: logs/active/<project-slug>/deliverables/product-lead.md
+- Done when: A stakeholder can read once and know the decision required.
+
+## `write-prd`
+
+- Description: Write a delivery-grade PRD with scope, scenarios, decisions, and acceptance criteria.
+- Trigger: When engineering or design need a precise product spec.
+- Primary MCP/tool: notion, repository
+- Fallback: reference/ground, search_query
+- Best guess: A PRD or equivalent product specification.
+- Output: logs/active/<project-slug>/deliverables/product-lead.md
+- Done when: Executors can build without product ambiguity.

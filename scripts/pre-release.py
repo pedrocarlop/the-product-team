@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Pre-release validation for the Product Team package.
-
-Checks that all generated artifacts are current, all referenced skills exist,
-MCP assignments use known servers, and no orphaned files remain.
-"""
+"""Pre-release validation for the Product Team package."""
 
 from __future__ import annotations
 
@@ -16,7 +12,6 @@ from lib.toml_utils import EXCLUDED_ROLES, discover_toml_paths, load_toml
 
 
 ROOT = Path(__file__).resolve().parents[1]
-
 KNOWN_MCP_SERVERS = {
     "figma",
     "chrome_devtools",
@@ -26,13 +21,31 @@ KNOWN_MCP_SERVERS = {
     "github",
     "paper",
     "stitch",
+    "refero",
+    "google_forms",
 }
-
-REQUIRED_TOML_FIELDS = {
+BANNED_SKILL_NAMES = {
+    "apply-patch",
+    "search-query",
+    "chrome-click",
+    "chrome-lighthouse-audit",
+    "chrome-list-console-messages",
+    "chrome-list-network-requests",
+    "chrome-navigate-page",
+    "chrome-take-snapshot",
+    "figma-get-design-context",
+    "figma-get-screenshot",
+    "image-query",
+}
+REQUIRED_SKILL_FIELDS = {
     "name",
-    "display_name",
     "description",
-    "system_prompt",
+    "trigger",
+    "primary_mcp",
+    "fallback_tools",
+    "best_guess_output",
+    "output_artifacts",
+    "done_when",
 }
 
 
@@ -41,143 +54,67 @@ def expect(condition: bool, message: str, failures: list[str]) -> None:
         failures.append(message)
 
 
-def check_generated_artifacts(failures: list[str]) -> None:
-    """Verify role catalog and managed archetype prompts are current."""
-    for script, label in [
-        ("scripts/render_role_catalog.py", "Role catalog"),
-        ("scripts/render_skill_catalogs.py", "Skill catalogs"),
-        ("scripts/render_role_prompts.py", "Archetype prompts"),
-    ]:
-        result = subprocess.run(
-            [sys.executable, str(ROOT / script), "--check"],
-            capture_output=True,
-            text=True,
-        )
-        if result.returncode != 0:
-            failures.append(f"{label}: {result.stderr.strip()}")
-        else:
-            print(f"  OK: {label} are current.")
-
-
-def check_orchestrator_contract(failures: list[str]) -> None:
-    """Verify orchestrator contract checks pass."""
-    result = subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "check-orchestrator-scenarios.py")],
-        capture_output=True,
-        text=True,
-    )
+def run_check(script: str, label: str, failures: list[str]) -> None:
+    result = subprocess.run([sys.executable, str(ROOT / script), "--check"], capture_output=True, text=True)
     if result.returncode != 0:
-        failures.append(f"Orchestrator contract: {result.stderr.strip()}")
+        failures.append(f"{label}: {result.stderr.strip()}")
     else:
-        print("  OK: Orchestrator contract checks passed.")
+        print(f"  OK: {label} are current.")
 
 
-def check_skills_integrity(failures: list[str]) -> None:
-    """Verify all local_skills have matching .md files and no orphans exist."""
-    toml_paths = discover_toml_paths(ROOT)
+def parse_front_matter(path: Path) -> dict[str, str]:
+    text = path.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
+        return {}
+    body = text.split("---\n", 2)[1]
+    fields: dict[str, str] = {}
+    for line in body.splitlines():
+        if not line.strip() or ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        fields[key.strip()] = value.strip().strip('"').strip("'")
+    return fields
 
-    for toml_path in toml_paths:
+
+def check_role_and_skill_contracts(failures: list[str]) -> None:
+    for toml_path in discover_toml_paths(ROOT):
         data = load_toml(toml_path)
-        role_name = data["name"]
-        if role_name in EXCLUDED_ROLES:
+        role = data["name"]
+        mcp_servers = set(data.get("capabilities", {}).get("mcp_servers", []))
+        for server in mcp_servers:
+            expect(server in KNOWN_MCP_SERVERS, f"{role}: unknown mcp_server '{server}'.", failures)
+
+        if role in EXCLUDED_ROLES:
             continue
 
         skills_dir = toml_path.parent / "skills"
-        local_skills = data.get("capabilities", {}).get("local_skills", [])
+        skill_files = sorted(skills_dir.rglob("*.md"))
+        expect(4 <= len(skill_files) <= 8, f"{role}: must have 4-8 core skills; found {len(skill_files)}.", failures)
 
-        if not skills_dir.is_dir():
-            if local_skills:
-                failures.append(
-                    f"{role_name}: declares local_skills {local_skills} "
-                    f"but has no skills/ directory."
-                )
-            continue
+        for skill_path in skill_files:
+            fields = parse_front_matter(skill_path)
+            missing = REQUIRED_SKILL_FIELDS - set(fields)
+            expect(not missing, f"{role}: {skill_path.name} missing fields: {', '.join(sorted(missing))}.", failures)
+            expect(skill_path.stem not in BANNED_SKILL_NAMES, f"{role}: banned thin-wrapper skill remains: {skill_path.name}.", failures)
 
-        existing_skill_files = {p.stem for p in skills_dir.rglob("*.md")}
-
-        for skill in local_skills:
-            if skill == "reference" or skill.startswith("product-team-"):
-                continue
-            skill_stem = skill.removesuffix(".md")
-            if skill_stem not in existing_skill_files:
-                failures.append(
-                    f"{role_name}: local_skills references '{skill}' "
-                    f"but no skills/{skill_stem}.md found."
-                )
-
-    print("  OK: Skills integrity checked.")
-
-
-def check_mcp_servers(failures: list[str]) -> None:
-    """Verify all mcp_servers entries use known server names."""
-    toml_paths = discover_toml_paths(ROOT)
-
-    for toml_path in toml_paths:
-        data = load_toml(toml_path)
-        role_name = data["name"]
-        mcp_servers = data.get("capabilities", {}).get("mcp_servers", [])
-
-        for server in mcp_servers:
-            if server not in KNOWN_MCP_SERVERS:
-                failures.append(
-                    f"{role_name}: unknown mcp_server '{server}'. "
-                    f"Known: {', '.join(sorted(KNOWN_MCP_SERVERS))}."
-                )
-
-    print("  OK: MCP server assignments are valid.")
-
-
-def check_required_fields(failures: list[str]) -> None:
-    """Verify all specialist TOMLs have required fields."""
-    toml_paths = discover_toml_paths(ROOT)
-
-    for toml_path in toml_paths:
-        data = load_toml(toml_path)
-        role_name = data.get("name", toml_path.stem)
-
-        for field in REQUIRED_TOML_FIELDS:
-            expect(
-                field in data and data[field],
-                f"{role_name}: missing required field '{field}'.",
-                failures,
-            )
-
-        expect(
-            "execution_policy" in data and "role_kind" in data.get("execution_policy", {}),
-            f"{role_name}: missing execution_policy.role_kind.",
-            failures,
-        )
-        expect(
-            "execution_policy" in data and "repo_write_policy" in data.get("execution_policy", {}),
-            f"{role_name}: missing execution_policy.repo_write_policy.",
-            failures,
-        )
-
-        expect(
-            "role_boundary" in data and "owns" in data.get("role_boundary", {}),
-            f"{role_name}: missing role_boundary.owns.",
-            failures,
-        )
-
-        if role_name not in EXCLUDED_ROLES and role_name != "orchestrator":
-            expect(
-                "role_boundary" in data and "handoff_to" in data.get("role_boundary", {}),
-                f"{role_name}: missing role_boundary.handoff_to.",
-                failures,
-            )
-
-    print("  OK: Required fields present in all TOMLs.")
+    print("  OK: Role and skill contracts checked.")
 
 
 def main() -> int:
     print("Running pre-release checks...\n")
     failures: list[str] = []
 
-    check_generated_artifacts(failures)
-    check_orchestrator_contract(failures)
-    check_skills_integrity(failures)
-    check_mcp_servers(failures)
-    check_required_fields(failures)
+    run_check("scripts/render_role_catalog.py", "Role catalog", failures)
+    run_check("scripts/render_skill_catalogs.py", "Skill catalogs", failures)
+    run_check("scripts/render_role_prompts.py", "Archetype prompts", failures)
+
+    result = subprocess.run([sys.executable, str(ROOT / "scripts" / "check-orchestrator-scenarios.py")], capture_output=True, text=True)
+    if result.returncode != 0:
+        failures.append(f"Orchestrator contract: {result.stderr.strip()}")
+    else:
+        print("  OK: Orchestrator contract checks passed.")
+
+    check_role_and_skill_contracts(failures)
 
     print()
     if failures:

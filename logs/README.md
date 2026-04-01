@@ -1,6 +1,6 @@
 # `/logs` — Project Memory
 
-`/logs` is the persistent memory surface for the product team workflow.
+`/logs` is the persistent memory surface for the Product Team workflow.
 
 ## Project Slug
 
@@ -23,18 +23,17 @@ logs/
 
 ## context.md
 
-One file per project. It records the project context in a structured form:
+One file per project. It records:
 
-- **Goal**: What we're building and why
-- **Constraints**: Timelines, technical limits, dependencies
-- **Decisions**: Key choices made and rationale
-- **Roles**: Who is working on what (when orchestrated)
-- **State**: Current status (planning / in-progress / blocked / complete / archived)
-- **Deliverables**: Detailed list of outputs with linked paths
-- **Open questions**: Unresolved items
+- Goal and constraints
+- Done-when criteria
+- Staffed roles
+- Exact `skill_paths`
+- Primary tools and fallback policy
+- Status, blockers, and key decisions
 
 ### context.md Metadata (YAML Header)
-Each `context.md` must start with a YAML block for programmatic verification:
+
 ```yaml
 ---
 slug: <project-slug>
@@ -47,10 +46,12 @@ status: <planning|executing|blocked|complete>
 
 ## deliverables/
 
-Deliverables are the primary output of specialists. They must follow a structured **"Artifact Handshake"** format.
+Deliverables are the primary output of staffed specialists.
 
 ### Deliverable Header (YAML)
-Every deliverable file (`logs/active/<slug>/deliverables/*.md`) must begin with:
+
+Every deliverable file must begin with:
+
 ```yaml
 ---
 role: <role-name>
@@ -58,42 +59,60 @@ project: <slug>
 deliverable: <file-basename>
 confidence: <0.0-1.0>
 inputs_used: [<file-paths>]
+evidence_mode: <sourced|fallback|inferred>
 ---
 ```
 
 ### Mandatory Reflection
-Every deliverable must end with a `## Reflection` section where the executor self-critiques the result:
-- **What worked**: Successful implementation details.
-- **What didn't**: Trade-offs, shortcuts, or known limitations.
-- **Next steps**: Specific guidance for downstream roles (e.g., "Reviewer should check the X module specifically for Y").
 
-Keep it concise. This is a continuity reference, not a process artifact.
+Every deliverable must end with a `## Reflection` section:
+
+- **What worked**
+- **What didn't**
+- **Next steps**
+
+## Assignment Contract
+
+When the orchestrator staffs specialists, it assigns work with:
+
+- `assignment_mode`
+- `owned_outputs`
+- `reads_from`
+- `repo_write_owner`
+- `repo_write_scope`
+- `return_expected`
+- `skill_paths`
+- `primary_tools`
+- `fallback_policy`
+- `evidence_mode`
+
+The global fallback rule is:
+
+`primary MCP -> alternative tool/MCP -> best guess inferred output`
+
+If a role is forced into best-guess mode, the resulting deliverable must be labeled `inferred`.
 
 ## TIMELINE.md
 
-Chronological index of all projects. Newest entries at the bottom.
+Chronological index of all projects.
 
 | Column | Content |
 |---|---|
 | Date | Project start date (YYYY-MM-DD) |
-| Slug | Project slug, linked to the project folder |
-| Objective | One-line project goal |
-| Roles | Comma-separated list of staffed roles |
+| Slug | Project slug |
+| Objective | One-line goal |
+| Roles | Comma-separated staffed roles |
 | Status | planning / in-progress / blocked / complete / archived |
 
-## Orchestration
-
-Routing, staffing, planning, and approval happen in the context window. The orchestrator does not need separate files for those steps. Persist only project context and deliverables.
-
-### Repo Implementation Ownership
+## Repo Implementation Ownership
 
 Staffed specialists may always write the `/logs` artifacts listed in their assignment. Repo-tracked app code is stricter:
 
-- The orchestrator assigns repo implementation with an explicit contract: `assignment_mode`, `owned_outputs`, `reads_from`, `repo_write_owner`, `repo_write_scope`, and `return_expected`.
+- The orchestrator assigns repo implementation with an explicit contract.
 - Only one explicit `repo_write_owner` should exist per execution stage by default.
-- Parallel repo writers are allowed only when the orchestrator assigns disjoint `repo_write_scope` values.
+- Parallel repo writers are allowed only when `repo_write_scope` values are explicitly disjoint.
 - If a role is not the named `repo_write_owner`, it should return a mismatch note instead of editing repo-tracked files.
 
 ## Archive
 
-Move projects from `active/` to `archive/` when complete, abandoned, or inactive for 30+ days. Update `context.md` state before archiving.
+Move projects from `active/` to `archive/` when complete, abandoned, or inactive for 30+ days. Update `context.md` before archiving.

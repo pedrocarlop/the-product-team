@@ -1,78 +1,58 @@
 # Role Catalog
 
-This is the canonical archetype catalog for orchestrator staffing decisions when orchestration is actually warranted.
+This is the canonical staffed-role catalog for Product Team orchestration decisions.
 
-- Route by domain first.
-- If the task is clearly single-domain, consult only the relevant discipline slice before staffing.
-- Read the full catalog only when the work is ambiguous, cross-functional, or the right team is genuinely unclear.
-- `orchestrator` and `reference` are intentionally excluded because they are workflow support roles, not staffed archetypes.
-- Each archetype organizes skills into discipline groups and routes internally, so one staffed role can cover multiple specialties without handoff.
-- Generated from the managed archetype TOMLs under `agents/`. Refresh with `python3 scripts/render_role_catalog.py --write`.
+- Route by real job function, not by abstract discipline labels alone.
+- Staff the minimum viable role set and assign exact `skill_paths` instead of vague domain ownership.
+- `reference` remains a helper role for grounding, tracing, reuse, and verification; it is not a staffed specialist.
+- Every staffed role is skill-first and MCP-first: primary MCP -> alternative tool/MCP -> best guess inferred output.
 
 ## Business Roles
 
-- `product-lead` (Product Lead, executor) — Why: Own product vision, strategy, discovery, prioritization, requirements authoring, and delivery coordination. Owns: product vision and strategy, product discovery and prioritization, and requirements authoring and PRD. Repo writes: never in staffed workflows.
-- `analyst` (Analyst, executor) — Why: Transform data into decisions through metrics analysis, financial modeling, forecasting, and revenue operations. Owns: data analysis and metrics, financial modeling and forecasting, and revenue operations and pipeline. Repo writes: never in staffed workflows.
-- `go-to-market` (Go-to-Market, executor) — Why: Drive growth, marketing, positioning, partnerships, customer success, sales engineering, and go-to-market execution. Owns: growth and acquisition funnel, marketing and demand generation, and positioning and GTM strategy. Repo writes: never in staffed workflows.
-- `business-ops` (Business Ops, executor) — Why: Own business analysis, process mapping, operational systems design, and coordination mechanisms. Owns: business analysis and requirements elicitation, process mapping and gap analysis, and operational systems design. Repo writes: never in staffed workflows.
+- `product-lead` (Product Lead, executor) — Why: Own problem framing, product specification, prioritization, and decision communication for cross-functional delivery. Owns: problem framing, product specification, prioritization. Repo writes: never in staffed workflows.
+- `analyst` (Analyst, executor) — Why: Own metric definition, funnel diagnosis, forecasting, experiment readouts, and data storytelling for product decisions. Owns: metric frameworks, funnel diagnosis, forecasting. Repo writes: never in staffed workflows.
+- `go-to-market` (Go-To-Market, executor) — Why: Own positioning, launch planning, campaign briefs, sales enablement, partner strategy, and customer-signal synthesis. Owns: positioning, launch execution, campaign planning. Repo writes: never in staffed workflows.
+- `business-ops` (Business Ops, executor) — Why: Own process mapping, operating cadence, tooling design, and execution tracking for cross-functional operations. Owns: process design, operating cadence, tooling workflows. Repo writes: never in staffed workflows.
 
 ## Design Roles
 
-- `designer` (Designer, executor) — Why: Own all design execution from research through visual delivery — UX flows, UI surfaces, content, motion, accessibility, information architecture, localization, and service design. Owns: UX flows and interaction models, UI surfaces and visual design, and content and microcopy. Repo writes: never in staffed workflows.
-- `design-systems` (Design Systems, executor) — Why: Build and govern the design system — token architecture, component library, prototyping, design tooling, and quality standards. Owns: token architecture, component library specs, and design-system governance. Repo writes: never in staffed workflows.
+- `ux-researcher` (UX Researcher, executor) — Why: Own research planning, participant screeners, interview guides, competitor benchmarking, synthesis, and insight readouts. Owns: research planning, participant recruiting artifacts, interview and workshop synthesis. Repo writes: never in staffed workflows.
+- `product-designer` (Product Designer, executor) — Why: Own problem framing, journeys, flows, wireframes, interaction specifications, and validation-ready handoffs for product experiences. Owns: problem framing for design, journey and flow design, wireframes. Repo writes: never in staffed workflows.
+- `ui-designer` (UI Designer, executor) — Why: Own visual concept direction, screen production design, responsive/state specs, component design, and final visual polish. Owns: visual concept direction, screen design, responsive and state specifications. Repo writes: never in staffed workflows.
+- `content-designer` (Content Designer, executor) — Why: Own microcopy systems, state messaging, naming, guidance, localization preparation, and product content reviews. Owns: microcopy design, state messaging, naming systems. Repo writes: never in staffed workflows.
+- `design-systems-designer` (Design Systems Designer, executor) — Why: Own system audits, token architecture, spacing scales, atomic libraries, component governance, design-code mapping, and system QA. Owns: design system audits, token architecture, spacing systems. Repo writes: never in staffed workflows.
 
 ## Engineering Roles
 
-- `engineer` (Engineer, executor) — Why: Own all implementation from UI components through backend services, mobile apps, and ML systems. Owns: frontend component architecture, backend services and business logic, and fullstack feature implementation. Repo writes: only when explicitly assigned implementation ownership for a bounded repo scope.
-- `platform-engineer` (Platform Engineer, executor) — Why: Own API design, database, data pipelines, DevOps, performance, security, architecture, and engineering leadership. Owns: API contract design, database systems, and data pipelines and warehousing. Repo writes: only when explicitly assigned implementation ownership for a bounded repo scope.
+- `frontend-engineer` (Frontend Engineer, executor) — Why: Own implementation from design, stateful UI behavior, responsive refinement, component implementation, browser debugging, and frontend verification. Owns: UI implementation, component behavior, responsive behavior. Repo writes: only when explicitly assigned implementation ownership for a bounded repo scope.
+- `backend-engineer` (Backend Engineer, executor) — Why: Own API implementation, domain models, integration flows, backend observability, and backend verification. Owns: API implementation, domain logic, integration flows. Repo writes: only when explicitly assigned implementation ownership for a bounded repo scope.
+- `platform-engineer` (Platform Engineer, executor) — Why: Own schema migrations, pipeline orchestration, infrastructure releases, performance investigation, security hardening, and CI/CD governance. Owns: schema and migration design, platform pipelines, infrastructure changes. Repo writes: only when explicitly assigned implementation ownership for a bounded repo scope.
 
 ## Review Roles
 
-- `reviewer` (Reviewer, reviewer) — Why: Validate work across all disciplines — requirements, UX flows, usability, copy, design system, engineering, and quality assurance. Owns: requirements review, UX flow validation, and usability review. Repo writes: never in staffed workflows.
+- `design-reviewer` (Design Reviewer, reviewer) — Why: Validate visual fidelity, usability, accessibility, copy quality, and design-system compliance before release. Owns: design fidelity validation, usability review, accessibility review. Repo writes: never in staffed workflows.
+- `qa-reviewer` (QA Reviewer, reviewer) — Why: Validate requirements traceability, test plans, runtime behavior, regressions, and release readiness. Owns: requirements traceability review, test plan review, runtime and network audit. Repo writes: never in staffed workflows.
 
 ## Common Team Patterns
 
-These patterns help the orchestrator staff teams for frequent task types. They are starting points, not rigid requirements — always assess actual role needs. Each archetype routes internally to the right discipline group, so a single `designer` handles research → UX → UI → content without separate handoffs.
-
-- **UI Feature**: `designer` → `engineer` (+ `reviewer` for complex flows)
-- **API Feature**: `engineer` + `platform-engineer` (+ `reviewer`)
-- **Full Feature**: `product-lead` → `designer` → `engineer` (+ `reviewer`)
-- **Design System Update**: `design-systems` (+ `reviewer`)
-- **Data Pipeline**: `platform-engineer` (+ `reviewer`)
-- **Growth Initiative**: `go-to-market` + `analyst` + `product-lead`
-- **Infrastructure Change**: `platform-engineer` (+ `reviewer`)
-- **Mobile Feature**: `designer` → `engineer` (+ `reviewer`)
-- **Content Update**: `designer` (content/ + localization/ discipline groups)
-- **Strategy**: `product-lead` + `analyst`
+- **Research-heavy discovery**: `ux-researcher` -> `product-designer` -> `product-lead`
+- **Greenfield visual concept**: `product-designer` -> `ui-designer` -> `frontend-engineer` -> `design-reviewer`
+- **Feature delivery**: `product-lead` -> `product-designer` or `ui-designer` -> `frontend-engineer` or `backend-engineer` -> `qa-reviewer`
+- **Design system work**: `design-systems-designer` -> `frontend-engineer` -> `design-reviewer`
+- **Platform change**: `platform-engineer` -> `qa-reviewer`
+- **Go-to-market launch**: `product-lead` + `go-to-market` + `analyst`
 
 ## Sequencing Rules
 
-- Product-lead before design: designers need approved requirements as input.
-- Design before engineering: engineers implement from approved design, not the reverse.
-- Engineering before review: the reviewer is staffed after executors produce artifacts.
-- Reviewers do not execute: the reviewer validates and recommends, it does not fix or reauthor.
-- Repo-tracked app code has one explicit implementation owner per stage; parallel repo writers need disjoint scopes.
-- Each archetype chains discipline groups internally — no handoff needed within a single role.
+- Product framing before downstream execution when requirements are still ambiguous.
+- Research before product/UI design when the user problem is not yet well grounded.
+- Product/UI/content design before frontend implementation when user-facing behavior is still open.
+- Backend and platform work may run in parallel only with disjoint ownership and explicit contracts.
+- Design review and QA review happen after executor outputs exist; reviewers do not fix the work themselves.
+- Only one explicit repo implementation owner exists per stage by default.
 
 ## Skill Routing
 
-Each archetype organizes skills into discipline groups. The archetype routes internally to the right group:
-
-- `designer`: research/ → ux/ → ui/ → content/ → motion/ → accessibility/ → architecture/ → localization/ → service/
-- `design-systems`: system/ → technology/ → direction/ → operations/
-- `product-lead`: strategy/ → product/ → portfolio/ → requirements/
-- `analyst`: data/ → financial/ → revenue/
-- `go-to-market`: growth/ → marketing/ → product-marketing/ → partnerships/ → customer-success/ → sales/
-- `business-ops`: analysis/ → operations/
-- `engineer`: frontend/ → backend/ → fullstack/ → mobile/ → ml/ → implementation/
-- `platform-engineer`: api/ → database/ → data/ → devops/ → performance/ → security/ → architecture/ → leadership/
-- `reviewer`: requirements/ → ux-flow/ → usability/ → copy/ → design-system/ → engineering/ → qa/
-
-## Conflict Resolution
-
-When archetypes produce conflicting advice or deliverables:
-
-1. Both positions are documented in `decisions/<topic>.md` with rationale.
-2. The orchestrator consults the archetype whose ownership area covers the disputed scope.
-3. The orchestrator makes a binding decision and records the resolution in `decisions/`.
-4. Overruled archetypes acknowledge the decision and align their work accordingly.
+- Roles are selected first by job function, then by exact `skill_paths`.
+- Do not assign a role without also assigning the core action it must execute.
+- Use `ui-designer` for Stitch-first concept work, `design-systems-designer` for token/library governance, `ux-researcher` for research operations and synthesis, and `qa-reviewer` for release readiness.

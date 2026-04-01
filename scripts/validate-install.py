@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import tomllib
 from pathlib import Path
@@ -12,7 +13,8 @@ MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
 MARKER_END = "<!-- PRODUCT_TEAM_FOR_CODEX:END -->"
 EXPECTED_REPO_WRITE_POLICIES = {
     "orchestrator": "direct_only",
-    "engineer": "explicit_owner_only",
+    "frontend-engineer": "explicit_owner_only",
+    "backend-engineer": "explicit_owner_only",
     "platform-engineer": "explicit_owner_only",
     "reference": "never",
 }
@@ -40,8 +42,7 @@ def expect(condition: bool, message: str, failures: list[str]) -> None:
 
 
 def load_manifest(root: Path) -> dict:
-    manifest_path = root / ".codex" / PACKAGE_SLUG / "manifest.json"
-    return json.loads(manifest_path.read_text(encoding="utf-8"))
+    return json.loads((root / ".codex" / PACKAGE_SLUG / "manifest.json").read_text(encoding="utf-8"))
 
 
 def load_toml(path: Path) -> dict:
@@ -49,22 +50,10 @@ def load_toml(path: Path) -> dict:
 
 
 def installed_role_paths(root: Path, role: dict) -> tuple[Path, Path, Path]:
-    installed_name = role["installed_name"]
-    relative_toml_path = role.get("relative_toml_path")
-    relative_skills_dir = role.get("relative_skills_dir")
-    relative_catalog_path = role.get("relative_catalog_path")
-
-    if relative_toml_path and relative_skills_dir and relative_catalog_path:
-        return (
-            root / Path(relative_toml_path),
-            root / Path(relative_skills_dir),
-            root / Path(relative_catalog_path),
-        )
-
     return (
-        root / ".codex" / "agents" / f"{installed_name}.toml",
-        root / ".codex" / "agents" / installed_name / "skills",
-        root / ".codex" / "agents" / installed_name / "skill-catalog.md",
+        root / Path(role["relative_toml_path"]),
+        root / Path(role["relative_skills_dir"]),
+        root / Path(role["relative_catalog_path"]),
     )
 
 
@@ -77,132 +66,72 @@ def main() -> int:
         print(f"FAIL: {exc}", file=sys.stderr)
         return 1
 
-    manifest_path = root / ".codex" / PACKAGE_SLUG / "manifest.json"
-    expect(manifest_path.exists(), f"Missing manifest: {manifest_path}", failures)
-    if failures:
-        for failure in failures:
-            print(f"FAIL: {failure}", file=sys.stderr)
-        return 1
-
     manifest = load_manifest(root)
     expected_roles = manifest.get("roles", [])
-    roles_by_name = {role["installed_name"]: role for role in expected_roles}
     installed_names = {role["installed_name"] for role in expected_roles}
-    install_source = manifest.get("install_source", {})
 
     expect(manifest.get("package_name") == PACKAGE_SLUG, "Manifest package_name is incorrect.", failures)
     expect(f"{PACKAGE_SLUG}-orchestrator" in installed_names, "Manifest is missing the orchestrator role.", failures)
     expect(f"{PACKAGE_SLUG}-reference" in installed_names, "Manifest is missing the reference role.", failures)
-    expect(
-        any(install_source.get(key) for key in ("local_source_root", "repo_url", "archive_url")),
-        "Manifest is missing install_source metadata for future updates.",
-        failures,
-    )
 
     agents_md = root / "AGENTS.md"
     expect(agents_md.exists(), "Missing AGENTS.md in target project.", failures)
     if agents_md.exists():
         agents_text = agents_md.read_text(encoding="utf-8")
         expect(MARKER_START in agents_text and MARKER_END in agents_text, "AGENTS.md is missing Product Team markers.", failures)
-        expect("Route every request in this repository through `product-team-orchestrator` by default." in agents_text, "AGENTS.md is missing the all-requests-through-orchestrator rule.", failures)
-        expect("Only bypass Product Team when the user explicitly says not to use Product Team" in agents_text, "AGENTS.md is missing the explicit Product Team opt-out rule.", failures)
-        expect("Do not infer an opt-out from simplicity, urgency, or implementation bias alone." in agents_text, "AGENTS.md is missing the no-inferred-opt-out rule.", failures)
-        expect("stay direct within the orchestrator" in agents_text, "AGENTS.md is missing the direct-inside-orchestrator clarification.", failures)
-        expect("repo_write_owner" in agents_text and "repo_write_scope" in agents_text, "AGENTS.md is missing the explicit repo ownership contract.", failures)
-        expect("Repo-tracked app code must have one explicit implementation owner per stage." in agents_text, "AGENTS.md is missing the one-owner repo rule.", failures)
+        expect("skill_paths" in agents_text, "AGENTS.md is missing the skill_paths assignment rule.", failures)
+        expect("primary MCP -> alternative tool/MCP -> best guess inferred output" in agents_text, "AGENTS.md is missing the fallback rule.", failures)
 
-    expect((root / "logs" / "active").is_dir(), "Missing logs/active directory.", failures)
-    expect((root / "logs" / "archive").is_dir(), "Missing logs/archive directory.", failures)
-
-    refs_root = root / ".codex" / PACKAGE_SLUG / "references"
-    scripts_root = root / ".codex" / PACKAGE_SLUG / "scripts"
     package_readme_path = root / ".codex" / PACKAGE_SLUG / "README.md"
-    expect((refs_root / "logs-workflow-contract.md").exists(), "Missing installed logs contract reference doc.", failures)
-    expect((refs_root / "role-catalog.md").exists(), "Missing installed role catalog reference doc.", failures)
-    expect((scripts_root / "validate-install.py").exists(), "Missing installed validate-install.py script.", failures)
-    expect((scripts_root / "update-install.py").exists(), "Missing installed update-install.py script.", failures)
     expect(package_readme_path.exists(), "Missing installed package README.", failures)
     if package_readme_path.exists():
         package_readme = package_readme_path.read_text(encoding="utf-8")
-        expect("Every request in this repository should go through `product-team-orchestrator` by default." in package_readme, "Installed package README is missing the default-all-requests-through-orchestrator rule.", failures)
-        expect("Only an explicit user opt-out" in package_readme, "Installed package README is missing the explicit opt-out rule.", failures)
-        expect("the direct path is chosen inside the orchestrator" in package_readme, "Installed package README is missing the direct-inside-orchestrator clarification.", failures)
-        expect("Repo-tracked app code is stricter: one explicit implementation owner per stage by default." in package_readme, "Installed package README is missing the repo ownership rule.", failures)
-    if (refs_root / "logs-workflow-contract.md").exists():
-        logs_contract = (refs_root / "logs-workflow-contract.md").read_text(encoding="utf-8")
-        expect("The orchestrator assigns repo implementation with an explicit contract" in logs_contract, "Installed logs contract is missing the repo ownership contract.", failures)
-        expect("Only one explicit `repo_write_owner` should exist per execution stage by default." in logs_contract, "Installed logs contract is missing the one-owner repo rule.", failures)
-        expect("return a mismatch note instead of editing repo-tracked files" in logs_contract, "Installed logs contract is missing the mismatch-on-repo-write rule.", failures)
+        expect("ui-designer" in package_readme and "ux-researcher" in package_readme, "Installed package README missing new role topology.", failures)
+        expect("primary MCP -> alternative tool/MCP -> best guess inferred output" in package_readme, "Installed package README missing fallback rule.", failures)
 
-    orchestrator_name = f"{PACKAGE_SLUG}-orchestrator"
-    reference_name = f"{PACKAGE_SLUG}-reference"
+    logs_contract = root / ".codex" / PACKAGE_SLUG / "references" / "logs-workflow-contract.md"
+    expect(logs_contract.exists(), "Missing installed logs contract reference doc.", failures)
+    if logs_contract.exists():
+        logs_text = logs_contract.read_text(encoding="utf-8")
+        expect("evidence_mode" in logs_text, "Installed logs contract missing evidence_mode.", failures)
+        expect("skill_paths" in logs_text, "Installed logs contract missing skill_paths.", failures)
 
     for role in expected_roles:
         source_name = role["source_name"]
-        installed_name = role["installed_name"]
         toml_path, skills_dir, catalog_path = installed_role_paths(root, role)
-
         expect(toml_path.exists(), f"Missing agent definition: {toml_path}", failures)
         expect(skills_dir.is_dir(), f"Missing skills directory: {skills_dir}", failures)
         expect(catalog_path.exists(), f"Missing skill catalog: {catalog_path}", failures)
-        if skills_dir.is_dir():
-            expect(any(path.suffix == ".md" for path in skills_dir.rglob("*.md")), f"No markdown skills found in {skills_dir}", failures)
-        if catalog_path.exists():
-            catalog_text = catalog_path.read_text(encoding="utf-8")
-            expect("Read this file first" in catalog_text, f"{catalog_path}: skill catalog missing quick-scan guidance.", failures)
-            expect("Read <skill-paths> skills for this task." in catalog_text, f"{catalog_path}: skill catalog missing handoff note contract.", failures)
 
         if not toml_path.exists():
             continue
 
         data = load_toml(toml_path)
-        expect(data.get("name") == installed_name, f"{toml_path}: name must be {installed_name!r}.", failures)
+        prompt = data.get("system_prompt", "")
 
-        role_boundary = data.get("role_boundary", {})
-        capabilities = data.get("capabilities", {})
-        local_skills = capabilities.get("local_skills", [])
+        expect(data.get("name") == role["installed_name"], f"{toml_path}: installed name mismatch.", failures)
+        expect(data.get("execution_policy", {}).get("repo_write_policy") == expected_repo_write_policy(source_name), f"{toml_path}: unexpected repo_write_policy.", failures)
+        expect("model_reasoning_effort" in toml_path.read_text(encoding="utf-8"), f"{toml_path}: must use model_reasoning_effort.", failures)
+        expect(re.search(r"^reasoning_effort\\s*=", toml_path.read_text(encoding="utf-8"), re.MULTILINE) is None, f"{toml_path}: uses legacy reasoning_effort.", failures)
 
         if source_name == "orchestrator":
-            execution_policy = data.get("execution_policy", {})
-            expect(execution_policy.get("role_kind") == "orchestrator", f"{toml_path}: orchestrator role_kind must be orchestrator.", failures)
-            expect(execution_policy.get("repo_write_policy") == "direct_only", f"{toml_path}: orchestrator repo_write_policy must be direct_only.", failures)
-            prompt = data.get("system_prompt", "")
-            expect("your own `skill-catalog.md`" in prompt, f"{toml_path}: orchestrator prompt missing own-skill scan rule.", failures)
-            expect("Do you want to proceed?" in prompt, f"{toml_path}: orchestrator prompt missing approval handoff question.", failures)
-            expect("assignment_mode" in prompt and "repo_write_owner" in prompt and "repo_write_scope" in prompt, f"{toml_path}: orchestrator prompt missing explicit assignment contract.", failures)
-            expect("In direct execution, you may edit repo-tracked files yourself." in prompt, f"{toml_path}: orchestrator prompt missing direct repo-write rule.", failures)
-            expect("Once orchestration is chosen and a staffed implementation owner exists" in prompt, f"{toml_path}: orchestrator prompt missing coordination-only-after-delegation rule.", failures)
-            expect("Allow only one repo-writing owner per execution stage by default." in prompt, f"{toml_path}: orchestrator prompt missing one-owner-per-stage rule.", failures)
-            if catalog_path.exists():
-                catalog_text = catalog_path.read_text(encoding="utf-8")
-                expect("Read this file first on every request before meaningful work." in catalog_text, f"{catalog_path}: orchestrator skill catalog missing every-request scan rule.", failures)
-        else:
-            handoff_to = role_boundary.get("handoff_to", [])
-            expect(orchestrator_name in handoff_to, f"{toml_path}: handoff_to must include {orchestrator_name!r}.", failures)
-            if source_name != "reference":
-                prompt = data.get("system_prompt", "")
-                expect("execution-grade plan" in prompt, f"{toml_path}: specialist prompt missing detailed planning rule.", failures)
-                expect("Role-local skills consulted" in prompt, f"{toml_path}: specialist prompt missing skills-consulted planning section.", failures)
-                expect("Critical details that must survive merge" in prompt, f"{toml_path}: specialist prompt missing must-carry detail section contract.", failures)
-                expect("Do not silently drop planned concrete details" in prompt, f"{toml_path}: specialist prompt missing execution detail preservation rule.", failures)
-                expect(all(token in prompt for token in ("assignment_mode", "owned_outputs", "reads_from", "repo_write_owner", "repo_write_scope", "return_expected")), f"{toml_path}: specialist prompt missing explicit assignment contract.", failures)
-                expect("repo-tracked files" in prompt, f"{toml_path}: specialist prompt missing repo-tracked-file guardrail.", failures)
-                expected_policy = expected_repo_write_policy(source_name)
-                expect(data.get("execution_policy", {}).get("repo_write_policy") == expected_policy, f"{toml_path}: repo_write_policy must be {expected_policy!r}.", failures)
-                if expected_policy == "explicit_owner_only":
-                    expect(f'`repo_write_owner = "{source_name}"`' in prompt, f"{toml_path}: specialist prompt missing explicit repo-write-owner match rule.", failures)
-                else:
-                    expect("You never own repo-tracked implementation in staffed workflows." in prompt, f"{toml_path}: specialist prompt missing artifact-only repo refusal rule.", failures)
-            else:
-                expect(data.get("execution_policy", {}).get("repo_write_policy") == "never", f"{toml_path}: reference repo_write_policy must be 'never'.", failures)
-                expect("You never own repo-tracked implementation" in data.get("system_prompt", ""), f"{toml_path}: reference prompt missing no-repo-write rule.", failures)
+            expect("skill_paths" in prompt and "primary_tools" in prompt and "fallback_policy" in prompt and "evidence_mode" in prompt, f"{toml_path}: orchestrator prompt missing new assignment fields.", failures)
+            continue
 
-        expect("reference" not in local_skills, f"{toml_path}: local_skills must not contain bare 'reference'.", failures)
+        if source_name == "reference":
+            expect(data.get("outputs", {}).get("artifact_paths", []) == [], f"{toml_path}: reference must not own artifacts.", failures)
+            expect(data.get("permissions", {}).get("may_write_paths", []) == [], f"{toml_path}: reference must not write artifacts.", failures)
+            continue
 
-        if source_name != "reference" and reference_name in local_skills:
-            reference_role = roles_by_name.get(reference_name, {"installed_name": reference_name})
-            reference_path, _, _ = installed_role_paths(root, reference_role)
-            expect(reference_path.exists(), f"{toml_path}: references shared skill {reference_name!r}, but the shared role is missing.", failures)
+        expect("skill-catalog.md" in prompt, f"{toml_path}: specialist prompt missing skill catalog rule.", failures)
+        expect("skill_paths" in prompt, f"{toml_path}: specialist prompt missing skill_paths rule.", failures)
+        expect("primary MCP -> alternative tool/MCP -> best guess inferred output" in prompt, f"{toml_path}: specialist prompt missing fallback sequence.", failures)
+        expect("sourced" in prompt and "fallback" in prompt and "inferred" in prompt, f"{toml_path}: specialist prompt missing evidence labels.", failures)
+
+        catalog_text = catalog_path.read_text(encoding="utf-8")
+        expect("Primary MCP/tool:" in catalog_text, f"{catalog_path}: skill catalog missing primary tool summary.", failures)
+        expect("Fallback:" in catalog_text, f"{catalog_path}: skill catalog missing fallback summary.", failures)
+        expect("Done when:" in catalog_text, f"{catalog_path}: skill catalog missing done-when summary.", failures)
 
     if failures:
         for failure in failures:

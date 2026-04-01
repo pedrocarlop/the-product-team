@@ -11,30 +11,10 @@ fail() {
   errors=$((errors + 1))
 }
 
-legacy_productin='\.pro'"ductin"
-legacy_workflow_name='Product'"in workflow"
-legacy_workflow_state='workflow-'"state\.md"
-legacy_request='request-normal'"ized\.md"
-legacy_may_advance='may_advance_'"stage"
-legacy_may_update='may_update_workflow_'"state"
-legacy_stage_requirement='when_'"stage_active"
-legacy_stage_phrase='Advance workflow '"stages"
-legacy_pattern="${legacy_productin}|${legacy_workflow_name}|${legacy_workflow_state}|${legacy_request}|${legacy_may_advance}|${legacy_may_update}|${legacy_stage_requirement}|${legacy_stage_phrase}"
-
-if grep -Ern "$legacy_pattern" agents logs >/tmp/orchestrator-legacy-check.txt; then
-  fail "Legacy workflow references remain in agents or logs."
-  cat /tmp/orchestrator-legacy-check.txt >&2
-fi
-
 [[ -f logs/README.md ]] || fail "Missing logs/README.md."
 [[ -f references/role-catalog.md ]] || fail "Missing references/role-catalog.md."
 [[ -d logs/active ]] || fail "Missing logs/active directory."
 [[ -d logs/archive ]] || fail "Missing logs/archive directory."
-
-python3 scripts/upgrade_skills.py --check >/tmp/skills-upgrade-check.txt || {
-  fail "Skills are missing GIANT standards (YAML headers/Reflection). Run `python3 scripts/upgrade_skills.py --write`."
-  cat /tmp/skills-upgrade-check.txt >&2
-}
 
 python3 scripts/render_role_catalog.py --check >/tmp/role-catalog-check.txt || {
   fail "Role catalog is missing or stale."
@@ -46,49 +26,38 @@ python3 scripts/render_skill_catalogs.py --check >/tmp/skill-catalog-check.txt |
   cat /tmp/skill-catalog-check.txt >&2
 }
 
-orchestrator_file="agents/orchestrator/orchestrator/orchestrator.toml"
-[[ -f "$orchestrator_file" ]] || fail "Missing orchestrator role file."
+python3 scripts/render_role_prompts.py --check >/tmp/role-prompt-check.txt || {
+  fail "Role prompts are missing or stale."
+  cat /tmp/role-prompt-check.txt >&2
+}
 
-if [[ -f "$orchestrator_file" ]]; then
-  grep -q 'role_kind = "orchestrator"' "$orchestrator_file" || fail "Orchestrator role_kind must be orchestrator."
-  grep -q 'context\.md' "$orchestrator_file" || fail "Orchestrator must reference context.md."
-  grep -q 'repo_write_policy = "direct_only"' "$orchestrator_file" || fail "Orchestrator repo_write_policy must be direct_only."
-fi
+python3 scripts/check-orchestrator-scenarios.py >/tmp/orchestrator-scenario-check.txt || {
+  fail "Orchestrator scenario checks failed."
+  cat /tmp/orchestrator-scenario-check.txt >&2
+}
 
 while IFS= read -r file; do
   role="$(basename "$file" .toml)"
+  grep -q 'model_reasoning_effort' "$file" || fail "Missing model_reasoning_effort: $file"
 
   if [[ "$role" == "orchestrator" ]]; then
+    grep -q 'role_kind = "orchestrator"' "$file" || fail "Orchestrator role_kind must be orchestrator."
+    grep -q 'repo_write_policy = "direct_only"' "$file" || fail "Orchestrator repo_write_policy must be direct_only."
+    grep -q 'skill_paths' "$file" || fail "Orchestrator prompt must mention skill_paths."
     continue
   fi
 
   if [[ "$role" == "reference" ]]; then
     grep -q 'role_kind = "reference"' "$file" || fail "Reference role must use role_kind = \"reference\": $file"
     grep -q 'artifact_paths = \[\]' "$file" || fail "Reference role must not own artifacts: $file"
-    grep -q 'may_write_paths = \[\]' "$file" || fail "Reference role must not write logs or repo artifacts: $file"
-    grep -q 'repo_write_policy = "never"' "$file" || fail "Reference role repo_write_policy must be never: $file"
+    grep -q 'may_write_paths = \[\]' "$file" || fail "Reference role must not write artifacts: $file"
     continue
   fi
 
   grep -q 'subagent_requirement = "required"' "$file" || fail "Specialist must require subagent execution: $file"
   grep -q 'handoff_to = \["orchestrator"\]' "$file" || fail "Specialist must hand off to orchestrator: $file"
-
-  expected_repo_write_policy='never'
-  case "$role" in
-    engineer|platform-engineer)
-      expected_repo_write_policy='explicit_owner_only'
-      ;;
-  esac
-  grep -q "repo_write_policy = \"$expected_repo_write_policy\"" "$file" || fail "Unexpected repo_write_policy for $role: expected $expected_repo_write_policy in $file"
-
-  # GIANT Standards: Capability Cards
-  [[ -f "$(dirname "$file")/capabilities.md" ]] || fail "Missing capabilities.md for role: $role"
-
-  if grep -q 'role_kind = "reviewer"' "$file"; then
-    grep -q "logs/active/<project-slug>/reviews/$role\\.md" "$file" || fail "Reviewer missing review artifact path: $file"
-  else
-    grep -q "logs/active/<project-slug>/deliverables/$role\\.md" "$file" || fail "Executor missing deliverable artifact path: $file"
-  fi
+  grep -q 'skill_paths' "$file" || fail "Specialist prompt must mention skill_paths: $file"
+  grep -q 'evidence_mode' "$file" || fail "Specialist prompt must mention evidence_mode: $file"
 done < <(python3 - <<'PY'
 from pathlib import Path
 import sys

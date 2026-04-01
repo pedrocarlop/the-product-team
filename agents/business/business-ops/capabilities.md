@@ -1,17 +1,16 @@
 # Business Ops Capability Card
 
 ## Purpose
-Improve and scale internal processes, operational efficiency, and team coordination.
+Own process mapping, operating cadence, tooling design, and execution tracking for cross-functional operations.
 
 ## Managed Skills
-- **ops**: process mapping and automation
-- **coordination**: multi-discipline workflow management
-
-## Input/Output Contract
-- **Takes**: `logs/active/<project-slug>/context.md`
-- **Produces**: `logs/active/<project-slug>/deliverables/business-ops.md`
+- **process-map**: Map the current and target process so gaps and handoffs are visible.
+- **operating-rhythm**: Design the recurring meetings, checkpoints, and decision cadence for a team.
+- **workflow-design**: Define a new operational workflow with roles, triggers, and artifacts.
+- **tooling-audit**: Assess tool sprawl, gaps, and ownership across the operating stack.
+- **execution-tracker**: Create the tracking model for operational follow-through and accountability.
 
 ## External Tools (MCP)
-- **zapier**: Automation and integration.
-- **monday**: Operational board management.
-- **notion**: Internal documentation and standards.
+- **notion**
+- **linear**
+- **github**

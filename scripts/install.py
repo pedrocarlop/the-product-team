@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.toml_utils import discover_toml_paths, load_toml
 
 
-PACKAGE_VERSION = "1.1.5"
+PACKAGE_VERSION = "2.0.0"
 PACKAGE_SLUG = "product-team"
 PACKAGE_DIRNAME = ".codex/product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
@@ -413,7 +413,7 @@ def write_manifest(
     package_root = target_root / ".codex" / PACKAGE_SLUG
     ensure_directory(package_root)
     manifest = {
-        "schema_version": 3,
+        "schema_version": 4,
         "package_name": PACKAGE_SLUG,
         "version": PACKAGE_VERSION,
         "installed_at": datetime.now(timezone.utc).isoformat(),

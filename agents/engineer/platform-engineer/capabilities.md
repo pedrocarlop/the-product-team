@@ -1,21 +1,16 @@
 # Platform Engineer Capability Card
 
 ## Purpose
-Handle APIs, databases, performance, security, and technical architecture.
+Own schema migrations, pipeline orchestration, infrastructure releases, performance investigation, security hardening, and CI/CD governance.
 
 ## Managed Skills
-- **api**: design and definition
-- **database**: performance and schema
-- **security**: infrastructure and auth
-- **devops**: deployment and observability
-
-## Input/Output Contract
-- **Takes**: `logs/active/<project-slug>/context.md`, `deliverables/engineer.md`
-- **Produces**: `logs/active/<project-slug>/deliverables/platform-engineer.md`
+- **schema-migration**: Design and implement schema changes with migration and rollback awareness.
+- **pipeline-orchestration**: Design or improve platform pipelines and long-running processing flows.
+- **infra-release**: Plan or implement an infrastructure or platform release with operational safeguards.
+- **performance-investigation**: Diagnose a platform or system performance issue and localize the bottleneck.
+- **security-hardening**: Identify and implement a concrete security improvement or remediation.
+- **ci-cd-governance**: Define or improve the quality gates and governance around delivery pipelines.
 
 ## External Tools (MCP)
-- **sentry**: Error monitoring and performance.
-- **github**: Repository workflow and actions.
-- **vercel**: Edge runtime and deployment.
-- **supabase**: Database and auth runtime.
-- **chrome_devtools**: Performance profiling.
+- **github**
+- **linear**

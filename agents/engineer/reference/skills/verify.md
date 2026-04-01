@@ -1,35 +1,23 @@
 ---
 name: verify
-description: Confirm that the grounded facts, traced paths, and reused patterns are actually supported by the codebase before the decision is finalized.
+description: Re-open evidence and confirm that the chosen conclusion still holds before handoff or approval.
+trigger: Before finalizing a decision that depends on repo or tool evidence.
+primary_mcp: repository, deliverables
+fallback_tools: reference/trace, search_query
+best_guess_output: A pass/fail/unresolved verification result with cited evidence.
+output_artifacts: logs/active/<project-slug>/deliverables/reference.md
+done_when: The claimed conclusion is defended by present-state evidence.
 ---
 
 # Verify
 
 ## Purpose
 
-Use this skill to confirm that the conclusions drawn from grounding, tracing, and reuse are backed by the repository as it exists now. Verification turns a plausible decision into a defensible one.
+Re-open evidence and confirm that the chosen conclusion still holds before handoff or approval.
 
-## When to Use
+## Required Workflow
 
-- When a path, pattern, or dependency has been selected and needs confirmation
-- When a claimed source of truth must be checked against the actual code
-- When a reused component or helper needs proof that it still matches the required behavior
-- When a final reference summary must be validated before handoff
-
-## When Not to Use
-
-- When the task is still figuring out what exists
-- When the task is still tracing the flow
-- When the task is still selecting between reusable options
-
-## Required Inputs
-
-- The conclusion that needs verification
-- The supporting evidence gathered during grounding, tracing, or reuse
-- The files, modules, or repository areas that must be checked again
-- Any pass/fail expectation or acceptance condition for the decision
-
-## Workflow
+**Follow these steps in order. Do not skip steps.**
 
 ### Step 1: Initialize the Deliverable Header
 Every deliverable for this skill must start with the standard YAML header:
@@ -40,58 +28,34 @@ project: <slug>
 deliverable: reference.md
 confidence: <0.0-1.0>
 inputs_used: [context.md, <others>]
+evidence_mode: sourced|fallback|inferred
 ---
 ```
 
-1. Restate the conclusion in a testable form.
-2. Re-open the supporting files and confirm the evidence still matches the claim.
-3. Check for contradictions, stale assumptions, or missing context.
-4. Confirm that any reused pattern is still the approved pattern for the area.
-5. Record the result with enough detail that another person can trust it.
+### Step 2: Confirm Trigger And Inputs
+- Restate the task in terms of this skill's trigger: Before finalizing a decision that depends on repo or tool evidence.
+- Identify the required inputs, existing artifacts, and dependencies.
+- Name the output this skill must produce.
 
-### Step 2: Mandatory Reflection (Interleaved Thinking)
+### Step 3: Run The Tool Sequence
+- Use the primary MCP/tool first: `repository, deliverables`.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/trace, search_query`.
+- If both primary and fallback paths fail, produce the best-guess output described as: A pass/fail/unresolved verification result with cited evidence.
+- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+
+### Step 4: Produce The Deliverable
+- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
+- Keep assumptions explicit, especially when using fallback or inferred mode.
+- Carry forward any details downstream roles must preserve.
+
+### Step 5: Mandatory Reflection (Interleaved Thinking)
 End the deliverable with a `## Reflection` section. Self-critique the work:
 - **What worked**: successful implementation or analysis details.
 - **What didn't**: trade-offs, shortcuts, or known limitations.
 - **Next steps**: specific guidance for downstream roles or the reviewer.
 
-## Design Principles / Evaluation Criteria
-
-- Verification should confirm the claim against the present repository state
-- If evidence is incomplete, the result is still unresolved
-- A verified conclusion should be specific enough to defend in review
-- Any contradiction must be surfaced explicitly
-
 ## Output Contract
 
-- A clear pass, fail, or unresolved verification result
-- The evidence checked to reach that result
-- Any remaining risk, contradiction, or follow-up needed
-
-## Examples
-
-### Example 1
-
-Input:
-- Conclusion: The shared dialog component is the approved destructive-action pattern
-
-Expected output:
-- Verification result: Pass
-- Evidence: Existing usage in account deletion and payment-method removal flows
-- Remaining risk: None found in the current repository snapshot
-
-## Guardrails
-
-- Do not mark a conclusion as verified without checking the actual files again
-- Do not treat partial evidence as full confirmation
-- Do not ignore conflicts between the target repository and a named external source
-- Do not widen the scope beyond the conclusion being verified
-
-## Optional Tools / Resources
-
-- MCP: Notion MCP, GitHub MCP
-- Websites: [MDN Web Docs](https://developer.mozilla.org/), [DevDocs](https://devdocs.io/), [GitHub Docs](https://docs.github.com/), [RFC Editor](https://www.rfc-editor.org/), [IETF Datatracker](https://datatracker.ietf.org/)
-- Repository search and direct file inspection
-- Tests, fixtures, examples, and usage docs
-- Comparison notes from grounding and tracing
-- External source-system or design-system references if they were named
+- Write or update `logs/active/<project-slug>/deliverables/reference.md`.
+- Record which tool path was used and why.
+- Ensure the work meets this done-when bar: The claimed conclusion is defended by present-state evidence.

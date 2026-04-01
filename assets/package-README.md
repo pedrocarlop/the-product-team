@@ -2,15 +2,17 @@
 
 This repository has the Product Team Codex workflow installed.
 
-Every request in this repository should go through `product-team-orchestrator` by default. Only an explicit user opt-out for the current request should bypass Product Team. Simple work can still stay direct, but the direct path is chosen inside the orchestrator.
+Every request in this repository should go through `product-team-orchestrator` by default. Only an explicit user opt-out for the current request should bypass Product Team. The orchestrator may still choose direct execution, but that choice is made inside the workflow.
 
-The workflow is direct-first: the orchestrator routes work cheaply, executes directly when the task is single-domain and implementation-heavy, and only escalates into multi-agent coordination when the payoff is worth the cost. Orchestration, routing, staffing, and planning happen in the context window — only project context and deliverables are persisted to `/logs`.
+The workflow is now role-split and skill-first:
 
-Route by domain before staffing. Consult only the relevant discipline slice of `.codex/product-team/references/role-catalog.md` when the task is clearly single-domain; read the full catalog only for ambiguous or cross-functional work.
+- Business: `product-lead`, `analyst`, `business-ops`, `go-to-market`
+- Design: `ux-researcher`, `product-designer`, `ui-designer`, `content-designer`, `design-systems-designer`
+- Engineering: `frontend-engineer`, `backend-engineer`, `platform-engineer`
+- Review: `design-reviewer`, `qa-reviewer`
+- Support: `orchestrator`, `reference`
 
-The workflow is organized around a small set of archetypes. Each archetype routes internally across its own discipline groups, so `designer` can cover research → UX → UI → content in one staffed role and `engineer` can cover frontend → backend → fullstack work without extra same-domain handoffs.
-
-## Repo Implementation Ownership
+## Skill-First MCP Execution
 
 When the orchestrator staffs specialists, it assigns work with an explicit contract:
 
@@ -20,18 +22,30 @@ When the orchestrator staffs specialists, it assigns work with an explicit contr
 - `repo_write_owner`
 - `repo_write_scope`
 - `return_expected`
+- `skill_paths`
+- `primary_tools`
+- `fallback_policy`
+- `evidence_mode`
 
-Staffed specialists may always write their owned `/logs` artifacts. Repo-tracked app code is stricter: one explicit implementation owner per stage by default.
+Specialists execute the assigned skill workflow directly. They do not ask whether to use the skill's required toolchain first.
 
-- In direct execution, the orchestrator may edit repo-tracked code itself.
-- In orchestrated execution, once a staffed implementation owner is assigned, the orchestrator becomes coordination-only for repo-tracked code until it explicitly resets back to direct execution.
-- Parallel repo writers are allowed only when the orchestrator assigns disjoint `repo_write_scope` values.
+Global fallback rule:
+
+`primary MCP -> alternative tool/MCP -> best guess inferred output`
+
+Deliverables must label the actual evidence path as:
+
+- `sourced`
+- `fallback`
+- `inferred`
+
+Repo-tracked app code is stricter: one explicit implementation owner per stage by default.
 
 ## Installed Layout
 
 - `.codex/agents/product-team-<discipline>/<role>/<role>.toml`
 - `.codex/agents/product-team-<discipline>/<role>/skill-catalog.md`
-- `.codex/agents/product-team-<discipline>/<role>/skills/<discipline-group>/*.md`
+- `.codex/agents/product-team-<discipline>/<role>/skills/*.md`
 - `.codex/product-team/references/`
 - `.codex/product-team/scripts/validate-install.py`
 - `.codex/product-team/scripts/update-install.py`
@@ -55,40 +69,15 @@ Run this from the project root:
 python3 .codex/product-team/scripts/update-install.py
 ```
 
-The updater reuses the recorded install source. If the original source checkout is still available, it updates from that checkout. Otherwise, it falls back to the recorded remote archive.
+## Example Routing
 
-## Usage Examples
-
-### Simple request (direct execution)
-
-> "Fix the typo on the login page"
-
-The orchestrator sees this is simple, routes to direct execution, creates `context.md`, fixes the typo, and updates the context.
-
-### Single-domain build (still direct)
-
-> "Build a markdown editor"
-
-The orchestrator sees this is substantial but narrow and implementation-first. It routes to direct execution and starts building without staffing specialists.
-
-### Cross-functional request (2-role orchestration)
-
-> "Add dark mode support to the dashboard"
-
-The orchestrator identifies this needs a **designer** and an **engineer**. It staffs only those archetypes, presents the plan in conversation, asks "Do you want to proceed?", and coordinates execution after approval.
-The `designer` writes design artifacts in `/logs`, the `engineer` owns repo implementation for the assigned scope, and the orchestrator does not build the same code in parallel.
-
-### Complex request (full team)
-
-> "Redesign the checkout flow to reduce drop-off by 20%"
-
-The orchestrator staffs a full team: **product-lead**, **designer**, **engineer**, and **reviewer**. It presents the plan, gets approval, and coordinates work stage by stage. Context and deliverables are logged in `logs/active/`.
-Only the explicit implementation owner edits repo-tracked app code for a given stage; the other roles stay artifact-first.
+- Greenfield visual concept: `product-designer` -> `ui-designer` -> `frontend-engineer` -> `design-reviewer`
+- Research-heavy discovery: `ux-researcher` -> `product-designer` -> `product-lead`
+- API/platform delivery: `backend-engineer` or `platform-engineer` -> `qa-reviewer`
 
 ## Notes
 
 - `AGENTS.md` contains a managed Product Team block that the installer keeps up to date.
 - `logs/README.md` is created only when the target repo does not already have one.
 - Installed roles stay grouped by discipline so the target repo mirrors the source package structure.
-- Shared workflow references live under `.codex/product-team/references/`.
 - `.codex/product-team/manifest.json` records enough source metadata for installed repos to self-update later.

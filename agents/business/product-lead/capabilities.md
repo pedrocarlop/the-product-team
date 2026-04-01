@@ -1,24 +1,16 @@
 # Product Lead Capability Card
 
 ## Purpose
-Own product vision, strategy, discovery, prioritization, requirements authoring, and delivery coordination.
+Own problem framing, product specification, prioritization, and decision communication for cross-functional delivery.
 
 ## Managed Skills
-- **strategy**: compare, frame, plan, scan
-- **product**: align, frame, prioritize, specify
-- **portfolio**: align, allocate, bet, focus
-- **requirements**: apply-patch, chrome-navigate-page, search-query
-
-## Input/Output Contract
-- **Takes**: `logs/active/<project-slug>/context.md`
-- **Produces**: `logs/active/<project-slug>/plans/product-lead.md`, `logs/active/<project-slug>/deliverables/product-lead.md`
+- **frame-problem**: Turn a raw request into a clear product problem, constraints, success criteria, and decision frame.
+- **write-prd**: Write a delivery-grade PRD with scope, scenarios, decisions, and acceptance criteria.
+- **prioritize-roadmap**: Rank work against impact, effort, sequencing, and strategic fit.
+- **experiment-brief**: Define a product experiment with hypothesis, metrics, scope, and decision rules.
+- **stakeholder-memo**: Prepare a concise decision memo or update for stakeholders.
 
 ## External Tools (MCP)
-- **notion**: Project documentation and knowledge management.
-- **linear**: Issue tracking and sprint management.
-- **slack**: Team communication and notifications.
-- **github**: Repository management and PR tracking.
-- **chrome_devtools**: UI inspection and performance auditing.
-
-## Reference Skills
-- `reference`: Generic skill for ground truth and evidence collection.
+- **notion**
+- **linear**
+- **github**
