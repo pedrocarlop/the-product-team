@@ -32,6 +32,18 @@ Use this skill to find accessibility barriers, classify their severity, and turn
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the user task and the accessibility-critical moments in the flow.
 2. Check structural accessibility first: semantics, labels, headings, landmarks, and reading order.
 3. Test interaction accessibility next: keyboard reachability, focus order, focus visibility, and traps.
@@ -39,6 +51,12 @@ Use this skill to find accessibility barriers, classify their severity, and turn
 5. Test assistive-technology behavior where possible, including screen readers and browser accessibility trees.
 6. Record each issue with the affected element, the user impact, and the specific criterion or rule it violates.
 7. Sort findings by severity and by the likelihood that they block task completion.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

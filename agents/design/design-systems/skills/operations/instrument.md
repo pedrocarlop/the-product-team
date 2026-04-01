@@ -31,12 +31,30 @@ Use this skill to make design operations measurable enough that the team can spo
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the operational question the metric must answer.
 2. Identify the exact signal, event, or source of truth that represents the work.
 3. Check whether the definition is consistent with existing reporting and terminology.
 4. Audit the measurement path for missing data, duplicates, or misleading proxies.
 5. Set a review cadence and a threshold for what counts as healthy or unhealthy.
 6. Verify the signal in the dashboard or source system and document the definition.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

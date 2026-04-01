@@ -30,23 +30,34 @@ Staff work deliberately with the minimum viable team. Every added role costs tok
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Identify Required Capabilities
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: orchestrator
+project: <slug>
+deliverable: orchestrator.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
 
-From the `context.md` objective and done-when criteria, list the **capabilities** needed:
+### Step 2: Identify Required Capabilities (Role Discovery)
 
-| Capability Needed | Maps to Role |
-|-------------------|-------------|
-| UI/UX flows, wireframes, visual design, content | `designer` |
-| Token architecture, component library, design governance | `design-systems` |
-| Frontend, backend, fullstack, mobile, ML implementation | `engineer` |
-| API design, database, infrastructure, security, architecture | `platform-engineer` |
-| Product strategy, discovery, PRD, prioritization | `product-lead` |
-| Metrics, financial modeling, forecasting | `analyst` |
-| Growth, marketing, positioning, partnerships, customer success | `go-to-market` |
-| Process mapping, operational systems, coordination | `business-ops` |
-| Cross-discipline validation, quality gates | `reviewer` |
+Instead of hardcoded mapping, the Orchestrator must "scan" the specialized **Capability Cards** located at `agents/<domain>/<role>/capabilities.md`.
 
-### Step 2: Apply the Minimum Viable Team Test
+Match the project objective against these cards:
+
+| Domain | Role | Card Path |
+|--------|------|-----------|
+| Business | `product-lead`, `analyst`, `go-to-market`, `business-ops` | `agents/business/<role>/capabilities.md` |
+| Design | `designer`, `design-systems` | `agents/design/<role>/capabilities.md` |
+| Engineering | `engineer`, `platform-engineer` | `agents/engineer/<role>/capabilities.md` |
+| Review | `reviewer` | `agents/review/<role>/capabilities.md` |
+
+**Verification**: Only staff a role if its **Purpose** and **Managed Skills** in the `capabilities.md` card directly align with the task.
+
+### Step 3: Apply the Minimum Viable Team Test
 
 For each candidate role, ask:
 
@@ -59,35 +70,26 @@ Would removing this role materially degrade the outcome?
 **Key heuristics:**
 
 - **One role = one subagent.** Never double-staff the same capability.
-- **Skip reviewer** unless the task has high risk (production deployment, user-facing copy, cross-team impact) and a review pass would catch something the executor would miss.
-- **Skip product-lead** if requirements are already specified by the user — don't add discovery overhead to execution-ready tasks.
-- **Skip designer** if the UI is fully specified (Figma ready, design system established) — `engineer` can translate directly.
-- **Skip analyst** unless the task requires _building_ metrics or models, not just using existing data.
+- **Skip reviewer** unless the task has high risk (production deployment, user-facing copy, cross-team impact).
+- **Skip product-lead** if requirements are already specified by the user.
 
-### Step 3: Set Skill Hints
+### Step 4: Set Skill Hints
 
-For each staffed role, optionally include a `skill_hint` listing which discipline groups are most relevant. This helps the specialist start focused:
+For each staffed role, include a `skill_hint` linking to a specific skill group from their `capabilities.md` (e.g., `designer (skill_hint: ux/flow)`).
 
-```
-engineer (skill_hint: frontend/translate, frontend/stateful)
-designer (skill_hint: ux/flow, ui/stateful)
-```
+### Step 5: Calibrate Reasoning Effort (OpenAI Tiering)
 
-Only include hints when the discipline is non-obvious. If the task clearly maps to one discipline, the specialist will find it themselves.
-
-### Step 4: Calibrate Reasoning Effort
-
-Not every task needs maximum reasoning. Set `model_reasoning_effort` per role:
+Align reasoning effort with task complexity. **The Orchestrator always uses `high` reasoning for planning.**
 
 | Task Characteristics | Reasoning Level | When |
 |---------------------|----------------|------|
-| Well-scoped, single-domain, low ambiguity | `medium` | Fix a bug, add a field, write copy, extend a component |
-| Multi-step, some ambiguity, cross-cutting | `high` | Feature implementation, architecture decisions, complex design |
-| Genuinely hard, long-horizon, high autonomy | `high` | System redesign, novel algorithms, multi-phase migration |
+| Well-scoped, low ambiguity | `medium` | Fix a bug, add a field, write copy |
+| Multi-step, cross-cutting | `high` | Feature implementation, architecture, complex design |
+| High autonomy, novel | `high` | System redesign, multi-phase migration |
 
-Default to `medium` for straightforward tasks. Reserve `high` for tasks where overthinking actually helps.
+Default to `medium` for simple execution tasks. Reserve `high` for planning and high-stakes reasoning.
 
-### Step 5: Define Ownership and Sequencing
+### Step 6: Define Ownership and Sequencing
 
 For each staffed role, specify:
 - **Owns**: what artifacts and decisions this role is accountable for.
@@ -107,11 +109,17 @@ Example:
     blocked by: designer (needs design specs first)
 ```
 
-### Step 6: Update Context
+### Step 7: Update Context
 
 Write the staffing decision to `logs/active/<project-slug>/context.md`:
 
 ```markdown
+### Step 8: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
+
 ## Staffing
 | Role | Skill Hint | Reasoning | Owns |
 |------|-----------|-----------|------|

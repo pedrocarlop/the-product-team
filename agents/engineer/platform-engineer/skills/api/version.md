@@ -32,12 +32,30 @@ Use this skill to decide how an API should evolve across versions without surpri
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Classify the change as additive, behavioral, compatibility-sensitive, or breaking.
 2. Check whether the change can be expressed without a new version.
 3. If versioning is needed, choose the least disruptive version strategy that still gives consumers a clear migration path.
 4. Define deprecation and sunset timing only after consumer impact is understood.
 5. Write down migration guidance that makes the old and new contracts easy to compare.
 6. Confirm that the version strategy matches the team’s long-term support expectations.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

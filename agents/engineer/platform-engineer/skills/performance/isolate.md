@@ -30,11 +30,29 @@ Use this skill to identify the specific layer, component, or request that is res
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Break the issue into browser, network, backend, caching, and asset-delivery hypotheses.
 2. Inspect the highest-signal trace or graph first.
 3. Eliminate false leads by comparing timings, spans, or request order.
 4. Trace the cost to the smallest responsible unit, such as a function, query, image, or third-party script.
 5. Note any secondary effects that could matter during the fix.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

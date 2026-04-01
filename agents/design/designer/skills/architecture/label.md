@@ -32,12 +32,30 @@ Use this skill to choose the exact words that represent a structure, so users ca
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify what the label must help the user understand or do.
 2. Compare candidate labels against siblings to avoid overlap or confusion.
 3. Prefer user vocabulary over internal vocabulary unless the user term is misleading.
 4. Check the label against its container, breadcrumb trail, and next-step destination.
 5. Verify that the label still works when shortened, translated, or read out of context.
 6. Record the decision with the scope of what it includes and excludes.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

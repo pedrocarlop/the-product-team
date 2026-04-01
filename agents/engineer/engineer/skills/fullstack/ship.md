@@ -31,6 +31,18 @@ Use this skill to turn an implemented full-stack feature into a safe production 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Verify the implemented behavior end-to-end: frontend calls the correct API, API returns the expected shape, database state is consistent.
 2. Confirm test coverage across layers: unit tests for business logic, integration tests for API contracts, and end-to-end tests for critical user paths.
 3. Validate deployment sequencing: can the migration run before the API deploy? Can the old UI work with the new API during rollout?
@@ -38,6 +50,12 @@ Use this skill to turn an implemented full-stack feature into a safe production 
 5. Confirm observability: API latency and error metrics, client-side error tracking, database query performance, and alert thresholds.
 6. Document the rollback plan: which deploy to revert first, whether the migration is reversible, and what data state to expect after rollback.
 7. State the release criteria and the specific signals that would trigger a rollback.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

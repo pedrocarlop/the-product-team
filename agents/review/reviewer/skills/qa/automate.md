@@ -33,6 +33,18 @@ Use this skill to convert QA intent into automated checks that are stable, reada
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reviewer
+project: <slug>
+deliverable: reviewer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the observable behavior the test must prove.
 2. Choose the smallest automation layer that gives trustworthy signal.
 3. Create isolated test data and mock only what the test does not need to prove.
@@ -40,6 +52,12 @@ Use this skill to convert QA intent into automated checks that are stable, reada
 5. Keep selectors, fixtures, and helpers resilient to UI or implementation changes.
 6. Wire the test into the right suite and CI path.
 7. Verify that the test adds signal without making the suite slower or flakier.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

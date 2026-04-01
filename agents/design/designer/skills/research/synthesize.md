@@ -30,6 +30,18 @@ Use this skill to convert raw research material into findings that explain what 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Revisit the research question before looking at the notes.
 2. Group observations by repeated behavior, pain point, or decision pattern.
 3. Separate signal from isolated anecdotes.
@@ -37,6 +49,12 @@ Use this skill to convert raw research material into findings that explain what 
 5. Tie each insight back to the decision it should influence.
 6. Note uncertainty, contradictions, and gaps instead of smoothing them over.
 7. Produce a concise artifact that another team member can challenge or extend.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -32,12 +32,30 @@ Use this skill to design how a model or LLM workflow is exposed to production sy
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the request and response contract for inference.
 2. Set the latency, reliability, and cost budget before implementation.
 3. Choose the serving pattern, including batching, caching, and async behavior where appropriate.
 4. Add health checks, structured logging, and observability around input, output, and errors.
 5. Define a safe fallback path and a rollback mechanism for bad releases.
 6. Verify the endpoint under realistic load before handing it to consumers.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

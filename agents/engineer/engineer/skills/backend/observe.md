@@ -32,6 +32,18 @@ Use this skill to confirm that a backend code change behaves correctly and perfo
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the specific proof needed: correctness evidence, performance measurement, or both.
 2. Exercise the code path with representative and edge-case inputs, capturing all observable signals.
 3. Inspect query behavior: check for N+1 patterns, missing indexes, unnecessary joins, and excessive row scans using EXPLAIN or query logs.
@@ -39,6 +51,12 @@ Use this skill to confirm that a backend code change behaves correctly and perfo
 5. Profile performance-sensitive paths with realistic data volume, not just trivial test fixtures.
 6. Compare observed behavior against expected behavior and document any discrepancies.
 7. Turn findings into actionable follow-ups: code fixes, index additions, log improvements, or test additions.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

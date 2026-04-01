@@ -30,12 +30,30 @@ Use this skill to decide what deserves attention now, what should wait, and what
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. State the decision in one sentence so the scope is explicit.
 2. Separate must-do work from nice-to-have work and from speculative work.
 3. Rank options by strategic leverage, urgency, reversibility, and confidence.
 4. Identify the work that should stop, shrink, or move later so focus is real.
 5. Write the priority order in a way that a PM or team lead can act on immediately.
 6. Check whether the resulting focus still matches the product vision and current market conditions.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

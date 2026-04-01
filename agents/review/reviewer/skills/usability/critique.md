@@ -26,13 +26,25 @@ description: "Evaluate a design through structured heuristic analysis, scoring u
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Align on the Primary Task and Persona
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reviewer
+project: <slug>
+deliverable: reviewer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Align on the Primary Task and Persona
 
 Identify what the critique is measuring against:
 - "Can an *enterprise administrator* successfully *bulk-delete user accounts*?"
 - "Can a *first-time mobile user* complete *checkout* in under 3 minutes?"
 
-### Step 2: Execute the Heuristic Sweep
+### Step 3: Execute the Heuristic Sweep
 
 Evaluate the design against standard usability heuristics. Look explicitly for:
 - **Discoverability**: Can the user clearly see the primary action?
@@ -40,14 +52,14 @@ Evaluate the design against standard usability heuristics. Look explicitly for:
 - **System Status**: Is the system providing immediate feedback (loading, success, error)?
 - **Consistency**: Are patterns used identically here as they are elsewhere in the app?
 
-### Step 3: Stress-Test Affordances and Error Prevention
+### Step 4: Stress-Test Affordances and Error Prevention
 
 Analyze the physical and destructive interactions:
 - **Affordance**: Does a button look clickable? Does a disabled element clearly explain *why* it is disabled?
 - **Error Prevention**: Are destructive actions safeguarded (e.g., confirmation modals, required typing)?
 - **Recovery**: If an error occurs, does the UI provide a clear, actionable path to fix it?
 
-### Step 4: Rank Findings by Severity and Frequency
+### Step 5: Rank Findings by Severity and Frequency
 
 Do not list 50 equal issues. Categorize them:
 - **Critical/Blocker**: Prevents task completion. Must fix.
@@ -55,9 +67,15 @@ Do not list 50 equal issues. Categorize them:
 - **Medium**: Annoyance or cognitive strain.
 - **Low**: Polish or minor visual inconsistency.
 
-### Step 5: Deliver Actionable Recommendations
+### Step 6: Deliver Actionable Recommendations
 
 For every finding, provide: `[The Flaw]` + `[The Broken Heuristic]` + `[The Suggested Fix]`.
+
+### Step 7: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the critique:
+- **What worked**: Did I anchor all feedback to heuristics?
+- **What didn't**: Any findings based on personal preference? (Discard them).
+- **Next steps**: What are the 3 most critical fixes that must happen immediately?
 
 ## Decision Tree: Is the Critique Objective?
 

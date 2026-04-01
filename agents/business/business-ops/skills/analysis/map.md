@@ -33,6 +33,18 @@ Use this skill to document a business process in enough detail that product, des
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: business-ops
+project: <slug>
+deliverable: business-ops.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Document the current state in observable, step-by-step terms with the data objects that flow between steps.
 2. Identify every decision point and capture the business rule or policy that governs it.
 3. Map system touchpoints: where data is created, read, updated, or handed off to another system.
@@ -40,6 +52,12 @@ Use this skill to document a business process in enough detail that product, des
 5. Mark where information is lost, duplicated, or manually re-entered between systems.
 6. Draft the future state focused on closing data gaps and clarifying decision rules, not on operational speed.
 7. Verify that the map is detailed enough for a requirements author or product manager to write specifications from it.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

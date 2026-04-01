@@ -33,12 +33,30 @@ Use this skill to turn a broad market opportunity into a campaign-ready position
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the most specific buyer and the trigger event that makes the product relevant now.
 2. Separate the primary audience from adjacent audiences that should not dilute the lead message.
 3. Name the problem in the buyer's language, not internal product vocabulary.
 4. Write the positioning statement and supporting message pillars.
 5. Stress-test the message against the top 2-3 alternatives to ensure the distinction is real.
 6. Adapt the positioning into channel-appropriate formats: headline for ads, value prop for landing pages, one-liner for email subject lines.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

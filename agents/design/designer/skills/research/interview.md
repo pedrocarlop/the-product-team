@@ -31,6 +31,18 @@ Use this skill to conduct interviews that surface user behavior, mental models, 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Write the interview objective in plain language.
 2. Create a guide that starts broad and moves toward specifics.
 3. Use open prompts, follow-ups, and examples instead of leading questions.
@@ -38,6 +50,12 @@ Use this skill to conduct interviews that surface user behavior, mental models, 
 5. Capture notable quotes, contradictions, workarounds, and hesitation points.
 6. Debrief immediately after the session while observations are still fresh.
 7. Separate what the participant said from what the researcher inferred.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

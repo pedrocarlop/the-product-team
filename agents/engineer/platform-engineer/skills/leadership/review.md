@@ -32,12 +32,30 @@ Use this skill to evaluate technical work with enough rigor to catch bugs, regre
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read the change in context and identify the user-visible or system-visible impact.
 2. Check correctness first, then regression risk, then maintainability and consistency.
 3. Verify that the solution matches the architecture and does not introduce unnecessary coupling.
 4. Inspect the tests and confirm they cover the new behavior and obvious failure modes.
 5. Separate blocking issues from suggestions so the author knows what must change.
 6. Phrase feedback so it teaches a principle the team can reuse.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

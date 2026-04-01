@@ -26,43 +26,61 @@ description: "Shape backend work into explicit domain, data, and contract decisi
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Define Actors and Resources
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Define Actors and Resources
 
 Identify the "Who" and the "What":
 - **Actors**: Users, system tasks, external webhooks (e.g., "Workspace Admin", "Billing Service").
 - **Resources**: The entities that change state (e.g., "Invoice", "TeamMember", "Workspace").
 
-### Step 2: Establish Domain Invariants
+### Step 3: Establish Domain Invariants
 
 Specify the rules that must **never** be violated, regardless of how the data is stored or accessed:
 - "An invoice cannot be paid twice." (Idempotency)
 - "A team must have exactly one owner." (Cardinality)
 - "A user cannot join a workspace without a valid invite." (Authorization)
 
-### Step 3: Draw state transitions
+### Step 4: Draw state transitions
 
 For every resource, map its lifecycle:
 - `Initialized` → `Pending` → `Active` → `Archived`
 - Define the **triggers** (User Action vs. System Timeout) and the **conditions** (Balance > 0) that cause a transition.
 
-### Step 4: Define the API Contract (Delivery)
+### Step 5: Define the API Contract (Delivery)
 
 Specify how the outside world interacts with the model:
 - **Request**: URL, Verb (POST/PUT/GET), Payload fields, Types, and mandatory/optional flags.
 - **Response**: Success payload, Status codes (200/201/204), and **structured Error objects**.
 
-### Step 5: Design the Persistence Strategy (Database)
+### Step 6: Design the Persistence Strategy (Database)
 
 Decide how the model is stored:
 - **Relational (SQL)**: Tables, columns, foreign keys, indexes, and migrations.
 - **Transaction Boundaries**: Which operations must succeed or fail together?
 - **Concurrency**: How do we handle race conditions? (e.g., Optimistic Locking / Transaction Isolation).
 
-### Step 6: Identify External Dependencies and Side Effects
+### Step 7: Identify External Dependencies and Side Effects
 
 List everything the model depends on or affects:
 - **Inputs**: Third-party APIs (Stripe, Slack), other services.
 - **Side Effects**: Emails sent, webhooks fired, background jobs enqueued.
+
+### Step 8: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Decision Tree: Is the model "stable"?
 

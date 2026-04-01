@@ -32,12 +32,30 @@ Use this skill to compare feasible architecture options and make a defensible re
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the decision and the acceptable options.
 2. Establish the criteria that matter and weight them by business impact.
 3. Compare each option against the same criteria and note the tradeoffs.
 4. Identify the failure modes, hidden costs, and lock-in risks for each choice.
 5. Make a recommendation and explain why it is the best fit for the current context.
 6. Record the decision and the rejected alternatives for future reference.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

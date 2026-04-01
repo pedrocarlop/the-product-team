@@ -31,6 +31,18 @@ Use this skill to test whether the proposed UX actually works for the user, not 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. State the question the validation should answer.
 2. Define the user tasks or scenarios that will expose the risk.
 3. Choose the lightest useful method, such as heuristic review, scenario walk-through, or moderated test.
@@ -38,6 +50,12 @@ Use this skill to test whether the proposed UX actually works for the user, not 
 5. Separate confirmed issues from assumptions and open questions.
 6. Prioritize findings by severity and impact on the target task.
 7. Recommend the smallest set of changes that would materially improve the experience.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

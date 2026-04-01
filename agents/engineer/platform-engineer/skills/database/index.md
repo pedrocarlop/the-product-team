@@ -32,12 +32,30 @@ Use this skill to build or revise indexes that serve measured query patterns and
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the slow or expensive query and the predicates it actually uses.
 2. Check whether an existing index already serves the access path.
 3. Choose the smallest index shape that satisfies the query pattern.
 4. Prefer partial or composite indexes only when the filter shape is stable and specific.
 5. Validate the plan and compare read gains against write and storage costs.
 6. Remove or avoid indexes that do not show a clear workload benefit.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

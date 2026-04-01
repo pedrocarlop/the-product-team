@@ -31,12 +31,30 @@ Use this skill to create a prototype that feels close to production and proves w
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the decision the prototype needs to unlock.
 2. Select only the parts of the experience that materially affect that decision.
 3. Model the interaction states, transitions, and timing needed to make the behavior believable.
 4. Include realistic data, failures, and empty states where they affect trust in the concept.
 5. Keep the prototype focused on proving the idea rather than finishing every surface.
 6. Verify the prototype communicates the intended behavior without introducing misleading polish.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

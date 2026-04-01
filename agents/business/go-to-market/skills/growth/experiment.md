@@ -31,12 +31,30 @@ Use this skill to turn a growth idea into a testable experiment with a pre-regis
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. State the hypothesis in a testable format with one expected outcome.
 2. Choose one primary metric and a small number of guardrails.
 3. Estimate sample size and duration using baseline rate, minimum detectable effect, and desired confidence.
 4. Define assignment, eligibility, and exposure rules before launch.
 5. Write the decision rule for win, lose, or inconclusive outcomes.
 6. After the test ends, interpret results against the pre-set criteria and segment where needed.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

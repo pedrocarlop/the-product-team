@@ -31,12 +31,30 @@ Use this skill to build or refresh forward-looking financial forecasts that conn
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the forecast horizon, output cadence, and the decision it supports.
 2. Reconcile the starting point to the latest actuals before projecting anything.
 3. Convert business drivers into monthly or quarterly assumptions.
 4. Build the forecast so that revenue, cost, and cash roll forward cleanly from those drivers.
 5. Separate hardcoded assumptions from formulas and document each assumption source.
 6. Check that the forecast ties to the prior period, the current plan, and any known operating constraints.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

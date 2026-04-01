@@ -31,12 +31,30 @@ Use this skill to turn a product release into a coordinated market event with cl
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Classify the launch scope and decide the launch tier.
 2. Define the audience, channel mix, and release timing.
 3. Build a checklist with owners for product, marketing, sales, support, and any other involved teams.
 4. Establish the success metric, baseline, and measurement window before launch day.
 5. Write the launch narrative and operational plan so every team knows what to do.
 6. Review readiness, dependencies, and follow-up actions after launch.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

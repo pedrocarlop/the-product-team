@@ -33,6 +33,18 @@ Use this skill to assess design work with the design director's quality bar: eva
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read the work in the context of the product strategy and the intended user outcome.
 2. Evaluate structural quality: hierarchy, flow logic, affordance, state coverage, and consistency with the design system.
 3. Assess strategic alignment: does the design advance the product direction or drift from it?
@@ -40,6 +52,12 @@ Use this skill to assess design work with the design director's quality bar: eva
 5. Prioritize the 3-5 issues that most affect user success, product clarity, or strategic impact.
 6. State whether the work meets the bar, what must change, and what precedent this critique sets for future work.
 7. Name what is working well so the team knows which patterns to repeat.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

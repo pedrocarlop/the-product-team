@@ -31,12 +31,30 @@ Use this skill to define how design operations decisions are made, who owns them
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the governed area and the decisions that must be controlled.
 2. Write the minimum standard or policy needed to keep behavior consistent.
 3. Assign ownership, approval rights, and escalation paths.
 4. Define how exceptions are requested, reviewed, approved, and recorded.
 5. Set a review cadence to catch drift, outdated rules, or repeated violations.
 6. Document the lifecycle for change, retirement, or deprecation of the policy.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

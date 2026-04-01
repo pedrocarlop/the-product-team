@@ -32,12 +32,30 @@ Use this skill to turn marketing activity into a trustworthy measurement system:
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the decision the metric should support.
 2. Write the metric definition before looking at results.
 3. Confirm the source of truth and the event or field that will be used.
 4. Check that tracking is in place and that the numbers can be reproduced.
 5. Validate the result against a simpler check, benchmark, or secondary source.
 6. Note any caveats that change how the result should be interpreted.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

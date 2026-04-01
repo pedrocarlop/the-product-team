@@ -31,12 +31,30 @@ Use this skill to define the design problem precisely enough that the rest of th
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the problem in one sentence that a non-designer could confirm or correct.
 2. Identify who is affected, what they do today, and what pain or friction matters.
 3. Separate facts, assumptions, and open questions so the team can see the uncertainty.
 4. Define the smallest useful scope that could test the core assumption.
 5. Name the success criteria and what would count as a meaningful improvement.
 6. Capture the constraints or tradeoffs that should shape the rest of the design work.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

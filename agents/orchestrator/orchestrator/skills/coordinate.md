@@ -30,7 +30,19 @@ The execution spine of the orchestrator. Coordinate launches specialists in the 
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Determine Execution Mode
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: orchestrator
+project: <slug>
+deliverable: orchestrator.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Determine Execution Mode
 
 Based on the staffing decision, choose:
 
@@ -46,7 +58,7 @@ Can the next role start without the current role's deliverable?
 └── NO → Run sequentially (wait for deliverable).
 ```
 
-### Step 2: Launch Specialists
+### Step 3: Launch Specialists
 
 For each specialist in the execution order:
 
@@ -61,7 +73,7 @@ For each specialist in the execution order:
 
 3. **Specify return expectations**: what the specialist should return (deliverable, mismatch note, blocker, or completion signal).
 
-### Step 3: Pass Deliverables Between Roles
+### Step 4: Pass Deliverables Between Roles
 
 Deliverables flow through files, not through the orchestrator's context compression:
 
@@ -76,32 +88,37 @@ engineer reads  → logs/active/<slug>/deliverables/designer.md (directly)
 - The orchestrator passes the _path_, not the _content_.
 - Each specialist is responsible for reading its input deliverables at execution start.
 
-### Step 4: Monitor Execution
+### Step 5: Monitor Execution and Verify Handoffs
 
 While specialists are running:
 
 - **For parallel agents**: wait for all to complete before proceeding to the sync point.
-- **For sequential agents**: wait for each to complete, check the deliverable, then launch the next.
+- **For sequential agents**: wait for each to complete, then **Verify the Artifact Handshake**:
+    1. **Check YAML Header**: Does `logs/active/<slug>/deliverables/<role>.md` start with the required YAML block?
+    2. **Check Reflection**: Does the file end with a `## Reflection` section?
+    3. **Evaluate Confidence**: If the specialist reported `confidence < 0.7` in the header, the Orchestrator must read the reflection to decide if remedial action is needed.
+
 - If a specialist returns a **mismatch note**: pause, evaluate, and decide whether to reassign, adjust scope, or escalate to the user.
-- If a specialist returns a **blocker**: pause the sequence, resolve the blocker (may require user input), then resume.
+- If a specialist returns a **blocker**: pause the sequence, resolve the blocker, then resume.
 
-### Step 5: Handle Mid-Execution Changes
+### Step 6: Handle Mid-Execution Changes (Plan Calibration)
 
-If execution reveals something that changes the plan:
+If execution reveals something that changes the plan, or if a **Reflection** indicates a material risk:
 
 ```
-Is the change material (affects scope, roles, or done-when)?
+Is the change or reflection risk material?
 ├── YES → Pause execution.
-│   ├── Update context.md with the new understanding.
-│   ├── Re-evaluate staffing if roles need to change.
-│   ├── Decide: finish current cycle then adjust, or reset now.
+│   ├── Update context.md with the new risk/understanding.
+│   ├── Re-evaluate staffing or reasoning levels.
 │   └── If resetting, inform the user and get approval.
 └── NO → Note it in context.md and continue.
 ```
 
 **Never** improvise piecemeal adjustments mid-cycle. Either finish the current cycle or explicitly reset — no hybrid improvisation.
 
-### Step 6: Update Context
+**Never** improvise piecemeal adjustments mid-cycle. Either finish the current cycle or explicitly reset — no hybrid improvisation.
+
+### Step 7: Update Context
 
 After each significant execution event, update `context.md`:
 
@@ -115,7 +132,7 @@ After each significant execution event, update `context.md`:
 
 Keep updates **concise**. Context.md is a live status document, not a log of everything that happened.
 
-### Step 7: Close the Loop
+### Step 8: Close the Loop
 
 When all specialists have completed and their deliverables are filed:
 
@@ -123,6 +140,12 @@ When all specialists have completed and their deliverables are filed:
 2. If a reviewer is staffed, launch the review pass now.
 3. Summarize the outcome to the user.
 4. Move completed projects to `logs/archive/` if finished, or update status if ongoing.
+
+### Step 9: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Worked Examples
 

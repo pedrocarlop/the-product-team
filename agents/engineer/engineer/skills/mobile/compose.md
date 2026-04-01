@@ -32,12 +32,30 @@ Use this skill to assemble mobile UI from approved building blocks so the result
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Confirm whether the request is for a screen, component, composite pattern, or extension of an existing mobile asset.
 2. Map the anatomy and separate fixed, optional, and variant-driven parts.
 3. Compose the UI from approved tokens and reusable primitives only.
 4. Define states, behavior, and composition rules so the pattern can be reused consistently.
 5. Check for overlap with existing mobile patterns and remove unnecessary duplication.
 6. Verify that the result can be implemented, documented, and tested without ambiguity.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

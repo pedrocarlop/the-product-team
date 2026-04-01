@@ -26,13 +26,25 @@ description: "Rank product opportunities using explicit criteria, tradeoffs, and
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Align on the Decision Horizon
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Align on the Decision Horizon
 
 Determine the timeframe and the pool of candidates:
 - Are we ranking items for the next Sprint (2 weeks), Quarter (3 months), or Half (6 months)?
 - What is the hard constraint? (e.g., "We only have 1 Frontend Engineer for the quarter.")
 
-### Step 2: Establish the Scoring Criteria
+### Step 3: Establish the Scoring Criteria
 
 Select an objective framework (e.g., RICE, MoSCoW, Cost of Delay) and define the criteria:
 - **Reach**: How many users are affected?
@@ -40,22 +52,28 @@ Select an objective framework (e.g., RICE, MoSCoW, Cost of Delay) and define the
 - **Confidence**: How sure are we about these estimates (100% vs. 50%)?
 - **Effort**: How many engineering weeks/months will this take?
 
-### Step 3: Grade the Candidates (The Matrix)
+### Step 4: Grade the Candidates (The Matrix)
 
 Assess each initiative against the selected framework objectively.
 - Do not let intuition override the math, but use judgment to flag anomalous scores.
 - Example: *Initiative A (R=1000, I=3, C=80%, E=2 weeks) = Score 1.2*
 
-### Step 4: Identify Dependencies and Sequencing
+### Step 5: Identify Dependencies and Sequencing
 
 Adjust the raw math-based ranking based on reality:
 - "Feature B scored lower than Feature A, but Feature A requires Feature B's data pipeline to exist first."
 - Adjust the final queue to reflect logical sequencing.
 
-### Step 5: Document the Trade-Offs (The Cuts)
+### Step 6: Document the Trade-Offs (The Cuts)
 
 Explicitly list what is *not* getting built and why:
 - "We are prioritizing the Analytics redesign [A], which means the Notification system upgrade [Z] is postponed until Q3."
+
+### Step 7: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Decision Tree: Is the Ranking Defensible?
 

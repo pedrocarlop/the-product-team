@@ -32,12 +32,30 @@ Use this skill to define the structure of an API contract so the first version i
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the primary consumer and the narrowest useful contract that solves the job.
 2. Choose the right interaction style, then model the domain as resources, events, or operations rather than implementation steps.
 3. Define endpoint names, methods, identifiers, and relationships using consistent API conventions.
 4. Shape request and response schemas so required fields, optional fields, and nested objects are intentional.
 5. Account for pagination, filtering, sorting, and state transitions before the shape is considered stable.
 6. Check whether the contract can be implemented without hidden coupling to internal services or database structure.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -30,11 +30,29 @@ Use this skill to confirm that the change improved the target metric, held the b
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Re-run the same measurement in conditions as close as possible to the baseline.
 2. Compare the primary metric before and after.
 3. Check the supporting metrics that could reveal a new regression.
 4. Confirm that the budget, CI gate, or alert condition is satisfied.
 5. Summarize the result in terms of user impact, not just a raw delta.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

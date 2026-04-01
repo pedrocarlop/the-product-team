@@ -47,4 +47,4 @@ Open only the matching skill files under `skills/`, then end your closing handof
 
 ## Additional Skills
 
-- `frontend/frontend-design` — Set design quality standards for frontend interfaces — composition, typography, color, motion, imagery, and copy — with mandatory working model, worked examples, and reject-these-failures checks to avoid generic output.
+- `frontend/frontend-design` — Set design quality standards for frontend interfaces — composition, typography, color, motion, imagery, and copy. Use when the task involves building any user-facing frontend surface to ensure output feels intentional, bold, and premium, not generic. Applies to landing pages, product UI, dashboards, and app surfaces.

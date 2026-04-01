@@ -32,12 +32,30 @@ Use this skill to plan how a full-stack feature maps to screens, data flows, and
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Map each screen to the API endpoints and data entities it depends on.
 2. Define the component tree and decide where state lives: server state, client state, URL state, or derived.
 3. Identify data-fetching boundaries and decide what loads eagerly, lazily, or optimistically.
 4. Specify how each component handles loading, error, empty, and stale-data conditions.
 5. Draft the responsive layout structure and note where server-rendered versus client-rendered boundaries apply.
 6. Annotate implementation decisions that affect backend contract expectations or require API changes.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

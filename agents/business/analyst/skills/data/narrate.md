@@ -31,12 +31,30 @@ Use this skill to communicate analytical results in a way that helps people deci
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Start with the conclusion or most important finding.
 2. Translate the number into its business consequence.
 3. Add only the evidence needed to support the takeaway.
 4. State uncertainty, caveats, and data limits plainly.
 5. Match the format to the audience: memo, slide, dashboard, or short update.
 6. Close with the decision or next step the finding should inform.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

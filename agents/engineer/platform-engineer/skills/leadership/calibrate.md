@@ -33,6 +33,18 @@ Use this skill to align people decisions and expectations so the team applies a 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the standard being used before comparing people against it.
 2. Gather specific evidence, not general impressions.
 3. Compare the evidence to the bar and identify gaps or strengths.
@@ -40,6 +52,12 @@ Use this skill to align people decisions and expectations so the team applies a 
 5. Reconcile disagreements by returning to the rubric and the examples.
 6. Write down the decision, rationale, and any follow-up actions.
 7. Make sure the calibrated view is simple enough to communicate consistently.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

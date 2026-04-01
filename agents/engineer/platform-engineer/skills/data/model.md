@@ -33,6 +33,18 @@ Use this skill to turn raw data into trustworthy analytical structures with clea
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the grain before writing any transformation logic.
 2. Choose the correct layer for each rule: staging for structural cleanup, intermediate for business logic, mart for consumer-facing outputs.
 3. Keep transformation models deterministic, documented, and easy to test.
@@ -40,6 +52,12 @@ Use this skill to turn raw data into trustworthy analytical structures with clea
 5. Trace lineage to understand every downstream dependency before changing a field or contract.
 6. Review query patterns and materialization choices to avoid unnecessary warehouse cost.
 7. Document any schema change with impact, backfill, and rollback notes.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

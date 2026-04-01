@@ -32,12 +32,30 @@ Use this skill to define what each touchpoint should communicate, how it behaves
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. List the touchpoints in the order users encounter them.
 2. Describe the purpose of each surface and the state it communicates.
 3. Define who owns the surface and what triggers it.
 4. Specify the behavior for loading, success, error, delay, and escalation states.
 5. Check for channel drift, duplicated messages, or missing context between surfaces.
 6. Confirm the touchpoint still makes sense inside the broader service blueprint.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -31,11 +31,29 @@ Use this skill to confirm that the conclusions drawn from grounding, tracing, an
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reference
+project: <slug>
+deliverable: reference.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the conclusion in a testable form.
 2. Re-open the supporting files and confirm the evidence still matches the claim.
 3. Check for contradictions, stale assumptions, or missing context.
 4. Confirm that any reused pattern is still the approved pattern for the area.
 5. Record the result with enough detail that another person can trust it.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -31,12 +31,30 @@ Use this skill to write onboarding and in-context guidance that helps users star
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the first meaningful outcome the user should reach.
 2. Identify what the user must know before acting versus what can be taught later.
 3. Write guidance that supports the next useful action rather than explaining the whole product.
 4. Use headings, helper text, empty states, and contextual prompts to teach in place.
 5. Remove reassurance, feature tours, or background information that delays action without reducing risk.
 6. Check whether experienced users can move forward without being slowed down unnecessarily.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

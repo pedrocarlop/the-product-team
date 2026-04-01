@@ -31,12 +31,30 @@ Use this skill to make a feature or flow sound coherent by standardizing termino
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Inventory the key strings across the full flow, including default, success, error, and empty states.
 2. Identify repeated concepts, inconsistent labels, and moments where tone should intentionally shift.
 3. Select the canonical term and preferred pattern for each recurring concept or message type.
 4. Rewrite the affected copy so users encounter one coherent vocabulary and one consistent voice.
 5. Document any deliberate tonal differences by context so future work follows the same logic.
 6. Verify the final pass against the full journey, not isolated screens.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

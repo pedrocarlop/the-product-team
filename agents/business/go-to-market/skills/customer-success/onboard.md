@@ -31,12 +31,30 @@ Use this skill to turn a signed customer into an activated customer by defining 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the customer's desired business outcome and the first-value moment.
 2. Break the path to first value into a small set of activation milestones.
 3. Assign an owner, target date, and proof of completion to each milestone.
 4. Build a 30/60/90-day plan that reflects the customer's actual adoption path.
 5. Confirm kickoff cadence, meeting owners, and escalation path for blockers.
 6. Verify the plan is realistic against implementation dependencies and customer capacity.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -32,12 +32,30 @@ Use this skill to design a campaign that can actually ship: a clear objective, a
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Write the campaign objective in one sentence and tie it to a measurable business outcome.
 2. Define the audience, journey stage, and key message for the campaign.
 3. Choose the smallest channel mix that can plausibly reach the objective.
 4. List required assets, owners, dependencies, and approvals.
 5. Define tracking requirements before launch, including UTMs and conversion events.
 6. Set success metrics, review cadence, and a clear stop or iterate decision point.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

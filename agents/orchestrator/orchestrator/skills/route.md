@@ -29,7 +29,19 @@ The first checkpoint on every request. Route decides whether the orchestrator sh
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Understand the Request
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: orchestrator
+project: <slug>
+deliverable: orchestrator.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Understand the Request
 
 Read the user's request and extract:
 - **Objective**: what the user wants to exist when this is done.
@@ -37,14 +49,14 @@ Read the user's request and extract:
 - **Ambiguity level**: are the requirements specific enough to act on, or do they need discovery?
 - **Likely deliverables**: code, design specs, analysis, documentation, plans.
 
-### Step 2: Check Project History
+### Step 3: Check Project History
 
 Read `logs/TIMELINE.md`. Look for:
 - Active projects this request might continue or extend.
 - Past projects with similar domain that reveal useful context.
 - If this is clearly a continuation, reuse the existing project slug and `context.md`.
 
-### Step 3: Classify the Domain
+### Step 4: Classify the Domain
 
 Classify likely domain(s) first. Determine the primary domain(s) without reading the full role catalog:
 
@@ -62,7 +74,7 @@ Classify likely domain(s) first. Determine the primary domain(s) without reading
 If the task maps cleanly to **one domain** → likely direct execution.
 If the task spans **two or more domains** → likely orchestration.
 
-### Step 4: Apply the Routing Decision Tree
+### Step 5: Apply the Routing Decision Tree
 
 ```
 Is the task single-domain?
@@ -80,7 +92,7 @@ Is the task single-domain?
         └── NO → ORCHESTRATE (multi-role)
 ```
 
-### Step 5: Estimate Coordination Cost
+### Step 6: Estimate Coordination Cost
 
 Before committing to orchestration, estimate the cost:
 - **Direct execution**: ~1 agent turn, fast, low overhead.
@@ -89,12 +101,18 @@ Before committing to orchestration, estimate the cost:
 
 Only orchestrate when the coordination benefit **clearly exceeds** the token and latency cost. Simple tasks with orchestration overhead feel slow and wasteful.
 
-### Step 6: Create the Project Context
+### Step 7: Create the Project Context
 
 Create `logs/active/<project-slug>/context.md` with:
 
 ```markdown
 # <Project Title>
+
+### Step 8: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Objective
 <What the user wants to exist when this is done>

@@ -30,11 +30,29 @@ Use this skill to turn performance goals into explicit thresholds that engineeri
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Choose a budget that reflects the user experience under realistic conditions.
 2. Tie the budget to a concrete metric with a clear threshold.
 3. Document the measurement environment so the target is not ambiguous.
 4. Decide where the budget is enforced: CI, alerting, release review, or all three.
 5. Record how exceptions or tradeoffs should be handled.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

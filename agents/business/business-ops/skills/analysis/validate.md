@@ -31,12 +31,30 @@ Use this skill to verify that the solution, process, or documentation still alig
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: business-ops
+project: <slug>
+deliverable: business-ops.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Compare the proposed outcome to the documented requirement set.
 2. Check that each requirement has a clear validation path.
 3. Draft or review validation criteria and UAT scenarios.
 4. Identify mismatches, gaps, or ambiguities before sign-off.
 5. Confirm who can approve and what evidence is needed.
 6. Record whether the solution meets, partially meets, or fails the agreed need.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

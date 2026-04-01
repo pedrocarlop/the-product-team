@@ -31,12 +31,30 @@ Use this skill to choose durable user-facing names that are clear, distinct, and
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the concept in plain language and separate it from implementation detail.
 2. Identify likely user vocabulary and the closest competing terms in the product space.
 3. Generate candidate names that are concrete, distinct, and workable in UI constraints.
 4. Test candidates for ambiguity, overlap, scalability, and fit across navigation, headings, settings, and support content.
 5. Choose the recommended term and document acceptable alternatives or banned wording.
 6. Note any dependent labels that should align with the final name.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -31,6 +31,18 @@ Use this skill to convert a security finding into a safe, minimal, and verifiabl
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the issue in operational terms so the fix targets the real failure mode.
 2. Identify the smallest safe change that removes or contains the risk.
 3. Patch the implementation or configuration with the least possible scope change.
@@ -38,6 +50,12 @@ Use this skill to convert a security finding into a safe, minimal, and verifiabl
 5. Update related docs, alerts, or guardrails if they help prevent recurrence.
 6. Check for adjacent regressions, especially in auth, validation, logging, and access control paths.
 7. Record any residual risk or follow-up work that remains after the fix.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

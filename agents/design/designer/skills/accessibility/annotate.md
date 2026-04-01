@@ -32,12 +32,30 @@ Use this skill to write accessibility annotations that make the intended behavio
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the part of the interface where ambiguity would create accessibility risk.
 2. Add notes for semantics, labels, names, states, and relationships that must exist in implementation.
 3. Specify keyboard behavior and focus movement where users interact with dynamic UI.
 4. Call out contrast, motion, and color-only dependencies where the design needs constraints.
 5. Mark any requirement that must be preserved across responsive states, localization, or theming.
 6. Keep notes concise enough for handoff, but precise enough to be implemented without guesswork.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

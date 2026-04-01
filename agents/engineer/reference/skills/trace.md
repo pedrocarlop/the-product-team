@@ -31,11 +31,29 @@ Use this skill to follow a concept through the repository until the implementati
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reference
+project: <slug>
+deliverable: reference.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Start from the strongest known anchor point, such as a route, component, helper, or config key.
 2. Follow imports, calls, props, events, and data transformations outward until the path is clear.
 3. Separate source-of-truth locations from derived or mirrored values.
 4. Note any branching behavior, conditional handling, or environment-specific paths.
 5. Summarize the trace as a chain of evidence, not as a guess about intent.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

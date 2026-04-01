@@ -32,12 +32,30 @@ Use this skill to define how content is classified so users, search, and navigat
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the content types that need to be classified and the decisions users need to make.
 2. Distinguish user vocabulary from internal vocabulary and choose the more legible option where possible.
 3. Define each category, what it includes, and what it excludes.
 4. Check for overlap, synonym drift, and categories that exist only because of implementation convenience.
 5. Confirm the taxonomy can support both browsing and retrieval without creating duplicate concepts.
 6. Document the governance rule for keeping the taxonomy consistent over time.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

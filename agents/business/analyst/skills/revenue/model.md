@@ -32,12 +32,30 @@ Use this skill to build the analytical structure for revenue operations work: pi
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Translate the business question into a modelable revenue problem.
 2. Choose the smallest model structure that still exposes the real drivers.
 3. Define the units, periods, and conversion steps the model must preserve.
 4. Separate hardcoded assumptions from formulas and note every assumption source.
 5. Check whether the model ties to actuals, forecast logic, and capacity constraints.
 6. Document what changed, what is still uncertain, and what a reviewer should challenge.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

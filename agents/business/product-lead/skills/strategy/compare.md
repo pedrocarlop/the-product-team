@@ -32,6 +32,18 @@ Use this skill to turn a set of plausible strategic options into a clear compari
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the comparison criteria before scoring anything.
 2. List the viable options and exclude false choices that do not deserve equal attention.
 3. Compare each option on strategic fit, upside, confidence, cost, speed, and reversibility.
@@ -39,6 +51,12 @@ Use this skill to turn a set of plausible strategic options into a clear compari
 5. Identify the tradeoffs the decision-maker is actually choosing between.
 6. Stress-test the weakest assumption behind each option.
 7. Convert the comparison into a recommendation with clear reasons and caveats.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

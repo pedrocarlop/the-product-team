@@ -26,14 +26,26 @@ A flow maps the user's movement through a product experience. It visualizes the 
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Define Entry Points and Intent
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Define Entry Points and Intent
 
 Start with why the user is here:
 - **Source**: Where did they come from? (e.g., deep link, settings menu, toast notification).
 - **Context**: What is the system state? (e.g., logged in, expired trial, first-run).
 - **Intent**: What single thing are they trying to accomplish? (e.g., "delete team", "update billing").
 
-### Step 2: Map the Happy Path
+### Step 3: Map the Happy Path
 
 Define the shortest, most successful sequence of actions from Entry to Completion.
 - Avoid detailing UI components yet; focus on **logic nodes**:
@@ -41,14 +53,14 @@ Define the shortest, most successful sequence of actions from Entry to Completio
   - `System Response` (Result of X)
   - `Decision` (Choice A vs B)
 
-### Step 3: Identify Alternates and Interruptions
+### Step 4: Identify Alternates and Interruptions
 
 For every step in the Happy Path, ask:
 - "What if the user changes their mind or clicks away?"
 - "What if a different choice is valid here?"
 - "What if a prerequisite is missing (e.g., payment method) at this specific moment?"
 
-### Step 4: Map Error and Recovery Loops
+### Step 5: Map Error and Recovery Loops
 
 For every `Action` or `System Response`, identify failure points:
 - **System Failure**: Timeout, 500 error, network loss.
@@ -57,18 +69,24 @@ For every `Action` or `System Response`, identify failure points:
 
 **Mandatory Recovery rule**: Every error node must lead somewhere — either back to a previous state for correction or to a clear exit path. Never leave the user at a dead end.
 
-### Step 5: Incorporate Empty and Loading States
+### Step 6: Incorporate Empty and Loading States
 
 Identify moments of latency or data absence:
 - **Loading state**: While the system processes a logic node.
 - **Empty state**: When a list, dashboard, or container has no data to display after the flow starts.
 
-### Step 6: Verify the Exit Nodes
+### Step 7: Verify the Exit Nodes
 
 Explicitly define how the flow ends:
 - **Success**: Goal reached, visual confirmation provided.
 - **Cancellation**: User opted out, system returned to a stable previous state.
 - **Failure**: Goal unreached, user informed, transition to a relevant support/fallback surface.
+
+### Step 8: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Decision Tree: Is this a Flow task?
 

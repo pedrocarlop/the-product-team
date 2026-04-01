@@ -31,12 +31,30 @@ Use this skill to make layouts resilient to text expansion so translated UI stil
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the longest likely translated version, not just the English source.
 2. Inspect the container, typography, and spacing rules that could fail under growth.
 3. Replace fixed widths with flexible sizing, wrapping, or intrinsic layout where possible.
 4. Reserve overflow budget for critical labels and interactive controls.
 5. Check adjacent components for cascading breakage, especially in rows, grids, and toolbars.
 6. Verify that the layout still feels balanced when the longest strings land.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

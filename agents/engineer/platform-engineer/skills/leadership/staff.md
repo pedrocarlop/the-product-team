@@ -33,6 +33,18 @@ Use this skill to decide how engineering work should be staffed so the team has 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. State the business outcome the staffing decision must support.
 2. Map the current team shape, ownership, and capacity against that outcome.
 3. Identify the gap: missing capacity, missing skill, unclear ownership, or too much coordination.
@@ -40,6 +52,12 @@ Use this skill to decide how engineering work should be staffed so the team has 
 5. Check the tradeoffs in speed, quality, risk, and management overhead.
 6. Recommend the smallest staffing change that credibly solves the problem.
 7. Document the decision, rationale, and follow-up actions so the team can act on it.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

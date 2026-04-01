@@ -31,12 +31,30 @@ Use this skill to define what the assistant should handle, what it should refuse
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the core job the assistant is meant to do.
 2. List the tasks and intents that are clearly in scope.
 3. List adjacent requests that should be redirected, escalated, or refused.
 4. Define handoff rules for unclear, risky, or unsupported requests.
 5. Check that the scope matches product, policy, and implementation reality.
 6. Record any ambiguities that must be resolved before script or copy work continues.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

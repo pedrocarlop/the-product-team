@@ -30,12 +30,30 @@ Use this skill to move approved changes through environments safely and predicta
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Classify the change by blast radius, dependency risk, and rollback complexity.
 2. Choose a rollout pattern that matches the risk: rolling, canary, or blue/green.
 3. Verify the promoted artifact is the same one that passed previous validation.
 4. Confirm health checks, alarms, and automated gates are ready before traffic shifts.
 5. Define the rollback path so it is a documented, low-friction operation.
 6. Validate the release order across environments and call out any manual steps.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

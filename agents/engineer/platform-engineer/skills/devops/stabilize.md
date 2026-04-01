@@ -30,12 +30,30 @@ Use this skill to make a fragile system safer to run by reducing blast radius, t
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the most likely way the system will fail again.
 2. Reduce risk first: add guardrails, tighten permissions, or narrow exposure.
 3. Confirm the recovery path is documented, tested, and easy to execute.
 4. Remove drift or conflicting state that could cause the next outage.
 5. Update alerts, dashboards, and runbooks so operators can react faster.
 6. Verify the system is stable enough for normal operation or release.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

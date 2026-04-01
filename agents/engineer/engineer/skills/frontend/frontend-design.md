@@ -26,7 +26,19 @@ This skill gives you design-taste guardrails so frontend output feels deliberate
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Write the Working Model
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Write the Working Model
 
 Before any code, write three things:
 
@@ -46,7 +58,7 @@ Before any code, write three things:
    - "Scroll-linked parallax on the feature section image"
    - "Hover-reveal expanding detail on capability cards"
 
-### Step 2: Build from Composition, Not Components
+### Step 3: Build from Composition, Not Components
 
 Start with the overall layout and composition for each section, then fill in components:
 
@@ -56,7 +68,7 @@ Start with the overall layout and composition for each section, then fill in com
 - **Let spacing do the work.** Use whitespace, alignment, scale, cropping, and contrast before adding chrome, borders, or decorative elements.
 - **Canonical full-bleed rule**: on branded landing pages, the hero must run edge-to-edge with no inherited page gutters, framed container, or shared max-width. Constrain only the inner text/action column.
 
-### Step 3: Set Typography
+### Step 4: Set Typography
 
 - Use expressive, purposeful font families — avoid system defaults and generic stacks (Inter, Roboto, Arial, system-ui). These read as "AI generated."
 - **Two typefaces maximum**: one display, one body. Add a third only with clear justification.
@@ -64,7 +76,7 @@ Start with the overall layout and composition for each section, then fill in com
 - Use font size, weight, and letterspacing to create visual hierarchy, not color alone.
 - Keep headlines to roughly 2-3 lines on desktop and readable in one glance on mobile.
 
-### Step 4: Set Color and Visual Direction
+### Step 5: Set Color and Visual Direction
 
 - Define a clear visual direction before picking colors.
 - Use **CSS custom properties** (`--var`) for all color values — no hardcoded hex in component styles.
@@ -72,7 +84,7 @@ Start with the overall layout and composition for each section, then fill in com
 - Choose **one accent color** and build a palette from it. Add a second only with reason.
 - **Background treatment**: no flat, single-color backgrounds. Use gradients, subtle textures, photographic backgrounds, tinted sections, or depth layers.
 
-### Step 5: Handle Imagery
+### Step 6: Handle Imagery
 
 Imagery must do narrative work, not decoration:
 
@@ -84,7 +96,7 @@ Imagery must do narrative work, not decoration:
 - If multiple moments are needed, use multiple images, not one collage.
 - The first viewport needs a **real visual anchor**. Decorative texture is not enough.
 
-### Step 6: Apply Motion
+### Step 7: Apply Motion
 
 Motion is for presence and hierarchy, not noise. Ship 2-3 intentional motions per page:
 
@@ -102,7 +114,7 @@ Motion is for presence and hierarchy, not noise. Ship 2-3 intentional motions pe
 - Removed if ornamental only.
 - Use `prefers-reduced-motion` to disable non-essential animations.
 
-### Step 7: Write Copy
+### Step 8: Write Copy
 
 **For landing pages and marketing surfaces:**
 - Write in product language, not design commentary.
@@ -119,6 +131,12 @@ Motion is for presence and hierarchy, not noise. Ship 2-3 intentional motions pe
   - Bad: "Unlock Your Data Potential", "Your Journey Starts Here"
 - If a section does not help someone operate, monitor, or decide, remove it.
 - **Litmus**: if an operator scans only headings, labels, and numbers, can they understand the page?
+
+### Step 9: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Viewport Budget
 

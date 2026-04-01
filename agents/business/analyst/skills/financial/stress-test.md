@@ -31,12 +31,30 @@ Use this skill to pressure-test a financial model or forecast so the team unders
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the assumptions that most influence the decision.
 2. Define realistic downside and upside ranges for those assumptions.
 3. Run sensitivities or scenarios against the base model.
 4. Highlight the assumptions that create the largest change in outcome.
 5. Surface breakpoints where the decision no longer holds.
 6. Summarize the downside risk in plain language for the decision-maker.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

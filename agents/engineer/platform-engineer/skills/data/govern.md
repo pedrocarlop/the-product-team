@@ -33,6 +33,18 @@ Use this skill to make data safe to use and easy to audit by defining how sensit
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Classify the data and identify which fields need protection.
 2. Define the minimum necessary access model for each role or consumer.
 3. Apply metadata tags, masking, and warehouse-level controls where appropriate.
@@ -40,6 +52,12 @@ Use this skill to make data safe to use and easy to audit by defining how sensit
 5. Confirm lineage from source to consumer so sensitive data flows are visible.
 6. Add quality and freshness checks for governed datasets.
 7. Record the governance decision and evidence in a durable system of record.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

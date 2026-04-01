@@ -32,12 +32,30 @@ Use this skill to bring the database back to a known-good state safely after a f
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Stabilize the situation and stop further damage if needed.
 2. Determine the latest safe point to recover to.
 3. Choose the least risky path among restore, rollback, failover, or repair.
 4. Validate the recovered state before declaring success.
 5. Confirm whether dependent systems need re-sync, replay, or cleanup.
 6. Capture what happened so the same failure is easier to recover from next time.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

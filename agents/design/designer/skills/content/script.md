@@ -31,12 +31,30 @@ Use this skill to turn conversation requirements into a clear turn-by-turn scrip
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the conversation goal and the moment when the interaction begins.
 2. Break the flow into distinct turns, including user inputs, system responses, and transition points.
 3. Write the happy path first, then add alternate branches and exits.
 4. Make every branch explicit so the script can be tested or implemented without guesswork.
 5. Check that each response advances the task, requests the right next input, or closes the loop cleanly.
 6. Verify that the sequence matches the product's real capabilities and constraints.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

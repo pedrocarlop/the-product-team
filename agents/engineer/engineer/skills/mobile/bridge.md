@@ -33,12 +33,30 @@ Use this skill to translate mobile design intent into implementation decisions t
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read the design and identify which elements can be implemented in the cross-platform layer and which require native code.
 2. Map each component to the appropriate implementation surface: shared UI framework, platform-specific component, or native module.
 3. Identify JS-to-native bridge boundaries and specify the data shape, threading model, and error handling for each crossing.
 4. Resolve platform divergences: where iOS and Android need different implementations, document both paths and the reason for divergence.
 5. Assess performance implications: will animations hit 60fps? Does the feature add to startup time? Are there memory-intensive operations that need native optimization?
 6. Document open questions about platform API availability, minimum OS version requirements, and permission handling.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -33,6 +33,18 @@ Use this skill to move data from source systems into a trusted raw or landing la
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the source of truth and the exact contract the source already provides.
 2. Choose the simplest reliable ingestion path, preferring managed connectors over custom code.
 3. Decide whether the load should be full refresh, incremental, or event-driven based on source behavior and recovery cost.
@@ -40,6 +52,12 @@ Use this skill to move data from source systems into a trusted raw or landing la
 5. Capture load metadata such as row counts, offsets, high-watermarks, and latency on every run.
 6. Add validation and alerting that make missing, late, or malformed data visible quickly.
 7. Document how to replay, backfill, and investigate the pipeline before shipping it.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

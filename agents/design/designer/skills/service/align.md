@@ -32,12 +32,30 @@ Use this skill to check that the designed service can be delivered, supported, m
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the service goal in terms the organization can evaluate.
 2. Identify the constraints, assumptions, and tradeoffs that shape the design.
 3. Map which teams or roles must support the design for it to work.
 4. Tie the proposal to service metrics or business outcomes.
 5. Call out open decisions, dependencies, and risks that need confirmation.
 6. Verify the design remains realistic and accountable after the alignment check.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

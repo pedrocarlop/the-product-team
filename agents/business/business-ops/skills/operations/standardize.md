@@ -31,12 +31,30 @@ Use this skill to turn a known operational flow into a reliable standard that pe
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: business-ops
+project: <slug>
+deliverable: business-ops.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Confirm the process is stable enough to standardize without guessing.
 2. Define the trigger, purpose, owner, and expected outcome.
 3. Write the steps in a sequence that a new person could follow.
 4. Include edge cases, escalation paths, and the definition of done.
 5. Assign review cadence and change ownership so the standard stays current.
 6. Check that the standard is usable in real work, not just readable in theory.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

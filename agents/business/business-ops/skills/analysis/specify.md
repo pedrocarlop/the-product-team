@@ -32,12 +32,30 @@ Use this skill to turn a documented business process into precise, implementable
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: business-ops
+project: <slug>
+deliverable: business-ops.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Walk the process map step by step and extract the decision points, rules, and system interactions.
 2. Write each requirement against the process step it derives from, not as a standalone feature request.
 3. Separate functional requirements, business rules, data constraints, and assumptions.
 4. Add acceptance criteria that reflect the process outcome, including handoff conditions and exception paths.
 5. Assign identifiers and link each requirement to its source process step or policy.
 6. Review with the process owner to confirm the requirements match actual practice, not idealized flow.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

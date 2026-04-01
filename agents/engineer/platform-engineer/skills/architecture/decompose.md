@@ -32,12 +32,30 @@ Use this skill to turn a messy business request into a clear architectural probl
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the problem as a concrete architectural question.
 2. Split the request into functional needs, non-functional needs, and constraints.
 3. Identify the systems, teams, and workflows that are in scope and out of scope.
 4. Surface assumptions, unknowns, dependencies, and risk areas.
 5. Turn vague needs into decision-ready requirements with measurable thresholds where possible.
 6. Produce a concise problem frame that can be handed to option selection or design work.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

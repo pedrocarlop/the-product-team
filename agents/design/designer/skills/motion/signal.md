@@ -31,6 +31,18 @@ Use this skill to design motion as a signal: to tell users that something needs 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the message in one sentence: what should the user understand?
 2. Classify the signal by urgency, frequency, and importance.
 3. Choose the smallest motion that makes the meaning legible.
@@ -38,6 +50,12 @@ Use this skill to design motion as a signal: to tell users that something needs 
 5. Make sure the signal supports the content instead of overpowering it.
 6. Specify implementation constraints such as maximum repeats, cooldowns, and no-loop defaults.
 7. Specify reduced-motion behavior and verify the meaning survives without movement.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

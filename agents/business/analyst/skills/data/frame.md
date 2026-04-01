@@ -31,12 +31,30 @@ Use this skill to turn a messy business question into a specific analysis frame:
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the ask as a decision-oriented question.
 2. Identify the primary decision maker and the action the answer should change.
 3. Split broad asks into a smaller set of answerable subquestions.
 4. Define the minimum scope needed to answer the question credibly.
 5. Write down the intended output form, such as a number, table, chart, or memo.
 6. Call out assumptions, exclusions, and open questions before analysis starts.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

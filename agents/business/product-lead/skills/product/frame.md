@@ -26,36 +26,54 @@ description: "Turn a vague product request into a precise problem statement, bou
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Extract the Core Decision
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Extract the Core Decision
 
 Identify what action this work will ultimately drive:
 - **Good**: "Should we invest in a native mobile app or optimize the responsive web experience?"
 - **Bad**: "We need to research mobile usage." (Not a decision).
 
-### Step 2: Define the Problem Statement
+### Step 3: Define the Problem Statement
 
 State the user or business pain in under two sentences.
 - Use the format: *[Who] is struggling to [Do What] because [Why], which results in [Impact].*
 - **Example**: "Customer Success Managers are struggling to identify churning accounts early because health scores update weekly, resulting in preventable revenue loss."
 
-### Step 3: Set Scope Boundaries (In/Out)
+### Step 4: Set Scope Boundaries (In/Out)
 
 Explicitly define what the team will *not* do:
 - **In Scope**: The exact personas, use cases, or platforms being targeted.
 - **Out of Scope**: Adjacent problems, future features, or edge cases that will be deliberately ignored for now. *If the "Out of Scope" list is empty, the frame is too weak.*
 
-### Step 4: Define Success Criteria
+### Step 5: Define Success Criteria
 
 State how the team will know if the problem is solved:
 - **Quantitative**: "Activation rate increases from 20% to 25%."
 - **Qualitative**: "Users can complete the onboarding flow without contacting support."
 
-### Step 5: Identify the 'Next Step' Output
+### Step 6: Identify the 'Next Step' Output
 
 Define what artifact will close this framing exercise:
 - A 1-pager for leadership approval.
 - A "How Might We" brief for design exploration.
 - A kill decision (stopping the work because the problem isn't worth solving).
+
+### Step 7: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Decision Tree: Is the Frame Strong Enough?
 

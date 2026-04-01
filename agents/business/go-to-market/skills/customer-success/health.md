@@ -31,12 +31,30 @@ Use this skill to determine whether an account is on track, at risk, or in activ
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Review the account's leading indicators: login frequency, adoption depth, and stakeholder engagement.
 2. Compare those signals against the segment baseline and the customer's recent history.
 3. Classify the account into green, yellow, or red using the current threshold model.
 4. Identify the specific behaviors that support the classification.
 5. Name the intervention or monitoring action that follows from the score.
 6. Check whether the score is stale, inconsistent, or missing a critical signal.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -31,12 +31,30 @@ Use this skill to document how each UI requirement resolves into an existing com
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify each UI requirement that needs a source decision.
 2. Match the requirement to the closest approved component, token, or pattern.
 3. Document any deviations, wrappers, or custom behavior and why they are necessary.
 4. Note what is reused, what is adapted, and what must be built or justified separately.
 5. Verify the mapping is traceable and consistent across related screens or states.
 6. Check that no critical decision is left as an unnamed custom solution.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

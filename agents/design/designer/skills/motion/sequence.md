@@ -32,6 +32,18 @@ Use this skill to choreograph motion across multiple elements so the user can fo
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Rank the elements by importance.
 2. Decide what should start first, what should follow, and what can happen in parallel.
 3. Assign offsets so the sequence feels intentional rather than random.
@@ -39,6 +51,12 @@ Use this skill to choreograph motion across multiple elements so the user can fo
 5. Check the sequence from the user's perspective, not the animator's.
 6. Define interruption, reverse, and cancellation behavior so the sequence does not break under real use.
 7. Define the reduced-motion version so the order still reads clearly.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

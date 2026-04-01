@@ -32,6 +32,18 @@ Use this skill to confirm that a deployed infrastructure or service change is he
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the evidence that would prove the deployment is healthy across the infrastructure layer.
 2. Check service-level metrics: request rate, error rate, latency percentiles, and resource utilization.
 3. Inspect logs for the deployed version: structured format, appropriate log levels, no sensitive data exposure.
@@ -39,6 +51,12 @@ Use this skill to confirm that a deployed infrastructure or service change is he
 5. Confirm alerts are configured for the failure modes that matter: threshold breaches, anomaly detection, and dependency failures.
 6. Compare post-deploy metrics against the pre-deploy baseline and flag any regression.
 7. Document findings and any observability gaps that need follow-up.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

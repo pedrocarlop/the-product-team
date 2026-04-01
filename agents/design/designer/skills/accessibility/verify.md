@@ -32,6 +32,18 @@ Use this skill to confirm that accessibility requirements were implemented corre
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Revisit the original requirement so the verification matches the actual fix.
 2. Test the path that was changed, not just the happy path around it.
 3. Confirm keyboard reachability, focus order, and visible focus states.
@@ -39,6 +51,12 @@ Use this skill to confirm that accessibility requirements were implemented corre
 5. Recheck contrast, motion, and state communication in the final rendered UI.
 6. Compare the observed behavior with the expected outcome and note any regressions.
 7. Record whether the item passes, fails, or needs a follow-up fix.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

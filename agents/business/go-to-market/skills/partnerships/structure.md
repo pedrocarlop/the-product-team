@@ -32,12 +32,30 @@ Use this skill to shape the commercial architecture of a business development op
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Frame the opportunity against the company's growth thesis and competitive position.
 2. Evaluate candidate deal types and select the structure that best fits the strategic intent.
 3. Model the economics at portfolio level: how this deal interacts with existing commitments and margin targets.
 4. Define governance, decision rights, and escalation paths proportional to the deal's strategic weight.
 5. Identify the internal approvals, cross-functional dependencies, and timeline gates.
 6. Package the structure as a decision memo for executive or board review.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -33,6 +33,18 @@ Use this skill to decide what quality coverage is needed, where it should live, 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reviewer
+project: <slug>
+deliverable: reviewer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. List the user journeys, behaviors, and failure states that matter most.
 2. Rank them by impact, likelihood, and ease of detection.
 3. Choose the lightest test layer that still gives strong signal for each case.
@@ -40,6 +52,12 @@ Use this skill to decide what quality coverage is needed, where it should live, 
 5. Identify gaps that cannot be covered now and make them explicit.
 6. Check for redundant tests that add maintenance cost without new signal.
 7. Package the coverage view so the team can see what is covered and what is still missing.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

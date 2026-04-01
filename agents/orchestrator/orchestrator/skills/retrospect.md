@@ -33,7 +33,19 @@ The learning loop for the Product Team workflow. Retrospect identifies systemic 
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Identify the Pattern
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: orchestrator
+project: <slug>
+deliverable: orchestrator.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Identify the Pattern
 
 Answer these questions with specifics — not generalities:
 
@@ -47,7 +59,7 @@ Answer these questions with specifics — not generalities:
 
 **One pattern per retrospective.** Do not bundle unrelated issues. If you find multiple patterns, create separate retrospectives.
 
-### Step 2: Classify the Root Cause
+### Step 3: Classify the Root Cause
 
 Use this taxonomy to identify what failed:
 
@@ -71,7 +83,7 @@ What type of failure is this?
     └── Fix type: ADD tool usage protocol to the relevant skill
 ```
 
-### Step 3: Gather Evidence
+### Step 4: Gather Evidence
 
 Before proposing a fix, collect concrete evidence:
 
@@ -82,7 +94,7 @@ Before proposing a fix, collect concrete evidence:
 
 Document the evidence trail — where you looked and what you found.
 
-### Step 4: Propose a Targeted Fix
+### Step 5: Propose a Targeted Fix
 
 Write a concrete proposal with all five elements:
 
@@ -102,7 +114,7 @@ Write a concrete proposal with all five elements:
 - Keep fixes **minimal**. Change only what's needed to prevent the pattern. Don't rewrite the whole file.
 - Be **specific**. Reference exact file paths, line ranges, and section headers.
 
-### Step 5: Apply or Escalate
+### Step 6: Apply or Escalate
 
 Follow this decision tree:
 
@@ -117,12 +129,18 @@ Is the fix to an installed Product Team file (.codex/product-team/ or .codex/age
                    Do not modify source files directly.
 ```
 
-### Step 6: Write the Retrospective Record
+### Step 7: Write the Retrospective Record
 
 Write to `logs/active/<project-slug>/retrospective.md`:
 
 ```markdown
 # Retrospective: <pattern name>
+
+### Step 8: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Pattern
 <1-2 sentence description of what keeps going wrong>

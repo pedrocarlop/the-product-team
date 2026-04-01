@@ -31,12 +31,30 @@ Use this skill to turn repeated design operations work into a clear, repeatable 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Map the current process from first trigger to final handoff.
 2. Identify the steps that are repeated, inconsistent, or easy to miss.
 3. Define the standard path, including owners, inputs, outputs, and checkpoints.
 4. Add the minimum templates, checklists, or forms needed to make the process usable.
 5. Pilot the process with a real case and adjust for friction or ambiguity.
 6. Document the final version so the team can use it without recreating the logic.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

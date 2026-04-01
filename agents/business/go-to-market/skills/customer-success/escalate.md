@@ -31,12 +31,30 @@ Use this skill to move a customer issue from concern to coordinated action, with
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Confirm the issue meets escalation criteria.
 2. Clarify the customer impact and the deadline pressure.
 3. Identify the internal owner, decision maker, and needed supporting teams.
 4. Set the immediate communication cadence with the customer.
 5. Define the recovery plan, success condition, and follow-up checkpoints.
 6. Capture the root cause and prevention angle once the situation is contained.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

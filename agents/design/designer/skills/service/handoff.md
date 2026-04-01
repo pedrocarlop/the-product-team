@@ -32,12 +32,30 @@ Use this skill to make transition points explicit so the next person, team, or s
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify every point where ownership, channel, or system changes.
 2. Specify what the receiving side must know to continue the experience.
 3. Document what the user sees during the transition and how they know progress is happening.
 4. Define fallback behavior if the next step does not complete on time.
 5. Call out manual interventions and exceptional paths separately from the default path.
 6. Check that no handoff requires the user to reconstruct information the service already has.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

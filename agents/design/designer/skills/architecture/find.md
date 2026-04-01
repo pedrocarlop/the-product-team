@@ -32,12 +32,30 @@ Use this skill to design how users discover and retrieve content, including sear
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the target objects users are trying to find and the likely terms they will use.
 2. Map the retrieval paths: direct search, browse, filters, shortcuts, and related content.
 3. Identify the fields, facets, and sort options that support meaningful narrowing.
 4. Design what happens when users get no results, too many results, or weak matches.
 5. Check that browse and search reinforce each other instead of competing.
 6. Verify the experience supports recovery, not just successful queries.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

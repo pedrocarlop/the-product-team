@@ -32,12 +32,30 @@ Use this skill to define how systems exchange data and responsibilities in a way
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the integration boundary and each side's responsibility.
 2. Choose the transport and contract style that fit the use case.
 3. Define payloads, versioning, idempotency, retries, and timeout behavior.
 4. Map error handling, fallback behavior, and operational alerts.
 5. Sequence the rollout or migration so compatibility is preserved.
 6. Verify that the integration can be operated and changed safely over time.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

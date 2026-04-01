@@ -31,12 +31,30 @@ Use this skill to convert a signed partnership into a working motion that produc
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Confirm the partnership is actually ready to launch, including any required approvals or dependencies.
 2. Assign owners, communication paths, and a launch date on both sides.
 3. Deliver the enablement package, kickoff agenda, and operational runbook.
 4. Set initial 30/60/90-day activity targets and reporting expectations.
 5. Establish the health score, review cadence, and escalation path.
 6. Document the first operating review and next actions so the motion does not stall.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

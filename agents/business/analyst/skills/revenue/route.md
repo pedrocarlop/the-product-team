@@ -32,12 +32,30 @@ Use this skill to define and maintain routing logic for revenue work so leads, a
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the record type and the exact moment routing should occur.
 2. Define the ownership rule in plain language before writing system logic.
 3. Specify the primary path, fallback path, and exception path.
 4. Check capacity and timing so the rule is operable in the real workflow.
 5. Document the handoff criteria and the signal that triggers the next owner.
 6. Verify the rule can be monitored and audited after it goes live.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

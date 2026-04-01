@@ -32,12 +32,30 @@ Use this skill to create documentation that helps teams adopt design system asse
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the decision the documentation must support.
 2. Capture the asset definition, use cases, and limits in plain language.
 3. Explain when the asset should and should not be used.
 4. Document variants, states, accessibility requirements, and token references.
 5. Add examples or do/don't guidance where teams are likely to misapply the asset.
 6. Verify that the documentation matches the actual behavior and does not overpromise.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

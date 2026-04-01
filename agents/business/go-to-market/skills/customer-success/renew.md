@@ -31,12 +31,30 @@ Use this skill to make renewal a managed process instead of a last-minute event,
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Anchor the work on the renewal date and the required lead time.
 2. Review current health, usage, and stakeholder coverage for risk.
 3. Identify renewal blockers, unresolved commitments, and expansion signals.
 4. Build the renewal plan with milestones for internal alignment and customer communication.
 5. Determine whether the motion is renewal-only or renewal plus expansion.
 6. Update forecast status with the most accurate risk picture available.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

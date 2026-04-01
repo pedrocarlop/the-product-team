@@ -33,6 +33,18 @@ Use this skill to define the market story that anchors all go-to-market work: wh
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the exact buyer segment and the job-to-be-done that the product addresses.
 2. Map the buyer's current beliefs and the belief shift the positioning must create.
 3. Set the category frame: what market does the buyer place the product in, and is that the right frame?
@@ -40,6 +52,12 @@ Use this skill to define the market story that anchors all go-to-market work: wh
 5. Select proof points that are factual, specific, and strong enough to withstand sales objections.
 6. Pressure-test the positioning against the top competitors, buyer skepticism, and internal jargon.
 7. Package the result into a positioning doc that sales, marketing, and product can all reference.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

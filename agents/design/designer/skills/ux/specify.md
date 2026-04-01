@@ -31,12 +31,30 @@ Use this skill to turn a flow into a screen-by-screen specification that enginee
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. List every screen or state that the experience requires.
 2. Specify what each screen contains, how it behaves, and what changes across states.
 3. Document interactions, validations, feedback, and loading or error handling.
 4. Define responsive behavior and any differences across breakpoints or platforms.
 5. Check that copy, behavior, and visuals all align with the same product rules.
 6. Verify there are no undefined transitions or "we'll figure it out later" gaps.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

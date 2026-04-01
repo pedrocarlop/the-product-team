@@ -32,12 +32,30 @@ Use this skill to make a localized experience feel appropriate for the target re
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the locale-specific expectations that could change the user experience.
 2. Check whether the current design encodes one region's norms as if they were universal.
 3. Adjust labels, format patterns, imagery, and disclosure space to fit the locale.
 4. Flag any items that require legal, content, or domain expert review.
 5. Keep the core product intent stable while adapting presentation and structure.
 6. Verify that the localized version still feels trustworthy and culturally natural.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

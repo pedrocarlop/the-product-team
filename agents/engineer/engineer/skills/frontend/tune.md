@@ -32,12 +32,30 @@ Use this skill to refine the words a frontend surface uses to communicate with u
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read each piece of copy in its visual and interaction context, not in isolation.
 2. Check whether the wording matches the action the UI is performing and the state it is in.
 3. Remove unnecessary filler, passive voice, and hedging that add length without adding meaning.
 4. Adjust formality, directness, and specificity to fit the component type and user moment.
 5. Verify consistency across related surfaces: does the same action use the same verb everywhere?
 6. Confirm that the final copy fits the available space and does not break layout at edge lengths.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

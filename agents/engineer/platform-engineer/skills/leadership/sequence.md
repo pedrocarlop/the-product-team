@@ -32,12 +32,30 @@ Use this skill to turn a technical initiative into a sensible order of work so d
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the target outcome and identify the minimum safe path to get there.
 2. List the dependencies, prerequisites, and irreversible steps.
 3. Split the work into phases that reduce risk as early as possible.
 4. Put validation, rollback, and communication steps in the sequence, not after it.
 5. Call out what can happen in parallel and what must wait.
 6. Confirm that the order still makes sense if one assumption changes.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

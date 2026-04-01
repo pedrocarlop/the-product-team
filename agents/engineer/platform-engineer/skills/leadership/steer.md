@@ -32,12 +32,30 @@ Use this skill to decide or guide the technical direction of a team or product a
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Clarify the decision being made and separate it from the implementation details.
 2. Check whether the choice is reversible, cross-team, or likely to create new long-term standards.
 3. Compare the simplest viable option against the more flexible or ambitious alternatives.
 4. Identify the tradeoffs, failure modes, and costs of reversal for each option.
 5. Align the relevant people before implementation begins when the decision crosses boundaries.
 6. Record the decision in the right durable artifact if the change is architectural enough to repeat or revisit.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

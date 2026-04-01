@@ -32,12 +32,30 @@ Use this skill to turn an agreed API design into clear documentation that consum
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Translate the contract into the documentation format consumers are expected to use.
 2. Include examples that show both the happy path and meaningful failure cases.
 3. Make sure the documented behavior matches the approved contract exactly.
 4. Document versioning, pagination, auth, error shapes, and any other consumer-facing rules explicitly.
 5. Add notes that help consumers understand what the API is for and what it is not for.
 6. Check that the finished docs are easy to scan, compare, and reference during implementation.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

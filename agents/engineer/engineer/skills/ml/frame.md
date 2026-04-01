@@ -32,12 +32,30 @@ Use this skill to decide whether the problem should use machine learning, what o
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the request as a decision-oriented ML question.
 2. Decide whether a deterministic rule, retrieval pattern, or prompt is sufficient before reaching for a model.
 3. Define the input, output, and operating context of the system.
 4. Identify the success metric, target threshold, and acceptable tradeoff.
 5. Write down the baseline and the failure modes, including who is affected when the system is wrong.
 6. Call out missing data, bias risks, and open questions that must be resolved before evaluation starts.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

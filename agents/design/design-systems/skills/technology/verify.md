@@ -31,12 +31,30 @@ Use this skill to compare the built surface against the intended design and iden
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Compare the implementation against the source at the level of layout, spacing, tokens, content, and interaction.
 2. Check the important states and edge cases, not just the happy path.
 3. Distinguish acceptable implementation constraints from true fidelity gaps.
 4. Capture evidence for each mismatch so the owning team can act quickly.
 5. Prioritize findings by user impact and release risk.
 6. Verify that any fix recommendation is traceable to the spec or design intent.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

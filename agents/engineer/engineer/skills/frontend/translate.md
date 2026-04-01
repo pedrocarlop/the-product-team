@@ -31,12 +31,30 @@ Use this skill to turn product intent into frontend implementation that behaves 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read the source material in context and identify the exact user-facing surface to build.
 2. Break the spec into layout, content, interaction, and data requirements.
 3. Map the design intent to existing components, tokens, and patterns before creating anything new.
 4. Implement the browser UI with semantic structure, responsive layout, and accessible interaction.
 5. Check the output against the source for visual and behavioral drift.
 6. Verify that the result still fits the surrounding product architecture and can be maintained.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

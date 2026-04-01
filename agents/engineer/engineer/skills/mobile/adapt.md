@@ -32,12 +32,30 @@ Use this skill to modify a mobile implementation so it handles real-world device
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify where the current implementation assumes a single platform or device class.
 2. Map the differences in system behavior, gesture handling, navigation, and accessibility APIs across targets.
 3. Choose platform-native patterns over cross-platform workarounds where the difference is meaningful to the user.
 4. Handle graceful degradation for older OS versions or constrained hardware: feature gating, reduced animation, or fallback layouts.
 5. Wire native accessibility services correctly — VoiceOver actions, TalkBack content descriptions, focus order, and live regions.
 6. Test against the minimum supported OS version and the smallest supported screen to confirm nothing breaks.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

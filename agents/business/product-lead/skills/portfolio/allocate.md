@@ -30,12 +30,30 @@ Use this skill to decide how product capacity should be distributed so the portf
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. List the portfolio buckets that need funding.
 2. Estimate the minimum and target investment needed for each bucket.
 3. Compare allocation against strategy, risk, and expected return.
 4. Identify overfunded and underfunded areas.
 5. Make the trade-offs explicit, including what gets slower or smaller as a result.
 6. Set a review cadence for revisiting the allocation.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

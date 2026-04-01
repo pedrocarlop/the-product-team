@@ -31,12 +31,30 @@ Use this skill to build a thesis-driven list of strategic targets -- potential a
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Articulate the strategic thesis before sourcing: what kind of opportunity, why now, and what makes a target compelling.
 2. Define the market map and identify the categories, segments, and positions where targets should exist.
 3. Build a candidate list using public signals: funding history, product announcements, leadership changes, M&A activity, and market share indicators.
 4. Qualify each target against the thesis: strategic fit, financial profile signals, cultural alignment indicators, and timing readiness.
 5. Identify executive stakeholders, board composition, and likely decision-making dynamics for priority targets.
 6. Rank targets by thesis alignment, execution feasibility, and urgency, then recommend the top tier for active pursuit.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

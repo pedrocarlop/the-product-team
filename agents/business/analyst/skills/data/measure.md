@@ -26,7 +26,19 @@ description: "Define, compute, and validate metrics so the numbers are correct, 
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: State the Metric definition in prose
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: State the Metric definition in prose
 
 Write the definition before writing any code:
 - **Numerator**: The count, sum, or average of occurrences (e.g., "Active Users").
@@ -34,33 +46,39 @@ Write the definition before writing any code:
 - **Time Window**: The period of measurement (e.g., "Trailing 7 Days", "Last Full Quarter").
 - **Filing Rules**: When does the metric "close"? (e.g., "At the end of the month").
 
-### Step 2: Establish the Semantic Layer
+### Step 3: Establish the Semantic Layer
 
 Identify the authoritative table, model, or view to use:
 - **Primary Source**: The verified table or dbt model (e.g., `fct_orders`, `dim_users`).
 - **Grain**: What does one row represent? (e.g., "One user per day").
 - **Filters**: Which rows should be excluded? (e.g., `is_internal_user = false`, `test_transactions = false`).
 
-### Step 3: Write the Metric Logic (SQL or Code)
+### Step 4: Write the Metric Logic (SQL or Code)
 
 Develop the calculation using clean, readable patterns:
 - Use **CTEs** (Common Table Expressions) for clarity over subqueries.
 - Explicitly handle **NULLs** in divisions: `SAFE_DIVIDE(numerator, denominator)`.
 - Use **Date Truncation** for stable windowing: `DATE_TRUNC(created_at, MONTH)`.
 
-### Step 4: Validate Data Quality and Inflation
+### Step 5: Validate Data Quality and Inflation
 
 Perform mandatory validation checks:
 - **Uniqueness**: Are there duplicates after joins? `count(*) vs count(distinct id)`.
 - **Null Rates**: Is the primary key or grouping field missing data?
 - **Plausibility**: Is the number in the expected ballpark? (e.g., "Retention can't be 150%").
 
-### Step 5: Document Caveats and Context
+### Step 6: Document Caveats and Context
 
 List anything that affects the metric's "truth":
 - **Instrumentation gaps**: "Mobile app versions < 2.0 don't track this event."
 - **Definitions shifts**: "The definition of 'Activated' changed on March 1st."
 - **Data Freshness**: "This metric has a 24-hour processing lag."
+
+### Step 7: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Decision Tree: Is the metric "production-ready"?
 

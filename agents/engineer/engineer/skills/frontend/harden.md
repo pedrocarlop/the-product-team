@@ -32,6 +32,18 @@ Use this skill to make frontend code safe to ship to real browsers on real netwo
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Audit the component tree for unhandled states: loading, error, empty, stale data, and race conditions.
 2. Check client-side security: XSS via innerHTML or dangerouslySetInnerHTML, token storage, CSP headers, third-party script sandboxing.
 3. Add error boundaries, fallback UI, and retry logic for failed network requests.
@@ -39,6 +51,12 @@ Use this skill to make frontend code safe to ship to real browsers on real netwo
 5. Profile rendering performance: bundle size impact, layout shifts (CLS), largest contentful paint (LCP), and unnecessary re-renders.
 6. Confirm feature flags, graceful degradation for older browsers, and a rollback path.
 7. Verify that hardening changes do not break existing visual or behavioral contracts.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

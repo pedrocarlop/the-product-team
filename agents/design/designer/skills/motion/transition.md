@@ -31,6 +31,18 @@ Use this skill to design motion between states so users can track what changed, 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the exact state pair being designed.
 2. Decide whether the motion should preserve spatial continuity, confirm causality, or simply minimize abruptness.
 3. Define the entry, exit, overlap, and unchanged behavior for every moving piece.
@@ -38,6 +50,12 @@ Use this skill to design motion between states so users can track what changed, 
 5. Check that the motion direction matches the interface model and does not create false affordances.
 6. Specify implementation constraints such as allowed properties, performance limits, and focus behavior if relevant.
 7. Specify the reduced-motion version and confirm it still communicates the change clearly.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

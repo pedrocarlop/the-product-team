@@ -31,12 +31,30 @@ Use this skill to confirm that the remediation really closes the security gap an
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Reproduce the original issue or confirm the exact path that was vulnerable.
 2. Run the same check against the fixed build, config, or deployment.
 3. Test the negative case that should now fail and the positive case that should still work.
 4. Recheck nearby security properties such as auth, authorization, logging, or headers.
 5. Confirm the fix survives the relevant environment and deployment settings.
 6. Record whether the issue is closed, partially closed, or still open.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

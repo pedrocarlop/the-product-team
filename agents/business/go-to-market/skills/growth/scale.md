@@ -31,12 +31,30 @@ Use this skill to convert a validated growth insight into a repeatable process, 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Confirm what was proven and the boundary of the evidence.
 2. Identify the smallest safe rollout path that preserves the observed lift.
 3. Translate the win into a repeatable process, rule, or automation.
 4. Define guardrails that detect regressions during expansion.
 5. Expand the rollout in phases and monitor for segment-specific degradation.
 6. Document the playbook so another team member can reproduce the result.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

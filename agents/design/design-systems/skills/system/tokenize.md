@@ -26,7 +26,19 @@ description: "Define, name, layer, and mode design tokens so the design system e
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Discover and Inventory Raw Values
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Discover and Inventory Raw Values
 
 Collect any visual literals that need systematic naming:
 - **Colors**: Hex, HSL, RGB.
@@ -34,7 +46,7 @@ Collect any visual literals that need systematic naming:
 - **Typography**: Font size, Weight, Letterspacing, Line height.
 - **Shadows/Elevation**: Blur, Spread, Opacity, Y-offset.
 
-### Step 2: Categorize by Taxonomy Layer
+### Step 3: Categorize by Taxonomy Layer
 
 Assign every value to its correct level in the system:
 
@@ -44,7 +56,7 @@ Assign every value to its correct level in the system:
 | **Semantic** | Alias | For application-wide logic. Use in 90% of cases. | `color-action-primary` |
 | **Component** | Specific | For one specific control type only. | `button-primary-bg` |
 
-### Step 3: Apply Naming Taxonomy (The System)
+### Step 4: Apply Naming Taxonomy (The System)
 
 Follow a consistent naming structure:
 - `{category}-{property}-{intent}-{state}`
@@ -55,19 +67,25 @@ Follow a consistent naming structure:
 
 Avoid naming by "how it looks" (e.g., `blue`, `bold`, `large`). Name by **intent** (e.g., `brand`, `critical`, `headline`).
 
-### Step 4: Define Mode Behavior (The Map)
+### Step 5: Define Mode Behavior (The Map)
 
 Specify how tokens change based on system mode (Light/Dark):
 - **Base (Light)**: `color-surface-primary` → White (`#FFFFFF`).
 - **Mode (Dark)**: `color-surface-primary` → Deep Grey (`#121212`).
 - Check contrast ratios for **both** modes.
 
-### Step 5: Verify the Map and Contract
+### Step 6: Verify the Map and Contract
 
 Ensure the token is ready for adoption:
 - **Design Alignment**: Can a designer select this token in Figma?
 - **Code Alignment**: Is there a corresponding CSS variable or JS constant name?
 - **Redundancy**: Does this token already exist under a different name? (Minimize tokens).
+
+### Step 7: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Decision Tree: Is this a new token?
 

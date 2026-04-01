@@ -31,6 +31,18 @@ Use this skill to find security issues in a concrete change and turn them into a
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read the change in context and identify what trust boundary or privilege path it touches.
 2. Check authentication, authorization, input validation, secrets handling, and data exposure first.
 3. Inspect dependency, crypto, logging, header, and configuration changes for silent regressions.
@@ -38,6 +50,12 @@ Use this skill to find security issues in a concrete change and turn them into a
 5. Separate definite vulnerabilities from concerns, and rank the definite issues by severity.
 6. Write findings in terms of impact, exploit path, and exact remediation needed.
 7. Confirm whether the change can ship as-is or whether it needs blocking fixes.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

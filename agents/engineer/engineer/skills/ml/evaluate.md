@@ -32,12 +32,30 @@ Use this skill to build a credible evaluation plan and turn measured results int
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Choose an evaluation design that matches the problem type and risk level.
 2. Separate training, validation, and test data before tuning anything.
 3. Define the baseline and compare every candidate against it.
 4. Measure the primary metric, guardrails, and slice performance on held-out data.
 5. Inspect worst cases, calibration, and error patterns instead of relying on averages only.
 6. Convert the results into a recommendation with clear tradeoffs and residual risk.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

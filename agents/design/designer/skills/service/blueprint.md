@@ -31,12 +31,30 @@ Use this skill to define the full service experience so the team can see how a u
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the service boundary: where the experience starts, where it ends, and what counts as resolution.
 2. Map user actions in order, including the moments when the user leaves the product.
 3. Add frontstage interactions for each step, covering digital, human, and physical touchpoints.
 4. Identify backstage processes, systems, and ownership transitions that make each step possible.
 5. Mark failure modes, waits, escalation paths, and recovery points explicitly.
 6. Verify that the blueprint can be handed to operations, product, and design without extra interpretation.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -30,12 +30,30 @@ Use this skill to create or improve delivery pipelines that produce traceable ar
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the commit-to-production path and where validation should split into independent stages.
 2. Define the artifact produced by each successful build step and how later stages consume it.
 3. Separate checks so failed test, build, or scan steps can rerun independently.
 4. Enforce required status checks and branch protection so stale or unverified changes cannot merge.
 5. Confirm the pipeline behaves the same across environments and does not rebuild untracked artifacts.
 6. Verify the final path to deploy is deterministic, auditable, and easy to rerun.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

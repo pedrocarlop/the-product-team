@@ -32,12 +32,30 @@ Use this skill to build the analytical structure that makes a question answerabl
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the unit of analysis: user, account, event, session, or cohort.
 2. Choose the minimal structure that can express the question clearly.
 3. Build the analysis around explicit grouping and comparison rules.
 4. Surface the key drivers, segment splits, or component parts.
 5. Check that the model is stable, interpretable, and reusable.
 6. Document assumptions that materially affect the answer.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

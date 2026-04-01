@@ -31,12 +31,30 @@ For every motion moment, specify the concrete behavior instead of naming a vibe.
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. List the exact motion moments in the interaction.
 2. For each one, name the trigger, affected elements, before state, and after state.
 3. Specify the motion properties, duration, easing, delay, sequencing, and completion state.
 4. Define interruption, cancellation, and reverse behavior where relevant.
 5. Note implementation constraints such as compositor-safe properties, maximum duration, and no-blocking-input requirements.
 6. Define the reduced-motion fallback and confirm the meaning still survives.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## What to Produce
 

@@ -32,6 +32,18 @@ Use this skill to convert a strategic direction into an executable plan that the
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the strategic choice and the outcomes the plan must produce.
 2. Break the plan into workstreams, milestones, and owners.
 3. Sequence work by dependency, risk, and time to signal.
@@ -39,6 +51,12 @@ Use this skill to convert a strategic direction into an executable plan that the
 5. Identify resourcing, cross-functional coordination, and decision points.
 6. Document risks, assumptions, and triggers for course correction.
 7. Package the plan so it can be executed and reviewed without the author present.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

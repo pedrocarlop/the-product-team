@@ -32,6 +32,18 @@ Use this skill to make backend services safe to run under production load — ha
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Trace the code path for data integrity risks: race conditions, partial writes, missing transactions, and unguarded upserts.
 2. Verify idempotency for any operation that can be retried by clients, queues, or infrastructure.
 3. Add resilience controls for external dependencies: timeouts, circuit breakers, backoff, and fallback behavior.
@@ -39,6 +51,12 @@ Use this skill to make backend services safe to run under production load — ha
 5. Wire observability: structured logs at decision points, metrics for latency and error rates, alerts for anomalous behavior.
 6. Confirm deployment safety: migration ordering, feature flags, rollback steps, and health-check endpoints.
 7. Validate that the hardening does not change the service contract or introduce performance regressions.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

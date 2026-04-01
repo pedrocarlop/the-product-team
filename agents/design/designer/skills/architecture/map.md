@@ -32,12 +32,30 @@ Use this skill to document how information is organized today and how it should 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the structural problem in plain user terms and identify the target outcome.
 2. Document the current structure in observable terms: pages, sections, paths, and handoffs.
 3. Identify where users enter, branch, backtrack, or get stranded.
 4. Draft the future structure with the smallest change that improves findability and scale.
 5. Verify that the structure supports both browsing and known-item search behavior.
 6. Check that the map can be turned into labels, navigation, and content groupings without gaps.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

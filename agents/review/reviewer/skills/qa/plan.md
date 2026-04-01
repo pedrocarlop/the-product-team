@@ -26,20 +26,32 @@ description: "Turn a QA request into a structured test strategy with scope, risk
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Define the Scope and Risk Profile
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reviewer
+project: <slug>
+deliverable: reviewer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Define the Scope and Risk Profile
 
 Explicitly state the boundaries of the test plan based on the product requirements.
 - **In Scope**: The exact feature, API routes, or UI components.
 - **Out of Scope**: Unrelated systems not touched by the PR.
 - **High-Risk Subsystems**: E.g., "Billing calculation logic", "Auth token generation."
 
-### Step 2: Extract Acceptance Criteria into Test Scenarios
+### Step 3: Extract Acceptance Criteria into Test Scenarios
 
 Convert each PRD requirement into a testable scenario.
 - Break them down by Functional vs. Non-Functional (Performance, Accessibility, Security).
 - Include Negative Paths: What happens when the database is unreachable?
 
-### Step 3: Assign the Test Pyramid Layers
+### Step 4: Assign the Test Pyramid Layers
 
 Determine *where* each scenario should be tested to ensure speed and stability.
 - **Unit (Eng)**: Algorithm edge cases, mathematical validations.
@@ -47,16 +59,22 @@ Determine *where* each scenario should be tested to ensure speed and stability.
 - **End-to-End (QA)**: Critical user flows via UI automation (e.g., checkout).
 - **Exploratory (QA)**: Visual edge cases, accessibility quirks, unique device inputs.
 
-### Step 4: Define Test Data and Environment Needs
+### Step 5: Define Test Data and Environment Needs
 
 List the exact prerequisites for execution:
 - "Need an AWS staging environment with Stripe sandbox keys."
 - "Need a mock database seeded with 10k 'Expired Trial' user accounts."
 
-### Step 5: Create the Execution Matrix
+### Step 6: Create the Execution Matrix
 
 Produce a structured grid or list that maps: 
 `[Scenario ID]` | `[Description]` | `[Type (Happy/Edge)]` | `[Execution Method]`
+
+### Step 7: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Decision Tree: Is the Test Plan complete?
 

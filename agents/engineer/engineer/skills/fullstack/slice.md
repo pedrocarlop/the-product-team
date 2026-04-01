@@ -30,12 +30,30 @@ Use this skill to turn a broad feature request into a shippable vertical slice w
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the request as a vertical slice that one user can complete.
 2. Identify the minimum API, data, and UI surface needed to prove the outcome.
 3. Separate must-have scope from follow-up scope.
 4. Name the hidden risks that make the slice unsafe if included too early.
 5. Define the sequence of work so contract, model, wireframe, and release steps stay aligned.
 6. Confirm what is explicitly out of scope for this slice.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

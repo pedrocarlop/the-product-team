@@ -33,6 +33,18 @@ Use this skill to get engineering work moving again when progress is stalled by 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Name the specific block in one sentence.
 2. Separate facts, assumptions, and opinions about why the work is stuck.
 3. Identify the decision, dependency, or approval that would clear the block.
@@ -40,6 +52,12 @@ Use this skill to get engineering work moving again when progress is stalled by 
 5. Negotiate the smallest acceptable tradeoff if the ideal path is not available.
 6. Escalate with context, alternatives, and a recommended path if the blocker cannot be solved locally.
 7. Confirm that the block is actually removed and not just renamed.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

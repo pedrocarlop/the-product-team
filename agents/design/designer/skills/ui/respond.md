@@ -31,12 +31,30 @@ Use this skill to define how the UI responds when users act on it or when the sy
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Start from the user action or system event, not from the visual treatment.
 2. Describe the immediate feedback first, then the follow-up response, then the recovery path if something fails.
 3. Decide whether the response should be inline, modal, ephemeral, or navigation-based.
 4. Check whether the design system already provides the needed feedback pattern or interaction primitive.
 5. Specify timing, ordering, and persistence so the response feels intentional rather than accidental.
 6. Verify that the response does not hide progress, lose user input, or create uncertainty about what happened.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

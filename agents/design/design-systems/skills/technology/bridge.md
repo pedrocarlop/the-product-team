@@ -32,12 +32,30 @@ Use this skill to create a precise translation layer between design artifacts an
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read the design holistically and identify the component boundaries, layout structure, and interaction model.
 2. Break the surface into translatable units: layout containers, reusable components, token-driven styles, state variants, and interaction behaviors.
 3. Map each design element to the best available code primitive: existing component, design token, CSS variable, or utility class.
 4. Identify gaps between the design and the current code inventory: missing components, tokens without code equivalents, states not yet implemented.
 5. Write implementation notes that resolve ambiguity: what happens at breakpoints, how truncation works, which interactions have motion, what accessibility attributes are needed.
 6. Verify the translation preserves design intent without inventing behavior that is not in the spec.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

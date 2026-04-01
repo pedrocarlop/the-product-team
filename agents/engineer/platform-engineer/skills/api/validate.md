@@ -32,12 +32,30 @@ Use this skill to test whether an API contract behaves the way consumers expect 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read the contract as a consumer would and look for missing or ambiguous behavior.
 2. Check HTTP semantics, status codes, and error shapes for correctness.
 3. Verify that pagination, filtering, sorting, and idempotency are handled consistently.
 4. Confirm that auth, authorization, and state transitions are explicit.
 5. Look for fields, examples, or behaviors that could create hidden coupling or breaking assumptions.
 6. Summarize the gaps, risks, and changes required before the contract should be treated as final.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

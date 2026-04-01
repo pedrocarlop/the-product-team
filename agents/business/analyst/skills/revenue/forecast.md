@@ -32,12 +32,30 @@ Use this skill to build or refresh revenue forecasts that tie pipeline and histo
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Reconcile the starting point to the latest actuals before projecting forward.
 2. Build the forecast from deal-level drivers rather than blended guesses.
 3. Separate committed, upside, and downside cases if the business needs scenario clarity.
 4. Compare the forecast against historical conversion and cycle-time patterns.
 5. Surface the biggest assumptions, risks, and leading indicators.
 6. Present the forecast with enough context that a reviewer can reproduce the logic.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

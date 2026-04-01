@@ -31,12 +31,30 @@ Use this skill to turn an ambiguous opportunity into a deliberate product bet wi
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Name the bet in plain language.
 2. Write the core hypothesis and what must be true for it to pay off.
 3. Identify the customer value, business value, and strategic value separately.
 4. List the strongest evidence and the biggest unknowns.
 5. Define how success will be measured and how long the team has to learn.
 6. Write the decision boundary so the team knows when to double down, adjust, or stop.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

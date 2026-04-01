@@ -30,12 +30,30 @@ Use this skill to turn a backend model into working code that is cleanly layered
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Trace the request through the handler, service, persistence, and external boundary layers.
 2. Keep validation at the edge and business rules in the service layer.
 3. Implement the smallest change that satisfies the contract and preserves existing behavior.
 4. Add or update migrations, handlers, workers, and integration points together when they are coupled.
 5. Write tests that prove the behavior, including failure cases and authorization or idempotency checks where relevant.
 6. Confirm the implementation matches the model and does not introduce hidden coupling.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

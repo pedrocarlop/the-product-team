@@ -32,12 +32,30 @@ Use this skill to detect when a deployed ML system is drifting, degrading, or ca
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Decide which signals prove the system is healthy and which signals prove it is failing.
 2. Compare live distributions against the training or launch baseline.
 3. Track business metrics, not only infrastructure metrics.
 4. Set alert thresholds and escalation paths for drift, latency, errors, or metric regressions.
 5. Schedule periodic reviews with fresh labels or manual audits to catch silent degradation.
 6. Use incidents and review findings to decide whether to tune, retrain, roll back, or pause the system.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

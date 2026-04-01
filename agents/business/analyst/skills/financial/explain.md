@@ -30,12 +30,30 @@ Use this skill to translate financial analysis into a concise narrative that non
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify who the explanation is for and what they need to decide or understand.
 2. Extract the few numbers or drivers that actually matter.
 3. State the result, the cause, and the implication in direct language.
 4. Avoid jargon unless the audience clearly expects it and the term is already defined.
 5. Check that the narrative matches the underlying model and does not overstate certainty.
 6. End with the action or decision the audience should take, if one exists.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -31,6 +31,18 @@ Use this skill to validate whether users can complete a task, understand the int
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define what successful completion means before the session starts.
 2. Break the task into realistic prompts that reflect user intent.
 3. Include paths for errors, hesitation, recovery, and abandonment.
@@ -38,6 +50,12 @@ Use this skill to validate whether users can complete a task, understand the int
 5. Record completion, confusion points, workarounds, and time to recover.
 6. Compare results across participants rather than relying on one strong opinion.
 7. Summarize what failed, why it failed, and what to change next.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

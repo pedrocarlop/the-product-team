@@ -30,12 +30,30 @@ Use this skill to make RTL interfaces feel native by mirroring structure, direct
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify every directional element on the surface: layout, text alignment, icons, progress, and navigation order.
 2. Mirror the reading order and spatial hierarchy where the locale expects it.
 3. Flip directional icons and motion cues only when they communicate movement or progression.
 4. Recheck components with mixed-content rows such as numbers, icons, and labels.
 5. Confirm that focus order, affordances, and visual scanning still match user expectations.
 6. Validate the mirrored state alongside the default layout so both remain coherent.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

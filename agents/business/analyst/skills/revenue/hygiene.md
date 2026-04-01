@@ -32,12 +32,30 @@ Use this skill to keep revenue data trustworthy by defining required fields, ide
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the records and fields that must be trustworthy for downstream work.
 2. Compare actual data against the required standards and flag exceptions.
 3. Separate missing data, invalid values, duplicates, and stale records.
 4. Prioritize fixes by business impact, not just by volume.
 5. Document the source of truth, the audit result, and the remediation owner.
 6. Confirm the hygiene rules can be repeated on a schedule.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -31,12 +31,30 @@ Use this skill to rewrite interface copy so users can understand the message qui
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify what the user needs to understand, decide, or do at this moment.
 2. Read the copy in context, including the surrounding UI, prior step, and likely emotional state.
 3. Remove jargon, ambiguity, passive phrasing, and filler that does not help the user act.
 4. Rewrite the string to be specific, direct, and compatible with UI and localization constraints.
 5. Check nearby strings for terminology or tone conflicts and normalize them if needed.
 6. Verify that the rewrite still matches the product behavior and does not overpromise.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

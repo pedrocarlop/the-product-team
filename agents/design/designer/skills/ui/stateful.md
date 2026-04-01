@@ -26,14 +26,26 @@ A "stateful" design defines every visual moment a user might encounter. Good UI 
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Inventory the Stateful Entities
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Inventory the Stateful Entities
 
 List every UI element on the surface that can change based on data or user interaction:
 - **Interactive controls**: Buttons, inputs, links, tabs.
 - **Data containers**: Lists, grids, detail panels, charts.
 - **Feedback areas**: Toast notifications, inline banners, empty-state placeholders.
 
-### Step 2: Establish the State Matrix
+### Step 3: Establish the State Matrix
 
 For each entity, define its appearance across the four primary state categories:
 
@@ -44,21 +56,21 @@ For each entity, define its appearance across the four primary state categories:
 | **Outcome** | Success (confirmation), Error (error message, retry affordance) |
 | **Lifecycle** | Initializing, Processing, Stale, Expired |
 
-### Step 3: Reference the Design System
+### Step 4: Reference the Design System
 
 Before creating new visual treatments, check the design system for existing state variants and tokens:
 - Use system-defined **Interactive Tokens** for standard hover/focus states.
 - Use system-defined **Feedback Tokens** for success (green/positive) vs. error (red/critical) moments.
 - Inherit **Global States** (e.g., standard "No results found" pattern) where possible.
 
-### Step 4: Define Visual and Content Transformations
+### Step 5: Define Visual and Content Transformations
 
 For every state in the matrix, specify:
 - **Visual change**: Color shift, opacity, border, iconography, or hidden/visible toggle.
 - **Content change**: Placeholder text, error copy, specific instruction, or icon swap.
 - **Affordance change**: Is the element interactive? Is it blocked? Does it have a tooltip?
 
-### Step 5: Define State Transitions (Motion Logic)
+### Step 6: Define State Transitions (Motion Logic)
 
 Identify how states change from one to another:
 - **Immediate**: Instant switch for high-urgency feedback.
@@ -66,12 +78,18 @@ Identify how states change from one to another:
 - **Progressive**: Skeleton screens or shimmers for data-driven loading states.
 - **Destructive**: Visual removal or "crunching" of elements.
 
-### Step 6: Verify Accessibility and Stability
+### Step 7: Verify Accessibility and Stability
 
 Test each state for:
 - **Contrast**: Does the error text meet AA standards? Is the disabled state distinguishable enough?
 - **Hierarchy**: Does the primary action remain obvious in a "partial success" state?
 - **Layout Stability**: Does adding an error message or loading spinner shift the rest of the UI (Layout Shift)?
+
+### Step 8: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Decision Tree: Do I need a State Matrix?
 

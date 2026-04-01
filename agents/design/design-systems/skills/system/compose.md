@@ -32,12 +32,30 @@ Use this skill to assemble system components and patterns from approved tokens a
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Confirm whether the request is for a component, variant, composite pattern, or extension of an existing asset.
 2. Map the component anatomy and identify what is fixed, optional, or variant-driven.
 3. Compose the asset from approved building blocks and named tokens only.
 4. Define states, behavior, and composition rules so the asset can be used consistently.
 5. Check for overlap with existing system assets and remove unnecessary duplication.
 6. Verify that the component can be documented, implemented, and governed without ambiguity.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -31,6 +31,18 @@ Use this skill to define how motion should behave when users prefer reduced moti
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the meaning the motion currently communicates.
 2. Remove any movement that is not essential to that meaning.
 3. Replace complex motion with instant state changes or minimal fades where needed.
@@ -38,6 +50,12 @@ Use this skill to define how motion should behave when users prefer reduced moti
 5. Check for vestibular risk, repetition, and attention overload.
 6. Specify what stays identical to the full-motion path, including state timing, focus behavior, and screen-reader-relevant changes.
 7. Verify that the reduced version is still understandable on its own.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

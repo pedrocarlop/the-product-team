@@ -14,7 +14,23 @@ Use this skill when the task involves UI or visual design for frontend interface
 - When a feature needs a stronger point of view across typography, color, spacing, hierarchy, and motion
 - When reviewing or critiquing frontend design work
 
-## Before You Design
+## Required Workflow
+
+**Follow these steps in order. Do not skip steps.**
+
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Establish the Foundation (The Thesis)
 
 Write these three things before producing any artifacts:
 1. **Visual thesis** — one sentence describing mood, material, and energy (e.g. "warm, editorial, generous whitespace with kinetic type")
@@ -96,6 +112,12 @@ Start from product context, not visual taste alone. Confirm the audience, core j
 - The component and token choices that carry the direction consistently
 - Any explicit anti-patterns to avoid while refining the UI spec
 - Breakpoint and state behavior: how the direction holds across loading, error, empty, and mobile views
+
+### Step 3: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the design:
+- **What worked**: Does the visual thesis hold the page together?
+- **What didn't**: Are there any "compromise areas" (e.g. ad-hoc components, non-token colors)?
+- **Next steps**: What should the `engineer` look for specifically in this design (e.g. motion complexity, mobile responsiveness)?
 
 ## Litmus Checks
 

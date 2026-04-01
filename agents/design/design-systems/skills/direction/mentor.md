@@ -31,12 +31,30 @@ Use this skill to help designers improve through concrete feedback, clear expect
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the behavior, judgment gap, or skill gap that needs attention.
 2. Separate the work quality issue from the person and keep feedback specific.
 3. Explain the expected standard in concrete terms with examples.
 4. Give practice-oriented guidance the designer can apply on the next pass.
 5. Set a measurable follow-up or check-in so progress can be observed.
 6. Reinforce what the designer is already doing well so they know what to keep.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

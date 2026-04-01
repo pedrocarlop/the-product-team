@@ -33,6 +33,18 @@ Use this skill to turn an engineering objective into an executable plan that the
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the objective and define what success looks like.
 2. Break the work into milestones, workstreams, and owners.
 3. Sequence the work by dependency, risk, and value.
@@ -40,6 +52,12 @@ Use this skill to turn an engineering objective into an executable plan that the
 5. Surface decision points, risks, and fallback options.
 6. Set review checkpoints and success measures.
 7. Write the plan so another person can execute or review it without extra explanation.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

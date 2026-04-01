@@ -32,6 +32,18 @@ Use this skill to identify what can go wrong before code is written or while the
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the asset or user outcome that must be protected.
 2. Inventory the data, privileges, and integrations involved in the flow.
 3. Identify trust boundaries and the places where input crosses from untrusted to trusted space.
@@ -40,6 +52,12 @@ Use this skill to identify what can go wrong before code is written or while the
 6. Choose mitigations that remove the risk or reduce it to an accepted residual level.
 7. Document what is in scope, what is out of scope, and what must be rechecked later.
 8. Review the result with the implementing engineer so assumptions are shared, not hidden.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

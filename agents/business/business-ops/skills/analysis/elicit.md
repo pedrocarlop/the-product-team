@@ -31,12 +31,30 @@ Use this skill to turn a vague business request into a complete, structured unde
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: business-ops
+project: <slug>
+deliverable: business-ops.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the request in plain business terms and identify what is still unknown.
 2. List the stakeholders, users, and downstream teams who may be affected.
 3. Separate facts, assumptions, opinions, and open questions.
 4. Ask focused questions that expose business need, current pain, edge cases, and success criteria.
 5. Capture constraints, dependencies, and non-obvious failure modes.
 6. Confirm the business problem is understood well enough to move into mapping or specification.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

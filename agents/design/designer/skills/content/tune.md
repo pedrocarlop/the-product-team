@@ -33,12 +33,30 @@ Use this skill to refine how a conversational assistant sounds so its responses 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Read the response in its full conversational context and identify the emotional temperature the moment demands.
 2. Compare the draft against the voice spec and flag where tone, confidence, or register mismatches.
 3. Strip unnecessary hedging, filler phrases, and stylistic noise that dilute trust or clarity.
 4. Calibrate sentence length, directness, warmth, and formality to the specific state and user moment.
 5. Check consistency across neighboring turns so the voice does not shift abruptly within a dialogue.
 6. Verify that the tuned wording still accurately describes what the assistant can and will do.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

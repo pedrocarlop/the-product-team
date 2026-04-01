@@ -31,12 +31,30 @@ Use this skill to keep cross-functional work moving by making ownership, timing,
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: business-ops
+project: <slug>
+deliverable: business-ops.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify every owner, dependency, and decision required to move the work forward.
 2. Map the handoff points and the exact information each receiver needs.
 3. Define the cadence, channel, and format for updates or decisions.
 4. Set escalation rules for stalled decisions, missed SLAs, or missing inputs.
 5. Remove unnecessary meetings or status loops that do not change outcomes.
 6. Confirm the coordination plan is simple enough that people will actually follow it.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

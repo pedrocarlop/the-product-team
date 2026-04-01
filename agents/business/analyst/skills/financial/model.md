@@ -31,12 +31,30 @@ Use this skill to construct financial models that are clear, auditable, and reus
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: analyst
+project: <slug>
+deliverable: analyst.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the model objective and the exact outputs it must produce.
 2. Separate inputs, calculations, and outputs into distinct model areas.
 3. Encode assumptions clearly and avoid burying constants in formulas.
 4. Build formulas so that outputs roll up from supporting schedules rather than being manually forced.
 5. Add checks, controls, and reconciliation lines where the model could drift or break.
 6. Review the model for traceability, consistency, and ease of updating.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

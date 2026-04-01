@@ -32,12 +32,30 @@ Use this skill to define how design system changes are proposed, reviewed, appro
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the lifecycle stage of the asset: proposal, review, release, adoption, or retirement.
 2. Define who can propose, who reviews, who approves, and who communicates the change.
 3. Set versioning and change-log expectations proportional to the impact.
 4. Establish deprecation and migration rules for anything being replaced.
 5. Document escalation paths for conflicting requests or ambiguous ownership.
 6. Verify that the policy can be followed consistently by the teams using the system.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

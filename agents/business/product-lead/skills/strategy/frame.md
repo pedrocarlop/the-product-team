@@ -32,6 +32,18 @@ Use this skill to define the strategic problem clearly enough that analysis can 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the decision in one sentence and name the person who owns it.
 2. Separate the core question from adjacent questions that should be parked.
 3. Define the scope boundary: what is in, what is out, and what would make the answer unusable.
@@ -39,6 +51,12 @@ Use this skill to define the strategic problem clearly enough that analysis can 
 5. List the minimum evidence needed to answer the question well.
 6. Capture risks, dependencies, and the assumptions most likely to break the recommendation.
 7. Confirm the frame with the decision-maker before anyone invests in deeper analysis.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -33,6 +33,18 @@ Use this skill to document how an operational process works today and how it sho
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: business-ops
+project: <slug>
+deliverable: business-ops.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the process in plain operational terms: what goes in, what comes out, and who is responsible at each step.
 2. Document the current state with swim lanes for each responsible party (person, team, or system).
 3. Mark every handoff, queue, approval gate, and exception path.
@@ -40,6 +52,12 @@ Use this skill to document how an operational process works today and how it sho
 5. Identify the constraint: where does the process stall, loop, or fail most often?
 6. Draft the future state by removing the constraint with the smallest viable process change.
 7. Add SLA checkpoints and escalation triggers to the future state so the improved process can be monitored.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

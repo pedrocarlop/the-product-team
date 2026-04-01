@@ -32,12 +32,30 @@ Use this skill to make the remaining risks visible, answer them with evidence, a
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Name the risk in plain language and tie it to the deal impact.
 2. Separate product limits, implementation limits, and unknowns.
 3. Gather evidence from the most credible source available.
 4. Turn promises into written, validated commitments or safe alternatives.
 5. Escalate unresolved gaps to the right internal owner with a clear deadline.
 6. Record the outcome so delivery and sales share the same understanding.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

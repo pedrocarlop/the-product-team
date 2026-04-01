@@ -31,12 +31,30 @@ Use this skill to identify the current growth bottleneck, explain why it is bind
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the exact metric, stage, and time window under investigation.
 2. Pull the relevant funnel or cohort data and compare against the prior baseline.
 3. Segment the data until the likely driver becomes visible, rather than relying on aggregate averages.
 4. Check whether the issue is acquisition quality, activation drop-off, retention decay, or monetization friction.
 5. State the binding constraint in plain language with the supporting evidence.
 6. Separate likely causes from correlations, and note where more data is needed before acting.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

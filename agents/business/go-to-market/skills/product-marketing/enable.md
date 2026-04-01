@@ -31,12 +31,30 @@ Use this skill to equip customer-facing teams with the narrative, proof, and gui
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Start from the approved positioning and message hierarchy.
 2. Identify the conversations where the team needs help most.
 3. Draft the enablement asset around buyer questions, not internal product structure.
 4. Pair claims with evidence, examples, or specific proof points.
 5. Remove jargon and anything the team would not actually say in a live conversation.
 6. Validate the asset with the people who will use it.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

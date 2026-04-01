@@ -33,6 +33,18 @@ Use this skill to decide whether the current QA evidence is strong enough for th
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reviewer
+project: <slug>
+deliverable: reviewer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Compare the evidence with the stated quality criteria.
 2. Separate blocking issues from nonblocking observations.
 3. Check whether failures are real product risks or test noise.
@@ -40,6 +52,12 @@ Use this skill to decide whether the current QA evidence is strong enough for th
 5. State the exact reasons for the decision in plain language.
 6. Assign each blocker to an owner or next action.
 7. Record the gate result so the next stage does not have to guess.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

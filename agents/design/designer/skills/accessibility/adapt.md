@@ -32,12 +32,30 @@ Use this skill to change a design or interaction model so accessibility constrai
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the minimum change needed to remove the barrier without breaking the product goal.
 2. Prefer established accessible patterns over custom interaction design.
 3. Adjust structure, spacing, hierarchy, or affordance so the interaction is perceivable and operable.
 4. Ensure states such as hover, focus, disabled, error, and loading remain accessible.
 5. Recheck the design across responsive states, localization, and motion preferences.
 6. Capture the updated accessibility requirements so the fix can be implemented consistently.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

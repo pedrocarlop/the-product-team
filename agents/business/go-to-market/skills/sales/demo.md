@@ -32,12 +32,30 @@ Use this skill to build and present demos that answer the prospect's real questi
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the single story the demo needs to tell.
 2. Choose the smallest set of screens, flows, APIs, or artifacts that prove the story.
 3. Use prospect-relevant data or realistic stand-ins instead of generic samples.
 4. Script the demo around outcomes, not feature inventory.
 5. Rehearse transitions, failure points, and fallback paths before the live session.
 6. Capture follow-up materials or async recordings for stakeholders who are not present.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

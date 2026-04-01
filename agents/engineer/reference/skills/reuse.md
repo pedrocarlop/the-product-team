@@ -31,11 +31,29 @@ Use this skill to choose the safest existing building block for the job. Reuse m
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reference
+project: <slug>
+deliverable: reference.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. List the existing options that could satisfy the need.
 2. Compare them against the repository's established patterns and constraints.
 3. Choose the option with the least change surface that still meets the requirement.
 4. Call out any adaptation needed to fit the existing primitive into the new context.
 5. Record why the reused path was chosen over inventing something new.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

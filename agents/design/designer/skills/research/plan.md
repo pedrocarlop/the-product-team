@@ -31,6 +31,18 @@ Use this skill to turn an early research request into a clear, testable study pl
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. State the decision the research must support in one sentence.
 2. Separate what we need to learn from what we merely want to confirm.
 3. Pick the method that best matches the question and constraints.
@@ -38,6 +50,12 @@ Use this skill to turn an early research request into a clear, testable study pl
 5. Write the session structure or study outline, including what success and failure look like.
 6. Identify what the output will contain and who will consume it.
 7. Sanity-check that the plan can actually answer the question within the available time.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -33,6 +33,18 @@ Use this skill to coordinate how data work runs over time so that tasks execute 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Map the smallest set of tasks that can fail and recover independently.
 2. Keep orchestration logic separate from transformation logic.
 3. Make every task idempotent so reruns do not create duplicate side effects.
@@ -40,6 +52,12 @@ Use this skill to coordinate how data work runs over time so that tasks execute 
 5. Define backfill and recovery steps before launch, not after the first incident.
 6. Attach meaningful alerts to the failure modes that actually matter.
 7. Write the runbook so an on-call engineer can restore the pipeline without tribal knowledge.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

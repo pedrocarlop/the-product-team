@@ -30,11 +30,29 @@ Use this skill to establish what is slow, where the slowness appears, and which 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Clarify whether we are looking at field data, lab data, or both.
 2. Pick the narrowest metric that matches the user pain, not just the easiest number to collect.
 3. Record a baseline on representative hardware or traffic conditions.
 4. Identify the primary metric pattern, such as LCP, INP, CLS, TTFB, bundle size, or p99 latency.
 5. Capture enough context to compare before and after later.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

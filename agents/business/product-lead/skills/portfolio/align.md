@@ -32,12 +32,30 @@ Use this skill to ensure that product strategy decisions are understood and adop
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Frame the strategic decision in terms of business outcomes, not product features.
 2. Map each audience's existing mental model and the gap between it and the new direction.
 3. Build audience-specific narratives: board-level (ROI, risk, competitive position), executive-level (resource allocation, timeline, accountability), functional-level (what changes for their team).
 4. Surface the tradeoffs explicitly — what the company is choosing not to do and why.
 5. Define the evaluation criteria and timeline so alignment includes a built-in checkpoint.
 6. Identify the follow-up mechanisms that prevent drift: review cadence, decision logs, and escalation paths.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

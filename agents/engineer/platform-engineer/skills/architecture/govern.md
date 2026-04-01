@@ -32,12 +32,30 @@ Use this skill to define how architectural decisions are approved, recorded, enf
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the scope of the governed architectural area.
 2. Write the smallest standard that makes the decision repeatable and safe.
 3. Assign ownership, approval rights, and escalation paths.
 4. Define how exceptions are requested, reviewed, approved, and tracked.
 5. State how the standard is enforced and how drift is detected.
 6. Record the decision in a durable system so future teams can reuse it.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

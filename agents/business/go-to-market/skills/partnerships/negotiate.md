@@ -31,12 +31,30 @@ Use this skill to enter a strategic negotiation prepared, aligned, and clear abo
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Write the BATNA for both sides and the zone of possible agreement.
 2. Identify the terms that matter most and the order in which they can be traded.
 3. Confirm internal alignment on non-standard commitments before discussion.
 4. Prepare a concession sequence that protects the core value of the deal.
 5. Run the conversation to surface tradeoffs, not just to defend a position.
 6. Capture the outcome clearly so legal or leadership can convert it into documents.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

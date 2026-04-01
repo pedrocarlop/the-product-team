@@ -31,12 +31,30 @@ Use this skill to make sure the product’s growth events, properties, and dashb
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the user action and the decision it must support.
 2. Specify the event name, trigger condition, and required properties.
 3. Check whether the event fits the existing taxonomy and identity model.
 4. Audit coverage for missing steps, incomplete properties, or duplicate signals.
 5. Verify the event in analytics after implementation or in a staging environment if possible.
 6. Document the gap, the fix, and the validation status so downstream work can trust the data.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

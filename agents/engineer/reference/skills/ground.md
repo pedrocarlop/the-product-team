@@ -31,11 +31,29 @@ Use this skill to establish a factual baseline from the real repository context.
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: reference
+project: <slug>
+deliverable: reference.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the exact area that needs grounding and name the decision being made.
 2. Inspect the target repository for established patterns, terminology, and nearby examples.
 3. Inspect any named external repository or design system directly, if one was provided.
 4. Record the relevant facts, including any gaps, contradictions, or missing context.
 5. Distinguish observed evidence from inference so later work can reuse the facts safely.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -31,12 +31,30 @@ Use this skill to write state-based product messaging that reduces uncertainty, 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. List the relevant states and define the user decision each state creates.
 2. For each state, identify what happened, what the user needs to know, and what action is available next.
 3. Write error and empty-state copy that matches the true cause and avoids unnecessary blame or alarm.
 4. Write confirmation and success copy that is proportionate to the importance of the action.
 5. Ensure every blocking or confusing state gives the user a clear path to proceed, retry, fix, or escalate.
 6. Review the set together so tone and severity are calibrated consistently across the flow.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

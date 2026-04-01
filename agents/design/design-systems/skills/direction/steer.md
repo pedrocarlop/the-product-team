@@ -31,12 +31,30 @@ Use this skill to guide design work toward the most important outcome by naming 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: design-systems
+project: <slug>
+deliverable: design-systems.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Frame the decision in terms of the outcome the team is trying to achieve.
 2. Surface the viable options and name the important tradeoffs between them.
 3. Recommend the direction that best serves the user and the business together.
 4. State what to do now, what to defer, and what should not be pursued.
 5. Communicate the rationale so others can carry the decision forward consistently.
 6. Revisit the call if new evidence changes the tradeoff enough to matter.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

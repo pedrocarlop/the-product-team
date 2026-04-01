@@ -23,15 +23,49 @@ logs/
 
 ## context.md
 
-One file per project. It records the project context in a compact form:
+One file per project. It records the project context in a structured form:
 
 - **Goal**: What we're building and why
 - **Constraints**: Timelines, technical limits, dependencies
 - **Decisions**: Key choices made and rationale
 - **Roles**: Who is working on what (when orchestrated)
 - **State**: Current status (planning / in-progress / blocked / complete / archived)
-- **Deliverables**: What was produced
+- **Deliverables**: Detailed list of outputs with linked paths
 - **Open questions**: Unresolved items
+
+### context.md Metadata (YAML Header)
+Each `context.md` must start with a YAML block for programmatic verification:
+```yaml
+---
+slug: <project-slug>
+objective: <one-line-goal>
+confidence_score: <0.0-1.0>
+last_sync: <YYYY-MM-DD-HH:MM>
+status: <planning|executing|blocked|complete>
+---
+```
+
+## deliverables/
+
+Deliverables are the primary output of specialists. They must follow a structured **"Artifact Handshake"** format.
+
+### Deliverable Header (YAML)
+Every deliverable file (`logs/active/<slug>/deliverables/*.md`) must begin with:
+```yaml
+---
+role: <role-name>
+project: <slug>
+deliverable: <file-basename>
+confidence: <0.0-1.0>
+inputs_used: [<file-paths>]
+---
+```
+
+### Mandatory Reflection
+Every deliverable must end with a `## Reflection` section where the executor self-critiques the result:
+- **What worked**: Successful implementation details.
+- **What didn't**: Trade-offs, shortcuts, or known limitations.
+- **Next steps**: Specific guidance for downstream roles (e.g., "Reviewer should check the X module specifically for Y").
 
 Keep it concise. This is a continuity reference, not a process artifact.
 

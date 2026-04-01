@@ -32,12 +32,30 @@ Use this skill to uncover the technical and organizational facts that determine 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the exact technical decision that discovery needs to support.
 2. Map the prospect's environment: systems, identity provider, data flows, deployment model, and security process.
 3. Separate confirmed facts from assumptions and unresolved questions.
 4. Clarify who will evaluate the solution and what each stakeholder needs to see.
 5. Translate the discovery findings into a demo, PoC, or proof plan only after the requirements are explicit.
 6. Document open risks, missing inputs, and required follow-up in a form the rest of the team can reuse.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

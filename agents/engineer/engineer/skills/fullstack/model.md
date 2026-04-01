@@ -30,12 +30,30 @@ Use this skill to define the full-stack model behind a feature: resources, invar
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Restate the feature in domain terms: actors, resources, and state changes.
 2. Identify the invariants that must not be violated.
 3. Decide where each rule belongs: handler, service, persistence, queue, or client.
 4. Define the API contract, including validation and error cases.
 5. Map the persistence changes, migrations, and transaction boundaries.
 6. Call out assumptions, tradeoffs, and open questions before coding starts.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

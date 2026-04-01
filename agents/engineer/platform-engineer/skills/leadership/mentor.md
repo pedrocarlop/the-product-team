@@ -32,12 +32,30 @@ Use this skill to help engineers grow while solving the current technical proble
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the skill or judgment gap underneath the immediate issue.
 2. Explain the principle in plain language and connect it to the current context.
 3. Show the smallest useful correction or alternative pattern.
 4. Give the engineer ownership of the next step whenever possible.
 5. Reinforce the lesson in later reviews or follow-ups so it sticks.
 6. Avoid solving the whole problem yourself when the goal is growth.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

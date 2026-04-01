@@ -26,36 +26,54 @@ description: "Convert an agreed product direction into precise requirements, bus
 
 **Follow these steps in order. Do not skip steps.**
 
-### Step 1: Deconstruct into Functional Capabilities
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Deconstruct into Functional Capabilities
 
 Break the high-level feature into independent capabilities:
 - **Feature**: "Team Billing Hub"
 - **Capabilities**: 1) View invoice history, 2) Change credit card, 3) Add billing emails.
 
-### Step 2: Define the Business Rules
+### Step 3: Define the Business Rules
 
 List the logic that must be true regardless of the UI:
 - **Permissions**: "Only users with the `Admin` role can view invoices."
 - **Constraints**: "A team must always have at least one active payment method."
 - **Defaults**: "Invoices are emailed to the account owner by default."
 
-### Step 3: Write the Requirements / User Stories
+### Step 4: Write the Requirements / User Stories
 
 For each capability, write testable requirements:
 - Use standard phrasing: *As a [Persona], I want to [Action] so that [Value].*
 - **Example**: "As an Admin, I want to download past invoices as PDFs so I can expense them."
 
-### Step 4: Write Strict Acceptance Criteria
+### Step 5: Write Strict Acceptance Criteria
 
 Define exactly how QA and Engineering will prove the requirement is done.
 - Use Given/When/Then (BDD) format for clarity.
 - **Happy Path**: Expected successful outcome.
 - **Edge Cases**: Empty states, error conditions, boundary limits.
 
-### Step 5: Document Telemetry and Tracking
+### Step 6: Document Telemetry and Tracking
 
 Specify what needs to be measured:
 - "Fire event `billing_method_updated` when a new card is successfully saved."
+
+### Step 7: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the spec:
+- **What worked**: Were all capabilities covered?
+- **What didn't**: Are there any "known unknowns" or deferred edge cases?
+- **Next steps**: What should the `engineer` or `reviewer` look for specifically in this spec during their phase?
 
 ## Decision Tree: Is the Spec Ready for Handoff?
 

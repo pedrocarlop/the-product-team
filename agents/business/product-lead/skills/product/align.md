@@ -32,12 +32,30 @@ Use this skill to make sure a product decision — scope change, prioritization 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. State the decision and the single most important reason behind it.
 2. List who is affected and what changes for each team or stakeholder.
 3. Address the likely objection or concern head-on — do not wait for it to surface later.
 4. Define the concrete next steps: who does what by when.
 5. Document the decision and rationale where the team can find it later.
 6. Schedule a check-in if the decision has a built-in evaluation point.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

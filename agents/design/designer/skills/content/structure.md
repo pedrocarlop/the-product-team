@@ -31,12 +31,30 @@ Use this skill to improve the information design of dense product surfaces so us
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: designer
+project: <slug>
+deliverable: designer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the page's primary task and the minimum information users need first.
 2. Group related content by decision or job to be done, not by internal implementation.
 3. Establish a clear hierarchy of headings, labels, helper text, and secondary explanation.
 4. Move nonessential explanation into progressive disclosure or supporting copy where appropriate.
 5. Rewrite section labels and helper text so users can scan confidently and understand what belongs where.
 6. Review the page for selective reading, making sure users can act without reading everything.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

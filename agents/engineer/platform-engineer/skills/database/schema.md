@@ -32,12 +32,30 @@ Use this skill to shape data models that are correct now and still maintainable 
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the domain entity and the decisions the database must enforce.
 2. Map the access patterns before choosing table shape or key strategy.
 3. Prefer explicit constraints over application-only assumptions.
 4. Choose names, types, and nullability to match long-term usage, not just the first release.
 5. Validate that the design supports migrations, backfills, and future change without unnecessary lock risk.
 6. Record any non-default choice that future engineers will need to understand.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

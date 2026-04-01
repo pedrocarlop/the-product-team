@@ -32,12 +32,30 @@ Use this skill to change database structure safely across environments and deplo
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: platform-engineer
+project: <slug>
+deliverable: platform-engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the target state and the minimum safe path from the current state.
 2. Break risky changes into additive, backfill, validation, and cleanup phases.
 3. Preserve compatibility with older application versions during the transition.
 4. Identify steps that might lock data or rewrite large portions of a table.
 5. Plan verification for both the schema change and the live data movement.
 6. Document rollback or recovery options before the first deployment step.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

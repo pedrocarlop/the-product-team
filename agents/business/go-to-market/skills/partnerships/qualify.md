@@ -31,12 +31,30 @@ Use this skill to decide whether a potential partner is worth investing time and
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. State the partnership opportunity in one sentence, including the value being pursued.
 2. Test whether the partner has real leverage: audience, distribution, product adjacency, or market access.
 3. Check mutual value by asking what the partner gets in return and whether it is compelling enough.
 4. Review feasibility, timing, and internal constraints that could block execution.
 5. Surface the main risks, the earliest disconfirming signal, and the decision deadline.
 6. Write a clear recommendation to pursue, pause, or drop the opportunity.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

@@ -32,12 +32,30 @@ Use this skill to turn a technical question into a bounded proof with agreed cri
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Translate the sales concern into one testable claim.
 2. Write the proof scope narrowly enough that success is measurable.
 3. Define pass, partial pass, and fail criteria before work begins.
 4. Build or run only what is needed to answer the question.
 5. Capture evidence in a form the prospect can review and reuse.
 6. Confirm the result does not create hidden implementation promises.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

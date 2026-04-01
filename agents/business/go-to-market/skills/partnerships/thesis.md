@@ -31,12 +31,30 @@ Use this skill to decide whether a business development opportunity is worth pur
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. State the opportunity in one sentence, including the value being pursued.
 2. Identify the specific reason the opportunity is not reachable through the standard sales motion.
 3. Define the value creation logic: why this creates leverage, speed, access, margin, or defensibility.
 4. Test the thesis against the company’s constraints and current strategic priorities.
 5. List the main assumptions, the earliest disconfirming signal, and the decision deadline.
 6. Rewrite the thesis so an executive can approve, reject, or redirect it quickly.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

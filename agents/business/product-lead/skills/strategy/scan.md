@@ -32,6 +32,18 @@ Use this skill to gather the outside-in evidence that shapes strategy: market st
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: product-lead
+project: <slug>
+deliverable: product-lead.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the market or competitor universe that matters for the decision.
 2. Gather recent, reliable sources and separate facts from interpretation.
 3. Identify structural forces: size, growth, buyer behavior, pricing, margins, regulation, or technology shifts.
@@ -39,6 +51,12 @@ Use this skill to gather the outside-in evidence that shapes strategy: market st
 5. Surface the strongest signals, the weak signals, and the noise to ignore.
 6. Translate the scan into strategic implications, not just observations.
 7. Note what still needs validation before recommendations are made.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

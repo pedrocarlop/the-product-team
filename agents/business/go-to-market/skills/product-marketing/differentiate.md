@@ -31,12 +31,30 @@ Use this skill to translate competitive intelligence into a credible reason to c
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: go-to-market
+project: <slug>
+deliverable: go-to-market.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Identify the real buying scenario and the alternative buyers are considering.
 2. Separate your own story from the competitor's actual story.
 3. Define the strongest defensible difference in the buyer's language.
 4. Document where the product wins, where it loses, and why.
 5. Draft concise response patterns for the most common objections.
 6. Update the battlecard or competitive note so sales can use it immediately.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

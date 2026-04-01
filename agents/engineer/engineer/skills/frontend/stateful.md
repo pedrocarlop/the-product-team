@@ -30,14 +30,45 @@ Use this skill to implement the full state model of a frontend surface so every 
 - Accessibility requirements: ARIA live regions, focus management on state change, disabled attribute semantics
 - Performance constraints: debounce, skeleton rendering, optimistic updates, stale-while-revalidate
 
-## Workflow
+## Required Workflow
 
-1. Map each component to the data sources and events that drive its state transitions.
-2. Define the state machine or conditional logic for each component: what state it starts in, what triggers each transition, and what the terminal states are.
-3. Implement loading states with appropriate skeleton, spinner, or placeholder rendering tied to actual data-fetching lifecycle.
-4. Implement error states with specific error type handling, retry logic, and user-facing recovery actions.
-5. Handle edge conditions: empty data, partial data, stale cache, permission denial, and network timeout.
-6. Wire accessibility attributes: `aria-busy` during loading, `aria-live` for dynamic content updates, `aria-disabled` semantics, and focus management after state transitions.
+**Follow these steps in order. Do not skip steps.**
+
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
+### Step 2: Map Data and Events
+Map each component to the data sources and events that drive its state transitions.
+
+### Step 3: Define State Transitions
+Define the state machine or conditional logic for each component: what state it starts in, what triggers each transition, and what the terminal states are.
+
+### Step 4: Implement Loading States
+Implement loading states with appropriate skeleton, spinner, or placeholder rendering tied to actual data-fetching lifecycle.
+
+### Step 5: Implement Error States
+Implement error states with specific error type handling, retry logic, and user-facing recovery actions.
+
+### Step 6: Handle Edge Conditions
+Handle edge conditions: empty data, partial data, stale cache, permission denial, and network timeout.
+
+### Step 7: Wire Accessibility
+Wire accessibility attributes: `aria-busy` during loading, `aria-live` for dynamic content updates, `aria-disabled` semantics, and focus management after state transitions.
+
+### Step 8: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the implementation:
+- **What worked**: Are all state transitions covered?
+- **What didn't**: Any optimistic update risks or unhandled API failure modes?
+- **Next steps**: What should the `reviewer` test specifically (e.g. race conditions, offline handling)?
 
 ## Design Principles / Evaluation Criteria
 

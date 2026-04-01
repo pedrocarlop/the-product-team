@@ -31,12 +31,30 @@ Use this skill to make an operational system better by finding the root cause of
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: business-ops
+project: <slug>
+deliverable: business-ops.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Define the problem in measurable terms and separate symptoms from causes.
 2. Gather evidence from incidents, metrics, or user and team feedback.
 3. Run a root-cause analysis and identify the smallest systemic fix.
 4. Compare improvement options by impact, effort, and operational risk.
 5. Implement the change with a way to measure whether it worked.
 6. Recheck the result and document the learning so the same issue does not recur.
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 

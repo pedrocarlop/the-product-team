@@ -32,6 +32,18 @@ Use this skill to turn an implemented mobile feature into a safe production rele
 
 ## Workflow
 
+### Step 1: Initialize the Deliverable Header
+Every deliverable for this skill must start with the standard YAML header:
+```yaml
+---
+role: engineer
+project: <slug>
+deliverable: engineer.md
+confidence: <0.0-1.0>
+inputs_used: [context.md, <others>]
+---
+```
+
 1. Verify the implemented behavior on target devices: real hardware for critical paths, simulators for breadth.
 2. Confirm test coverage: unit tests for logic, UI automation for critical flows, and manual testing for device-specific behavior (gestures, orientations, lifecycle events).
 3. Check app lifecycle behavior: does the feature survive backgrounding, low memory, orientation changes, and interrupted network?
@@ -39,6 +51,12 @@ Use this skill to turn an implemented mobile feature into a safe production rele
 5. Prepare the app store submission: review guideline compliance, updated screenshots, metadata, and any required privacy declarations.
 6. Plan the rollout: phased percentage rollout where available, TestFlight or internal testing track first, then staged public release.
 7. Document the rollback plan: for binary releases, what is the minimum time to push a hotfix through app review? For OTA-updatable code, what is the remote disable path?
+
+### Step 2: Mandatory Reflection (Interleaved Thinking)
+End the deliverable with a `## Reflection` section. Self-critique the work:
+- **What worked**: successful implementation or analysis details.
+- **What didn't**: trade-offs, shortcuts, or known limitations.
+- **Next steps**: specific guidance for downstream roles or the reviewer.
 
 ## Design Principles / Evaluation Criteria
 
