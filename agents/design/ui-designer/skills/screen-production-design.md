@@ -48,6 +48,7 @@ Within `## Skill: screen-production-design`, include:
 - This is convergence-only work for `new design`; do not use it as a substitute for concept exploration.
 - Inherit from `logs/active/<project-slug>/deliverables/project-ds-spec.md`, not directly from company reference files.
 - Preserve the winning direction's distinguishing traits instead of collapsing back to safe defaults.
+- When production decisions materially change the recommended implementation foundation, update `## Implementation Foundation` in `project-ds-spec.md` instead of burying the change inside screen notes.
 - If no upstream direction exists for a `new design` assignment, stop and note the mismatch instead of inventing one.
 - If no upstream `project-ds-spec.md` exists for `new design`, stop and note the mismatch instead of inventing around it.
 
@@ -56,6 +57,6 @@ Within `## Skill: screen-production-design`, include:
 - Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
 - Read `logs/active/<project-slug>/deliverables/project-ds-spec.md` first and update it only when the production pass materially changes system direction.
 - Keep all work for this skill inside `## Skill: screen-production-design`.
-- In `project-ds-spec.md`, limit updates to `## Spacing And Layout Rules`, `## Component Families`, `## Widget And Layout Patterns`, and `## State, Motion, And Accessibility Rules`.
+- In `project-ds-spec.md`, limit updates to `## Implementation Foundation`, `## Spacing And Layout Rules`, `## Component Families`, `## Widget And Layout Patterns`, and `## State, Motion, And Accessibility Rules`.
 - Record which tool path was used and why.
 - Ensure the section meets this done-when bar: Layout, hierarchy, tokens, and core states are specified clearly.

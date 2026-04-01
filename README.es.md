@@ -79,6 +79,7 @@ La parte de diseño ahora tiene además un relevo explícito alrededor del siste
 
 - `ui-designer` puede sembrar `logs/active/<project-slug>/deliverables/project-ds-spec.md` en trabajo greenfield
 - esa semilla se construye a partir de hasta 3 referencias solo-inspiracionales de la librería incluida de design-system kits
+- para frontends realmente en blanco, esa semilla también puede recomendar una base de shadcn/ui respaldada por la spec en lugar de dejar primitivas sin definir
 - `design-systems-designer` convierte después esa especificación compartida en tokens, primitivas, familias de componentes, reglas de layouts/widgets, gobernanza y QA
 
 El límite entre disciplinas es intencional:
@@ -102,8 +103,9 @@ En diseño de producto greenfield, eso normalmente significa:
 
 1. `ui-designer` explora direcciones visuales y elige una.
 2. `ui-designer` siembra `project-ds-spec.md` a partir de la librería de referencias de design-system kits.
-3. `design-systems-designer` operacionaliza esa spec compartida en las reglas del sistema del producto.
-4. El trabajo posterior de pantallas y componentes hereda de `project-ds-spec.md`, no directamente de referencias de compañías.
+3. Si el frontend está en blanco y la spec lo justifica, esa spec compartida puede recomendar una base de shadcn/ui con elecciones específicas del producto.
+4. `design-systems-designer` operacionaliza esa spec compartida en las reglas del sistema del producto.
+5. El trabajo posterior de pantallas y componentes hereda de `project-ds-spec.md`, no directamente de referencias de compañías, y la ingeniería solo puede materializar la recomendación de shadcn cuando tiene propiedad explícita de escritura en el repo.
 
 ## Layout Instalado
 

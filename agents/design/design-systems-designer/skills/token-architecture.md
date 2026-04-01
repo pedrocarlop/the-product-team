@@ -44,6 +44,7 @@ Within `## Skill: token-architecture`, include:
 
 - Optimize for long-term semantic clarity, not only current file cleanliness.
 - Treat `logs/active/<project-slug>/deliverables/project-ds-spec.md` as the primary design foundation for token decisions.
+- If `project-ds-spec.md` recommends shadcn/ui as the implementation foundation, make the token model map cleanly to that foundation's CSS-variable theme posture instead of inventing a parallel token language.
 - Keep token layers shallow enough that teams can reason about them.
 - Document which token decisions are stable foundations versus transitional compromises.
 

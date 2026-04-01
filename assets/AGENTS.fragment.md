@@ -21,6 +21,7 @@ This repository has the Product Team workflow installed.
 - Shared role deliverables use stable skill-owned anchors in the form `## Skill: <skill-name>` and one trailing `## Reflection` footer.
 - For net-new design work, the design flow must diverge before it converges: explore materially different directions first, compare them explicitly, and only then move into concrete production design.
 - For greenfield product work, `ui-designer` seeds `logs/active/<project-slug>/deliverables/project-ds-spec.md` from up to 3 inspiration-only company references in `.codex/product-team/references/reference-design-systems/`; `design-systems-designer` then operationalizes that shared spec for tokens, components, widget layouts, governance, and QA.
+- When `project-ds-spec.md` recommends shadcn/ui for a blank or near-empty frontend, only the explicit engineering repo-write owner may initialize it, and the install must follow the product's recorded implementation-foundation decisions instead of generic shadcn defaults.
 - Escalate only for setup, account access, destructive actions, or external publishing/sharing.
 - Staff the minimum viable set of roles and keep one explicit repo-write owner per stage by default.
 - Read installed role definitions in `.codex/agents/product-team-<discipline>/<role>/`.

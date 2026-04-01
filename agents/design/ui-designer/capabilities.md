@@ -3,7 +3,7 @@
 ## Purpose
 Own visual concept direction, screen production design, responsive/state specs, component design, and final visual polish.
 
-This role seeds the shared `project-ds-spec.md` artifact for greenfield work by synthesizing inspiration-only cues from the company reference library.
+This role seeds the shared `project-ds-spec.md` artifact for greenfield work by synthesizing inspiration-only cues from the company reference library and, when a blank project truly benefits, by recommending a spec-backed shadcn/ui foundation without owning the repo install itself.
 
 ## Managed Skills
 - **ui-concept-direction**: Explore and establish the visual direction for a new surface before production detailing.

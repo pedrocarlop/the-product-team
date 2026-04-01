@@ -27,6 +27,7 @@ Build or extend reusable frontend components that align with the design system.
 
 Within `## Skill: component-implementation`, include:
 - `### Component purpose`: Describe what the component should solve and where it should be reused.
+- `### System foundation alignment`: State whether the component builds on an existing foundation or first bootstraps one from `project-ds-spec.md`.
 - `### API or props`: Define the public API, props, slots, or configuration surface.
 - `### Variants and states`: List the supported variants, interactive states, and edge conditions.
 - `### Composition and reuse constraints`: Explain composition boundaries, dependencies, and what should stay outside the component.
@@ -45,6 +46,8 @@ Within `## Skill: component-implementation`, include:
 - Optimize for reusability boundaries, not just visual parity for one screen.
 - Keep the API explicit enough that later consumers do not infer unsupported patterns.
 - Preserve exact design-system or existing-component references when reuse is the right path.
+- Read `logs/active/<project-slug>/deliverables/project-ds-spec.md` first when it exists.
+- If the component work is landing in a blank or near-empty frontend and `project-ds-spec.md` recommends shadcn/ui, initialize the latest official shadcn/ui foundation first through the approved repo-write assignment, then build the component on top of that aligned baseline instead of improvising local primitives.
 
 ## Output Contract
 

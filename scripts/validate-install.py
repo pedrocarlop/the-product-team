@@ -92,6 +92,7 @@ def main() -> int:
         package_readme = package_readme_path.read_text(encoding="utf-8")
         expect("ui-designer" in package_readme and "ux-researcher" in package_readme, "Installed package README missing new role topology.", failures)
         expect("primary MCP -> alternative tool/MCP -> best guess inferred output" in package_readme, "Installed package README missing fallback rule.", failures)
+        expect("shadcn/ui" in package_readme, "Installed package README missing shadcn/ui foundation guidance.", failures)
 
     logs_contract = root / ".codex" / PACKAGE_SLUG / "references" / "logs-workflow-contract.md"
     expect(logs_contract.exists(), "Missing installed logs contract reference doc.", failures)
@@ -105,6 +106,7 @@ def main() -> int:
     if project_ds_spec_template.exists():
         template_text = project_ds_spec_template.read_text(encoding="utf-8")
         expect("project-ds-spec.md" in template_text, "Installed project ds-spec template missing artifact path guidance.", failures)
+        expect("## Implementation Foundation" in template_text, "Installed project ds-spec template missing implementation foundation section.", failures)
 
     reference_library_readme = root / ".codex" / PACKAGE_SLUG / "references" / "reference-design-systems" / "README.md"
     expect(reference_library_readme.exists(), "Missing installed reference design systems library index.", failures)
@@ -167,6 +169,7 @@ def main() -> int:
                 concept_text = concept_skill.read_text(encoding="utf-8")
                 expect("project-ds-spec.md" in concept_text, f"{concept_skill}: missing project ds-spec guidance.", failures)
                 expect("reference-design-systems" in concept_text, f"{concept_skill}: missing reference design systems guidance.", failures)
+                expect("shadcn/ui" in concept_text, f"{concept_skill}: missing shadcn/ui foundation guidance.", failures)
             if screen_skill.exists():
                 screen_text = screen_skill.read_text(encoding="utf-8")
                 expect("project-ds-spec.md" in screen_text, f"{screen_skill}: missing project ds-spec alignment guidance.", failures)
@@ -180,6 +183,18 @@ def main() -> int:
             if audit_skill.exists():
                 audit_text = audit_skill.read_text(encoding="utf-8")
                 expect("project-ds-spec.md" in audit_text, f"{audit_skill}: missing project ds-spec audit guidance.", failures)
+
+        if source_name == "frontend-engineer":
+            implement_skill = skills_dir / "implement-from-design.md"
+            component_skill = skills_dir / "component-implementation.md"
+            if implement_skill.exists():
+                implement_text = implement_skill.read_text(encoding="utf-8")
+                expect("project-ds-spec.md" in implement_text, f"{implement_skill}: missing project ds-spec guidance.", failures)
+                expect("shadcn@latest" in implement_text, f"{implement_skill}: missing latest shadcn init guidance.", failures)
+            if component_skill.exists():
+                component_text = component_skill.read_text(encoding="utf-8")
+                expect("project-ds-spec.md" in component_text, f"{component_skill}: missing project ds-spec guidance.", failures)
+                expect("shadcn/ui" in component_text, f"{component_skill}: missing shadcn/ui foundation guidance.", failures)
 
     validate_skill_contexts(skill_contexts, failures, enforce_banned_names=False)
 

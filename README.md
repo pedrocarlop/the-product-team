@@ -79,6 +79,7 @@ The design side now has an explicit shared design-system handoff:
 
 - `ui-designer` can seed `logs/active/<project-slug>/deliverables/project-ds-spec.md` for greenfield work
 - that seed is built from up to 3 inspiration-only references in the bundled reference design-system library
+- for truly blank frontends, that seed can also recommend a spec-backed shadcn/ui foundation instead of leaving primitives undefined
 - `design-systems-designer` then turns that shared spec into tokens, primitives, component families, layout/widget rules, governance, and QA guidance
 
 The main discipline boundary is intentional:
@@ -102,8 +103,9 @@ For greenfield product design, that usually means:
 
 1. `ui-designer` explores concept directions and chooses a direction.
 2. `ui-designer` seeds `project-ds-spec.md` from the reference design-system kits/library.
-3. `design-systems-designer` operationalizes that shared spec into the product's own system rules.
-4. Later screen and component work inherits from `project-ds-spec.md`, not directly from company references.
+3. If the frontend is blank and the spec justifies it, that shared spec can recommend a shadcn/ui baseline with product-specific setup choices.
+4. `design-systems-designer` operationalizes that shared spec into the product's own system rules.
+5. Later screen and component work inherits from `project-ds-spec.md`, not directly from company references, and engineering may materialize the shadcn recommendation only when it explicitly owns repo writes.
 
 ## Installed Layout
 

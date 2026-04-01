@@ -44,6 +44,7 @@ Within `## Skill: design-code-mapping`, include:
 - Do not satisfy this skill with prose alone; the mapping table is mandatory.
 - Mark uncertain mappings explicitly instead of guessing silently.
 - Do not treat the company reference library or the project ds-spec as proof that a component or token exists in code. This skill must stay grounded in actual design/code evidence.
+- When `project-ds-spec.md` recommends shadcn/ui, include the implementation-foundation bridge explicitly in the mapping, such as `components.json`, registry namespaces, generated primitives, wrapper components, and where product-specific tokens diverge from stock shadcn defaults.
 
 ## Output Contract
 

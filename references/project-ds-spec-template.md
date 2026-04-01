@@ -46,6 +46,18 @@ Document the intended type personality, hierarchy principles, and reading rhythm
 
 Capture the desired color posture, semantic token intent, and any rules that should survive implementation.
 
+## Implementation Foundation
+
+Document whether the product should bootstrap from an existing implementation foundation such as shadcn/ui, or avoid one.
+
+When the recommendation is to use shadcn/ui, record:
+
+- why it fits this product instead of acting as a default habit
+- whether the repo is blank enough for initialization versus needing incremental adoption
+- the intended official setup path, such as `shadcn/create` or `pnpm dlx shadcn@latest init -t <framework>`
+- the expected baseline choices that must match the product spec, such as preset or style, primitive base, `tailwind.cssVariables`, base color, icon library, registries, and any first components or blocks to seed
+- which parts remain product-specific and must still be shaped by this spec rather than copied from shadcn defaults
+
 ## Spacing And Layout Rules
 
 Define layout rhythm, density, grid tendencies, responsive intent, and section-level spacing behavior.

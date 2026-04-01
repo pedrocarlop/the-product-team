@@ -62,7 +62,7 @@ All staffed specialists follow the same operating model:
 
 Shared role deliverables use skill-owned anchors in the form `## Skill: <skill-name>` and preserve one trailing `## Reflection` footer for the role.
 
-For greenfield product design, `ui-designer` seeds `logs/active/<project-slug>/deliverables/project-ds-spec.md` from up to 3 inspiration-only reference design-system kits in `.codex/product-team/references/reference-design-systems/`. `design-systems-designer` then expands that shared spec into tokens, atomic primitives, component families, widget/layout rules, governance, and QA guidance.
+For greenfield product design, `ui-designer` seeds `logs/active/<project-slug>/deliverables/project-ds-spec.md` from up to 3 inspiration-only reference design-system kits in `.codex/product-team/references/reference-design-systems/`. For truly blank frontends, that same shared spec may also recommend a product-specific shadcn/ui foundation. `design-systems-designer` then expands the shared spec into tokens, atomic primitives, component families, widget/layout rules, governance, and QA guidance, and engineering may materialize the shadcn recommendation only when it is the explicit repo-write owner.
 
 ## Discipline Boundaries
 
