@@ -37,11 +37,25 @@ evidence_mode: sourced|fallback|inferred
 - Identify the required inputs, existing artifacts, and dependencies.
 - Name the output this skill must produce.
 
+### Step 2b: Check For Pending HTA Blocks
+Before launching any subagent, check `context.md` for any role with `hta_status: unresolved`.
+- If found → invoke `setup-check` for that role first and wait for resolution before launching it.
+- If none found → proceed to Step 3.
+
 ### Step 3: Run The Tool Sequence
 - Use the primary MCP/tool first: `logs, subagents`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `orchestrator/log, context review`.
 - If both primary and fallback paths fail, produce the best-guess output described as: An up-to-date execution state with handoffs and blocker handling.
 - Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+
+### Step 3b: Handle hta_setup_required Signals
+After each subagent returns, check its output for an `hta_setup_required` signal.
+- If signal detected:
+  1. Record `hta_status: unresolved` for that role in `context.md`, noting the blocked MCP and skill.
+  2. Pause the coordinate workflow — do not launch downstream roles.
+  3. Invoke `setup-check` skill.
+  4. After `setup-check` resolves (`hta_status: configured` or `hta_status: fallback_authorized`), re-launch the subagent.
+- If no signal → continue to the next stage normally.
 
 ### Step 4: Produce The Deliverable
 - Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.

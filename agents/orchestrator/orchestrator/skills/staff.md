@@ -43,6 +43,16 @@ evidence_mode: sourced|fallback|inferred
 - If both primary and fallback paths fail, produce the best-guess output described as: A staffing table with role, skill_paths, primary_tools, and fallback policy.
 - Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
 
+### Step 3b: Declare HTA Requirements Per Role
+For each staffed role, add an `hta_declared` field to its contract listing the MCP servers required to run its assigned `skill_paths` (drawn from the role's `[capabilities].mcp_servers`). This makes HTA dependencies explicit before execution begins.
+
+Example contract addition:
+```yaml
+hta_declared: [notion, linear, github]
+```
+
+Note: this step declares requirements only — actual verification happens at subagent startup when each MCP is probed. If a role has no MCP dependencies, set `hta_declared: []`.
+
 ### Step 4: Produce The Deliverable
 - Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
 - Keep assumptions explicit, especially when using fallback or inferred mode.

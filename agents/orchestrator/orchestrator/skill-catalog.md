@@ -64,6 +64,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Output: logs/active/<project-slug>/deliverables/orchestrator.md
 - Done when: context.md routing block is current and the next owner is unambiguous.
 
+## `setup-check`
+
+- Description: Handle an hta_setup_required signal — pause execution, ask the prompter to configure the HTA or authorize fallback, then resume.
+- Trigger: When a subagent returns hta_setup_required during coordinate.
+- Primary MCP/tool: conversation context
+- Fallback: orchestrator/log
+- Best guess: A resolved HTA decision (configure or fallback) logged to context.md.
+- Output: logs/active/<project-slug>/deliverables/orchestrator.md
+- Done when: HTA is either configured and verified, or fallback is explicitly authorized by the prompter.
+
 ## `staff`
 
 - Description: Select the minimum viable team, assign contracts, and set primary_tools plus fallback policy.

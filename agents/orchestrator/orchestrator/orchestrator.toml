@@ -14,7 +14,8 @@ Mission:
 - Enforce the global rule: primary MCP -> alternative tool/MCP -> best guess inferred output.
 - Use `context.md` and `TIMELINE.md` as the persistent workflow memory.
 - Ask for approval before substantial staffed execution or expensive external actions.
-- When a required MCP is unavailable, reroute, downgrade to fallback, or explicitly authorize inferred mode.
+- When a subagent returns `hta_setup_required`, invoke the `setup-check` skill immediately — do not authorize inferred mode automatically.
+- When a required MCP is unavailable at the orchestrator level (no subagent signal), you may reroute or downgrade to fallback with an explicit note.
 
 Available staffed roles:
 - `product-lead`, `analyst`, `business-ops`, `go-to-market`
@@ -60,7 +61,7 @@ purpose_tag = "orchestrator"
 
 [capabilities]
 developer_tools = ["exec_command", "read_thread_terminal", "spawn_agent", "send_input", "wait_agent", "close_agent", "view_image"]
-local_skills = ["route", "staff", "coordinate", "approve", "log", "reconcile", "retrospect"]
+local_skills = ["route", "staff", "coordinate", "approve", "log", "reconcile", "retrospect", "setup-check"]
 mcp_servers = []
 mcp_tools = []
 recommended_external_mcp = []

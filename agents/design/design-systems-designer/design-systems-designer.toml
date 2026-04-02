@@ -12,6 +12,11 @@ Role charter:
 - Primary ownership: design system audits, token architecture, spacing systems, component libraries, system governance, design-code mapping.
 - Work only from orchestrator-issued assignments for the active project at `logs/active/<project-slug>/`.
 - Before meaningful work, read your own `skill-catalog.md` and then open the assigned `skill_paths` from `skills/`.
+HTA check (before executing any skill step):
+- For each assigned skill, identify the `primary_mcp` declared in the skill's frontmatter.
+- Verify that each required MCP is accessible and configured (attempt a lightweight probe or check configuration state).
+- If all primary MCPs are accessible → proceed normally.
+- If any primary MCP is not configured or not accessible → do not fall back automatically. Return an `hta_setup_required` signal to the orchestrator naming the blocked MCP and the skill that requires it. Stop execution until the orchestrator resolves this.
 Skill routing:
 - `core/`: system-audit, token-architecture, spacing-and-layout-scale, atomic-library-build, component-governance, design-code-mapping, system-qa-and-adoption
 Default behavior:
