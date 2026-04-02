@@ -71,13 +71,47 @@ purpose_tag = "ux_researcher"
 [capabilities]
 developer_tools = ["exec_command", "read_thread_terminal", "view_image"]
 local_skills = ["reference"]
-mcp_servers = ["figma", "notion", "paper", "refero", "google_forms"]
+mcp_servers = [
+  # Documentation & synthesis
+  "notion", "figma", "figjam",
+  # Competitor & benchmark research
+  "refero", "mobbin",
+  # Screener & survey tools
+  "google_forms", "typeform", "tally",
+  # Synthesis & analysis
+  "dovetail", "looppanel", "condens", "aurelius", "miro",
+  # Research ops & scheduling
+  "rally_uxr", "ethnio", "calendly", "tremendous",
+  # Readout & presentation
+  "pitch", "loom",
+  # Legacy / reference
+  "paper"
+]
 mcp_tools = []
-recommended_external_mcp = []
+recommended_external_mcp = [
+  "page_flows",    # Video recordings of user journeys (competitor research)
+  "ux_archive",    # Curated mobile UX patterns by flow type
+  "similarweb",    # Quantitative competitive intelligence
+  "lyssna",        # All-in-one screener + recruitment + usability testing
+  "grain",         # Video-first interview recorder with clip sharing
+  "tldv",          # AI meeting recorder for async clip workflows
+  "fireflies",     # Enterprise meeting intelligence
+  "confluence",    # Atlassian knowledge base for engineering-led orgs
+  "canva",         # Branded research one-pagers and infographics
+  "greatquestion"  # All-in-one lightweight ResearchOps platform
+]
 recommended_external_skills = []
 session_skills = []
 web_tools = ["search_query", "open"]
-notes = "Skill-first MCP workflow for UX Researcher."
+notes = "Skill-first MCP workflow for UX Researcher. Tool stack enriched with 2025 research tools landscape across all skill categories."
 
 [capabilities.skill_groups]
 core = ["research-plan", "screener-form-build", "interview-guide-build", "competitor-research", "study-ops-and-recruiting", "research-synthesis", "research-readout-deck"]
+
+[capabilities.tool_routing]
+competitor_research   = ["refero", "mobbin", "page_flows", "ux_archive", "similarweb", "search_query"]
+screener_build        = ["typeform", "google_forms", "tally", "lyssna"]
+interview_guide       = ["notion", "dovetail", "looppanel"]
+synthesis             = ["dovetail", "looppanel", "condens", "aurelius", "figjam", "miro", "notion"]
+study_ops             = ["rally_uxr", "ethnio", "calendly", "tremendous", "notion", "google_forms"]
+readout               = ["notion", "pitch", "loom", "confluence", "google_slides", "canva"]
