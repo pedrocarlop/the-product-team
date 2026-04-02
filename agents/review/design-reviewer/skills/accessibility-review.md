@@ -1,61 +1,144 @@
 ---
 name: accessibility-review
-description: Review the surface against accessibility expectations, user impact, and implementation evidence.
-trigger: When accessibility risk must be assessed before shipping.
+description: Run a barrier-focused accessibility review by building an accessibility model, traversing task paths, and grounding barrier findings in the strongest available evidence path.
+trigger: When accessibility risk needs a structured expert review before release, sign-off, or remediation planning.
+heuristic_framework: WCAG-informed barrier review with assistive technology impact framing
 primary_mcp: chrome_devtools
-fallback_tools: search_query, reference/verify
-best_guess_output: An accessibility review with findings and likely fix directions.
-output_artifacts: logs/active/<project-slug>/deliverables/design-reviewer.md
-done_when: The team knows which barriers matter most and why.
+fallback_tools:
+  - figma
+  - reference/ground
+  - search_query
+required_inputs:
+  - target flow or surface
+  - target users or assistive scenarios
+  - platform, viewport, and state assumptions
+  - known compliance scope or release context when available
+recommended_passes:
+  - semantic structure and naming
+  - keyboard and focus traversal
+  - perception and readability
+  - status, errors, and recovery
+  - motion, timing, and dynamic updates
+tool_stack:
+  runtime:
+    primary: [chrome_devtools, playwright]
+    secondary: [browserstack]
+    support: [axe]
+  native_apps:
+    primary: [appium]
+    platform_specific: [xcode_ui_testing, android_espresso]
+  design_artifacts:
+    primary: [figma]
+    secondary: [reference/ground]
+  fallback_evidence:
+    primary: [screenshots, video_capture]
+    secondary: [vision_ocr]
+tool_routing:
+  - if: live web product is available and interactive
+    use: [chrome_devtools, playwright]
+  - if: issue depends on multi-step traversal, dynamic states, or reproducible flows
+    use: [playwright]
+  - if: issue may vary by browser, viewport, operating system, or real device behavior
+    use: [browserstack]
+  - if: target is a native mobile app
+    use: [appium]
+  - if: target is iOS-only and local project access exists
+    use: [xcode_ui_testing]
+  - if: target is Android-only and local project access exists
+    use: [android_espresso]
+  - if: runtime is unavailable but design artifacts exist
+    use: [figma, reference/ground]
+  - if: only screenshots or recordings exist
+    use: [screenshots, video_capture, vision_ocr]
+  - if: DOM-backed automated checks can strengthen runtime evidence
+    use: [axe]
+best_guess_output: An accessibility review with evidence-tagged barriers, grouped patterns, and directional remediation guidance.
+output_artifacts: logs/active/<project-slug>/reviews/design-reviewer.md
+section_anchor: "## Skill: accessibility-review"
+done_when: The reviewed surface has evidence-backed accessibility barriers, grouped patterns, coverage limits, and prioritized fix directions that distinguish observed issues from assumptions.
 ---
 
 # Accessibility Review
 
 ## Purpose
 
-Review the surface against accessibility expectations, user impact, and implementation evidence.
+Run a barrier-focused accessibility review of a product surface by modeling semantics, interaction paths, perception demands, and feedback exposure before drawing conclusions.
 
-## Required Workflow
+This skill evaluates observable accessibility risk and likely assistive technology impact.
 
-**Follow these steps in order. Do not skip steps.**
+This skill does not claim formal compliance certification, replace full screen-reader or human assistive testing, or assert that code-level remediation has already been validated.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: design-reviewer
-project: <slug>
-deliverable: design-reviewer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Shared Deliverable Contract
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When accessibility risk must be assessed before shipping.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `chrome_devtools`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, reference/verify`.
-- If both primary and fallback paths fail, produce the best-guess output described as: An accessibility review with findings and likely fix directions.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+## Required Deliverable Sections
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+Within `## Skill: accessibility-review`, include:
+- `### Review framing`: Define the surface reviewed, user goals, target users or assistive scenarios considered, and whether this is pre-release inspection, regression review, or remediation triage.
+- `### Required inputs and assumptions`: State the target flow or surface, known assistive contexts, platform assumptions, and any missing inputs inferred by the reviewer.
+- `### Input mode and evidence path`: Choose the strongest available evidence path in this order: live interaction, structured runtime inspection, design artifacts, screenshots or recordings, then inference.
+- `### Tool selection rationale`: State which tools were used, why they were chosen, what they validated well, and where they were weak.
+- `### Environment and reproducibility`: Record browser, operating system, viewport, auth state, data setup, build or prototype version, and any assistive tooling actually used when known.
+- `### Accessibility model`: Build the interaction and accessibility model first by documenting key screens, landmarks, headings, forms, controls, focus transitions, status regions, and dynamic states.
+- `### WCAG lens and evaluator passes`: State the WCAG-informed lens used and list the passes run such as semantic structure and naming, keyboard and focus traversal, perception and readability, status and recovery, and motion or timing sensitivity.
+- `### Barrier findings`: Record findings using the required finding schema below.
+- `### Prioritized barriers`: Include all critical and major barriers as standalone findings, group minor issues into patterns, and prefer no more than 15 standalone findings by default unless additional findings are materially distinct or high severity.
+- `### Systemic patterns`: Cluster repeated problems such as unlabeled controls, broken focus recovery, weak error recovery, or inaccessible dynamic updates.
+- `### Coverage map`: State what was deeply reviewed, partially reviewed, and not reviewed.
+- `### Severity, confidence, and coverage confidence`: Separate user impact severity from evidence confidence and state whether coverage came from live runtime, partial traversal, static artifact review, or screenshot-only inference.
+- `### Directional fix guidance`: Link remediation directions to the findings without pretending every fix has already been validated.
+- `### Limits and unknowns`: Explain what still requires real assistive technology testing, manual engineering inspection, localization review, or cross-device verification.
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+For each finding inside `### Barrier findings`, use this exact mini-template:
+
+#### Finding <id>
+- Observation:
+- Evidence:
+- Repro steps:
+- Likely cause:
+- Impact:
+- Severity:
+- Confidence:
+- Recommendation direction:
+
+## Tool Path
+
+- Prefer the highest-fidelity evidence path available: live interaction -> structured runtime inspection -> design artifacts -> screenshots or recordings -> inference.
+- Start with `chrome_devtools` for DOM semantics, accessibility tree signals, state changes, focus behavior, console issues, and runtime inspection when a live web surface exists.
+- Use `playwright` when the review depends on reproducible multi-step traversal, branching flows, asynchronous updates, or coverage of multiple states.
+- Use `browserstack` when the issue may depend on Safari, iOS, Android, viewport variance, browser behavior, or real-device rendering and interaction.
+- Use `appium` for native mobile app accessibility review across iOS and Android.
+- Use platform-native tooling such as `xcode_ui_testing` or `android_espresso` when local project access exists and platform-specific behavior matters.
+- Use `axe` as a supporting validation layer for detectable runtime issues, never as a substitute for manual barrier analysis.
+- Use `figma` when runtime does not exist or when the review is pre-implementation.
+- Use screenshot or video fallback only when no interactive or design artifact path is available.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `figma, reference/ground, search_query`.
+- If both paths fail, produce the best-guess output described as: An accessibility review with evidence-tagged barriers, grouped patterns, and directional remediation guidance.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+- Combine tools when useful rather than forcing a single-tool review.
+
+## Workflow Notes
+
+- Treat this as a barrier review, not as a formal certification pass.
+- Treat `required_inputs` as real prerequisites. If target users or assistive scenarios are missing, infer a provisional set, prefix each inferred item with `Assumed scenario:`, and lower confidence for findings that depend on it.
+- Build the accessibility model before analysis. Do not jump from surface impressions to issue lists.
+- Prefer observable behavior over theoretical code critique whenever a live or inspectable runtime exists.
+- Evaluate flows and states, not only static screens. Accessibility failures often appear during validation, async updates, modal transitions, focus changes, and recovery moments.
+- Run evaluator passes in sequence so findings stay grounded: semantic structure first, keyboard and focus second, perception and readability third, then status, recovery, motion, and timing.
+- Distinguish clearly between observed evidence, inferred cause, and recommendation direction.
+- Use WCAG and platform conventions as interpretive framing, but keep every finding tied to concrete user impact and reproducible evidence.
+- After all passes, merge duplicates and consolidate overlapping issues before prioritization.
+- Always include critical barriers. Group low-impact or repetitive issues into patterns instead of inflating the standalone finding count.
+- State clearly when a suspected issue could not be fully confirmed because the evidence path did not include real assistive technology, real devices, or implementation inspection.
+- Do not imply that screen-reader output, switch control behavior, voice control behavior, or full cognitive accessibility outcomes were validated unless they were actually tested.
 
 ## Output Contract
 
-- Write or update `logs/active/<project-slug>/deliverables/design-reviewer.md`.
+- Write or update `logs/active/<project-slug>/reviews/design-reviewer.md`.
+- Keep all work for this skill inside `## Skill: accessibility-review`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The team knows which barriers matter most and why.
+- Ensure the section meets this done-when bar: The reviewed surface has evidence-backed accessibility barriers, grouped patterns, coverage limits, and prioritized fix directions that distinguish observed issues from assumptions.

@@ -75,11 +75,50 @@ def parse_front_matter(path: Path) -> dict[str, str]:
         return {}
     body = text.split("---\n", 2)[1]
     fields: dict[str, str] = {}
-    for line in body.splitlines():
-        if not line.strip() or ":" not in line:
+    lines = body.splitlines()
+    idx = 0
+
+    def normalize_value(value: str) -> str:
+        value = value.strip().strip('"').strip("'")
+        if value.startswith("[") and value.endswith("]"):
+            inner = value[1:-1].strip()
+            if not inner:
+                return ""
+            return ", ".join(
+                part.strip().strip('"').strip("'")
+                for part in inner.split(",")
+                if part.strip()
+            )
+        return value
+
+    while idx < len(lines):
+        line = lines[idx]
+        stripped = line.strip()
+        if not stripped or ":" not in stripped:
+            idx += 1
             continue
-        key, value = line.split(":", 1)
-        fields[key.strip()] = value.strip().strip('"').strip("'")
+        key, value = stripped.split(":", 1)
+        if value.strip():
+            fields[key.strip()] = normalize_value(value)
+            idx += 1
+            continue
+
+        items: list[str] = []
+        lookahead = idx + 1
+        while lookahead < len(lines):
+            candidate = lines[lookahead].strip()
+            if not candidate:
+                break
+            if candidate.startswith("- "):
+                items.append(candidate[2:].strip().strip('"').strip("'"))
+                lookahead += 1
+                continue
+            if ":" in candidate:
+                break
+            break
+
+        fields[key.strip()] = ", ".join(items)
+        idx = lookahead if items else idx + 1
     return fields
 
 
@@ -245,6 +284,181 @@ def validate_design_anchor_uniqueness(
             )
             continue
         artifact_anchors[anchor] = skill_path
+
+
+REVIEWER_SKILL_REQUIRED_SNIPPETS = {
+    "design-reviewer": {
+        "usability-review": (
+            "### Review framing",
+            "### Required inputs and assumptions",
+            "### Heuristic framework and evaluator passes",
+            "### Input mode and evidence path",
+            "### Tool selection rationale",
+            "### Environment and reproducibility",
+            "### UI model",
+            "### Task walkthroughs",
+            "### Heuristic findings",
+            "### Prioritized findings",
+            "### Systemic patterns",
+            "### Coverage map",
+            "### Severity, confidence, and coverage confidence",
+            "### Directional recommendations",
+            "### Limits and unknowns",
+            "#### Finding <id>",
+            "- Observation:",
+            "- Evidence:",
+            "- Repro steps:",
+            "- Violated heuristic:",
+            "- Likely cause:",
+            "- Severity:",
+            "- Confidence:",
+            "- Recommendation direction:",
+            "Nielsen 10 usability heuristics",
+            "Assumed task:",
+            "merge duplicates and consolidate overlapping findings before prioritization",
+            "Prefer the highest-fidelity path available",
+            "Combine tools when useful rather than forcing a single path.",
+            "Use `axe` as a supporting layer for accessibility violations, never as a substitute for full usability review.",
+        ),
+        "design-fidelity-review": (
+            "### Review framing",
+            "### Source-of-truth model",
+            "### Surfaces compared",
+            "### Drift taxonomy",
+            "### Key mismatches",
+            "### Systemic drift patterns",
+            "### Severity and implementation risk",
+            "### Exceptions and ambiguities",
+            "### Limits and unknowns",
+        ),
+        "accessibility-review": (
+            "### Review framing",
+            "### Coverage and assistive assumptions",
+            "### Semantic and structural findings",
+            "### Keyboard and focus findings",
+            "### Perception and feedback findings",
+            "### Impact and confidence",
+            "### Prioritized barriers",
+            "### Fix directions",
+            "### Limits and unknowns",
+        ),
+        "copy-review": (
+            "### Review framing",
+            "### Content inventory",
+            "### Flow-level wording issues",
+            "### Terminology and consistency",
+            "### Tone and trust signals",
+            "### Priority recommendations",
+            "### Systemic language issues",
+            "### Limits and unknowns",
+        ),
+        "design-system-compliance-review": (
+            "### Review framing",
+            "### System source of truth",
+            "### Inventory checked",
+            "### Token compliance findings",
+            "### Component compliance findings",
+            "### Exception register",
+            "### Systemic variance patterns",
+            "### Priority actions",
+            "### Limits and unknowns",
+        ),
+    },
+    "qa-reviewer": {
+        "requirements-trace-review": (
+            "### Review framing",
+            "### Requirement matrix",
+            "### Surface and flow mapping",
+            "### Confirmed matches",
+            "### Gaps and mismatches",
+            "### Ambiguities and unverified assumptions",
+            "### Priority risks",
+            "### Limits and unknowns",
+        ),
+        "test-plan-review": (
+            "### Review framing",
+            "### Risk inventory",
+            "### Coverage matrix",
+            "### Depth by risk",
+            "### Missing states and environments",
+            "### Release-critical gaps",
+            "### Recommended additions",
+            "### Residual blind spots",
+        ),
+        "runtime-network-audit": (
+            "### Review framing",
+            "### Runtime scope and environment",
+            "### Runtime flow map",
+            "### Request and dependency graph",
+            "### Failures and anomalies",
+            "### Reproduction evidence",
+            "### Observability gaps",
+            "### Priority risks",
+            "### Limits and unknowns",
+        ),
+        "regression-triage": (
+            "### Review framing",
+            "### Regression inventory",
+            "### Reproduction status",
+            "### Affected scope and users",
+            "### Severity and release impact",
+            "### Frequency and confidence",
+            "### Blocking vs non-blocking decision",
+            "### Recommended next actions",
+            "### Limits and unknowns",
+        ),
+        "release-gate": (
+            "### Gate framing",
+            "### Evidence reviewed",
+            "### Ship recommendation",
+            "### Blocking issues",
+            "### Non-blocking risks",
+            "### Evidence quality and confidence",
+            "### Rollback and readiness posture",
+            "### Required follow-up",
+            "### Limits and unknowns",
+        ),
+    },
+}
+
+
+def validate_reviewer_contract(
+    *,
+    context: SkillValidationContext,
+    skill_path: Path,
+    fields: dict[str, str],
+    text: str,
+    failures: list[str],
+) -> None:
+    section_anchor = fields.get("section_anchor")
+    expected_anchor = expected_section_anchor(skill_path.stem)
+    if section_anchor != expected_anchor:
+        failures.append(
+            f"{context.role_name}: {skill_path.name} must declare section_anchor '{expected_anchor}'."
+        )
+
+    required_snippets = (
+        "## Shared Deliverable Contract",
+        "## Required Deliverable Sections",
+        "## Tool Path",
+        "## Workflow Notes",
+        "## Output Contract",
+        "## Reflection",
+        "Update only the section named by `section_anchor`.",
+        "Update the role-level reflection footer by appending or refreshing",
+        "Within `## Skill:",
+        "Keep all work for this skill inside",
+    )
+    for snippet in required_snippets:
+        if snippet not in text:
+            failures.append(
+                f"{context.role_name}: {skill_path.name} is missing required reviewer contract text '{snippet}'."
+            )
+
+    role_snippets = REVIEWER_SKILL_REQUIRED_SNIPPETS.get(context.role_name, {})
+    for snippet in role_snippets.get(skill_path.stem, ()):
+        if snippet not in text:
+            failures.append(f"{context.role_name}: {skill_path.name} is missing '{snippet}'.")
 
 
 BUSINESS_SKILL_REQUIRED_SNIPPETS = {
@@ -762,10 +976,20 @@ def validate_skill_contexts(
                     text=text,
                     failures=failures,
                 )
+            elif context.discipline == "review":
+                validate_reviewer_contract(
+                    context=context,
+                    skill_path=skill_path,
+                    fields=fields,
+                    text=text,
+                    failures=failures,
+                )
 
         if context.discipline == "design":
             validate_design_anchor_uniqueness(context, skill_fields, failures)
         elif context.discipline == "business":
             validate_design_anchor_uniqueness(context, skill_fields, failures)
         elif context.discipline == "engineer":
+            validate_design_anchor_uniqueness(context, skill_fields, failures)
+        elif context.discipline == "review":
             validate_design_anchor_uniqueness(context, skill_fields, failures)

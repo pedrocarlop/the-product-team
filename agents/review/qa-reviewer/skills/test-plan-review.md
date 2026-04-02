@@ -1,61 +1,57 @@
 ---
 name: test-plan-review
-description: Evaluate whether the proposed testing strategy actually covers the important risks.
+description: Review the proposed test strategy as risk coverage, not as a checklist of generic test types.
 trigger: When a release or feature needs a better test strategy review.
-primary_mcp: repository
+primary_mcp: repository, logs
 fallback_tools: reference/trace, search_query
 best_guess_output: A test plan review with risk-based recommendations.
-output_artifacts: logs/active/<project-slug>/deliverables/qa-reviewer.md
-done_when: Critical risks have a named testing approach.
+output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
+section_anchor: "## Skill: test-plan-review"
+done_when: Critical risks have explicit coverage, missing depth is visible, and blind spots are named.
 ---
 
 # Test Plan Review
 
 ## Purpose
 
-Evaluate whether the proposed testing strategy actually covers the important risks.
+Review the proposed test strategy as risk coverage, not as a checklist of generic test types.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: qa-reviewer
-project: <slug>
-deliverable: qa-reviewer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When a release or feature needs a better test strategy review.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: test-plan-review`, include:
+- `### Review framing`: Define the release scope, available test artifacts, and what risks the plan is expected to cover.
+- `### Risk inventory`: Enumerate the major product, technical, and operational risks that need coverage.
+- `### Coverage matrix`: Map each major risk to current planned tests, evidence, owners, and gaps.
+- `### Depth by risk`: Evaluate whether each risk has appropriate depth across unit, integration, end-to-end, manual, or monitoring layers.
+- `### Missing states and environments`: Call out missing coverage for breakpoints, browsers, data conditions, feature flags, failure paths, or permissions.
+- `### Release-critical gaps`: Highlight the risks that remain under-tested enough to affect launch decisions.
+- `### Recommended additions`: Suggest the highest-value test additions or reshaping of effort.
+- `### Residual blind spots`: State what would still remain uncertain even after the proposed improvements.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `repository`.
+## Tool Path
+
+- Start with `repository, logs`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/trace, search_query`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A test plan review with risk-based recommendations.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A test plan review with risk-based recommendations.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Review the plan against risk, not against idealized process.
+- Prefer explicit risk-to-test mapping over generic statements like "add more E2E coverage."
+- Separate missing coverage from insufficient depth. A risk can be covered but still be under-tested.
+- Make environment and state coverage explicit because many release bugs hide outside the happy path.
 
 ## Output Contract
 
-- Write or update `logs/active/<project-slug>/deliverables/qa-reviewer.md`.
+- Write or update `logs/active/<project-slug>/reviews/qa-reviewer.md`.
+- Keep all work for this skill inside `## Skill: test-plan-review`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Critical risks have a named testing approach.
+- Ensure the section meets this done-when bar: Critical risks have explicit coverage, missing depth is visible, and blind spots are named.

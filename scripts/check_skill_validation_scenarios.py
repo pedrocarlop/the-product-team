@@ -146,6 +146,66 @@ Within `## Skill: {skill_name}`, include:
 """
 
 
+def reviewer_skill_template(
+    *,
+    skill_name: str,
+    description: str,
+    primary_mcp: str,
+    fallback_tools: str,
+    output_artifact: str,
+    purpose: str,
+    required_sections: str,
+) -> str:
+    return f"""---
+name: {skill_name}
+description: {description}
+trigger: When the example scenario applies.
+primary_mcp: {primary_mcp}
+fallback_tools: {fallback_tools}
+best_guess_output: An example output.
+output_artifacts: {output_artifact}
+section_anchor: "## Skill: {skill_name}"
+done_when: The example is complete.
+---
+
+# Example Reviewer Skill
+
+## Purpose
+
+{purpose}
+
+## Shared Deliverable Contract
+
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+
+## Required Deliverable Sections
+
+Within `## Skill: {skill_name}`, include:
+{required_sections}
+
+## Tool Path
+
+- Start with `{primary_mcp}`.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `{fallback_tools}`.
+- If both paths fail, produce the best-guess output described as: An example output.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+
+## Workflow Notes
+
+- Example notes.
+
+## Output Contract
+
+- Write or update `{output_artifact}`.
+- Keep all work for this skill inside `## Skill: {skill_name}`.
+- Record which tool path was used and why.
+- Ensure the section meets this done-when bar: The example is complete.
+"""
+
+
 def run_business_scenarios(root: Path, scenario_failures: list[str]) -> None:
     context = build_context(
         discipline="business",
@@ -353,6 +413,320 @@ def run_engineer_scenarios(root: Path, scenario_failures: list[str]) -> None:
     )
 
 
+def run_reviewer_scenarios(root: Path, scenario_failures: list[str]) -> None:
+    design_context = build_context(
+        discipline="review",
+        role_name="design-reviewer",
+        mcp_servers=("figma", "chrome_devtools", "github", "notion"),
+        web_tools=("search_query", "open"),
+        skill_files=(),
+    )
+
+    design_valid_a = root / "usability-review.md"
+    design_valid_b = root / "design-fidelity-review.md"
+    design_valid_a.write_text(
+        reviewer_skill_template(
+            skill_name="usability-review",
+            description="Example reviewer skill.",
+            primary_mcp="chrome_devtools",
+            fallback_tools="figma, open",
+            output_artifact="logs/active/<project-slug>/reviews/design-reviewer.md",
+            purpose="Example purpose.",
+            required_sections="\n".join(
+                [
+                    "- `### Review framing`",
+                    "- `### Required inputs and assumptions`",
+                    "- `### Heuristic framework and evaluator passes`: Use Nielsen 10 usability heuristics.",
+                    "- `### Input mode and evidence path`",
+                    "- `### Tool selection rationale`",
+                    "- `### Environment and reproducibility`",
+                    "- `### UI model`",
+                    "- `### Task walkthroughs`",
+                    "- `### Heuristic findings`",
+                    "- `#### Finding <id>`",
+                    "- `- Observation:`",
+                    "- `- Evidence:`",
+                    "- `- Repro steps:`",
+                    "- `- Violated heuristic:`",
+                    "- `- Likely cause:`",
+                    "- `- Severity:`",
+                    "- `- Confidence:`",
+                    "- `- Recommendation direction:`",
+                    "- `### Prioritized findings`",
+                    "- `### Systemic patterns`",
+                    "- `### Coverage map`",
+                    "- `### Severity, confidence, and coverage confidence`",
+                    "- `### Directional recommendations`",
+                    "- `### Limits and unknowns`",
+                    "- Assumed task:",
+                    "- merge duplicates and consolidate overlapping findings before prioritization",
+                    "- Prefer the highest-fidelity path available",
+                    "- Combine tools when useful rather than forcing a single path.",
+                    "- Use `axe` as a supporting layer for accessibility violations, never as a substitute for full usability review.",
+                ]
+            ),
+        ),
+        encoding="utf-8",
+    )
+    design_valid_b.write_text(
+        reviewer_skill_template(
+            skill_name="design-fidelity-review",
+            description="Example reviewer skill.",
+            primary_mcp="figma, chrome_devtools",
+            fallback_tools="open, search_query",
+            output_artifact="logs/active/<project-slug>/reviews/design-reviewer.md",
+            purpose="Example purpose.",
+            required_sections="\n".join(
+                [
+                    "- `### Review framing`",
+                    "- `### Source-of-truth model`",
+                    "- `### Surfaces compared`",
+                    "- `### Drift taxonomy`",
+                    "- `### Key mismatches`",
+                    "- `### Systemic drift patterns`",
+                    "- `### Severity and implementation risk`",
+                    "- `### Exceptions and ambiguities`",
+                    "- `### Limits and unknowns`",
+                ]
+            ),
+        ),
+        encoding="utf-8",
+    )
+    failures = run_validation(
+        build_context(
+            discipline=design_context.discipline,
+            role_name=design_context.role_name,
+            mcp_servers=design_context.mcp_servers,
+            web_tools=design_context.web_tools,
+            skill_files=(design_valid_a, design_valid_b),
+        )
+    )
+    expect(not failures, f"Expected valid design reviewer skills to pass, got: {failures}", scenario_failures)
+
+    design_missing_anchor = root / "design-reviewer-missing-anchor.md"
+    design_missing_anchor.write_text(
+        reviewer_skill_template(
+            skill_name="usability-review",
+            description="Example reviewer skill.",
+            primary_mcp="chrome_devtools",
+            fallback_tools="figma, open",
+            output_artifact="logs/active/<project-slug>/reviews/design-reviewer.md",
+            purpose="Example purpose.",
+            required_sections="\n".join(
+                [
+                    "- `### Review framing`",
+                    "- `### Required inputs and assumptions`",
+                    "- `### Heuristic framework and evaluator passes`: Use Nielsen 10 usability heuristics.",
+                    "- `### Input mode and evidence path`",
+                    "- `### Tool selection rationale`",
+                    "- `### Environment and reproducibility`",
+                    "- `### UI model`",
+                    "- `### Task walkthroughs`",
+                    "- `### Heuristic findings`",
+                    "- `#### Finding <id>`",
+                    "- `- Observation:`",
+                    "- `- Evidence:`",
+                    "- `- Repro steps:`",
+                    "- `- Violated heuristic:`",
+                    "- `- Likely cause:`",
+                    "- `- Severity:`",
+                    "- `- Confidence:`",
+                    "- `- Recommendation direction:`",
+                    "- `### Prioritized findings`",
+                    "- `### Systemic patterns`",
+                    "- `### Coverage map`",
+                    "- `### Severity, confidence, and coverage confidence`",
+                    "- `### Directional recommendations`",
+                    "- `### Limits and unknowns`",
+                    "- Assumed task:",
+                    "- merge duplicates and consolidate overlapping findings before prioritization",
+                    "- Prefer the highest-fidelity path available",
+                    "- Combine tools when useful rather than forcing a single path.",
+                    "- Use `axe` as a supporting layer for accessibility violations, never as a substitute for full usability review.",
+                ]
+            ),
+        ).replace(
+            'section_anchor: "## Skill: usability-review"\n',
+            "",
+        ),
+        encoding="utf-8",
+    )
+    failures = run_validation(
+        build_context(
+            discipline=design_context.discipline,
+            role_name=design_context.role_name,
+            mcp_servers=design_context.mcp_servers,
+            web_tools=design_context.web_tools,
+            skill_files=(design_missing_anchor,),
+        )
+    )
+    expect(
+        any("must declare section_anchor" in failure for failure in failures),
+        f"Expected missing design reviewer section_anchor failure, got: {failures}",
+        scenario_failures,
+    )
+
+    design_duplicate_a = root / "design-reviewer-duplicate-a.md"
+    design_duplicate_b = root / "design-reviewer-duplicate-b.md"
+    design_duplicate_a.write_text(design_valid_a.read_text(encoding="utf-8"), encoding="utf-8")
+    design_duplicate_b.write_text(
+        design_valid_b.read_text(encoding="utf-8").replace(
+            'section_anchor: "## Skill: design-fidelity-review"',
+            'section_anchor: "## Skill: usability-review"',
+        ),
+        encoding="utf-8",
+    )
+    failures = run_validation(
+        build_context(
+            discipline=design_context.discipline,
+            role_name=design_context.role_name,
+            mcp_servers=design_context.mcp_servers,
+            web_tools=design_context.web_tools,
+            skill_files=(design_duplicate_a, design_duplicate_b),
+        )
+    )
+    expect(
+        any("duplicates section_anchor" in failure for failure in failures),
+        f"Expected duplicate design reviewer section_anchor failure, got: {failures}",
+        scenario_failures,
+    )
+
+    qa_context = build_context(
+        discipline="review",
+        role_name="qa-reviewer",
+        mcp_servers=("chrome_devtools", "github", "notion"),
+        web_tools=("search_query", "open"),
+        skill_files=(),
+    )
+
+    qa_valid_a = root / "requirements-trace-review.md"
+    qa_valid_b = root / "release-gate.md"
+    qa_valid_a.write_text(
+        reviewer_skill_template(
+            skill_name="requirements-trace-review",
+            description="Example reviewer skill.",
+            primary_mcp="repository, logs",
+            fallback_tools="open, search_query",
+            output_artifact="logs/active/<project-slug>/reviews/qa-reviewer.md",
+            purpose="Example purpose.",
+            required_sections="\n".join(
+                [
+                    "- `### Review framing`",
+                    "- `### Requirement matrix`",
+                    "- `### Surface and flow mapping`",
+                    "- `### Confirmed matches`",
+                    "- `### Gaps and mismatches`",
+                    "- `### Ambiguities and unverified assumptions`",
+                    "- `### Priority risks`",
+                    "- `### Limits and unknowns`",
+                ]
+            ),
+        ),
+        encoding="utf-8",
+    )
+    qa_valid_b.write_text(
+        reviewer_skill_template(
+            skill_name="release-gate",
+            description="Example reviewer skill.",
+            primary_mcp="repository, logs",
+            fallback_tools="open, search_query",
+            output_artifact="logs/active/<project-slug>/reviews/qa-reviewer.md",
+            purpose="Example purpose.",
+            required_sections="\n".join(
+                [
+                    "- `### Gate framing`",
+                    "- `### Evidence reviewed`",
+                    "- `### Ship recommendation`",
+                    "- `### Blocking issues`",
+                    "- `### Non-blocking risks`",
+                    "- `### Evidence quality and confidence`",
+                    "- `### Rollback and readiness posture`",
+                    "- `### Required follow-up`",
+                    "- `### Limits and unknowns`",
+                ]
+            ),
+        ),
+        encoding="utf-8",
+    )
+    failures = run_validation(
+        build_context(
+            discipline=qa_context.discipline,
+            role_name=qa_context.role_name,
+            mcp_servers=qa_context.mcp_servers,
+            web_tools=qa_context.web_tools,
+            skill_files=(qa_valid_a, qa_valid_b),
+        )
+    )
+    expect(not failures, f"Expected valid QA reviewer skills to pass, got: {failures}", scenario_failures)
+
+    qa_missing_anchor = root / "qa-reviewer-missing-anchor.md"
+    qa_missing_anchor.write_text(
+        reviewer_skill_template(
+            skill_name="requirements-trace-review",
+            description="Example reviewer skill.",
+            primary_mcp="repository, logs",
+            fallback_tools="open, search_query",
+            output_artifact="logs/active/<project-slug>/reviews/qa-reviewer.md",
+            purpose="Example purpose.",
+            required_sections="\n".join(
+                [
+                    "- `### Review framing`",
+                    "- `### Requirement matrix`",
+                    "- `### Surface and flow mapping`",
+                    "- `### Confirmed matches`",
+                    "- `### Gaps and mismatches`",
+                    "- `### Ambiguities and unverified assumptions`",
+                    "- `### Priority risks`",
+                    "- `### Limits and unknowns`",
+                ]
+            ),
+        ).replace(
+            'section_anchor: "## Skill: requirements-trace-review"\n',
+            "",
+        ),
+        encoding="utf-8",
+    )
+    failures = run_validation(
+        build_context(
+            discipline=qa_context.discipline,
+            role_name=qa_context.role_name,
+            mcp_servers=qa_context.mcp_servers,
+            web_tools=qa_context.web_tools,
+            skill_files=(qa_missing_anchor,),
+        )
+    )
+    expect(
+        any("must declare section_anchor" in failure for failure in failures),
+        f"Expected missing QA reviewer section_anchor failure, got: {failures}",
+        scenario_failures,
+    )
+
+    qa_duplicate_a = root / "qa-reviewer-duplicate-a.md"
+    qa_duplicate_b = root / "qa-reviewer-duplicate-b.md"
+    qa_duplicate_a.write_text(qa_valid_a.read_text(encoding="utf-8"), encoding="utf-8")
+    qa_duplicate_b.write_text(
+        qa_valid_b.read_text(encoding="utf-8").replace(
+            'section_anchor: "## Skill: release-gate"',
+            'section_anchor: "## Skill: requirements-trace-review"',
+        ),
+        encoding="utf-8",
+    )
+    failures = run_validation(
+        build_context(
+            discipline=qa_context.discipline,
+            role_name=qa_context.role_name,
+            mcp_servers=qa_context.mcp_servers,
+            web_tools=qa_context.web_tools,
+            skill_files=(qa_duplicate_a, qa_duplicate_b),
+        )
+    )
+    expect(
+        any("duplicates section_anchor" in failure for failure in failures),
+        f"Expected duplicate QA reviewer section_anchor failure, got: {failures}",
+        scenario_failures,
+    )
+
+
 def main() -> int:
     scenario_failures: list[str] = []
 
@@ -360,6 +734,7 @@ def main() -> int:
         root = Path(tmp)
         run_business_scenarios(root, scenario_failures)
         run_engineer_scenarios(root, scenario_failures)
+        run_reviewer_scenarios(root, scenario_failures)
 
     if scenario_failures:
         for failure in scenario_failures:

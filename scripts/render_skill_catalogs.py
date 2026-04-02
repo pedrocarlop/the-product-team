@@ -14,7 +14,23 @@ from lib.toml_utils import discover_toml_paths, load_toml
 
 ROOT = Path(__file__).resolve().parents[1]
 FRONT_MATTER_RE = re.compile(r"\A---\n(.*?)\n---\n", re.DOTALL)
-FIELD_RE = re.compile(r"^(?P<key>[A-Za-z0-9_-]+):\s*(?P<value>.+?)\s*$")
+FIELD_RE = re.compile(r"^(?P<key>[A-Za-z0-9_-]+):(?:\s*(?P<value>.*?))?\s*$")
+
+
+def normalize_front_matter_value(value: str) -> str:
+    value = value.strip()
+    if value.startswith(("'", '"')) and value.endswith(("'", '"')) and len(value) >= 2:
+        value = value[1:-1]
+    if value.startswith("[") and value.endswith("]"):
+        inner = value[1:-1].strip()
+        if not inner:
+            return ""
+        return ", ".join(
+            part.strip().strip('"').strip("'")
+            for part in inner.split(",")
+            if part.strip()
+        )
+    return value
 
 
 def parse_front_matter(markdown: str) -> dict[str, str]:
@@ -22,17 +38,41 @@ def parse_front_matter(markdown: str) -> dict[str, str]:
     if not match:
         return {}
     fields: dict[str, str] = {}
-    for raw_line in match.group(1).splitlines():
-        line = raw_line.strip()
+    lines = match.group(1).splitlines()
+    idx = 0
+    while idx < len(lines):
+        line = lines[idx].strip()
         if not line:
+            idx += 1
             continue
         field_match = FIELD_RE.match(line)
         if not field_match:
+            idx += 1
             continue
-        value = field_match.group("value").strip()
-        if value.startswith(("'", '"')) and value.endswith(("'", '"')) and len(value) >= 2:
-            value = value[1:-1]
-        fields[field_match.group("key")] = value
+        key = field_match.group("key")
+        value = field_match.group("value") or ""
+        if value.strip():
+            fields[key] = normalize_front_matter_value(value)
+            idx += 1
+            continue
+
+        items: list[str] = []
+        lookahead = idx + 1
+        while lookahead < len(lines):
+            candidate = lines[lookahead]
+            stripped = candidate.strip()
+            if not stripped:
+                break
+            if stripped.startswith("- "):
+                items.append(stripped[2:].strip().strip('"').strip("'"))
+                lookahead += 1
+                continue
+            if FIELD_RE.match(stripped):
+                break
+            break
+
+        fields[key] = ", ".join(items)
+        idx = lookahead if items else idx + 1
     return fields
 
 

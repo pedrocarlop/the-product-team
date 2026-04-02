@@ -1,61 +1,57 @@
 ---
 name: requirements-trace-review
-description: Check that the delivered work still maps to the stated requirements and constraints.
+description: Trace delivered behavior back to stated requirements, surfaces, and constraints using an explicit evidence matrix.
 trigger: When implementation or design must be validated against upstream intent.
-primary_mcp: repository, deliverables
+primary_mcp: repository, logs
 fallback_tools: reference/verify, open
 best_guess_output: A requirements trace review with gaps and mismatches.
-output_artifacts: logs/active/<project-slug>/deliverables/qa-reviewer.md
-done_when: The team knows where delivery drifted from the stated requirement.
+output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
+section_anchor: "## Skill: requirements-trace-review"
+done_when: The team knows where delivery matches intent, where it drifts, and which gaps remain unverified.
 ---
 
 # Requirements Trace Review
 
 ## Purpose
 
-Check that the delivered work still maps to the stated requirements and constraints.
+Trace delivered behavior back to stated requirements, surfaces, and constraints using an explicit evidence matrix.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: qa-reviewer
-project: <slug>
-deliverable: qa-reviewer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When implementation or design must be validated against upstream intent.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: requirements-trace-review`, include:
+- `### Review framing`: Define the source requirements, scope reviewed, and what artifacts count as evidence.
+- `### Requirement matrix`: Map each major requirement or constraint to its current status, evidence, and confidence.
+- `### Surface and flow mapping`: Show which screens, APIs, flows, or system behaviors implement each requirement.
+- `### Confirmed matches`: Record where delivered behavior clearly satisfies stated intent.
+- `### Gaps and mismatches`: Capture missing behavior, contradictory behavior, or partial delivery.
+- `### Ambiguities and unverified assumptions`: Note where the requirement is vague, conflicting, or only inferred.
+- `### Priority risks`: Highlight the highest-impact traceability gaps for product, engineering, or release decisions.
+- `### Limits and unknowns`: Explain what could not be verified from the available evidence.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `repository, deliverables`.
+## Tool Path
+
+- Start with `repository, logs`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/verify, open`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A requirements trace review with gaps and mismatches.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A requirements trace review with gaps and mismatches.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Build the trace matrix first. Do not collapse multiple requirements into a loose summary paragraph.
+- Distinguish clearly between unmet requirements, ambiguous requirements, and unverified requirements.
+- Preserve upstream wording when it matters so the team can resolve drift without reinterpretation.
+- Treat constraints such as security, performance, rollout, or policy rules as requirements when they materially affect release readiness.
 
 ## Output Contract
 
-- Write or update `logs/active/<project-slug>/deliverables/qa-reviewer.md`.
+- Write or update `logs/active/<project-slug>/reviews/qa-reviewer.md`.
+- Keep all work for this skill inside `## Skill: requirements-trace-review`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The team knows where delivery drifted from the stated requirement.
+- Ensure the section meets this done-when bar: The team knows where delivery matches intent, where it drifts, and which gaps remain unverified.

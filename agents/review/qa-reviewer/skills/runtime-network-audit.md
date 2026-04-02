@@ -1,61 +1,58 @@
 ---
 name: runtime-network-audit
-description: Inspect runtime behavior, requests, failures, and visible client-server issues.
+description: Inspect runtime behavior as a system of flows, requests, failures, and observability gaps rather than isolated console messages.
 trigger: When release confidence depends on real runtime evidence.
 primary_mcp: chrome_devtools
 fallback_tools: repository, reference/trace
 best_guess_output: A runtime and network audit with key findings.
-output_artifacts: logs/active/<project-slug>/deliverables/qa-reviewer.md
-done_when: The main runtime issues are identified and reproducible.
+output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
+section_anchor: "## Skill: runtime-network-audit"
+done_when: The main runtime issues are identified with reproducible evidence, request context, and remaining observability gaps.
 ---
 
 # Runtime Network Audit
 
 ## Purpose
 
-Inspect runtime behavior, requests, failures, and visible client-server issues.
+Inspect runtime behavior as a system of flows, requests, failures, and observability gaps rather than isolated console messages.
 
-## Required Workflow
+## Shared Deliverable Contract
 
-**Follow these steps in order. Do not skip steps.**
+- Update only the section named by `section_anchor`.
+- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
+- Preserve all other skill sections in the shared role deliverable.
+- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
-### Step 1: Initialize the Deliverable Header
-Every deliverable for this skill must start with the standard YAML header:
-```yaml
----
-role: qa-reviewer
-project: <slug>
-deliverable: qa-reviewer.md
-confidence: <0.0-1.0>
-inputs_used: [context.md, <others>]
-evidence_mode: sourced|fallback|inferred
----
-```
+## Required Deliverable Sections
 
-### Step 2: Confirm Trigger And Inputs
-- Restate the task in terms of this skill's trigger: When release confidence depends on real runtime evidence.
-- Identify the required inputs, existing artifacts, and dependencies.
-- Name the output this skill must produce.
+Within `## Skill: runtime-network-audit`, include:
+- `### Review framing`: Define the environment, flow, and runtime conditions inspected.
+- `### Runtime scope and environment`: Record device assumptions, auth state, data state, feature flags, and any setup needed for reproduction.
+- `### Runtime flow map`: Summarize the key user or system flows executed during the audit.
+- `### Request and dependency graph`: Capture important requests, downstream dependencies, statuses, retries, and sequence relationships.
+- `### Failures and anomalies`: Record visible failures, degraded behavior, slow paths, or suspicious request patterns.
+- `### Reproduction evidence`: Provide the exact steps, request context, and evidence needed to reproduce each confirmed issue.
+- `### Observability gaps`: Note missing logs, opaque errors, hidden retries, or unclear dependency boundaries that made diagnosis harder.
+- `### Priority risks`: Highlight the runtime issues with the highest user or release impact.
+- `### Limits and unknowns`: Explain what could not be observed directly or reproduced reliably.
 
-### Step 3: Run The Tool Sequence
-- Use the primary MCP/tool first: `chrome_devtools`.
+## Tool Path
+
+- Start with `chrome_devtools`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `repository, reference/trace`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A runtime and network audit with key findings.
-- Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+- If both paths fail, produce the best-guess output described as: A runtime and network audit with key findings.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+## Workflow Notes
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
-End the deliverable with a `## Reflection` section. Self-critique the work:
-- **What worked**: successful implementation or analysis details.
-- **What didn't**: trade-offs, shortcuts, or known limitations.
-- **Next steps**: specific guidance for downstream roles or the reviewer.
+- Audit by flow first and by request second so the network evidence stays connected to user-visible behavior.
+- Capture dependency chains, not just failing requests in isolation.
+- Distinguish confirmed runtime failures from suspicious but unresolved anomalies.
+- Treat missing observability as a real QA finding when it blocks reliable diagnosis or release confidence.
 
 ## Output Contract
 
-- Write or update `logs/active/<project-slug>/deliverables/qa-reviewer.md`.
+- Write or update `logs/active/<project-slug>/reviews/qa-reviewer.md`.
+- Keep all work for this skill inside `## Skill: runtime-network-audit`.
 - Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The main runtime issues are identified and reproducible.
+- Ensure the section meets this done-when bar: The main runtime issues are identified with reproducible evidence, request context, and remaining observability gaps.
