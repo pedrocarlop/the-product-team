@@ -66,11 +66,15 @@ Within `## Skill: design-fidelity-review`, include:
 - `### Environment and reproducibility`: Record browser, operating system, viewport, auth state, build or prototype version, and exact design references when known.
 - `### Source-of-truth model`: Name the exact Figma frames, specs, annotations, tokens, or implementation references treated as canonical.
 - `### Implementation model`: Capture the screens, breakpoints, components, states, and interaction behaviors actually inspected before evaluating drift.
+- `### Surfaces compared`: State the exact screens, components, breakpoints, states, and source references included in the comparison.
 - `### Comparison passes`: List the passes used such as source-of-truth alignment, layout and spacing, typography and visual styling, interaction and state coverage, and responsive behavior and exception review.
+- `### Drift taxonomy`: Classify drift by layout, spacing, typography, color, motion, structure, interaction, state, or responsive behavior.
 - `### Drift findings`: Record findings using the required finding schema below.
+- `### Key mismatches`: Highlight the most important drift that changes hierarchy, affordance, comprehension, or implementation risk.
 - `### Prioritized mismatches`: Include all critical and major drift as standalone findings, group minor issues into patterns, and prefer no more than 15 standalone findings by default unless additional findings are materially distinct or high severity.
 - `### Systemic drift patterns`: Group repeated drift across components, breakpoints, or states into broader implementation patterns.
 - `### Coverage map`: State what was deeply compared, partially compared, and not compared.
+- `### Severity and implementation risk`: Separate visible severity from implementation risk and explain whether the issue points to local drift or a broader implementation problem.
 - `### Severity, confidence, and coverage confidence`: Separate visible impact severity from evidence confidence and state whether coverage came from live implementation comparison, repo or static artifact comparison, or screenshot-only inference.
 - `### Directional remediation guidance`: Link remediation directions to findings without pretending every fix is fully specified.
 - `### Exceptions and ambiguities`: Call out intentional differences, unclear specs, or cases where the design source of truth is incomplete.

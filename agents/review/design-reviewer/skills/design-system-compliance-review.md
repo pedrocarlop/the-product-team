@@ -64,13 +64,18 @@ Within `## Skill: design-system-compliance-review`, include:
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: source design system plus implementation touchpoints, runtime confirmation, reusable implementation references, then inference.
 - `### Tool selection rationale`: State which tools were used, why they were chosen, what they validated well, and where they were weak.
 - `### Environment and reproducibility`: Record system version, library branch or package version, browser or platform context, auth state, and build or prototype version when known.
+- `### System source of truth`: Name the exact tokens, component library, patterns, and reference materials treated as canonical.
 - `### System contract model`: Name the tokens, component library, usage rules, or reference specs treated as canonical and summarize the expected contract at token, component, pattern, and flow level.
+- `### Inventory checked`: List the screens, components, variants, states, and implementation touchpoints inspected before judging compliance.
 - `### Surface inventory and adoption map`: List the screens, components, variants, states, and implementation touchpoints inspected before judging compliance.
 - `### Compliance passes`: List the passes used such as token usage, component structure and variants, pattern and flow compliance, exception review, and system gap versus adoption gap classification.
+- `### Token compliance findings`: Record token-level deviations such as color, spacing, typography, radius, or elevation mismatches.
+- `### Component compliance findings`: Record component, variant, state, or pattern-level conformance issues.
 - `### Compliance findings`: Record findings using the required finding schema below.
 - `### Prioritized findings`: Include all critical and major conformance issues as standalone findings, group minor issues into patterns, and prefer no more than 15 standalone findings by default unless additional findings are materially distinct or high severity.
 - `### Systemic variance patterns`: Group repeated mismatches into broader system adoption problems.
 - `### Exception register`: Separate justified exceptions from unjustified drift and note the rationale when known.
+- `### Priority actions`: Highlight the normalization work that should happen first to reduce drift or maintenance overhead.
 - `### Coverage map`: State what was deeply reviewed, partially reviewed, and not reviewed.
 - `### Severity, confidence, and coverage confidence`: Separate consistency impact severity from evidence confidence and state whether coverage came from direct system-plus-implementation comparison, runtime confirmation, reusable reference comparison, or inference.
 - `### Directional normalization guidance`: Recommend what should be normalized first to reduce future drift or maintenance cost.

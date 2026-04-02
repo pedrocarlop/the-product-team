@@ -70,8 +70,14 @@ Within `## Skill: copy-review`, include:
 - `### Environment and reproducibility`: Record product state, locale, browser or platform, auth state, experiment flags, and content version or branch when known.
 - `### Content system model`: Build the language model first by documenting the key surfaces, user commitments, domain terms, CTA families, state messages, and trust-sensitive moments.
 - `### Evaluator passes`: List the passes used such as clarity and comprehension, decision support, terminology and consistency, tone and trust, and states, errors, and recovery language.
+- `### Content inventory`: List the key content surfaces, high-risk strings, and state messages that were actually reviewed.
+- `### Flow-level wording issues`: Capture wording problems that only appear across task progression, transitions, or state changes.
+- `### Terminology and consistency`: Track domain-language drift, inconsistent labels, and naming mismatches across the reviewed surfaces.
+- `### Tone and trust signals`: Record wording that weakens clarity, credibility, safety, or user confidence.
 - `### Language findings`: Record findings using the required finding schema below.
 - `### Prioritized findings`: Include all critical and major language problems as standalone findings, group minor issues into patterns, and prefer no more than 15 standalone findings by default unless additional findings are materially distinct or high severity.
+- `### Priority recommendations`: Highlight the changes that should happen first based on user risk, trust impact, and systemic reach.
+- `### Systemic language issues`: Group repeated content problems such as CTA vagueness, terminology drift, or weak state messaging.
 - `### Systemic language patterns`: Group repeated issues such as vague CTA language, naming drift, weak empty states, false reassurance, or inconsistent domain vocabulary.
 - `### Coverage map`: State what was deeply reviewed, partially reviewed, and not reviewed.
 - `### Severity, confidence, and coverage confidence`: Separate copy impact severity from evidence confidence and state whether coverage came from live runtime, repository sources, artifact review, or screenshot-only inference.

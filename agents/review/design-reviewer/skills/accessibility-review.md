@@ -80,16 +80,22 @@ This skill does not claim formal compliance certification, replace full screen-r
 Within `## Skill: accessibility-review`, include:
 - `### Review framing`: Define the surface reviewed, user goals, target users or assistive scenarios considered, and whether this is pre-release inspection, regression review, or remediation triage.
 - `### Required inputs and assumptions`: State the target flow or surface, known assistive contexts, platform assumptions, and any missing inputs inferred by the reviewer.
+- `### Coverage and assistive assumptions`: State the assistive scenarios, device assumptions, and what kind of runtime or artifact coverage the review actually achieved.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: live interaction, structured runtime inspection, design artifacts, screenshots or recordings, then inference.
 - `### Tool selection rationale`: State which tools were used, why they were chosen, what they validated well, and where they were weak.
 - `### Environment and reproducibility`: Record browser, operating system, viewport, auth state, data setup, build or prototype version, and any assistive tooling actually used when known.
 - `### Accessibility model`: Build the interaction and accessibility model first by documenting key screens, landmarks, headings, forms, controls, focus transitions, status regions, and dynamic states.
 - `### WCAG lens and evaluator passes`: State the WCAG-informed lens used and list the passes run such as semantic structure and naming, keyboard and focus traversal, perception and readability, status and recovery, and motion or timing sensitivity.
+- `### Semantic and structural findings`: Record issues related to landmarks, headings, names, roles, labels, reading order, and semantic structure.
+- `### Keyboard and focus findings`: Record issues related to keyboard access, tab order, focus visibility, focus recovery, and interactive reachability.
+- `### Perception and feedback findings`: Record issues related to contrast, readability, status messaging, errors, recovery cues, motion, and timing.
 - `### Barrier findings`: Record findings using the required finding schema below.
 - `### Prioritized barriers`: Include all critical and major barriers as standalone findings, group minor issues into patterns, and prefer no more than 15 standalone findings by default unless additional findings are materially distinct or high severity.
 - `### Systemic patterns`: Cluster repeated problems such as unlabeled controls, broken focus recovery, weak error recovery, or inaccessible dynamic updates.
 - `### Coverage map`: State what was deeply reviewed, partially reviewed, and not reviewed.
+- `### Impact and confidence`: Separate user impact severity from evidence confidence and coverage confidence.
 - `### Severity, confidence, and coverage confidence`: Separate user impact severity from evidence confidence and state whether coverage came from live runtime, partial traversal, static artifact review, or screenshot-only inference.
+- `### Fix directions`: Link remediation directions to the findings without pretending every implementation fix has already been validated.
 - `### Directional fix guidance`: Link remediation directions to the findings without pretending every fix has already been validated.
 - `### Limits and unknowns`: Explain what still requires real assistive technology testing, manual engineering inspection, localization review, or cross-device verification.
 

@@ -1,20 +1,61 @@
 ---
 name: wireframe-structure
-description: Build low-to-mid fidelity structural wireframes that clarify hierarchy and task flow.
-trigger: When teams need screen structure before visual polish.
+description: Build low-to-mid fidelity structural wireframes by converting an approved flow into screen-level hierarchy, navigation, and content scaffolding before visual polish begins.
+trigger: When teams need screen structure, hierarchy, and task flow clarity before detailed visual design or implementation.
+analysis_framework: information architecture plus task-flow and hierarchy modeling
 primary_mcp: figma
-fallback_tools: paper, reference/ground
-best_guess_output: A wireframe set aligned to the approved flow.
+fallback_tools:
+  - paper
+  - reference/ground
+required_inputs:
+  - approved or provisional flow in scope
+  - target platform, viewport, or device family
+  - key tasks, content, and actions that must be supported
+  - relevant design-system or product-pattern constraints
+  - known technical or delivery limitations when they affect structure
+recommended_passes:
+  - screen inventory
+  - hierarchy and priority mapping
+  - navigation model construction
+  - repeated pattern identification
+  - structural gap review
+tool_stack:
+  design_system_aligned:
+    primary: [figma]
+    secondary: [repository]
+  low_fidelity_exploration:
+    primary: [balsamiq, whimsical]
+    secondary: [miro]
+  advanced_structural_prototyping:
+    primary: [axure]
+  fallback:
+    primary: [paper, reference/ground]
+tool_routing:
+  - if: the work must stay aligned to an existing design system or downstream Figma workflow
+    use: [figma]
+  - if: rapid low-fidelity exploration and fast structural iteration matter more than polish
+    use: [balsamiq, whimsical]
+  - if: the wireframes need conditional structure, richer states, or inspectable structural documentation
+    use: [axure]
+  - if: the work starts as collaborative whiteboard structure before becoming screens
+    use: [miro]
+  - if: only notes, screenshots, or rough references exist
+    use: [paper, reference/ground]
+best_guess_output: A wireframe set aligned to the flow, with explicit hierarchy, navigation logic, and unresolved structural gaps.
 output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
 section_anchor: "## Skill: wireframe-structure"
-done_when: Screen structure is clear enough for review or prototyping.
+done_when: Screen structure is clear enough that reviewers can assess hierarchy and task completion without needing visual polish to infer intent.
 ---
 
 # Wireframe Structure
 
 ## Purpose
 
-Build low-to-mid fidelity structural wireframes that clarify hierarchy and task flow.
+Build structural wireframes that make task flow, hierarchy, and navigation explicit before high-fidelity design begins.
+
+This skill applies information-architecture and task-flow reasoning to transform an approved flow into screen-level structure.
+
+This skill does not finalize visual styling, substitute for interaction specification, or hide unresolved structural dependencies behind polished mockups.
 
 ## Shared Deliverable Contract
 
@@ -26,28 +67,63 @@ Build low-to-mid fidelity structural wireframes that clarify hierarchy and task 
 ## Required Deliverable Sections
 
 Within `## Skill: wireframe-structure`, include:
-- `### Assignment type`: State whether the wireframes support `new design` or an extension of an existing pattern.
-- `### Screen inventory`: List the screens or states covered by the wireframe set.
-- `### Content hierarchy`: Explain how information and actions are prioritized on each screen.
-- `### Navigation and task flow`: Describe how the user moves between screens and completes the task.
-- `### Structural gaps`: Identify missing information, unresolved branches, or screens that still need definition.
+- `### Wireframe framing`: Define the assignment type, target user task, scope boundary, and why structural wireframes are needed now.
+- `### Required inputs and assumptions`: State the source flow, known constraints, missing content or state details, and any inferred structural assumptions.
+- `### Input mode and evidence path`: Choose the strongest available evidence path in this order: design source and flow artifacts, low-fidelity structural tools, static references, then inference.
+- `### Tool selection rationale`: State which tools were used, why they were chosen, what they supported well, and what they could not validate.
+- `### Environment and reproducibility`: Record platform, viewport, device class, orientation, design-system version, and any code or runtime constraints when known.
+- `### Screen inventory`: List the screens, panels, overlays, and states covered by the wireframe set.
+- `### Structural model`: Build the model first by naming the primary task on each screen, the major content regions, action zones, navigation elements, and repeated placeholders before judging quality.
+- `### Content hierarchy`: Explain how information, controls, and supporting context are prioritized on each screen.
+- `### Navigation and task flow`: Describe how users move between screens and what structural cues support forward progress, backtracking, and recovery.
+- `### Repeated patterns and placeholders`: Identify reusable modules, content slots, tables, cards, forms, or system messages that should stay consistent across the set.
+- `### Structural gaps`: Call out missing screens, unresolved content dependencies, state gaps, and structural unknowns.
+- `### Structural decisions`: Record the most important structural choices using the required finding schema below.
+- `### Prioritized review points`: Highlight the hierarchy decisions or missing elements most likely to affect downstream UI or prototyping work.
+- `### Systemic layout patterns`: Group recurring patterns such as action overload, weak scannability, buried primary actions, or inconsistent navigation models.
+- `### Directional next moves`: Suggest what should happen next, such as content definition, interaction specification, or divergent visual exploration.
+- `### Coverage map`: State which screens were fully structured, partially structured, or left unresolved.
+- `### Limits and unknowns`: Explain what could not be decided because of missing flow, content, interaction, or business context.
+
+For each finding inside `### Structural decisions`, use this exact mini-template:
+
+#### Wireframe decision <id>
+- Observation:
+- Evidence:
+- Screen or state:
+- Structural choice:
+- Tradeoff:
+- Impact:
+- Confidence:
+- Recommendation direction:
 
 ## Tool Path
 
-- Start with `figma`.
+- Prefer the strongest structural path available: Figma or aligned design source -> low-fidelity wireframing tools -> static references -> inference.
+- Start with `figma` when the work must stay anchored to a live design-system workflow or when downstream teams expect screen artifacts there.
+- Use `balsamiq` when the team needs fast, low-fidelity structure, editable flows, or sketch-to-wireframe speed without visual overcommitment.
+- Use `whimsical` when quick structural collaboration, lightweight wireframes, and simple overlays are more useful than component-level polish.
+- Use `axure` when conditional states, richer structural behaviors, annotations, or inspectable handoff detail materially improve the result.
+- Use `miro` when the work is still at the whiteboard or architecture stage and not ready for formal screen structure.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, reference/ground`.
-- If both paths fail, produce the best-guess output described as: A wireframe set aligned to the approved flow.
+- If both paths fail, produce the best-guess output described as: A wireframe set aligned to the flow, with explicit hierarchy, navigation logic, and unresolved structural gaps.
 - Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+- Combine tools when useful rather than forcing the whole workflow into a single canvas.
 
 ## Workflow Notes
 
-- Keep wireframes focused on hierarchy and task flow, not final visual styling.
-- If the work is `new design`, leave space for divergent UI exploration downstream.
-- Call out where the structural model depends on product decisions that are not final yet.
+- Build the structural model before commenting on quality. First identify what each screen is responsible for and how users move through it.
+- Treat `required_inputs` as real prerequisites. If the flow, platform, or content priorities are missing, infer a provisional version, prefix each inferred item with `Assumed wireframe context:`, and lower confidence for downstream decisions that depend on it.
+- Keep the wireframes structural. If a choice is mainly about branding or visual polish, leave it for downstream visual design.
+- Prefer explicit hierarchy over exhaustive detail. The point is to make task completion and information order obvious.
+- Make state coverage visible. Empty, loading, confirmation, and error states belong in the structural model when they change layout or task flow.
+- Reuse patterns deliberately. Repeated elements should only diverge when the task or context truly changes.
+- If the assignment is `new design`, leave room for later divergent visual exploration instead of collapsing every screen into a single obvious pattern.
+- Group low-impact structural rough edges into systemic patterns instead of overproducing isolated findings.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
 - Keep all work for this skill inside `## Skill: wireframe-structure`.
 - Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Screen structure is clear enough for review or prototyping.
+- Ensure the section meets this done-when bar: Screen structure is clear enough that reviewers can assess hierarchy and task completion without needing visual polish to infer intent.
