@@ -6,70 +6,70 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 
 ## `atomic-library-build`
 
-- Description: Build or reorganize the component library using atomic design as the structuring model.
-- Trigger: When reusable components need a clear system structure.
+- Description: Build a component-library structure by modeling primitives, composition layers, promotion rules, and system boundaries before assigning atoms, molecules, organisms, and higher-level patterns.
+- Trigger: When reusable components need a clearer system structure, a library reorganization, or a repeatable promotion path from one-off patterns into shared assets.
 - Primary MCP/tool: figma
 - Fallback: paper, repository
-- Best guess: An atomic component library plan or build description.
+- Best guess: An atomic component-library structure with explicit layers, promotion rules, missing pieces, and a pragmatic migration order.
 - Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-- Done when: Atoms, molecules, organisms, and higher-level patterns are clearly organized.
+- Done when: The team has a defensible library structure, knows what belongs in each layer, and can promote or reject new shared components without re-litigating the model.
 
 ## `component-governance`
 
-- Description: Define the rules for component ownership, variants, contribution, and deprecation.
-- Trigger: When system growth needs operating rules, not just files.
+- Description: Model component ownership, lifecycle states, decision rights, and contribution workflows before defining governance rules for change, variants, and deprecation.
+- Trigger: When system growth needs operating rules, ownership clarity, or lifecycle control instead of relying on informal habits and tribal knowledge.
 - Primary MCP/tool: notion, figma
 - Fallback: repository, reference/reuse
-- Best guess: A governance model for component lifecycle and usage.
+- Best guess: A governance model covering ownership, contribution, variants, exceptions, deprecation, and the minimum process needed to keep the library healthy.
 - Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-- Done when: Teams know how components enter, change, and leave the system.
+- Done when: Teams can explain who decides, who reviews, which lifecycle state a component is in, and how components are introduced, changed, or removed without informal side channels.
 
 ## `design-code-mapping`
 
-- Description: Map design system components and tokens to their implementation counterparts.
-- Trigger: When design and code need a reliable bridge.
+- Description: Build a canonical system model of components, tokens, states, and ownership anchors before tracing how design artifacts map to implementation reality.
+- Trigger: When design and engineering need a reliable bridge between system primitives, or when drift makes handoff and maintenance ambiguous.
 - Primary MCP/tool: figma, repository
 - Fallback: reference/trace, reference/verify
-- Best guess: A design-code mapping with reusable implementation guidance.
+- Best guess: A design-code mapping with concrete anchors, traceable gaps, explicit ownership notes, and the minimum follow-up actions needed to close parity risk.
 - Output: logs/active/<project-slug>/deliverables/design-systems-designer.md
-- Done when: Design and engineering can identify the same system primitives reliably.
+- Done when: Design and engineering can identify the same primitives, states, and code anchors with enough precision to fix drift instead of debating what the system contains.
 
 ## `spacing-and-layout-scale`
 
-- Description: Define the spacing, sizing, and layout scale that underpins UI consistency.
-- Trigger: When system consistency depends on clearer spatial rules.
+- Description: Build a layout-system model across spacing primitives, composition roles, breakpoints, and density expectations before defining the scale and its usage rules.
+- Trigger: When teams are inventing spacing ad hoc, layout rhythm is inconsistent, or the system needs a clear spatial foundation that can survive responsive implementation.
 - Primary MCP/tool: figma
 - Fallback: paper, repository
-- Best guess: A spacing and layout scale with usage guidance.
+- Best guess: A spacing and layout scale with explicit primitives, semantic usage rules, breakpoint behavior, migration guidance, and known exceptions.
 - Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-- Done when: Designers can compose surfaces without inventing spacing ad hoc.
+- Done when: Designers and engineers have a scale and semantic usage map they can apply to real layouts without reinventing spacing, breakpoint, or density rules.
 
 ## `system-audit`
 
-- Description: Assess the current design system for gaps, drift, duplication, and adoption risks.
-- Trigger: When the system needs a baseline before extension or cleanup.
+- Description: Build a design-system health model from design, code, documentation, and adoption evidence before diagnosing drift, duplication, governance gaps, and next actions.
+- Trigger: When the system needs a baseline before extension, migration, or cleanup and the team needs evidence-backed priorities instead of design-system opinions.
 - Primary MCP/tool: figma, repository
 - Fallback: paper, reference/ground
-- Best guess: A system audit with prioritized gaps and recommendations.
+- Best guess: A design-system audit with explicit scope, findings, systemic patterns, confidence-tagged priorities, and the minimum next moves needed to stabilize the system.
 - Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-- Done when: The team knows the real system health and next moves.
+- Done when: The team can point to the audited surfaces, understand the highest-risk drift and duplication patterns, and act on a prioritized remediation sequence without re-running discovery.
 
 ## `system-qa-and-adoption`
 
-- Description: Validate the live system for consistency and define how teams should adopt it.
-- Trigger: When the system exists but adoption or QA is weak.
+- Description: Build an operational model of verification surfaces, adoption audiences, and rollout dependencies before defining QA checks, blockers, and adoption guidance.
+- Trigger: When the design system exists but consistency is untrusted, rollout is stalling, or the team needs a repeatable way to verify and adopt the system.
 - Primary MCP/tool: repository, figma
 - Fallback: chrome_devtools, reference/verify
-- Best guess: A system QA and adoption plan with key issues and rollout guidance.
+- Best guess: A system QA and adoption plan with verification checks, blocker analysis, rollout guidance, exit criteria, and clear confidence limits.
 - Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-- Done when: System issues and adoption blockers are concrete and prioritized.
+- Done when: Teams have a repeatable verification method, can see the highest adoption blockers, and know what must be true before the system rollout is considered operationally healthy.
 
 ## `token-architecture`
 
-- Description: Define or refine the token model for color, typography, spacing, and semantic usage.
-- Trigger: When the system needs a durable token foundation.
+- Description: Construct a token-system model across primitives, semantics, themes, and code-delivery constraints before defining naming, aliasing, and migration rules.
+- Trigger: When the system needs a durable token foundation, cross-platform alignment, or a cleaner bridge between design authoring and implementation.
 - Primary MCP/tool: figma
 - Fallback: paper, repository
-- Best guess: A token architecture proposal tied to system usage.
+- Best guess: A token architecture proposal with explicit token layers, naming rules, semantic aliases, theme logic, code-delivery implications, and migration guidance.
 - Output: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-- Done when: Tokens are structured well enough to scale consistently.
+- Done when: Token layers, naming, aliasing, theme handling, and code-delivery constraints are explicit enough that new token work can scale without inventing a parallel system.

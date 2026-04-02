@@ -1,54 +1,146 @@
 ---
 name: design-code-mapping
-description: Map design system components and tokens to their implementation counterparts.
-trigger: When design and code need a reliable bridge.
+description: Build a canonical system model of components, tokens, states, and ownership anchors before tracing how design artifacts map to implementation reality.
+trigger: When design and engineering need a reliable bridge between system primitives, or when drift makes handoff and maintenance ambiguous.
+analysis_framework: Design-to-code traceability with system-model construction, anchor matching, drift analysis, and ownership routing
 primary_mcp: figma, repository
-fallback_tools: reference/trace, reference/verify
-best_guess_output: A design-code mapping with reusable implementation guidance.
+fallback_tools:
+  - reference/trace
+  - reference/verify
+required_inputs:
+  - current design-system source in design and code
+  - concrete design anchors such as token names, component names, variants, or file references when available
+  - current implementation packages, Storybook stories, or code anchors
+  - `project-ds-spec.md` when it materially affects the intended mapping
+recommended_passes:
+  - canonical system model construction
+  - anchor collection
+  - design-to-code matching
+  - drift and gap analysis
+  - ownership routing
+tool_stack:
+  workspace:
+    primary: [figma, repository]
+    secondary: [reference/trace, reference/verify]
+  implementation_truth:
+    primary: [storybook, chromatic, github]
+    secondary: [repository]
+  documentation:
+    primary: [zeroheight, supernova]
+    secondary: [paper]
+  fallback:
+    primary: [reference/trace, reference/verify]
+tool_routing:
+  - if: both design and repo anchors are accessible
+    use: [figma, repository]
+  - if: Storybook, Chromatic, or code review history provides the clearest state or ownership evidence
+    use: [storybook, chromatic, github]
+  - if: component metadata or linked docs live in zeroheight or Supernova
+    use: [zeroheight, supernova]
+  - if: only partial traces exist
+    use: [reference/trace, reference/verify]
+best_guess_output: A design-code mapping with concrete anchors, traceable gaps, explicit ownership notes, and the minimum follow-up actions needed to close parity risk.
 output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
 section_anchor: "## Skill: design-code-mapping"
-done_when: Design and engineering can identify the same system primitives reliably.
+done_when: Design and engineering can identify the same primitives, states, and code anchors with enough precision to fix drift instead of debating what the system contains.
 ---
 
 # Design Code Mapping
 
 ## Purpose
 
-Map design system components and tokens to their implementation counterparts.
+Create a traceable bridge between design-system artifacts and their implementation counterparts.
+
+This skill applies canonical system modeling and anchor matching so the deliverable shows exactly what maps, what drifts, and who should fix the mismatch.
+
+This skill does not satisfy the assignment with prose alone, or assume that a component documented in design must therefore exist in code.
+
+Read `../references/shared-method.md` for the shared deliverable contract, finding schema, evidence rules, and coverage requirements.
+
+Read `../references/tooling-landscape.md` when Storybook, zeroheight, Supernova, Chromatic, or token platforms provide stronger traceability evidence than Figma alone.
 
 ## Shared Deliverable Contract
 
+- Follow the shared contract in `../references/shared-method.md`.
 - Update only the section named by `section_anchor`.
 - If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
 - Preserve all other skill sections in the shared role deliverable.
 - Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
+## Required Inputs And Assumptions
+
+- Require concrete design anchors, concrete code anchors, and access to the repo or implementation surface.
+- Prefer explicit identifiers, story names, file paths, token keys, and component names over inferred equivalence.
+- If an anchor is missing, state `Assumed context:` and lower confidence for the mapping that depends on it.
+
+## Input Mode And Evidence Path
+
+- Prefer paired evidence from design and implementation. Documentation-only links are helpful but not sufficient proof of parity.
+- Use Storybook or Chromatic when component states or variant behavior are easier to verify there than in code files alone.
+- State where the mapping is exact, approximate, or unverified.
+
+## Environment And Reproducibility
+
+- Record the design source, code source, branch or snapshot, theme or brand scope, and any missing tools or permissions.
+- Note whether the mapping covers tokens, components, composite patterns, or all three.
+- Record any state coverage limitations such as missing interactive states or hidden design variants.
+
+## Model Building
+
+Build the canonical system model before findings:
+
+- Design anchors: token collections, component names, variant properties, pattern sections
+- Code anchors: package paths, exports, Storybook stories, theme variables, runtime wrappers
+- Mapping status classes: exact, partial, missing in code, missing in design, renamed, or ambiguous
+- Ownership surface: which team or role is best positioned to close each mismatch
+
 ## Required Deliverable Sections
 
 Within `## Skill: design-code-mapping`, include:
+
+- `### Mapping objective`
+- `### Required inputs and assumptions`
+- `### Input mode and evidence path`
+- `### Tool selection rationale`
+- `### Environment and reproducibility`
+- `### Canonical system model`: Describe the design anchors, code anchors, and mapping-status classes.
+- `### Mapping passes`
 - `### Mapping table`: Provide a table with exactly these columns: `Design anchor`, `Token/component name`, `Code anchor`, `Status`, `Notes`.
 - `### Drift and gap list`: Identify where design and code do not line up yet.
 - `### Ownership notes`: State which team or role should close each mismatch.
 - `### Follow-up actions`: List the next concrete fixes needed to complete the bridge.
+- `### Mapping findings`: Use the exact finding template from `../references/shared-method.md`.
+- `### Prioritized parity risks`: Highlight mismatches that most directly harm delivery, QA, or adoption.
+- `### Systemic patterns`: Group recurring issues such as naming divergence, wrapper leakage, or undocumented generated primitives.
+- `### Recommendations`
+- `### Coverage map`
+- `### Limits and unknowns`
 
 ## Tool Path
 
 - Start with `figma, repository`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/trace, reference/verify`.
-- If both paths fail, produce the best-guess output described as: A design-code mapping with reusable implementation guidance.
-- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+- Use `storybook`, `chromatic`, or `github` when implementation states or ownership traces are clearer there.
+- Use `zeroheight` or `supernova` when linked docs or component metadata strengthen traceability.
+- Use `reference/trace, reference/verify` when only partial evidence exists.
+- If all strong paths fail, produce the best-guess output and mark it `inferred`.
 
 ## Workflow Notes
 
-- Use concrete Figma identifiers, token names, component names, or code file paths whenever available.
-- Do not satisfy this skill with prose alone; the mapping table is mandatory.
+- The mapping table is mandatory.
+- Use concrete identifiers whenever available.
 - Mark uncertain mappings explicitly instead of guessing silently.
-- Do not treat the company reference library or the project ds-spec as proof that a component or token exists in code. This skill must stay grounded in actual design/code evidence.
-- When `project-ds-spec.md` recommends shadcn/ui, include the implementation-foundation bridge explicitly in the mapping, such as `components.json`, registry namespaces, generated primitives, wrapper components, and where product-specific tokens diverge from stock shadcn defaults.
+- Do not treat documentation platforms or `project-ds-spec.md` as proof that code exists; they are intent sources, not implementation proof.
+- When `project-ds-spec.md` recommends shadcn/ui, explicitly map `components.json`, registry namespaces, generated primitives, wrapper components, and token divergence from stock defaults.
+
+## Prioritization Logic
+
+- Highest priority: mapping gaps that block implementation, QA, or shared understanding of core system primitives.
+- Medium priority: naming drift, wrapper ambiguity, or partial state mismatch that repeatedly slows teams.
+- Lower priority: minor label differences that do not materially affect handoff or system maintenance.
 
 ## Output Contract
 
 - Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
 - Keep all work for this skill inside `## Skill: design-code-mapping`.
 - Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Design and engineering can identify the same system primitives reliably.
+- Ensure the section meets this done-when bar: Design and engineering can identify the same primitives, states, and code anchors with enough precision to fix drift instead of debating what the system contains.

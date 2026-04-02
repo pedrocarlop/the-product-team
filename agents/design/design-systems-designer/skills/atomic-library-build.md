@@ -1,50 +1,143 @@
 ---
 name: atomic-library-build
-description: Build or reorganize the component library using atomic design as the structuring model.
-trigger: When reusable components need a clear system structure.
+description: Build a component-library structure by modeling primitives, composition layers, promotion rules, and system boundaries before assigning atoms, molecules, organisms, and higher-level patterns.
+trigger: When reusable components need a clearer system structure, a library reorganization, or a repeatable promotion path from one-off patterns into shared assets.
+analysis_framework: Atomic-design-informed library structuring with composition modeling, duplication tracing, promotion analysis, and adoption sequencing
 primary_mcp: figma
-fallback_tools: paper, repository
-best_guess_output: An atomic component library plan or build description.
+fallback_tools:
+  - paper
+  - repository
+required_inputs:
+  - current component inventory in design or code
+  - `project-ds-spec.md` when it exists
+  - known product patterns, widget families, or layout shells
+  - current reuse problems, promotion bottlenecks, or migration goals when known
+recommended_passes:
+  - library inventory
+  - composition model construction
+  - layer assignment
+  - promotion and gap analysis
+  - adoption sequencing
+tool_stack:
+  workspace:
+    primary: [figma, repository]
+    secondary: [paper]
+  documentation:
+    primary: [zeroheight, supernova]
+    secondary: [paper]
+  implementation_truth:
+    primary: [storybook, chromatic]
+    secondary: [repository]
+  fallback:
+    primary: [paper, repository]
+tool_routing:
+  - if: design and component grouping live primarily in design files
+    use: [figma]
+  - if: implementation packages or Storybook reveal the real library structure better than design
+    use: [repository, storybook, chromatic]
+  - if: component cataloging, status, or system documentation is stronger in zeroheight or Supernova
+    use: [zeroheight, supernova]
+  - if: only static exports or notes exist
+    use: [paper, repository]
+best_guess_output: An atomic component-library structure with explicit layers, promotion rules, missing pieces, and a pragmatic migration order.
 output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
 section_anchor: "## Skill: atomic-library-build"
-done_when: Atoms, molecules, organisms, and higher-level patterns are clearly organized.
+done_when: The team has a defensible library structure, knows what belongs in each layer, and can promote or reject new shared components without re-litigating the model.
 ---
 
 # Atomic Library Build
 
 ## Purpose
 
-Build or reorganize the component library using atomic design as the structuring model.
+Organize the component library around real composition layers rather than a flat pile of reusable pieces.
+
+This skill applies an atomic-design-informed method: inventory the library, model how primitives compose into larger patterns, identify duplication or layer confusion, and then define promotion rules and adoption order.
+
+This skill does not force every pattern into atomic design dogma, or use the language of atoms and organisms to justify over-fragmented libraries.
+
+Read `../references/shared-method.md` for the shared deliverable contract, finding schema, evidence rules, and coverage requirements.
+
+Read `../references/tooling-landscape.md` when Storybook, zeroheight, Supernova, or other library-management tooling provides stronger evidence than design files alone.
 
 ## Shared Deliverable Contract
 
+- Follow the shared contract in `../references/shared-method.md`.
 - Update only the section named by `section_anchor`.
 - If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
 - Preserve all other skill sections in the shared role deliverable.
 - Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 
+## Required Inputs And Assumptions
+
+- Require the current component inventory, current reuse pain points, and `project-ds-spec.md` when it exists.
+- Prefer evidence from actual reusable assets and implemented patterns over roadmap aspirations.
+- If the current library boundary is unclear, infer the smallest stable scope and mark it `Assumed context:`.
+
+## Input Mode And Evidence Path
+
+- Prefer live component inventories in design and code, then documentation platforms, then static exports, then inference.
+- When Storybook exists, use it to validate stateful component boundaries and real implementation groupings.
+- State which parts of the library were validated from actual reusable components versus only described in docs.
+
+## Environment And Reproducibility
+
+- Record which design files, packages, Storybook catalogs, or docs were used.
+- Capture whether the library is product-specific, platform-shared, or multi-brand.
+- Note any missing runtime or documentation access that limits certainty about component boundaries.
+
+## Model Building
+
+Build the library model before findings:
+
+- Primitives: tokens, icons, typography, and low-level affordances
+- Component layers: atoms, molecules, organisms, templates, and product-specific patterns when applicable
+- Promotion boundary: what must be stable before entering the shared library
+- Consumption surfaces: how teams actually assemble screens and flows
+
 ## Required Deliverable Sections
 
 Within `## Skill: atomic-library-build`, include:
+
+- `### Library objective`
+- `### Required inputs and assumptions`
+- `### Input mode and evidence path`
+- `### Tool selection rationale`
+- `### Environment and reproducibility`
+- `### Library model`: Describe primitives, composition layers, and promotion boundaries.
+- `### Library passes`
 - `### Library scope`: Define what the library covers and what remains out of scope.
 - `### Atomic layers`: Group the system into atoms, molecules, organisms, templates, or equivalent layers.
 - `### Promotion rules`: State when something graduates from a one-off pattern into the shared library.
 - `### Gap list`: Identify components or primitives that are still missing.
 - `### Adoption order`: Recommend the order in which teams should consume or migrate to the library.
+- `### Library findings`: Use the exact finding template from `../references/shared-method.md`.
+- `### Prioritized structure risks`: Highlight the structural failures most likely to create duplication or slow adoption.
+- `### Systemic patterns`: Group recurring layer confusion, wrapper proliferation, or component-family overlap.
+- `### Recommendations`
+- `### Coverage map`
+- `### Limits and unknowns`
 
 ## Tool Path
 
 - Start with `figma`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, repository`.
-- If both paths fail, produce the best-guess output described as: An atomic component library plan or build description.
-- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+- Use `repository`, `storybook`, or `chromatic` when code structure reveals the real reusable boundaries better than design.
+- Use `zeroheight` or `supernova` when component catalogs, documentation, or status metadata materially improve the inventory.
+- Use `paper, repository` when only static evidence exists.
+- If strong paths fail, provide the best-guess output and mark it with the correct evidence label.
 
 ## Workflow Notes
 
-- Use the atomic model as a structure, not as a reason to over-fragment the system.
-- Treat `logs/active/<project-slug>/deliverables/project-ds-spec.md` as the canonical source for which primitives, component families, and widget/layout patterns should exist.
-- Tie the library hierarchy back to how teams actually build screens.
-- Call out where current components sit at the wrong layer today.
+- Use atomic design as a structuring heuristic, not a rigid taxonomy.
+- Tie every proposed layer to how teams actually build screens.
+- Call out components that sit at the wrong layer today and explain why.
+- Prefer fewer, clearer shared layers over a clever hierarchy that teams will not maintain.
+- Use `project-ds-spec.md` as the canonical target for primitives, families, and widget patterns.
+
+## Prioritization Logic
+
+- Highest priority: mis-layering or missing primitives that cause widespread duplication or inconsistent composition.
+- Medium priority: promotion-rule ambiguity that causes reusable assets to sprawl or stagnate.
+- Lower priority: taxonomy cleanup that does not materially change how teams build or adopt components.
 
 ## Output Contract
 
@@ -53,4 +146,4 @@ Within `## Skill: atomic-library-build`, include:
 - Keep all work for this skill inside `## Skill: atomic-library-build`.
 - In `project-ds-spec.md`, update `## Atomic Primitives`, `## Component Families`, and `## Widget And Layout Patterns`.
 - Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Atoms, molecules, organisms, and higher-level patterns are clearly organized.
+- Ensure the section meets this done-when bar: The team has a defensible library structure, knows what belongs in each layer, and can promote or reject new shared components without re-litigating the model.
