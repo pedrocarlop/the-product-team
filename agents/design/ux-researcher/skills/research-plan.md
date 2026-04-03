@@ -34,8 +34,7 @@ tool_routing:
   - if: all primary tools are unavailable
     use: search_query, reference/ground — best-guess output; label as inferred
 best_guess_output: A research plan with decision context, prioritized research questions, method selection rationale, sample design, risk register, and output scope.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
-section_anchor: "## Skill: research-plan"
+output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-research-plan.md
 done_when: Every research question maps to a product decision, every method choice is justified against the question type, sample is specified with profile and size rationale, risks are documented, and the plan can be executed without inventing protocol details later.
 ---
 
@@ -269,19 +268,11 @@ These limits must be stated in the plan. Do not imply higher confidence than the
 
 ---
 
-## Output Contract
 
-- Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
-- Keep all work for this skill inside `## Skill: research-plan`.
-- Do not modify any other skill section in the shared role deliverable.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Update the role-level reflection footer by appending or refreshing `### research-plan` with `What worked`, `What didn't`, and `Next steps`.
-- Record which tool path was used (sourced / fallback / inferred) and why.
-- The section meets done-when when: every research question maps to a decision, every method is justified, sample is specified with rationale, risks are documented, and the plan can be executed without inventing protocol details later.
+### Lossless Deliverable Contract
 
-### Shared Deliverable Contract
-
-- Update only the section named by `section_anchor`.
-- Preserve all other skill sections in the shared role deliverable.
-- One YAML header per deliverable file — do not duplicate.
-- Reflection footer must be appended, not replaced, unless refreshing the same skill entry.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ux-researcher-research-plan.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.

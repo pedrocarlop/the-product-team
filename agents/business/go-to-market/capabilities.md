@@ -1,17 +1,19 @@
 # Go-To-Market Capability Card
 
 ## Purpose
-Own positioning, launch planning, campaign briefs, sales enablement, partner strategy, and customer-signal synthesis.
+Own positioning, launch planning, campaign briefs, sales enablement, partner strategy, and customer-signal synthesis using a method-driven, evidence-prioritized approach.
 
 ## Managed Skills
-- **positioning-brief**: Define how the product should be positioned against alternatives for a target audience.
-- **launch-plan**: Build the launch plan with milestones, owners, dependencies, and readiness checks.
-- **campaign-brief**: Prepare a campaign brief with audience, channel, creative direction, and KPI.
-- **sales-enablement**: Produce the core sales narrative, objections, and proof points for the field.
-- **partner-thesis**: Define which partners matter, why, and what structure best fits the opportunity.
-- **customer-signal-synthesis**: Turn customer conversations, escalations, or feedback into market-ready insights.
+- **positioning-brief**: Expert positioning and messaging strategy using April Dunford's framework and JTBD, validated with buyer intelligence signals.
+- **launch-plan**: Orchestrates the end-to-end launch workflow using 2026 GTM standards, centering on predictive readiness and multi-tool orchestration.
+- **campaign-brief**: Orchestrates and executes integrated marketing campaigns using cross-channel signals and AI-driven automation.
+- **sales-enablement**: Encodes the method for developing AI-driven sales enablement and training programs, focused on contextual supercoaching and real-time feedback.
+- **partner-thesis**: Define a data-driven ecosystem-led growth (ELG) strategy and partner prioritization model using 2026 PRM/ELG tools.
+- **customer-signal-synthesis**: Synthesize multi-source buying signals, intent data, and conversation intelligence into actionable GTM priorities.
 
-## External Tools (MCP)
-- **notion**
-- **linear**
-- **github**
+## External Tool Stack (2026)
+- **Primary Orchestration**: Ignition, HubSpot, Salesforce
+- **Intelligence & Signals**: Clay, 6sense, Gong, Apollo, Wynter
+- **Ecosystem & Partners**: Crossbeam, Reveal, PartnerStack, Impartner
+- **Enablement & Content**: Highspot, Proshort, Jasper, Copy.ai
+- **Foundational**: Notion, Linear, GitHub, Slack

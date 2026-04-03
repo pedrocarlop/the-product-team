@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma
 - Fallback: paper, stitch
 - Best guess: A reusable component proposal with explicit states, reuse rules, and handoff notes.
-- Output: logs/active/<project-slug>/deliverables/ui-designer.md
+- Output: logs/active/<project-slug>/deliverables/ui-designer-component-design.md
 - Done when: Component purpose, states, and intended reuse are explicit.
 
 ## `responsive-and-state-spec`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma
 - Fallback: paper, chrome_devtools, search_query, open
 - Best guess: A responsive and state specification with breakpoint matrix, state matrix, exceptions, stress cases, and implementation signals.
-- Output: logs/active/<project-slug>/deliverables/ui-designer.md
+- Output: logs/active/<project-slug>/deliverables/ui-designer-responsive-and-state-spec.md
 - Done when: Desktop, mobile, and critical states are explicitly covered, unsupported combinations are named, and implementation signals are clear enough for engineering to preserve.
 
 ## `screen-production-design`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma
 - Fallback: paper, stitch
 - Best guess: A production-ready screen spec or screen set with handoff notes and required `project-ds-spec.md` updates.
-- Output: logs/active/<project-slug>/deliverables/ui-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
+- Output: logs/active/<project-slug>/deliverables/ui-designer-screen-production-design.md
 - Done when: Layout, hierarchy, tokens, and core states are specified clearly.
 
 ## `ui-concept-direction`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: stitch
 - Fallback: paper, search_query
 - Best guess: A concept direction with clear visual thesis and promising directions.
-- Output: logs/active/<project-slug>/deliverables/ui-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
+- Output: logs/active/<project-slug>/deliverables/ui-designer-ui-concept-direction.md
 - Done when: A team can choose or refine one of 3 materially different directions, understand the recommended path, and see the shared design spec seeded.
 
 ## `ui-variant-exploration`
@@ -51,7 +51,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: stitch
 - Fallback: paper, figma
 - Best guess: A variant comparison with recommendation and rationale.
-- Output: logs/active/<project-slug>/deliverables/ui-designer.md
+- Output: logs/active/<project-slug>/deliverables/ui-designer-ui-variant-exploration.md
 - Done when: The chosen direction clearly beats the alternatives on the intended goal.
 
 ## `visual-polish-and-consistency`
@@ -61,5 +61,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma
 - Fallback: paper, chrome_devtools
 - Best guess: A polished design with a concrete issue-fix list, consistency notes, and readiness limits.
-- Output: logs/active/<project-slug>/deliverables/ui-designer.md
+- Output: logs/active/<project-slug>/deliverables/ui-designer-visual-polish-and-consistency.md
 - Done when: The design reads as deliberate and consistent, with concrete fixes, coverage notes, and readiness gaps called out.

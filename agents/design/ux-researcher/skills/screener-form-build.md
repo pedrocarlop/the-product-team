@@ -3,8 +3,7 @@ name: screener-form-build
 description: Applies participant profiling, quota sampling logic, and screener design best practices to build a form that recruits the right people with minimum respondent burden.
 trigger: When a study needs recruitment filtering — qualitative or quantitative — and inclusion/exclusion criteria must be operationalized into a form.
 best_guess_output: A structured screener with participant profile model, qualification logic per question, quota targets, and backup plan.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
-section_anchor: "## Skill: screener-form-build"
+output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-screener-form-build.md
 done_when: The screener contains a documented participant profile model, ≤10 questions with explicit qualify/disqualify logic per answer, quota targets, and a named tool path used to deploy it.
 required_inputs:
   - research plan (study goals, participant type, sample size)
@@ -294,11 +293,6 @@ The screener cannot control:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
-- Keep all output for this skill inside `## Skill: screener-form-build`.
-- Include these subsections within the skill section:
   - `### Participant profile model` — completed schema
   - `### Screening questions` — all questions in structured schema format
   - `### Qualification logic` — qualify/disqualify rules per answer
@@ -313,9 +307,10 @@ The screener cannot control:
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### screener-form-build` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ux-researcher-screener-form-build.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.

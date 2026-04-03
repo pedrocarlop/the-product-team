@@ -1,12 +1,12 @@
 ---
 name: coordinate
-description: Launch specialists in sequence, pass artifact paths, and enforce evidence_mode reporting.
+description: Launch specialists in sequence, curate the Execution Manifest, and ensure lossless handoff to downstream roles.
 trigger: After staffing approval or while running a staged workflow.
 primary_mcp: logs, subagents
 fallback_tools: orchestrator/log, context review
-best_guess_output: An up-to-date execution state with handoffs and blocker handling.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator.md
-done_when: Every active stage has one owner and downstream roles can read their inputs directly.
+best_guess_output: An Execution Manifest indexing all specialist deliverables with status and path.
+output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-coordinate.md
+done_when: Every specialist output is indexed in the manifest and implementation owners can access all original source materials.
 ---
 
 # Coordinate
@@ -57,10 +57,11 @@ After each subagent returns, check its output for an `hta_setup_required` signal
   4. After `setup-check` resolves (`hta_status: configured` or `hta_status: fallback_authorized`), re-launch the subagent.
 - If no signal → continue to the next stage normally.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+### Step 4: Produce The Execution Manifest
+- Curate the `orchestrator.md` as a registry of all specialist deliverables.
+- For each completed skill, record: Skill Name | Owner | Deliverable Path | Status | Key Signals link.
+- Do not summarize away the detail of the original artifacts; provide navigation and orientation only.
+- Carry forward any critical dependencies or cross-role constraints.
 
 ### Step 5: Mandatory Reflection (Interleaved Thinking)
 End the deliverable with a `## Reflection` section. Self-critique the work:
@@ -68,8 +69,3 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - **What didn't**: trade-offs, shortcuts, or known limitations.
 - **Next steps**: specific guidance for downstream roles or the reviewer.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/orchestrator.md`.
-- Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Every active stage has one owner and downstream roles can read their inputs directly.

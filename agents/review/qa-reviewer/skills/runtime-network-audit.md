@@ -38,7 +38,6 @@ tool_routing:
     use: [reference/trace]
 best_guess_output: A runtime and network audit with evidence-tagged failures, dependency context, and observability gaps.
 output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
-section_anchor: "## Skill: runtime-network-audit"
 done_when: The main runtime issues are identified with reproducible evidence, request context, dependency mapping, and explicit limits on what could not be observed directly.
 ---
 
@@ -52,12 +51,13 @@ This skill applies runtime QA reasoning across observable behavior, network sequ
 
 This skill does not replace deep backend root-cause analysis, long-horizon performance profiling, or production monitoring ownership.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/qa-reviewer-runtime-network-audit.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -121,9 +121,3 @@ For each finding inside `### Runtime findings`, use this exact mini-template:
 - After all passes, consolidate overlapping failures into systemic patterns before prioritization.
 - Distinguish clearly between observed evidence, inferred cause area, and recommendation direction.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/reviews/qa-reviewer.md`.
-- Keep all work for this skill inside `## Skill: runtime-network-audit`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The main runtime issues are identified with reproducible evidence, request context, dependency mapping, and explicit limits on what could not be observed directly.

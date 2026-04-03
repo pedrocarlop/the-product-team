@@ -42,8 +42,7 @@ tool_routing:
   - if: only static notes or partial screenshots exist
     use: [reference/verify]
 best_guess_output: A system QA and adoption plan with verification checks, blocker analysis, rollout guidance, exit criteria, and clear confidence limits.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-section_anchor: "## Skill: system-qa-and-adoption"
+output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer-system-qa-and-adoption.md
 done_when: Teams have a repeatable verification method, can see the highest adoption blockers, and know what must be true before the system rollout is considered operationally healthy.
 ---
 
@@ -61,13 +60,13 @@ Read `../references/shared-method.md` for the shared deliverable contract, findi
 
 Read `../references/tooling-landscape.md` when Storybook, Chromatic, zeroheight, Supernova, or browser/runtime tools provide stronger verification evidence than static docs.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Follow the shared contract in `../references/shared-method.md`.
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-systems-designer-system-qa-and-adoption.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Inputs And Assumptions
 
@@ -143,11 +142,3 @@ Within `## Skill: system-qa-and-adoption`, include:
 - Medium priority: documentation and workflow gaps that repeatedly slow adoption or create avoidable QA churn.
 - Lower priority: improvements that help clarity but do not materially change rollout readiness or verification confidence.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
-- Also update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
-- Keep all work for this skill inside `## Skill: system-qa-and-adoption`.
-- In `project-ds-spec.md`, update `## Governance And Adoption` and `## QA Notes And Open Questions`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Teams have a repeatable verification method, can see the highest adoption blockers, and know what must be true before the system rollout is considered operationally healthy.

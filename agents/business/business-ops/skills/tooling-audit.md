@@ -1,54 +1,98 @@
 ---
 name: tooling-audit
-description: Assess tool sprawl, gaps, and ownership across the operating stack.
-trigger: When systems or tools are slowing execution down.
-primary_mcp: notion, repository
-fallback_tools: search_query, reference/ground
-best_guess_output: A tooling audit with keep/change/remove recommendations.
-output_artifacts: logs/active/<project-slug>/deliverables/business-ops.md
-section_anchor: "## Skill: tooling-audit"
-done_when: The stack decision is actionable and justified.
+description: Encode expert workflow for assessing tool sprawl, gaps, and ownership using TCO, ROI, and Shadow AI Detection.
+trigger: When systems or tools are slowing execution down or during annual operating rhythm reviews.
+best_guess_output: A comprehensive SaaS inventory with TCO analysis, ROI justification, and a keep/change/remove roadmap.
+output_artifacts: logs/active/<project-slug>/deliverables/business-ops-tooling-audit.md
+done_when: The stack decision is actionable, justified by TCO/ROI benchmarks, and identifies Shadow AI risks.
 ---
 
 # Tooling Audit
 
 ## Purpose
+Assess tool sprawl, gaps, and ownership across the operating stack using financial and operational metrics. This skill identifies redundancy, calculates Total Cost of Ownership (TCO), evaluates Return on Investment (ROI), and detects Shadow AI usage to optimize the organization's tech stack.
 
-Assess tool sprawl, gaps, and ownership across the operating stack.
+## Required Inputs and Assumptions
+Define the following before analysis:
+- **Core Inventory**: List of tools from SaaS Management Platforms (SMP) or finance records.
+- **Spend Data**: Monthly/Annual costs.
+- **Utilization Data**: Active user counts and seat allocation.
+- **Assumptions**: If spend is unknown, use 2026 industry benchmarks from Vertice. Assume unmanaged AI tools exist if no formal AI governance is documented.
 
-## Shared Deliverable Contract
+## Input Mode and Evidence Path
+Gather evidence hierarchically:
+1. **Live Interaction**: Access to Zylo, CloudEagle, or Vertice dashboards.
+2. **Structured System Access**: Finance records (ERP), SSO logs (Okta/Azure AD), and vendor invoices.
+3. **Design Artifacts**: Tech stack diagrams or procurement documentation.
+4. **Inference**: Market rates for enterprise SaaS in 2026 for unpriced tiers.
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+## Tool Stack (Capabilities)
+Define access layers:
+- **Inventory Layer**: Zylo (SaaS Management, lifecycle tracking).
+- **Governance Layer**: CloudEagle (AI Governance, Shadow AI detection).
+- **Optimization Layer**: Vertice (SaaS Spend Optimization, TCO/ROI benchmarking).
 
-## Required Deliverable Sections
+## Tool Routing (Decision System)
+- **IF** spend > $100k **USE** [Vertice] for deep spend optimization.
+- **IF** AI apps are detected in logs **USE** [CloudEagle] for Shadow AI compliance checks.
+- **FOR** general inventory/lifecycle **USE** [Zylo] to identify overlapping software.
 
-Within `## Skill: tooling-audit`, include:
-- `### Tool inventory`: List the relevant tools or systems in the current stack.
-- `### Current owner`: Identify the owner or owning team for each important tool or area.
-- `### Keep/change/remove recommendation`: Give the recommendation for the major tools or overlaps.
-- `### Gap analysis`: Note missing capabilities or unsupported workflows.
-- `### Integration issues`: Capture handoff, sync, or duplication problems between tools.
-- `### Recommended roadmap`: Suggest a practical sequence for cleanup or change.
+## Environment and Reproducibility
+- **Platform**: SaaS Management and Procurement Platforms.
+- **State**: Current active subscriptions and user auth state.
+- **Reproducibility**: Analysis must be reproducible using the same data snapshot from the SMP stack.
 
-## Tool Path
+## Model Building (Before Analysis)
+Before evaluating the stack, the agent must construct:
+1. **Stack Capability Model**: Mapping tools to business capabilities (e.g., CRM, Project Management).
+2. **Lifecycle Map**: Categorizing tools (Acquisition, Deployment, Active, At-Risk, Sunsetting).
+3. **Integration Graph**: Mapping data flows between tools to find silos.
 
-- Start with `notion, repository`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, reference/ground`.
-- If both paths fail, produce the best-guess output described as: A tooling audit with keep/change/remove recommendations.
-- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+## Core Method Execution
+1. **Shadow AI Detection**: Scan logs for unauthorized AI subscriptions and risk-level categorization.
+2. **TCO Analysis**: Calculate Direct (License) and Indirect (Management, Training, Integration) costs.
+3. **ROI Evaluation**: Map tool usage to business outcomes (e.g., efficiency gains) and compare against 2026 benchmarks.
+4. **Rationalization**: Identify overlaps (e.g., Zoom vs Teams) and draft a Keep/Change/Remove matrix.
 
-## Workflow Notes
+## Structured Findings
+Each finding must include:
+- **Observation**: Description of sprawl, gap, or risk.
+- **Evidence**: Specific dashboard data or log entry.
+- **TCO Impact**: Combined direct/indirect cost impact.
+- **ROI Score**: 1-10 based on value vs cost.
+- **Confidence**: High/Medium/Low.
 
-- Optimize for a decision-ready audit, not a catalog of every tool anyone has ever touched.
-- Make ownership gaps explicit because they are often the root cause of tool sprawl.
-- Differentiate between replace-now issues and longer-term platform cleanups.
+## Prioritization Logic
+- **Critical (P0)**: Shadow AI risks (security) or massive overspend (>25% waste).
+- **High (P1)**: Redundant tools with high TCO.
+- **Medium (P2)**: Underutilized seats or minor integration friction.
+
+## Pattern Detection
+Identify recurring failures:
+- **"Horizontal Bloat"**: Departments buying different tools for the same capability.
+- **"AI Fragmentation"**: Individual AI seats instead of enterprise licenses.
+- **"Zombie SaaS"**: Automatic renewals for tools with zero logins in 90 days.
+
+## Recommendations
+- **Directional Fixing**: Consolidation or negotiation before termination.
+- **Strategic Scaling**: Moving towards enterprise licenses for fragmented AI usage.
+- **Governance**: Implementing Intake-to-Procure workflows.
+
+## Coverage Map
+- **Deeply Analyzed**: Core departments (Sales, Marketing, Engineering).
+- **Partially Analyzed**: Shadow IT, small departmental apps.
+- **Not Analyzed**: Hardware and on-premise infrastructure.
+
+## Limits and Unknowns
+- **User Sentiment**: Qualitative value of a tool vs quantitative ROI.
+- **Hidden Growth**: Free-tier usage that may scale exponentially.
+
+## Workflow Rules
+- Build the **Stack Capability Model** before making "Remove" recommendations.
+- Distinguish between "Waste" (unused) and "Redundancy" (overlap).
+- Check the 2026 Vertice benchmark for any replacement tool.
 
 ## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/business-ops.md`.
-- Keep all work for this skill inside `## Skill: tooling-audit`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The stack decision is actionable and justified.
+- **Target**: `logs/active/<project-slug>/deliverables/business-ops-tooling-audit.md`.
+- **Merge Rules**: Standalone deliverable.
+- **Artifacts**: Stack Rationalization Matrix; TCO/ROI Chart.

@@ -1,54 +1,103 @@
 ---
 name: process-map
-description: Map the current and target process so gaps and handoffs are visible.
-trigger: When a workflow is unclear, inefficient, or changing.
-primary_mcp: notion
-fallback_tools: search_query, reference/ground
-best_guess_output: A current-state and future-state process map.
-output_artifacts: logs/active/<project-slug>/deliverables/business-ops.md
-section_anchor: "## Skill: process-map"
-done_when: Owners, steps, and gaps are explicit.
+description: Engineering expert-grade process maps using AI-driven mining, generative diagramming, and value-based governance.
+trigger: When a workflow is inefficient, undergoing transformation, or needs formal governance and optimization.
+best_guess_output: A high-fidelity BPMN 2.0 process model, SIPOC framework, and Value Stream Mapping (VSM) analysis.
+output_artifacts: logs/active/<project-slug>/deliverables/business-ops-process-map.md
+done_when: A complete SIPOC, BPMN 2.0 current/target state, and VSM analysis with validated ownership and handoffs are documented.
 ---
 
 # Process Map
 
 ## Purpose
+Map, analyze, and optimize business processes using modern process intelligence and modeling standards (BPMN 2.0, SIPOC, VSM). This skill transforms raw operational data and stakeholder inputs into actionable, governed process models that eliminate waste and clarify ownership.
 
-Map the current and target process so gaps and handoffs are visible.
+## Required Inputs and Assumptions
+Define the following before analysis:
+- **Raw process logs**: CSV/XES from ERP/CRM or detailed stakeholder walkthroughs.
+- **Key Actors**: List of humans and AI agents involved.
+- **Business Goals**: Specific objectives (e.g., reduce cycle time by 20%).
+- **Assumptions**: If detailed logs are missing, the agent will infer the flow from documentation and label as "Inferred Current State."
 
-## Shared Deliverable Contract
+## Input Mode and Evidence Path
+Gather evidence hierarchically:
+1. **Live System Logs**: Direct access to Celonis/SAP logs (Highest Confidence).
+2. **DTO (Digital Twin)**: Real-time monitoring data from SAP Signavio.
+3. **Structured Interviews**: Stakeholder testimony on handoffs and edge cases.
+4. **Static Documentation**: Existing SOPs or old flowcharts.
+5. **Inference**: Based on standard industry patterns for the specific process type.
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+## Tool Stack (Capabilities)
+Define access layers:
+- **Mining Layer**: Celonis (Process Mining), SAP Signavio (DTO Monitoring).
+- **Modeling Layer**: Lucidchart AI (Generative BPMN), SAP Signavio Process Manager.
+- **Visualization Layer**: Mermaid.js (Structured diagramming).
 
-## Required Deliverable Sections
+## Tool Routing (Decision System)
+- **IF** event logs are available **USE** [Celonis] for automated discovery.
+- **IF** governance and compliance are priorities **USE** [SAP Signavio] for DTO setup.
+- **IF** rapid visualization from text is needed **USE** [Lucidchart AI].
 
-Within `## Skill: process-map`, include:
-- `### Current-state flow`: Describe how the process works today.
-- `### Target-state flow`: Describe the intended future-state process.
-- `### Owners and handoffs`: Identify ownership and handoff points across the flow.
-- `### Bottlenecks`: Highlight the biggest delays, confusion points, or friction.
-- `### Gaps`: Note missing steps, unclear ownership, or tooling holes.
-- `### Recommended changes`: Summarize the changes needed to move from current state to target state.
+## Environment and Reproducibility
+- **Platform**: Process Intelligence Clouds (Celonis/Signavio).
+- **State**: Snapshot dates, log versions, and stakeholder participant list.
+- **Reproducibility**: Models must be exportable in BPMN 2.0 XML or standard formats.
 
-## Tool Path
+## Model Building (Before Analysis)
+Before evaluating the process, the agent must construct:
+1. **SIPOC Framework**: Define Suppliers, Inputs, Process (high-level), Outputs, and Customers.
+2. **Actor Profile**: Catalog all humans and AI agents involved.
+3. **Object Model**: Map the data entities (e.g., Invoice, SKU) and their transformations.
 
-- Start with `notion`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `search_query, reference/ground`.
-- If both paths fail, produce the best-guess output described as: A current-state and future-state process map.
-- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+## Core Method Execution
+1. **SIPOC Scoping**: Align on the start and end points of the process.
+2. **Process Discovery**: Run Celonis mining to find the "Happy Path" and all "Variants."
+3. **BPMN 2.0 Modeling**: Create the **Current State** map using standard notation.
+4. **Value Stream Mapping (VSM)**: Calculate Cycle Time (CT), Lead Time (LT), and Value-Added vs. Non-Value-Added (NVA) time.
+5. **Gap & Bottleneck Analysis**: Identify handoff friction and "shadow AI" usage.
+6. **Target State Engineering**: Design the optimized flow in Lucidchart AI.
+7. **Governance Implementation**: Set up automated approval flows in SAP Signavio.
 
-## Workflow Notes
+## Structured Findings
+Each finding must include:
+- **Observation**: Detailed description of the process deviation or bottleneck.
+- **Evidence**: Specific log entry or stakeholder quote.
+- **Impact**: Efficiency loss, compliance risk, or financial cost.
+- **Confidence**: High/Medium/Low.
 
-- Keep the process representation linear enough to follow, even if the real system has edge cases.
-- Separate observed current-state behavior from the recommended future state.
-- Preserve role names and tooling references exactly when downstream ops work depends on them.
+## Prioritization Logic
+- **Critical**: Compliance violations or complete process blocks.
+- **High**: Bottlenecks adding >30% delay to the happy path.
+- **Medium**: Redundant handoffs or minor tool inefficiencies.
+- **Low**: Aesthetic or minor documentation discrepancies.
+
+## Pattern Detection
+Identify recurring failures:
+- **"Systemic Waste"**: Recurring NVA activities across variants.
+- **"Handoff Silos"**: Where data requires manual re-entry between tools.
+- **"Governance Drift"**: Gaps between the "Designed" and "Executed" process.
+
+## Recommendations
+- **Directional Fixing**: Link to specific VSM or BPMN findings.
+- **Strategic Scaling**: Prioritize automation where predictive AI suggests high ROI.
+- **Governance**: Define clear RACI for the target state.
+
+## Coverage Map
+- **Deeply Analyzed**: Modules with log evidence.
+- **Partially Analyzed**: Modules with stakeholder input only.
+- **Not Analyzed**: Explicitly excluded scope.
+
+## Limits and Unknowns
+- **Data Gaps**: Missing logs for legacy systems.
+- **Human Factor**: Variability in manual steps that cannot be tracked.
+- **External Dependencies**: Third-party APIs or vendor delays.
+
+## Workflow Rules
+- Build the SIPOC before the BPMN.
+- Distinguish between the "Happy Path" and "Exception Paths."
+- Use standard BPMN 2.0 symbols only.
 
 ## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/business-ops.md`.
-- Keep all work for this skill inside `## Skill: process-map`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Owners, steps, and gaps are explicit.
+- **Target**: `logs/active/<project-slug>/deliverables/business-ops-process-map.md`.
+- **Merge Rules**: Standalone deliverable.
+- **Artifacts**: BPMN 2.0 diagram and SIPOC table.

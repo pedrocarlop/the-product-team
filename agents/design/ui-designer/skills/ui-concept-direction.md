@@ -5,8 +5,7 @@ trigger: When a new UI direction or concept needs exploration.
 primary_mcp: stitch
 fallback_tools: paper, search_query
 best_guess_output: A concept direction with clear visual thesis and promising directions.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-section_anchor: "## Skill: ui-concept-direction"
+output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-ui-concept-direction.md
 done_when: A team can choose or refine one of 3 materially different directions, understand the recommended path, and see the shared design spec seeded.
 required_inputs:
   - new-design confirmation or an explicit note that this is only an extension of an existing pattern
@@ -164,12 +163,13 @@ Do not end in a tie.
   - implementation-level component specs
   - exhaustive state matrices
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ui-designer-ui-concept-direction.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -226,11 +226,3 @@ If the product already has a meaningful foundation, say not to initialize shadcn
 - Confidence should drop when the evidence path is only static or inferred.
 - If a reference system or implementation foundation is missing, say so explicitly.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
-- For greenfield work, also write or update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
-- Keep all work for this skill inside `## Skill: ui-concept-direction`.
-- In `project-ds-spec.md`, update only `## Design Principles And Brand Posture`, `## Reference Inspirations`, `## Typography Direction`, `## Color And Token Direction`, `## Implementation Foundation`, `## Spacing And Layout Rules`, and `## State, Motion, And Accessibility Rules`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: A team can choose or refine a direction instead of staring at a blank page.

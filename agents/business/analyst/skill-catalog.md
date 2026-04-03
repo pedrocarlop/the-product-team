@@ -6,50 +6,50 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 
 ## `dashboard-story`
 
-- Description: Turn operational or product metrics into a narrative summary for the team.
-- Trigger: When a dashboard exists but the team needs the story behind the numbers.
-- Primary MCP/tool: notion, repository
-- Fallback: analyst/funnel-analysis, search_query
-- Best guess: A narrative metrics readout with key insights and actions.
-- Output: logs/active/<project-slug>/deliverables/analyst.md
-- Done when: A reader can understand the important story without opening the dashboard first.
+- Description: Transform raw metrics and dashboard visualizations into a cohesive, narrative-driven business story using the Pyramid Principle and Goal-Signal-Metric frameworks.
+- Trigger: When a dashboard exists (Tableau, Power BI, Looker, etc.) but the team requires a synthesis of what the numbers mean, why they changed, and what actions to take.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A structured narrative readout leading with an executive takeaway, supported by trend analysis and recommended actions.
+- Output: logs/active/<project-slug>/deliverables/analyst-dashboard-story.md
+- Done when: The reader can understand the core performance story, the primary driver of change, and the specific next steps without needing to open the source dashboard.
 
 ## `experiment-readout`
 
-- Description: Interpret an experiment and translate the result into a decision.
-- Trigger: When an experiment has completed and the team needs a decision-ready summary.
-- Primary MCP/tool: notion, repository
-- Fallback: analyst/metric-definition, search_query
-- Best guess: An experiment readout with result, confidence, and next step.
-- Output: logs/active/<project-slug>/deliverables/analyst.md
-- Done when: The team can tell what happened, how confident to be, and what to do next.
+- Description: Interpret an experiment and translate the result into a decision using statistical rigor and business context.
+- Trigger: When an experiment has completed or reached sufficient sample size and requires a structured decision-ready summary.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A statistical readout including primary metric lift, guardrail impact, confidence assessment, and a clear "go/no-go" recommendation.
+- Output: logs/active/<project-slug>/deliverables/analyst-experiment-readout.md
+- Done when: The readout provides a clear recommendation based on pre-committed success criteria, with all validity checks passed.
 
 ## `forecast-model`
 
-- Description: Create a forecast with assumptions, ranges, and sensitivity analysis.
-- Trigger: When planning depends on future volume, revenue, or adoption.
-- Primary MCP/tool: notion
-- Fallback: search_query, analyst/metric-definition
-- Best guess: A forecast model summary with assumptions and scenarios.
-- Output: logs/active/<project-slug>/deliverables/analyst.md
-- Done when: The forecast is decision-usable and assumption-driven.
+- Description: Generate evidence-based forecasts using time-series decomposition (Prophet), scenario planning (Monte Carlo), and driver-based modeling to support strategic decision-making.
+- Trigger: When the user needs to project future volumes, revenue, adoption, or any time-bound metric based on historical patterns and explicit assumptions.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A decision-ready forecast report containing centered projections, scenario ranges (P10/P50/P90), and sensitivity analysis of key drivers.
+- Output: logs/active/<project-slug>/deliverables/analyst-forecast-model.md
+- Done when: The forecast is reproducible, grounded in historical data, accounts for external signals, and provides actionable scenario-based insights.
 
 ## `funnel-analysis`
 
-- Description: Analyze a funnel to locate the main drop-offs, likely causes, and next actions.
-- Trigger: When conversion or progression performance is under question.
-- Primary MCP/tool: repository, notion
-- Fallback: search_query, reference/trace
-- Best guess: A funnel analysis with major drop-offs and hypotheses.
-- Output: logs/active/<project-slug>/deliverables/analyst.md
-- Done when: The team knows where to focus and why.
+- Description: Encode the expert process for analyzing multi-stage user journeys to identify friction, drop-offs, and behavioral patterns using modern analytics stacks.
+- Trigger: When funnel conversion or progression performance is underperforming or requires optimization.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A detailed breakdown of funnel bottlenecks with cohort analysis and prioritized optimization hypotheses.
+- Output: logs/active/<project-slug>/deliverables/analyst-funnel-analysis.md
+- Done when: The team has a prioritized list of funnel friction points supported by evidence and actionable next steps.
 
 ## `metric-definition`
 
-- Description: Define the business or product metric model so downstream analysis measures the right thing.
-- Trigger: When the team is debating how success or performance should be measured.
-- Primary MCP/tool: notion, repository
-- Fallback: search_query, reference/ground
-- Best guess: A metric definition pack with formulas, segments, and caveats.
-- Output: logs/active/<project-slug>/deliverables/analyst.md
-- Done when: The metric can be computed and interpreted consistently.
+- Description: Define and model business/product metrics using hierarchical (NSM) and categorical (HEART/AARRR) frameworks for 2026 modern data stacks.
+- Trigger: When the team is debating success criteria, defining feature goals, or auditing performance measurement.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A structured metric model including NSM/Input hierarchies, SQL/DBT logic, and instrumentation mapping (Amplitude/Mixpanel).
+- Output: logs/active/<project-slug>/deliverables/analyst-metric-definition.md
+- Done when: The metric model is mathematically sound, mapped to business value, and instrumentable in modern analytics tools.

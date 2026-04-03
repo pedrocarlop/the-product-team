@@ -45,8 +45,7 @@ tool_routing:
   - if: primary tools are unavailable, blocked, or out of credits
     use: [reference, search_query]
 best_guess_output: A breakpoint matrix, per-breakpoint audit findings, and a prioritized responsive fix list with reproduction steps, cause analysis, and a verification plan.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
-section_anchor: "## Skill: responsive-refinement"
+output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-responsive-refinement.md
 done_when: Every breakpoint in the defined set has been audited, all Critical and Significant findings have a documented fix or accepted risk, and desktop and mobile behavior are both intentional and verifiable.
 ---
 
@@ -315,12 +314,13 @@ Do not collapse this section to a single line. Specific unknowns must be named.
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### responsive-refinement` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-responsive-refinement.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -340,10 +340,3 @@ Within `## Skill: responsive-refinement`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
-- Keep all work for this skill inside `## Skill: responsive-refinement`.
-- Record which tool path was used and why.
-- Label each evidence item as `sourced` (from a live tool session), `fallback` (from screenshots or static input), or `inferred` (from code analysis or reasoning).
-- Ensure the section meets this done-when bar: Every breakpoint in the defined set has been audited, all Critical and Significant findings have a documented fix or accepted risk, and desktop and mobile behavior are both intentional and verifiable.

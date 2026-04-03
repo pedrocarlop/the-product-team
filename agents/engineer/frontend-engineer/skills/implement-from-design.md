@@ -53,8 +53,7 @@ tool_routing:
     use: [chrome_devtools, reference_trace]
     note: Label output section as `fallback`; lower confidence of any measurement or token value obtained this way
 best_guess_output: A working UI implementation that faithfully reproduces the approved design, covers all required states and interactions, and is aligned to the project design system spec.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
-section_anchor: "## Skill: implement-from-design"
+output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-implement-from-design.md
 done_when: The implemented surface matches the approved design's structure, spacing, typography, color, and behavioral states; all required states are covered in code; the fidelity gaps section explicitly accounts for any deviations; and the code touchpoints are identified so downstream review can verify the right surface.
 ---
 
@@ -347,12 +346,13 @@ Do not omit this section or collapse it to a single line. Gaps that are not name
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### implement-from-design` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-implement-from-design.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -372,11 +372,3 @@ Within `## Skill: implement-from-design`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
-- Keep all work for this skill inside `## Skill: implement-from-design`.
-- Record which tool path was used and why. Label evidence items as `sourced`, `fallback`, or `inferred`.
-- If this pass initialized shadcn/ui, record the exact setup path and every foundation file it created or updated.
-- If this pass ran a token pipeline (Tokens Studio export + Style Dictionary transform), record the config path and the output format produced.
-- Ensure the section meets this done-when bar: The implemented surface matches the approved design's structure, spacing, typography, color, and behavioral states; all required states are covered in code; fidelity gaps are explicitly documented; and code touchpoints are identified so downstream review can verify the correct surface.

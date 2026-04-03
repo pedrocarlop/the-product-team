@@ -40,8 +40,7 @@ tool_routing:
   - if: only static docs or partial notes exist
     use: [reference/reuse, repository]
 best_guess_output: A governance model covering ownership, contribution, variants, exceptions, deprecation, and the minimum process needed to keep the library healthy.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-section_anchor: "## Skill: component-governance"
+output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer-component-governance.md
 done_when: Teams can explain who decides, who reviews, which lifecycle state a component is in, and how components are introduced, changed, or removed without informal side channels.
 ---
 
@@ -59,13 +58,13 @@ Read `../references/shared-method.md` for the shared deliverable contract, findi
 
 Read `../references/tooling-landscape.md` when governance evidence lives in zeroheight, Supernova, Storybook, or other specialist systems instead of only in workspace docs.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Follow the shared contract in `../references/shared-method.md`.
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-systems-designer-component-governance.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Inputs And Assumptions
 
@@ -139,11 +138,3 @@ Within `## Skill: component-governance`, include:
 - Medium priority: unclear review flow or variant policy that causes repeated arguments and duplicate work.
 - Lower priority: documentation polish issues that do not materially change who decides or how lifecycle changes happen.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
-- Also update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
-- Keep all work for this skill inside `## Skill: component-governance`.
-- In `project-ds-spec.md`, update `## Governance And Adoption`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Teams can explain who decides, who reviews, which lifecycle state a component is in, and how components are introduced, changed, or removed without informal side channels.

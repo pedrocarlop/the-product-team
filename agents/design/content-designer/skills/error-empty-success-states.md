@@ -41,8 +41,7 @@ tool_routing:
   - if: primary tools are unavailable, blocked, or out of credits
     use: search_query + reference/trace; label all output as fallback
 best_guess_output: A state inventory covering all system states, with a headline, body, CTA, recovery action, voice constraint, and confidence level per state — labeled as inferred where no live product access exists.
-output_artifacts: logs/active/<project-slug>/deliverables/content-designer.md
-section_anchor: "## Skill: error-empty-success-states"
+output_artifacts: logs/active/<project-slug>/deliverables/content-designer-error-empty-success-states.md
 done_when: Every critical state has explicit user-facing messaging with a recovery action, no state exposes raw technical codes to users, severity voice is consistent across the message set, and the coverage map confirms all enumerated states are addressed or explicitly deferred.
 ---
 
@@ -374,12 +373,13 @@ Do not collapse this section to a single line. Unnamed unknowns become shipped d
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### error-empty-success-states` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/content-designer-error-empty-success-states.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -395,12 +395,3 @@ Within `## Skill: error-empty-success-states`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/content-designer.md`.
-- Keep all work for this skill inside `## Skill: error-empty-success-states`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- If the deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Update the role-level reflection footer by appending or refreshing `### error-empty-success-states` with `What worked`, `What didn't`, and `Next steps`.
-- Record which tool path was used and why (sourced / fallback / inferred) for each section of the deliverable.
-- The section meets the done-when bar when: every critical-path state has explicit user-facing messaging with a recovery action, no state exposes raw technical codes, severity voice is consistent across the message set, and the coverage map confirms all enumerated states are addressed or explicitly deferred.

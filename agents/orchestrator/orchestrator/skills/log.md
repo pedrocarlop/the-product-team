@@ -5,7 +5,7 @@ trigger: Any time routing, staffing, status, or risks change.
 primary_mcp: logs
 fallback_tools: repository review
 best_guess_output: A refreshed context entry that reflects the true current state.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator.md
+output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-log.md
 done_when: A teammate can resume from context.md without guessing.
 ---
 
@@ -54,8 +54,3 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - **What didn't**: trade-offs, shortcuts, or known limitations.
 - **Next steps**: specific guidance for downstream roles or the reviewer.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/orchestrator.md`.
-- Record which tool path was used and why.
-- Ensure the work meets this done-when bar: A teammate can resume from context.md without guessing.

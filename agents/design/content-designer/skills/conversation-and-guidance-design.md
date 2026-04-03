@@ -43,8 +43,7 @@ tool_routing:
   - if: primary tools are unavailable, blocked, or out of credits
     use: search_query and reference/ground; label output as fallback
 best_guess_output: A guidance and conversation design pack including a user intent map, guidance model, structured message library per flow state, escalation and fallback copy, and a pattern audit — labeled sourced, fallback, or inferred to match the evidence path used.
-output_artifacts: logs/active/<project-slug>/deliverables/content-designer.md
-section_anchor: "## Skill: conversation-and-guidance-design"
+output_artifacts: logs/active/<project-slug>/deliverables/content-designer-conversation-and-guidance-design.md
 done_when: Every user intent in scope has guidance copy for each flow state (entry, in-progress, reassurance, escalation, fallback); all copy passes Grice's relevance and quantity maxims; no guidance gap or missing escalation path remains undocumented.
 ---
 
@@ -345,12 +344,13 @@ Document honestly:
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### conversation-and-guidance-design` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/content-designer-conversation-and-guidance-design.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -369,11 +369,3 @@ Within `## Skill: conversation-and-guidance-design`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/content-designer.md`.
-- Keep all work for this skill inside `## Skill: conversation-and-guidance-design`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- Record which tool path was used and why.
-- Label each evidence item and output section as `sourced`, `fallback`, or `inferred`.
-- The section meets the done-when bar when: every in-scope P1 intent has complete component coverage across all flow states; all copy passes Grice's maxims review; no escalation or fallback path is undefined; and the pattern audit is complete and documented.

@@ -39,8 +39,7 @@ tool_routing:
   - if: all primary tools are unavailable
     use: search_query and reference/ground; produce best-guess output labeled as inferred
 best_guess_output: A flow-level microcopy set organized as a step-by-step copy table — with screen name, copy element type, proposed copy, STEM rationale, and voice rule applied — covering all reachable states in the flow. Labeled as inferred where no primary tool access exists.
-output_artifacts: logs/active/<project-slug>/deliverables/content-designer.md
-section_anchor: "## Skill: microcopy-flow-design"
+output_artifacts: logs/active/<project-slug>/deliverables/content-designer-microcopy-flow-design.md
 done_when: Every step in the flow has copy for all reachable states (default, loading, error, empty, success), copy is internally consistent in terminology and voice, all decision points have clear action labels, and the flow can be navigated without ambiguity by a first-time user.
 ---
 
@@ -398,12 +397,13 @@ Do not omit this section. Presenting copy as finalized when key unknowns exist s
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### microcopy-flow-design` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/content-designer-microcopy-flow-design.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -423,12 +423,3 @@ Within `## Skill: microcopy-flow-design`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/content-designer.md`.
-- Keep all work for this skill inside `## Skill: microcopy-flow-design`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- If the deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Update the role-level reflection footer by appending or refreshing `### microcopy-flow-design` with `What worked`, `What didn't`, and `Next steps`.
-- Record which tool path was used and why (sourced / fallback / inferred).
-- The section meets the done-when bar when: every step in the flow has copy for all reachable states, copy is internally consistent in terminology and voice, all decision points have clear action labels, and the flow can be navigated without ambiguity by a first-time user.

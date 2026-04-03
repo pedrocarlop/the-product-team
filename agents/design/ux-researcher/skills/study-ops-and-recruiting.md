@@ -10,8 +10,7 @@ recommended_passes:
   - Run after study-design and screener-form-build
   - Feed outputs into synthesis and findings skills
 best_guess_output: A structured study ops plan with recruiting pipeline, scheduling setup, consent process, incentive plan, and contingency design for each lifecycle phase.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
-section_anchor: "## Skill: study-ops-and-recruiting"
+output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-study-ops-and-recruiting.md
 done_when: Every ops component has a named owner, a tool, a handoff point, and a documented contingency. The study can be scheduled, staffed, and launched without open operational blockers.
 tool_stack:
   runtime:
@@ -363,15 +362,6 @@ This skill cannot guarantee:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
-- All work for this skill goes inside `## Skill: study-ops-and-recruiting`.
-- Do not modify any other skill section in the shared role deliverable.
-- If the role deliverable does not yet exist, create it with: one YAML header, this skill section, and one trailing `## Reflection` block.
-- Record which tool path was used (sourced, fallback, or inferred) and why.
-- Update the role-level reflection footer by appending or refreshing `### study-ops-and-recruiting` with `What worked`, `What didn't`, and `Next steps`.
-- Preserve all shared deliverable contract rules. Do not overwrite other agents' sections.
 
 **Required deliverable sections within `## Skill: study-ops-and-recruiting`:**
 - `### Study schedule` — timeline, session window, recruiting milestones

@@ -45,8 +45,7 @@ tool_routing:
   - if: all primary tools are unavailable, blocked, or out of credits
     use: search_query and reference/reuse; label all output as fallback or inferred
 best_guess_output: A naming and taxonomy proposal with a concept model, naming criteria, scored candidate table, recommended naming system with rationale, and a list of terms to retire — labeled as inferred where no primary tool access was used.
-output_artifacts: logs/active/<project-slug>/deliverables/content-designer.md
-section_anchor: "## Skill: naming-and-taxonomy"
+output_artifacts: logs/active/<project-slug>/deliverables/content-designer-naming-and-taxonomy.md
 done_when: Every label in scope has a recommended name with rationale, naming candidates are scored against the rubric, terms to retire are documented, the naming system is internally consistent, and at least one validation path (card sort, tree test, or expert review) has been applied or explicitly deferred with justification.
 ---
 
@@ -351,12 +350,13 @@ Do not omit this section. Naming decisions made on inferred evidence can propaga
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### naming-and-taxonomy` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/content-designer-naming-and-taxonomy.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -375,10 +375,3 @@ Within `## Skill: naming-and-taxonomy`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/content-designer.md`.
-- Keep all work for this skill inside `## Skill: naming-and-taxonomy`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- Record which tool path was used and why (sourced / fallback / inferred).
-- Ensure the section meets this done-when bar: every label in scope has a recommended name with rationale, naming candidates are scored against the rubric, terms to retire are documented, the naming system is internally consistent, and at least one validation path has been applied or explicitly deferred with justification.

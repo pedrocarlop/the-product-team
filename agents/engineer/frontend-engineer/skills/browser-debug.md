@@ -48,8 +48,7 @@ tool_routing:
   - if: all primary tools are unavailable or produce no signal
     use: [search_query, reference_trace] — inferred debugging; label output as `inferred`
 best_guess_output: A structured debugging report with a browser evidence model, reproduction steps, root cause hypothesis, fix direction, and open unknowns — labeled as sourced, fallback, or inferred to match the evidence path used.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
-section_anchor: "## Skill: browser-debug"
+output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-browser-debug.md
 done_when: The issue is localized to a specific component, state boundary, network dependency, or JavaScript execution path, with reproduction steps verified and a concrete fix direction stated.
 ---
 
@@ -425,12 +424,13 @@ Do not omit this section or collapse to a single sentence. Confidence gaps must 
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### browser-debug` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-browser-debug.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -449,12 +449,3 @@ Within `## Skill: browser-debug`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
-- Keep all work for this skill inside `## Skill: browser-debug`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- If the deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Record which tool path was used and why (sourced / fallback / inferred).
-- Label every evidence item with its source path.
-- The section meets the done-when bar when: the issue is localized to a specific component, state boundary, network dependency, or JavaScript execution path; reproduction steps are documented; and a concrete fix direction is stated.

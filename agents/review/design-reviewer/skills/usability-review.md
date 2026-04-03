@@ -53,7 +53,6 @@ tool_routing:
     use: [axe]
 best_guess_output: A usability review with concrete friction points, grouped patterns, and clearly marked evidence limits.
 output_artifacts: logs/active/<project-slug>/reviews/design-reviewer.md
-section_anchor: "## Skill: usability-review"
 done_when: The biggest usability risks are explicit, reproducible, severity-rated, grouped into actionable patterns, and labeled by evidence confidence.
 ---
 
@@ -67,12 +66,13 @@ This skill evaluates likely friction, confusion, and recovery risk from an exper
 
 This skill does not replace moderated research, analytics-backed behavioral evidence, or product prioritization decisions.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-reviewer-usability-review.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -136,9 +136,3 @@ For each finding inside `### Heuristic findings`, use this exact mini-template:
 - Distinguish clearly between observed evidence, inferred cause, and recommendation.
 - Do not claim emotional trust, business priority, or true user comprehension has been validated unless real user evidence exists.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/reviews/design-reviewer.md`.
-- Keep all work for this skill inside `## Skill: usability-review`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The biggest usability risks are explicit, reproducible, severity-rated, grouped into actionable patterns, and labeled by evidence confidence.

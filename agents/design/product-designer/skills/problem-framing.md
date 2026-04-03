@@ -44,8 +44,7 @@ tool_routing:
   - if: only static notes or partial artifacts exist
     use: [reference/ground, search_query]
 best_guess_output: A design framing artifact with explicit users, jobs, constraints, risks, success criteria, and decision-driving unknowns.
-output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
-section_anchor: "## Skill: problem-framing"
+output_artifacts: logs/active/<project-slug>/deliverables/product-designer-problem-framing.md
 done_when: The design problem is bounded, evidence-tagged, and stable enough that downstream flow and wireframe work can proceed without rediscovering the brief.
 ---
 
@@ -59,12 +58,13 @@ This skill applies JTBD-informed framing, assumption mapping, and constraint ana
 
 This skill does not jump ahead to detailed UI solutions, treat opinions as evidence, or hide uncertainty behind vague problem statements.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/product-designer-problem-framing.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -124,9 +124,3 @@ For each finding inside `### Framing findings`, use this exact mini-template:
 - After all passes, consolidate repeated uncertainty into systemic patterns before prioritization.
 - Do not present open assumptions as settled truth just because the team needs momentum.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
-- Keep all work for this skill inside `## Skill: problem-framing`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The design problem is bounded, evidence-tagged, and stable enough that downstream flow and wireframe work can proceed without rediscovering the brief.

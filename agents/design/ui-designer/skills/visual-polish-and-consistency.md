@@ -5,8 +5,7 @@ trigger: When a design is structurally sound but still needs a final consistency
 primary_mcp: figma
 fallback_tools: paper, chrome_devtools
 best_guess_output: A polished design with a concrete issue-fix list, consistency notes, and readiness limits.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md
-section_anchor: "## Skill: visual-polish-and-consistency"
+output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-visual-polish-and-consistency.md
 done_when: The design reads as deliberate and consistent, with concrete fixes, coverage notes, and readiness gaps called out.
 required_inputs:
   - target surface, route, or screen set
@@ -56,13 +55,13 @@ This skill checks whether a design is visually deliberate, internally consistent
 
 This skill does not redesign the concept, widen scope, or treat taste-based polish as a substitute for source-of-truth validation.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
-- The role deliverable must end with `## Reflection`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ui-designer-visual-polish-and-consistency.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Inputs and Assumptions
 
@@ -190,9 +189,3 @@ Within `## Skill: visual-polish-and-consistency`, include:
 - Use `playwright` or `storybook` when you need the same check repeated after changes or across multiple states.
 - Stop polishing when additional changes would require a concept change, token change, or component-system decision.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
-- Keep all work for this skill inside `## Skill: visual-polish-and-consistency`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The design reads as deliberate and consistent, with concrete fixes, coverage notes, and readiness gaps called out.

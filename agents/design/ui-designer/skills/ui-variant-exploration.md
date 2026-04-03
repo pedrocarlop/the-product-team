@@ -20,8 +20,7 @@ tool_stack:
   - figma for component-aware inspection and layout precision
   - chrome_devtools for live implementation sanity checks when needed
 best_guess_output: A variant comparison with recommendation and rationale.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md
-section_anchor: "## Skill: ui-variant-exploration"
+output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-ui-variant-exploration.md
 done_when: The chosen direction clearly beats the alternatives on the intended goal.
 tool_routing:
   - if: an editable design canvas is available and the task is still exploratory
@@ -139,12 +138,13 @@ State what was deeply explored, partially explored, and not explored.
 - Treat this as the comparison gate before `screen-production-design` for new design work.
 - Borrow patterns from Framer, Penpot, Storybook, and Playwright/Percy when thinking about how a comparison should be structured, even though this skill still writes to the Product Team workflow.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ui-designer-ui-variant-exploration.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -161,9 +161,3 @@ Within `## Skill: ui-variant-exploration`, include:
 - If both paths fail, produce the best-guess output described as: A variant comparison with recommendation and rationale.
 - Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
-- Keep all work for this skill inside `## Skill: ui-variant-exploration`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The chosen direction clearly beats the alternatives on the intended goal.

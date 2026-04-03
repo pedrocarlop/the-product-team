@@ -5,8 +5,7 @@ trigger: Before finalizing a decision that depends on repo or tool evidence.
 primary_mcp: repository, deliverables
 fallback_tools: reference/trace, search_query
 best_guess_output: A pass/fail/unresolved verification result with cited evidence.
-output_artifacts: logs/active/<project-slug>/deliverables/reference.md
-section_anchor: "## Skill: verify"
+output_artifacts: logs/active/<project-slug>/deliverables/reference-verify.md
 done_when: The claimed conclusion is defended by present-state evidence.
 ---
 
@@ -16,12 +15,13 @@ done_when: The claimed conclusion is defended by present-state evidence.
 
 Re-open evidence and confirm that the chosen conclusion still holds before handoff or approval.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/reference-verify.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -45,9 +45,3 @@ Within `## Skill: verify`, include:
 - Make contradictions explicit even when the final result is still mostly favorable.
 - Keep the follow-up recommendation concrete so downstream roles know whether to proceed, pause, or reroute.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/reference.md`.
-- Keep all work for this skill inside `## Skill: verify`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The claimed conclusion is defended by present-state evidence.

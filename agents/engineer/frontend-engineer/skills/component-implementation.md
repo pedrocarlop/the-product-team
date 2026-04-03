@@ -47,8 +47,7 @@ tool_routing:
   - if: primary tools are unavailable, blocked, or out of credits
     use: [reference_reuse, chrome_devtools]
 best_guess_output: A reusable component with a defined props API, all required variants and interactive states, a Storybook story covering the key states, and adoption notes for downstream implementers.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
-section_anchor: "## Skill: component-implementation"
+output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-component-implementation.md
 done_when: The component is reusable, aligned to the design system spec, all variants and states are implemented and documented in Storybook stories, and downstream consumers can adopt it without inferring unsupported patterns.
 ---
 
@@ -267,12 +266,13 @@ Do not collapse this section to a single line. Unconfirmed decisions carry compo
 - Extend over rebuild: if a sibling component covers 70%+ of the needed behavior, extend it. Document the extension boundary.
 - Avoid adding props that have no declared use case in the current scope. API surface grows; it rarely shrinks cleanly.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### component-implementation` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-component-implementation.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -290,10 +290,3 @@ Within `## Skill: component-implementation`, include:
 - `### Coverage map`: What is fully implemented, partially implemented, not implemented, and not analyzed.
 - `### Gaps in evidence`: What could not be sourced, confirmed, or validated.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
-- Keep all work for this skill inside `## Skill: component-implementation`.
-- Record which tool path was used and why.
-- Label each deliverable section as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
-- Ensure the section meets this done-when bar: The component is reusable, aligned to the design system spec, all variants and states are implemented and documented in Storybook stories, and downstream consumers can adopt it without inferring unsupported patterns.

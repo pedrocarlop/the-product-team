@@ -38,7 +38,6 @@ tool_routing:
     use: [reference/verify]
 best_guess_output: A release gate recommendation with blocking issues, residual risk, and explicit confidence.
 output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
-section_anchor: "## Skill: release-gate"
 done_when: The release recommendation is unambiguous, evidence-based, explicit about residual risk, and clear about what must happen before or after ship.
 ---
 
@@ -52,12 +51,13 @@ This skill applies evidence-based release decision reasoning across blockers, re
 
 This skill does not replace product leadership approval, incident command authority, or execution of rollback and monitoring plans.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/qa-reviewer-release-gate.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -122,9 +122,3 @@ For each finding inside `### Gate findings`, use this exact mini-template:
 - After all passes, group repeated weaknesses into systemic patterns rather than scattering them across many one-off findings.
 - Distinguish clearly between observed evidence, inferred risk, and recommendation direction.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/reviews/qa-reviewer.md`.
-- Keep all work for this skill inside `## Skill: release-gate`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The release recommendation is unambiguous, evidence-based, explicit about residual risk, and clear about what must happen before or after ship.

@@ -39,8 +39,7 @@ tool_routing:
   - if: only lightweight notes or linked references remain
     use: [paper, reference/verify]
 best_guess_output: A handoff spec linking flow, structure, behavior, open questions, and downstream ownership with clearly labeled evidence limits.
-output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
-section_anchor: "## Skill: handoff-spec"
+output_artifacts: logs/active/<project-slug>/deliverables/product-designer-handoff-spec.md
 done_when: A downstream role can continue without reopening the design problem, behavior rules, or missing-state questions.
 ---
 
@@ -54,12 +53,13 @@ This skill applies delivery traceability so the approved problem frame, flow, st
 
 This skill does not replace implementation planning, engineering estimation, or final acceptance criteria owned by downstream roles.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/product-designer-handoff-spec.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -118,9 +118,3 @@ For each finding inside `### Handoff gaps and ambiguities`, use this exact mini-
 - Group minor ambiguities into patterns when they point to the same delivery weakness.
 - When the assignment is `new design`, explicitly protect room for downstream exploration instead of packaging exploratory work as settled UI.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
-- Keep all work for this skill inside `## Skill: handoff-spec`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: A downstream role can continue without reopening the design problem, behavior rules, or missing-state questions.

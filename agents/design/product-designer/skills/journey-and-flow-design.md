@@ -42,8 +42,7 @@ tool_routing:
   - if: only narrative or static documentation exists
     use: [notion, paper]
 best_guess_output: A journey map or flow artifact with entry points, primary and alternate paths, decision points, service dependencies, and explicit edge-case coverage.
-output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
-section_anchor: "## Skill: journey-and-flow-design"
+output_artifacts: logs/active/<project-slug>/deliverables/product-designer-journey-and-flow-design.md
 done_when: The main path, critical branches, decision points, and operational dependencies are explicit enough that downstream structure and interaction work does not have to infer route logic.
 ---
 
@@ -57,12 +56,13 @@ This skill applies task-flow reasoning, journey mapping, and service-blueprint t
 
 This skill does not optimize visual styling, assume the happy path is enough, or hide unresolved branches behind generic flow diagrams.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/product-designer-journey-and-flow-design.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -122,9 +122,3 @@ For each finding inside `### Flow findings`, use this exact mini-template:
 - If the flow crosses teams or systems, note the handoff moments where ownership changes and latent failure risk increases.
 - After all passes, consolidate repeated issues into systemic patterns before prioritization.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
-- Keep all work for this skill inside `## Skill: journey-and-flow-design`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The main path, critical branches, decision points, and operational dependencies are explicit enough that downstream structure and interaction work does not have to infer route logic.

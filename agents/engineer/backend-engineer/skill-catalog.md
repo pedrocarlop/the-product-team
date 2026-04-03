@@ -6,50 +6,50 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 
 ## `api-implementation`
 
-- Description: Implement or extend backend APIs to support the product behavior safely.
-- Trigger: When product or platform work requires backend endpoints or handlers.
+- Description: Implement or extend backend APIs by modeling the contract, invariants, compatibility boundaries, and verification path before changing code.
+- Trigger: When product or platform work requires backend endpoints, handlers, RPCs, queue consumers, or service-call surfaces.
 - Primary MCP/tool: repository
 - Fallback: reference/trace, search_query
-- Best guess: A backend API implementation or change plan.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer.md
-- Done when: The API contract is implemented with clear behavior and constraints.
+- Best guess: A backend API implementation or change plan with a contract model, implementation touchpoints, compatibility notes, and verification status.
+- Output: logs/active/<project-slug>/deliverables/backend-engineer-api-implementation.md
+- Done when: The API contract is implemented with clear behavior and constraints, compatibility risks are explicit, and the contract can be verified from the deliverable and the codebase.
 
 ## `backend-observability`
 
-- Description: Add or refine logging, metrics, and diagnostics around backend behavior.
+- Description: Add or refine backend telemetry by building a signal model first, then using logs, traces, metrics, and error data to expose actionable operational insight with explicit cost and privacy tradeoffs.
 - Trigger: When debugging or operations depend on better backend visibility.
 - Primary MCP/tool: repository
 - Fallback: search_query, reference/reuse
-- Best guess: An observability change or backend diagnostics plan.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer.md
-- Done when: Important backend behavior can be inspected after deployment.
+- Best guess: An observability change or backend diagnostics plan with a signal model, instrumentation inventory, verification notes, and explicit residual risk.
+- Output: logs/active/<project-slug>/deliverables/backend-engineer-backend-observability.md
+- Done when: Important backend behavior can be inspected after deployment by the intended operators, with the signal path, consumers, and remaining blind spots documented.
 
 ## `backend-verify`
 
-- Description: Verify backend behavior against the intended contract and operational risk.
-- Trigger: When backend work needs a final verification pass.
+- Description: Build a verification model for backend changes, then confirm contract, failure-path, and operational behavior against present-state evidence.
+- Trigger: When backend work needs a final verification pass before handoff or release.
 - Primary MCP/tool: repository
 - Fallback: reference/verify, search_query
-- Best guess: A backend verification result with open risks if any.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer.md
-- Done when: The backend behavior is validated or unresolved issues are explicit.
+- Best guess: A backend verification report with contract checks, failure-path checks, operational checks, residual risk, and confidence.
+- Output: logs/active/<project-slug>/deliverables/backend-engineer-backend-verify.md
+- Done when: The team can see which backend behaviors were validated, which risks remain, and whether any unresolved issues block release.
 
 ## `domain-model-build`
 
-- Description: Implement the core backend domain logic and data transformations for a feature.
-- Trigger: When business rules or backend state transitions must be encoded.
+- Description: Model backend entities, invariants, state transitions, persistence boundaries, and transformation rules before implementing or changing domain behavior.
+- Trigger: When business rules, lifecycle changes, authorization relationships, or backend data transformations must be encoded.
 - Primary MCP/tool: repository
 - Fallback: reference/ground, reference/trace
-- Best guess: A backend domain model implementation or design.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer.md
-- Done when: Core rules are explicit and live in a clear source of truth.
+- Best guess: A backend domain model implementation or design with explicit entities, rules, transitions, transformations, and open risks.
+- Output: logs/active/<project-slug>/deliverables/backend-engineer-domain-model-build.md
+- Done when: Core rules are explicit, mapped to a clear source of truth, and any unresolved ambiguities, edge cases, or data-shape risks are documented.
 
 ## `integration-flow-build`
 
-- Description: Build the integration flow between internal services or external systems.
-- Trigger: When data or actions must move across system boundaries.
+- Description: Build integration flows by modeling cross-system boundaries first, then validating contracts, timing, retries, idempotency, compensations, observability, and rollout risk.
+- Trigger: When data or actions must move across system boundaries, especially through APIs, queues, webhooks, brokers, or long-running workflows.
 - Primary MCP/tool: repository
-- Fallback: search_query, reference/trace
-- Best guess: An integration implementation or flow design.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer.md
-- Done when: The integration path, failures, and key boundaries are explicit.
+- Fallback: reference/trace, search_query
+- Best guess: An integration implementation or flow design with explicit contracts, retries, failure handling, and boundary notes.
+- Output: logs/active/<project-slug>/deliverables/backend-engineer-integration-flow-build.md
+- Done when: The integration path, contract boundaries, retries, idempotency, compensations, observability, and rollout constraints are explicit enough to implement and verify.

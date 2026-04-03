@@ -5,8 +5,7 @@ trigger: When implementation paths or ownership boundaries are unclear.
 primary_mcp: repository, deliverables
 fallback_tools: reference/ground, open
 best_guess_output: A traced path from entry point to source of truth.
-output_artifacts: logs/active/<project-slug>/deliverables/reference.md
-section_anchor: "## Skill: trace"
+output_artifacts: logs/active/<project-slug>/deliverables/reference-trace.md
 done_when: A downstream implementer knows exactly where the change lands.
 ---
 
@@ -16,12 +15,13 @@ done_when: A downstream implementer knows exactly where the change lands.
 
 Trace a behavior through files, systems, or deliverables until the real source of truth is clear.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/reference-trace.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -45,9 +45,3 @@ Within `## Skill: trace`, include:
 - Distinguish confirmed path steps from inferred jumps.
 - Preserve exact handoff boundaries when the final action belongs to another role or system.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/reference.md`.
-- Keep all work for this skill inside `## Skill: trace`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: A downstream implementer knows exactly where the change lands.

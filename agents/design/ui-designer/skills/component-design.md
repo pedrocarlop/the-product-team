@@ -5,8 +5,7 @@ trigger: When the feature needs reusable UI patterns, not just one-off screens.
 primary_mcp: figma
 fallback_tools: paper, stitch
 best_guess_output: A reusable component proposal with explicit states, reuse rules, and handoff notes.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md
-section_anchor: "## Skill: component-design"
+output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-component-design.md
 done_when: Component purpose, states, and intended reuse are explicit.
 required_inputs:
   - component goal or user task
@@ -138,12 +137,13 @@ Merge duplicates, group related low-severity items, and keep the final output fo
 - State what still needs real implementation or browser verification.
 - Call out any low-confidence assumptions about tokens, libraries, or variant behavior.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ui-designer-component-design.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -182,10 +182,3 @@ Within `## Skill: component-design`, include:
 - Tie component decisions back to the broader system and intended adoption.
 - If reusable component families or widget patterns materially change, call out the required `project-ds-spec.md` follow-up instead of letting the component drift away from the shared system.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
-- Keep all work for this skill inside `## Skill: component-design`.
-- Record which tool path was used and why.
-- If the component decision changes the shared system direction, note the required `project-ds-spec.md` follow-up explicitly.
-- Ensure the section meets this done-when bar: Component purpose, states, and intended reuse are explicit.

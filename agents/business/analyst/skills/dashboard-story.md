@@ -1,54 +1,124 @@
 ---
 name: dashboard-story
-description: Turn operational or product metrics into a narrative summary for the team.
-trigger: When a dashboard exists but the team needs the story behind the numbers.
-primary_mcp: notion, repository
-fallback_tools: analyst/funnel-analysis, search_query
-best_guess_output: A narrative metrics readout with key insights and actions.
-output_artifacts: logs/active/<project-slug>/deliverables/analyst.md
-section_anchor: "## Skill: dashboard-story"
-done_when: A reader can understand the important story without opening the dashboard first.
+description: Transform raw metrics and dashboard visualizations into a cohesive, narrative-driven business story using the Pyramid Principle and Goal-Signal-Metric frameworks.
+trigger: When a dashboard exists (Tableau, Power BI, Looker, etc.) but the team requires a synthesis of what the numbers mean, why they changed, and what actions to take.
+best_guess_output: A structured narrative readout leading with an executive takeaway, supported by trend analysis and recommended actions.
+output_artifacts: logs/active/<project-slug>/deliverables/analyst-dashboard-story.md
+done_when: The reader can understand the core performance story, the primary driver of change, and the specific next steps without needing to open the source dashboard.
+tool_stack:
+  runtime:
+    primary: [tableau, powerbi, looker, thoughtspot]
+    secondary: [metabase, superset, domo]
+  artifacts:
+    primary: [repository, notion]
+  fallback:
+    primary: [search_query, screenshot_analysis]
+tool_routing:
+  - if: interactive BI tool is accessible
+    use: [tableau, powerbi, looker, thoughtspot]
+  - if: only static exports or screenshots exist
+    use: [screenshot_analysis, vision_llm]
+  - if: data is in open-source/internal tools
+    use: [metabase, superset, domo]
 ---
 
 # Dashboard Story
 
-## Purpose
+## 1. Purpose
+This skill synthesizes complex dashboard data into a narrative that explains business performance. It applies deductive reasoning to move from "what happened" to "why it happened" and "what to do next." It explicitly does NOT perform deep-dive exploratory data analysis (EDA) or raw data cleaning.
 
-Turn operational or product metrics into a narrative summary for the team.
+## 2. Required Inputs and Assumptions
+- **Required Inputs:**
+  - Link to or screenshot of the primary dashboard (Tableau, Power BI, Looker, etc.).
+  - Time range for comparison (e.g., WoW, MoM, YoY).
+  - Business context or specific "North Star" metric goal.
+- **Assumptions:**
+  - The metrics on the dashboard are accurate and finalized.
+  - If inputs are missing, the agent will infer them from the repository context and label them as assumptions.
 
-## Shared Deliverable Contract
+## 3. Input Mode and Evidence Path
+1. **Live Interaction:** Connect via browser to live BI tools to inspect interactive elements and tooltips.
+2. **Structured System Access:** Querying underlying metadata or LookML models if available.
+3. **Static Input:** Analyze image exports or screenshots of dashboard views using Vision LLM capabilities.
+4. **Inference:** Extracting metric definitions and previous performance from `repository` documentation.
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+## 4. Tool Stack (Capabilities)
+- **Primary Runtime:** ThoughtSpot (NLQ), Tableau (Smart Narratives), Power BI.
+- **Secondary Runtime:** Looker (Semantic Layer), Domo (Real-time Dashboards).
+- **Open Source/Internal:** Metabase, Apache Superset.
+- **Artifacts:** Notion for document housing, Repository for metric definitions.
 
-## Required Deliverable Sections
+## 5. Tool Routing (Decision System)
+- `if`: Cloud-hosted BI (Tableau/Looker) is available → `use`: Browser-based DOM/Element inspection.
+- `if`: Only static images exist → `use`: vision-based screenshot analysis.
+- `if`: Natural language querying is possible → `use`: ThoughtSpot integration.
+- `if`: Business logic is defined in code → `use`: Looker/LookML repository access.
 
-Within `## Skill: dashboard-story`, include:
-- `### Executive summary`: Lead with the most important takeaway.
-- `### Key metrics`: Name the few metrics that matter most to the story.
-- `### Important changes`: Explain notable movement, anomalies, or trend breaks.
-- `### What matters`: Interpret why those changes matter to the business or team.
-- `### Recommended actions`: Suggest concrete next moves.
-- `### Watch list`: Flag metrics or risks that need continued monitoring.
+## 6. Environment and Reproducibility
+- **State Capture:** Document all active filter configurations (e.g., "Segments: Enterprise", "Region: EMEA").
+- **Timestamp:** Record the "last refreshed" data timestamp from the dashboard.
+- **Build/Version:** Note the version of the dashboard or the specific dataset being viewed.
 
-## Tool Path
+## 7. Model Building (Before Analysis)
+Before evaluating, the agent must construct a **Narrative Hierarchy Model**:
+- **Goal Layer:** What is the primary business outcome?
+- **Signal Layer:** Which dashboard components (charts, tiles) serve as signals for that goal?
+- **Relationship Map:** How does Metric A (e.g., Traffic) influence Metric B (e.g., Conversion)?
+- **Baseline:** Establish the expected "normal" range for the metrics.
 
-- Start with `notion, repository`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `analyst/funnel-analysis, search_query`.
-- If both paths fail, produce the best-guess output described as: A narrative metrics readout with key insights and actions.
-- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+## 8. Core Method Execution
+The workflow follows the **Pyramid Principle** and **SCR (Situation-Complication-Resolution)** framework:
+1. **Scan and Filter:** Configure the dashboard to the requested view.
+2. **Goal-Signal-Metric (GSM) Alignment:** Map dashboard tiles to business goals.
+3. **Identify Complications:** Detect trend breaks, anomalies, or performance gaps.
+4. **Synthesize the "Answer":** Lead with the core conclusion as the "Pyramid Peak."
+5. **Support with Evidence:** Group supporting metrics into logical clusters (e.g., "Top of Funnel," "Efficiency," "Retention").
 
-## Workflow Notes
+## 9. Structured Findings
+Every observation must follow this schema:
+- **Observation:** [Clear statement of the metric change]
+- **Evidence:** [Reference specific dashboard tile or value]
+- **Repro steps:** [Filters and steps to see this exact view]
+- **Cause:** [Inferred or stated reason for the change]
+- **Impact:** [Business consequence of this finding]
+- **Confidence:** [1-5 scale based on data clarity]
 
-- Prioritize interpretation over raw metric dumps.
-- Keep the story tightly scoped to the audience and operating cadence implied by the request.
-- Separate noise from signal so the team does not chase temporary variance.
+## 10. Prioritization Logic
+- **Level 1 (Critical):** Any deviation in North Star metrics >10% or trend reversals.
+- **Level 2 (Major):** Statistically significant changes in secondary KPIs or segment-specific anomalies.
+- **Level 3 (Minor):** General variance, "business as usual" fluctuations, or noise.
 
-## Output Contract
+## 11. Pattern Detection
+- **Metric Drag:** Identifying when one failing metric is weighing down the entire system.
+- **Lagging Indicator Confirmation:** Confirming if current signals match predicted outcomes.
+- **Systemic vs. Point Issue:** Determining if the story is about a single feature or a platform-wide shift.
 
-- Write or update `logs/active/<project-slug>/deliverables/analyst.md`.
-- Keep all work for this skill inside `## Skill: dashboard-story`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: A reader can understand the important story without opening the dashboard first.
+## 12. Recommendations
+- Must link directly to a Finding in the SCR framework.
+- Recommendations should be directional: "Investigate [X]," "Double down on [Y]," or "Revert [Z]."
+- Distinguish between "Immediate Mitigation" and "Long-term Strategy."
+
+## 13. Coverage Map
+- **Fully Analyzed:** List specific dashboard tabs or metrics reviewed in depth.
+- **Partially Analyzed:** List areas where only a surface-level summary was possible.
+- **Out of Scope:** Explicitly list metrics or dates ignored to maintain focus.
+
+## 14. Limits and Unknowns
+- **Missing Data:** Identify specific tiles that were broken or empty.
+- **Attribution Gap:** State where correlation does not equal causation.
+- **Latency:** Acknowledge data freshness limitations.
+
+## 15. Workflow Rules
+- **Pyramid First:** Always lead with the answer.
+- **Context over Content:** Explain *why* a 5% drop matters, don't just state it.
+- **Merge Noise:** Group multiple small, related variances into a single thematic finding.
+- **Fact vs. Inference:** Clearly label interpretations that aren't explicitly visible in the data.
+
+
+## 17. Required Deliverable Sections
+Within the deliverable, include:
+- `### 1. Executive Summary`: The one sentence the CEO needs to read.
+- `### 2. Performance Story (GSM)`: How signals align to business goals.
+- `### 3. Key Observations`: Using the Structured Findings schema.
+- `### 4. Recommended Actions`: Concrete next steps tied to findings.
+- `### 5. Watch List`: High-risk metrics for the next cycle.

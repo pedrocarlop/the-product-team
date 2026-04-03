@@ -42,8 +42,7 @@ tool_routing:
   - if: only notes, screenshots, or rough references exist
     use: [paper, reference/ground]
 best_guess_output: A wireframe set aligned to the flow, with explicit hierarchy, navigation logic, and unresolved structural gaps.
-output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
-section_anchor: "## Skill: wireframe-structure"
+output_artifacts: logs/active/<project-slug>/deliverables/product-designer-wireframe-structure.md
 done_when: Screen structure is clear enough that reviewers can assess hierarchy and task completion without needing visual polish to infer intent.
 ---
 
@@ -57,12 +56,13 @@ This skill applies information-architecture and task-flow reasoning to transform
 
 This skill does not finalize visual styling, substitute for interaction specification, or hide unresolved structural dependencies behind polished mockups.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/product-designer-wireframe-structure.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -121,9 +121,3 @@ For each finding inside `### Structural decisions`, use this exact mini-template
 - If the assignment is `new design`, leave room for later divergent visual exploration instead of collapsing every screen into a single obvious pattern.
 - Group low-impact structural rough edges into systemic patterns instead of overproducing isolated findings.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
-- Keep all work for this skill inside `## Skill: wireframe-structure`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Screen structure is clear enough that reviewers can assess hierarchy and task completion without needing visual polish to infer intent.

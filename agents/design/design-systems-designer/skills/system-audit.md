@@ -41,8 +41,7 @@ tool_routing:
   - if: only static exports, notes, or partial docs exist
     use: [paper, reference/ground]
 best_guess_output: A design-system audit with explicit scope, findings, systemic patterns, confidence-tagged priorities, and the minimum next moves needed to stabilize the system.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-section_anchor: "## Skill: system-audit"
+output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer-system-audit.md
 done_when: The team can point to the audited surfaces, understand the highest-risk drift and duplication patterns, and act on a prioritized remediation sequence without re-running discovery.
 ---
 
@@ -60,13 +59,13 @@ Read `../references/shared-method.md` for the shared deliverable contract, findi
 
 Read `../references/tooling-landscape.md` when the assignment mentions zeroheight, Supernova, Storybook, Chromatic, Penpot, Tokens Studio, Specify, or other external system tooling.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Follow the shared contract in `../references/shared-method.md`.
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-systems-designer-system-audit.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Inputs And Assumptions
 
@@ -140,11 +139,3 @@ Within `## Skill: system-audit`, include:
 - Medium priority: duplicated primitives, overlapping component families, or documentation gaps that slow teams repeatedly.
 - Lower priority: cosmetic inconsistencies that do not materially change user experience, code reuse, or trust in the system.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
-- When the audit reveals systemic drift, also update `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
-- Keep all work for this skill inside `## Skill: system-audit`.
-- In `project-ds-spec.md`, limit audit-driven updates to `## Governance And Adoption` and `## QA Notes And Open Questions`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The team can point to the audited surfaces, understand the highest-risk drift and duplication patterns, and act on a prioritized remediation sequence without re-running discovery.

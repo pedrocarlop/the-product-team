@@ -40,8 +40,7 @@ tool_routing:
   - if: only partial traces exist
     use: [reference/trace, reference/verify]
 best_guess_output: A design-code mapping with concrete anchors, traceable gaps, explicit ownership notes, and the minimum follow-up actions needed to close parity risk.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer.md
-section_anchor: "## Skill: design-code-mapping"
+output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer-design-code-mapping.md
 done_when: Design and engineering can identify the same primitives, states, and code anchors with enough precision to fix drift instead of debating what the system contains.
 ---
 
@@ -59,13 +58,13 @@ Read `../references/shared-method.md` for the shared deliverable contract, findi
 
 Read `../references/tooling-landscape.md` when Storybook, zeroheight, Supernova, Chromatic, or token platforms provide stronger traceability evidence than Figma alone.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Follow the shared contract in `../references/shared-method.md`.
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-systems-designer-design-code-mapping.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Inputs And Assumptions
 
@@ -138,9 +137,3 @@ Within `## Skill: design-code-mapping`, include:
 - Medium priority: naming drift, wrapper ambiguity, or partial state mismatch that repeatedly slows teams.
 - Lower priority: minor label differences that do not materially affect handoff or system maintenance.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/design-systems-designer.md`.
-- Keep all work for this skill inside `## Skill: design-code-mapping`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Design and engineering can identify the same primitives, states, and code anchors with enough precision to fix drift instead of debating what the system contains.

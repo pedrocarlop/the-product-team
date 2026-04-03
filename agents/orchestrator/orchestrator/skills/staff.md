@@ -1,12 +1,12 @@
 ---
 name: staff
-description: Select the minimum viable team, assign contracts, and set primary_tools plus fallback policy.
+description: Select the minimum viable team, assign lossless contracts, and set primary_tools plus fallback policy.
 trigger: Once orchestration is needed or a staffed role must change.
 primary_mcp: repository, role metadata
 fallback_tools: reference/verify, context review
-best_guess_output: A staffing table with role, skill_paths, primary_tools, and fallback policy.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator.md
-done_when: Every staffed role has one contract and no overlapping repo ownership.
+best_guess_output: A staffing table with role, skill_paths, target_deliverables, primary_tools, and fallback policy.
+output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-staff.md
+done_when: Every staffed role has one contract and target deliverables are explicitly named for each assigned skill.
 ---
 
 # Staff
@@ -53,10 +53,10 @@ hta_declared: [notion, linear, github]
 
 Note: this step declares requirements only — actual verification happens at subagent startup when each MCP is probed. If a role has no MCP dependencies, set `hta_declared: []`.
 
-### Step 4: Produce The Deliverable
-- Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
-- Keep assumptions explicit, especially when using fallback or inferred mode.
-- Carry forward any details downstream roles must preserve.
+### Step 4: Produce The Staffing Execution Plan
+- Synthesize the result into the `orchestrator.md` as the start of the Execution Manifest.
+- For each role, define `target_deliverables` as a list of skill-specific filenames: `logs/active/<slug>/deliverables/<role>-<skill>.md`.
+- Carry forward any details downstream roles must preserve from the orientation phase.
 
 ### Step 5: Mandatory Reflection (Interleaved Thinking)
 End the deliverable with a `## Reflection` section. Self-critique the work:
@@ -64,8 +64,3 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - **What didn't**: trade-offs, shortcuts, or known limitations.
 - **Next steps**: specific guidance for downstream roles or the reviewer.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/orchestrator.md`.
-- Record which tool path was used and why.
-- Ensure the work meets this done-when bar: Every staffed role has one contract and no overlapping repo ownership.

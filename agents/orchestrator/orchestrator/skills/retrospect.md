@@ -5,7 +5,7 @@ trigger: When the same failure pattern repeats across requests or roles.
 primary_mcp: timeline, context, deliverables
 fallback_tools: repository review
 best_guess_output: A concrete system fix proposal tied to evidence.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator.md
+output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-retrospect.md
 done_when: The root cause, fix location, and verification path are explicit.
 ---
 
@@ -54,8 +54,3 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - **What didn't**: trade-offs, shortcuts, or known limitations.
 - **Next steps**: specific guidance for downstream roles or the reviewer.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/orchestrator.md`.
-- Record which tool path was used and why.
-- Ensure the work meets this done-when bar: The root cause, fix location, and verification path are explicit.

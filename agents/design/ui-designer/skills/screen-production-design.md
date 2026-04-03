@@ -5,8 +5,7 @@ trigger: When a concept must become a production-ready design.
 primary_mcp: figma
 fallback_tools: paper, stitch
 best_guess_output: A production-ready screen spec or screen set with handoff notes and required `project-ds-spec.md` updates.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer.md, logs/active/<project-slug>/deliverables/project-ds-spec.md
-section_anchor: "## Skill: screen-production-design"
+output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-screen-production-design.md
 done_when: Layout, hierarchy, tokens, and core states are specified clearly.
 required_inputs:
   - upstream direction or winning variant section
@@ -174,12 +173,13 @@ Include:
 
 Do not present inferred structure as if it were observed.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ui-designer-screen-production-design.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -212,11 +212,3 @@ Within `## Skill: screen-production-design`, include:
 - Use current ecosystem alternatives as support tools when helpful, including `v0` for prompt-first production previews, `framer` for interaction and breakpoint shaping, `penpot` for library-driven inspection, and `storybook` plus `playwright` for verification-oriented handoff checks.
 - Keep those alternatives supportive, not authoritative; the selected direction still comes from the upstream design evidence.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ui-designer.md`.
-- Read `logs/active/<project-slug>/deliverables/project-ds-spec.md` first and update it only when the production pass materially changes system direction.
-- Keep all work for this skill inside `## Skill: screen-production-design`.
-- In `project-ds-spec.md`, limit updates to `## Implementation Foundation`, `## Spacing And Layout Rules`, `## Component Families`, `## Widget And Layout Patterns`, and `## State, Motion, And Accessibility Rules`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Layout, hierarchy, tokens, and core states are specified clearly.

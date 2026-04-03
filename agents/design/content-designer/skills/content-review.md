@@ -35,8 +35,7 @@ tool_routing:
   - if: no tooling is available
     use: fallback — produce best-guess review from provided context; label all output as inferred
 best_guess_output: A content review with a surface inventory, heuristic findings in structured schema, readability scores, voice/tone ratings, severity-prioritized issues, and directional rewrite recommendations — labeled as inferred where no direct source access exists.
-output_artifacts: logs/active/<project-slug>/deliverables/content-designer.md
-section_anchor: "## Skill: content-review"
+output_artifacts: logs/active/<project-slug>/deliverables/content-designer-content-review.md
 done_when: Every string in scope has been evaluated against the content heuristics, every finding has a location reference and severity score, and the team can prioritize rewrites without reading the raw copy themselves.
 ---
 
@@ -346,15 +345,6 @@ Document honestly:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/content-designer.md`.
-- Keep all work for this skill inside `## Skill: content-review`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- If the deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Update the role-level reflection footer by appending or refreshing `### content-review` with `What worked`, `What didn't`, and `Next steps`.
-- Record which tool path was used and why (sourced / fallback / inferred).
-- The section meets the done-when bar when: every string in scope has been evaluated against the content heuristics, every finding has a location reference and severity score, and the team can prioritize rewrites without reading the raw copy themselves.
 
 ### Required sections within `## Skill: content-review`
 

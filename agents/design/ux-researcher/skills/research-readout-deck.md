@@ -9,8 +9,7 @@ required_inputs:
 recommended_passes:
   - research-synthesis (prerequisite — findings must be synthesized before the readout is structured)
 best_guess_output: A structured research readout with audience model, insight hierarchy, narrative arc, evidence highlights, recommendations, and stakeholder asks.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
-section_anchor: "## Skill: research-readout-deck"
+output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-research-readout-deck.md
 done_when: The readout contains a complete audience-decision model, findings ordered by decision relevance, at least one recommendation linked to evidence with a stated confidence level, and an explicit stakeholder ask — and a stakeholder unfamiliar with the research could act on it in one pass.
 tool_stack:
   runtime:
@@ -272,13 +271,3 @@ This skill cannot guarantee:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
-- Keep all work for this skill inside `## Skill: research-readout-deck`.
-- Update only the section named by `section_anchor`. Preserve all other skill sections in the shared role deliverable.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Update the role-level reflection footer by appending or refreshing `### research-readout-deck` with `What worked`, `What didn't`, and `Next steps`.
-- Record which tool path was used (sourced / fallback / inferred) and why.
-- Do not modify findings, synthesis outputs, or sections owned by other skills.
-- The done-when bar: the readout contains a complete audience-decision model, findings ordered by decision relevance, at least one recommendation linked to evidence with a stated confidence level, and an explicit stakeholder ask — and a stakeholder unfamiliar with the research could act on it in one pass.

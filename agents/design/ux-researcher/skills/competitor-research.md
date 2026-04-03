@@ -39,8 +39,7 @@ tool_routing:
   - if: primary tools are unavailable, blocked, or out of credits
     use: [search_query, open]
 best_guess_output: A competitive landscape report with a comparison set, pattern inventory, evidence citations, gap analysis, and design implications.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
-section_anchor: "## Skill: competitor-research"
+output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-competitor-research.md
 done_when: The competitive landscape model is constructed, relevant patterns are documented with sourced evidence or explicitly labeled as inferred, and implications are linked to the originating design decision.
 ---
 
@@ -226,12 +225,13 @@ Do not omit this section or collapse it to a single line. Low-confidence areas m
 - Do not hallucinate competitor UI details. If a surface cannot be sourced, mark it as `Not accessed` and lower confidence accordingly.
 - Record the tool path used for each competitor or surface so the evidence is reproducible.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ux-researcher-competitor-research.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -246,10 +246,3 @@ Within `## Skill: competitor-research`, include:
 - `### Coverage map`: What was deeply, partially, and not analyzed.
 - `### Gaps in evidence`: What could not be sourced, verified, or confirmed.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
-- Keep all work for this skill inside `## Skill: competitor-research`.
-- Record which tool path was used and why for each competitor or surface.
-- Label each evidence item as `sourced`, `fallback`, or `inferred`.
-- Ensure the section meets this done-when bar: The competitive landscape model is constructed, relevant patterns are documented with sourced evidence or explicitly labeled as inferred, and implications are linked to the originating design decision.

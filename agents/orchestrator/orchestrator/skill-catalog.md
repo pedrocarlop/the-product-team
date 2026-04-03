@@ -11,18 +11,18 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: conversation context
 - Fallback: orchestrator/log
 - Best guess: A user-facing approval summary with scope, roles, and risks.
-- Output: logs/active/<project-slug>/deliverables/orchestrator.md
+- Output: logs/active/<project-slug>/deliverables/orchestrator-approve.md
 - Done when: The user can clearly approve or redirect the planned workflow.
 
 ## `coordinate`
 
-- Description: Launch specialists in sequence, pass artifact paths, and enforce evidence_mode reporting.
+- Description: Launch specialists in sequence, curate the Execution Manifest, and ensure lossless handoff to downstream roles.
 - Trigger: After staffing approval or while running a staged workflow.
 - Primary MCP/tool: logs, subagents
 - Fallback: orchestrator/log, context review
-- Best guess: An up-to-date execution state with handoffs and blocker handling.
-- Output: logs/active/<project-slug>/deliverables/orchestrator.md
-- Done when: Every active stage has one owner and downstream roles can read their inputs directly.
+- Best guess: An Execution Manifest indexing all specialist deliverables with status and path.
+- Output: logs/active/<project-slug>/deliverables/orchestrator-coordinate.md
+- Done when: Every specialist output is indexed in the manifest and implementation owners can access all original source materials.
 
 ## `log`
 
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: logs
 - Fallback: repository review
 - Best guess: A refreshed context entry that reflects the true current state.
-- Output: logs/active/<project-slug>/deliverables/orchestrator.md
+- Output: logs/active/<project-slug>/deliverables/orchestrator-log.md
 - Done when: A teammate can resume from context.md without guessing.
 
 ## `reconcile`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: deliverables, context
 - Fallback: reference/trace, reference/verify
 - Best guess: A reconciled direction with explicit decisions and surviving details.
-- Output: logs/active/<project-slug>/deliverables/orchestrator.md
+- Output: logs/active/<project-slug>/deliverables/orchestrator-reconcile.md
 - Done when: Only one downstream direction remains and disputed points are resolved.
 
 ## `retrospect`
@@ -51,7 +51,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: timeline, context, deliverables
 - Fallback: repository review
 - Best guess: A concrete system fix proposal tied to evidence.
-- Output: logs/active/<project-slug>/deliverables/orchestrator.md
+- Output: logs/active/<project-slug>/deliverables/orchestrator-retrospect.md
 - Done when: The root cause, fix location, and verification path are explicit.
 
 ## `route`
@@ -61,7 +61,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, logs
 - Fallback: reference/ground, role-catalog review
 - Best guess: A routing decision with roles, skill_paths, and execution mode.
-- Output: logs/active/<project-slug>/deliverables/orchestrator.md
+- Output: logs/active/<project-slug>/deliverables/orchestrator-route.md
 - Done when: context.md routing block is current and the next owner is unambiguous.
 
 ## `setup-check`
@@ -71,15 +71,15 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: conversation context
 - Fallback: orchestrator/log
 - Best guess: A resolved HTA decision (configure or fallback) logged to context.md.
-- Output: logs/active/<project-slug>/deliverables/orchestrator.md
+- Output: logs/active/<project-slug>/deliverables/orchestrator-setup-check.md
 - Done when: HTA is either configured and verified, or fallback is explicitly authorized by the prompter.
 
 ## `staff`
 
-- Description: Select the minimum viable team, assign contracts, and set primary_tools plus fallback policy.
+- Description: Select the minimum viable team, assign lossless contracts, and set primary_tools plus fallback policy.
 - Trigger: Once orchestration is needed or a staffed role must change.
 - Primary MCP/tool: repository, role metadata
 - Fallback: reference/verify, context review
-- Best guess: A staffing table with role, skill_paths, primary_tools, and fallback policy.
-- Output: logs/active/<project-slug>/deliverables/orchestrator.md
-- Done when: Every staffed role has one contract and no overlapping repo ownership.
+- Best guess: A staffing table with role, skill_paths, target_deliverables, primary_tools, and fallback policy.
+- Output: logs/active/<project-slug>/deliverables/orchestrator-staff.md
+- Done when: Every staffed role has one contract and target deliverables are explicitly named for each assigned skill.

@@ -3,8 +3,7 @@ name: interview-guide-build
 description: Applies semi-structured interview method, laddering technique, JTBD probing, and think-aloud protocol to construct a moderated session guide with sequencing, probes, evidence goals, and bias review.
 trigger: When live research sessions need a structured guide — generative interviews, evaluative sessions, or concept walkthroughs.
 best_guess_output: An interview guide with session structure, questions, probes, evidence goals, and moderator notes that supports comparable sessions across participants.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
-section_anchor: "## Skill: interview-guide-build"
+output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-interview-guide-build.md
 done_when: A moderator can run all sessions from the guide without improvising the core script, every question is traceable to a research objective, and mandatory and optional probes are explicitly separated.
 required_inputs:
   - Research objective or study goal
@@ -278,8 +277,6 @@ This guide does not guarantee:
 8. If inputs are missing, infer and label — do not silently assume.
 
 ---
-
-## Output Contract
 
 **Write to:** `logs/active/<project-slug>/deliverables/ux-researcher.md`
 

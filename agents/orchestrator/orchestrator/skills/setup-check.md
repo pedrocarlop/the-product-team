@@ -5,7 +5,7 @@ trigger: When a subagent returns hta_setup_required during coordinate.
 primary_mcp: conversation context
 fallback_tools: orchestrator/log
 best_guess_output: A resolved HTA decision (configure or fallback) logged to context.md.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator.md
+output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-setup-check.md
 done_when: HTA is either configured and verified, or fallback is explicitly authorized by the prompter.
 ---
 
@@ -81,8 +81,3 @@ End the deliverable with a `## Reflection` section:
 - **What didn't**: any ambiguity in the config request or prompter response.
 - **Next steps**: confirm the subagent was re-launched and the block is cleared.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/orchestrator.md`.
-- Update `context.md` with `hta_status: configured` or `hta_status: fallback_authorized` for the resolved role.
-- Ensure the work meets this done-when bar: HTA is either configured and verified, or fallback is explicitly authorized by the prompter.

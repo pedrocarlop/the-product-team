@@ -36,7 +36,6 @@ tool_routing:
     use: [search_query]
 best_guess_output: A test plan review with explicit risk coverage, gaps, and priority recommendations.
 output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
-section_anchor: "## Skill: test-plan-review"
 done_when: Critical risks have explicit coverage mapping, missing depth is visible, blind spots are named, and the highest-value additions are prioritized.
 ---
 
@@ -50,12 +49,13 @@ This skill applies risk-based QA reasoning across product risk, technical depth,
 
 This skill does not equate more tests with better coverage, replace implementation of the tests themselves, or promise that a reviewed plan guarantees safety.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/qa-reviewer-test-plan-review.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -118,9 +118,3 @@ For each finding inside `### Test-plan findings`, use this exact mini-template:
 - After all passes, consolidate repeated weaknesses into systemic coverage patterns before prioritization.
 - Distinguish clearly between observed evidence, inferred risk, and recommendation direction.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/reviews/qa-reviewer.md`.
-- Keep all work for this skill inside `## Skill: test-plan-review`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Critical risks have explicit coverage mapping, missing depth is visible, blind spots are named, and the highest-value additions are prioritized.

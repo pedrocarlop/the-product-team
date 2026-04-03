@@ -4,76 +4,72 @@ Read this file first when you are staffed for orchestrated work.
 Use this catalog to choose or confirm the exact role-local workflow to run.
 Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
 
-## `research-plan`
+## `competitor-research`
 
-- Description: Structure a study using GQM question formulation, decision impact × uncertainty prioritization, and the attitudinal/behavioral × qualitative/quantitative method selection matrix.
-- Trigger: When the team needs a real study plan instead of ad hoc interviews.
-- Primary MCP/tool: notion, dovetail
-- Fallback: search_query, reference/ground
-- Best guess: A research plan with question, method, sample, and outputs.
-- Output: logs/active/<project-slug>/deliverables/ux-researcher.md
-- Done when: Every research question maps to a decision, a method, and a sample — and the team can run the study without inventing the protocol later.
-
-## `screener-form-build`
-
-- Description: Design participant screeners using profile modeling, quota sampling logic, and behavioral disqualifier best practices.
-- Trigger: When a study needs recruitment or intake filtering.
-- Primary MCP/tool: typeform, google_forms
-- Fallback: tally, notion, ux-researcher/research-plan
-- Best guess: A screener form or equivalent structured questionnaire.
-- Output: logs/active/<project-slug>/deliverables/ux-researcher.md
-- Done when: Every question has explicit include/exclude logic, quota targets are defined, and recruiting can start without guessing intent.
+- Description: Build a structured competitive landscape model by systematically collecting, comparing, and interpreting UI patterns, user flows, and market signals from adjacent products to inform specific UX decisions.
+- Trigger: When the team needs external pattern or competitor evidence to inform a design decision, benchmark a feature, or identify gaps in the current experience.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A competitive landscape report with a comparison set, pattern inventory, evidence citations, gap analysis, and design implications.
+- Output: logs/active/<project-slug>/deliverables/ux-researcher-competitor-research.md
+- Done when: The competitive landscape model is constructed, relevant patterns are documented with sourced evidence or explicitly labeled as inferred, and implications are linked to the originating design decision.
 
 ## `interview-guide-build`
 
-- Description: Write semi-structured interview guides using topic mapping, probe laddering, JTBD framing, and per-section evidence goals.
-- Trigger: When live research sessions need a structured guide.
-- Primary MCP/tool: notion
-- Fallback: dovetail, looppanel, search_query, ux-researcher/research-plan
-- Best guess: An interview guide that supports comparable sessions.
-- Output: logs/active/<project-slug>/deliverables/ux-researcher.md
-- Done when: Every section has an evidence goal, mandatory questions are separated from optional probes, and a moderator can run the session without improvising the core script.
+- Description: Applies semi-structured interview method, laddering technique, JTBD probing, and think-aloud protocol to construct a moderated session guide with sequencing, probes, evidence goals, and bias review.
+- Trigger: When live research sessions need a structured guide — generative interviews, evaluative sessions, or concept walkthroughs.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: An interview guide with session structure, questions, probes, evidence goals, and moderator notes that supports comparable sessions across participants.
+- Output: logs/active/<project-slug>/deliverables/ux-researcher-interview-guide-build.md
+- Done when: A moderator can run all sessions from the guide without improvising the core script, every question is traceable to a research objective, and mandatory and optional probes are explicitly separated.
 
-## `competitor-research`
+## `research-plan`
 
-- Description: Benchmark adjacent products using landscape modeling, pattern sourcing across Refero/Mobbin/Page Flows, gap analysis, and implication mapping.
-- Trigger: When the team needs external pattern or competitor evidence.
-- Primary MCP/tool: refero, mobbin
-- Secondary MCP/tool: page_flows, ux_archive, similarweb
-- Fallback: search_query, open
-- Best guess: A benchmark report with patterns, screenshots, and implications.
-- Output: logs/active/<project-slug>/deliverables/ux-researcher.md
-- Done when: Competitive set is defined, patterns are inventoried with evidence, gaps are documented, and implications are tied to the current product decision.
-
-## `study-ops-and-recruiting`
-
-- Description: Build the full operational dependency model (recruiting → screening → scheduling → consent → session → incentive → closeout) grounded in UXPA ResearchOps framework.
-- Trigger: When research needs a concrete execution plan beyond the study design.
-- Primary MCP/tool: rally_uxr, notion
-- Secondary MCP/tool: ethnio, calendly, tremendous
-- Fallback: ux-researcher/screener-form-build, open
-- Best guess: A study ops plan with recruiting flow and logistics.
-- Output: logs/active/<project-slug>/deliverables/ux-researcher.md
-- Done when: Every operational phase has an owner, tool, and contingency — and the study can be scheduled and staffed without unresolved dependencies.
-
-## `research-synthesis`
-
-- Description: Transform source material into findings using thematic analysis (Braun & Clarke), affinity diagramming, and the atomic research model (facts → insights → opportunities → recommendations).
-- Trigger: After interviews, workshops, or other qualitative studies.
-- Primary MCP/tool: dovetail, notion
-- Secondary MCP/tool: looppanel, condens, aurelius, figjam, miro
-- Fallback: ux-researcher/research-plan, search_query
-- Best guess: A synthesis with themes, evidence, and design implications.
-- Output: logs/active/<project-slug>/deliverables/ux-researcher.md
-- Done when: Every theme is supported by traceable evidence, every finding has a confidence rating, and the team can act on findings instead of raw notes.
+- Description: Apply decision-first research planning — audit what decisions need to be made, formulate questions that reduce uncertainty, select methods by attitudinal/behavioral × qualitative/quantitative fit, design samples tied to questions not availability, and scope outputs before the study runs.
+- Trigger: When the team needs a structured study plan rather than ad hoc interviews, or when research scope, method, or sample has not been formally decided.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A research plan with decision context, prioritized research questions, method selection rationale, sample design, risk register, and output scope.
+- Output: logs/active/<project-slug>/deliverables/ux-researcher-research-plan.md
+- Done when: Every research question maps to a product decision, every method choice is justified against the question type, sample is specified with profile and size rationale, risks are documented, and the plan can be executed without inventing protocol details later.
 
 ## `research-readout-deck`
 
-- Description: Package research into stakeholder-aligned readouts using the Pyramid Principle and situation → complication → resolution → recommendation narrative arc.
-- Trigger: When research must be socialized to decision-makers.
-- Primary MCP/tool: notion, pitch
-- Secondary MCP/tool: loom, google_slides, canva, confluence
-- Fallback: ux-researcher/research-synthesis, open
-- Best guess: A research readout deck or memo with findings and actions.
-- Output: logs/active/<project-slug>/deliverables/ux-researcher.md
-- Done when: Audience-decision model is built, findings lead with insight (not methodology), every recommendation links to evidence, and the stakeholder ask is explicit.
+- Description: Structure and deliver research findings as a stakeholder-ready readout using the Pyramid Principle and narrative arc — leading with conclusions, anchoring every recommendation to evidence, and making the ask explicit.
+- Trigger: When research findings must be socialized to decision-makers, sponsors, or cross-functional partners — especially when alignment, prioritization, or a go/no-go decision is on the line.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A structured research readout with audience model, insight hierarchy, narrative arc, evidence highlights, recommendations, and stakeholder asks.
+- Output: logs/active/<project-slug>/deliverables/ux-researcher-research-readout-deck.md
+- Done when: The readout contains a complete audience-decision model, findings ordered by decision relevance, at least one recommendation linked to evidence with a stated confidence level, and an explicit stakeholder ask — and a stakeholder unfamiliar with the research could act on it in one pass.
+
+## `research-synthesis`
+
+- Description: Applies thematic analysis, affinity diagramming, and the atomic research model to convert raw qualitative data into traceable findings, themes, and design-ready recommendations.
+- Trigger: After interviews, workshops, usability sessions, diary studies, or any qualitative data collection. Run when raw notes, transcripts, or recordings exist and the team needs actionable insight.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A structured synthesis with source inventory, coded observations, themes with evidence, and directional design implications — labeled as inferred where no primary tool access exists.
+- Output: logs/active/<project-slug>/deliverables/ux-researcher-research-synthesis.md
+- Done when: Every research question is addressed by at least one theme with traceable evidence, every finding has a source ID, and the team can make a product or design decision without reading raw notes.
+
+## `screener-form-build`
+
+- Description: Applies participant profiling, quota sampling logic, and screener design best practices to build a form that recruits the right people with minimum respondent burden.
+- Trigger: When a study needs recruitment filtering — qualitative or quantitative — and inclusion/exclusion criteria must be operationalized into a form.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A structured screener with participant profile model, qualification logic per question, quota targets, and backup plan.
+- Output: logs/active/<project-slug>/deliverables/ux-researcher-screener-form-build.md
+- Done when: The screener contains a documented participant profile model, ≤10 questions with explicit qualify/disqualify logic per answer, quota targets, and a named tool path used to deploy it.
+
+## `study-ops-and-recruiting`
+
+- Description: Applies the ResearchOps framework to design and execute the full operational pipeline for a study — recruiting, screening, scheduling, consent, incentives, and closeout logistics.
+- Trigger: When a study design exists and a concrete execution plan is needed to schedule, staff, and run sessions.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A structured study ops plan with recruiting pipeline, scheduling setup, consent process, incentive plan, and contingency design for each lifecycle phase.
+- Output: logs/active/<project-slug>/deliverables/ux-researcher-study-ops-and-recruiting.md
+- Done when: Every ops component has a named owner, a tool, a handoff point, and a documented contingency. The study can be scheduled, staffed, and launched without open operational blockers.

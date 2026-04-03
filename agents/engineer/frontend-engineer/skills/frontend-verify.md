@@ -46,8 +46,7 @@ tool_routing:
     use: [repository] for code review and static inference; label output as fallback
   - avoid: relying on a single tool; combine runtime interaction testing (Playwright) with visual regression (Chromatic or Percy) and accessibility scanning (axe-core) for thorough coverage
 best_guess_output: A frontend verification result with a UI model, structured behavior and layout findings, visual regression status, accessibility scan summary, and explicit residual risk.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
-section_anchor: "## Skill: frontend-verify"
+output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-frontend-verify.md
 done_when: All in-scope surfaces have been verified against behavior, layout, and basic quality expectations; all findings are documented with evidence and repro steps; and residual risks are explicitly named.
 ---
 
@@ -357,12 +356,13 @@ Do not collapse this section to a single line. Every named unknown sets the scop
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### frontend-verify` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-frontend-verify.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -383,10 +383,3 @@ Within `## Skill: frontend-verify`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
-- Keep all work for this skill inside `## Skill: frontend-verify`.
-- Record which tool path was used for each check and why. Label each evidence item as `sourced`, `fallback`, or `inferred`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- Ensure the section meets this done-when bar: all in-scope surfaces have been verified against behavior, layout, and basic quality expectations; all findings are documented with evidence and repro steps; and residual risks are explicitly named.

@@ -2,64 +2,48 @@
 
 Read this file first when you are staffed for orchestrated work.
 Use this catalog to choose or confirm the exact role-local workflow to run.
-Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
+Open only the matching `skills/*.md` files, follow their tool/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
+
+All skills now follow the 17-section **Skill Authoring Guide** standard, ensuring method-driven, evidence-based, and reproducible GTM outputs.
 
 ## `campaign-brief`
-
-- Description: Prepare a campaign brief with audience, channel, creative direction, and KPI.
-- Trigger: When marketing execution needs a crisp brief.
-- Primary MCP/tool: notion
-- Fallback: search_query, go-to-market/positioning-brief
-- Best guess: A campaign brief ready for creative or channel execution.
-- Output: logs/active/<project-slug>/deliverables/go-to-market.md
-- Done when: Execution teams know the target, message, and metric.
+- **Description**: Orchestrates and executes integrated marketing campaigns using cross-channel signals and AI-driven automation.
+- **Trigger**: When a new product feature, seasonal event, or market opportunity requires a coordinated marketing execution.
+- **Primary Tool(s)**: HubSpot, Salesforce, Guideflow, Mutiny
+- **Output**: `logs/active/<project-slug>/deliverables/go-to-market-campaign-brief.md`
+- **Done when**: All 17 sections are complete and the campaign-audience-asset model is fully mapped.
 
 ## `customer-signal-synthesis`
-
-- Description: Turn customer conversations, escalations, or feedback into market-ready insights.
-- Trigger: When field signals need to be distilled into GTM action.
-- Primary MCP/tool: notion, github
-- Fallback: search_query, reference/ground
-- Best guess: A synthesis of customer signals tied to GTM implications.
-- Output: logs/active/<project-slug>/deliverables/go-to-market.md
-- Done when: The team knows what to change in message, launch, or enablement.
+- **Description**: Synthesize multi-source buying signals, intent data, and conversation intelligence into actionable GTM priorities.
+- **Trigger**: When a new campaign is being planned, or when an account list needs prioritization based on live signals.
+- **Primary Tool(s)**: Clay, 6sense, Gong, Apollo
+- **Output**: `logs/active/<project-slug>/deliverables/go-to-market-customer-signal-synthesis.md`
+- **Done when**: All signals have been aggregated, de-duplicated, and mapped to a prioritization matrix.
 
 ## `launch-plan`
-
-- Description: Build the launch plan with milestones, owners, dependencies, and readiness checks.
-- Trigger: When a feature or product is moving toward release.
-- Primary MCP/tool: notion, linear
-- Fallback: go-to-market/positioning-brief, search_query
-- Best guess: A launch plan with owners and launch gates.
-- Output: logs/active/<project-slug>/deliverables/go-to-market.md
-- Done when: The launch can be run without missing critical steps.
+- **Description**: Orchestrates the end-to-end launch workflow using 2026 GTM standards, centering on predictive readiness and multi-tool orchestration.
+- **Trigger**: When a product feature or initiative is scheduled for market release.
+- **Primary Tool(s)**: Ignition, Linear, Productboard
+- **Output**: `logs/active/<project-slug>/deliverables/go-to-market-launch-plan.md`
+- **Done when**: All critical path dependencies are mapped and readiness gates defined.
 
 ## `partner-thesis`
-
-- Description: Define which partners matter, why, and what structure best fits the opportunity.
-- Trigger: When partnership exploration or prioritization is needed.
-- Primary MCP/tool: notion
-- Fallback: search_query, go-to-market/positioning-brief
-- Best guess: A partner thesis with targets and rationale.
-- Output: logs/active/<project-slug>/deliverables/go-to-market.md
-- Done when: The partnership strategy is specific enough to start outreach.
+- **Description**: Define a data-driven ecosystem-led growth (ELG) strategy and partner prioritization model using 2026 PRM/ELG tools.
+- **Trigger**: When partnership exploration, ELG strategy, or partner prioritization is needed.
+- **Primary Tool(s)**: Crossbeam, Reveal, PartnerStack
+- **Output**: `logs/active/<project-slug>/deliverables/go-to-market-partner-thesis.md`
+- **Done when**: Strategy is specific enough to initiate account mapping or onboarding.
 
 ## `positioning-brief`
-
-- Description: Define how the product should be positioned against alternatives for a target audience.
-- Trigger: When a market-facing message needs sharpening.
-- Primary MCP/tool: notion
-- Fallback: search_query, reference/ground
-- Best guess: A positioning brief with audience, alternatives, and message pillars.
-- Output: logs/active/<project-slug>/deliverables/go-to-market.md
-- Done when: The team can reuse the positioning consistently.
+- **Description**: Expert positioning and messaging strategy using April Dunford's framework and JTBD, validated with buyer intelligence signals.
+- **Trigger**: When a product or feature needs a market-facing position or existing message fails to resonate.
+- **Primary Tool(s)**: Ignition, Wynter, Crayon
+- **Output**: `logs/active/<project-slug>/deliverables/go-to-market-positioning-brief.md`
+- **Done when**: Positioning is validated via internal alignment and external buyer signals.
 
 ## `sales-enablement`
-
-- Description: Produce the core sales narrative, objections, and proof points for the field.
-- Trigger: When sales needs to communicate and defend the product clearly.
-- Primary MCP/tool: notion
-- Fallback: search_query, go-to-market/positioning-brief
-- Best guess: A sales enablement pack with talk track and objection handling.
-- Output: logs/active/<project-slug>/deliverables/go-to-market.md
-- Done when: A seller can use it directly in discovery or demo.
+- **Description**: Encodes the method for developing AI-driven sales enablement and training programs, focused on contextual supercoaching and real-time feedback.
+- **Trigger**: When sales training, coaching, or content enablement systems need building or updating.
+- **Primary Tool(s)**: Highspot, Proshort, Lavender
+- **Output**: `logs/active/<project-slug>/deliverables/go-to-market-sales-enablement.md`
+- **Done when**: Program architecture is defined, tool routing is active, and measurement system is in place.

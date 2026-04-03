@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, named source systems
 - Fallback: search_query, open
 - Best guess: A concise grounding inventory with sources and unknowns.
-- Output: logs/active/<project-slug>/deliverables/reference.md
+- Output: logs/active/<project-slug>/deliverables/reference-ground.md
 - Done when: The team can cite concrete repo/system evidence instead of assumptions.
 
 ## `reuse`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, deliverables
 - Fallback: reference/ground, search_query
 - Best guess: A reuse recommendation with exact patterns to follow.
-- Output: logs/active/<project-slug>/deliverables/reference.md
+- Output: logs/active/<project-slug>/deliverables/reference-reuse.md
 - Done when: The preferred reusable pattern is explicit and justified.
 
 ## `trace`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, deliverables
 - Fallback: reference/ground, open
 - Best guess: A traced path from entry point to source of truth.
-- Output: logs/active/<project-slug>/deliverables/reference.md
+- Output: logs/active/<project-slug>/deliverables/reference-trace.md
 - Done when: A downstream implementer knows exactly where the change lands.
 
 ## `verify`
@@ -41,5 +41,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, deliverables
 - Fallback: reference/trace, search_query
 - Best guess: A pass/fail/unresolved verification result with cited evidence.
-- Output: logs/active/<project-slug>/deliverables/reference.md
+- Output: logs/active/<project-slug>/deliverables/reference-verify.md
 - Done when: The claimed conclusion is defended by present-state evidence.

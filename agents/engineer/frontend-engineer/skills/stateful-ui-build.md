@@ -42,8 +42,7 @@ tool_routing:
   - if: primary tools are unavailable or repository is not accessible
     use: [reference/trace, search_query] — produce inferred state model, label output as `inferred`
 best_guess_output: A stateful UI implementation covering all critical lifecycle states, with a documented state inventory, MSW-backed Storybook stories for each state, and a verification log confirming state coverage.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
-section_anchor: "## Skill: stateful-ui-build"
+output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-stateful-ui-build.md
 done_when: The state inventory is complete, all critical states (loading, error, empty, interactive) are implemented and verifiable in code or Storybook, transitions are explicit and tested, and no state is handled only by silence or missing UI.
 ---
 
@@ -304,12 +303,13 @@ Do not omit this section or collapse it to a single line. Low-confidence areas m
 - Record the tool path used for each phase (repository read, Storybook story, Vitest test, Playwright run) so the verification is reproducible.
 - Avoid hallucinating API response shapes. If the contract is not confirmed, label it `Assumed context:` and lower confidence.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### stateful-ui-build` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-stateful-ui-build.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -327,10 +327,3 @@ Within `## Skill: stateful-ui-build`, include:
 - `### Coverage map`: What is deeply implemented and verified, partially implemented, not implemented, and not applicable.
 - `### Gaps in evidence`: What could not be confirmed, what was inferred, and what requires real-world validation.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
-- Keep all work for this skill inside `## Skill: stateful-ui-build`.
-- Record which tool path was used for each phase (repository read, Storybook, Vitest, Playwright).
-- Label each evidence item as `sourced` (read from repository or observed in runtime), `fallback` (produced from reference docs or web search), or `inferred` (reasoned from absence or naming).
-- Ensure the section meets this done-when bar: the state inventory is complete, all critical states are implemented and verifiable in code or Storybook, transitions are explicit and tested, and no state is handled only by silence or a missing UI branch.

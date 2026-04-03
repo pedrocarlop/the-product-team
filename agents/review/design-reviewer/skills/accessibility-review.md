@@ -54,7 +54,6 @@ tool_routing:
     use: [axe]
 best_guess_output: An accessibility review with evidence-tagged barriers, grouped patterns, and directional remediation guidance.
 output_artifacts: logs/active/<project-slug>/reviews/design-reviewer.md
-section_anchor: "## Skill: accessibility-review"
 done_when: The reviewed surface has evidence-backed accessibility barriers, grouped patterns, coverage limits, and prioritized fix directions that distinguish observed issues from assumptions.
 ---
 
@@ -68,12 +67,13 @@ This skill evaluates observable accessibility risk and likely assistive technolo
 
 This skill does not claim formal compliance certification, replace full screen-reader or human assistive testing, or assert that code-level remediation has already been validated.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-reviewer-accessibility-review.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -142,9 +142,3 @@ For each finding inside `### Barrier findings`, use this exact mini-template:
 - State clearly when a suspected issue could not be fully confirmed because the evidence path did not include real assistive technology, real devices, or implementation inspection.
 - Do not imply that screen-reader output, switch control behavior, voice control behavior, or full cognitive accessibility outcomes were validated unless they were actually tested.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/reviews/design-reviewer.md`.
-- Keep all work for this skill inside `## Skill: accessibility-review`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The reviewed surface has evidence-backed accessibility barriers, grouped patterns, coverage limits, and prioritized fix directions that distinguish observed issues from assumptions.

@@ -33,8 +33,7 @@ tool_routing:
   - if: all synthesis tools are unavailable
     use: fallback — produce best-guess synthesis from available notes; label as inferred
 best_guess_output: A structured synthesis with source inventory, coded observations, themes with evidence, and directional design implications — labeled as inferred where no primary tool access exists.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher.md
-section_anchor: "## Skill: research-synthesis"
+output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-research-synthesis.md
 done_when: Every research question is addressed by at least one theme with traceable evidence, every finding has a source ID, and the team can make a product or design decision without reading raw notes.
 ---
 
@@ -288,15 +287,6 @@ Document honestly:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/ux-researcher.md`.
-- Keep all work for this skill inside `## Skill: research-synthesis`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- If the deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Update the role-level reflection footer by appending or refreshing `### research-synthesis` with `What worked`, `What didn't`, and `Next steps`.
-- Record which tool path was used and why (sourced / fallback / inferred).
-- The section meets the done-when bar when: every research question is addressed by at least one theme, every finding has a source ID, and the team can make a decision without reading raw notes.
 
 ### Required sections within `## Skill: research-synthesis`
 

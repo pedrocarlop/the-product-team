@@ -5,8 +5,7 @@ trigger: When a role needs factual grounding before choosing a path.
 primary_mcp: repository, named source systems
 fallback_tools: search_query, open
 best_guess_output: A concise grounding inventory with sources and unknowns.
-output_artifacts: logs/active/<project-slug>/deliverables/reference.md
-section_anchor: "## Skill: ground"
+output_artifacts: logs/active/<project-slug>/deliverables/reference-ground.md
 done_when: The team can cite concrete repo/system evidence instead of assumptions.
 ---
 
@@ -16,12 +15,13 @@ done_when: The team can cite concrete repo/system evidence instead of assumption
 
 Ground decisions in the real target repo and any named source system before proposing work.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/reference-ground.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -45,9 +45,3 @@ Within `## Skill: ground`, include:
 - Separate present-state facts from assumptions or inferred conclusions.
 - Preserve exact source paths, names, or identifiers when they matter to later implementation work.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/reference.md`.
-- Keep all work for this skill inside `## Skill: ground`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The team can cite concrete repo/system evidence instead of assumptions.

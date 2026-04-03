@@ -5,7 +5,7 @@ trigger: Every new request or material scope reset.
 primary_mcp: repository, logs
 fallback_tools: reference/ground, role-catalog review
 best_guess_output: A routing decision with roles, skill_paths, and execution mode.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator.md
+output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-route.md
 done_when: context.md routing block is current and the next owner is unambiguous.
 ---
 
@@ -54,8 +54,3 @@ End the deliverable with a `## Reflection` section. Self-critique the work:
 - **What didn't**: trade-offs, shortcuts, or known limitations.
 - **Next steps**: specific guidance for downstream roles or the reviewer.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/orchestrator.md`.
-- Record which tool path was used and why.
-- Ensure the work meets this done-when bar: context.md routing block is current and the next owner is unambiguous.

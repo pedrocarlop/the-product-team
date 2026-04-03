@@ -39,8 +39,7 @@ tool_routing:
   - if: primary tools are unavailable or no TMS is configured
     use: search_query + reference/verify; produce best-guess output labeled as inferred
 best_guess_output: A localization-ready content package including a categorized string inventory, string risk table with severity ratings, ICU format recommendations, pseudo-localization expansion estimates, locale-sensitive data rules, terminology lockdown list, and translator notes — labeled as inferred where no primary tool access exists.
-output_artifacts: logs/active/<project-slug>/deliverables/content-designer.md
-section_anchor: "## Skill: localization-prep"
+output_artifacts: logs/active/<project-slug>/deliverables/content-designer-localization-prep.md
 done_when: Every string in scope is inventoried by surface type, every high and critical risk has a recommended fix, ICU format is validated or flagged, expansion estimates are documented for all strings, translator notes are written for all ambiguous strings, and the package is actionable for both the localization team and engineering without further clarification.
 ---
 
@@ -343,12 +342,13 @@ Document honestly:
 
 ---
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### localization-prep` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/content-designer-localization-prep.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ---
 
@@ -368,12 +368,3 @@ Within `## Skill: localization-prep`, include:
 
 ---
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/content-designer.md`.
-- Keep all work for this skill inside `## Skill: localization-prep`.
-- Do NOT modify any other skill section in the shared role deliverable.
-- If the deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Update the role-level reflection footer by appending or refreshing `### localization-prep` with `What worked`, `What didn't`, and `Next steps`.
-- Record which tool path was used for each audit step and why (sourced / fallback / inferred).
-- The section meets the done-when bar when: every string in scope is inventoried, every Critical and High risk has a recommended fix, ICU format is validated or flagged, expansion estimates are documented, translator notes are written for all ambiguous strings, and the package is actionable for both the localization team and engineering without further clarification.

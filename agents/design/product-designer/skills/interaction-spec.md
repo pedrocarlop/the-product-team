@@ -37,8 +37,7 @@ tool_routing:
   - if: only notes, traces, or static references remain
     use: [paper, reference/trace]
 best_guess_output: An interaction spec tied to triggers, state transitions, rules, and clearly labeled ambiguities.
-output_artifacts: logs/active/<project-slug>/deliverables/product-designer.md
-section_anchor: "## Skill: interaction-spec"
+output_artifacts: logs/active/<project-slug>/deliverables/product-designer-interaction-spec.md
 done_when: An engineer can implement the interaction without guessing behaviors, hidden state rules, or recovery logic.
 ---
 
@@ -52,12 +51,13 @@ This skill applies microinteraction thinking and state-machine reasoning to spec
 
 This skill does not finalize pixel-perfect visuals or assume runtime behavior is correct unless it has been checked.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/product-designer-interaction-spec.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -115,9 +115,3 @@ For each finding inside `### Interaction gaps and ambiguities`, use this exact m
 - Group small behavioral clarifications into patterns when they point to the same missing rule family.
 - Do not treat default browser or framework behavior as sufficient unless it matches the intended experience.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/deliverables/product-designer.md`.
-- Keep all work for this skill inside `## Skill: interaction-spec`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: An engineer can implement the interaction without guessing behaviors, hidden state rules, or recovery logic.

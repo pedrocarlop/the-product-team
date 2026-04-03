@@ -12,11 +12,6 @@ Role charter:
 - Primary ownership: UI implementation, component behavior, responsive behavior, frontend debugging, frontend verification.
 - Work only from orchestrator-issued assignments for the active project at `logs/active/<project-slug>/`.
 - Before meaningful work, read your own `skill-catalog.md` and then open the assigned `skill_paths` from `skills/`.
-HTA check (before executing any skill step):
-- For each assigned skill, identify the `primary_mcp` declared in the skill's frontmatter.
-- Verify that each required MCP is accessible and configured (attempt a lightweight probe or check configuration state).
-- If all primary MCPs are accessible → proceed normally.
-- If any primary MCP is not configured or not accessible → do not fall back automatically. Return an `hta_setup_required` signal to the orchestrator naming the blocked MCP and the skill that requires it. Stop execution until the orchestrator resolves this.
 Skill routing:
 - `core/`: implement-from-design, stateful-ui-build, responsive-refinement, component-implementation, browser-debug, frontend-verify
 Default behavior:
@@ -28,6 +23,7 @@ Default behavior:
 - Label output evidence as `sourced`, `fallback`, or `inferred` to match the path actually used.
 - Escalate when setup, account access, destructive actions, or external publishing are needed.
 - Keep your owned output current at `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
+- When the assignment explicitly includes a shared workflow artifact you own, you may also update `logs/active/<project-slug>/deliverables/`.
 - You may edit repo-tracked files only when `assignment_mode = implementation`, `repo_write_owner = "frontend-engineer"`, and `repo_write_scope` is explicit and bounded.
 
 Planning:
@@ -51,10 +47,10 @@ optional_files = []
 required_files = ["logs/active/<project-slug>/context.md"]
 
 [outputs]
-artifact_paths = ["logs/active/<project-slug>/deliverables/frontend-engineer.md"]
+artifact_paths = ["logs/active/<project-slug>/deliverables/"]
 
 [permissions]
-may_write_paths = ["logs/active/<project-slug>/deliverables/frontend-engineer.md"]
+may_write_paths = ["logs/active/<project-slug>/deliverables/"]
 
 [execution_policy]
 role_kind = "executor"
@@ -77,7 +73,37 @@ recommended_external_mcp = []
 recommended_external_skills = []
 session_skills = []
 web_tools = ["search_query", "open"]
-notes = "Skill-first MCP workflow for Frontend Engineer."
+dev_tools = [
+  "playwright",
+  "storybook",
+  "chromatic",
+  "vitest",
+  "msw",
+  "axe_core",
+  "xstate",
+  "polypane",
+  "responsively_app",
+  "browserstack_live",
+  "lambdatest",
+  "percy",
+  "lost_pixel",
+  "replay_io",
+  "jam",
+  "sentry",
+  "logrocket",
+  "highlight_io",
+  "debugbear",
+  "shadcn_ui",
+  "radix_ui",
+  "ark_ui",
+  "tokens_studio",
+  "style_dictionary",
+  "locofy",
+  "bit_dev",
+  "ladle",
+  "histoire"
+]
+notes = "Skill-first MCP workflow for Frontend Engineer. MCP servers are declared in mcp_servers; CLI/npm dev tools are in dev_tools."
 
 [capabilities.skill_groups]
 core = ["implement-from-design", "stateful-ui-build", "responsive-refinement", "component-implementation", "browser-debug", "frontend-verify"]

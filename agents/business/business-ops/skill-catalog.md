@@ -6,50 +6,45 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 
 ## `execution-tracker`
 
-- Description: Create the tracking model for operational follow-through and accountability.
-- Trigger: When a plan needs an execution dashboard or tracker.
-- Primary MCP/tool: linear, notion
-- Fallback: business-ops/workflow-design
-- Best guess: An execution tracking model with owners, status, and escalation rules.
-- Output: logs/active/<project-slug>/deliverables/business-ops.md
-- Done when: The team can track real work without ambiguity.
+- **Description**: Create a predictive, AI-enhanced tracking model for operational accountability, resource optimization, and risk-adjusted forecasting.
+- **Trigger**: When a project requires deep execution visibility, predictive delay tracking, and structured accountability.
+- **Primary Method**: Critical Path Method (CPM), RACI Matrix, Risk-Adjusted Forecasting.
+- **Tool Stack**: ClickUp Brain, Asana Intelligence, Epicflow.
+- **Output**: logs/active/<project-slug>/deliverables/business-ops-execution-tracker.md
+- **Done When**: All workstreams have clear owners, critical paths are identified, and the system can predict delays based on resource load.
 
 ## `operating-rhythm`
 
-- Description: Design the recurring meetings, checkpoints, and decision cadence for a team.
-- Trigger: When the team needs a clearer operating system.
-- Primary MCP/tool: notion, linear
-- Fallback: business-ops/process-map
-- Best guess: An operating rhythm proposal with ceremonies and decision points.
-- Output: logs/active/<project-slug>/deliverables/business-ops.md
-- Done when: The cadence is concrete enough to run next week.
+- **Description**: Encode expert meeting models (Lencioni, Rockefeller) into a 2026-ready AI-automated cadence.
+- **Trigger**: When synchronization breaks, decisions are slow, or rituals feel "stale."
+- **Primary Method**: Lencioni's Meeting Advantage, Rockefeller Habits, DRI Model.
+- **Tool Stack**: Fireflies.ai, Fellow.app, Profit.co, Zapier Central.
+- **Output**: logs/active/<project-slug>/deliverables/business-ops-operating-rhythm.md
+- **Done When**: Cadence is mapped to DRI owners, Lencioni meeting types, and integrated with the 2026 tool stack.
 
 ## `process-map`
 
-- Description: Map the current and target process so gaps and handoffs are visible.
-- Trigger: When a workflow is unclear, inefficient, or changing.
-- Primary MCP/tool: notion
-- Fallback: search_query, reference/ground
-- Best guess: A current-state and future-state process map.
-- Output: logs/active/<project-slug>/deliverables/business-ops.md
-- Done when: Owners, steps, and gaps are explicit.
+- **Description**: Engineering expert-grade process maps using AI-driven mining, generative diagramming, and value-based governance.
+- **Trigger**: When a workflow is inefficient, undergoing transformation, or needs formal governance and optimization.
+- **Primary Method**: BPMN 2.0, SIPOC Framework, Value Stream Mapping (VSM).
+- **Tool Stack**: Celonis, SAP Signavio, Lucidchart AI.
+- **Output**: logs/active/<project-slug>/deliverables/business-ops-process-map.md
+- **Done When**: A complete SIPOC, BPMN 2.0 current/target state, and VSM analysis with validated ownership and handoffs are documented.
 
 ## `tooling-audit`
 
-- Description: Assess tool sprawl, gaps, and ownership across the operating stack.
-- Trigger: When systems or tools are slowing execution down.
-- Primary MCP/tool: notion, repository
-- Fallback: search_query, reference/ground
-- Best guess: A tooling audit with keep/change/remove recommendations.
-- Output: logs/active/<project-slug>/deliverables/business-ops.md
-- Done when: The stack decision is actionable and justified.
+- **Description**: Assess tool sprawl, gaps, and ownership across the operating stack using TCO, ROI, and Shadow AI Detection.
+- **Trigger**: When systems or tools are slowing execution down or during annual operating rhythm reviews.
+- **Primary Method**: Total Cost of Ownership (TCO), ROI Analysis, Shadow AI Detection.
+- **Tool Stack**: Zylo, CloudEagle, Vertice.
+- **Output**: logs/active/<project-slug>/deliverables/business-ops-tooling-audit.md
+- **Done When**: The stack decision is actionable, justified by TCO/ROI benchmarks, and identifies Shadow AI risks.
 
 ## `workflow-design`
 
-- Description: Define a new operational workflow with roles, triggers, and artifacts.
-- Trigger: When work needs a repeatable operating model.
-- Primary MCP/tool: notion, repository
-- Fallback: business-ops/process-map, reference/reuse
-- Best guess: A workflow definition with triggers, owners, and outputs.
-- Output: logs/active/<project-slug>/deliverables/business-ops.md
-- Done when: A team can follow the workflow without inventing steps.
+- **Description**: Architect high-fidelity operational workflows using Design Thinking and DMAIC methodologies.
+- **Trigger**: When work needs a repeatable, scalable, and automated operating model.
+- **Primary Method**: IDEO Design Thinking, Lean Six Sigma (DMAIC), Workflow Topology Modeling.
+- **Tool Stack**: Vellum AI, Bika.ai, Make.
+- **Output**: logs/active/<project-slug>/deliverables/business-ops-workflow-design.md
+- **Done When**: A team can follow the workflow without inventing steps and the automation logic is specified.

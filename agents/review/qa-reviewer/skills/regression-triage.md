@@ -39,7 +39,6 @@ tool_routing:
     use: [open]
 best_guess_output: A regression triage with evidence-tagged severity, blocking status, and next-action routing.
 output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
-section_anchor: "## Skill: regression-triage"
 done_when: Blocking and non-blocking regressions are clearly separated with evidence, rationale, confidence, and next action, and duplicate or systemic issues are grouped instead of counted loosely.
 ---
 
@@ -53,12 +52,13 @@ This skill applies structured QA reasoning across reproducibility, user impact, 
 
 This skill does not replace root-cause analysis, full remediation planning, or product prioritization beyond the evidence-supported release decision.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/qa-reviewer-regression-triage.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -123,9 +123,3 @@ For each finding inside `### Regression findings`, use this exact mini-template:
 - After all passes, merge duplicate findings and consolidate overlapping regressions into systemic patterns before final prioritization.
 - Distinguish clearly between observed regression behavior, inferred cause area, and recommendation direction.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/reviews/qa-reviewer.md`.
-- Keep all work for this skill inside `## Skill: regression-triage`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: Blocking and non-blocking regressions are clearly separated with evidence, rationale, confidence, and next action, and duplicate or systemic issues are grouped instead of counted loosely.

@@ -39,7 +39,6 @@ tool_routing:
     use: [open, search_query]
 best_guess_output: A copy review with evidence-tagged language issues, grouped patterns, and directional rewrite guidance.
 output_artifacts: logs/active/<project-slug>/reviews/design-reviewer.md
-section_anchor: "## Skill: copy-review"
 done_when: The team knows which language problems are local, which are systemic, how strong the evidence is, and what should change first.
 ---
 
@@ -53,12 +52,13 @@ This skill evaluates whether the language helps the intended user understand wha
 
 This skill does not invent brand strategy, replace legal review, or claim that copy effectiveness has been validated with real users unless such evidence is explicitly provided.
 
-## Shared Deliverable Contract
+## Lossless Deliverable Contract
 
-- Update only the section named by `section_anchor`.
-- If the role deliverable does not exist yet, create it with one YAML header, this skill section, and one trailing `## Reflection` block.
-- Preserve all other skill sections in the shared role deliverable.
-- Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-reviewer-copy-review.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
 
 ## Required Deliverable Sections
 
@@ -125,9 +125,3 @@ For each finding inside `### Language findings`, use this exact mini-template:
 - After all passes, merge duplicates and consolidate overlapping findings before prioritization.
 - Do not claim comprehension, trust uplift, or conversion impact has been validated unless real research or analytics evidence exists.
 
-## Output Contract
-
-- Write or update `logs/active/<project-slug>/reviews/design-reviewer.md`.
-- Keep all work for this skill inside `## Skill: copy-review`.
-- Record which tool path was used and why.
-- Ensure the section meets this done-when bar: The team knows which language problems are local, which are systemic, how strong the evidence is, and what should change first.
