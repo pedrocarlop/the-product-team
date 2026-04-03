@@ -37,7 +37,9 @@ tool_routing:
   - if the source of truth lives in another design tool, use that artifact path first and map it back to the shared matrix.
   - if only static artifacts exist, use figma plus open or search_query.
 best_guess_output: A responsive and state specification with breakpoint matrix, state matrix, exceptions, stress cases, and implementation signals.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-responsive-and-state-spec.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/ui-designer-responsive-and-state-spec.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: Desktop, mobile, and critical states are explicitly covered, unsupported combinations are named, and implementation signals are clear enough for engineering to preserve.
 ---
 
@@ -148,7 +150,7 @@ If no findings are present, say that explicitly and summarize the covered matrix
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 

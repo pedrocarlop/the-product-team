@@ -33,7 +33,9 @@ tool_routing:
   - if: all synthesis tools are unavailable
     use: fallback — produce best-guess synthesis from available notes; label as inferred
 best_guess_output: A structured synthesis with source inventory, coded observations, themes with evidence, and directional design implications — labeled as inferred where no primary tool access exists.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-research-synthesis.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/ux-researcher-research-synthesis.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: Every research question is addressed by at least one theme with traceable evidence, every finding has a source ID, and the team can make a product or design decision without reading raw notes.
 ---
 
@@ -296,3 +298,12 @@ Document honestly:
 - `### Recommendations` — all recommendations in structured schema, linked to themes and findings
 - `### Coverage map` — what was fully, partially, and not analyzed
 - `### Confidence and gaps` — where synthesis is strong, where evidence is thin, what needs more sessions
+
+## Lossless Deliverable Contract
+
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ux-researcher-research-synthesis.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.

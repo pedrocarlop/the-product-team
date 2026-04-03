@@ -42,7 +42,9 @@ tool_routing:
   - if: only static notes or partial screenshots exist
     use: [reference/verify]
 best_guess_output: A system QA and adoption plan with verification checks, blocker analysis, rollout guidance, exit criteria, and clear confidence limits.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer-system-qa-and-adoption.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/design-systems-designer-system-qa-and-adoption.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: Teams have a repeatable verification method, can see the highest adoption blockers, and know what must be true before the system rollout is considered operationally healthy.
 ---
 
@@ -67,7 +69,7 @@ Read `../references/tooling-landscape.md` when Storybook, Chromatic, zeroheight,
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Inputs And Assumptions
 

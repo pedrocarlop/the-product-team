@@ -5,7 +5,9 @@ trigger: When a concept must become a production-ready design.
 primary_mcp: figma
 fallback_tools: paper
 best_guess_output: A production-ready screen spec or screen set with handoff notes and required `project-ds-spec.md` updates.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-screen-production-design.md
+output_artifacts:
+  - logs/active/<project-slug>/deliverables/ui-designer-screen-production-design.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: Layout, hierarchy, tokens, and core states are specified clearly.
 required_inputs:
   - upstream direction or winning variant section
@@ -183,7 +185,7 @@ Do not present inferred structure as if it were observed.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 

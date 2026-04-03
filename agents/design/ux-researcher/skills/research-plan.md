@@ -34,7 +34,9 @@ tool_routing:
   - if: all primary tools are unavailable
     use: search_query, reference/ground — best-guess output; label as inferred
 best_guess_output: A research plan with decision context, prioritized research questions, method selection rationale, sample design, risk register, and output scope.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-research-plan.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/ux-researcher-research-plan.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: Every research question maps to a product decision, every method choice is justified against the question type, sample is specified with profile and size rationale, risks are documented, and the plan can be executed without inventing protocol details later.
 ---
 
@@ -276,4 +278,4 @@ These limits must be stated in the plan. Do not imply higher confidence than the
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.

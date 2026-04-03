@@ -40,7 +40,9 @@ tool_routing:
   - if: only static exports or notes exist
     use: [paper, repository]
 best_guess_output: An atomic component-library structure with explicit layers, promotion rules, missing pieces, and a pragmatic migration order.
-output_artifacts: logs/active/<project-slug>/deliverables/design-systems-designer-atomic-library-build.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/design-systems-designer-atomic-library-build.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: The team has a defensible library structure, knows what belongs in each layer, and can promote or reject new shared components without re-litigating the model.
 ---
 
@@ -65,7 +67,7 @@ Read `../references/tooling-landscape.md` when Storybook, zeroheight, Supernova,
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Inputs And Assumptions
 

@@ -3,7 +3,9 @@ name: screener-form-build
 description: Applies participant profiling, quota sampling logic, and screener design best practices to build a form that recruits the right people with minimum respondent burden.
 trigger: When a study needs recruitment filtering — qualitative or quantitative — and inclusion/exclusion criteria must be operationalized into a form.
 best_guess_output: A structured screener with participant profile model, qualification logic per question, quota targets, and backup plan.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-screener-form-build.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/ux-researcher-screener-form-build.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: The screener contains a documented participant profile model, ≤10 questions with explicit qualify/disqualify logic per answer, quota targets, and a named tool path used to deploy it.
 required_inputs:
   - research plan (study goals, participant type, sample size)
@@ -313,4 +315,4 @@ The screener cannot control:
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
-- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.

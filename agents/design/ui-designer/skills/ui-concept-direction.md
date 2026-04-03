@@ -5,7 +5,9 @@ trigger: When a new UI direction or concept needs exploration.
 primary_mcp: paper
 fallback_tools: search_query
 best_guess_output: A concept direction with clear visual thesis and promising directions.
-output_artifacts: logs/active/<project-slug>/runs/<run-id>/deliverables/ui-designer-ui-concept-direction.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/ui-designer-ui-concept-direction.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: A team can choose or refine one of 3 materially different directions, understand the recommended path, and see the shared design spec seeded.
 required_inputs:
   - new-design confirmation or an explicit note that this is only an extension of an existing pattern
@@ -174,7 +176,7 @@ Do not end in a tie.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 

@@ -10,7 +10,9 @@ recommended_passes:
   - Run after study-design and screener-form-build
   - Feed outputs into synthesis and findings skills
 best_guess_output: A structured study ops plan with recruiting pipeline, scheduling setup, consent process, incentive plan, and contingency design for each lifecycle phase.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-study-ops-and-recruiting.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/ux-researcher-study-ops-and-recruiting.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: Every ops component has a named owner, a tool, a handoff point, and a documented contingency. The study can be scheduled, staffed, and launched without open operational blockers.
 tool_stack:
   runtime:
@@ -370,3 +372,11 @@ This skill cannot guarantee:
 - `### Staffing and ownership` — named owner for every ops component
 - `### Incentive plan` — amount, format, delivery mechanism, compliance notes
 - `### Risks and contingencies` — failure modes and contingency for each ops component
+## Lossless Deliverable Contract
+
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ux-researcher-study-ops-and-recruiting.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.

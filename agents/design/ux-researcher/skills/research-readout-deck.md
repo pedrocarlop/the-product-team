@@ -9,7 +9,9 @@ required_inputs:
 recommended_passes:
   - research-synthesis (prerequisite — findings must be synthesized before the readout is structured)
 best_guess_output: A structured research readout with audience model, insight hierarchy, narrative arc, evidence highlights, recommendations, and stakeholder asks.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-research-readout-deck.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/ux-researcher-research-readout-deck.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: The readout contains a complete audience-decision model, findings ordered by decision relevance, at least one recommendation linked to evidence with a stated confidence level, and an explicit stakeholder ask — and a stakeholder unfamiliar with the research could act on it in one pass.
 tool_stack:
   runtime:
@@ -271,3 +273,11 @@ This skill cannot guarantee:
 
 ---
 
+## Lossless Deliverable Contract
+
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ux-researcher-research-readout-deck.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.

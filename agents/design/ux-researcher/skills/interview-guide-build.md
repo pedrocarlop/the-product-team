@@ -3,7 +3,9 @@ name: interview-guide-build
 description: Applies semi-structured interview method, laddering technique, JTBD probing, and think-aloud protocol to construct a moderated session guide with sequencing, probes, evidence goals, and bias review.
 trigger: When live research sessions need a structured guide — generative interviews, evaluative sessions, or concept walkthroughs.
 best_guess_output: An interview guide with session structure, questions, probes, evidence goals, and moderator notes that supports comparable sessions across participants.
-output_artifacts: logs/active/<project-slug>/deliverables/ux-researcher-interview-guide-build.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/ux-researcher-interview-guide-build.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: A moderator can run all sessions from the guide without improvising the core script, every question is traceable to a research objective, and mandatory and optional probes are explicitly separated.
 required_inputs:
   - Research objective or study goal
@@ -294,3 +296,11 @@ This guide does not guarantee:
 **Label the path used:** Every output section must be labeled `sourced` (from Notion or linked plan), `fallback` (from search or research-plan skill), or `inferred` (constructed from incomplete inputs).
 
 **Done when:** A moderator can run all sessions from the guide without improvising the core script, every question is traceable to a research objective, and mandatory and optional probes are explicitly separated.
+## Lossless Deliverable Contract
+
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ux-researcher-interview-guide-build.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.

@@ -43,7 +43,9 @@ tool_routing:
   - if: primary tools are unavailable, blocked, or out of credits
     use: search_query and reference/ground; label output as fallback
 best_guess_output: A guidance and conversation design pack including a user intent map, guidance model, structured message library per flow state, escalation and fallback copy, and a pattern audit — labeled sourced, fallback, or inferred to match the evidence path used.
-output_artifacts: logs/active/<project-slug>/deliverables/content-designer-conversation-and-guidance-design.md
+output_artifacts:
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/content-designer-conversation-and-guidance-design.md
+  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
 done_when: Every user intent in scope has guidance copy for each flow state (entry, in-progress, reassurance, escalation, fallback); all copy passes Grice's relevance and quantity maxims; no guidance gap or missing escalation path remains undocumented.
 ---
 
@@ -351,7 +353,7 @@ Document honestly:
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ---
 
