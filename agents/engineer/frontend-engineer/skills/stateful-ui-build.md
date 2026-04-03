@@ -310,10 +310,12 @@ Do not omit this section or collapse it to a single line. Low-confidence areas m
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: stateful-ui-build`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 
 - `### Surface and state model`: The full state inventory table — state name, description, data requirements, transition triggers, and any guard conditions. This section must be complete before any implementation section is written.
 - `### Loading state`: Implementation description for pending and background-refetch states. Skeleton approach, aria attributes, and any layout-shift mitigation. Tool path used (TanStack Query `isPending` / XState state node / Zustand flag).

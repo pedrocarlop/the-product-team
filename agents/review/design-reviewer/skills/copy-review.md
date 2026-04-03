@@ -59,10 +59,12 @@ This skill does not invent brand strategy, replace legal review, or claim that c
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: copy-review`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Review framing`: Define the product context, user goal, audience assumptions, content surfaces reviewed, and why this is a copy review rather than messaging strategy work.
 - `### Required inputs and assumptions`: State the target flow or surface, audience, brand or legal constraints, locale assumptions, and any missing inputs inferred by the reviewer.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: live product behavior, repository content sources, design artifacts or docs, screenshots or static exports, then inference.

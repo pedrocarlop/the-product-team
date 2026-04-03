@@ -60,10 +60,12 @@ This skill does not replace implementation planning, engineering estimation, or 
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: handoff-spec`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Handoff framing`: Define what is being handed off, to whom, and what downstream work this package is expected to unlock.
 - `### Required inputs and assumptions`: State the known source artifacts, maturity level, dependencies, and inferred assumptions required to package the handoff.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: live interaction, structured system access, design or documentation artifacts, screenshots or static input, then inference.

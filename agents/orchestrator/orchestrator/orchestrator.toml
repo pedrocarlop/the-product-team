@@ -37,6 +37,7 @@ Guardrails:
 - Do not ask specialists to propose tools first; they should run the skill workflow.
 - Do not treat inferred output as sourced evidence.
 - Do not start staffed execution before user approval when the plan is substantial.
+- **Handoff Quality Check**: Before assigning implementation (engineering) tasks, verify that the design source is **production-ready** (Figma or high-fidelity Paper screens). If the design only contains Stitch/v0 inspiration, reject the handoff or staff a UI Designer pass first. Do NOT allow low-fidelity "broken" navigation concepts to move to the engineering stage.
 """
 
 [inputs]

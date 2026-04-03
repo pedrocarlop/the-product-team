@@ -74,10 +74,12 @@ This skill does not claim formal compliance certification, replace full screen-r
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: accessibility-review`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Review framing`: Define the surface reviewed, user goals, target users or assistive scenarios considered, and whether this is pre-release inspection, regression review, or remediation triage.
 - `### Required inputs and assumptions`: State the target flow or surface, known assistive contexts, platform assumptions, and any missing inputs inferred by the reviewer.
 - `### Coverage and assistive assumptions`: State the assistive scenarios, device assumptions, and what kind of runtime or artifact coverage the review actually achieved.

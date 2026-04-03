@@ -66,6 +66,7 @@ Read `../references/tooling-landscape.md` when the assignment references token t
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Inputs And Assumptions
 
@@ -96,6 +97,7 @@ Build the layout model before findings:
 ## Required Deliverable Sections
 
 Within `## Skill: spacing-and-layout-scale`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 
 - `### Scale objective`
 - `### Required inputs and assumptions`

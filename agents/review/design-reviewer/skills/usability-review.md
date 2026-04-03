@@ -73,10 +73,12 @@ This skill does not replace moderated research, analytics-backed behavioral evid
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: usability-review`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Review framing`: Define the user goal, task context, intended audience, and why this is an expert inspection rather than user testing.
 - `### Required inputs and assumptions`: State the target flow or surface, top tasks selected in advance, target user type, and platform or state assumptions.
 - `### Heuristic framework and evaluator passes`: Name Nielsen's 10 usability heuristics as the default framework and list the passes used such as learnability, efficiency, consistency, and error prevention and recovery.

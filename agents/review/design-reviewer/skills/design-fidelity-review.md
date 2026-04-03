@@ -55,10 +55,12 @@ This skill does not treat every difference as a bug, assume the design source of
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: design-fidelity-review`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Review framing`: Define the target surface, source-of-truth artifact, and what counts as meaningful drift for this review.
 - `### Required inputs and assumptions`: State the target route or component, canonical design source, state and breakpoint scope, and any missing inputs inferred by the reviewer.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: source design plus live implementation, source design plus repo or static implementation artifacts, screenshots or linked specs, then inference.

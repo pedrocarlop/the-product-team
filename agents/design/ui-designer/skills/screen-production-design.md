@@ -3,7 +3,7 @@ name: screen-production-design
 description: Converge an approved UI direction into implementation-ready screens by locking hierarchy, layout, tokens, states, and any required `project-ds-spec.md` deltas.
 trigger: When a concept must become a production-ready design.
 primary_mcp: figma
-fallback_tools: paper, stitch
+fallback_tools: paper
 best_guess_output: A production-ready screen spec or screen set with handoff notes and required `project-ds-spec.md` updates.
 output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-screen-production-design.md
 done_when: Layout, hierarchy, tokens, and core states are specified clearly.
@@ -21,7 +21,7 @@ recommended_passes:
 tool_stack:
   runtime:
     primary: [figma]
-    secondary: [stitch, v0, framer]
+    secondary: [paper, v0, framer, stitch]
   artifacts:
     primary: [project-ds-spec.md, reference-design-systems, paper]
     secondary: [penpot, storybook]
@@ -29,10 +29,10 @@ tool_stack:
     primary: [open]
     secondary: [playwright]
 tool_routing:
-  - if: canonical direction exists in Figma or Stitch
+  - if: canonical direction exists in Figma
     use: [figma]
-  - if: production-shaped iteration is needed against a live preview or prompt-first mock
-    use: [v0, framer]
+  - if: editing or producing refined screens from a prompt or previous design
+    use: [paper]
   - if: reusable component libraries and inspectable variants matter most
     use: [penpot]
   - if: handoff needs component-level visual verification or regression checks
@@ -81,7 +81,8 @@ If evidence is partial, label the missing parts explicitly instead of filling th
 ## Tool Selection Rationale
 
 - `figma` is the primary path because it is the best source for authoritative layout, spacing, variants, tokens, and handoff-ready screen structure.
-- `stitch` is useful when the upstream concept was authored there or when the screen needs to stay in a prompt-to-canvas loop during convergence.
+- `stitch` is for inspiration-only reference layouts and concept boards. It should NOT be used to generate the final source HTML or production-ready component code, as it often produces incomplete navigation and broken logic.
+- `paper` is for creating or editing implementation-ready screens. Use `generate_screen_from_text` for new screens and `edit_screens` for modifications.
 - `v0` is useful when a blank or near-blank frontend needs a production-shaped preview quickly, especially if code-first iteration will inform the screen structure.
 - `framer` is useful when breakpoint behavior, motion, and interactive presentation need to be validated in a polished prototype environment.
 - `penpot` is useful when the team benefits from open, library-driven design system inspection, shared components, and inspectable production specs.
@@ -180,6 +181,7 @@ Do not present inferred structure as if it were observed.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
@@ -197,7 +199,8 @@ Within `## Skill: screen-production-design`, include:
 ## Tool Path
 
 - Start with `figma`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, stitch`.
+- If Figma is unavailable or the task is prompt-driven design creation/editing, switch to `paper`.
+- Use `stitch` ONLY for inspiration or reference layouts.
 - If both paths fail, produce the best-guess output described as: A production-ready screen spec or screen set.
 - Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
@@ -209,6 +212,8 @@ Within `## Skill: screen-production-design`, include:
 - When production decisions materially change the recommended implementation foundation, update `## Implementation Foundation` in `project-ds-spec.md` instead of burying the change inside screen notes.
 - If no upstream direction exists for a `new design` assignment, stop and note the mismatch instead of inventing one.
 - If no upstream `project-ds-spec.md` exists for `new design`, stop and note the mismatch instead of inventing around it.
+- Reuse `stitch` for inspiration ideas and reference layouts ONLY.
+- Do NOT use the HTML or code output from `stitch` as the foundation for production products; it is for visual reference and inspiration only.
+- Use `paper` (via `generate_screen_from_text` or `edit_screens`) to create or edit the actual design high-fidelity components and screens.
 - Use current ecosystem alternatives as support tools when helpful, including `v0` for prompt-first production previews, `framer` for interaction and breakpoint shaping, `penpot` for library-driven inspection, and `storybook` plus `playwright` for verification-oriented handoff checks.
 - Keep those alternatives supportive, not authoritative; the selected direction still comes from the upstream design evidence.
-

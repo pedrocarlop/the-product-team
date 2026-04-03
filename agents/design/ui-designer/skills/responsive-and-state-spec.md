@@ -3,7 +3,7 @@ name: responsive-and-state-spec
 description: Build a matrix-based contract for how a UI behaves across breakpoints, device classes, and meaningful interface states.
 trigger: When a design must survive real devices, async states, and content stress without losing hierarchy or usability.
 primary_mcp: figma
-fallback_tools: paper, chrome_devtools, search_query, open
+fallback_tools: paper, chrome_devtools, search_query, open, stitch
 required_inputs:
   - target surface or flow
   - expected breakpoints or device classes
@@ -78,6 +78,8 @@ This skill does not replace implementation QA, real-device verification, or acce
 - Use Chromatic or Percy when visual diffs need a baseline and review workflow across browsers or devices.
 - Use Penpot when the source of truth lives outside Figma and the artifact needs libraries, components, variants, inspect data, or prototype cues.
 - Use `open` and `search_query` when linked specs, docs, or repository notes are the clearest evidence path.
+- Use `stitch` for inspiration-only reference layouts and component patterns. It should NOT be used to generate the final source HTML or production-ready component code, as it often produces incomplete navigation and broken logic.
+- Use `paper` (via `generate_screen_from_text` or `edit_screens`) to create or edit the actual design high-fidelity components and screens.
 
 ## Environment and Reproducibility
 
@@ -146,10 +148,12 @@ If no findings are present, say that explicitly and summarize the covered matrix
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: responsive-and-state-spec`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Breakpoint matrix`: Specify how the UI changes across breakpoints and screen classes.
 - `### State matrix`: List the meaningful interface states and how each one changes the UI.
 - `### Exceptions`: Document intentional exceptions or breakpoint/state combinations that are unsupported.
@@ -160,6 +164,7 @@ Within `## Skill: responsive-and-state-spec`, include:
 
 - Start with `figma`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, chrome_devtools, search_query, open`.
+- Use `stitch` ONLY for inspiration or reference layouts.
 - If the surface is implemented and runtime evidence is available, add `playwright` for reproducible sweeps and `browserstack` for cross-device variance.
 - If component stories exist, add Storybook visual tests or interaction tests, and use Chromatic or Percy for visual diffs.
 - If accessibility concerns affect states, add `axe` as a supporting validation layer.
@@ -169,9 +174,10 @@ Within `## Skill: responsive-and-state-spec`, include:
 ## Workflow Notes
 
 - Treat responsive behavior and state behavior as a single matrix, not separate afterthoughts.
-- Use the strongest evidence path available before leaning on inference.
+- Use `stitch` for inspiration ideas and reference layouts ONLY.
+- Do NOT use the HTML or code output from `stitch` as the foundation for production products; it is for visual reference and inspiration only.
+- Use `paper` (via `generate_screen_from_text` or `edit_screens`) to create or edit the actual design high-fidelity components and screens.
 - Make exceptions explicit so they are not mistaken for omissions.
 - When repo or doc inspection is needed, use `open` or `search_query` rather than vague repository language.
 - Prefer real state coverage over cosmetic breakpoint notes.
 - If Storybook or Percy exists in the product stack, use them as the fastest way to validate state permutations and visual regressions.
-

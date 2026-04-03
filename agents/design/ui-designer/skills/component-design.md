@@ -3,7 +3,7 @@ name: component-design
 description: Create or extend reusable UI components with explicit anatomy, state coverage, reuse rules, and handoff signals.
 trigger: When the feature needs reusable UI patterns, not just one-off screens.
 primary_mcp: figma
-fallback_tools: paper, stitch
+fallback_tools: paper
 best_guess_output: A reusable component proposal with explicit states, reuse rules, and handoff notes.
 output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-component-design.md
 done_when: Component purpose, states, and intended reuse are explicit.
@@ -25,7 +25,9 @@ tool_stack:
   - paper
   - repository
 tool_routing:
-  - If the task is a new reusable component concept, use `figma` first and `stitch` for broader optioning.
+  - If the task is a new reusable component concept, use `figma` first.
+  - If high-fidelity production components are needed, use `paper`.
+  - If inspiration-only reference layouts or component patterns are needed, use `stitch`.
   - If the component already exists in code or must be verified in a live surface, use `chrome_devtools`.
   - If the task is docs-only, planning-only, or blocked on assets, use `paper` plus `repository` context.
   - If the repo has Storybook, treat it as a supporting verification surface for isolated states and documented variants.
@@ -61,7 +63,8 @@ Prefer Figma for composition and state modeling, Chrome DevTools for runtime ver
 ## Tool Selection Rationale
 
 - `figma` is the primary path because component design needs explicit anatomy, variants, and shared visual decisions.
-- `stitch` is useful when the task benefits from fast concept spacing, option generation, or direction testing before narrowing to one component shape.
+- `stitch` is for inspiration-only reference layouts and component patterns. It should NOT be used to generate the final source HTML or production-ready component code, as it often produces incomplete navigation and broken logic.
+- `paper` is for creating or editing implementation-ready components. Use `generate_screen_from_text` or `edit_screens` to produce high-fidelity component structure and logic.
 - `chrome_devtools` is the best supporting path when the component already exists in a live surface and behavior, layout, or accessibility need to be verified.
 - `paper` is the right fallback for planning, contract writing, or unresolved scope when no reliable artifact path is available.
 - `repository` context is useful for checking adjacent components, adoption constraints, and naming conventions.
@@ -144,10 +147,12 @@ Merge duplicates, group related low-severity items, and keep the final output fo
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: component-design`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Assignment type`: State whether the component supports `new design` exploration or extends an existing system.
 - `### Required inputs and assumptions`: Restate the inputs used and any assumptions made where scope was underspecified.
 - `### Input mode and evidence path`: Identify the evidence hierarchy used and why the chosen path was the strongest available.
@@ -169,16 +174,19 @@ Within `## Skill: component-design`, include:
 
 - Start with `figma`.
 - If a live implementation or component explorer exists, use `chrome_devtools` to verify behavior, density, and accessibility details.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, stitch`.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper`.
+- Use `stitch` ONLY for inspiration or reference layouts.
 - If both paths fail, produce the best-guess output described as: A component proposal or production component design.
 - Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 
 ## Workflow Notes
 
 - Design for reuse, not for one screen only.
+- Use `stitch` for inspiration ideas and reference layouts ONLY.
+- Do NOT use the HTML or code output from `stitch` as the foundation for production products; it is for visual reference and inspiration only.
+- Use `paper` (via `generate_screen_from_text` or `edit_screens`) to create or edit the actual high-fidelity components.
 - Prefer fewer variants backed by layout rules or tokens over a large set of bespoke permutations.
 - Use Storybook when it exists to verify isolated states, usage guidance, and visual regressions, but keep the design source of truth in the shared deliverable.
 - Use Penpot or v0 only as supporting exploration aids when a team already works that way, then bring the result back into the component contract.
 - Tie component decisions back to the broader system and intended adoption.
 - If reusable component families or widget patterns materially change, call out the required `project-ds-spec.md` follow-up instead of letting the component drift away from the shared system.
-

@@ -59,10 +59,12 @@ This skill does not replace root-cause analysis, full remediation planning, or p
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: regression-triage`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Review framing`: Define the build, branch, release candidate, change window, and the decision this triage must support.
 - `### Required inputs and assumptions`: State the known defect sources, environment assumptions, affected flows, and any missing inputs inferred by the reviewer.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: live reproduction, structured runtime plus repository evidence, review artifacts or issue history, then static or inferred evidence.

@@ -55,10 +55,12 @@ This skill does not assume every difference is a violation, treat the current im
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: design-system-compliance-review`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Review framing`: Define the system source of truth, reviewed scope, and what counts as compliance versus justified divergence.
 - `### Required inputs and assumptions`: State the reviewed surface, system source of truth, known exception rules, implementation touchpoints in scope, and any missing inputs inferred by the reviewer.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: source design system plus implementation touchpoints, runtime confirmation, reusable implementation references, then inference.

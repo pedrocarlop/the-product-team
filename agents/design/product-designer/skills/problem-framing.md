@@ -65,10 +65,12 @@ This skill does not jump ahead to detailed UI solutions, treat opinions as evide
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: problem-framing`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Framing objective`: Define what decision this framing must support and why the work needs framing before solutioning.
 - `### Required inputs and assumptions`: State the known product goal, target users, evidence, constraints, and any missing inputs inferred by the reviewer.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: live product and current work context, structured workspace artifacts, research repositories or workshop artifacts, static screenshots or exports, then inference.

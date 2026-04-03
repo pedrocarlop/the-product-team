@@ -380,12 +380,14 @@ Do not collapse this section to a single line. Unnamed unknowns become shipped d
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ---
 
 ## Required Deliverable Sections
 
 Within `## Skill: error-empty-success-states`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 
 - `### State inventory` — the full enumerated state table with category, trigger, severity, and recovery availability per state; label each row as sourced, fallback, or inferred
 - `### Message set` — every state message using the required schema (State ID / Headline / Body / CTA label / Recovery action / Voice constraint / Confidence)

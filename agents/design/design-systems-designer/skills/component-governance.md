@@ -65,6 +65,7 @@ Read `../references/tooling-landscape.md` when governance evidence lives in zero
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Inputs And Assumptions
 
@@ -96,6 +97,7 @@ Build the governance model before findings:
 ## Required Deliverable Sections
 
 Within `## Skill: component-governance`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 
 - `### Governance objective`
 - `### Required inputs and assumptions`

@@ -58,10 +58,12 @@ This skill does not finalize pixel-perfect visuals or assume runtime behavior is
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: interaction-spec`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Interaction framing`: Define the target flow, screen, or component and what implementation decision this spec must support.
 - `### Required inputs and assumptions`: State the known triggers, states, platform context, dependencies, and inferred assumptions required to complete the spec.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: live interaction, structured system access, design or documentation artifacts, screenshots or static input, then inference.

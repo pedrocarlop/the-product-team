@@ -63,10 +63,12 @@ This skill does not finalize visual styling, substitute for interaction specific
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: wireframe-structure`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Wireframe framing`: Define the assignment type, target user task, scope boundary, and why structural wireframes are needed now.
 - `### Required inputs and assumptions`: State the source flow, known constraints, missing content or state details, and any inferred structural assumptions.
 - `### Input mode and evidence path`: Choose the strongest available evidence path in this order: design source and flow artifacts, low-fidelity structural tools, static references, then inference.

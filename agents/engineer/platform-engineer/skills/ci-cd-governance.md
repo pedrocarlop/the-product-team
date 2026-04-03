@@ -77,10 +77,12 @@ This skill is for pipeline governance, not product release judgment, incident re
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: ci-cd-governance`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Governance goal`: State the control objective, the pipeline surface, and the decision the control should enable or block.
 - `### Required inputs and assumptions`: State what was known, what was missing, and which assumptions were necessary.
 - `### Input mode and evidence path`: Declare the evidence path used as `sourced`, `fallback`, or `inferred`.

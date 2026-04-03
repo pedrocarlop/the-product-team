@@ -273,10 +273,12 @@ Do not collapse this section to a single line. Unconfirmed decisions carry compo
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: component-implementation`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 
 - `### Component API surface model`: The full model — props with types and defaults, variant matrix, interactive state inventory, composition boundaries. Written before implementation begins.
 - `### System foundation alignment`: State whether the component builds on an existing foundation, extends a sibling component, or first bootstraps a foundation from `project-ds-spec.md`. Confirm whether a shadcn/ui initialization was required.

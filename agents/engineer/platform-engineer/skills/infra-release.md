@@ -88,10 +88,12 @@ This skill does not replace incident command, product approval, or hands-on exec
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ## Required Deliverable Sections
 
 Within `## Skill: infra-release`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 - `### Release framing`: Define the exact release candidate, target environment, and success criteria.
 - `### Required inputs and assumptions`: State what was known, what was missing, and which assumptions were made.
 - `### Input mode and evidence path`: Declare whether the path was sourced, fallback, or inferred, and what the evidence can and cannot prove.

@@ -321,12 +321,14 @@ Do not collapse this section to a single line. Specific unknowns must be named.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ---
 
 ## Required Deliverable Sections
 
 Within `## Skill: responsive-refinement`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 
 - `### Breakpoint matrix`: The full breakpoint set, mapped to device classes and target OS/browser combinations. Note source of breakpoint definitions (CSS tokens, Tailwind config, design file, or inferred).
 - `### Layout system inventory`: CSS layout mechanism, spacing and sizing approach, components with explicit responsive variants, and any fixed-dimension elements flagged for review.

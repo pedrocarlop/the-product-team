@@ -351,12 +351,14 @@ Document honestly:
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
 
 ---
 
 ## Required Deliverable Sections
 
 Within `## Skill: conversation-and-guidance-design`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
 
 - `### Evidence path` — which input mode and evidence tier was used; what is known vs. inferred
 - `### Intent model` — user intent map with all in-scope intents, flow states, confusion risk scores, and evidence sources
