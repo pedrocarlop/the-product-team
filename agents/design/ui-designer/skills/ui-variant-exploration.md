@@ -3,7 +3,7 @@ name: ui-variant-exploration
 description: Build a comparison model, explore materially different UI directions, and recommend the strongest variant from evidence.
 trigger: When the team needs options before committing to a single UI direction.
 primary_mcp: paper
-fallback_tools: stitch, figma
+fallback_tools: figma
 required_inputs:
   - product goal or decision to support
   - target surface, flow, or feature context
@@ -16,21 +16,22 @@ recommended_passes:
   - score and recommend one winner
 tool_stack:
   - paper for high-fidelity variant generation and production-ready options
-  - stitch for inspiration ideas, reference layouts, and exploratory concept boards
   - figma for component-aware inspection and layout precision
   - chrome_devtools for live implementation sanity checks when needed
+inspiration_tools:
+  - stitch for browsing reference layouts and visual inspiration only — never for generating designs
 best_guess_output: A variant comparison with recommendation and rationale.
 output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-ui-variant-exploration.md
 done_when: The chosen direction clearly beats the alternatives on the intended goal.
 tool_routing:
-  - if: an editable design canvas is available and the task is still exploratory
-    use: [stitch]
   - if: high-fidelity, production-shaped variants are needed
     use: [paper]
   - if: the variants need component, spacing, or state inspection
     use: [figma]
   - if: a live implementation must be used as context for comparison
     use: [chrome_devtools]
+  - if: visual reference or inspiration layouts are needed for comparison context
+    use: browse stitch screenshots only — do NOT generate designs with stitch
 ---
 
 # Ui Variant Exploration
@@ -60,7 +61,7 @@ Label the resulting section as `sourced`, `fallback`, or `inferred` to match the
 ## Tool Selection Rationale
 
 - Use `paper` (via `generate_variants` or `generate_screen_from_text`) for creating production-ready variants that can be directly refined into final screens.
-- Use `stitch` for inspiration ideas and reference layouts. It should NOT be used to generate the final source HTML or production-ready component code, as it often produces incomplete navigation and broken logic.
+- Browse `stitch` ONLY to screenshot and reference existing layouts for visual inspiration. NEVER generate screens, components, or HTML with stitch — it produces incomplete navigation and broken logic.
 - Use `figma` when component structure, spacing, states, or token implications need sharper inspection.
 - Use `chrome_devtools` only when a live implementation needs to be checked for context, not as a substitute for concept generation.
 - Alternative tools worth borrowing patterns from in the wider ecosystem include Framer for fast motion-rich direction tests, Penpot for spec-minded component exploration, Storybook for state coverage, and Playwright or Percy for later visual regression checks.
@@ -163,7 +164,7 @@ Within `## Skill: ui-variant-exploration`, include:
 ## Tool Path
 
 - Start with `paper`.
-- If the task is strictly gathering inspiration-only layouts or brainstorming, switch to `stitch`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, figma`.
+- If you need visual reference or inspiration, browse stitch screenshots but do NOT generate designs with it.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `figma`.
 - If both paths fail, produce the best-guess output described as: A variant comparison with recommendation and rationale.
 - Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.

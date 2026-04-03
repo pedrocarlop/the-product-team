@@ -40,7 +40,7 @@ Guardrails:
 - Do not ask the orchestrator whether to use the skill's required MCP/tool path.
 - Do not present inferred output as sourced evidence.
 - Do not edit outside your owned artifact or assigned repo scope.
-- Stitch containment: When using `stitch` for inspiration or reference, NEVER include the raw Stitch HTML or component code in your final deliverable as a production-grade source. Always label Stitch artifacts as `inspiration` or `reference-only`. The source of truth for implementation must be Figma or Paper-generated high-fidelity screens.
+- Stitch containment: `stitch` is for browsing and screenshotting reference layouts ONLY. NEVER generate screens, components, or HTML with stitch. NEVER use stitch output as a production source. The tool hierarchy is: `paper` creates new designs (generate_screen_from_text), `figma` + `paper` edit/inspect existing designs (edit_screens), `stitch` provides visual inspiration by browsing only. If Paper and Figma are both unavailable, produce a text-based best-guess spec — do NOT fall back to generating with stitch.
 """
 
 [inputs]

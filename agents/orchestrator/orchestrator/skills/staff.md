@@ -1,6 +1,6 @@
 ---
 name: staff
-description: Select the minimum viable team, assign lossless contracts, and set primary_tools plus fallback policy.
+description: Select the right-sized team, assign lossless contracts, and set primary_tools plus fallback policy.
 trigger: Once orchestration is needed or a staffed role must change.
 primary_mcp: repository, role metadata
 fallback_tools: reference/verify, context review
@@ -13,7 +13,7 @@ done_when: Every staffed role has one contract and target deliverables are expli
 
 ## Purpose
 
-Select the minimum viable team, assign contracts, and set primary_tools plus fallback policy.
+Select the right-sized team, assign contracts, and set primary_tools plus fallback policy.
 
 ## Required Workflow
 
@@ -36,6 +36,12 @@ evidence_mode: sourced|fallback|inferred
 - Restate the task in terms of this skill's trigger: Once orchestration is needed or a staffed role must change.
 - Identify the required inputs, existing artifacts, and dependencies.
 - Name the output this skill must produce.
+
+### Step 2b: Role Coverage Check
+Before finalizing the team, verify:
+1. Scan the request against the **Signal-Based Role Triggers** table in `references/role-catalog.md`.
+2. For each triggered role not in the current team, justify its exclusion in the staffing table.
+3. If more than 2 triggered roles are excluded, reconsider whether the team is under-staffed rather than right-sized.
 
 ### Step 3: Run The Tool Sequence
 - Use the primary MCP/tool first: `repository, role metadata`.

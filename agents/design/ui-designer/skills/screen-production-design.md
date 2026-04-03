@@ -21,7 +21,9 @@ recommended_passes:
 tool_stack:
   runtime:
     primary: [figma]
-    secondary: [paper, v0, framer, stitch]
+    secondary: [paper, v0, framer]
+  inspiration:
+    - stitch # browse and screenshot only — never generate designs with stitch
   artifacts:
     primary: [project-ds-spec.md, reference-design-systems, paper]
     secondary: [penpot, storybook]
@@ -81,7 +83,7 @@ If evidence is partial, label the missing parts explicitly instead of filling th
 ## Tool Selection Rationale
 
 - `figma` is the primary path because it is the best source for authoritative layout, spacing, variants, tokens, and handoff-ready screen structure.
-- `stitch` is for inspiration-only reference layouts and concept boards. It should NOT be used to generate the final source HTML or production-ready component code, as it often produces incomplete navigation and broken logic.
+- `stitch` is for browsing and screenshotting existing reference layouts ONLY. NEVER generate screens, components, or HTML with stitch — it produces incomplete navigation and broken logic.
 - `paper` is for creating or editing implementation-ready screens. Use `generate_screen_from_text` for new screens and `edit_screens` for modifications.
 - `v0` is useful when a blank or near-blank frontend needs a production-shaped preview quickly, especially if code-first iteration will inform the screen structure.
 - `framer` is useful when breakpoint behavior, motion, and interactive presentation need to be validated in a polished prototype environment.

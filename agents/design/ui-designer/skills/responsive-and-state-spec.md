@@ -3,7 +3,7 @@ name: responsive-and-state-spec
 description: Build a matrix-based contract for how a UI behaves across breakpoints, device classes, and meaningful interface states.
 trigger: When a design must survive real devices, async states, and content stress without losing hierarchy or usability.
 primary_mcp: figma
-fallback_tools: paper, chrome_devtools, search_query, open, stitch
+fallback_tools: paper, chrome_devtools, search_query, open
 required_inputs:
   - target surface or flow
   - expected breakpoints or device classes
@@ -78,7 +78,7 @@ This skill does not replace implementation QA, real-device verification, or acce
 - Use Chromatic or Percy when visual diffs need a baseline and review workflow across browsers or devices.
 - Use Penpot when the source of truth lives outside Figma and the artifact needs libraries, components, variants, inspect data, or prototype cues.
 - Use `open` and `search_query` when linked specs, docs, or repository notes are the clearest evidence path.
-- Use `stitch` for inspiration-only reference layouts and component patterns. It should NOT be used to generate the final source HTML or production-ready component code, as it often produces incomplete navigation and broken logic.
+- Browse `stitch` ONLY to screenshot existing reference layouts for visual inspiration. NEVER generate screens, components, or HTML with stitch — it produces incomplete navigation and broken logic.
 - Use `paper` (via `generate_screen_from_text` or `edit_screens`) to create or edit the actual design high-fidelity components and screens.
 
 ## Environment and Reproducibility
@@ -164,7 +164,7 @@ Within `## Skill: responsive-and-state-spec`, include:
 
 - Start with `figma`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `paper, chrome_devtools, search_query, open`.
-- Use `stitch` ONLY for inspiration or reference layouts.
+- Browse `stitch` ONLY to screenshot existing reference layouts — never generate with it.
 - If the surface is implemented and runtime evidence is available, add `playwright` for reproducible sweeps and `browserstack` for cross-device variance.
 - If component stories exist, add Storybook visual tests or interaction tests, and use Chromatic or Percy for visual diffs.
 - If accessibility concerns affect states, add `axe` as a supporting validation layer.
@@ -174,8 +174,8 @@ Within `## Skill: responsive-and-state-spec`, include:
 ## Workflow Notes
 
 - Treat responsive behavior and state behavior as a single matrix, not separate afterthoughts.
-- Use `stitch` for inspiration ideas and reference layouts ONLY.
-- Do NOT use the HTML or code output from `stitch` as the foundation for production products; it is for visual reference and inspiration only.
+- Use `stitch` ONLY to browse and screenshot existing reference layouts for visual inspiration. Never generate screens, components, or HTML with stitch.
+- The tool hierarchy is: `paper` creates new designs, `figma` + `paper` edit/inspect existing designs, `stitch` provides visual inspiration by browsing only.
 - Use `paper` (via `generate_screen_from_text` or `edit_screens`) to create or edit the actual design high-fidelity components and screens.
 - Make exceptions explicit so they are not mistaken for omissions.
 - When repo or doc inspection is needed, use `open` or `search_query` rather than vague repository language.

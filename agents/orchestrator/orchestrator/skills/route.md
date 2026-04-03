@@ -37,6 +37,14 @@ evidence_mode: sourced|fallback|inferred
 - Identify the required inputs, existing artifacts, and dependencies.
 - Name the output this skill must produce.
 
+### Step 2b: Signal Scan For Specialized Roles
+Before choosing a team pattern, scan the request for signals that indicate specialized roles are needed. Consult the **Signal-Based Role Triggers** table in `references/role-catalog.md`. For each signal detected:
+- Note the associated role
+- Check whether excluding that role would degrade the outcome
+- If yes, include it in the routing decision
+
+Do not default to the Feature Delivery pattern without first checking whether the request contains signals for analyst, business-ops, go-to-market, content-designer, design-systems-designer, or ux-researcher.
+
 ### Step 3: Run The Tool Sequence
 - Use the primary MCP/tool first: `repository, logs`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/ground, role-catalog review`.

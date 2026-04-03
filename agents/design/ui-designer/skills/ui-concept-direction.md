@@ -3,7 +3,7 @@ name: ui-concept-direction
 description: Compare and shape multiple visually distinct concept directions, grounded in reference systems and implementation constraints, so the team can choose a direction and seed the shared design spec.
 trigger: When a new UI direction or concept needs exploration.
 primary_mcp: paper
-fallback_tools: search_query, stitch
+fallback_tools: search_query
 best_guess_output: A concept direction with clear visual thesis and promising directions.
 output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-ui-concept-direction.md
 done_when: A team can choose or refine one of 3 materially different directions, understand the recommended path, and see the shared design spec seeded.
@@ -21,12 +21,13 @@ recommended_passes:
   - shadcn/ui suitability check
 tool_stack:
   - runtime: paper, v0
-  - secondary: [v0, framer, stitch]
+  - secondary: [v0, framer]
   - artifacts: figma, Framer, Penpot, reference-design-systems
-  - fallback: search_query, stitch
+  - fallback: search_query
+  - inspiration: [stitch] # browse and screenshot only — never generate designs with stitch
 tool_routing:
   - if the work is already in a design canvas and needs high-fidelity production, use paper first
-  - if inspiration-only reference layouts or concept boards are needed, use stitch
+  - if inspiration-only reference layouts are needed, browse stitch screenshots for visual reference only — do not generate or create designs with stitch
   - if a quick prompt-to-UI draft would sharpen the direction, use v0
   - if motion or breakpoint behavior needs to be felt, use Framer preview
   - if open, collaborative boards or component libraries are the better fit, use Penpot
@@ -72,7 +73,7 @@ When the evidence path is weak, say so and keep the recommendation cautious.
 ## Tool Selection Rationale
 
 - `paper` is the primary path for creating implementation-ready screen designs and production-shaped concepts. Its official docs support high-fidelity generation via `generate_screen_from_text`.
-- `stitch` is for inspiration-only reference layouts and concept boards. It should NOT be used to generate the final source HTML or production-ready component code, as it often produces incomplete navigation and broken logic.
+- `stitch` is for browsing and screenshotting existing reference layouts ONLY. NEVER generate screens, components, or HTML with stitch — it produces incomplete navigation and broken logic. Browse stitch to see what others have built; use `paper` to create your own designs.
 - `v0` is the strongest alternate when a prompt-to-UI draft, screenshot-based translation, or code-shaped concept would clarify the direction. Its official docs support text prompting, screenshot/file uploads, design mode, and design-system-aware generation.
 - `Framer` is useful when the concept needs interactive preview, component reuse, or breakpoint/motion rehearsal before the team commits. Its docs cover components, shared libraries, preview, and breakpoint-aware behavior.
 - `Penpot` is useful when the team wants open, collaborative boards, reusable components and libraries, inspect mode, or lightweight prototyping with explicit design-system assets.
@@ -206,17 +207,17 @@ If the product already has a meaningful foundation, say not to initialize shadcn
 ## Tool Path
 
 - Start with `paper`.
-- If the primary path is unavailable, or if the task is strictly gathering inspiration-only layouts, use `stitch`.
-- If both paths fail, produce the best-guess output described as: A concept direction with clear visual thesis and promising directions.
+- If you need visual reference or inspiration, browse stitch screenshots but do NOT generate designs with it.
+- If paper is unavailable, produce the best-guess output from text description. Do NOT fall back to generating with stitch.
 - Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
 - Combine tools when useful rather than forcing a single tool.
 
 ## Workflow Notes
 
 - This skill is the first-stage requirement for `new_design` work.
-- Use `stitch` for reference layouts and inspiration ideas ONLY.
+- Use `stitch` ONLY to browse and screenshot existing reference layouts for visual inspiration. Never generate screens, components, or HTML with stitch.
 - Use `paper` (via `generate_screen_from_text`) to create the actual design high-fidelity components and screens.
-- Do NOT use the HTML or code output from `stitch` as the foundation for production products; it is for visual reference and inspiration only.
+- The tool hierarchy is: `paper` creates new designs, `figma` + `paper` edit/inspect existing designs, `stitch` provides visual inspiration by browsing only.
 - Read up to 3 reference systems from `.codex/product-team/references/reference-design-systems/` before generating directions.
 - Produce 3 meaningfully different high-level directions, not cosmetic variations of one idea.
 - Each direction must differ on at least 3 axes chosen from layout model, density, interaction tone, visual language, typography strategy, color strategy, hierarchy model, or framing metaphor.
