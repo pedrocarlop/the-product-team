@@ -402,6 +402,16 @@ def install_package_docs(root: Path, target_root: Path) -> None:
         scripts_lib_root,
         ignore=shutil.ignore_patterns(".DS_Store", "__pycache__"),
     )
+    auto_improve_source = root / "assets" / "auto-improve"
+    auto_improve_target = package_root / "auto-improve"
+    if auto_improve_source.is_dir():
+        if auto_improve_target.exists():
+            shutil.rmtree(auto_improve_target)
+        shutil.copytree(
+            auto_improve_source,
+            auto_improve_target,
+            ignore=shutil.ignore_patterns(".DS_Store", "__pycache__"),
+        )
 
 
 def install_logs(root: Path, target_root: Path) -> bool:

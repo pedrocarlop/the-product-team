@@ -1,0 +1,48 @@
+name: Product Team Self-Improvement
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run daily at midnight
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: 'Scenario to run'
+        required: true
+        default: 'modern-saas-dashboard'
+      role:
+        description: 'Role to optimize'
+        required: true
+        default: 'design/ui-designer'
+      skill:
+        description: 'Skill to optimize'
+        required: true
+        default: 'ui-concept-direction'
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Run Benchmark
+        run: |
+          python3 .codex/product-team/auto-improve/benchmark.py ${{ github.event.inputs.scenario }} ${{ github.event.inputs.role }} ${{ github.event.inputs.skill }}
+
+      - name: Meta-Optimization Cycle
+        run: |
+          python3 .codex/product-team/auto-improve/meta_optimizer.py ${{ github.event.inputs.scenario }} ${{ github.event.inputs.role }} ${{ github.event.inputs.skill }}
+
+      - name: Commit Improvements
+        if: success()
+        run: |
+          git config --global user.name "Product Team AI"
+          git config --global user.email "ai@product-team.local"
+          git add .
+          git commit -m "Auto-Improve: Refined ${{ github.event.inputs.skill }} based on benchmark performance"
+          git push

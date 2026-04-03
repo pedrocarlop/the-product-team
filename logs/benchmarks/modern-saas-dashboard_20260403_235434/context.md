@@ -1,3 +1,5 @@
+### SKILL UNDER TEST: ui-concept-direction
+
 ---
 name: ui-concept-direction
 description: Compare and shape multiple visually distinct concept directions, grounded in reference systems and implementation constraints, so the team can choose a direction and seed the shared design spec.
@@ -125,10 +127,7 @@ Each direction must be written as a structured record, not free-form prose.
 - Visual thesis:
 - Style pillars:
 - Layout model:
-- Token direction: Use HSL tokens only (e.g., hsl(var(--primary))).
-- Typography: Use modern sans-serif fonts (Inter, Roboto, or Outfit).
-- Aesthetic Layer: Include high-fidelity cues (glassmorphism, gradients, subtle bento grids).
-- Component Breakdown: List at least 3 core components with state/style definitions.
+- Token direction:
 - Reference cues:
 - Divergence axes:
 - Why this is materially different:
@@ -190,8 +189,7 @@ Within `## Skill: ui-concept-direction`, include:
 - `### Direction 1`: Include `Visual thesis`, `Style pillars`, `Token direction`, `Reference cues`, `Divergence axes`, and `Why this is materially different`.
 - `### Direction 2`: Include `Visual thesis`, `Style pillars`, `Token direction`, `Reference cues`, `Divergence axes`, and `Why this is materially different`.
 - `### Direction 3`: Include `Visual thesis`, `Style pillars`, `Token direction`, `Reference cues`, `Divergence axes`, and `Why this is materially different`.
-- `### Component Breakdown`: (Mandatory) List at least 3 core interactive components with their layout, visual style (glass/flat), and state behavior.
-- `### Project ds-spec seed`: Include `Design principles and brand posture`, `Reference inspirations`, `Typography direction`, `Color and token direction (HSL only)`, `Implementation foundation`, `Spacing and layout rules`, and `State, motion, and accessibility rules`.
+- `### Project ds-spec seed`: Include `Design principles and brand posture`, `Reference inspirations`, `Typography direction`, `Color and token direction`, `Implementation foundation`, `Spacing and layout rules`, and `State, motion, and accessibility rules`.
 - `### Recommended direction`: Name the most promising direction and why it is the best next step.
 - `### Anti-patterns to avoid`: List the generic or over-polished traps the team should avoid during convergence.
 
@@ -240,3 +238,23 @@ If the product already has a meaningful foundation, say not to initialize shadcn
 - It cannot prove the chosen direction is correct without product and engineering follow-through.
 - Confidence should drop when the evidence path is only static or inferred.
 - If a reference system or implementation foundation is missing, say so explicitly.
+
+
+### TASK:
+# Scenario: Modern SaaS Dashboard
+
+## Task
+Design the visual concept for a modern SaaS Project Management Dashboard.
+
+## Requirements
+1. **Typography**: Use a modern sans-serif font (Inter, Roboto, or Outfit).
+2. **Color Palette**: Use a curated, harmonious HSL color theme. Avoid generic hex colors like #FF0000 or #0000FF.
+3. **Aesthetics**: Implement premium design trends like glassmorphism, subtle gradients, and rounded corners (at least 8-12px).
+4. **Layout**: Ensure a clean, spacious layout with clear hierarchy.
+
+## Output Contract
+Produce a `design-concept.md` artifact that includes:
+- Color palette tokens (HSL).
+- Typography choices.
+- Component descriptions.
+- A descriptive prompt for a UI generation tool.
