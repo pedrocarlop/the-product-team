@@ -76,7 +76,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 
 ## `staff`
 
-- Description: Select the minimum viable team, assign lossless contracts, and set primary_tools plus fallback policy.
+- Description: Select the right-sized team, assign lossless contracts, and set primary_tools plus fallback policy.
 - Trigger: Once orchestration is needed or a staffed role must change.
 - Primary MCP/tool: repository, role metadata
 - Fallback: reference/verify, context review

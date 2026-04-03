@@ -14,6 +14,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Output: logs/active/<project-slug>/deliverables/ux-researcher-competitor-research.md
 - Done when: The competitive landscape model is constructed, relevant patterns are documented with sourced evidence or explicitly labeled as inferred, and implications are linked to the originating design decision.
 
+## `foundational-research`
+
+- Description: Conduct high-level problem-space research and category behavior analysis for generic or outcome-first requests. Focus on user needs, frustrations, and competitor UX benchmarks in a broad category.
+- Trigger: When the request is category-first or lacks a bounded user problem. Usually staffed alongside `venture-discovery`.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A Foundations Deck with detailed category user behaviors, frustration mapping, and qualitative competitor UX teardowns.
+- Output: logs/active/<project-slug>/deliverables/ux-researcher-foundational-research.md
+- Done when: The category's "unmet needs" are identified, and the team has qualitative evidence for why current solutions are failing.
+
 ## `interview-guide-build`
 
 - Description: Applies semi-structured interview method, laddering technique, JTBD probing, and think-aloud protocol to construct a moderated session guide with sequencing, probes, evidence goals, and bias review.

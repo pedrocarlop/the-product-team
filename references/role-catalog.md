@@ -3,13 +3,13 @@
 This is the canonical staffed-role catalog for Product Team orchestration decisions.
 
 - Route by real job function, not by abstract discipline labels alone.
-- Staff the right-sized team — include every role whose absence would degrade the outcome, not just the smallest possible set. Assign exact `skill_paths` instead of vague domain ownership.
+- Staff the minimum viable role set and assign exact `skill_paths` instead of vague domain ownership.
 - `reference` remains a helper role for grounding, tracing, reuse, and verification; it is not a staffed specialist.
 - Every staffed role is skill-first and MCP-first: primary MCP -> alternative tool/MCP -> best guess inferred output.
 
 ## Business Roles
 
-- `product-lead` (Product Lead, executor) — Why: Own problem framing, product specification, prioritization, and decision communication for cross-functional delivery. Owns: problem framing, product specification, prioritization. Repo writes: never in staffed workflows.
+- `product-lead` (Product Lead, executor) — Why: Own problem framing, product specification, prioritization, and decision communication for cross-functional delivery using AI-first discovery and framing methods. Owns: problem framing, product specification, prioritization. Repo writes: never in staffed workflows.
 - `analyst` (Analyst, executor) — Why: Own metric definition, funnel diagnosis, forecasting, experiment readouts, and data storytelling for product decisions. Owns: metric frameworks, funnel diagnosis, forecasting. Repo writes: never in staffed workflows.
 - `go-to-market` (Go-To-Market, executor) — Why: Own positioning, launch planning, campaign briefs, sales enablement, partner strategy, and customer-signal synthesis. Owns: positioning, launch execution, campaign planning. Repo writes: never in staffed workflows.
 - `business-ops` (Business Ops, executor) — Why: Own process mapping, operating cadence, tooling design, and execution tracking for cross-functional operations. Owns: process design, operating cadence, tooling workflows. Repo writes: never in staffed workflows.
@@ -41,13 +41,6 @@ This is the canonical staffed-role catalog for Product Team orchestration decisi
 - **Design system work**: `design-systems-designer` -> `frontend-engineer` -> `design-reviewer`
 - **Platform change**: `platform-engineer` -> `qa-reviewer`
 - **Go-to-market launch**: `product-lead` + `go-to-market` + `analyst`
-- **Content-heavy feature**: `content-designer` -> `product-designer` or `ui-designer` -> `frontend-engineer` -> `design-reviewer`
-- **Data-driven decision**: `analyst` -> `product-lead` -> relevant executor
-- **Research-to-design**: `ux-researcher` -> `product-designer` -> `ui-designer` -> `design-reviewer`
-- **Full product lifecycle**: `product-lead` -> `ux-researcher` -> `product-designer` -> `ui-designer` -> `content-designer` -> `frontend-engineer` -> `design-reviewer` -> `qa-reviewer`
-- **Operations improvement**: `business-ops` -> `analyst` -> `product-lead`
-- **Design system evolution**: `design-systems-designer` -> `ui-designer` -> `frontend-engineer` -> `design-reviewer`
-- **Launch preparation**: `product-lead` -> `go-to-market` -> `content-designer` -> `analyst`
 
 ## Sequencing Rules
 
@@ -58,29 +51,8 @@ This is the canonical staffed-role catalog for Product Team orchestration decisi
 - Design review and QA review happen after executor outputs exist; reviewers do not fix the work themselves.
 - Only one explicit repo implementation owner exists per stage by default.
 
-## Signal-Based Role Triggers
-
-Before defaulting to a common team pattern, scan the request for these signals. If a signal is present, the associated role SHOULD be included unless there is an explicit reason to exclude it.
-
-| Signal in request | Consider role | Why |
-|---|---|---|
-| Metrics, KPIs, data, funnel, conversion, A/B test, experiment | `analyst` | Metric definition, funnel diagnosis, experiment design |
-| Process, operations, workflow, tooling, cadence, tracking | `business-ops` | Process mapping, operating cadence, tooling audits |
-| Launch, positioning, campaign, sales enablement, GTM, market | `go-to-market` | Positioning, launch planning, campaign briefs |
-| Copy, microcopy, naming, taxonomy, error messages, empty states, tone | `content-designer` | Microcopy systems, state messaging, naming |
-| Design system, tokens, spacing scale, component library, governance | `design-systems-designer` | System audits, token architecture, component governance |
-| Research, interviews, usability testing, user feedback, personas | `ux-researcher` | Research planning, synthesis, competitor benchmarking |
-| Journey, flow, wireframe, interaction, prototype | `product-designer` | Journey/flow design, wireframes, interaction specs |
-| Visual direction, concept, screen design, responsive spec, polish | `ui-designer` | Visual concepts, screen production, responsive specs |
-| API, backend, domain model, integration, webhook | `backend-engineer` | API implementation, domain models, integrations |
-| Schema, migration, pipeline, infrastructure, CI/CD, security | `platform-engineer` | Migrations, pipelines, infra releases |
-| Accessibility, usability review, design fidelity, handoff quality | `design-reviewer` | Fidelity review, accessibility, compliance |
-| Test plan, regression, release gate, runtime audit | `qa-reviewer` | Test plans, regression triage, release readiness |
-| PRD, requirements, prioritization, roadmap, stakeholder | `product-lead` | Problem framing, specs, prioritization |
-| Frontend, UI implementation, components, responsive, browser | `frontend-engineer` | UI implementation, components, responsive behavior |
-
 ## Skill Routing
 
 - Roles are selected first by job function, then by exact `skill_paths`.
 - Do not assign a role without also assigning the core action it must execute.
-- Use `ui-designer` for Paper-first concept work (with stitch for reference browsing only) and for seeding `project-ds-spec.md` from company references, `design-systems-designer` for operationalizing that spec into token/library governance, `ux-researcher` for research operations and synthesis, and `qa-reviewer` for release readiness.
+- Use `ui-designer` for Stitch-first concept work and for seeding `project-ds-spec.md` from company references, `design-systems-designer` for operationalizing that spec into token/library governance, `ux-researcher` for research operations and synthesis, and `qa-reviewer` for release readiness.

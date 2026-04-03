@@ -5,6 +5,7 @@ Own research planning, participant screeners, interview guides, competitor bench
 
 ## Managed Skills
 
+- **foundational-research**: Conduct high-level problem-space research and category behavior analysis for generic or outcome-first requests.
 - **research-plan**: Define the research objective, method, sample, risks, and reporting path before the study runs. Anchored to GQM and the attitudinal/behavioral × qualitative/quantitative method matrix.
 - **screener-form-build**: Design participant screeners using profile modeling, quota sampling logic, and behavioral disqualifier best practices.
 - **interview-guide-build**: Write semi-structured interview guides with topic maps, probe laddering, JTBD framing, and evidence goals per section.

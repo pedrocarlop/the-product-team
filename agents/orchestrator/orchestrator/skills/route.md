@@ -37,13 +37,19 @@ evidence_mode: sourced|fallback|inferred
 - Identify the required inputs, existing artifacts, and dependencies.
 - Name the output this skill must produce.
 
-### Step 2b: Signal Scan For Specialized Roles
-Before choosing a team pattern, scan the request for signals that indicate specialized roles are needed. Consult the **Signal-Based Role Triggers** table in `references/role-catalog.md`. For each signal detected:
-- Note the associated role
-- Check whether excluding that role would degrade the outcome
-- If yes, include it in the routing decision
+### Step 2b: Project Maturity & Context Check
+- Check `context.md` and `TIMELINE.md` for project maturity.
+- If it is a new venture (no code, no context), prioritize **Venture Discovery** and **Foundational Research**.
+- If it is an evolving project (existing code, deep context), look for "Incremental Value-Add" opportunities.
 
-Do not default to the Feature Delivery pattern without first checking whether the request contains signals for analyst, business-ops, go-to-market, content-designer, design-systems-designer, or ux-researcher.
+### Step 2c: Signal Scan For Specialized Roles & Value-Add
+Before choosing a team pattern, scan the request for signals that indicate specialized roles are needed. Consult the **Signal-Based Role Triggers** table in `references/role-catalog.md`. For each signal detected:
+- Note the associated primary role.
+- **Identify Secondary Value-Add Roles**: For every primary role, suggest at least one adjacent discipline for a "Lean Pass" (e.g., Engineering feasibility for a new Design journey).
+- Check whether excluding these roles would degrade the outcome.
+- If yes, include them in the routing decision with an explicit `assignment_mode`.
+
+Do not default to a single-role execution without first checking for cross-functional value.
 
 ### Step 3: Run The Tool Sequence
 - Use the primary MCP/tool first: `repository, logs`.
