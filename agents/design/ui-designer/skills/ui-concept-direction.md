@@ -5,7 +5,7 @@ trigger: When a new UI direction or concept needs exploration.
 primary_mcp: paper
 fallback_tools: search_query
 best_guess_output: A concept direction with clear visual thesis and promising directions.
-output_artifacts: logs/active/<project-slug>/deliverables/ui-designer-ui-concept-direction.md
+output_artifacts: logs/active/<project-slug>/runs/<run-id>/deliverables/ui-designer-ui-concept-direction.md
 done_when: A team can choose or refine one of 3 materially different directions, understand the recommended path, and see the shared design spec seeded.
 required_inputs:
   - new-design confirmation or an explicit note that this is only an extension of an existing pattern
@@ -169,8 +169,8 @@ Do not end in a tie.
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ui-designer-ui-concept-direction.md`).
-- Do not merge this output into a shared role-level document.
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/runs/<run-id>/deliverables/ui-designer-ui-concept-direction.md`).
+- Do not merge this output into a shared role-level document or overwrite previous runs.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.

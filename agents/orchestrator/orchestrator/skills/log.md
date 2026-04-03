@@ -5,15 +5,15 @@ trigger: Any time routing, staffing, status, or risks change.
 primary_mcp: logs
 fallback_tools: repository review
 best_guess_output: A refreshed context entry that reflects the true current state.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-log.md
-done_when: A teammate can resume from context.md without guessing.
+output_artifacts: logs/active/<project-slug>/runs/<run-id>/deliverables/orchestrator-log.md
+done_when: A teammate can resume from context.md or the run history without guessing.
 ---
 
 # Log
 
 ## Purpose
 
-Keep context.md concise and current with role assignments, skill paths, and done-when criteria.
+Keep context.md and the project history (`runs/`) concise and current. Every relevant state change or prompt run must be recorded in a discrete run directory to ensure lossless context.
 
 ## Required Workflow
 
@@ -25,6 +25,7 @@ Every deliverable for this skill must start with the standard YAML header:
 ---
 role: orchestrator
 project: <slug>
+run_id: <run-id>
 deliverable: orchestrator.md
 confidence: <0.0-1.0>
 inputs_used: [context.md, <others>]

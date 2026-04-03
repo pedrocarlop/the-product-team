@@ -16,7 +16,12 @@ logs/
   active/
     <project-slug>/
       context.md
-      deliverables/
+      deliverables/   <-- Latest stable versions
+      runs/           <-- Every prompt run and phase transition
+        <run-id>-<YYYYMMDD-HHMM>/
+          prompt.md
+          deliverables/  <-- Snapshot of outputs from this run
+          feedback.md    <-- User feedback or review notes
       decisions/
   archive/
 ```
@@ -41,8 +46,23 @@ objective: <one-line-goal>
 confidence_score: <0.0-1.0>
 last_sync: <YYYY-MM-DD-HH:MM>
 status: <planning|executing|blocked|complete>
+current_run_id: <run-id>
 ---
 ```
+
+## Run Logging (MANDATORY)
+
+Every prompt execution and phase transition MUST be logged in `logs/active/<project-slug>/runs/<run-id>-<timestamp>/`.
+
+- **prompt.md**: The exact assignment or prompt given to the agent.
+- **deliverables/**: A folder containing the full content of any file created or modified during this run.
+- **Feedback/Review**: If a run is a response to user feedback, include `feedback.md`.
+
+### Lossless History Policy
+When an agent "updates" a deliverable:
+1. It **MUST NOT** overwrite the previous version in the `runs/` history.
+2. It **SHOULD** write the new version to the current run's `deliverables/` folder.
+3. It **MAY** update the canonical file in the root `deliverables/` folder to reflect the *latest* state, but only if the `runs/` history is already secured. **Preference: Agents should read from the latest run and write to a new run.**
 
 ## deliverables/
 
@@ -62,6 +82,7 @@ Every deliverable file must begin with:
 ---
 role: <role-name>
 project: <slug>
+run_id: <run-id>
 deliverable: <file-basename>
 confidence: <0.0-1.0>
 inputs_used: [<file-paths>]
@@ -92,11 +113,13 @@ For cross-role shared deliverables, define stable section ownership inside the d
 
 When the orchestrator staffs specialists, it assigns work with:
 
+- `run_id`: Unique identifier for the current execution stage.
 - `assignment_mode`
 - `owned_outputs`
 - `reads_from`
 - `repo_write_owner`
 - `repo_write_scope`
+- `output_path`: The specific `runs/<run-id>/deliverables/` path for this run's outputs.
 - `return_expected`
 - `skill_paths`
 - `primary_tools`

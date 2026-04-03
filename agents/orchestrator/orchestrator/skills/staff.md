@@ -4,9 +4,9 @@ description: Select the right-sized team, assign lossless contracts, and set pri
 trigger: Once orchestration is needed or a staffed role must change.
 primary_mcp: repository, role metadata
 fallback_tools: reference/verify, context review
-best_guess_output: A staffing table with role, skill_paths, target_deliverables, primary_tools, and fallback policy.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-staff.md
-done_when: Every staffed role has one contract and target deliverables are explicitly named for each assigned skill.
+best_guess_output: A staffing table with run_id, output_path, role, skill_paths, target_deliverables, primary_tools, and fallback policy.
+output_artifacts: logs/active/<project-slug>/runs/<run-id>/deliverables/orchestrator-staff.md
+done_when: Every staffed role has one contract and target deliverables are explicitly named for each assigned skill within a unique run directory.
 ---
 
 # Staff
@@ -25,6 +25,7 @@ Every deliverable for this skill must start with the standard YAML header:
 ---
 role: orchestrator
 project: <slug>
+run_id: <run-id>
 deliverable: orchestrator.md
 confidence: <0.0-1.0>
 inputs_used: [context.md, <others>]
@@ -46,23 +47,28 @@ evidence_mode: sourced|fallback|inferred
 ### Step 3: Run The Tool Sequence
 - Use the primary MCP/tool first: `repository, role metadata`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/verify, context review`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A staffing table with role, skill_paths, primary_tools, and fallback policy.
+- If both primary and fallback paths fail, produce the best-guess output described as: A staffing table with run_id, output_path, role, skill_paths, primary_tools, and fallback policy.
 - Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
 
-### Step 3b: Declare HTA Requirements & Assignment Mode
+### Step 3b: Declare Run Context & Assignment Mode
 For each staffed role, define:
+- `run_id`: Unique identifier for this execution (e.g., `RUN-001`).
+- `output_path`: `logs/active/<slug>/runs/<run-id>/deliverables/`.
 - `assignment_mode`: `primary_executor` | `lean_input` | `peer_reviewer`.
 - `hta_declared`: listing the MCP servers required (drawn from the role's `[capabilities].mcp_servers`).
 
 Example contract:
 ```yaml
-assignment_mode: lean_input
+run_id: RUN-001
+output_path: logs/active/my-project/runs/RUN-001/deliverables/
+assignment_mode: primary_executor
 hta_declared: [notion]
 ```
 
 ### Step 4: Produce The Staffing Execution Plan
 - Synthesize the result into the `orchestrator.md` as the start of the Execution Manifest.
-- For each role, define `target_deliverables` as a list of skill-specific filenames: `logs/active/<slug>/deliverables/<role>-<skill>.md`.
+- For each role, define `target_deliverables` as a list of skill-specific filenames: `logs/active/<slug>/runs/<run-id>/deliverables/<role>-<skill>.md`.
+- Ensure all outputs are contained within the `runs/<run-id>` directory to preserve history.
 - Carry forward any details downstream roles must preserve from the orientation phase.
 
 ### Step 5: Mandatory Reflection (Interleaved Thinking)
