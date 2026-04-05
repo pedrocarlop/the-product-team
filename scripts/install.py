@@ -74,8 +74,8 @@ PLATFORM_CONFIGS: dict[str, PlatformConfig] = {
         fragment_name="ANTIGRAVITY.fragment.md",
         target_file="ANTIGRAVITY.md",
         label="Antigravity",
-        with_knowledge=False,
-        with_app=False,
+        with_knowledge=True,
+        with_app=True,
     ),
 }
 COMMON_PLACEHOLDER_TARGETS = {
@@ -514,6 +514,15 @@ def install_logs(root: Path, target_root: Path) -> bool:
         (root / "logs" / "README.md").read_text(encoding="utf-8"),
         encoding="utf-8",
     )
+
+    timeline_path = logs_root / "TIMELINE.md"
+    if not timeline_path.exists():
+        timeline_headers = (
+            "| Date | Slug | Objective | Roles | Status |\n"
+            "|---|---|---|---|---|\n"
+        )
+        timeline_path.write_text(timeline_headers, encoding="utf-8")
+
     return True
 
 
@@ -522,22 +531,45 @@ def install_knowledge(root: Path, target_root: Path) -> bool:
     runs_dir = knowledge_root / "runs"
     reviews_dir = knowledge_root / "reviews"
     assets_dir = knowledge_root / "assets"
+    entities_dir = knowledge_root / "entities"
     ensure_directory(runs_dir)
     ensure_directory(reviews_dir)
     ensure_directory(assets_dir)
+    ensure_directory(entities_dir)
 
-    for keep_path in (runs_dir / ".gitkeep", reviews_dir / ".gitkeep", assets_dir / ".gitkeep"):
+    for keep_path in (
+        runs_dir / ".gitkeep",
+        reviews_dir / ".gitkeep",
+        assets_dir / ".gitkeep",
+        entities_dir / ".gitkeep",
+    ):
         if not keep_path.exists():
             keep_path.write_text("", encoding="utf-8")
 
     readme_path = knowledge_root / "README.md"
-    if readme_path.exists():
-        return False
+    if not readme_path.exists():
+        readme_path.write_text(
+            (root / "knowledge" / "README.md").read_text(encoding="utf-8"),
+            encoding="utf-8",
+        )
 
-    readme_path.write_text(
-        (root / "knowledge" / "README.md").read_text(encoding="utf-8"),
-        encoding="utf-8",
-    )
+    index_path = knowledge_root / "index.md"
+    if not index_path.exists():
+        index_content = (
+            "# Knowledge Index\n\n"
+            "## Market & Product\n"
+            "## User Research\n"
+            "## Design & Visual\n"
+            "## Engineering & Architecture\n"
+            "## Entities\n"
+        )
+        index_path.write_text(index_content, encoding="utf-8")
+
+    changelog_path = knowledge_root / "changelog.md"
+    if not changelog_path.exists():
+        changelog_content = "# Knowledge Changelog\n\n"
+        changelog_path.write_text(changelog_content, encoding="utf-8")
+
     return True
 
 

@@ -138,6 +138,24 @@ def main() -> int:
         library_text = reference_library_readme.read_text(encoding="utf-8")
         expect("inspiration-only" in library_text or "inspiration only" in library_text, "Installed reference design systems library index missing reference-only guidance.", failures)
 
+    if platform in ("codex", "antigravity"):
+        knowledge_dir = root / "knowledge"
+        expect(knowledge_dir.is_dir(), "Missing knowledge/ directory.", failures)
+        for sub in ("runs", "reviews", "assets", "entities"):
+            expect((knowledge_dir / sub).is_dir(), f"Missing knowledge/{sub}/ directory.", failures)
+        expect((knowledge_dir / "index.md").exists(), "Missing knowledge/index.md.", failures)
+        expect((knowledge_dir / "changelog.md").exists(), "Missing knowledge/changelog.md.", failures)
+
+        app_dir = root / "app"
+        expect(app_dir.is_dir(), "Missing app/ directory.", failures)
+        expect((app_dir / "web").is_dir(), "Missing app/web/ directory.", failures)
+
+    logs_dir = root / "logs"
+    expect(logs_dir.is_dir(), "Missing logs/ directory.", failures)
+    for sub in ("active", "archive"):
+        expect((logs_dir / sub).is_dir(), f"Missing logs/{sub}/ directory.", failures)
+    expect((logs_dir / "TIMELINE.md").exists(), "Missing logs/TIMELINE.md.", failures)
+
     for role in expected_roles:
         source_name = role["source_name"]
         toml_path, skills_dir, catalog_path = installed_role_paths(root, role)
