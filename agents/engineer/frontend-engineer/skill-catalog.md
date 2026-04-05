@@ -54,6 +54,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Output: knowledge/frontend-engineer-responsive-refinement.md
 - Done when: Every breakpoint in the defined set has been audited, all Critical and Significant findings have a documented fix or accepted risk, and desktop and mobile behavior are both intentional and verifiable.
 
+## `executor`
+
+- Description: Close the shipping loop — read all knowledge artifacts, build the app, run the full test suite, fix failures iteratively (up to a fix budget of 5 iterations), and repeat until all checks pass or blockers are surfaced. This is the recursive execution skill that transforms deliverables into shipped software.
+- Trigger: When all knowledge artifacts (design, spec, implementation) are available and the goal is to reach a green, verified, shippable state without human orchestration of individual fix cycles. Triggered at the end of a ship-mode pipeline or whenever a "make it work" execution loop is needed.
+- Primary MCP/tool: exec_command, read_thread_terminal, vitest, playwright
+- Fallback: search_query, reference_trace
+- Best guess: A ship report declaring SHIPPED / BLOCKED / PARTIAL status, all fix iterations applied with root causes, any unresolved blockers as structured findings, and final test suite counts.
+- Output: knowledge/frontend-engineer-executor.md
+- Done when: Zero failing unit tests, E2E smoke suite passes across primary viewports, axe-core reports zero critical/serious violations, and a deployable build artifact exists — OR the fix budget is exhausted and all remaining blockers are surfaced.
+
 ## `stateful-ui-build`
 
 - Description: Build the full async state model for a UI surface by constructing a state inventory first, then implementing loading, error, empty, and interactive states with explicit transitions — grounded in the state machine before any code is written.

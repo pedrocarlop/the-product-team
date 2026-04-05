@@ -56,6 +56,19 @@ Before choosing a team pattern, scan the request for signals that indicate speci
 
 Do not default to a single-role execution without first checking for cross-functional value.
 
+### Step 2d: Ship Mode Detection
+
+After scanning for roles, check whether the request is a **ship request** — explicitly asking to get working, deployed software (signals: "ship it", "make it work", "get it to green", "run it and fix it", "close the loop").
+
+If ship mode is detected:
+- Route the final stage to `frontend-engineer` with `skill_paths: ["executor"]`
+- The executor stage must be the **last** stage in the pipeline — it runs after all design, spec, and implementation stages are complete
+- Include in the executor assignment: `reads_from: ["knowledge/**"]`, `repo_write_scope` (explicit and bounded), and `done_when` criteria
+- Do NOT staff the executor alongside implementation stages — it must run after them, not in parallel
+- If implementation stages have not run yet (no `knowledge/frontend-engineer-implement-from-design.md` exists), run them first and route the executor as a downstream stage
+
+If ship mode is NOT detected (research, design, spec, or partial implementation requested), do not add the executor stage.
+
 ### Step 3: Run The Tool Sequence
 - Use the primary MCP/tool first: `repository, logs`.
 - If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `reference/ground, role-catalog review`.
