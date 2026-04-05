@@ -3,7 +3,7 @@ name: operating-rhythm
 description: Encode expert meeting models (Lencioni, Rockefeller) into a 2026-ready AI-automated cadence.
 trigger: When synchronization breaks, decisions are slow, or rituals feel "stale."
 best_guess_output: A high-performance operating rhythm blueprint with automated triage and intelligence capture.
-output_artifacts: logs/active/<project-slug>/deliverables/business-ops-operating-rhythm.md
+output_artifacts: knowledge/business-ops-operating-rhythm.md
 done_when: Cadence is mapped to DRI owners, Lencioni meeting types, and integrated with the 2026 tool stack.
 ---
 
@@ -98,6 +98,6 @@ Identify recurring failures:
 - **Strategy Anchor**: Monthly reviews MUST start with a Profit.co walkthrough.
 
 ## Output Contract
-- **Target**: `logs/active/<project-slug>/deliverables/business-ops-operating-rhythm.md`.
+- **Target**: `knowledge/business-ops-operating-rhythm.md`.
 - **Merge Rules**: Standalone deliverable.
 - **Artifacts**: Current vs Proposed Cadence table; Automation flow diagram.

@@ -47,6 +47,7 @@ REQUIRED_SKILL_FIELDS = {
 APPROVED_VIRTUAL_ALIASES = {
     "repository",
     "deliverables",
+    "knowledge",
     "logs",
     "context",
     "timeline",

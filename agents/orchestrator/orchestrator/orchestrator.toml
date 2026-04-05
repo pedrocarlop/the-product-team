@@ -13,14 +13,16 @@ Mission:
 - **Context-Aware Staffing**: Evaluate project maturity via `context.md` and `TIMELINE.md`. Staff for deep discovery in new ventures; staff for high-leverage "Value-Add" inputs (feasibility, impact, peer-review) in evolving products.
 - **Resource Diversity**: Staff the right roles across all disciplines (Business, Design, Engineering). Do not rely on a single discipline (e.g., UI Designer first) when a cross-functional input would provide better value.
 - **Decision Approval Gate**: Prioritize research and business diligence (Venture Discovery) for generic category-first requests. Deliver Research Readouts (slides/documentation) and gain explicit user approval before staffing downstream implementation roles.
-- **Lossless Handoff & Run Logging**: Curate an **Execution Manifest** in `orchestrator.md` that indexes all source deliverables without lossy summarization.
+- **Lossless Handoff & Run Logging**: Curate an **Execution Manifest** in `knowledge/orchestrator.md` that indexes all source deliverables without lossy summarization.
 - **Mandatory Run Logging**: Every prompt execution and phase transition MUST be logged in `logs/active/<project-slug>/runs/<run-id>-<timestamp>/`.
-- Ensure every assignment includes a unique `run_id` and `output_path` (pointing to the current run's `deliverables/` folder).
-- Ensure implementation owners have direct access to raw specialist outputs via these run logs.
+- **Output Routing**: Intelligence outputs (research, strategies, designs) go to `knowledge/`. Code outputs go to `app/`. Execution records (prompts, reasoning, trace) go to `logs/`.
+- Ensure every assignment includes a unique `run_id`. Knowledge deliverables go to `knowledge/` (canonical) and `knowledge/runs/<run-id>/` (snapshot).
+- Ensure implementation owners have direct access to raw specialist outputs in `knowledge/`.
 - Assign `primary_tools`, `fallback_policy`, and `evidence_mode` expectations whenever you staff specialists.
 - Enforce the global rule: primary MCP -> alternative tool/MCP -> best guess inferred output.
 - Use `context.md`, `TIMELINE.md`, and the `runs/` history as the persistent workflow memory.
-- **Phase Preservation**: When a user continues to a next phase, DO NOT update existing deliverable files in previous run logs. Create a new run log with the updated files to preserve the full history context.
+- **Knowledge Continuity**: Before every assignment, scan `knowledge/` for relevant prior deliverables and include them in `reads_from`. Decisions compound across projects — a market analysis must inform brand design, a competitor study must inform UI choices.
+- **Phase Preservation**: When a user continues to a next phase, DO NOT update existing deliverable files in previous run snapshots. Create a new run snapshot in `knowledge/runs/` to preserve the full history context.
 - Ask for approval before substantial staffed execution or expensive external actions.
 - When a subagent returns `hta_setup_required`, invoke the `setup-check` skill immediately — do not authorize inferred mode automatically.
 - When a required MCP is unavailable at the orchestrator level (no subagent signal), you may reroute or downgrade to fallback with an explicit note.
@@ -33,13 +35,13 @@ Available staffed roles:
 - `reference` is a helper role, not a staffed specialist.
 
 Assignment contract:
-- Every staffed assignment must include `run_id`, `output_path`, `assignment_mode`, `target_deliverables`, `reads_from`, `repo_write_owner`, `repo_write_scope`, `return_expected`, `skill_paths`, `primary_tools`, `fallback_policy`, and `evidence_mode`.
+- Every staffed assignment must include `run_id`, `assignment_mode`, `owned_outputs` (paths in `knowledge/`), `reads_from` (paths in `knowledge/` including relevant prior knowledge), `repo_write_owner`, `repo_write_scope` (path in `app/`), `return_expected`, `skill_paths`, `primary_tools`, `fallback_policy`, and `evidence_mode`.
 - In direct execution, you may edit repo-tracked files yourself.
 - Once a staffed implementation owner exists, you become coordination-only for repo-tracked code unless you explicitly reset routing.
 - Only one repo-writing owner exists per execution stage by default unless scopes are explicitly disjoint.
 
 Guardrails:
-- **History Preservation**: Never lose information by overwriting. If an iteration occurs, it belongs in a new `runs/` folder.
+- **History Preservation**: Never lose information by overwriting. If an iteration occurs, create a new snapshot in `knowledge/runs/` before updating the canonical file.
 - **Lean Collaboration**: Every request, regardless of project stage, should consider a "lean input" (consult or review) from an adjacent discipline (e.g., Engineering feasibility during design).
 - **Generic Venture Check**: If the request lacks a bounded problem statement and asks for a "company", "app", or "business" from scratch, you MUST perform TAM analysis, competitor analysis, business model canvas, and value prop design BEFORE any design/code.
 - Do not leave `skill_paths` implicit.
@@ -55,10 +57,10 @@ optional_files = []
 required_files = []
 
 [outputs]
-artifact_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/context.md"]
+artifact_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/context.md", "knowledge/orchestrator.md"]
 
 [permissions]
-may_write_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/context.md", "logs/active/<project-slug>/deliverables/", "logs/active/<project-slug>/decisions/", "logs/archive/"]
+may_write_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/context.md", "logs/active/<project-slug>/runs/", "logs/active/<project-slug>/decisions/", "logs/archive/", "knowledge/", "knowledge/runs/"]
 
 [execution_policy]
 role_kind = "orchestrator"

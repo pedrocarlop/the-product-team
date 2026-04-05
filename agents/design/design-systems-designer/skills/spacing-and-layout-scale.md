@@ -42,8 +42,8 @@ tool_routing:
     use: [paper, repository]
 best_guess_output: A spacing and layout scale with explicit primitives, semantic usage rules, breakpoint behavior, migration guidance, and known exceptions.
 output_artifacts:
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/design-systems-designer-spacing-and-layout-scale.md
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
+  - knowledge/runs/<run-id>/design-systems-designer-spacing-and-layout-scale.md
+  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: Designers and engineers have a scale and semantic usage map they can apply to real layouts without reinventing spacing, breakpoint, or density rules.
 ---
 
@@ -63,12 +63,12 @@ Read `../references/tooling-landscape.md` when the assignment references token t
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-systems-designer-spacing-and-layout-scale.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-systems-designer-spacing-and-layout-scale.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Inputs And Assumptions
 

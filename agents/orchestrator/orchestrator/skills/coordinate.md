@@ -5,7 +5,7 @@ trigger: After staffing approval or while running a staged workflow.
 primary_mcp: logs, subagents
 fallback_tools: orchestrator/log, context review
 best_guess_output: An Execution Manifest indexing all specialist deliverables with status and path.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-coordinate.md
+output_artifacts: knowledge/orchestrator-coordinate.md
 done_when: Every specialist output is indexed in the manifest and implementation owners can access all original source materials.
 ---
 

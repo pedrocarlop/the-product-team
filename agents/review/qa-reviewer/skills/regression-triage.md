@@ -38,7 +38,7 @@ tool_routing:
   - if: only linked issue context, screenshots, or static artifacts exist
     use: [open]
 best_guess_output: A regression triage with evidence-tagged severity, blocking status, and next-action routing.
-output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
+output_artifacts: knowledge/reviews/qa-reviewer.md
 done_when: Blocking and non-blocking regressions are clearly separated with evidence, rationale, confidence, and next action, and duplicate or systemic issues are grouped instead of counted loosely.
 ---
 
@@ -54,7 +54,7 @@ This skill does not replace root-cause analysis, full remediation planning, or p
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/qa-reviewer-regression-triage.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/qa-reviewer-regression-triage.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

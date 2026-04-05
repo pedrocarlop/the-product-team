@@ -73,11 +73,11 @@ What is consistent across the specialist roles:
 - they execute a concrete skill workflow, not a generic role summary
 - they follow the same fallback rule: `primary MCP -> alternative tool/MCP -> best guess inferred output`
 - they label evidence as `sourced`, `fallback`, or `inferred`
-- they write to an owned project artifact in `logs/active/<project-slug>/...`
+- they write deliverables to `knowledge/` and execution records to `logs/active/<project-slug>/`
 
 The design side now has an explicit shared design-system handoff:
 
-- `ui-designer` can seed `logs/active/<project-slug>/deliverables/project-ds-spec.md` for greenfield work
+- `ui-designer` can seed `knowledge/project-ds-spec.md` for greenfield work
 - that seed is built from up to 3 inspiration-only references in the bundled reference design-system library
 - for truly blank frontends, that seed can also recommend a spec-backed shadcn/ui foundation instead of leaving primitives undefined
 - `design-systems-designer` then turns that shared spec into tokens, primitives, component families, layout/widget rules, governance, and QA guidance
@@ -95,7 +95,7 @@ The main discipline boundary is intentional:
 3. If the work is simple and clearly single-role, it may stay direct.
 4. If the work is cross-functional or high-risk, the orchestrator staffs the minimum viable set of roles.
 5. Staffed roles receive an explicit assignment contract with fields like `skill_paths`, `owned_outputs`, `primary_tools`, `fallback_policy`, `repo_write_owner`, and `evidence_mode`.
-6. Work is recorded in `logs/active/<project-slug>/` so the state survives beyond chat context.
+6. Work is recorded in `logs/` (execution trail) and `knowledge/` (deliverables) so the state survives beyond chat context. Code outputs go to `app/`.
 
 For new design work, the workflow is intentionally not linear from idea to polish. The design path should diverge before it converges: explore materially different directions first, compare them, and only then move into production design and implementation.
 
@@ -115,8 +115,9 @@ The installer keeps Product Team namespaced and idempotent. The main installed p
 - `.codex/product-team/`
 - `.codex/product-team/references/project-ds-spec-template.md`
 - `.codex/product-team/references/reference-design-systems/`
-- `logs/active/`
-- `logs/archive/`
+- `logs/active/` and `logs/archive/`
+- `knowledge/` (deliverables, reviews, runs)
+- `app/` (code outputs)
 
 It may update workflow-owned files and the managed `AGENTS.md` block, but it should not overwrite unrelated project files.
 

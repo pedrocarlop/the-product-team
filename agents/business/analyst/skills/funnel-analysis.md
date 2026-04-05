@@ -3,7 +3,7 @@ name: funnel-analysis
 description: Encode the expert process for analyzing multi-stage user journeys to identify friction, drop-offs, and behavioral patterns using modern analytics stacks.
 trigger: When funnel conversion or progression performance is underperforming or requires optimization.
 best_guess_output: A detailed breakdown of funnel bottlenecks with cohort analysis and prioritized optimization hypotheses.
-output_artifacts: logs/active/<project-slug>/deliverables/analyst-funnel-analysis.md
+output_artifacts: knowledge/analyst-funnel-analysis.md
 done_when: The team has a prioritized list of funnel friction points supported by evidence and actionable next steps.
 ---
 
@@ -112,7 +112,7 @@ State explicitly:
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/analyst-funnel-analysis.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/analyst-funnel-analysis.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

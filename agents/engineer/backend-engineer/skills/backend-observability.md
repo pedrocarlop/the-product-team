@@ -44,7 +44,7 @@ tool_routing:
   - if: only static artifacts or docs are available
     use: [reference/reuse, search_query]
 best_guess_output: An observability change or backend diagnostics plan with a signal model, instrumentation inventory, verification notes, and explicit residual risk.
-output_artifacts: logs/active/<project-slug>/deliverables/backend-engineer-backend-observability.md
+output_artifacts: knowledge/backend-engineer-backend-observability.md
 done_when: Important backend behavior can be inspected after deployment by the intended operators, with the signal path, consumers, and remaining blind spots documented.
 ---
 
@@ -58,7 +58,7 @@ This skill is for improving inspectability, alertability, and debugging speed. I
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/backend-engineer-backend-observability.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-backend-observability.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

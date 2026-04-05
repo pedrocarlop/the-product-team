@@ -44,7 +44,7 @@ trigger: When the example scenario applies.
 primary_mcp: notion
 fallback_tools: search_query
 best_guess_output: An example output.
-output_artifacts: logs/active/<project-slug>/deliverables/product-lead.md
+output_artifacts: knowledge/product-lead.md
 section_anchor: "## Skill: {skill_name}"
 done_when: The example is complete.
 ---
@@ -84,7 +84,7 @@ Within `## Skill: {skill_name}`, include:
 
 ## Output Contract
 
-- Write or update `logs/active/<project-slug>/deliverables/product-lead.md`.
+- Write or update `knowledge/product-lead.md`.
 - Keep all work for this skill inside `## Skill: {skill_name}`.
 - Record which tool path was used and why.
 - Ensure the section meets this done-when bar: The example is complete.
@@ -98,7 +98,7 @@ trigger: When the example scenario applies.
 primary_mcp: repository
 fallback_tools: search_query
 best_guess_output: An example output.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer.md
+output_artifacts: knowledge/frontend-engineer.md
 section_anchor: "## Skill: {skill_name}"
 done_when: The example is complete.
 ---
@@ -139,7 +139,7 @@ Within `## Skill: {skill_name}`, include:
 
 ## Output Contract
 
-- Write or update `logs/active/<project-slug>/deliverables/frontend-engineer.md`.
+- Write or update `knowledge/frontend-engineer.md`.
 - Keep all work for this skill inside `## Skill: {skill_name}`.
 - Record which tool path was used and why.
 - Ensure the section meets this done-when bar: The example is complete.
@@ -430,7 +430,7 @@ def run_reviewer_scenarios(root: Path, scenario_failures: list[str]) -> None:
             description="Example reviewer skill.",
             primary_mcp="chrome_devtools",
             fallback_tools="figma, open",
-            output_artifact="logs/active/<project-slug>/reviews/design-reviewer.md",
+            output_artifact="knowledge/reviews/design-reviewer.md",
             purpose="Example purpose.",
             required_sections="\n".join(
                 [
@@ -474,7 +474,7 @@ def run_reviewer_scenarios(root: Path, scenario_failures: list[str]) -> None:
             description="Example reviewer skill.",
             primary_mcp="figma, chrome_devtools",
             fallback_tools="open, search_query",
-            output_artifact="logs/active/<project-slug>/reviews/design-reviewer.md",
+            output_artifact="knowledge/reviews/design-reviewer.md",
             purpose="Example purpose.",
             required_sections="\n".join(
                 [
@@ -510,7 +510,7 @@ def run_reviewer_scenarios(root: Path, scenario_failures: list[str]) -> None:
             description="Example reviewer skill.",
             primary_mcp="chrome_devtools",
             fallback_tools="figma, open",
-            output_artifact="logs/active/<project-slug>/reviews/design-reviewer.md",
+            output_artifact="knowledge/reviews/design-reviewer.md",
             purpose="Example purpose.",
             required_sections="\n".join(
                 [
@@ -607,7 +607,7 @@ def run_reviewer_scenarios(root: Path, scenario_failures: list[str]) -> None:
             description="Example reviewer skill.",
             primary_mcp="repository, logs",
             fallback_tools="open, search_query",
-            output_artifact="logs/active/<project-slug>/reviews/qa-reviewer.md",
+            output_artifact="knowledge/reviews/qa-reviewer.md",
             purpose="Example purpose.",
             required_sections="\n".join(
                 [
@@ -630,7 +630,7 @@ def run_reviewer_scenarios(root: Path, scenario_failures: list[str]) -> None:
             description="Example reviewer skill.",
             primary_mcp="repository, logs",
             fallback_tools="open, search_query",
-            output_artifact="logs/active/<project-slug>/reviews/qa-reviewer.md",
+            output_artifact="knowledge/reviews/qa-reviewer.md",
             purpose="Example purpose.",
             required_sections="\n".join(
                 [
@@ -666,7 +666,7 @@ def run_reviewer_scenarios(root: Path, scenario_failures: list[str]) -> None:
             description="Example reviewer skill.",
             primary_mcp="repository, logs",
             fallback_tools="open, search_query",
-            output_artifact="logs/active/<project-slug>/reviews/qa-reviewer.md",
+            output_artifact="knowledge/reviews/qa-reviewer.md",
             purpose="Example purpose.",
             required_sections="\n".join(
                 [

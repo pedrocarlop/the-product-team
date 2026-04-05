@@ -36,6 +36,7 @@ def main() -> int:
     agents_fragment = (ROOT / "assets/AGENTS.fragment.md").read_text()
     package_readme = (ROOT / "assets/package-README.md").read_text()
     logs_readme = (ROOT / "logs/README.md").read_text()
+    knowledge_readme = (ROOT / "knowledge/README.md").read_text()
 
     expect("skill_paths" in orchestrator_prompt, "Orchestrator prompt missing skill_paths assignment contract.", failures)
     expect("primary_tools" in orchestrator_prompt, "Orchestrator prompt missing primary_tools assignment contract.", failures)
@@ -56,9 +57,9 @@ def main() -> int:
     expect("project-ds-spec.md" in package_readme, "Package README missing project ds-spec guidance.", failures)
     expect("reference-design-systems" in package_readme, "Package README missing reference design systems library guidance.", failures)
     expect("shadcn/ui" in package_readme, "Package README missing shadcn/ui foundation guidance.", failures)
-    expect("evidence_mode" in logs_readme, "logs/README.md missing evidence_mode in deliverable header.", failures)
-    expect("skill_paths" in logs_readme, "logs/README.md missing assignment contract update.", failures)
-    expect("shared-design" in logs_readme, "logs/README.md missing shared deliverable guidance.", failures)
+    expect("evidence_mode" in knowledge_readme, "knowledge/README.md missing evidence_mode in deliverable header.", failures)
+    expect("skill_paths" in knowledge_readme, "knowledge/README.md missing assignment contract update.", failures)
+    expect("shared-design" in knowledge_readme, "knowledge/README.md missing shared deliverable guidance.", failures)
 
     for path in discover_toml_paths(ROOT):
         data = load_toml(path)

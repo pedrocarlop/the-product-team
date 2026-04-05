@@ -3,7 +3,7 @@ name: workflow-design
 description: Architect high-fidelity operational workflows using Design Thinking and DMAIC methodologies.
 trigger: When a team requires a repeatable, scalable, and automated operating model.
 best_guess_output: A comprehensive workflow architecture deliverable with automation logic and role definitions.
-output_artifacts: logs/active/<project-slug>/deliverables/business-ops-workflow-design.md
+output_artifacts: knowledge/business-ops-workflow-design.md
 done_when: The workflow is mapped, prototyped in high-fidelity, and ready for automation deployment.
 ---
 
@@ -93,6 +93,6 @@ Identify recurring failures:
 - No workflow should be "Live" without an error-handling path.
 
 ## Output Contract
-- **Target**: `logs/active/<project-slug>/deliverables/business-ops-workflow-design.md`.
+- **Target**: `knowledge/business-ops-workflow-design.md`.
 - **Merge Rules**: Standalone deliverable.
 - **Artifacts**: Wireflow diagram; I/O Schema table; Automation blueprint specs.

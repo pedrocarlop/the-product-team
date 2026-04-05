@@ -6,8 +6,8 @@ primary_mcp: figma
 fallback_tools: paper
 best_guess_output: A production-ready screen spec or screen set with handoff notes and required `project-ds-spec.md` updates.
 output_artifacts:
-  - logs/active/<project-slug>/deliverables/ui-designer-screen-production-design.md
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
+  - knowledge/ui-designer-screen-production-design.md
+  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: Layout, hierarchy, tokens, and core states are specified clearly.
 required_inputs:
   - upstream direction or winning variant section
@@ -180,12 +180,12 @@ Do not present inferred structure as if it were observed.
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ui-designer-screen-production-design.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ui-designer-screen-production-design.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 
@@ -211,7 +211,7 @@ Within `## Skill: screen-production-design`, include:
 ## Workflow Notes
 
 - This is convergence-only work for `new design`; do not use it as a substitute for concept exploration.
-- Inherit from `logs/active/<project-slug>/deliverables/project-ds-spec.md`, not directly from company reference files.
+- Inherit from `knowledge/project-ds-spec.md`, not directly from company reference files.
 - Preserve the winning direction's distinguishing traits instead of collapsing back to safe defaults.
 - When production decisions materially change the recommended implementation foundation, update `## Implementation Foundation` in `project-ds-spec.md` instead of burying the change inside screen notes.
 - If no upstream direction exists for a `new design` assignment, stop and note the mismatch instead of inventing one.

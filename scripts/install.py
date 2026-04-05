@@ -370,6 +370,10 @@ def install_package_docs(root: Path, target_root: Path) -> None:
         (root / "logs" / "README.md").read_text(encoding="utf-8"),
         encoding="utf-8",
     )
+    (refs_root / "knowledge-contract.md").write_text(
+        (root / "knowledge" / "README.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
     (refs_root / "role-catalog.md").write_text(
         (root / "references" / "role-catalog.md").read_text(encoding="utf-8"),
         encoding="utf-8",
@@ -434,6 +438,42 @@ def install_logs(root: Path, target_root: Path) -> bool:
         encoding="utf-8",
     )
     return True
+
+
+def install_knowledge(root: Path, target_root: Path) -> bool:
+    knowledge_root = target_root / "knowledge"
+    runs_dir = knowledge_root / "runs"
+    reviews_dir = knowledge_root / "reviews"
+    assets_dir = knowledge_root / "assets"
+    ensure_directory(runs_dir)
+    ensure_directory(reviews_dir)
+    ensure_directory(assets_dir)
+
+    for keep_path in (runs_dir / ".gitkeep", reviews_dir / ".gitkeep", assets_dir / ".gitkeep"):
+        if not keep_path.exists():
+            keep_path.write_text("", encoding="utf-8")
+
+    readme_path = knowledge_root / "README.md"
+    if readme_path.exists():
+        return False
+
+    readme_path.write_text(
+        (root / "knowledge" / "README.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    return True
+
+
+def install_app(target_root: Path) -> bool:
+    app_root = target_root / "app"
+    web_dir = app_root / "web"
+    ensure_directory(web_dir)
+
+    keep_path = web_dir / ".gitkeep"
+    if not keep_path.exists():
+        keep_path.write_text("", encoding="utf-8")
+
+    return not (app_root / "README.md").exists()
 
 
 def write_manifest(
@@ -512,6 +552,8 @@ def main() -> int:
 
     install_package_docs(root, target_root)
     created_logs_readme = install_logs(root, target_root)
+    created_knowledge_readme = install_knowledge(root, target_root)
+    install_app(target_root)
     update_agents_md(root / "assets" / "AGENTS.fragment.md", target_root)
     write_manifest(target_root, roles, install_source)
 
@@ -521,6 +563,11 @@ def main() -> int:
         print("Created logs/README.md from the workflow contract.")
     else:
         print("Kept the target project's existing logs/README.md.")
+    if created_knowledge_readme:
+        print("Created knowledge/README.md from the knowledge contract.")
+    else:
+        print("Kept the target project's existing knowledge/README.md.")
+    print("Created app/ directory for code outputs.")
     print("Next step: python3 .codex/product-team/scripts/validate-install.py")
     return 0
 

@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository
 - Fallback: reference/trace, search_query
 - Best guess: A backend API implementation or change plan with a contract model, implementation touchpoints, compatibility notes, and verification status.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer-api-implementation.md
+- Output: knowledge/backend-engineer-api-implementation.md
 - Done when: The API contract is implemented with clear behavior and constraints, compatibility risks are explicit, and the contract can be verified from the deliverable and the codebase.
 
 ## `backend-observability`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository
 - Fallback: search_query, reference/reuse
 - Best guess: An observability change or backend diagnostics plan with a signal model, instrumentation inventory, verification notes, and explicit residual risk.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer-backend-observability.md
+- Output: knowledge/backend-engineer-backend-observability.md
 - Done when: Important backend behavior can be inspected after deployment by the intended operators, with the signal path, consumers, and remaining blind spots documented.
 
 ## `backend-verify`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository
 - Fallback: reference/verify, search_query
 - Best guess: A backend verification report with contract checks, failure-path checks, operational checks, residual risk, and confidence.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer-backend-verify.md
+- Output: knowledge/backend-engineer-backend-verify.md
 - Done when: The team can see which backend behaviors were validated, which risks remain, and whether any unresolved issues block release.
 
 ## `domain-model-build`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository
 - Fallback: reference/ground, reference/trace
 - Best guess: A backend domain model implementation or design with explicit entities, rules, transitions, transformations, and open risks.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer-domain-model-build.md
+- Output: knowledge/backend-engineer-domain-model-build.md
 - Done when: Core rules are explicit, mapped to a clear source of truth, and any unresolved ambiguities, edge cases, or data-shape risks are documented.
 
 ## `integration-flow-build`
@@ -51,5 +51,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository
 - Fallback: reference/trace, search_query
 - Best guess: An integration implementation or flow design with explicit contracts, retries, failure handling, and boundary notes.
-- Output: logs/active/<project-slug>/deliverables/backend-engineer-integration-flow-build.md
+- Output: knowledge/backend-engineer-integration-flow-build.md
 - Done when: The integration path, contract boundaries, retries, idempotency, compensations, observability, and rollout constraints are explicit enough to implement and verify.

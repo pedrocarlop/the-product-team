@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A structured debugging report with a browser evidence model, reproduction steps, root cause hypothesis, fix direction, and open unknowns — labeled as sourced, fallback, or inferred to match the evidence path used.
-- Output: logs/active/<project-slug>/deliverables/frontend-engineer-browser-debug.md
+- Output: knowledge/frontend-engineer-browser-debug.md
 - Done when: The issue is localized to a specific component, state boundary, network dependency, or JavaScript execution path, with reproduction steps verified and a concrete fix direction stated.
 
 ## `component-implementation`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A reusable component with a defined props API, all required variants and interactive states, a Storybook story covering the key states, and adoption notes for downstream implementers.
-- Output: logs/active/<project-slug>/deliverables/frontend-engineer-component-implementation.md
+- Output: knowledge/frontend-engineer-component-implementation.md
 - Done when: The component is reusable, aligned to the design system spec, all variants and states are implemented and documented in Storybook stories, and downstream consumers can adopt it without inferring unsupported patterns.
 
 ## `frontend-verify`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A frontend verification result with a UI model, structured behavior and layout findings, visual regression status, accessibility scan summary, and explicit residual risk.
-- Output: logs/active/<project-slug>/deliverables/frontend-engineer-frontend-verify.md
+- Output: knowledge/frontend-engineer-frontend-verify.md
 - Done when: All in-scope surfaces have been verified against behavior, layout, and basic quality expectations; all findings are documented with evidence and repro steps; and residual risks are explicitly named.
 
 ## `implement-from-design`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A working UI implementation that faithfully reproduces the approved design, covers all required states and interactions, and is aligned to the project design system spec.
-- Output: logs/active/<project-slug>/deliverables/frontend-engineer-implement-from-design.md
+- Output: knowledge/frontend-engineer-implement-from-design.md
 - Done when: The implemented surface matches the approved design's structure, spacing, typography, color, and behavioral states; all required states are covered in code; the fidelity gaps section explicitly accounts for any deviations; and the code touchpoints are identified so downstream review can verify the right surface.
 
 ## `responsive-refinement`
@@ -51,7 +51,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A breakpoint matrix, per-breakpoint audit findings, and a prioritized responsive fix list with reproduction steps, cause analysis, and a verification plan.
-- Output: logs/active/<project-slug>/deliverables/frontend-engineer-responsive-refinement.md
+- Output: knowledge/frontend-engineer-responsive-refinement.md
 - Done when: Every breakpoint in the defined set has been audited, all Critical and Significant findings have a documented fix or accepted risk, and desktop and mobile behavior are both intentional and verifiable.
 
 ## `stateful-ui-build`
@@ -61,5 +61,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A stateful UI implementation covering all critical lifecycle states, with a documented state inventory, MSW-backed Storybook stories for each state, and a verification log confirming state coverage.
-- Output: logs/active/<project-slug>/deliverables/frontend-engineer-stateful-ui-build.md
+- Output: knowledge/frontend-engineer-stateful-ui-build.md
 - Done when: The state inventory is complete, all critical states (loading, error, empty, interactive) are implemented and verifiable in code or Storybook, transitions are explicit and tested, and no state is handled only by silence or missing UI.

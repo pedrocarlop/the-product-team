@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A comprehensive campaign brief including asset mapping, channel strategy, and automation routing.
-- Output: logs/active/<project-slug>/deliverables/go-to-market-campaign-brief.md
+- Output: knowledge/go-to-market-campaign-brief.md
 - Done when: All 17 sections are complete and the campaign-audience-asset model is fully mapped with evidence-based tool routing.
 
 ## `customer-signal-synthesis`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A prioritized list of accounts and contacts with specific 'why now' triggers and personalized messaging angles.
-- Output: logs/active/<project-slug>/deliverables/go-to-market-customer-signal-synthesis.md
+- Output: knowledge/go-to-market-customer-signal-synthesis.md
 - Done when: All available signals from the tool stack have been aggregated, de-duplicated, and mapped to a prioritization matrix.
 
 ## `launch-plan`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A predictive launch plan with integrated readiness gates, workstream owners, and risk-adjusted milestones.
-- Output: logs/active/<project-slug>/deliverables/go-to-market-launch-plan.md
+- Output: knowledge/go-to-market-launch-plan.md
 - Done when: The launch plan is signed off with all critical path dependencies mapped and readiness gates defined.
 
 ## `partner-thesis`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A comprehensive partner thesis with ROI-driven rationale and Nearbound execution paths.
-- Output: logs/active/<project-slug>/deliverables/go-to-market-partner-thesis.md
+- Output: knowledge/go-to-market-partner-thesis.md
 - Done when: The partnership strategy is specific enough to initiate automated account mapping (Crossbeam/Reveal) or PRM onboarding (PartnerStack/Impartner).
 
 ## `positioning-brief`
@@ -51,7 +51,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A comprehensive positioning brief with audience segments, competitive alternatives, unique attributes, value propositions, and message testing evidence.
-- Output: logs/active/<project-slug>/deliverables/go-to-market-positioning-brief.md
+- Output: knowledge/go-to-market-positioning-brief.md
 - Done when: Positioning is validated via internal alignment and external buyer signals (e.g., Wynter/Ignition validation).
 
 ## `sales-enablement`
@@ -61,5 +61,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A comprehensive sales enablement blueprint including a tool stack, coaching methodology, and performance measurement framework.
-- Output: logs/active/<project-slug>/deliverables/go-to-market-sales-enablement.md
+- Output: knowledge/go-to-market-sales-enablement.md
 - Done when: The program architecture is defined, tools are routed based on capabilities, and a behavior-led measurement system is in place.

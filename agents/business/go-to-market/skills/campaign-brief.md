@@ -3,7 +3,7 @@ name: campaign-brief
 description: Orchestrates and executes integrated marketing campaigns using cross-channel signals and AI-driven automation.
 trigger: When a new product feature, seasonal event, or market opportunity requires a coordinated marketing execution.
 best_guess_output: A comprehensive campaign brief including asset mapping, channel strategy, and automation routing.
-output_artifacts: logs/active/<project-slug>/deliverables/go-to-market-campaign-brief.md
+output_artifacts: knowledge/go-to-market-campaign-brief.md
 section_anchor: Campaign Execution
 done_when: All 17 sections are complete and the campaign-audience-asset model is fully mapped with evidence-based tool routing.
 required_inputs:
@@ -112,6 +112,6 @@ The agent must construct a **Channel-Audience-Asset (CAA) Model**:
 *   **Tool-Agnostic Method:** The strategy must hold even if tools change, though routing depends on tool capabilities.
 
 ## 17. Output Contract
-*   **Target:** `logs/active/<project-slug>/deliverables/go-to-market-campaign-brief.md`
+*   **Target:** `knowledge/go-to-market-campaign-brief.md`
 *   **Modified:** Updates the specific campaign brief file.
 *   **Protected:** Must NOT modify global brand-voice files in `assets/`.

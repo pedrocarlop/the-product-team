@@ -46,7 +46,7 @@ tool_routing:
     use: [repository] for code review and static inference; label output as fallback
   - avoid: relying on a single tool; combine runtime interaction testing (Playwright) with visual regression (Chromatic or Percy) and accessibility scanning (axe-core) for thorough coverage
 best_guess_output: A frontend verification result with a UI model, structured behavior and layout findings, visual regression status, accessibility scan summary, and explicit residual risk.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-frontend-verify.md
+output_artifacts: knowledge/frontend-engineer-frontend-verify.md
 done_when: All in-scope surfaces have been verified against behavior, layout, and basic quality expectations; all findings are documented with evidence and repro steps; and residual risks are explicitly named.
 ---
 
@@ -358,7 +358,7 @@ Do not collapse this section to a single line. Every named unknown sets the scop
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-frontend-verify.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-frontend-verify.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

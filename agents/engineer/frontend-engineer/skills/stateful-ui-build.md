@@ -42,7 +42,7 @@ tool_routing:
   - if: primary tools are unavailable or repository is not accessible
     use: [reference/trace, search_query] — produce inferred state model, label output as `inferred`
 best_guess_output: A stateful UI implementation covering all critical lifecycle states, with a documented state inventory, MSW-backed Storybook stories for each state, and a verification log confirming state coverage.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-stateful-ui-build.md
+output_artifacts: knowledge/frontend-engineer-stateful-ui-build.md
 done_when: The state inventory is complete, all critical states (loading, error, empty, interactive) are implemented and verifiable in code or Storybook, transitions are explicit and tested, and no state is handled only by silence or missing UI.
 ---
 
@@ -305,7 +305,7 @@ Do not omit this section or collapse it to a single line. Low-confidence areas m
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-stateful-ui-build.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-stateful-ui-build.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

@@ -3,7 +3,7 @@ name: positioning-brief
 description: Expert positioning and messaging strategy using April Dunford's framework and JTBD, validated with buyer intelligence signals.
 trigger: When a product or feature needs a market-facing position, or existing messaging fails to resonate with the target audience.
 best_guess_output: A comprehensive positioning brief with audience segments, competitive alternatives, unique attributes, value propositions, and message testing evidence.
-output_artifacts: logs/active/<project-slug>/deliverables/go-to-market-positioning-brief.md
+output_artifacts: knowledge/go-to-market-positioning-brief.md
 done_when: Positioning is validated via internal alignment and external buyer signals (e.g., Wynter/Ignition validation).
 required_inputs:
   - Product capabilities (feature list or technical spec)
@@ -95,6 +95,6 @@ Identify recurring buyer objections or "messaging friction" where the value prop
 - No hallucinated competitor features; use evidence-based data only.
 
 ## 17. Output Contract
-- **Target:** `logs/active/<project-slug>/deliverables/go-to-market-positioning-brief.md`
+- **Target:** `knowledge/go-to-market-positioning-brief.md`
 - **Constraint:** Do not modify the `## Strategy` section if it was already approved by a human agent.
 - **Section Updated:** Append findings to the project-specific GTM log.

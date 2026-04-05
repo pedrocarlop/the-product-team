@@ -37,7 +37,7 @@ tool_routing:
   - if: direct evidence is partial and prior QA artifacts are the strongest available signal
     use: [reference/verify]
 best_guess_output: A release gate recommendation with blocking issues, residual risk, and explicit confidence.
-output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
+output_artifacts: knowledge/reviews/qa-reviewer.md
 done_when: The release recommendation is unambiguous, evidence-based, explicit about residual risk, and clear about what must happen before or after ship.
 ---
 
@@ -53,7 +53,7 @@ This skill does not replace product leadership approval, incident command author
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/qa-reviewer-release-gate.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/qa-reviewer-release-gate.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

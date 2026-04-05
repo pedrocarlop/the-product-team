@@ -5,7 +5,7 @@ trigger: Every new request or material scope reset.
 primary_mcp: repository, logs
 fallback_tools: reference/ground, role-catalog review
 best_guess_output: A routing decision with roles, skill_paths, and execution mode.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-route.md
+output_artifacts: knowledge/orchestrator-route.md
 done_when: context.md routing block is current and the next owner is unambiguous.
 ---
 
@@ -41,6 +41,11 @@ evidence_mode: sourced|fallback|inferred
 - Check `context.md` and `TIMELINE.md` for project maturity.
 - If it is a new venture (no code, no context), prioritize **Venture Discovery** and **Foundational Research**.
 - If it is an evolving project (existing code, deep context), look for "Incremental Value-Add" opportunities.
+
+### Step 2b-ii: Knowledge Continuity Scan
+- Scan `knowledge/` for existing deliverables from prior projects.
+- Identify which prior knowledge files are relevant to the current request.
+- These must be included in `reads_from` when staffing agents downstream so that decisions compound across projects.
 
 ### Step 2c: Signal Scan For Specialized Roles & Value-Add
 Before choosing a team pattern, scan the request for signals that indicate specialized roles are needed. Consult the **Signal-Based Role Triggers** table in `references/role-catalog.md`. For each signal detected:

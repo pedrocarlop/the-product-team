@@ -3,7 +3,7 @@ name: frame-problem
 description: Turn a raw, vague, or outcome-first request into a clear product problem, constraints, success criteria, and decision frame using 2026 AI-first discovery methods.
 trigger: When the request is vague, outcome-first, or lacks a bounded problem definition.
 best_guess_output: A structured framing brief with a JTBD model, root-cause analysis (5 Whys), and crisp success criteria.
-output_artifacts: logs/active/<project-slug>/deliverables/product-lead-frame-problem.md
+output_artifacts: knowledge/product-lead-frame-problem.md
 done_when: The problem is crisply bounded, success measures are defined, and the decision frame is clear to the team.
 tool_stack:
   runtime:
@@ -100,7 +100,7 @@ Before evaluating the request, the agent must construct:
 - **No Hallucinations:** If a metric or constraint is unknown, label it clearly as `UNKNOWN_REQUIRES_VALIDATION`.
 
 ## 16. Output Contract
-- **Target Path:** `logs/active/<project-slug>/deliverables/product-lead-frame-problem.md`
+- **Target Path:** `knowledge/product-lead-frame-problem.md`
 - **Format:** Markdown with structured headers.
 - **Preserve:** Do not overwrite the `## Reflection` section if it already exists; append any new reflection.
 

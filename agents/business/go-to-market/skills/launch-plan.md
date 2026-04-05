@@ -3,7 +3,7 @@ name: launch-plan
 description: Orchestrates the end-to-end launch workflow using 2026 GTM standards, centering on predictive readiness and multi-tool orchestration.
 trigger: When a product feature or initiative is scheduled for market release or enters a dedicated GTM phase.
 best_guess_output: A predictive launch plan with integrated readiness gates, workstream owners, and risk-adjusted milestones.
-output_artifacts: logs/active/<project-slug>/deliverables/go-to-market-launch-plan.md
+output_artifacts: knowledge/go-to-market-launch-plan.md
 section_anchor: launch-plan
 done_when: The launch plan is signed off with all critical path dependencies mapped and readiness gates defined.
 required_inputs:
@@ -124,6 +124,6 @@ Recommendations must be directional:
 - **No Hallucinations**: Do not invent feature specifications not present in the roadmap.
 
 ## 17. Output Contract
-- **Target**: `logs/active/<project-slug>/deliverables/go-to-market-launch-plan.md`
+- **Target**: `knowledge/go-to-market-launch-plan.md`
 - **Update Rule**: Overwrite with the latest version; preserve the "Changelog" section at the footer.
 - **Prohibited**: Do not modify the core `positioning-brief` or `campaign-brief` files.

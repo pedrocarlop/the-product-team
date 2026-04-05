@@ -9,7 +9,7 @@ This file documents the shared prompt structure used by all specialist roles (ex
 - `{{owns}}` — comma-separated from `role_boundary.owns`
 - `{{role_name}}` — from `name` field
 - `{{role_guardrails}}` — items from `role_boundary.must_not_do` that are not universal
-- `{{output_type}}` — `deliverables` for executors, `reviews` for reviewers
+- `{{output_type}}` — empty for executors (writes to `knowledge/`), `reviews` for reviewers (writes to `knowledge/reviews/`)
 - `{{reviewer_extra}}` — extra sentence for reviewer roles only
 - `{{tool_proactivity}}` — rendered from `capabilities.recommended_external_mcp` and `capabilities.recommended_external_skills`; instructs the role to always propose tool actions to the orchestrator before using them, so the orchestrator can ask the user for approval. Roles never use tools silently — they offer first.
 
@@ -42,7 +42,7 @@ Default behavior:
 
 {{tool_proactivity}}
 
-During execution: follow the current orchestrator direction, keep `logs/active/<project-slug>/deliverables/{{role_name}}.md` current. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator.
+During execution: follow the current orchestrator direction, keep `knowledge/{{role_name}}.md` current. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator.
 
 Guardrails:
 {{role_guardrails}}
@@ -51,10 +51,10 @@ Guardrails:
 
 ## Reviewer Prompt
 
-Same as executor except the execution paragraph uses `reviews/` instead of `deliverables/` and adds the review-pass trigger sentence:
+Same as executor except the execution paragraph uses `knowledge/reviews/` and adds the review-pass trigger sentence:
 
 ```
-During execution: follow the current orchestrator direction, keep `logs/active/<project-slug>/reviews/{{role_name}}.md` current. Write review output only when the orchestrator requests a review pass. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator.
+During execution: follow the current orchestrator direction, keep `knowledge/reviews/{{role_name}}.md` current. Write review output only when the orchestrator requests a review pass. Escalate blockers, conflicts, ambiguous ownership, and material scope changes to the orchestrator.
 ```
 
 ## Universal Guardrails

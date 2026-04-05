@@ -5,7 +5,7 @@ trigger: Once orchestration is needed or a staffed role must change.
 primary_mcp: repository, role metadata
 fallback_tools: reference/verify, context review
 best_guess_output: A staffing table with run_id, output_path, role, skill_paths, target_deliverables, primary_tools, and fallback policy.
-output_artifacts: logs/active/<project-slug>/runs/<run-id>/deliverables/orchestrator-staff.md
+output_artifacts: knowledge/runs/<run-id>/orchestrator-staff.md
 done_when: Every staffed role has one contract and target deliverables are explicitly named for each assigned skill within a unique run directory.
 ---
 
@@ -50,25 +50,30 @@ evidence_mode: sourced|fallback|inferred
 - If both primary and fallback paths fail, produce the best-guess output described as: A staffing table with run_id, output_path, role, skill_paths, primary_tools, and fallback policy.
 - Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
 
-### Step 3b: Declare Run Context & Assignment Mode
+### Step 3b: Knowledge Continuity Scan
+Before defining assignments, scan `knowledge/` for all existing deliverables. For each staffed role, identify which prior knowledge files are relevant to their work and include them in `reads_from`. Decisions compound across projects — a market analysis must inform brand design, a competitor study must inform UI choices.
+
+### Step 3c: Declare Run Context & Assignment Mode
 For each staffed role, define:
 - `run_id`: Unique identifier for this execution (e.g., `RUN-001`).
-- `output_path`: `logs/active/<slug>/runs/<run-id>/deliverables/`.
+- `owned_outputs`: Paths in `knowledge/` this agent will write.
+- `reads_from`: Paths in `knowledge/` this agent must read (including relevant prior knowledge from past projects).
 - `assignment_mode`: `primary_executor` | `lean_input` | `peer_reviewer`.
 - `hta_declared`: listing the MCP servers required (drawn from the role's `[capabilities].mcp_servers`).
 
 Example contract:
 ```yaml
 run_id: RUN-001
-output_path: logs/active/my-project/runs/RUN-001/deliverables/
+owned_outputs: [knowledge/ux-researcher-competitor-research.md]
+reads_from: [knowledge/analyst-market-analysis.md, knowledge/product-lead-venture-discovery.md]
 assignment_mode: primary_executor
 hta_declared: [notion]
 ```
 
 ### Step 4: Produce The Staffing Execution Plan
 - Synthesize the result into the `orchestrator.md` as the start of the Execution Manifest.
-- For each role, define `target_deliverables` as a list of skill-specific filenames: `logs/active/<slug>/runs/<run-id>/deliverables/<role>-<skill>.md`.
-- Ensure all outputs are contained within the `runs/<run-id>` directory to preserve history.
+- For each role, define `target_deliverables` as a list of skill-specific filenames: `knowledge/<role>-<skill>.md` (canonical) with snapshots in `knowledge/runs/<run-id>/`.
+- Ensure run snapshots are written before updating canonical files to preserve history.
 - Carry forward any details downstream roles must preserve from the orientation phase.
 
 ### Step 5: Mandatory Reflection (Interleaved Thinking)

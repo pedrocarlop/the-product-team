@@ -5,7 +5,7 @@ trigger: Before multi-role execution or any costly external action.
 primary_mcp: conversation context
 fallback_tools: orchestrator/log
 best_guess_output: A user-facing approval summary with scope, roles, and risks.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-approve.md
+output_artifacts: knowledge/orchestrator-approve.md
 done_when: The user can clearly approve or redirect the planned workflow.
 ---
 

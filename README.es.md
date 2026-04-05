@@ -73,11 +73,11 @@ Lo que es consistente en los roles especialistas:
 - ejecutan un flujo de skill concreto, no un resumen genérico del rol
 - siguen la misma regla de fallback: `primary MCP -> alternative tool/MCP -> best guess inferred output`
 - etiquetan la evidencia como `sourced`, `fallback` o `inferred`
-- escriben en un artefacto propio dentro de `logs/active/<project-slug>/...`
+- escriben entregables en `knowledge/` y registros de ejecucion en `logs/active/<project-slug>/`
 
 La parte de diseño ahora tiene además un relevo explícito alrededor del sistema de diseño:
 
-- `ui-designer` puede sembrar `logs/active/<project-slug>/deliverables/project-ds-spec.md` en trabajo greenfield
+- `ui-designer` puede sembrar `knowledge/project-ds-spec.md` en trabajo greenfield
 - esa semilla se construye a partir de hasta 3 referencias solo-inspiracionales de la librería incluida de design-system kits
 - para frontends realmente en blanco, esa semilla también puede recomendar una base de shadcn/ui respaldada por la spec en lugar de dejar primitivas sin definir
 - `design-systems-designer` convierte después esa especificación compartida en tokens, primitivas, familias de componentes, reglas de layouts/widgets, gobernanza y QA
@@ -95,7 +95,7 @@ El límite entre disciplinas es intencional:
 3. Si el trabajo es simple y claramente de un solo rol, puede quedarse en vía directa.
 4. Si el trabajo es transversal o tiene más riesgo, el orquestador staffea el conjunto mínimo de roles útil.
 5. Los roles reciben un contrato explícito de asignación con campos como `skill_paths`, `owned_outputs`, `primary_tools`, `fallback_policy`, `repo_write_owner` y `evidence_mode`.
-6. El trabajo se registra en `logs/active/<project-slug>/` para que el estado sobreviva más allá del contexto del chat.
+6. El trabajo se registra en `logs/` (traza de ejecución) y `knowledge/` (entregables) para que el estado sobreviva más allá del contexto del chat. Las salidas de código van a `app/`.
 
 Para trabajo de diseño nuevo, el flujo no debe ir en línea recta de idea a acabado. La parte de diseño debe divergir antes de converger: explorar direcciones materialmente distintas, compararlas y solo entonces pasar a diseño de producción e implementación.
 
@@ -115,8 +115,9 @@ El instalador mantiene Product Team con namespace propio e idempotencia. Las rut
 - `.codex/product-team/`
 - `.codex/product-team/references/project-ds-spec-template.md`
 - `.codex/product-team/references/reference-design-systems/`
-- `logs/active/`
-- `logs/archive/`
+- `logs/active/` y `logs/archive/`
+- `knowledge/` (entregables, revisiones, ejecuciones)
+- `app/` (salidas de código)
 
 Puede actualizar archivos que pertenecen al flujo y el bloque gestionado de `AGENTS.md`, pero no debería sobrescribir archivos no relacionados del proyecto.
 

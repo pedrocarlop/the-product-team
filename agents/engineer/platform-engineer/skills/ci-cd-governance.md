@@ -58,7 +58,7 @@ tool_routing:
   - if: only static docs or historical pipeline examples exist
     use: [reference/reuse, search_query]
 best_guess_output: A CI/CD governance proposal or implementation with controls, exceptions, and rollout guidance.
-output_artifacts: logs/active/<project-slug>/deliverables/platform-engineer-ci-cd-governance.md
+output_artifacts: knowledge/platform-engineer-ci-cd-governance.md
 done_when: Delivery rules are concrete enough to enforce repeatedly, with owners, exception paths, and enforcement points identified.
 ---
 
@@ -72,7 +72,7 @@ This skill is for pipeline governance, not product release judgment, incident re
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/platform-engineer-ci-cd-governance.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-ci-cd-governance.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

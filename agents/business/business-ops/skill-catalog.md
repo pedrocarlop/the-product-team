@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A predictive execution model with CPM logic, RACI assignments, and risk-adjusted milestone forecasts.
-- Output: logs/active/<project-slug>/deliverables/business-ops-execution-tracker.md
+- Output: knowledge/business-ops-execution-tracker.md
 - Done when: All workstreams have clear owners, critical paths are identified, and the system can predict delays based on resource load.
 
 ## `operating-rhythm`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A high-performance operating rhythm blueprint with automated triage and intelligence capture.
-- Output: logs/active/<project-slug>/deliverables/business-ops-operating-rhythm.md
+- Output: knowledge/business-ops-operating-rhythm.md
 - Done when: Cadence is mapped to DRI owners, Lencioni meeting types, and integrated with the 2026 tool stack.
 
 ## `process-map`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A high-fidelity BPMN 2.0 process model, SIPOC framework, and Value Stream Mapping (VSM) analysis.
-- Output: logs/active/<project-slug>/deliverables/business-ops-process-map.md
+- Output: knowledge/business-ops-process-map.md
 - Done when: A complete SIPOC, BPMN 2.0 current/target state, and VSM analysis with validated ownership and handoffs are documented.
 
 ## `tooling-audit`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A comprehensive SaaS inventory with TCO analysis, ROI justification, and a keep/change/remove roadmap.
-- Output: logs/active/<project-slug>/deliverables/business-ops-tooling-audit.md
+- Output: knowledge/business-ops-tooling-audit.md
 - Done when: The stack decision is actionable, justified by TCO/ROI benchmarks, and identifies Shadow AI risks.
 
 ## `workflow-design`
@@ -51,5 +51,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A comprehensive workflow architecture deliverable with automation logic and role definitions.
-- Output: logs/active/<project-slug>/deliverables/business-ops-workflow-design.md
+- Output: knowledge/business-ops-workflow-design.md
 - Done when: The workflow is mapped, prototyped in high-fidelity, and ready for automation deployment.

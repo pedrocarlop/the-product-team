@@ -35,8 +35,8 @@ tool_routing:
     use: search_query, reference/ground — best-guess output; label as inferred
 best_guess_output: A research plan with decision context, prioritized research questions, method selection rationale, sample design, risk register, and output scope.
 output_artifacts:
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/ux-researcher-research-plan.md
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
+  - knowledge/runs/<run-id>/ux-researcher-research-plan.md
+  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: Every research question maps to a product decision, every method choice is justified against the question type, sample is specified with profile and size rationale, risks are documented, and the plan can be executed without inventing protocol details later.
 ---
 
@@ -273,9 +273,9 @@ These limits must be stated in the plan. Do not imply higher confidence than the
 
 ### Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ux-researcher-research-plan.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ux-researcher-research-plan.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.

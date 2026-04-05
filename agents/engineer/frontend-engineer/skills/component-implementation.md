@@ -47,7 +47,7 @@ tool_routing:
   - if: primary tools are unavailable, blocked, or out of credits
     use: [reference_reuse, chrome_devtools]
 best_guess_output: A reusable component with a defined props API, all required variants and interactive states, a Storybook story covering the key states, and adoption notes for downstream implementers.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-component-implementation.md
+output_artifacts: knowledge/frontend-engineer-component-implementation.md
 done_when: The component is reusable, aligned to the design system spec, all variants and states are implemented and documented in Storybook stories, and downstream consumers can adopt it without inferring unsupported patterns.
 ---
 
@@ -268,7 +268,7 @@ Do not collapse this section to a single line. Unconfirmed decisions carry compo
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-component-implementation.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-component-implementation.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

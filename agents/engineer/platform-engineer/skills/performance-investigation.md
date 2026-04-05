@@ -73,7 +73,7 @@ tool_routing:
   - if: only static artifacts exist
     use: [search_query, reference/trace]
 best_guess_output: A performance investigation with the leading bottleneck, evidence, and next highest-leverage validation.
-output_artifacts: logs/active/<project-slug>/deliverables/platform-engineer-performance-investigation.md
+output_artifacts: knowledge/platform-engineer-performance-investigation.md
 done_when: The main performance constraint is localized credibly, with evidence, assumptions, and the next validation step explicit.
 ---
 
@@ -87,7 +87,7 @@ This skill is for diagnosis and localization. It does not make the final infra c
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/platform-engineer-performance-investigation.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-performance-investigation.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

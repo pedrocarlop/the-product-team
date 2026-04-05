@@ -74,7 +74,7 @@ def upgrade_business_content(content: str, role: str, skill_name: str) -> str:
     primary_mcp = fields.get("primary_mcp", "<primary MCP/tool>")
     fallback_tools = fields.get("fallback_tools", "<fallback tools>")
     best_guess_output = fields.get("best_guess_output", "<best guess output>")
-    output_artifact = fields.get("output_artifacts", f"logs/active/<project-slug>/deliverables/{role}.md")
+    output_artifact = fields.get("output_artifacts", f"knowledge/{role}.md")
     done_when = fields.get("done_when", "<done when>")
 
     business_scaffold = f"""## Shared Deliverable Contract
@@ -129,7 +129,7 @@ def upgrade_engineer_content(content: str, role: str, skill_name: str) -> str:
     primary_mcp = fields.get("primary_mcp", "<primary MCP/tool>")
     fallback_tools = fields.get("fallback_tools", "<fallback tools>")
     best_guess_output = fields.get("best_guess_output", "<best guess output>")
-    output_artifact = fields.get("output_artifacts", f"logs/active/<project-slug>/deliverables/{role}.md")
+    output_artifact = fields.get("output_artifacts", f"knowledge/{role}.md")
     done_when = fields.get("done_when", "<done when>")
 
     engineer_scaffold = f"""## Shared Deliverable Contract

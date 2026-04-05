@@ -5,6 +5,8 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 errors=0
+CHECK_DIR="$(mktemp -d)"
+trap 'rm -rf "${CHECK_DIR}"' EXIT
 
 fail() {
   printf 'ERROR: %s\n' "$1" >&2
@@ -12,28 +14,31 @@ fail() {
 }
 
 [[ -f logs/README.md ]] || fail "Missing logs/README.md."
+[[ -f knowledge/README.md ]] || fail "Missing knowledge/README.md."
 [[ -f references/role-catalog.md ]] || fail "Missing references/role-catalog.md."
 [[ -d logs/active ]] || fail "Missing logs/active directory."
 [[ -d logs/archive ]] || fail "Missing logs/archive directory."
+[[ -d knowledge/runs ]] || fail "Missing knowledge/runs directory."
+[[ -d knowledge/reviews ]] || fail "Missing knowledge/reviews directory."
 
-python3 scripts/render_role_catalog.py --check >/tmp/role-catalog-check.txt || {
+python3 scripts/render_role_catalog.py --check >"${CHECK_DIR}/role-catalog-check.txt" || {
   fail "Role catalog is missing or stale."
-  cat /tmp/role-catalog-check.txt >&2
+  cat "${CHECK_DIR}/role-catalog-check.txt" >&2
 }
 
-python3 scripts/render_skill_catalogs.py --check >/tmp/skill-catalog-check.txt || {
+python3 scripts/render_skill_catalogs.py --check >"${CHECK_DIR}/skill-catalog-check.txt" || {
   fail "Skill catalogs are missing or stale."
-  cat /tmp/skill-catalog-check.txt >&2
+  cat "${CHECK_DIR}/skill-catalog-check.txt" >&2
 }
 
-python3 scripts/render_role_prompts.py --check >/tmp/role-prompt-check.txt || {
+python3 scripts/render_role_prompts.py --check >"${CHECK_DIR}/role-prompt-check.txt" || {
   fail "Role prompts are missing or stale."
-  cat /tmp/role-prompt-check.txt >&2
+  cat "${CHECK_DIR}/role-prompt-check.txt" >&2
 }
 
-python3 scripts/check-orchestrator-scenarios.py >/tmp/orchestrator-scenario-check.txt || {
+python3 scripts/check-orchestrator-scenarios.py >"${CHECK_DIR}/orchestrator-scenario-check.txt" || {
   fail "Orchestrator scenario checks failed."
-  cat /tmp/orchestrator-scenario-check.txt >&2
+  cat "${CHECK_DIR}/orchestrator-scenario-check.txt" >&2
 }
 
 while IFS= read -r file; do

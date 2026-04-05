@@ -3,7 +3,7 @@ name: metric-definition
 description: Define and model business/product metrics using hierarchical (NSM) and categorical (HEART/AARRR) frameworks for 2026 modern data stacks.
 trigger: When the team is debating success criteria, defining feature goals, or auditing performance measurement.
 best_guess_output: A structured metric model including NSM/Input hierarchies, SQL/DBT logic, and instrumentation mapping (Amplitude/Mixpanel).
-output_artifacts: logs/active/<project-slug>/deliverables/analyst-metric-definition.md
+output_artifacts: knowledge/analyst-metric-definition.md
 done_when: The metric model is mathematically sound, mapped to business value, and instrumentable in modern analytics tools.
 ---
 
@@ -113,7 +113,7 @@ Identify systemic measurement issues:
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/analyst-metric-definition.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/analyst-metric-definition.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

@@ -65,7 +65,7 @@ tool_routing:
   - if: the primary path is unavailable or the schema is only described in docs
     use: [reference/trace, search_query]
 best_guess_output: A schema migration plan or implementation with compatibility and rollback considerations.
-output_artifacts: logs/active/<project-slug>/deliverables/platform-engineer-schema-migration.md
+output_artifacts: knowledge/platform-engineer-schema-migration.md
 done_when: The schema change is bounded, compatible where needed, and safe to deploy or revert with explicit verification.
 ---
 
@@ -79,7 +79,7 @@ This skill covers schema shape, constraints, indexes, backfills, compatibility w
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/platform-engineer-schema-migration.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-schema-migration.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

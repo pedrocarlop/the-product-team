@@ -6,8 +6,8 @@ primary_mcp: figma
 fallback_tools: paper, chrome_devtools
 best_guess_output: A polished design with a concrete issue-fix list, consistency notes, and readiness limits.
 output_artifacts:
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/ui-designer-visual-polish-and-consistency.md
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
+  - knowledge/runs/<run-id>/ui-designer-visual-polish-and-consistency.md
+  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: The design reads as deliberate and consistent, with concrete fixes, coverage notes, and readiness gaps called out.
 required_inputs:
   - target surface, route, or screen set
@@ -59,12 +59,12 @@ This skill does not redesign the concept, widen scope, or treat taste-based poli
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/ui-designer-visual-polish-and-consistency.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ui-designer-visual-polish-and-consistency.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Inputs and Assumptions
 

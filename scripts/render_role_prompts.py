@@ -35,8 +35,8 @@ def render_prompt(data: dict) -> str:
     repo_write_policy = data["execution_policy"].get("repo_write_policy", "never")
     owns = ", ".join(data["role_boundary"]["owns"])
     skill_groups = data.get("capabilities", {}).get("skill_groups", {})
-    output_type = "reviews" if role_kind == "reviewer" else "deliverables"
-    output_path = f"logs/active/<project-slug>/{output_type}/{role_name}.md"
+    output_type = "reviews" if role_kind == "reviewer" else ""
+    output_path = f"knowledge/{output_type + '/' if output_type else ''}{role_name}.md"
     configured_artifacts = data.get("outputs", {}).get("artifact_paths", [])
     extra_artifacts = [path for path in configured_artifacts if path != output_path]
 

@@ -11,13 +11,13 @@ def update_toml(file_path):
     content = content.replace("owned_outputs", "target_deliverables")
     
     # 2. artifact_paths/may_write_paths update
-    content = re.sub(r'(artifact_paths|may_write_paths) = \["logs/active/<project-slug>/deliverables/[^"]+"\]', 
-                     r'\1 = ["logs/active/<project-slug>/deliverables/"]', content)
+    content = re.sub(r'(artifact_paths|may_write_paths) = \["(?:logs/active/<project-slug>/deliverables/|knowledge/)[^"]*"\]',
+                     r'\1 = ["knowledge/"]', content)
     
     # 3. System prompt update for single deliverable
     # Check if bold header is missing if some other text was introduced
-    content = re.sub(r'- Keep your owned output current at `logs/active/<project-slug>/deliverables/[^`]+`\.', 
-                     r'- **Lossless Handoff**: Produce one standalone deliverable per assigned skill as named in `target_deliverables`.', content)
+    content = re.sub(r'- Keep your owned output current at `(?:logs/active/<project-slug>/deliverables/|knowledge/)[^`]+`\.',
+                     r'- **Lossless Handoff**: Produce one standalone deliverable per assigned skill as named in `owned_outputs`.', content)
     
     # 4. Direct Consumption instruction
     if "- **Direct Consumption**:" not in content:
@@ -37,8 +37,8 @@ def update_skill_md(file_path):
     skill = file_path.stem
     
     # 1. Update YAML output_artifacts
-    content = re.sub(r'output_artifacts: logs/active/<project-slug>/deliverables/[^\n]+', 
-                     f'output_artifacts: logs/active/<project-slug>/deliverables/{role}-{skill}.md', content)
+    content = re.sub(r'output_artifacts: (?:logs/active/<project-slug>/deliverables/|knowledge/)[^\n]+',
+                     f'output_artifacts: knowledge/{role}-{skill}.md', content)
     
     # 2. Remove section_anchor (with or without numbers, flexible spacing)
     content = re.sub(r'(?:## \d+\. )?section_anchor: [^\n]+\n', '', content, flags=re.IGNORECASE)
@@ -47,7 +47,7 @@ def update_skill_md(file_path):
     # 3. Prepare new contract
     new_contract = f"""## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/{role}-{skill}.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/{role}-{skill}.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

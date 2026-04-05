@@ -3,7 +3,7 @@ name: tooling-audit
 description: Encode expert workflow for assessing tool sprawl, gaps, and ownership using TCO, ROI, and Shadow AI Detection.
 trigger: When systems or tools are slowing execution down or during annual operating rhythm reviews.
 best_guess_output: A comprehensive SaaS inventory with TCO analysis, ROI justification, and a keep/change/remove roadmap.
-output_artifacts: logs/active/<project-slug>/deliverables/business-ops-tooling-audit.md
+output_artifacts: knowledge/business-ops-tooling-audit.md
 done_when: The stack decision is actionable, justified by TCO/ROI benchmarks, and identifies Shadow AI risks.
 ---
 
@@ -93,6 +93,6 @@ Identify recurring failures:
 - Check the 2026 Vertice benchmark for any replacement tool.
 
 ## Output Contract
-- **Target**: `logs/active/<project-slug>/deliverables/business-ops-tooling-audit.md`.
+- **Target**: `knowledge/business-ops-tooling-audit.md`.
 - **Merge Rules**: Standalone deliverable.
 - **Artifacts**: Stack Rationalization Matrix; TCO/ROI Chart.

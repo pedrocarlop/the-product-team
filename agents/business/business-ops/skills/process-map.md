@@ -3,7 +3,7 @@ name: process-map
 description: Engineering expert-grade process maps using AI-driven mining, generative diagramming, and value-based governance.
 trigger: When a workflow is inefficient, undergoing transformation, or needs formal governance and optimization.
 best_guess_output: A high-fidelity BPMN 2.0 process model, SIPOC framework, and Value Stream Mapping (VSM) analysis.
-output_artifacts: logs/active/<project-slug>/deliverables/business-ops-process-map.md
+output_artifacts: knowledge/business-ops-process-map.md
 done_when: A complete SIPOC, BPMN 2.0 current/target state, and VSM analysis with validated ownership and handoffs are documented.
 ---
 
@@ -98,6 +98,6 @@ Identify recurring failures:
 - Use standard BPMN 2.0 symbols only.
 
 ## Output Contract
-- **Target**: `logs/active/<project-slug>/deliverables/business-ops-process-map.md`.
+- **Target**: `knowledge/business-ops-process-map.md`.
 - **Merge Rules**: Standalone deliverable.
 - **Artifacts**: BPMN 2.0 diagram and SIPOC table.

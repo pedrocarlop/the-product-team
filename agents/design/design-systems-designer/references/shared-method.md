@@ -9,7 +9,7 @@ Read this file at the start of any `design-systems-designer` assignment before o
 - Preserve all other skill sections in the shared role deliverable.
 - Update the role-level reflection footer by appending or refreshing `### <skill-name>` with `What worked`, `What didn't`, and `Next steps`.
 - Label the skill section as `sourced`, `fallback`, or `inferred` to match the strongest evidence path actually used.
-- Keep `logs/active/<project-slug>/deliverables/project-ds-spec.md` as the canonical shared design-system handoff artifact whenever the active skill is allowed to update it.
+- Keep `knowledge/project-ds-spec.md` as the canonical shared design-system handoff artifact whenever the active skill is allowed to update it.
 
 ## Required Inputs And Assumptions
 

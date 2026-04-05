@@ -35,7 +35,7 @@ tool_routing:
   - if: external guidance, scanner behavior, or control-specific implementation details matter
     use: [search_query]
 best_guess_output: A security hardening change or remediation plan with evidence, residual risk, and verification steps.
-output_artifacts: logs/active/<project-slug>/deliverables/platform-engineer-security-hardening.md
+output_artifacts: knowledge/platform-engineer-security-hardening.md
 done_when: The weakness, remediation, evidence path, and residual risk are explicit enough to implement and review.
 ---
 
@@ -51,7 +51,7 @@ This skill does not invent threats, replace formal security review, or claim saf
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/platform-engineer-security-hardening.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-security-hardening.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

@@ -67,7 +67,7 @@ tool_routing:
   - if: tool behavior or rollout semantics are unclear
     use: [search_query]
 best_guess_output: A release runbook or implementation summary with scope, prereqs, execution, rollback, verification, and residual risk.
-output_artifacts: logs/active/<project-slug>/deliverables/platform-engineer-infra-release.md
+output_artifacts: knowledge/platform-engineer-infra-release.md
 done_when: The release path, rollback posture, verification evidence, and remaining unknowns are explicit enough for safe execution or audit.
 ---
 
@@ -83,7 +83,7 @@ This skill does not replace incident command, product approval, or hands-on exec
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/platform-engineer-infra-release.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-infra-release.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

@@ -8,7 +8,7 @@ Use it to pick strong starting references before building the product's own desi
 
 - Read at most 3 company references per assignment.
 - Borrow principles, not branding. Do not copy logos, brand names, product-specific illustrations, or exact named token systems.
-- Translate what you borrow into the project's own `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
+- Translate what you borrow into the project's own `knowledge/project-ds-spec.md`.
 - Prefer combining references that differ on one or two important axes instead of mashing together unrelated aesthetics.
 
 ## Quick Picks By Signal

@@ -5,7 +5,7 @@ trigger: When a task may already be covered by an existing pattern.
 primary_mcp: repository, deliverables
 fallback_tools: reference/ground, search_query
 best_guess_output: A reuse recommendation with exact patterns to follow.
-output_artifacts: logs/active/<project-slug>/deliverables/reference-reuse.md
+output_artifacts: knowledge/reference-reuse.md
 done_when: The preferred reusable pattern is explicit and justified.
 ---
 
@@ -17,7 +17,7 @@ Find approved patterns, components, and prior deliverables worth reusing before 
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/reference-reuse.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/reference-reuse.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

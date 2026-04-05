@@ -3,7 +3,7 @@ name: experiment-brief
 description: Define a product experiment using Hypothesis-Driven Development and Pre-Registration of Decision Rules.
 trigger: When the team wants to validate an idea before full commitment.
 best_guess_output: An experiment brief with metrics, decision rules, and model-based rationale.
-output_artifacts: logs/active/<project-slug>/deliverables/product-lead-experiment-brief.md
+output_artifacts: knowledge/product-lead-experiment-brief.md
 done_when: The experiment can be run and judged without inventing criteria later.
 ---
 
@@ -65,7 +65,7 @@ The agent must construct an **Experiment Logic Model** before defining success c
 4. **Instrumentation Audit**: Identify missing events in Amplitude/Statsig that must be implemented for a valid readout.
 
 ## 9. Structured Findings (Deliverable Sections)
-The deliverable at `logs/active/<slug>/deliverables/product-lead-experiment-brief.md` must include:
+The deliverable at `knowledge/product-lead-experiment-brief.md` must include:
 - `### Hypothesis`: HDD-format statement.
 - `### Experiment Logic Model`: Description of the funnel impact.
 - `### Audience and Scope`: Segment definitions and surfacing rules.
@@ -105,7 +105,7 @@ The deliverable at `logs/active/<slug>/deliverables/product-lead-experiment-brie
 - **No Hallucination**: Use actual historical p50/p90 values if Amplitude is accessible; otherwise, label as "Inferred Baseline."
 
 ## 16. Output Contract
-- **Target File**: `logs/active/<project-slug>/deliverables/product-lead-experiment-brief.md`.
+- **Target File**: `knowledge/product-lead-experiment-brief.md`.
 - **Do NOT modify**: Role-level READMEs or global skill lists.
 - **Append**: Link to the Execution Manifest (`orchestrator.md`).
 - **Include Reflection**: `## Reflection` section with `What worked`, `What didn't`, and `Next steps`.

@@ -35,7 +35,7 @@ tool_routing:
   - if: only static specs, tickets, screenshots, or linked documents exist
     use: [open]
 best_guess_output: A requirements trace review with explicit matches, gaps, ambiguities, and unverified areas.
-output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
+output_artifacts: knowledge/reviews/qa-reviewer.md
 done_when: The team can see where delivery matches intent, where it drifts, which constraints are unverified, and which gaps matter most for sign-off or release.
 ---
 
@@ -51,7 +51,7 @@ This skill does not invent missing requirements, replace product clarification, 
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/qa-reviewer-requirements-trace-review.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/qa-reviewer-requirements-trace-review.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

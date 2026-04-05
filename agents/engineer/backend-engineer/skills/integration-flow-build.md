@@ -48,7 +48,7 @@ tool_routing:
   - if: the primary runtime path is unavailable or the repository is missing needed evidence
     use: [reference/trace, search_query]
 best_guess_output: An integration implementation or flow design with explicit contracts, retries, failure handling, and boundary notes.
-output_artifacts: logs/active/<project-slug>/deliverables/backend-engineer-integration-flow-build.md
+output_artifacts: knowledge/backend-engineer-integration-flow-build.md
 done_when: The integration path, contract boundaries, retries, idempotency, compensations, observability, and rollout constraints are explicit enough to implement and verify.
 ---
 
@@ -64,7 +64,7 @@ This skill does not replace API implementation or domain modeling. It focuses on
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/backend-engineer-integration-flow-build.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-integration-flow-build.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

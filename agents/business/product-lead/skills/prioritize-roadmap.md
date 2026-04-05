@@ -3,7 +3,7 @@ name: prioritize-roadmap
 description: Rank work against impact, effort, sequencing, and strategic fit using RICE 2.0 and Outcome-Based Roadmapping.
 trigger: When multiple candidate bets compete for attention or quarterly planning is initiated.
 best_guess_output: A ranked roadmap or priority decision with rationale grounded in strategic fit and resource constraints.
-output_artifacts: logs/active/<project-slug>/deliverables/product-lead-prioritize-roadmap.md
+output_artifacts: knowledge/product-lead-prioritize-roadmap.md
 done_when: The ordering is explicit, tradeoffs are documented, and North Star alignment is verified.
 ---
 
@@ -90,7 +90,7 @@ Identify:
 - Do not hallucinate capacity; if engineering bandwidth is unknown, state it as a limit.
 
 ## 16. Output Contract (Lossless Deliverable)
-- Produce a standalone deliverable at `logs/active/<slug>/deliverables/product-lead-prioritize-roadmap.md`.
+- Produce a standalone deliverable at `knowledge/product-lead-prioritize-roadmap.md`.
 - Ensure rationale for every ranking change is preserved.
 - Link this deliverable in `orchestrator.md`.
 - Include a `## Reflection` section with `What worked`, `What didn't`, and `Next steps`.

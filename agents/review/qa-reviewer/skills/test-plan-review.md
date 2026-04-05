@@ -35,7 +35,7 @@ tool_routing:
   - if: external standards, browser constraints, or ecosystem behaviors materially affect coverage needs
     use: [search_query]
 best_guess_output: A test plan review with explicit risk coverage, gaps, and priority recommendations.
-output_artifacts: logs/active/<project-slug>/reviews/qa-reviewer.md
+output_artifacts: knowledge/reviews/qa-reviewer.md
 done_when: Critical risks have explicit coverage mapping, missing depth is visible, blind spots are named, and the highest-value additions are prioritized.
 ---
 
@@ -51,7 +51,7 @@ This skill does not equate more tests with better coverage, replace implementati
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/qa-reviewer-test-plan-review.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/qa-reviewer-test-plan-review.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

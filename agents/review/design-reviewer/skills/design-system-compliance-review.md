@@ -34,7 +34,7 @@ tool_routing:
   - if: system rules or reusable patterns must be recovered from prior work
     use: [reference/reuse]
 best_guess_output: A design-system compliance review with evidence-tagged conformance issues, grouped variance patterns, and justified exceptions called out.
-output_artifacts: logs/active/<project-slug>/reviews/design-reviewer.md
+output_artifacts: knowledge/reviews/design-reviewer.md
 done_when: Design-system conformance issues, justified exceptions, and system gaps are concrete, traceable, and actionable.
 ---
 
@@ -50,7 +50,7 @@ This skill does not assume every difference is a violation, treat the current im
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-reviewer-design-system-compliance-review.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-design-system-compliance-review.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

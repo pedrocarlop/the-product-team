@@ -3,7 +3,7 @@ name: execution-tracker
 description: Create a predictive, AI-enhanced tracking model for operational accountability, resource optimization, and risk-adjusted forecasting.
 trigger: When a project requires deep execution visibility, predictive delay tracking, and structured accountability.
 best_guess_output: A predictive execution model with CPM logic, RACI assignments, and risk-adjusted milestone forecasts.
-output_artifacts: logs/active/<project-slug>/deliverables/business-ops-execution-tracker.md
+output_artifacts: knowledge/business-ops-execution-tracker.md
 section_anchor: execution-tracker
 done_when: All workstreams have clear owners, critical paths are identified, and the system can predict delays based on resource load.
 ---
@@ -95,6 +95,6 @@ Identify recurring failures:
 - Never declare "On Track" if the P90 forecast exceeds the deadline.
 
 ## Output Contract
-- **Target**: `logs/active/<project-slug>/deliverables/business-ops-execution-tracker.md`.
+- **Target**: `knowledge/business-ops-execution-tracker.md`.
 - **Merge Rules**: Standalone deliverable. Do not modify the core project manifest.
 - **Artifacts**: Must include a Mermaid-formatted CPM diagram and a RACI table.

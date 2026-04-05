@@ -3,7 +3,7 @@ name: write-prd
 description: Write a delivery-grade PRD that encodes logic, design-awareness, and technical feasibility for AI-first product development.
 trigger: When engineering or design need a precise, lossless product specification for execution.
 best_guess_output: A PRD or equivalent product specification.
-output_artifacts: logs/active/<project-slug>/deliverables/product-lead-write-prd.md
+output_artifacts: knowledge/product-lead-write-prd.md
 done_when: Executors can build without product ambiguity, and logic/design edge cases are resolved.
 ---
 
@@ -85,7 +85,7 @@ Mandatory. State unvalidated assumptions and technical black boxes.
 - Avoid hallucinated data.
 
 ## 16. Output Contract
-- **Path**: `logs/active/<slug>/deliverables/product-lead-write-prd.md`.
+- **Path**: `knowledge/product-lead-write-prd.md`.
 - **Lossless Deliverable Rules**:
   - Standalone file in specified path.
   - Do not overwrite role-level docs.

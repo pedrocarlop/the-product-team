@@ -5,7 +5,7 @@ trigger: Before finalizing a decision that depends on repo or tool evidence.
 primary_mcp: repository, deliverables
 fallback_tools: reference/trace, search_query
 best_guess_output: A pass/fail/unresolved verification result with cited evidence.
-output_artifacts: logs/active/<project-slug>/deliverables/reference-verify.md
+output_artifacts: knowledge/reference-verify.md
 done_when: The claimed conclusion is defended by present-state evidence.
 ---
 
@@ -17,7 +17,7 @@ Re-open evidence and confirm that the chosen conclusion still holds before hando
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/reference-verify.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/reference-verify.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

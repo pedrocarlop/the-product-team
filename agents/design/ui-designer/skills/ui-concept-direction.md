@@ -6,8 +6,8 @@ primary_mcp: paper
 fallback_tools: search_query
 best_guess_output: A concept direction with clear visual thesis and promising directions.
 output_artifacts:
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/ui-designer-ui-concept-direction.md
-  - logs/active/<project-slug>/runs/<run-id>/deliverables/assets/ (for visual artifacts)
+  - knowledge/runs/<run-id>/ui-designer-ui-concept-direction.md
+  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: A team can choose or refine one of 3 materially different directions, understand the recommended path, and see the shared design spec seeded.
 required_inputs:
   - new-design confirmation or an explicit note that this is only an extension of an existing pattern
@@ -174,12 +174,12 @@ Do not end in a tie.
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/runs/<run-id>/deliverables/ui-designer-ui-concept-direction.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/runs/<run-id>/ui-designer-ui-concept-direction.md`).
 - Do not merge this output into a shared role-level document or overwrite previous runs.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `logs/active/<project-slug>/runs/<run-id>/deliverables/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 
@@ -197,7 +197,7 @@ Within `## Skill: ui-concept-direction`, include:
 
 ## Project Ds-Spec Seed
 
-Use the concept pass to seed `logs/active/<project-slug>/deliverables/project-ds-spec.md` when the work is greenfield.
+Use the concept pass to seed `knowledge/project-ds-spec.md` when the work is greenfield.
 
 - `Design principles and brand posture`: describe the posture the product should sustain as it converges.
 - `Reference inspirations`: call out the inspiration-only cues that should survive, not copied branding.

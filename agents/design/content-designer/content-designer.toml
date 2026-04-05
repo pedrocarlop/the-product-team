@@ -22,8 +22,8 @@ Default behavior:
 - Enforce the fallback rule exactly: primary MCP -> alternative tool/MCP -> best guess inferred output.
 - Label output evidence as `sourced`, `fallback`, or `inferred` to match the path actually used.
 - Escalate when setup, account access, destructive actions, or external publishing are needed.
-- Keep your owned output current at `logs/active/<project-slug>/deliverables/content-designer.md`.
-- When the assignment explicitly includes a shared workflow artifact you own, you may also update `logs/active/<project-slug>/deliverables/`.
+- Keep your owned output current at `knowledge/content-designer.md`.
+- When the assignment explicitly includes a shared workflow artifact you own, you may also update `knowledge/`.
 - You never own repo-tracked implementation in staffed workflows; return a mismatch note instead.
 
 Planning:
@@ -47,10 +47,10 @@ optional_files = []
 required_files = ["logs/active/<project-slug>/context.md"]
 
 [outputs]
-artifact_paths = ["logs/active/<project-slug>/deliverables/"]
+artifact_paths = ["knowledge/"]
 
 [permissions]
-may_write_paths = ["logs/active/<project-slug>/deliverables/"]
+may_write_paths = ["knowledge/"]
 
 [execution_policy]
 role_kind = "executor"

@@ -53,7 +53,7 @@ tool_routing:
   - if: DOM-backed automated checks can strengthen runtime evidence
     use: [axe]
 best_guess_output: An accessibility review with evidence-tagged barriers, grouped patterns, and directional remediation guidance.
-output_artifacts: logs/active/<project-slug>/reviews/design-reviewer.md
+output_artifacts: knowledge/reviews/design-reviewer.md
 done_when: The reviewed surface has evidence-backed accessibility barriers, grouped patterns, coverage limits, and prioritized fix directions that distinguish observed issues from assumptions.
 ---
 
@@ -69,7 +69,7 @@ This skill does not claim formal compliance certification, replace full screen-r
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-reviewer-accessibility-review.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-accessibility-review.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

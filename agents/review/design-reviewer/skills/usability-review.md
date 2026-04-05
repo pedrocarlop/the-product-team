@@ -52,7 +52,7 @@ tool_routing:
   - if: accessibility validation is relevant
     use: [axe]
 best_guess_output: A usability review with concrete friction points, grouped patterns, and clearly marked evidence limits.
-output_artifacts: logs/active/<project-slug>/reviews/design-reviewer.md
+output_artifacts: knowledge/reviews/design-reviewer.md
 done_when: The biggest usability risks are explicit, reproducible, severity-rated, grouped into actionable patterns, and labeled by evidence confidence.
 ---
 
@@ -68,7 +68,7 @@ This skill does not replace moderated research, analytics-backed behavioral evid
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-reviewer-usability-review.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-usability-review.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

@@ -3,7 +3,7 @@ name: experiment-readout
 description: Interpret an experiment and translate the result into a decision using statistical rigor and business context.
 trigger: When an experiment has completed or reached sufficient sample size and requires a structured decision-ready summary.
 best_guess_output: A statistical readout including primary metric lift, guardrail impact, confidence assessment, and a clear "go/no-go" recommendation.
-output_artifacts: logs/active/<project-slug>/deliverables/analyst-experiment-readout.md
+output_artifacts: knowledge/analyst-experiment-readout.md
 done_when: The readout provides a clear recommendation based on pre-committed success criteria, with all validity checks passed.
 tool_stack:
   runtime:

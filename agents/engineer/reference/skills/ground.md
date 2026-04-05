@@ -5,7 +5,7 @@ trigger: When a role needs factual grounding before choosing a path.
 primary_mcp: repository, named source systems
 fallback_tools: search_query, open
 best_guess_output: A concise grounding inventory with sources and unknowns.
-output_artifacts: logs/active/<project-slug>/deliverables/reference-ground.md
+output_artifacts: knowledge/reference-ground.md
 done_when: The team can cite concrete repo/system evidence instead of assumptions.
 ---
 
@@ -17,7 +17,7 @@ Ground decisions in the real target repo and any named source system before prop
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/reference-ground.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/reference-ground.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

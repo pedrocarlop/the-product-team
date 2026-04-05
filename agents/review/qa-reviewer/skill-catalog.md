@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, chrome_devtools
 - Fallback: reference/verify, open
 - Best guess: A regression triage with evidence-tagged severity, blocking status, and next-action routing.
-- Output: logs/active/<project-slug>/reviews/qa-reviewer.md
+- Output: knowledge/reviews/qa-reviewer.md
 - Done when: Blocking and non-blocking regressions are clearly separated with evidence, rationale, confidence, and next action, and duplicate or systemic issues are grouped instead of counted loosely.
 
 ## `release-gate`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, logs
 - Fallback: qa-reviewer/runtime-network-audit, qa-reviewer/test-plan-review
 - Best guess: A release gate recommendation with blocking issues, residual risk, and explicit confidence.
-- Output: logs/active/<project-slug>/reviews/qa-reviewer.md
+- Output: knowledge/reviews/qa-reviewer.md
 - Done when: The release recommendation is unambiguous, evidence-based, explicit about residual risk, and clear about what must happen before or after ship.
 
 ## `requirements-trace-review`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, logs
 - Fallback: reference/verify, open
 - Best guess: A requirements trace review with explicit matches, gaps, ambiguities, and unverified areas.
-- Output: logs/active/<project-slug>/reviews/qa-reviewer.md
+- Output: knowledge/reviews/qa-reviewer.md
 - Done when: The team can see where delivery matches intent, where it drifts, which constraints are unverified, and which gaps matter most for sign-off or release.
 
 ## `runtime-network-audit`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: chrome_devtools
 - Fallback: repository, reference/trace
 - Best guess: A runtime and network audit with evidence-tagged failures, dependency context, and observability gaps.
-- Output: logs/active/<project-slug>/reviews/qa-reviewer.md
+- Output: knowledge/reviews/qa-reviewer.md
 - Done when: The main runtime issues are identified with reproducible evidence, request context, dependency mapping, and explicit limits on what could not be observed directly.
 
 ## `test-plan-review`
@@ -51,5 +51,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, logs
 - Fallback: reference/trace, search_query
 - Best guess: A test plan review with explicit risk coverage, gaps, and priority recommendations.
-- Output: logs/active/<project-slug>/reviews/qa-reviewer.md
+- Output: knowledge/reviews/qa-reviewer.md
 - Done when: Critical risks have explicit coverage mapping, missing depth is visible, blind spots are named, and the highest-value additions are prioritized.

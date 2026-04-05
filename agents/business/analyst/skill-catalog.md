@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A structured narrative readout leading with an executive takeaway, supported by trend analysis and recommended actions.
-- Output: logs/active/<project-slug>/deliverables/analyst-dashboard-story.md
+- Output: knowledge/analyst-dashboard-story.md
 - Done when: The reader can understand the core performance story, the primary driver of change, and the specific next steps without needing to open the source dashboard.
 
 ## `experiment-readout`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A statistical readout including primary metric lift, guardrail impact, confidence assessment, and a clear "go/no-go" recommendation.
-- Output: logs/active/<project-slug>/deliverables/analyst-experiment-readout.md
+- Output: knowledge/analyst-experiment-readout.md
 - Done when: The readout provides a clear recommendation based on pre-committed success criteria, with all validity checks passed.
 
 ## `forecast-model`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A decision-ready forecast report containing centered projections, scenario ranges (P10/P50/P90), and sensitivity analysis of key drivers.
-- Output: logs/active/<project-slug>/deliverables/analyst-forecast-model.md
+- Output: knowledge/analyst-forecast-model.md
 - Done when: The forecast is reproducible, grounded in historical data, accounts for external signals, and provides actionable scenario-based insights.
 
 ## `funnel-analysis`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A detailed breakdown of funnel bottlenecks with cohort analysis and prioritized optimization hypotheses.
-- Output: logs/active/<project-slug>/deliverables/analyst-funnel-analysis.md
+- Output: knowledge/analyst-funnel-analysis.md
 - Done when: The team has a prioritized list of funnel friction points supported by evidence and actionable next steps.
 
 ## `metric-definition`
@@ -51,5 +51,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A structured metric model including NSM/Input hierarchies, SQL/DBT logic, and instrumentation mapping (Amplitude/Mixpanel).
-- Output: logs/active/<project-slug>/deliverables/analyst-metric-definition.md
+- Output: knowledge/analyst-metric-definition.md
 - Done when: The metric model is mathematically sound, mapped to business value, and instrumentable in modern analytics tools.

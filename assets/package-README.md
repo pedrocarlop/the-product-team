@@ -26,7 +26,7 @@ Product Team turns Codex into a routed product workflow with:
 
 - an orchestrator that decides direct versus coordinated work
 - specialist roles grouped by business, design, engineering, and review
-- a shared `/logs` memory surface for context, deliverables, decisions, and status
+- a shared memory surface: `/logs` for execution trail, `/knowledge` for deliverables, `/app` for code outputs
 - strict assignment contracts so staffed work is explicit instead of improvised
 
 ## Role Topology
@@ -62,11 +62,11 @@ All staffed specialists follow the same operating model:
 
 Shared role deliverables use skill-owned anchors in the form `## Skill: <skill-name>` and preserve one trailing `## Reflection` footer for the role.
 
-For greenfield product design, `ui-designer` seeds `logs/active/<project-slug>/deliverables/project-ds-spec.md` from up to 3 inspiration-only reference design-system kits in `.codex/product-team/references/reference-design-systems/`. For truly blank frontends, that same shared spec may also recommend a product-specific shadcn/ui foundation. `design-systems-designer` then expands the shared spec into tokens, atomic primitives, component families, widget/layout rules, governance, and QA guidance, and engineering may materialize the shadcn recommendation only when it is the explicit repo-write owner.
+For greenfield product design, `ui-designer` seeds `knowledge/project-ds-spec.md` from up to 3 inspiration-only reference design-system kits in `.codex/product-team/references/reference-design-systems/`. For truly blank frontends, that same shared spec may also recommend a product-specific shadcn/ui foundation. `design-systems-designer` then expands the shared spec into tokens, atomic primitives, component families, widget/layout rules, governance, and QA guidance, and engineering may materialize the shadcn recommendation only when it is the explicit repo-write owner.
 
 ## Discipline Boundaries
 
-- Business and design roles own advisory outputs in `/logs`; they do not own repo-tracked implementation in staffed workflows.
+- Business and design roles own advisory outputs in `/knowledge`; they do not own repo-tracked implementation in staffed workflows.
 - Engineering roles may edit repo-tracked files only when they are the explicit `repo_write_owner` for that stage and the `repo_write_scope` is bounded.
 - `reference` is read-only support for grounding, tracing, reuse, and verification.
 
@@ -85,12 +85,13 @@ For new design work, the design flow must diverge before it converges. `ui-desig
 - `.codex/product-team/scripts/update-install.py`
 - `.codex/product-team/scripts/lib/`
 - `.codex/product-team/manifest.json`
-- `logs/active/`
-- `logs/archive/`
+- `logs/active/` and `logs/archive/`
+- `knowledge/` (deliverables, reviews, runs)
+- `app/` (code outputs)
 
 ## Notes
 
 - `AGENTS.md` contains a managed Product Team block that the installer keeps up to date.
-- `logs/README.md` is created only when the target repo does not already have one.
+- `logs/README.md` and `knowledge/README.md` are created only when the target repo does not already have them.
 - Installed roles stay grouped by discipline so the target repo mirrors the source package structure.
 - `.codex/product-team/manifest.json` records enough source metadata for installed repos to self-update later.

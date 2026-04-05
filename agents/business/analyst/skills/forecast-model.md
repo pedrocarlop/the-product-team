@@ -3,7 +3,7 @@ name: forecast-model
 description: Generate evidence-based forecasts using time-series decomposition (Prophet), scenario planning (Monte Carlo), and driver-based modeling to support strategic decision-making.
 trigger: When the user needs to project future volumes, revenue, adoption, or any time-bound metric based on historical patterns and explicit assumptions.
 best_guess_output: A decision-ready forecast report containing centered projections, scenario ranges (P10/P50/P90), and sensitivity analysis of key drivers.
-output_artifacts: logs/active/<project-slug>/deliverables/analyst-forecast-model.md
+output_artifacts: knowledge/analyst-forecast-model.md
 done_when: The forecast is reproducible, grounded in historical data, accounts for external signals, and provides actionable scenario-based insights.
 tool_stack:
   runtime:
@@ -114,7 +114,7 @@ Before executing a forecast, the agent must construct a **Driver Model**:
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/analyst-forecast-model.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/analyst-forecast-model.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

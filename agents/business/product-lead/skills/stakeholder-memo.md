@@ -3,7 +3,7 @@ name: stakeholder-memo
 description: Synthesize diverse signals into a high-stakes decision memo using the Pyramid Principle and Amazon 6-Page narrative styles.
 trigger: When a product decision needs alignment, funding, or executive approval.
 best_guess_output: A stakeholder memo with recommendation, risks, and asks.
-output_artifacts: logs/active/<project-slug>/deliverables/product-lead-stakeholder-memo.md
+output_artifacts: knowledge/product-lead-stakeholder-memo.md
 section_anchor: stakeholder-memo
 done_when: All primary stakeholders have received a clear, evidence-based recommendation with explicit asks and identified risks.
 tool_stack:
@@ -104,7 +104,7 @@ Identify and call out:
 ## 17. Output Contract
 ### Lossless Deliverable Contract
 - Produce a standalone deliverable at the path specified in `output_artifacts`.
-- **Formatting**: `logs/active/<slug>/deliverables/product-lead-stakeholder-memo.md`.
+- **Formatting**: `knowledge/product-lead-stakeholder-memo.md`.
 - **Do not merge** into primary role docs.
 - **Include reflection**: `## Reflection` with `What worked`, `What didn't`, and `Next steps`.
 

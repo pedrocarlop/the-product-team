@@ -5,7 +5,7 @@ trigger: When staffed roles disagree or outputs conflict.
 primary_mcp: deliverables, context
 fallback_tools: reference/trace, reference/verify
 best_guess_output: A reconciled direction with explicit decisions and surviving details.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-reconcile.md
+output_artifacts: knowledge/orchestrator-reconcile.md
 done_when: Only one downstream direction remains and disputed points are resolved.
 ---
 

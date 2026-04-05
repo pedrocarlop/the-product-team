@@ -1,6 +1,6 @@
 # Project DS Spec Template
 
-Use this template for `logs/active/<project-slug>/deliverables/project-ds-spec.md`.
+Use this template for `knowledge/project-ds-spec.md`.
 
 This is the product's own design system specification. It is not the company reference library.
 

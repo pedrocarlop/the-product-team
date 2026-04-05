@@ -3,7 +3,7 @@ name: partner-thesis
 description: Define a data-driven ecosystem-led growth (ELG) strategy and partner prioritization model using 2026 PRM/ELG tools.
 trigger: When partnership exploration, ecosystem-led growth (ELG) strategy, or partner prioritization is needed.
 best_guess_output: A comprehensive partner thesis with ROI-driven rationale and Nearbound execution paths.
-output_artifacts: logs/active/<project-slug>/deliverables/go-to-market-partner-thesis.md
+output_artifacts: knowledge/go-to-market-partner-thesis.md
 section_anchor: partner-thesis
 done_when: The partnership strategy is specific enough to initiate automated account mapping (Crossbeam/Reveal) or PRM onboarding (PartnerStack/Impartner).
 required_inputs:
@@ -99,6 +99,6 @@ Identify:
 - **Nearbound-First:** Prioritize "who can help us win now" over "who looks good on paper."
 
 ## 17. Output Contract
-- **Target File:** `logs/active/<project-slug>/deliverables/go-to-market-partner-thesis.md`
+- **Target File:** `knowledge/go-to-market-partner-thesis.md`
 - **Link Result:** Must be linked in `orchestrator.md`.
 - **Reflection Mandatory:** Every thesis must conclude with a `## Reflection` on the data quality used.

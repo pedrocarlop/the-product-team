@@ -86,7 +86,7 @@ tool_routing:
   - if: runtime evidence is thin or the target system is not accessible
     use: [reference/ground, search_query]
 best_guess_output: A pipeline orchestration design or implementation direction with explicit sequencing, retries, ownership, observability, and rollout notes.
-output_artifacts: logs/active/<project-slug>/deliverables/platform-engineer-pipeline-orchestration.md
+output_artifacts: knowledge/platform-engineer-pipeline-orchestration.md
 done_when: The pipeline model, failure behavior, ownership, and observability are explicit enough to implement, review, or operate without hidden assumptions.
 ---
 
@@ -98,7 +98,7 @@ Build or improve platform pipeline orchestration by modeling the flow first, the
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/platform-engineer-pipeline-orchestration.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-pipeline-orchestration.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

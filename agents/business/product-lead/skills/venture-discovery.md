@@ -3,7 +3,7 @@ name: venture-discovery
 description: Perform foundational business and product diligence for generic or outcome-first requests. Includes TAM analysis, Business Model Canvas, Value Proposition Design, and Monetization strategy.
 trigger: When a request is generic, category-first, or asks for a "company", "startup", or "business" from scratch without a bounded problem.
 best_guess_output: A comprehensive Venture Thesis with market sizing (TAM/SAM/SOM), a completed Business Model Canvas, Value Prop Map, and Trends/Risks analysis.
-output_artifacts: logs/active/<project-slug>/deliverables/product-lead-venture-discovery.md
+output_artifacts: knowledge/product-lead-venture-discovery.md
 done_when: The business fundamentals are modeled, market potential is quantified, and the strategic direction is clear enough for a user go/no-go decision.
 tool_stack:
   runtime:
@@ -66,7 +66,7 @@ The deliverable must contain:
 - `### Strategic Recommendations`: 3-5 high-leverage directions.
 
 ## 5. Output Contract
-- **Target Path:** `logs/active/<project-slug>/deliverables/product-lead-venture-discovery.md`
+- **Target Path:** `knowledge/product-lead-venture-discovery.md`
 - **Format:** High-fidelity Markdown (Pitch/Notion ready).
 - **Mandatory Ask:** End with "### Decisions for the User" listing the specific go/no-go calls needed.
 

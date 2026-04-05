@@ -3,7 +3,7 @@ name: customer-signal-synthesis
 description: Synthesize multi-source buying signals, intent data, and conversation intelligence into actionable GTM priorities.
 trigger: When a new campaign is being planned, or when an account list needs prioritization based on live signals.
 best_guess_output: A prioritized list of accounts and contacts with specific 'why now' triggers and personalized messaging angles.
-output_artifacts: logs/active/<project-slug>/deliverables/go-to-market-customer-signal-synthesis.md
+output_artifacts: knowledge/go-to-market-customer-signal-synthesis.md
 done_when: All available signals from the tool stack have been aggregated, de-duplicated, and mapped to a prioritization matrix.
 required_inputs: [Target account list, Ideal Customer Profile (ICP) definition, Product value propositions]
 tool_stack:
@@ -105,6 +105,6 @@ For each priority account:
 - Never use hallucinated contact data; if a contact is not found, label clearly as "To Be Discovered".
 
 ## 17. Output Contract
-- **File**: `logs/active/<project-slug>/deliverables/go-to-market-customer-signal-synthesis.md`
+- **File**: `knowledge/go-to-market-customer-signal-synthesis.md`
 - **Constraint**: Do not modify existing core agent role documents.
 - **Linkage**: Must be linked in the Execution Manifest (`orchestrator.md`).

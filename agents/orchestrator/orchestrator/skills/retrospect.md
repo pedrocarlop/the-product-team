@@ -5,7 +5,7 @@ trigger: When the same failure pattern repeats across requests or roles.
 primary_mcp: timeline, context, deliverables
 fallback_tools: repository review
 best_guess_output: A concrete system fix proposal tied to evidence.
-output_artifacts: logs/active/<project-slug>/deliverables/orchestrator-retrospect.md
+output_artifacts: knowledge/orchestrator-retrospect.md
 done_when: The root cause, fix location, and verification path are explicit.
 ---
 

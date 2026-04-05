@@ -51,7 +51,7 @@ tool_routing:
   - if: primary tools are unavailable or blocked
     use: [reference/verify, search_query]
 best_guess_output: A backend verification report with contract checks, failure-path checks, operational checks, residual risk, and confidence.
-output_artifacts: logs/active/<project-slug>/deliverables/backend-engineer-backend-verify.md
+output_artifacts: knowledge/backend-engineer-backend-verify.md
 done_when: The team can see which backend behaviors were validated, which risks remain, and whether any unresolved issues block release.
 ---
 
@@ -67,7 +67,7 @@ This skill does not assume a passing unit test suite proves release readiness, d
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/backend-engineer-backend-verify.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-backend-verify.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

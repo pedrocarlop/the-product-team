@@ -5,7 +5,7 @@ trigger: When implementation paths or ownership boundaries are unclear.
 primary_mcp: repository, deliverables
 fallback_tools: reference/ground, open
 best_guess_output: A traced path from entry point to source of truth.
-output_artifacts: logs/active/<project-slug>/deliverables/reference-trace.md
+output_artifacts: knowledge/reference-trace.md
 done_when: A downstream implementer knows exactly where the change lands.
 ---
 
@@ -17,7 +17,7 @@ Trace a behavior through files, systems, or deliverables until the real source o
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/reference-trace.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/reference-trace.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

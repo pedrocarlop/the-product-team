@@ -57,7 +57,7 @@ tool_routing:
   - if: primary tools are unavailable, blocked, or incomplete
     use: [reference/trace, search_query]
 best_guess_output: A backend API implementation or change plan with a contract model, implementation touchpoints, compatibility notes, and verification status.
-output_artifacts: logs/active/<project-slug>/deliverables/backend-engineer-api-implementation.md
+output_artifacts: knowledge/backend-engineer-api-implementation.md
 done_when: The API contract is implemented with clear behavior and constraints, compatibility risks are explicit, and the contract can be verified from the deliverable and the codebase.
 ---
 
@@ -73,7 +73,7 @@ This skill does not decide product scope, invent unsupported endpoints, or colla
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/backend-engineer-api-implementation.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-api-implementation.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

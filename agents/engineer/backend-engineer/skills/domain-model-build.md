@@ -45,7 +45,7 @@ tool_routing:
   - if: the primary path is unavailable, blocked, or incomplete
     use: [reference/ground, reference/trace]
 best_guess_output: A backend domain model implementation or design with explicit entities, rules, transitions, transformations, and open risks.
-output_artifacts: logs/active/<project-slug>/deliverables/backend-engineer-domain-model-build.md
+output_artifacts: knowledge/backend-engineer-domain-model-build.md
 done_when: Core rules are explicit, mapped to a clear source of truth, and any unresolved ambiguities, edge cases, or data-shape risks are documented.
 ---
 
@@ -61,7 +61,7 @@ This skill does not own endpoint design, frontend behavior, or generic implement
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/backend-engineer-domain-model-build.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-domain-model-build.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

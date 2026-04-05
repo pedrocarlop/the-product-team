@@ -53,7 +53,7 @@ tool_routing:
     use: [chrome_devtools, reference_trace]
     note: Label output section as `fallback`; lower confidence of any measurement or token value obtained this way
 best_guess_output: A working UI implementation that faithfully reproduces the approved design, covers all required states and interactions, and is aligned to the project design system spec.
-output_artifacts: logs/active/<project-slug>/deliverables/frontend-engineer-implement-from-design.md
+output_artifacts: knowledge/frontend-engineer-implement-from-design.md
 done_when: The implemented surface matches the approved design's structure, spacing, typography, color, and behavioral states; all required states are covered in code; the fidelity gaps section explicitly accounts for any deviations; and the code touchpoints are identified so downstream review can verify the right surface.
 ---
 
@@ -209,7 +209,7 @@ No conclusions about implementation complexity or approach before this matrix is
 
 Follow this sequence strictly.
 
-**Step 1 — Read the design system spec.** Before inspecting Figma, read `logs/active/<project-slug>/deliverables/project-ds-spec.md` if it exists. Identify: recommended component library, token structure, CSS framework, existing initialization state, and any explicit implementation decisions. This governs the entire foundation setup.
+**Step 1 — Read the design system spec.** Before inspecting Figma, read `knowledge/project-ds-spec.md` if it exists. Identify: recommended component library, token structure, CSS framework, existing initialization state, and any explicit implementation decisions. This governs the entire foundation setup.
 
 **Step 2 — Inspect the design artifact.** Use the tool routing logic to inspect the Figma file. Retrieve: frame structure, component names, spacing values, typography styles, color tokens, radius values, shadow styles, and any interactive states or variants declared. Record which tool path was used.
 
@@ -348,7 +348,7 @@ Do not omit this section or collapse it to a single line. Gaps that are not name
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/frontend-engineer-implement-from-design.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-implement-from-design.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.

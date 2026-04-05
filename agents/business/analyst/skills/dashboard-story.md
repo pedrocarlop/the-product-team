@@ -3,7 +3,7 @@ name: dashboard-story
 description: Transform raw metrics and dashboard visualizations into a cohesive, narrative-driven business story using the Pyramid Principle and Goal-Signal-Metric frameworks.
 trigger: When a dashboard exists (Tableau, Power BI, Looker, etc.) but the team requires a synthesis of what the numbers mean, why they changed, and what actions to take.
 best_guess_output: A structured narrative readout leading with an executive takeaway, supported by trend analysis and recommended actions.
-output_artifacts: logs/active/<project-slug>/deliverables/analyst-dashboard-story.md
+output_artifacts: knowledge/analyst-dashboard-story.md
 done_when: The reader can understand the core performance story, the primary driver of change, and the specific next steps without needing to open the source dashboard.
 tool_stack:
   runtime:

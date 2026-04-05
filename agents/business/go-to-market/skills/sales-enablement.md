@@ -3,7 +3,7 @@ name: sales-enablement
 description: Encodes the method for developing AI-driven sales enablement and training programs, focused on contextual supercoaching, real-time feedback, and behavior-led skill validation for 2026 GTM teams.
 trigger: When a GTM leader needs to build or update sales training, coaching, or content enablement systems to improve rep win rates and meeting readiness.
 best_guess_output: A comprehensive sales enablement blueprint including a tool stack, coaching methodology, and performance measurement framework.
-output_artifacts: logs/active/<project-slug>/deliverables/go-to-market-sales-enablement.md
+output_artifacts: knowledge/go-to-market-sales-enablement.md
 section_anchor: sales-enablement
 done_when: The program architecture is defined, tools are routed based on capabilities, and a behavior-led measurement system is in place.
 ---
@@ -95,5 +95,5 @@ Before designing the program, the agent must map:
 - Avoid prescribing a "one-size-fits-all" training program; personalize by rep tenure.
 
 ## 17. Output Contract
-- **Target File**: `logs/active/<project-slug>/deliverables/go-to-market-sales-enablement.md`.
+- **Target File**: `knowledge/go-to-market-sales-enablement.md`.
 - **Constraint**: All recommendations must align with the 2026 "Supercoaching" methodology.

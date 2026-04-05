@@ -34,7 +34,7 @@ tool_routing:
   - if: only static exports, screenshots, or linked specs exist
     use: [open]
 best_guess_output: A fidelity review with evidence-tagged drift findings, grouped patterns, and directional remediation guidance.
-output_artifacts: logs/active/<project-slug>/reviews/design-reviewer.md
+output_artifacts: knowledge/reviews/design-reviewer.md
 done_when: Meaningful design drift is identified with evidence, taxonomy, priority, and clear separation between implementation error and source ambiguity.
 ---
 
@@ -50,7 +50,7 @@ This skill does not treat every difference as a bug, assume the design source of
 
 ## Lossless Deliverable Contract
 
-- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `logs/active/<slug>/deliverables/design-reviewer-design-fidelity-review.md`).
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-design-fidelity-review.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
