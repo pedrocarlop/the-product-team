@@ -2,7 +2,9 @@
 
 [Read this in English](./README.md)
 
-## Instalación
+## Instalacion
+
+### Codex (por defecto)
 
 Desde un checkout local:
 
@@ -16,148 +18,311 @@ Desde GitHub:
 curl -fsSL https://raw.githubusercontent.com/pedrocarlop/the-product-team/main/install.sh | bash -s -- --target "$PWD"
 ```
 
-Con Python:
+### Claude Code
+
+```bash
+./install.sh --platform claude --target "$PWD"
+```
+
+O con el wrapper:
+
+```bash
+./install-claude.sh --target "$PWD"
+```
+
+### Antigravity
+
+```bash
+./install.sh --platform antigravity --target "$PWD"
+```
+
+O con el wrapper:
+
+```bash
+./install-antigravity.sh --target "$PWD"
+```
+
+### Con Python directamente
 
 ```bash
 python3 scripts/install.py --target "$PWD"
+python3 scripts/install.py --platform claude --target "$PWD"
+python3 scripts/install.py --platform antigravity --target "$PWD"
 ```
 
-Validar un proyecto ya instalado:
+### Validar y actualizar
 
 ```bash
 python3 .codex/product-team/scripts/validate-install.py
-```
-
-Actualizar después un proyecto instalado:
-
-```bash
 python3 .codex/product-team/scripts/update-install.py
 ```
 
-## Qué Hace
+## Que Hace
 
-Product Team es un flujo instalable de Codex para repositorios que quieren que el trabajo con agentes se parezca más al funcionamiento de un equipo real de producto.
+Product Team es un flujo instalable para repositorios que quieren que el trabajo con agentes se parezca mas a un equipo real de producto.
 
 Instala:
 
-- un orquestador que enruta cada petición
-- un conjunto dividido de roles especialistas en negocio, diseño, ingeniería y revisión
-- una superficie compartida de memoria en `/logs` para contexto, entregables, decisiones y estado
-- un bloque gestionado en `AGENTS.md` que convierte Product Team en la entrada por defecto del repo de destino
+- un orquestador que enruta cada peticion
+- un conjunto de roles especialistas en negocio, diseno, ingenieria y revision
+- tres superficies de salida: `/logs` (traza de ejecucion), `/knowledge` (entregables), `/app` (codigo)
+- un bloque gestionado en `AGENTS.md`, `CLAUDE.md`, o `ANTIGRAVITY.md` que convierte Product Team en la entrada por defecto
 
-La regla principal de funcionamiento es: usar el proceso más ligero que todavía haga bien el trabajo.
+La regla principal de funcionamiento es: **usar el proceso mas ligero que todavia haga bien el trabajo.**
 
-Eso significa que Product Team no crea un equipo para cada petición. Primero el orquestador decide si el trabajo debe quedarse en vía directa o pasar a coordinación. Cuando coordinar ayuda, elige el conjunto mínimo de roles que aporta valor.
+Product Team no crea un equipo para cada peticion. Primero el orquestador decide si el trabajo debe quedarse en via directa o pasar a coordinacion. Cuando coordinar ayuda, elige el conjunto minimo de roles que aporta valor.
 
-## Cómo Funcionan Los Roles
+## Como Funcionan Los Roles
 
-El repositorio está organizado alrededor de activos locales por rol en `agents/<disciplina>/<rol>/`. En negocio, diseño e ingeniería, los roles siguen el mismo patrón:
+El repositorio esta organizado alrededor de activos locales por rol en `agents/<disciplina>/<rol>/`. Cada rol sigue el mismo patron:
 
-- un TOML de rol con el prompt del sistema y la política de ejecución
+- un `.toml` con el prompt del sistema y la politica de ejecucion
 - una tarjeta `capabilities.md`
 - un `skill-catalog.md` que siempre se lee primero
-- un conjunto de flujos `skills/*.md` propios del rol
+- un conjunto de flujos `skills/*.md`
 
-La topología actual de roles es:
+La topologia actual de roles (16 especialistas + 1 orquestador + 1 referencia = 18 en total):
 
-- Negocio: `product-lead`, `analyst`, `business-ops`, `go-to-market`
-- Diseño: `ux-researcher`, `product-designer`, `ui-designer`, `content-designer`, `design-systems-designer`
-- Ingeniería: `frontend-engineer`, `backend-engineer`, `platform-engineer`
-- Revisión: `design-reviewer`, `qa-reviewer`
-- Soporte: `orchestrator`, `reference`
+| Disciplina | Roles |
+|---|---|
+| Negocio | `product-lead`, `analyst`, `business-ops`, `go-to-market` |
+| Diseno | `ux-researcher`, `product-designer`, `ui-designer`, `content-designer`, `design-systems-designer` |
+| Ingenieria | `frontend-engineer`, `backend-engineer`, `platform-engineer` |
+| Revision | `design-reviewer`, `qa-reviewer` |
+| Soporte | `orchestrator`, `reference` |
 
 Lo que es consistente en los roles especialistas:
 
 - trabajan solo a partir de asignaciones emitidas por el orquestador
-- leen primero `skill-catalog.md` y después los `skill_paths` asignados
-- ejecutan un flujo de skill concreto, no un resumen genérico del rol
+- leen primero `skill-catalog.md` y despues los `skill_paths` asignados
+- ejecutan un flujo de skill concreto, no un resumen generico del rol
 - siguen la misma regla de fallback: `primary MCP -> alternative tool/MCP -> best guess inferred output`
 - etiquetan la evidencia como `sourced`, `fallback` o `inferred`
 - escriben entregables en `knowledge/` y registros de ejecucion en `logs/active/<project-slug>/`
 
-La parte de diseño ahora tiene además un relevo explícito alrededor del sistema de diseño:
+El limite entre disciplinas es intencional:
 
-- `ui-designer` puede sembrar `knowledge/project-ds-spec.md` en trabajo greenfield
-- esa semilla se construye a partir de hasta 3 referencias solo-inspiracionales de la librería incluida de design-system kits
-- para frontends realmente en blanco, esa semilla también puede recomendar una base de shadcn/ui respaldada por la spec en lugar de dejar primitivas sin definir
-- `design-systems-designer` convierte después esa especificación compartida en tokens, primitivas, familias de componentes, reglas de layouts/widgets, gobernanza y QA
+- Los roles de **negocio y diseno** son propietarios de artefactos de asesoria. En flujos coordinados no son duenos de la implementacion del repo.
+- Los roles de **ingenieria** solo pueden editar archivos versionados cuando el orquestador les da propiedad explicita de implementacion y un `repo_write_scope` acotado.
+- **Reference** es un rol de apoyo en solo lectura para grounding, trazabilidad, reutilizacion y verificacion.
 
-El límite entre disciplinas es intencional:
+## Contrato De Asignacion
 
-- Los roles de negocio y diseño son propietarios de artefactos de asesoramiento. En flujos coordinados no son dueños de la implementación del repo.
-- Los roles de ingeniería solo pueden editar archivos versionados cuando el orquestador les da propiedad explícita de implementación y un `repo_write_scope` acotado.
-- `reference` es un rol de apoyo en solo lectura para grounding, trazabilidad, reutilización y verificación.
+Cuando el orquestador staffea especialistas, cada asignacion incluye:
 
-## Cómo Fluyen Las Peticiones
+| Campo | Proposito |
+|---|---|
+| `run_id` | Identificador unico de la etapa de ejecucion |
+| `assignment_mode` | `primary_executor`, `lean_input`, o `peer_reviewer` |
+| `owned_outputs` | Rutas en `knowledge/` que el agente escribira |
+| `reads_from` | Rutas en `knowledge/` que el agente debe leer (incluyendo proyectos previos) |
+| `repo_write_owner` | Rol que es dueno de escritura en el repo, o null |
+| `repo_write_scope` | Ruta en `app/` para codigo, o null |
+| `return_expected` | Descripcion breve del entregable esperado |
+| `skill_paths` | Flujos de skill exactos a ejecutar |
+| `primary_tools` | Servidores/herramientas MCP requeridos |
+| `fallback_policy` | Herramienta alternativa o `best guess inferred output` |
+| `evidence_mode` | `sourced`, `fallback`, o `inferred` |
 
-1. Una petición entra por `product-team-orchestrator`.
-2. El orquestador lee su propio catálogo de skills y decide entre ejecución directa o coordinada.
-3. Si el trabajo es simple y claramente de un solo rol, puede quedarse en vía directa.
-4. Si el trabajo es transversal o tiene más riesgo, el orquestador staffea el conjunto mínimo de roles útil.
-5. Los roles reciben un contrato explícito de asignación con campos como `skill_paths`, `owned_outputs`, `primary_tools`, `fallback_policy`, `repo_write_owner` y `evidence_mode`.
-6. El trabajo se registra en `logs/` (traza de ejecución) y `knowledge/` (entregables) para que el estado sobreviva más allá del contexto del chat. Las salidas de código van a `app/`.
+La regla global de fallback es: `primary MCP -> alternative tool/MCP -> best guess inferred output`.
 
-Para trabajo de diseño nuevo, el flujo no debe ir en línea recta de idea a acabado. La parte de diseño debe divergir antes de converger: explorar direcciones materialmente distintas, compararlas y solo entonces pasar a diseño de producción e implementación.
+## Como Fluyen Las Peticiones
 
-En diseño de producto greenfield, eso normalmente significa:
+1. Una peticion entra por `product-team-orchestrator`.
+2. El orquestador lee su propio catalogo de skills y decide entre ejecucion directa o coordinada.
+3. Si el trabajo es simple y claramente de un solo rol, puede quedarse en via directa.
+4. Si el trabajo es transversal o tiene mas riesgo, el orquestador staffea el conjunto minimo de roles util.
+5. Los roles reciben un contrato explicito de asignacion.
+6. Cada especialista lee `skill-catalog.md`, abre los `skill_paths` asignados, y ejecuta ese flujo.
+7. Los entregables van a `knowledge/` (canonico + snapshot en `knowledge/runs/<run-id>/`). El codigo va a `app/`. Los registros de ejecucion van a `logs/`.
+
+Para trabajo de diseno nuevo, el flujo no debe ir en linea recta. La parte de diseno debe **divergir antes de converger**: explorar direcciones materialmente distintas, compararlas, y solo entonces pasar a diseno de produccion e implementacion.
+
+## Sistema De Conocimiento
+
+`knowledge/README.md` es el contrato para la inteligencia de negocio persistente.
+
+Reglas clave:
+
+- **Organizacion plana**: Sin anidamiento por slug de proyecto para que los agentes encuentren conocimiento relevante entre todos los proyectos.
+- **Cabeceras de entregable**: Cada archivo empieza con frontmatter YAML (`role`, `project`, `run_id`, `confidence`, `inputs_used`, `evidence_mode`).
+- **Historial sin perdida**: Al actualizar un entregable, los agentes escriben primero en `knowledge/runs/<run-id>/`, luego pueden actualizar el archivo canonico. Las versiones previas nunca se sobrescriben.
+- **Continuidad de conocimiento**: Antes de cada asignacion, el orquestador escanea `knowledge/` buscando entregables previos relevantes y los incluye en `reads_from`. Las decisiones se acumulan entre proyectos.
+- **Reflexion obligatoria**: Cada entregable termina con una seccion `## Reflection` (Que funciono, Que no, Siguientes pasos).
+
+## Flujo De Sistema De Diseno
+
+Para diseno de producto greenfield:
 
 1. `ui-designer` explora direcciones visuales y elige una.
-2. `ui-designer` siembra `project-ds-spec.md` a partir de la librería de referencias de design-system kits.
-3. Si el frontend está en blanco y la spec lo justifica, esa spec compartida puede recomendar una base de shadcn/ui con elecciones específicas del producto.
-4. `design-systems-designer` operacionaliza esa spec compartida en las reglas del sistema del producto.
-5. El trabajo posterior de pantallas y componentes hereda de `project-ds-spec.md`, no directamente de referencias de compañías, y la ingeniería solo puede materializar la recomendación de shadcn cuando tiene propiedad explícita de escritura en el repo.
+2. `ui-designer` siembra `project-ds-spec.md` a partir de hasta 3 referencias solo-inspiracionales de la libreria incluida de design-system kits (40+ sistemas de diseno de companias como Airbnb, Stripe, Notion, Figma, y otros).
+3. Si el frontend esta en blanco y la spec lo justifica, la spec compartida puede recomendar una base de shadcn/ui.
+4. `design-systems-designer` operacionaliza la spec compartida en tokens, primitivas, familias de componentes, reglas de layouts/widgets, gobernanza y QA.
+5. El trabajo posterior de pantallas y componentes hereda de `project-ds-spec.md`, no directamente de referencias de companias.
+6. La ingenieria solo puede materializar la recomendacion de shadcn cuando tiene propiedad explicita de escritura en el repo.
+
+La plantilla para `project-ds-spec.md` esta en `references/project-ds-spec-template.md`.
 
 ## Layout Instalado
 
-El instalador mantiene Product Team con namespace propio e idempotencia. Las rutas principales que instala son:
+El instalador mantiene Product Team con namespace propio e idempotencia:
 
-- `.codex/agents/product-team-<disciplina>/<rol>/`
-- `.codex/product-team/`
-- `.codex/product-team/references/project-ds-spec-template.md`
-- `.codex/product-team/references/reference-design-systems/`
-- `logs/active/` y `logs/archive/`
-- `knowledge/` (entregables, revisiones, ejecuciones)
-- `app/` (salidas de código)
+```
+target-repo/
+  AGENTS.md | CLAUDE.md | ANTIGRAVITY.md   # Bloque gestionado (segun plataforma)
+  logs/
+    README.md                               # Contrato de traza de ejecucion
+    TIMELINE.md                             # Indice cronologico de proyectos
+    active/                                 # Registros de proyectos activos
+    archive/                                # Proyectos completados
+  knowledge/                                # (Solo Codex)
+    README.md                               # Contrato de conocimiento
+    assets/                                 # Artefactos visuales
+    reviews/                                # Entregables de revision
+    runs/                                   # Historial sin perdida
+  app/                                      # (Solo Codex) Salidas de codigo
+  .codex/
+    product-team/
+      README.md                             # Documentacion del paquete
+      manifest.json                         # Metadatos de instalacion
+      references/                           # Catalogo de roles, plantillas, design systems
+      scripts/                              # Validador, actualizador, utilidades
+      auto-improve/                         # Sistema de auto-mejora
+    agents/
+      product-team-business/<rol>/          # Definiciones de roles de negocio
+      product-team-design/<rol>/            # Definiciones de roles de diseno
+      product-team-engineer/<rol>/          # Definiciones de roles de ingenieria
+      product-team-review/<rol>/            # Definiciones de roles de revision
+```
 
-Puede actualizar archivos que pertenecen al flujo y el bloque gestionado de `AGENTS.md`, pero no debería sobrescribir archivos no relacionados del proyecto.
+Las instalaciones de Claude y Antigravity omiten los directorios `knowledge/` y `app/`.
 
 ## Logs Y Memoria
 
 `logs/README.md` es el contrato de la memoria persistente del proyecto.
 
-En la práctica:
+Cada proyecto vive en `logs/active/<project-slug>/` (formato: `YYYYMMDD-kebab-case-objetivo`):
 
-- `context.md` registra el objetivo, el estado, los roles staffeados, los `skill_paths` exactos y los criterios de finalización
-- `deliverables/` guarda los entregables de los roles
-- `deliverables/project-ds-spec.md` puede actuar como artefacto de diseño compartido entre `ui-designer` y `design-systems-designer`
-- `decisions/` guarda decisiones duraderas
-- `TIMELINE.md` indexa el trabajo del proyecto a lo largo del tiempo
+- **`context.md`** — Cabecera YAML (`slug`, `objective`, `confidence_score`, `status`, `current_run_id`) mas objetivo, restricciones, criterios de finalizacion, roles staffeados, skill_paths, estado y decisiones clave.
+- **`runs/<run-id>-<YYYYMMDD-HHMM>/`** — Un directorio por etapa de ejecucion:
+  - `prompt.md` — La asignacion exacta dada al agente.
+  - `trace.md` — Razonamiento del agente, uso de herramientas, decisiones clave, rutas de entregables.
+  - `feedback.md` — Retroalimentacion del usuario o notas de revision.
+- **`TIMELINE.md`** — Indice cronologico de todos los proyectos con fecha, slug, objetivo, roles y estado.
 
-El enrutado, la selección de roles y la aprobación ocurren en contexto, pero el registro duradero del proyecto vive en `/logs`.
+Los proyectos completados se mueven de `active/` a `archive/`. Ver `logs/archive/sample-20260101-onboarding-flow/` para un ejemplo completo.
+
+## Sistema De Plantillas De Fragmentos
+
+El bloque gestionado que se inyecta en los repositorios de destino se genera desde una plantilla compartida:
+
+- **Plantilla**: `assets/product-team.fragment.template.md` (usa placeholder `{{PLATFORM}}`)
+- **Generador**: `scripts/generate-fragments.sh`
+- **Salidas**: `assets/AGENTS.fragment.md`, `assets/CLAUDE.fragment.md`, `assets/ANTIGRAVITY.fragment.md`
+
+Edita la plantilla, luego ejecuta `scripts/generate-fragments.sh` para regenerar los tres fragmentos.
+
+## Validacion
+
+Validacion de la estructura fuente:
+
+```bash
+scripts/validate-orchestrator-contract.sh
+```
+
+Esto ejecuta todas las verificaciones:
+
+- Validacion de estructura TOML para cada rol
+- Frescura del catalogo de roles (`scripts/render_role_catalog.py --check`)
+- Frescura de catalogos de skills (`scripts/render_skill_catalogs.py --check`)
+- Frescura de prompts de roles (`scripts/render_role_prompts.py --check`)
+- Frescura del roster de agentes (`scripts/render_agents_md.py --check`)
+- Validacion de escenarios del orquestador (`scripts/check-orchestrator-scenarios.py`)
+
+Validacion de skills:
+
+```bash
+python3 scripts/check_skill_validation_scenarios.py
+```
+
+Validacion de proyecto instalado:
+
+```bash
+python3 .codex/product-team/scripts/validate-install.py
+```
+
+## Sistema De Auto-Mejora
+
+Ubicado en `assets/auto-improve/`, es un bucle de hill-climbing para el refinamiento continuo de skills:
+
+1. **Benchmark** (`benchmark.py`) — Prepara un escenario con una skill bajo prueba y captura el artefacto esperado.
+2. **Judge** (`judge.py`) — Puntua el artefacto producido usando rubricas estructurales (deterministico) o LLM-as-judge (para evaluacion matizada).
+3. **Meta-Optimizer** (`meta_optimizer.py`) — Analiza fallos y genera prompts de optimizacion. Con `--apply`, modifica la skill directamente.
+4. **Cron Trigger** (`scripts/cron-trigger.sh`) — Orquesta el ciclo completo. Auto-commitea mejoras cuando las puntuaciones aumentan.
+
+Escenarios disponibles (en `assets/auto-improve/scenarios/`):
+
+- `modern-saas-dashboard` — Diseno: concepto visual para un dashboard SaaS
+- `engineering-frontend-component` — Ingenieria: implementacion de componente React
+- `business-product-prd` — Negocio: documento de requisitos de producto
+- `ux-research-plan` — Investigacion: plan de investigacion de usuarios
+- `content-microcopy-flow` — Contenido: microcopy de flujo de checkout
+- `design-system-audit` — Sistemas de diseno: auditoria de sistema
+- `go-to-market-launch` — Go-to-market: plan de lanzamiento
+- `backend-api-implementation` — Backend: diseno de API REST
+- `platform-schema-migration` — Plataforma: plan de migracion de esquema
+- `design-usability-review` — Revision: evaluacion de usabilidad
+- `qa-release-gate` — QA: evaluacion de preparacion de release
+
+Una plantilla CI para GitHub Actions esta en `assets/auto-improve/templates/self-improvement-ci.yml`.
+
+## Autoria De Skills
+
+`skill-authoring-guide.md` define el estandar de produccion para crear skills. Principios fundamentales:
+
+- **Metodo sobre prompt** — Las skills codifican flujos de trabajo expertos reales, no instrucciones genericas.
+- **Evidencia sobre opinion** — Salidas fundamentadas en input observable o suposiciones explicitamente declaradas.
+- **Estructura sobre prosa** — Las salidas son estructuradas, escaneables y reutilizables.
+- **Reproducibilidad** — Otro agente deberia poder seguir el mismo proceso y llegar a conclusiones similares.
+
+Cada skill incluye: frontmatter (contrato de ejecucion), proposito, inputs requeridos, ruta de evidencia, stack de herramientas, paso de construccion de modelo, ejecucion del metodo principal, hallazgos estructurados, logica de priorizacion, deteccion de patrones, recomendaciones, mapa de cobertura, limites, y logging sin perdida.
 
 ## Mantener Este Paquete
 
 Fuentes de verdad:
 
 - `agents/`: definiciones de roles y skills locales
-- `logs/README.md`: contrato de `/logs` en tiempo de ejecución
+- `logs/README.md`: contrato de `/logs` en tiempo de ejecucion
+- `knowledge/README.md`: contrato de conocimiento
 - `install.sh` y `scripts/install.py`: puntos de entrada del instalador
-- `assets/AGENTS.fragment.md`: bloque gestionado que se inyecta en los repositorios de destino
-- `assets/package-README.md`: README que se copia a los proyectos instalados
+- `assets/product-team.fragment.template.md`: plantilla del bloque gestionado
+- `assets/package-README.md`: README copiado a los proyectos instalados
+- `references/specialist-baseline.md`: plantilla de prompt compartida para todos los especialistas
+- `references/role-catalog.md`: referencia canonica de staffing
+- `skill-authoring-guide.md`: estandares de produccion de skills
 
-Si cambias la estructura de roles, prompts, routing o comportamiento del instalador, valida con:
+Despues de cambiar la estructura de roles, prompts, o routing:
 
 ```bash
+# Regenerar archivos gestionados
+python3 scripts/render_role_catalog.py --write
+python3 scripts/render_skill_catalogs.py --write
+python3 scripts/render_role_prompts.py --write
+python3 scripts/render_agents_md.py --write
+scripts/generate-fragments.sh
+
+# Validar
 scripts/validate-orchestrator-contract.sh
 python3 scripts/check-orchestrator-scenarios.py
 ```
 
-Después haz una instalación real en una carpeta temporal y valídala:
+Luego probar una instalacion real:
 
 ```bash
-python3 .codex/product-team/scripts/validate-install.py
+python3 scripts/install.py --target /tmp/test-install
+python3 /tmp/test-install/.codex/product-team/scripts/validate-install.py
 ```
 
-## Versión Corta
+## Version Corta
 
-Product Team instala un flujo coordinado de Codex dentro de otro repositorio. Mantiene simple el trabajo simple, añade coordinación solo cuando ayuda, enruta a través de roles reales de negocio/diseño/ingeniería y deja un registro operativo escrito en `/logs`.
+Product Team instala un flujo coordinado dentro de otro repositorio. Mantiene simple el trabajo simple, anade coordinacion solo cuando ayuda, enruta a traves de roles reales de negocio/diseno/ingenieria, usa flujos de skills MCP-first con fallback, preserva conocimiento sin perdida entre proyectos, y deja un registro operativo escrito en `/logs`.

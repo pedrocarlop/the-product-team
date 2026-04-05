@@ -17,6 +17,10 @@ on:
         description: 'Skill to optimize'
         required: false
         default: 'ui-concept-direction'
+      runner:
+        description: 'Execution runner (dry-run, codex, claude)'
+        required: false
+        default: 'dry-run'
 
 jobs:
   optimize:
@@ -25,6 +29,7 @@ jobs:
       SCENARIO: ${{ github.event.inputs.scenario || 'modern-saas-dashboard' }}
       ROLE: ${{ github.event.inputs.role || 'design/ui-designer' }}
       SKILL: ${{ github.event.inputs.skill || 'ui-concept-direction' }}
+      RUNNER: ${{ github.event.inputs.runner || 'dry-run' }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -35,15 +40,74 @@ jobs:
           python-version: '3.10'
 
       - name: Run Benchmark
-        run: python3 .codex/product-team/auto-improve/benchmark.py "$SCENARIO" "$ROLE" "$SKILL"
+        id: benchmark
+        run: |
+          OUTPUT=$(python3 assets/auto-improve/benchmark.py \
+            "$SCENARIO" "$ROLE" "$SKILL" \
+            --runner "$RUNNER")
+          echo "$OUTPUT"
+          # Extract run_dir for downstream steps
+          RUN_DIR=$(echo "$OUTPUT" | python3 -c "import sys, json; print(json.load(sys.stdin)['run_dir'])" 2>/dev/null || echo "")
+          echo "run_dir=${RUN_DIR}" >> "$GITHUB_OUTPUT"
+
+      - name: Execute Skill
+        if: env.RUNNER != 'dry-run'
+        run: |
+          echo "Skill execution handled by benchmark.py --runner $RUNNER"
+          echo "Artifact should be in: ${{ steps.benchmark.outputs.run_dir }}"
+          ls -la "${{ steps.benchmark.outputs.run_dir }}/" || true
+
+      - name: Run Judge
+        id: judge
+        run: |
+          RUN_DIR="${{ steps.benchmark.outputs.run_dir }}"
+          if [ -z "$RUN_DIR" ] || [ ! -d "$RUN_DIR" ]; then
+            RUN_DIR=$(ls -td logs/benchmarks/${SCENARIO}_* 2>/dev/null | head -1 || echo "")
+          fi
+          if [ -z "$RUN_DIR" ]; then
+            echo "No run directory found. Skipping judge."
+            echo "score=N/A" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Find the artifact
+          ARTIFACT=$(find "$RUN_DIR" -maxdepth 1 -type f \
+            ! -name "context.md" ! -name "runner-error.log" | head -1 || echo "")
+          if [ -z "$ARTIFACT" ]; then
+            echo "No artifact found. Skipping judge."
+            echo "score=N/A" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Infer scenario type
+          SCENARIO_LOWER=$(echo "$SCENARIO" | tr '[:upper:]' '[:lower:]')
+          if echo "$SCENARIO_LOWER" | grep -qE "(engineering|backend|api|platform|schema|frontend)"; then
+            TYPE="engineering"
+          elif echo "$SCENARIO_LOWER" | grep -qE "(business|prd|go-to-market|launch|qa|release)"; then
+            TYPE="business"
+          else
+            TYPE="design"
+          fi
+          JUDGE_OUTPUT=$(python3 assets/auto-improve/judge.py \
+            "$ARTIFACT" --type "$TYPE")
+          echo "$JUDGE_OUTPUT"
+          SCORE=$(echo "$JUDGE_OUTPUT" | python3 -c "import sys, json; print(json.load(sys.stdin)['score'])" 2>/dev/null || echo "N/A")
+          echo "score=${SCORE}" >> "$GITHUB_OUTPUT"
 
       - name: Meta-Optimization Cycle
-        run: python3 .codex/product-team/auto-improve/meta_optimizer.py "$SCENARIO" "$ROLE" "$SKILL"
+        run: |
+          python3 assets/auto-improve/meta_optimizer.py \
+            "$SCENARIO" "$ROLE" "$SKILL"
+
+      - name: Verify Improvement
+        if: env.RUNNER != 'dry-run'
+        run: |
+          echo "Baseline score: ${{ steps.judge.outputs.score }}"
+          echo "To verify with --apply --verify, a patch file must be provided."
+          echo "This step is a placeholder for automated patch-and-verify flows."
 
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet HEAD -- agents/ .codex/; then
+          if git diff --quiet HEAD -- agents/ assets/auto-improve/; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
           else
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
@@ -58,10 +122,10 @@ jobs:
           git config user.name "Product Team AI"
           git config user.email "ai@product-team.local"
           git checkout -b "$BRANCH"
-          git add agents/ .codex/
-          git commit -m "Auto-Improve: Refined ${SKILL} based on ${SCENARIO} benchmark"
+          git add agents/ assets/auto-improve/
+          git commit -m "Auto-Improve: Refined ${SKILL} based on ${SCENARIO} benchmark (score: ${{ steps.judge.outputs.score }})"
           git push origin "$BRANCH"
           gh pr create \
             --title "Auto-Improve: ${SKILL}" \
-            --body "Automated skill refinement from benchmark \`${SCENARIO}\`. Review scores and reasoning before merging." \
+            --body "Automated skill refinement from benchmark \`${SCENARIO}\`.\n\nScore: ${{ steps.judge.outputs.score }}/1.0\n\nReview scores and reasoning before merging." \
             --base main

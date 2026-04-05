@@ -36,6 +36,11 @@ python3 scripts/render_role_prompts.py --check >"${CHECK_DIR}/role-prompt-check.
   cat "${CHECK_DIR}/role-prompt-check.txt" >&2
 }
 
+python3 scripts/render_agents_md.py --check >"${CHECK_DIR}/agents-md-check.txt" || {
+  fail "AGENTS.md agent roster is missing or stale."
+  cat "${CHECK_DIR}/agents-md-check.txt" >&2
+}
+
 python3 scripts/check-orchestrator-scenarios.py >"${CHECK_DIR}/orchestrator-scenario-check.txt" || {
   fail "Orchestrator scenario checks failed."
   cat "${CHECK_DIR}/orchestrator-scenario-check.txt" >&2

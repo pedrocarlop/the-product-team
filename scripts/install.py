@@ -23,6 +23,54 @@ PACKAGE_SLUG = "product-team"
 PACKAGE_DIRNAME = ".codex/product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
 MARKER_END = "<!-- PRODUCT_TEAM_FOR_CODEX:END -->"
+
+VALID_PLATFORMS = ("codex", "claude", "antigravity")
+
+
+@dataclass(frozen=True)
+class PlatformConfig:
+    platform: str
+    marker_start: str
+    marker_end: str
+    fragment_name: str
+    target_file: str
+    label: str
+    with_knowledge: bool
+    with_app: bool
+
+
+PLATFORM_CONFIGS: dict[str, PlatformConfig] = {
+    "codex": PlatformConfig(
+        platform="codex",
+        marker_start="<!-- PRODUCT_TEAM_FOR_CODEX:START -->",
+        marker_end="<!-- PRODUCT_TEAM_FOR_CODEX:END -->",
+        fragment_name="AGENTS.fragment.md",
+        target_file="AGENTS.md",
+        label="Codex",
+        with_knowledge=True,
+        with_app=True,
+    ),
+    "claude": PlatformConfig(
+        platform="claude",
+        marker_start="<!-- PRODUCT_TEAM_FOR_CLAUDE:START -->",
+        marker_end="<!-- PRODUCT_TEAM_FOR_CLAUDE:END -->",
+        fragment_name="CLAUDE.fragment.md",
+        target_file="CLAUDE.md",
+        label="Claude Code",
+        with_knowledge=False,
+        with_app=False,
+    ),
+    "antigravity": PlatformConfig(
+        platform="antigravity",
+        marker_start="<!-- PRODUCT_TEAM_FOR_ANTIGRAVITY:START -->",
+        marker_end="<!-- PRODUCT_TEAM_FOR_ANTIGRAVITY:END -->",
+        fragment_name="ANTIGRAVITY.fragment.md",
+        target_file="ANTIGRAVITY.md",
+        label="Antigravity",
+        with_knowledge=False,
+        with_app=False,
+    ),
+}
 COMMON_PLACEHOLDER_TARGETS = {
     "/path/to/project",
     "/path/to/repo",
@@ -99,6 +147,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--source-archive-url",
         help="Archive URL that can be used to fetch the latest Product Team package.",
+    )
+    parser.add_argument(
+        "--platform",
+        choices=VALID_PLATFORMS,
+        default=None,
+        help="Target platform: codex (default), claude, or antigravity.",
     )
     return parser.parse_args()
 
@@ -202,24 +256,31 @@ def managed_agents_block(fragment: str) -> str:
     return f"{MARKER_START}\n{fragment}\n{MARKER_END}\n"
 
 
-def update_agents_md(fragment_path: Path, target_root: Path) -> None:
-    agents_path = target_root / "AGENTS.md"
-    managed_block = managed_agents_block(fragment_path.read_text(encoding="utf-8"))
+def update_managed_md(
+    fragment_path: Path,
+    target_root: Path,
+    config: PlatformConfig,
+) -> None:
+    target_path = target_root / config.target_file
+    fragment = fragment_path.read_text(encoding="utf-8").strip()
+    managed_block = f"{config.marker_start}\n{fragment}\n{config.marker_end}\n"
 
-    if not agents_path.exists():
-        agents_path.write_text(managed_block, encoding="utf-8")
+    if not target_path.exists():
+        target_path.write_text(managed_block, encoding="utf-8")
         return
 
-    current = agents_path.read_text(encoding="utf-8")
-    has_start = MARKER_START in current
-    has_end = MARKER_END in current
+    current = target_path.read_text(encoding="utf-8")
+    has_start = config.marker_start in current
+    has_end = config.marker_end in current
 
     if has_start != has_end:
-        raise RuntimeError("AGENTS.md contains only one Product Team marker; resolve it manually.")
+        raise RuntimeError(
+            f"{config.target_file} contains only one Product Team marker; resolve it manually."
+        )
 
     if has_start and has_end:
-        start_index = current.index(MARKER_START)
-        end_index = current.index(MARKER_END) + len(MARKER_END)
+        start_index = current.index(config.marker_start)
+        end_index = current.index(config.marker_end) + len(config.marker_end)
         replacement = managed_block.rstrip("\n")
         updated = f"{current[:start_index]}{replacement}{current[end_index:]}"
     else:
@@ -227,7 +288,11 @@ def update_agents_md(fragment_path: Path, target_root: Path) -> None:
         spacer = "\n\n" if prefix else ""
         updated = f"{prefix}{spacer}{managed_block}"
 
-    agents_path.write_text(updated.rstrip() + "\n", encoding="utf-8")
+    target_path.write_text(updated.rstrip() + "\n", encoding="utf-8")
+
+
+def update_agents_md(fragment_path: Path, target_root: Path) -> None:
+    update_managed_md(fragment_path, target_root, PLATFORM_CONFIGS["codex"])
 
 
 def rewrite_local_skills(match: re.Match[str]) -> str:
@@ -521,8 +586,11 @@ def main() -> int:
     roles = discover_roles(root)
     install_source = detect_install_source(root, args)
 
+    platform = args.platform or "codex"
+    config = PLATFORM_CONFIGS[platform]
+
     required_paths = [
-        root / "assets" / "AGENTS.fragment.md",
+        root / "assets" / config.fragment_name,
         root / "assets" / "package-README.md",
         root / "logs" / "README.md",
         root / "references" / "role-catalog.md",
@@ -552,22 +620,29 @@ def main() -> int:
 
     install_package_docs(root, target_root)
     created_logs_readme = install_logs(root, target_root)
-    created_knowledge_readme = install_knowledge(root, target_root)
-    install_app(target_root)
-    update_agents_md(root / "assets" / "AGENTS.fragment.md", target_root)
+
+    created_knowledge_readme = False
+    if config.with_knowledge:
+        created_knowledge_readme = install_knowledge(root, target_root)
+    if config.with_app:
+        install_app(target_root)
+
+    update_managed_md(root / "assets" / config.fragment_name, target_root, config)
     write_manifest(target_root, roles, install_source)
 
-    print(f"Installed Product Team v{PACKAGE_VERSION} for Codex into {target_root}")
+    print(f"Installed Product Team v{PACKAGE_VERSION} for {config.label} into {target_root}")
     print(f"Installed {len(roles)} namespaced role definitions.")
     if created_logs_readme:
         print("Created logs/README.md from the workflow contract.")
     else:
         print("Kept the target project's existing logs/README.md.")
-    if created_knowledge_readme:
-        print("Created knowledge/README.md from the knowledge contract.")
-    else:
-        print("Kept the target project's existing knowledge/README.md.")
-    print("Created app/ directory for code outputs.")
+    if config.with_knowledge:
+        if created_knowledge_readme:
+            print("Created knowledge/README.md from the knowledge contract.")
+        else:
+            print("Kept the target project's existing knowledge/README.md.")
+    if config.with_app:
+        print("Created app/ directory for code outputs.")
     print("Next step: python3 .codex/product-team/scripts/validate-install.py")
     return 0
 

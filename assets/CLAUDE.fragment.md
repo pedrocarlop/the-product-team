@@ -1,4 +1,4 @@
-<!-- Generated from product-team.fragment.template.md — edit the template, then run assets/auto-improve/scripts/generate-fragments.sh -->
+<!-- Generated from product-team.fragment.template.md — edit the template, then run scripts/generate-fragments.sh -->
 # Product Team for Claude
 
 This repository has the Product Team workflow installed.
