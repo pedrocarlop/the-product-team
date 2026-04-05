@@ -68,7 +68,7 @@ def main() -> int:
         raw_toml = path.read_text(encoding="utf-8")
 
         expect("model_reasoning_effort" in raw_toml, f"{role}: must use model_reasoning_effort.", failures)
-        expect(re.search(r"^reasoning_effort\\s*=", raw_toml, re.MULTILINE) is None, f"{role}: uses legacy reasoning_effort key.", failures)
+        expect(re.search(r"^reasoning_effort\s*=", raw_toml, re.MULTILINE) is None, f"{role}: uses legacy reasoning_effort key.", failures)
         expect(data["execution_policy"].get("repo_write_policy") == expected_repo_write_policy(role), f"{role}: unexpected repo_write_policy.", failures)
 
         if role in {"orchestrator", "reference"}:

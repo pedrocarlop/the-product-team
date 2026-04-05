@@ -130,7 +130,7 @@ def main() -> int:
         expect(data.get("name") == role["installed_name"], f"{toml_path}: installed name mismatch.", failures)
         expect(data.get("execution_policy", {}).get("repo_write_policy") == expected_repo_write_policy(source_name), f"{toml_path}: unexpected repo_write_policy.", failures)
         expect("model_reasoning_effort" in toml_path.read_text(encoding="utf-8"), f"{toml_path}: must use model_reasoning_effort.", failures)
-        expect(re.search(r"^reasoning_effort\\s*=", toml_path.read_text(encoding="utf-8"), re.MULTILINE) is None, f"{toml_path}: uses legacy reasoning_effort.", failures)
+        expect(re.search(r"^reasoning_effort\s*=", toml_path.read_text(encoding="utf-8"), re.MULTILINE) is None, f"{toml_path}: uses legacy reasoning_effort.", failures)
 
         skill_files = tuple(sorted(skills_dir.rglob("*.md")))
         skill_contexts.append(

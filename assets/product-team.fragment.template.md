@@ -1,5 +1,4 @@
-<!-- Generated from product-team.fragment.template.md — edit the template, then run assets/auto-improve/scripts/generate-fragments.sh -->
-# Product Team for Codex
+# Product Team for {{PLATFORM}}
 
 This repository has the Product Team workflow installed.
 

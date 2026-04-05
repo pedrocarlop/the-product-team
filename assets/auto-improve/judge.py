@@ -15,7 +15,8 @@ def judge_deterministic(artifact_path: Path, scenario_type: str):
 
     if scenario_type == "design":
         # HSL Check
-        hsl_matches = re.findall(r"hsl\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*\)", content, re.IGNORECASE)
+        # Matches both legacy comma syntax and modern space syntax: hsl(220, 100%, 50%) or hsl(220 100% 50%)
+        hsl_matches = re.findall(r"hsl\(\s*\d+(?:\s*,\s*|\s+)\d+%(?:\s*,\s*|\s+)\d+%\s*(?:/\s*[\d.]+%?)?\s*\)", content, re.IGNORECASE)
         if hsl_matches:
             score += 0.3
             reasons.append("Found HSL color definitions.")

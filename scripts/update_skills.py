@@ -1,11 +1,10 @@
-import os
 import re
 from pathlib import Path
 import sys
 
 def update_toml(file_path):
     print(f"Updating TOML: {file_path}")
-    content = file_path.read_text()
+    content = file_path.read_text(encoding="utf-8")
     
     # 1. owned_outputs -> target_deliverables
     content = content.replace("owned_outputs", "target_deliverables")
@@ -24,11 +23,11 @@ def update_toml(file_path):
         # Insert after Role charter or in Execution section
         content = re.sub(r'(Execution:)', r'\1\n- **Direct Consumption**: Read all relevant original skill deliverables from the Execution Manifest (`orchestrator.md`) before acting.', content)
 
-    file_path.write_text(content)
+    file_path.write_text(content, encoding="utf-8")
 
 def update_skill_md(file_path):
     print(f"Updating Skill MD: {file_path}")
-    content = file_path.read_text()
+    content = file_path.read_text(encoding="utf-8")
     
     parts = file_path.parts
     if 'agents' not in parts: return
@@ -64,7 +63,7 @@ def update_skill_md(file_path):
     if re.search(pattern_output, content, flags=re.IGNORECASE):
         content = re.sub(pattern_output, '', content, flags=re.IGNORECASE)
 
-    file_path.write_text(content)
+    file_path.write_text(content, encoding="utf-8")
 
 def main():
     if len(sys.argv) > 1:

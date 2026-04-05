@@ -80,7 +80,7 @@ def extract_archive(archive_url: str, destination: Path) -> Path:
     urllib.request.urlretrieve(archive_url, archive_path)
 
     with tarfile.open(archive_path, "r:gz") as archive:
-        archive.extractall(destination)
+        archive.extractall(destination, filter="data")
 
     candidates = [path for path in destination.iterdir() if path.is_dir()]
     for candidate in candidates:

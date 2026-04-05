@@ -266,7 +266,7 @@ def validate_design_contract(
                 failures.append(f"{context.role_name}: {skill_path.name} is missing '{snippet}'.")
 
 
-def validate_design_anchor_uniqueness(
+def validate_anchor_uniqueness(
     context: SkillValidationContext,
     skill_fields: dict[Path, dict[str, str]],
     failures: list[str],
@@ -986,11 +986,4 @@ def validate_skill_contexts(
                     failures=failures,
                 )
 
-        if context.discipline == "design":
-            validate_design_anchor_uniqueness(context, skill_fields, failures)
-        elif context.discipline == "business":
-            validate_design_anchor_uniqueness(context, skill_fields, failures)
-        elif context.discipline == "engineer":
-            validate_design_anchor_uniqueness(context, skill_fields, failures)
-        elif context.discipline == "review":
-            validate_design_anchor_uniqueness(context, skill_fields, failures)
+        validate_anchor_uniqueness(context, skill_fields, failures)

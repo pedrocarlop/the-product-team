@@ -7,20 +7,24 @@ on:
     inputs:
       scenario:
         description: 'Scenario to run'
-        required: true
+        required: false
         default: 'modern-saas-dashboard'
       role:
         description: 'Role to optimize'
-        required: true
+        required: false
         default: 'design/ui-designer'
       skill:
         description: 'Skill to optimize'
-        required: true
+        required: false
         default: 'ui-concept-direction'
 
 jobs:
   optimize:
     runs-on: ubuntu-latest
+    env:
+      SCENARIO: ${{ github.event.inputs.scenario || 'modern-saas-dashboard' }}
+      ROLE: ${{ github.event.inputs.role || 'design/ui-designer' }}
+      SKILL: ${{ github.event.inputs.skill || 'ui-concept-direction' }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -31,18 +35,33 @@ jobs:
           python-version: '3.10'
 
       - name: Run Benchmark
-        run: |
-          python3 .codex/product-team/auto-improve/benchmark.py ${{ github.event.inputs.scenario }} ${{ github.event.inputs.role }} ${{ github.event.inputs.skill }}
+        run: python3 .codex/product-team/auto-improve/benchmark.py "$SCENARIO" "$ROLE" "$SKILL"
 
       - name: Meta-Optimization Cycle
-        run: |
-          python3 .codex/product-team/auto-improve/meta_optimizer.py ${{ github.event.inputs.scenario }} ${{ github.event.inputs.role }} ${{ github.event.inputs.skill }}
+        run: python3 .codex/product-team/auto-improve/meta_optimizer.py "$SCENARIO" "$ROLE" "$SKILL"
 
-      - name: Commit Improvements
-        if: success()
+      - name: Check for changes
+        id: changes
         run: |
-          git config --global user.name "Product Team AI"
-          git config --global user.email "ai@product-team.local"
-          git add .
-          git commit -m "Auto-Improve: Refined ${{ github.event.inputs.skill }} based on benchmark performance"
-          git push
+          if git diff --quiet HEAD -- agents/ .codex/; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open Pull Request
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="auto-improve/${SKILL}-$(date +%Y%m%d%H%M%S)"
+          git config user.name "Product Team AI"
+          git config user.email "ai@product-team.local"
+          git checkout -b "$BRANCH"
+          git add agents/ .codex/
+          git commit -m "Auto-Improve: Refined ${SKILL} based on ${SCENARIO} benchmark"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "Auto-Improve: ${SKILL}" \
+            --body "Automated skill refinement from benchmark \`${SCENARIO}\`. Review scores and reasoning before merging." \
+            --base main
