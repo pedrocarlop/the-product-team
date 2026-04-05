@@ -557,13 +557,23 @@ def install_knowledge(root: Path, target_root: Path) -> bool:
     if not index_path.exists():
         index_content = (
             "# Knowledge Index\n\n"
+            "This index is the content-oriented catalog of all product knowledge. Updated by the orchestrator.\n\n"
             "## Market & Product\n"
+            "- [analyst-market-analysis.md](analyst-market-analysis.md) — TAM/SAM and competition\n"
+            "- [product-lead-prd.md](product-lead-prd.md) — Product requirements and roadmap\n\n"
             "## User Research\n"
+            "- [ux-researcher-synthesis.md](ux-researcher-synthesis.md) — User pain points and personas\n\n"
             "## Design & Visual\n"
+            "- [ui-designer-concept-direction.md](ui-designer-concept-direction.md) — Visual concept and theme\n"
+            "- [project-ds-spec.md](project-ds-spec.md) — Shared design system specification\n\n"
             "## Engineering & Architecture\n"
+            "- [backend-engineer-api-design.md](backend-engineer-api-design.md) — API and domain models\n\n"
             "## Entities\n"
+            "- [entities/competitors.md](entities/competitors.md) — Aggregated competitive intelligence\n"
+            "- [entities/personas.md](entities/personas.md) — Aggregated user personas\n"
         )
         index_path.write_text(index_content, encoding="utf-8")
+
 
     changelog_path = knowledge_root / "changelog.md"
     if not changelog_path.exists():

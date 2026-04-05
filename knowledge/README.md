@@ -29,6 +29,15 @@ knowledge/
       <role>-<skill>.md              # Snapshot from this run
 ```
 
+## Rules for Agents
+
+1.  **Lossless Snapshots**: When you create or update a deliverable, always write a copy to `knowledge/runs/<run-id>/` before updating the canonical version at the root of `knowledge/`.
+2.  **Changelog Requirement**: Every meaningful change to the knowledge base must be appended to `knowledge/changelog.md`.
+3.  **TL;DR Sections**: Every deliverable must include a `## TL;DR` section at the top for fast scanning.
+4.  **Related Links**: Use the `related` field in the YAML header to cross-reference other deliverables.
+5.  **Direct File Tools**: If the `knowledge` MCP is missing or fails (common in early or non-Codex installs like Antigravity), you **must** use direct filesystem tools (like `write_to_file`) to create and update these records in the required `/knowledge` structure.
+
+
 ## Special Files
 
 ### `index.md` — Knowledge Catalog

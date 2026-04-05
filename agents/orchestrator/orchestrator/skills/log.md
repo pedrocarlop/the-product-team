@@ -40,9 +40,10 @@ evidence_mode: sourced|fallback|inferred
 
 ### Step 3: Run The Tool Sequence
 - Use the primary MCP/tool first: `logs`.
-- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `repository review`.
-- If both primary and fallback paths fail, produce the best-guess output described as: A refreshed context entry that reflects the true current state.
+- If the primary path is unavailable, blocked, out of credits, or missing setup (common in early or non-Codex installs like Antigravity), **must** fall back to direct filesystem tools (`write_to_file`, `replace_file_content`, `multi_replace_file_content`).
+- If that also fails, use `repository review` for reading and produce the best-guess output described as: A refreshed context entry that reflects the true current state.
 - Mark the deliverable header and narrative as `sourced`, `fallback`, or `inferred` to match the evidence path actually used.
+
 
 ### Step 4: Produce The Deliverable
 - Synthesize the result into the owned deliverable with concrete findings, decisions, or instructions.
