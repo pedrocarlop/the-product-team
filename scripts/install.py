@@ -20,7 +20,6 @@ from lib.toml_utils import discover_toml_paths, load_toml
 
 PACKAGE_VERSION = "2.0.0"
 PACKAGE_SLUG = "product-team"
-PACKAGE_DIRNAME = ".codex/product-team"
 MARKER_START = "<!-- PRODUCT_TEAM_FOR_CODEX:START -->"
 MARKER_END = "<!-- PRODUCT_TEAM_FOR_CODEX:END -->"
 
@@ -30,6 +29,7 @@ VALID_PLATFORMS = ("codex", "claude", "antigravity")
 @dataclass(frozen=True)
 class PlatformConfig:
     platform: str
+    base_dir: str
     marker_start: str
     marker_end: str
     fragment_name: str
@@ -38,10 +38,15 @@ class PlatformConfig:
     with_knowledge: bool
     with_app: bool
 
+    @property
+    def package_dirname(self) -> str:
+        return f"{self.base_dir}/{PACKAGE_SLUG}"
+
 
 PLATFORM_CONFIGS: dict[str, PlatformConfig] = {
     "codex": PlatformConfig(
         platform="codex",
+        base_dir=".codex",
         marker_start="<!-- PRODUCT_TEAM_FOR_CODEX:START -->",
         marker_end="<!-- PRODUCT_TEAM_FOR_CODEX:END -->",
         fragment_name="AGENTS.fragment.md",
@@ -52,6 +57,7 @@ PLATFORM_CONFIGS: dict[str, PlatformConfig] = {
     ),
     "claude": PlatformConfig(
         platform="claude",
+        base_dir=".claude",
         marker_start="<!-- PRODUCT_TEAM_FOR_CLAUDE:START -->",
         marker_end="<!-- PRODUCT_TEAM_FOR_CLAUDE:END -->",
         fragment_name="CLAUDE.fragment.md",
@@ -62,6 +68,7 @@ PLATFORM_CONFIGS: dict[str, PlatformConfig] = {
     ),
     "antigravity": PlatformConfig(
         platform="antigravity",
+        base_dir=".antigravity",
         marker_start="<!-- PRODUCT_TEAM_FOR_ANTIGRAVITY:START -->",
         marker_end="<!-- PRODUCT_TEAM_FOR_ANTIGRAVITY:END -->",
         fragment_name="ANTIGRAVITY.fragment.md",
@@ -89,6 +96,7 @@ class RoleSpec:
     installed_name: str
     source_toml: Path
     source_skills_dir: Path
+    base_dir: str = ".codex"
 
     @property
     def installed_namespace(self) -> str:
@@ -96,7 +104,7 @@ class RoleSpec:
 
     @property
     def installed_role_dir(self) -> Path:
-        return Path(".codex") / "agents" / self.installed_namespace / self.source_name
+        return Path(self.base_dir) / "agents" / self.installed_namespace / self.source_name
 
     @property
     def installed_toml_path(self) -> Path:
@@ -315,7 +323,7 @@ def transform_toml(text: str, role: RoleSpec) -> str:
     return text
 
 
-def discover_roles(root: Path) -> list[RoleSpec]:
+def discover_roles(root: Path, base_dir: str = ".codex") -> list[RoleSpec]:
     roles: list[RoleSpec] = []
     for source_toml in discover_toml_paths(root):
         discipline = source_toml.parent.parent.name
@@ -328,6 +336,7 @@ def discover_roles(root: Path) -> list[RoleSpec]:
                 installed_name=installed_name,
                 source_toml=source_toml,
                 source_skills_dir=source_toml.parent / "skills",
+                base_dir=base_dir,
             )
         )
     return roles
@@ -354,28 +363,30 @@ def prune_empty_parents(path: Path, stop: Path) -> None:
         current = current.parent
 
 
-def remove_previous_managed_roles(target_root: Path, current_roles: list[RoleSpec]) -> None:
-    manifest_path = target_root / PACKAGE_DIRNAME / "manifest.json"
+def remove_previous_managed_roles(target_root: Path, current_roles: list[RoleSpec], config: PlatformConfig) -> None:
     managed_paths: set[Path] = set()
 
-    if manifest_path.exists():
-        try:
-            previous_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            previous_manifest = {}
+    # Check for manifest in current platform's base_dir and legacy .codex
+    for candidate_base in {config.base_dir, ".codex"}:
+        manifest_path = target_root / candidate_base / PACKAGE_SLUG / "manifest.json"
+        if manifest_path.exists():
+            try:
+                previous_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                previous_manifest = {}
 
-        for role in previous_manifest.get("roles", []):
-            installed_name = role.get("installed_name")
-            if installed_name:
-                managed_paths.add(target_root / ".codex" / "agents" / f"{installed_name}.toml")
-                managed_paths.add(target_root / ".codex" / "agents" / installed_name)
+            for role in previous_manifest.get("roles", []):
+                installed_name = role.get("installed_name")
+                if installed_name:
+                    managed_paths.add(target_root / candidate_base / "agents" / f"{installed_name}.toml")
+                    managed_paths.add(target_root / candidate_base / "agents" / installed_name)
 
-            relative_toml_path = role.get("relative_toml_path")
-            relative_role_dir = role.get("relative_role_dir")
-            if relative_toml_path:
-                managed_paths.add(target_root / Path(relative_toml_path))
-            if relative_role_dir:
-                managed_paths.add(target_root / Path(relative_role_dir))
+                relative_toml_path = role.get("relative_toml_path")
+                relative_role_dir = role.get("relative_role_dir")
+                if relative_toml_path:
+                    managed_paths.add(target_root / Path(relative_toml_path))
+                if relative_role_dir:
+                    managed_paths.add(target_root / Path(relative_role_dir))
 
     for role in current_roles:
         managed_paths.add(target_root / role.legacy_flat_toml_path)
@@ -385,8 +396,9 @@ def remove_previous_managed_roles(target_root: Path, current_roles: list[RoleSpe
     for path in sorted(managed_paths, key=lambda candidate: len(candidate.parts), reverse=True):
         remove_managed_path(path)
 
-    for namespace_dir in {target_root / ".codex" / "agents" / role.installed_namespace for role in current_roles}:
-        prune_empty_parents(namespace_dir, target_root / ".codex" / "agents")
+    base_dir = config.base_dir
+    for namespace_dir in {target_root / base_dir / "agents" / role.installed_namespace for role in current_roles}:
+        prune_empty_parents(namespace_dir, target_root / base_dir / "agents")
 
 
 def copy_role(role: RoleSpec, target_root: Path) -> None:
@@ -419,18 +431,18 @@ def copy_role(role: RoleSpec, target_root: Path) -> None:
         shutil.copy2(role.source_catalog_path, target_root / role.installed_catalog_path)
 
 
-def install_package_docs(root: Path, target_root: Path) -> None:
-    package_root = target_root / ".codex" / PACKAGE_SLUG
+def install_package_docs(root: Path, target_root: Path, config: PlatformConfig) -> None:
+    package_root = target_root / config.base_dir / PACKAGE_SLUG
     refs_root = package_root / "references"
     scripts_root = package_root / "scripts"
     scripts_lib_root = scripts_root / "lib"
     ensure_directory(refs_root)
     ensure_directory(scripts_root)
 
-    (package_root / "README.md").write_text(
-        (root / "assets" / "package-README.md").read_text(encoding="utf-8"),
-        encoding="utf-8",
-    )
+    readme_content = (root / "assets" / "package-README.md").read_text(encoding="utf-8")
+    readme_content = readme_content.replace(".codex", config.base_dir)
+    readme_content = readme_content.replace("AGENTS.md", config.target_file)
+    (package_root / "README.md").write_text(readme_content, encoding="utf-8")
     (refs_root / "logs-workflow-contract.md").write_text(
         (root / "logs" / "README.md").read_text(encoding="utf-8"),
         encoding="utf-8",
@@ -545,18 +557,21 @@ def write_manifest(
     target_root: Path,
     roles: list[RoleSpec],
     install_source: dict[str, str | None],
+    config: PlatformConfig,
 ) -> None:
-    package_root = target_root / ".codex" / PACKAGE_SLUG
+    package_root = target_root / config.base_dir / PACKAGE_SLUG
     ensure_directory(package_root)
     manifest = {
-        "schema_version": 4,
+        "schema_version": 5,
         "package_name": PACKAGE_SLUG,
         "version": PACKAGE_VERSION,
+        "platform": config.platform,
+        "base_dir": config.base_dir,
         "installed_at": datetime.now(timezone.utc).isoformat(),
         "install_source": install_source,
         "managed_agents_markers": {
-            "start": MARKER_START,
-            "end": MARKER_END,
+            "start": config.marker_start,
+            "end": config.marker_end,
         },
         "roles": [
             {
@@ -583,11 +598,11 @@ def main() -> int:
     root = repo_root()
     target_root = Path(args.target).expanduser().resolve()
     target_error = placeholder_target_error(args.target, target_root)
-    roles = discover_roles(root)
-    install_source = detect_install_source(root, args)
-
     platform = args.platform or "codex"
     config = PLATFORM_CONFIGS[platform]
+
+    roles = discover_roles(root, base_dir=config.base_dir)
+    install_source = detect_install_source(root, args)
 
     required_paths = [
         root / "assets" / config.fragment_name,
@@ -614,11 +629,11 @@ def main() -> int:
 
     target_root.mkdir(parents=True, exist_ok=True)
 
-    remove_previous_managed_roles(target_root, roles)
+    remove_previous_managed_roles(target_root, roles, config)
     with ThreadPoolExecutor(max_workers=8) as pool:
         pool.map(lambda role: copy_role(role, target_root), roles)
 
-    install_package_docs(root, target_root)
+    install_package_docs(root, target_root, config)
     created_logs_readme = install_logs(root, target_root)
 
     created_knowledge_readme = False
@@ -628,10 +643,10 @@ def main() -> int:
         install_app(target_root)
 
     update_managed_md(root / "assets" / config.fragment_name, target_root, config)
-    write_manifest(target_root, roles, install_source)
+    write_manifest(target_root, roles, install_source, config)
 
     print(f"Installed Product Team v{PACKAGE_VERSION} for {config.label} into {target_root}")
-    print(f"Installed {len(roles)} namespaced role definitions.")
+    print(f"Installed {len(roles)} namespaced role definitions under {config.base_dir}/.")
     if created_logs_readme:
         print("Created logs/README.md from the workflow contract.")
     else:
@@ -643,7 +658,7 @@ def main() -> int:
             print("Kept the target project's existing knowledge/README.md.")
     if config.with_app:
         print("Created app/ directory for code outputs.")
-    print("Next step: python3 .codex/product-team/scripts/validate-install.py")
+    print(f"Next step: python3 {config.package_dirname}/scripts/validate-install.py")
     return 0
 
 

@@ -68,9 +68,18 @@ python3 scripts/install.py --platform antigravity --target "$PWD"
 
 ### Validate and update
 
+The scripts auto-detect the platform from the installed manifest:
+
 ```bash
-python3 .codex/product-team/scripts/validate-install.py
-python3 .codex/product-team/scripts/update-install.py
+python3 .codex/product-team/scripts/validate-install.py   # Codex
+python3 .claude/product-team/scripts/validate-install.py   # Claude Code
+python3 .antigravity/product-team/scripts/validate-install.py  # Antigravity
+```
+
+```bash
+python3 .codex/product-team/scripts/update-install.py      # Codex
+python3 .claude/product-team/scripts/update-install.py      # Claude Code
+python3 .antigravity/product-team/scripts/update-install.py # Antigravity
 ```
 
 ## What It Does
@@ -82,7 +91,7 @@ It installs:
 - one orchestrator that routes each request
 - a set of specialist roles across business, design, engineering, and review
 - three output surfaces: `/logs` (execution trail), `/knowledge` (deliverables), `/app` (code)
-- a managed block in `AGENTS.md`, `CLAUDE.md`, or `ANTIGRAVITY.md` that makes Product Team the default entrypoint
+- a managed block in `AGENTS.md` (Codex), `CLAUDE.md` (Claude Code), or `ANTIGRAVITY.md` (Antigravity) that makes Product Team the default entrypoint
 
 The main operating rule is: **use the lightest process that will still do the job well.**
 
@@ -187,7 +196,13 @@ The template for `project-ds-spec.md` is at `references/project-ds-spec-template
 
 ## Installed Layout
 
-The installer keeps Product Team namespaced and idempotent:
+The installer keeps Product Team namespaced and idempotent. The base directory depends on the platform:
+
+| Platform | Base dir | Managed file |
+|---|---|---|
+| Codex | `.codex/` | `AGENTS.md` |
+| Claude Code | `.claude/` | `CLAUDE.md` |
+| Antigravity | `.antigravity/` | `ANTIGRAVITY.md` |
 
 ```
 target-repo/
@@ -203,7 +218,7 @@ target-repo/
     reviews/                                # Review deliverables
     runs/                                   # Lossless history
   app/                                      # (Codex only) Code outputs
-  .codex/
+  <base-dir>/                               # .codex/ | .claude/ | .antigravity/
     product-team/
       README.md                             # Package docs
       manifest.json                         # Install metadata
@@ -349,6 +364,10 @@ Then test a real install:
 ```bash
 python3 scripts/install.py --target /tmp/test-install
 python3 /tmp/test-install/.codex/product-team/scripts/validate-install.py
+
+# Or for other platforms:
+python3 scripts/install.py --platform claude --target /tmp/test-claude
+python3 /tmp/test-claude/.claude/product-team/scripts/validate-install.py
 ```
 
 ## Short Version

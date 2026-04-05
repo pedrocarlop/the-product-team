@@ -18,11 +18,11 @@ python3 .codex/product-team/scripts/update-install.py
 
 ## What This Installed Workflow Does
 
-This repository has the Product Team Codex workflow installed.
+This repository has the Product Team workflow installed.
 
 Every request in this repository should go through `product-team-orchestrator` by default. Only an explicit user opt-out for the current request should bypass Product Team. The orchestrator may still choose direct execution, but that decision is made inside the workflow.
 
-Product Team turns Codex into a routed product workflow with:
+Product Team turns this repository into a routed product workflow with:
 
 - an orchestrator that decides direct versus coordinated work
 - specialist roles grouped by business, design, engineering, and review
@@ -91,7 +91,7 @@ For new design work, the design flow must diverge before it converges. `ui-desig
 
 ## Notes
 
-- `AGENTS.md` contains a managed Product Team block that the installer keeps up to date.
+- AGENTS.md contains a managed Product Team block that the installer keeps up to date.
 - `logs/README.md` and `knowledge/README.md` are created only when the target repo does not already have them.
 - Installed roles stay grouped by discipline so the target repo mirrors the source package structure.
 - `.codex/product-team/manifest.json` records enough source metadata for installed repos to self-update later.

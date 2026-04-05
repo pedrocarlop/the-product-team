@@ -14,12 +14,14 @@ fi
 
 COMMENT="<!-- Generated from product-team.fragment.template.md — edit the template, then run scripts/generate-fragments.sh -->"
 
-for PAIR in "AGENTS.fragment.md:Codex" "CLAUDE.fragment.md:Claude" "ANTIGRAVITY.fragment.md:Antigravity"; do
-  FILE="${PAIR%%:*}"
-  PLATFORM="${PAIR#*:}"
+for TUPLE in "AGENTS.fragment.md:Codex:.codex" "CLAUDE.fragment.md:Claude:.claude" "ANTIGRAVITY.fragment.md:Antigravity:.antigravity"; do
+  FILE="${TUPLE%%:*}"
+  REST="${TUPLE#*:}"
+  PLATFORM="${REST%%:*}"
+  PACKAGE_DIR="${REST#*:}"
   OUTPUT="${ASSETS_DIR}/${FILE}"
-  { echo "${COMMENT}"; sed "s/{{PLATFORM}}/${PLATFORM}/g" "${TEMPLATE}"; } > "${OUTPUT}"
-  echo "Generated ${FILE} (platform: ${PLATFORM})"
+  { echo "${COMMENT}"; sed -e "s/{{PLATFORM}}/${PLATFORM}/g" -e "s|{{PACKAGE_DIR}}|${PACKAGE_DIR}|g" "${TEMPLATE}"; } > "${OUTPUT}"
+  echo "Generated ${FILE} (platform: ${PLATFORM}, base_dir: ${PACKAGE_DIR})"
 done
 
 echo "Done. All fragment files are up to date."

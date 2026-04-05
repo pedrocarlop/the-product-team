@@ -68,9 +68,18 @@ python3 scripts/install.py --platform antigravity --target "$PWD"
 
 ### Validar y actualizar
 
+Los scripts auto-detectan la plataforma desde el manifest instalado:
+
 ```bash
-python3 .codex/product-team/scripts/validate-install.py
-python3 .codex/product-team/scripts/update-install.py
+python3 .codex/product-team/scripts/validate-install.py   # Codex
+python3 .claude/product-team/scripts/validate-install.py   # Claude Code
+python3 .antigravity/product-team/scripts/validate-install.py  # Antigravity
+```
+
+```bash
+python3 .codex/product-team/scripts/update-install.py      # Codex
+python3 .claude/product-team/scripts/update-install.py      # Claude Code
+python3 .antigravity/product-team/scripts/update-install.py # Antigravity
 ```
 
 ## Que Hace
@@ -82,7 +91,7 @@ Instala:
 - un orquestador que enruta cada peticion
 - un conjunto de roles especialistas en negocio, diseno, ingenieria y revision
 - tres superficies de salida: `/logs` (traza de ejecucion), `/knowledge` (entregables), `/app` (codigo)
-- un bloque gestionado en `AGENTS.md`, `CLAUDE.md`, o `ANTIGRAVITY.md` que convierte Product Team en la entrada por defecto
+- un bloque gestionado en `AGENTS.md` (Codex), `CLAUDE.md` (Claude Code), o `ANTIGRAVITY.md` (Antigravity) que convierte Product Team en la entrada por defecto
 
 La regla principal de funcionamiento es: **usar el proceso mas ligero que todavia haga bien el trabajo.**
 
@@ -187,7 +196,13 @@ La plantilla para `project-ds-spec.md` esta en `references/project-ds-spec-templ
 
 ## Layout Instalado
 
-El instalador mantiene Product Team con namespace propio e idempotencia:
+El instalador mantiene Product Team con namespace propio e idempotencia. El directorio base depende de la plataforma:
+
+| Plataforma | Dir base | Archivo gestionado |
+|---|---|---|
+| Codex | `.codex/` | `AGENTS.md` |
+| Claude Code | `.claude/` | `CLAUDE.md` |
+| Antigravity | `.antigravity/` | `ANTIGRAVITY.md` |
 
 ```
 target-repo/
@@ -203,7 +218,7 @@ target-repo/
     reviews/                                # Entregables de revision
     runs/                                   # Historial sin perdida
   app/                                      # (Solo Codex) Salidas de codigo
-  .codex/
+  <base-dir>/                               # .codex/ | .claude/ | .antigravity/
     product-team/
       README.md                             # Documentacion del paquete
       manifest.json                         # Metadatos de instalacion
@@ -343,6 +358,10 @@ Luego probar una instalacion real:
 ```bash
 python3 scripts/install.py --target /tmp/test-install
 python3 /tmp/test-install/.codex/product-team/scripts/validate-install.py
+
+# O para otras plataformas:
+python3 scripts/install.py --platform claude --target /tmp/test-claude
+python3 /tmp/test-claude/.claude/product-team/scripts/validate-install.py
 ```
 
 ## Version Corta
