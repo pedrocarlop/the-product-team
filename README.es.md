@@ -20,6 +20,8 @@ curl -fsSL https://raw.githubusercontent.com/pedrocarlop/the-product-team/main/i
 
 ### Claude Code
 
+Desde un checkout local:
+
 ```bash
 ./install.sh --platform claude --target "$PWD"
 ```
@@ -30,7 +32,15 @@ O con el wrapper:
 ./install-claude.sh --target "$PWD"
 ```
 
+Desde GitHub:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pedrocarlop/the-product-team/main/install-claude.sh | bash -s -- --target "$PWD"
+```
+
 ### Antigravity
+
+Desde un checkout local:
 
 ```bash
 ./install.sh --platform antigravity --target "$PWD"
@@ -40,6 +50,12 @@ O con el wrapper:
 
 ```bash
 ./install-antigravity.sh --target "$PWD"
+```
+
+Desde GitHub:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pedrocarlop/the-product-team/main/install-antigravity.sh | bash -s -- --target "$PWD"
 ```
 
 ### Con Python directamente
