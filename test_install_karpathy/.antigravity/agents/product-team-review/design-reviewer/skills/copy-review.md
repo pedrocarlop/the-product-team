@@ -1,0 +1,129 @@
+---
+name: copy-review
+description: Review product copy as a content system by modeling user commitments, terminology, states, and guidance across the strongest available evidence path instead of critiquing isolated strings.
+trigger: When content quality, clarity, or trust needs an independent review before ship, rewrite, or localization planning.
+content_framework: clarity, decision support, terminology consistency, trust signals, and state coverage
+primary_mcp: repository, figma, chrome_devtools
+fallback_tools:
+  - notion
+  - reference/ground
+  - search_query
+required_inputs:
+  - target flow or surface
+  - primary audience or user goal
+  - brand, legal, or compliance constraints when known
+  - locale, platform, and release context assumptions
+recommended_passes:
+  - clarity and comprehension
+  - decision support and next-step guidance
+  - terminology and consistency
+  - tone and trust
+  - states, errors, and recovery language
+tool_stack:
+  runtime:
+    primary: [chrome_devtools]
+    secondary: [repository]
+  artifacts:
+    primary: [repository, figma]
+    secondary: [notion]
+  fallback:
+    primary: [reference/ground, search_query]
+tool_routing:
+  - if: live product access exists and wording depends on runtime states or dynamic copy
+    use: [chrome_devtools, repository]
+  - if: repository strings or content source files exist
+    use: [repository]
+  - if: copy source of truth lives in design or docs
+    use: [figma, notion]
+  - if: only screenshots, docs, or static exports exist
+    use: [open, search_query]
+best_guess_output: A copy review with evidence-tagged language issues, grouped patterns, and directional rewrite guidance.
+output_artifacts: knowledge/reviews/design-reviewer.md
+done_when: The team knows which language problems are local, which are systemic, how strong the evidence is, and what should change first.
+---
+
+# Copy Review
+
+## Purpose
+
+Review product copy as a system across labels, guidance, states, and trust signals instead of isolated strings.
+
+This skill evaluates whether the language helps the intended user understand what is happening, decide what to do next, and recover when things go wrong.
+
+This skill does not invent brand strategy, replace legal review, or claim that copy effectiveness has been validated with real users unless such evidence is explicitly provided.
+
+## Lossless Deliverable Contract
+
+- Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-copy-review.md`).
+- Do not merge this output into a shared role-level document.
+- Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
+- **Embed generated images**: If tools like `stitch`, `v0`, or `generate_image` were used to produce UI designs or concepts, embed the resulting images/screenshots directly into the markdown deliverable using standard markdown image syntax.
+
+## Required Deliverable Sections
+
+Within `## Skill: copy-review`, include:
+- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
+- `### Review framing`: Define the product context, user goal, audience assumptions, content surfaces reviewed, and why this is a copy review rather than messaging strategy work.
+- `### Required inputs and assumptions`: State the target flow or surface, audience, brand or legal constraints, locale assumptions, and any missing inputs inferred by the reviewer.
+- `### Input mode and evidence path`: Choose the strongest available evidence path in this order: live product behavior, repository content sources, design artifacts or docs, screenshots or static exports, then inference.
+- `### Tool selection rationale`: State which tools were used, why they were chosen, what they validated well, and where they were weak.
+- `### Environment and reproducibility`: Record product state, locale, browser or platform, auth state, experiment flags, and content version or branch when known.
+- `### Content system model`: Build the language model first by documenting the key surfaces, user commitments, domain terms, CTA families, state messages, and trust-sensitive moments.
+- `### Evaluator passes`: List the passes used such as clarity and comprehension, decision support, terminology and consistency, tone and trust, and states, errors, and recovery language.
+- `### Content inventory`: List the key content surfaces, high-risk strings, and state messages that were actually reviewed.
+- `### Flow-level wording issues`: Capture wording problems that only appear across task progression, transitions, or state changes.
+- `### Terminology and consistency`: Track domain-language drift, inconsistent labels, and naming mismatches across the reviewed surfaces.
+- `### Tone and trust signals`: Record wording that weakens clarity, credibility, safety, or user confidence.
+- `### Language findings`: Record findings using the required finding schema below.
+- `### Prioritized findings`: Include all critical and major language problems as standalone findings, group minor issues into patterns, and prefer no more than 15 standalone findings by default unless additional findings are materially distinct or high severity.
+- `### Priority recommendations`: Highlight the changes that should happen first based on user risk, trust impact, and systemic reach.
+- `### Systemic language issues`: Group repeated content problems such as CTA vagueness, terminology drift, or weak state messaging.
+- `### Systemic language patterns`: Group repeated issues such as vague CTA language, naming drift, weak empty states, false reassurance, or inconsistent domain vocabulary.
+- `### Coverage map`: State what was deeply reviewed, partially reviewed, and not reviewed.
+- `### Severity, confidence, and coverage confidence`: Separate copy impact severity from evidence confidence and state whether coverage came from live runtime, repository sources, artifact review, or screenshot-only inference.
+- `### Directional rewrite guidance`: Link rewrite directions to findings without pretending every final string is already approved.
+- `### Limits and unknowns`: Explain where business context, legal review, localization, analytics, or user research would still be needed.
+
+For each finding inside `### Language findings`, use this exact mini-template:
+
+#### Finding <id>
+- Observation:
+- Evidence:
+- Repro steps or location:
+- Primary issue type:
+- Likely cause:
+- Impact:
+- Severity:
+- Confidence:
+- Recommendation direction:
+
+## Tool Path
+
+- Prefer the highest-fidelity evidence path available: live product behavior -> repository content sources -> design artifacts or docs -> screenshots or static exports -> inference.
+- Start with `repository, figma, chrome_devtools` when the product surface, source strings, and runtime states are all available.
+- Use `chrome_devtools` when copy depends on live states, validation messages, loading behavior, async confirmations, or runtime sequencing.
+- Use `repository` when the review depends on source strings, shared content helpers, localization keys, conditional messaging, or variant coverage.
+- Use `figma` when the review is pre-implementation or when design artifacts are the main source of truth for labels and state copy.
+- Use `notion` when style guides, naming rules, policy notes, or approved terminology live in internal docs.
+- Use `open` or `search_query` only for supporting context or static evidence when direct runtime or artifact access is unavailable.
+- If the primary path is unavailable, blocked, out of credits, or missing setup, switch to `notion, reference/ground, search_query`.
+- If both paths fail, produce the best-guess output described as: A copy review with evidence-tagged language issues, grouped patterns, and directional rewrite guidance.
+- Label the section clearly as `sourced`, `fallback`, or `inferred` to match the path actually used.
+- Combine tools when useful rather than forcing a single-source review.
+
+## Workflow Notes
+
+- Treat this as a content-system review, not as brand strategy, legal approval, or localization QA.
+- Treat `required_inputs` as real prerequisites. If audience, constraints, or locale are missing, infer a provisional set, prefix each inferred item with `Assumed context:`, and lower confidence for findings that depend on it.
+- Build the content system model before analysis. Do not jump from isolated string reactions to issue lists.
+- Review the full conversation between screens and states, not just individual microcopy lines in isolation.
+- Run evaluator passes in sequence so findings stay grounded: clarity first, decision support second, terminology and consistency third, then tone, trust, and recovery language.
+- Distinguish clearly between observed wording problems, inferred content causes, and recommendation direction.
+- Separate copy defects from product-policy gaps. A missing rule or unresolved business decision is not the same as a bad sentence.
+- Prefer directional rewrite guidance when the right answer depends on product positioning, legal rules, localization constraints, or experimentation strategy.
+- Surface systemic terminology debt explicitly so downstream teams can fix the content model, not just patch strings one by one.
+- After all passes, merge duplicates and consolidate overlapping findings before prioritization.
+- Do not claim comprehension, trust uplift, or conversion impact has been validated unless real research or analytics evidence exists.
+

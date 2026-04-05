@@ -1,0 +1,181 @@
+{
+  "schema_version": 5,
+  "package_name": "product-team",
+  "version": "2.0.0",
+  "platform": "antigravity",
+  "base_dir": ".antigravity",
+  "installed_at": "2026-04-05T23:50:06.414254+00:00",
+  "install_source": {
+    "install_mode": "local_checkout",
+    "local_source_root": "/Users/pedrocarrascolopezbrea/Projects/The product team",
+    "repo_url": "https://github.com/pedrocarlop/the-product-team",
+    "ref": "main",
+    "archive_url": "https://github.com/pedrocarlop/the-product-team/archive/refs/heads/main.tar.gz"
+  },
+  "managed_agents_markers": {
+    "start": "<!-- PRODUCT_TEAM_FOR_ANTIGRAVITY:START -->",
+    "end": "<!-- PRODUCT_TEAM_FOR_ANTIGRAVITY:END -->"
+  },
+  "roles": [
+    {
+      "discipline": "orchestrator",
+      "source_name": "orchestrator",
+      "installed_name": "product-team-orchestrator",
+      "installed_namespace": "product-team-orchestrator",
+      "relative_role_dir": ".antigravity/agents/product-team-orchestrator/orchestrator",
+      "relative_toml_path": ".antigravity/agents/product-team-orchestrator/orchestrator/orchestrator.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-orchestrator/orchestrator/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-orchestrator/orchestrator/skill-catalog.md"
+    },
+    {
+      "discipline": "business",
+      "source_name": "product-lead",
+      "installed_name": "product-team-product-lead",
+      "installed_namespace": "product-team-business",
+      "relative_role_dir": ".antigravity/agents/product-team-business/product-lead",
+      "relative_toml_path": ".antigravity/agents/product-team-business/product-lead/product-lead.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-business/product-lead/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-business/product-lead/skill-catalog.md"
+    },
+    {
+      "discipline": "business",
+      "source_name": "analyst",
+      "installed_name": "product-team-analyst",
+      "installed_namespace": "product-team-business",
+      "relative_role_dir": ".antigravity/agents/product-team-business/analyst",
+      "relative_toml_path": ".antigravity/agents/product-team-business/analyst/analyst.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-business/analyst/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-business/analyst/skill-catalog.md"
+    },
+    {
+      "discipline": "business",
+      "source_name": "go-to-market",
+      "installed_name": "product-team-go-to-market",
+      "installed_namespace": "product-team-business",
+      "relative_role_dir": ".antigravity/agents/product-team-business/go-to-market",
+      "relative_toml_path": ".antigravity/agents/product-team-business/go-to-market/go-to-market.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-business/go-to-market/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-business/go-to-market/skill-catalog.md"
+    },
+    {
+      "discipline": "business",
+      "source_name": "business-ops",
+      "installed_name": "product-team-business-ops",
+      "installed_namespace": "product-team-business",
+      "relative_role_dir": ".antigravity/agents/product-team-business/business-ops",
+      "relative_toml_path": ".antigravity/agents/product-team-business/business-ops/business-ops.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-business/business-ops/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-business/business-ops/skill-catalog.md"
+    },
+    {
+      "discipline": "design",
+      "source_name": "ux-researcher",
+      "installed_name": "product-team-ux-researcher",
+      "installed_namespace": "product-team-design",
+      "relative_role_dir": ".antigravity/agents/product-team-design/ux-researcher",
+      "relative_toml_path": ".antigravity/agents/product-team-design/ux-researcher/ux-researcher.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-design/ux-researcher/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-design/ux-researcher/skill-catalog.md"
+    },
+    {
+      "discipline": "design",
+      "source_name": "product-designer",
+      "installed_name": "product-team-product-designer",
+      "installed_namespace": "product-team-design",
+      "relative_role_dir": ".antigravity/agents/product-team-design/product-designer",
+      "relative_toml_path": ".antigravity/agents/product-team-design/product-designer/product-designer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-design/product-designer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-design/product-designer/skill-catalog.md"
+    },
+    {
+      "discipline": "design",
+      "source_name": "ui-designer",
+      "installed_name": "product-team-ui-designer",
+      "installed_namespace": "product-team-design",
+      "relative_role_dir": ".antigravity/agents/product-team-design/ui-designer",
+      "relative_toml_path": ".antigravity/agents/product-team-design/ui-designer/ui-designer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-design/ui-designer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-design/ui-designer/skill-catalog.md"
+    },
+    {
+      "discipline": "design",
+      "source_name": "content-designer",
+      "installed_name": "product-team-content-designer",
+      "installed_namespace": "product-team-design",
+      "relative_role_dir": ".antigravity/agents/product-team-design/content-designer",
+      "relative_toml_path": ".antigravity/agents/product-team-design/content-designer/content-designer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-design/content-designer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-design/content-designer/skill-catalog.md"
+    },
+    {
+      "discipline": "design",
+      "source_name": "design-systems-designer",
+      "installed_name": "product-team-design-systems-designer",
+      "installed_namespace": "product-team-design",
+      "relative_role_dir": ".antigravity/agents/product-team-design/design-systems-designer",
+      "relative_toml_path": ".antigravity/agents/product-team-design/design-systems-designer/design-systems-designer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-design/design-systems-designer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-design/design-systems-designer/skill-catalog.md"
+    },
+    {
+      "discipline": "engineer",
+      "source_name": "frontend-engineer",
+      "installed_name": "product-team-frontend-engineer",
+      "installed_namespace": "product-team-engineer",
+      "relative_role_dir": ".antigravity/agents/product-team-engineer/frontend-engineer",
+      "relative_toml_path": ".antigravity/agents/product-team-engineer/frontend-engineer/frontend-engineer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-engineer/frontend-engineer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-engineer/frontend-engineer/skill-catalog.md"
+    },
+    {
+      "discipline": "engineer",
+      "source_name": "backend-engineer",
+      "installed_name": "product-team-backend-engineer",
+      "installed_namespace": "product-team-engineer",
+      "relative_role_dir": ".antigravity/agents/product-team-engineer/backend-engineer",
+      "relative_toml_path": ".antigravity/agents/product-team-engineer/backend-engineer/backend-engineer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-engineer/backend-engineer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-engineer/backend-engineer/skill-catalog.md"
+    },
+    {
+      "discipline": "engineer",
+      "source_name": "platform-engineer",
+      "installed_name": "product-team-platform-engineer",
+      "installed_namespace": "product-team-engineer",
+      "relative_role_dir": ".antigravity/agents/product-team-engineer/platform-engineer",
+      "relative_toml_path": ".antigravity/agents/product-team-engineer/platform-engineer/platform-engineer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-engineer/platform-engineer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-engineer/platform-engineer/skill-catalog.md"
+    },
+    {
+      "discipline": "review",
+      "source_name": "design-reviewer",
+      "installed_name": "product-team-design-reviewer",
+      "installed_namespace": "product-team-review",
+      "relative_role_dir": ".antigravity/agents/product-team-review/design-reviewer",
+      "relative_toml_path": ".antigravity/agents/product-team-review/design-reviewer/design-reviewer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-review/design-reviewer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-review/design-reviewer/skill-catalog.md"
+    },
+    {
+      "discipline": "review",
+      "source_name": "qa-reviewer",
+      "installed_name": "product-team-qa-reviewer",
+      "installed_namespace": "product-team-review",
+      "relative_role_dir": ".antigravity/agents/product-team-review/qa-reviewer",
+      "relative_toml_path": ".antigravity/agents/product-team-review/qa-reviewer/qa-reviewer.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-review/qa-reviewer/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-review/qa-reviewer/skill-catalog.md"
+    },
+    {
+      "discipline": "engineer",
+      "source_name": "reference",
+      "installed_name": "product-team-reference",
+      "installed_namespace": "product-team-engineer",
+      "relative_role_dir": ".antigravity/agents/product-team-engineer/reference",
+      "relative_toml_path": ".antigravity/agents/product-team-engineer/reference/reference.toml",
+      "relative_skills_dir": ".antigravity/agents/product-team-engineer/reference/skills",
+      "relative_catalog_path": ".antigravity/agents/product-team-engineer/reference/skill-catalog.md"
+    }
+  ]
+}

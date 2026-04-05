@@ -532,16 +532,19 @@ def install_knowledge(root: Path, target_root: Path) -> bool:
     reviews_dir = knowledge_root / "reviews"
     assets_dir = knowledge_root / "assets"
     entities_dir = knowledge_root / "entities"
+    raw_dir = knowledge_root / "raw"
     ensure_directory(runs_dir)
     ensure_directory(reviews_dir)
     ensure_directory(assets_dir)
     ensure_directory(entities_dir)
+    ensure_directory(raw_dir)
 
     for keep_path in (
         runs_dir / ".gitkeep",
         reviews_dir / ".gitkeep",
         assets_dir / ".gitkeep",
         entities_dir / ".gitkeep",
+        raw_dir / ".gitkeep",
     ):
         if not keep_path.exists():
             keep_path.write_text("", encoding="utf-8")
@@ -575,10 +578,13 @@ def install_knowledge(root: Path, target_root: Path) -> bool:
         index_path.write_text(index_content, encoding="utf-8")
 
 
-    changelog_path = knowledge_root / "changelog.md"
-    if not changelog_path.exists():
-        changelog_content = "# Knowledge Changelog\n\n"
-        changelog_path.write_text(changelog_content, encoding="utf-8")
+    log_path = knowledge_root / "log.md"
+    if not log_path.exists():
+        log_content = (
+            "# Knowledge Log\n\n"
+            "Chronological record of wiki evolution. Entries should follow: `## [YYYY-MM-DD] type | title`.\n\n"
+        )
+        log_path.write_text(log_content, encoding="utf-8")
 
     return True
 
