@@ -140,14 +140,20 @@ Para trabajo de diseno nuevo, el flujo no debe ir en linea recta. La parte de di
 
 ## Sistema De Conocimiento
 
-`knowledge/README.md` es el contrato para la inteligencia de negocio persistente.
+`knowledge/README.md` es el contrato para la inteligencia de negocio persistente. El conocimiento se organiza como una **wiki persistente y acumulativa** — compilada una vez y mantenida al dia, no redescubierta en cada consulta.
 
 Reglas clave:
 
 - **Organizacion plana**: Sin anidamiento por slug de proyecto para que los agentes encuentren conocimiento relevante entre todos los proyectos.
-- **Cabeceras de entregable**: Cada archivo empieza con frontmatter YAML (`role`, `project`, `run_id`, `confidence`, `inputs_used`, `evidence_mode`).
-- **Historial sin perdida**: Al actualizar un entregable, los agentes escriben primero en `knowledge/runs/<run-id>/`, luego pueden actualizar el archivo canonico. Las versiones previas nunca se sobrescriben.
-- **Continuidad de conocimiento**: Antes de cada asignacion, el orquestador escanea `knowledge/` buscando entregables previos relevantes y los incluye en `reads_from`. Las decisiones se acumulan entre proyectos.
+- **Indice wiki** (`knowledge/index.md`): Catalogo orientado por tema de todos los entregables, organizado por dominio. El orquestador lo lee primero para encontrar conocimiento relevante sin escanear cada archivo.
+- **Registro de cambios** (`knowledge/changelog.md`): Log append-only de cada mutacion de conocimiento (`created`, `updated`, `superseded`, `archived`). Permite al orquestador ver que cambio desde el ultimo proyecto.
+- **Cabeceras de entregable**: Cada archivo empieza con frontmatter YAML (`role`, `project`, `run_id`, `confidence`, `inputs_used`, `evidence_mode`, `related`). El campo `related` crea enlaces cruzados entre entregables.
+- **TL;DR obligatorio**: Cada entregable incluye una seccion `## TL;DR` (1-3 frases) inmediatamente despues de la cabecera, permitiendo escaneo rapido sin leer archivos completos.
+- **Paginas de entidad** (`knowledge/entities/`): Conceptos transversales (competidores, personas, patrones, decisiones) tienen paginas dedicadas que agregan hallazgos de multiples entregables.
+- **Historial sin perdida**: Al actualizar un entregable, los agentes escriben primero en `knowledge/runs/<run-id>/`, luego pueden actualizar el archivo canonico. Las versiones previas nunca se sobrescriben. Cada mutacion se registra en `changelog.md`.
+- **Orden progresivo de escaneo**: (1) `index.md` para categorias de dominio, (2) cola de `changelog.md` para cambios recientes, (3) secciones TL;DR de archivos relevantes, (4) archivos completos solo cuando es directamente necesario, (5) enlaces `related` para contexto.
+- **Continuidad de conocimiento**: Antes de cada asignacion, el orquestador sigue el orden progresivo de escaneo e incluye archivos relevantes en `reads_from`. Las decisiones se acumulan entre proyectos.
+- **Lint** (skill `lint-knowledge`): Chequeo de salud periodico que detecta archivos obsoletos, contradicciones, huerfanos, referencias cruzadas faltantes, lagunas de conocimiento y deriva de entidades. Resultados en `knowledge/orchestrator-lint.md`.
 - **Reflexion obligatoria**: Cada entregable termina con una seccion `## Reflection` (Que funciono, Que no, Siguientes pasos).
 
 ## Flujo De Sistema De Diseno

@@ -63,7 +63,17 @@ After each subagent returns, check its output for an `hta_setup_required` signal
 - Do not summarize away the detail of the original artifacts; provide navigation and orientation only.
 - Carry forward any critical dependencies or cross-role constraints.
 
-### Step 5: Mandatory Reflection (Interleaved Thinking)
+### Step 5: Update Knowledge Index and Changelog
+- After all specialists have completed, update `knowledge/index.md`:
+  - Add any new deliverable files under the appropriate domain category.
+  - Remove entries for superseded files.
+- Append entries to `knowledge/changelog.md` for every deliverable created or updated during this coordination cycle:
+  ```
+  ## [YYYY-MM-DD] <action> | <run-id> | <deliverable-file> | <one-line description>
+  ```
+- If specialist outputs reveal cross-cutting concepts (competitors, personas, patterns), consider creating or updating entity pages in `knowledge/entities/`.
+
+### Step 6: Mandatory Reflection (Interleaved Thinking)
 End the deliverable with a `## Reflection` section. Self-critique the work:
 - **What worked**: successful implementation or analysis details.
 - **What didn't**: trade-offs, shortcuts, or known limitations.

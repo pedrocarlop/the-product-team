@@ -24,6 +24,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Output: knowledge/orchestrator-coordinate.md
 - Done when: Every specialist output is indexed in the manifest and implementation owners can access all original source materials.
 
+## `lint-knowledge`
+
+- Description: Run periodic health checks on the knowledge base — detect stale files, contradictions, orphans, missing cross-references, knowledge gaps, and entity drift.
+- Trigger: After every 3-5 projects, on explicit request, or when knowledge/index.md grows significantly.
+- Primary MCP/tool: repository, knowledge files
+- Fallback: repository review
+- Best guess: A structured lint report with actionable findings per category.
+- Output: knowledge/orchestrator-lint.md
+- Done when: Every check category has run and findings are logged with severity and recommended fix.
+
 ## `log`
 
 - Description: Keep context.md concise and current with role assignments, skill paths, and done-when criteria.

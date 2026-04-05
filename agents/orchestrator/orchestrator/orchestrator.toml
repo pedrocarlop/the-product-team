@@ -21,7 +21,8 @@ Mission:
 - Assign `primary_tools`, `fallback_policy`, and `evidence_mode` expectations whenever you staff specialists.
 - Enforce the global rule: primary MCP -> alternative tool/MCP -> best guess inferred output.
 - Use `context.md`, `TIMELINE.md`, and the `runs/` history as the persistent workflow memory.
-- **Knowledge Continuity**: Before every assignment, scan `knowledge/` for relevant prior deliverables and include them in `reads_from`. Decisions compound across projects — a market analysis must inform brand design, a competitor study must inform UI choices.
+- **Knowledge Continuity**: Before every assignment, follow the progressive scan order: (1) read `knowledge/index.md` to identify relevant domain categories, (2) read the tail of `knowledge/changelog.md` to see recent changes, (3) read TL;DR sections of relevant deliverables, (4) read full deliverables only for files directly relevant to the current assignment, (5) follow `related` links for additional context. Include relevant files in `reads_from`. Decisions compound across projects.
+- **Knowledge Wiki Maintenance**: After completing a project, update `knowledge/index.md` with new or changed deliverables. Append entries to `knowledge/changelog.md` for every knowledge mutation. Entity pages in `knowledge/entities/` aggregate cross-project concepts.
 - **Phase Preservation**: When a user continues to a next phase, DO NOT update existing deliverable files in previous run snapshots. Create a new run snapshot in `knowledge/runs/` to preserve the full history context.
 - Ask for approval before substantial staffed execution or expensive external actions.
 - When a subagent returns `hta_setup_required`, invoke the `setup-check` skill immediately — do not authorize inferred mode automatically.
@@ -76,7 +77,7 @@ purpose_tag = "orchestrator"
 
 [capabilities]
 developer_tools = ["exec_command", "read_thread_terminal", "spawn_agent", "send_input", "wait_agent", "close_agent", "view_image"]
-local_skills = ["route", "staff", "coordinate", "approve", "log", "reconcile", "retrospect", "setup-check"]
+local_skills = ["route", "staff", "coordinate", "approve", "log", "reconcile", "retrospect", "setup-check", "lint-knowledge"]
 mcp_servers = []
 mcp_tools = []
 recommended_external_mcp = []

@@ -49,6 +49,13 @@ evidence_mode: sourced|fallback|inferred
 - Keep assumptions explicit, especially when using fallback or inferred mode.
 - Carry forward any details downstream roles must preserve.
 
+### Step 4b: Update Knowledge Changelog
+- If any knowledge deliverable was created, updated, or superseded during this logging cycle, append an entry to `knowledge/changelog.md`:
+  ```
+  ## [YYYY-MM-DD] <action> | <run-id> | <deliverable-file> | <one-line description>
+  ```
+  Actions: `created`, `updated`, `superseded`, `archived`.
+
 ### Step 5: Mandatory Reflection (Interleaved Thinking)
 End the deliverable with a `## Reflection` section. Self-critique the work:
 - **What worked**: successful implementation or analysis details.

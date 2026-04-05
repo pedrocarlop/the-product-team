@@ -8,7 +8,7 @@ This repository packages an installable Codex workflow called `Product Team`. It
 
 | Role | Display Name | Discipline | Kind | Skills | Repo Writes | Description |
 | ---- | ------------ | ---------- | ---- | -----: | ----------- | ----------- |
-| `orchestrator` | Orchestrator | Orchestrator | orchestrator | 8 | direct | Route work cheaply, assign exact skill workflows, enforce MCP-first execution with fallback, and coordinate staffed specialists only when needed |
+| `orchestrator` | Orchestrator | Orchestrator | orchestrator | 9 | direct | Route work cheaply, assign exact skill workflows, enforce MCP-first execution with fallback, and coordinate staffed specialists only when needed |
 | `product-lead` | Product Lead | Business Roles | executor | 6 | never | Own problem framing, product specification, prioritization, and decision communication for cross-functional delivery using AI-first discovery and framing methods |
 | `analyst` | Analyst | Business Roles | executor | 5 | never | Own metric definition, funnel diagnosis, forecasting, experiment readouts, and data storytelling for product decisions |
 | `go-to-market` | Go-To-Market | Business Roles | executor | 6 | never | Own positioning, launch planning, campaign briefs, sales enablement, partner strategy, and customer-signal synthesis |

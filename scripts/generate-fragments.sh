@@ -12,16 +12,13 @@ if [[ ! -f "${TEMPLATE}" ]]; then
   exit 1
 fi
 
-declare -A PLATFORMS=(
-  ["CLAUDE.fragment.md"]="Claude"
-  ["AGENTS.fragment.md"]="Codex"
-  ["ANTIGRAVITY.fragment.md"]="Antigravity"
-)
+COMMENT="<!-- Generated from product-team.fragment.template.md — edit the template, then run scripts/generate-fragments.sh -->"
 
-for FILE in "${!PLATFORMS[@]}"; do
-  PLATFORM="${PLATFORMS[$FILE]}"
+for PAIR in "AGENTS.fragment.md:Codex" "CLAUDE.fragment.md:Claude" "ANTIGRAVITY.fragment.md:Antigravity"; do
+  FILE="${PAIR%%:*}"
+  PLATFORM="${PAIR#*:}"
   OUTPUT="${ASSETS_DIR}/${FILE}"
-  sed "s/{{PLATFORM}}/${PLATFORM}/g" "${TEMPLATE}" > "${OUTPUT}"
+  { echo "${COMMENT}"; sed "s/{{PLATFORM}}/${PLATFORM}/g" "${TEMPLATE}"; } > "${OUTPUT}"
   echo "Generated ${FILE} (platform: ${PLATFORM})"
 done
 

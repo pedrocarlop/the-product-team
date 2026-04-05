@@ -24,6 +24,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Output: knowledge/frontend-engineer-component-implementation.md
 - Done when: The component is reusable, aligned to the design system spec, all variants and states are implemented and documented in Storybook stories, and downstream consumers can adopt it without inferring unsupported patterns.
 
+## `executor`
+
+- Description: Close the shipping loop — read all knowledge artifacts, build the app, run the full test suite, fix failures iteratively, and repeat until all checks pass or the fix budget is exhausted. This is the recursive execution skill that transforms deliverables into shipped software.
+- Trigger: When all knowledge artifacts (design, spec, implementation) are available and the goal is to get to a green, verified, shippable state without human orchestration of individual fix cycles.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A ship report declaring the final status (shipped / blocked / partial), the number of fix iterations used, all resolved failures with their root causes, any unresolved blockers with structured findings, and the commit SHA or file diff that represents the shipped state.
+- Output: knowledge/frontend-engineer-executor.md
+- Done when: The test suite exits green (zero failing tests), the E2E smoke suite passes across primary viewports, axe-core reports zero critical or serious violations, and the build produces a deployable artifact — OR the fix budget is exhausted and all remaining blockers are surfaced as structured findings.
+
 ## `frontend-verify`
 
 - Description: Applies structured UI verification — behavior checks, layout fidelity, visual regression, and basic accessibility — to confirm the implemented frontend matches design intent and quality expectations before handoff.
@@ -53,16 +63,6 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Best guess: A breakpoint matrix, per-breakpoint audit findings, and a prioritized responsive fix list with reproduction steps, cause analysis, and a verification plan.
 - Output: knowledge/frontend-engineer-responsive-refinement.md
 - Done when: Every breakpoint in the defined set has been audited, all Critical and Significant findings have a documented fix or accepted risk, and desktop and mobile behavior are both intentional and verifiable.
-
-## `executor`
-
-- Description: Close the shipping loop — read all knowledge artifacts, build the app, run the full test suite, fix failures iteratively (up to a fix budget of 5 iterations), and repeat until all checks pass or blockers are surfaced. This is the recursive execution skill that transforms deliverables into shipped software.
-- Trigger: When all knowledge artifacts (design, spec, implementation) are available and the goal is to reach a green, verified, shippable state without human orchestration of individual fix cycles. Triggered at the end of a ship-mode pipeline or whenever a "make it work" execution loop is needed.
-- Primary MCP/tool: exec_command, read_thread_terminal, vitest, playwright
-- Fallback: search_query, reference_trace
-- Best guess: A ship report declaring SHIPPED / BLOCKED / PARTIAL status, all fix iterations applied with root causes, any unresolved blockers as structured findings, and final test suite counts.
-- Output: knowledge/frontend-engineer-executor.md
-- Done when: Zero failing unit tests, E2E smoke suite passes across primary viewports, axe-core reports zero critical/serious violations, and a deployable build artifact exists — OR the fix budget is exhausted and all remaining blockers are surfaced.
 
 ## `stateful-ui-build`
 

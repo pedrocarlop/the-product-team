@@ -42,10 +42,13 @@ evidence_mode: sourced|fallback|inferred
 - If it is a new venture (no code, no context), prioritize **Venture Discovery** and **Foundational Research**.
 - If it is an evolving project (existing code, deep context), look for "Incremental Value-Add" opportunities.
 
-### Step 2b-ii: Knowledge Continuity Scan
-- Scan `knowledge/` for existing deliverables from prior projects.
-- Identify which prior knowledge files are relevant to the current request.
-- These must be included in `reads_from` when staffing agents downstream so that decisions compound across projects.
+### Step 2b-ii: Knowledge Continuity Scan (Progressive Disclosure)
+1. Read `knowledge/index.md` to identify relevant domain categories for this request.
+2. Read the tail of `knowledge/changelog.md` (last 20 entries) to see recent mutations.
+3. Read TL;DR sections of deliverables in the matching categories.
+4. Read full deliverables only for files directly relevant to the current request.
+5. Follow `related` links for additional cross-cutting context.
+- All relevant files must be included in `reads_from` when staffing agents downstream so that decisions compound across projects.
 
 ### Step 2c: Signal Scan For Specialized Roles & Value-Add
 Before choosing a team pattern, scan the request for signals that indicate specialized roles are needed. Consult the **Signal-Based Role Triggers** table in `references/role-catalog.md`. For each signal detected:
