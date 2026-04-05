@@ -22,7 +22,7 @@ tool_stack:
   quantitative:
     primary: [similarweb]
   fallback:
-    primary: [search_query, open]
+    primary: [search_query, open, take_screenshot, browser_subagent]
 tool_routing:
   - if: benchmarking shipped SaaS product interfaces or flows
     use: [refero]
@@ -36,13 +36,20 @@ tool_routing:
     use: [similarweb]
   - if: organizing screenshots into a comparison grid
     use: [figma]
-  - if: primary tools are unavailable, blocked, or out of credits
-    use: [search_query, open]
+  - if: primary tools are unavailable, blocked, or out of credits, or if live site evidence is required
+    use: [search_query, open, take_screenshot, browser_subagent]
 best_guess_output: A competitive landscape report with a comparison set, pattern inventory, evidence citations, gap analysis, and design implications.
 output_artifacts:
   - knowledge/runs/<run-id>/ux-researcher-competitor-research.md
   - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: The competitive landscape model is constructed, relevant patterns are documented with sourced evidence or explicitly labeled as inferred, and implications are linked to the originating design decision.
+mesh:
+  inputs:
+    - product-lead:frame-problem # Needs a specific problem frame to benchmark against
+  next:
+    - product-designer:journey-and-flow-design
+    - ui-designer:ui-concept-direction
+  context: "Competitive research provides the pattern-evidence layer that informs how a user journey is structured or how a visual concept should be positioned."
 ---
 
 # Competitor Research
@@ -74,7 +81,7 @@ Evidence gathering follows this hierarchy:
 1. **Live/real interaction** — Direct use of the competitor product in a real session. Highest fidelity; requires access and time.
 2. **Structured system access** — Refero, Mobbin, Page Flows, UX Archive. Curated, searchable, annotated. Best balance of coverage and speed.
 3. **Design artifacts/documentation** — Figma community files, case studies, design system docs. Useful as supplement; may be outdated.
-4. **Screenshots/static input** — Manual screenshots or images shared by stakeholders. Limited to visible states; no flow context.
+4. **Screenshots/static input** — High-fidelity screenshots of live sites using `take_screenshot` or `browser_subagent`. Required for every competitor in the set to provide visual context for landing pages and key UI states.
 5. **Inference** — Pattern inference when direct evidence is unavailable. Must be labeled explicitly.
 
 Declare which path was used and state its limitations in the deliverable. Prefer path 2 as the default when primary tools are available. Combine paths when they address different evidence gaps.
@@ -89,7 +96,7 @@ Declare which path was used and state its limitations in the deliverable. Prefer
 
 **Artifacts:** Figma or FigJam (organize screenshots into comparison grids; annotate patterns; prepare deliverable exhibits).
 
-**Fallback:** web search + open (manual browsing when primary tools are unavailable or a product is not indexed).
+**Fallback:** web search + open + take_screenshot (manual browsing and high-fidelity screen capture when primary tools are unavailable or a product is not indexed). Use `browser_subagent` for complex flows requiring multi-step navigation to capture specific authenticated states.
 
 ## Tool Routing
 
@@ -118,7 +125,7 @@ If any of the above is unknown, state it explicitly. Do not present gated or ver
 
 Before evaluating competitors, the agent MUST construct a competitive landscape model:
 
-1. **Define the competitive set**: Which products compete on the same surface, flow, or user job? Distinguish direct competitors (same segment, same job) from adjacent references (different segment but relevant pattern).
+1. **Define the competitive set**: Which products compete on the same surface, flow, or user job? Distinguish direct competitors (same segment, same job) from adjacent references (different segment but relevant pattern). **Mandatory:** The list must be extensive (aim for 10+ competitors) to ensure broad market coverage and avoid bias toward common incumbents.
 2. **Define the comparison dimensions**: What interaction types, flows, or UI patterns are being benchmarked? Examples: onboarding flow, empty state handling, navigation model, pricing page pattern, error recovery.
 3. **Map the evidence available per competitor**: For each product in the set, note which surfaces can be sourced (via tools), which require fallback, and which must be inferred.
 4. **Identify known gaps before analysis begins**: Where is the evidence set thin? Which competitors are missing? Which surfaces cannot be accessed?
@@ -133,7 +140,7 @@ Follow this sequence:
 
 **Step 2 — Build the landscape model.** Construct the competitive set (direct + adjacent), define comparison dimensions, and map evidence availability per competitor. Document this in `### Landscape model` before proceeding.
 
-**Step 3 — Source pattern evidence.** For each competitor in the comparison set, use the tool routing logic to collect UI patterns, flows, and screens relevant to the comparison dimensions. Start with Refero; supplement with Mobbin, Page Flows, and UX Archive for breadth and motion context. Label each piece of evidence as `sourced`, `fallback`, or `inferred`.
+**Step 3 — Source visual evidence and patterns.** For each competitor in the comparison set, use the tool routing logic to collect UI patterns, flows, and screens. **Mandatory:** Capture at least one high-fidelity full-page screenshot of the competitor's landing page, plus specific brand imagery (logos, styling) and evidence of the products sold. Capture key functional screens relevant to the comparison dimensions (e.g., dashboard, settings, checkout). **Important:** Include the live URL for each competitor's website and direct links to the relevant products or flows being benchmarked. Use `take_screenshot(fullPage=true)` for landing pages and product catalogs. Store these in the specific assets directory. Label each piece of evidence as `sourced`, `fallback`, or `inferred`.
 
 **Step 4 — Add quantitative context.** Use SimilarWeb to check traffic volume, engagement benchmarks, and audience overlap for the top competitors. This grounds pattern findings in market relevance — a pattern from a low-traffic product carries different weight than one from a category leader.
 
@@ -141,9 +148,22 @@ Follow this sequence:
 
 **Step 6 — Run gap analysis.** Compare the pattern inventory against the current product. Identify: (a) patterns the current product is missing, (b) patterns the current product does differently without evidence of user preference, (c) table-stakes patterns that are consistent across the field.
 
-**Step 7 — Derive implications.** For each significant gap or pattern, state what it means for the current design decision. Implications must be directional and linked to evidence — not free-floating opinions.
+**Step 7 — Derive implications and hypotheses.** For each significant gap or pattern, state what it means for the current design decision. If identifying a "White Space Opportunity" (a gap in the market), formulate it as a testable hypothesis. Critical: Every opportunity must be questioned—*Why would a customer want to buy/use this?*—and backed by data signals (traffic trends, user feedback, or market reports). Implications must be directional and linked to evidence, not free-floating opinions.
 
-**Step 8 — Structure and prioritize findings.** Apply the finding schema below. Prioritize by decision impact. Group minor patterns.
+**Step 8 — Structure and prioritize findings.** Apply the finding schema below. Prioritize by decision impact. Group minor patterns. Ensure every major pattern is accompanied by its corresponding screenshot reference.
+
+## Visual Documentation Standards
+
+To ensure "Visual Excellence" and "Rich Aesthetics" in the research deliverable, follow these standards for all captured screenshots:
+
+- **Landing Pages**: Use `take_screenshot(fullPage=true)` to capture the entire narrative and visual hierarchy of the competitor's entry point.
+- **Brand & Product Imagery**: Capture high-fidelity images that represent the competitor's brand identity (typography, color palettes, tone of voice) and clear visual evidence of the products or services they sell.
+- **Micro-patterns**: Use specific element crops or focused viewport screenshots to highlight specific UI components (e.g., a unique button style, a notification toast, or a navigation drawer).
+- **Flow Sequences**: For flows like onboarding, capture a series of screenshots labeled sequentially (e.g., `onboarding-step-1.png`, `onboarding-step-2.png`).
+- **Resolution**: Ensure screenshots are captured at standard desktop (1440px width) or mobile resolutions to maintain fidelity.
+- **Contextual Annotations**: If the tool allows, or in the markdown description, highlight specific areas of interest within the screenshot to guide the reader's eye.
+
+Every screenshot MUST be stored in `knowledge/runs/<run-id>/assets/` and linked with a descriptive caption.
 
 ## Structured Findings
 
@@ -155,6 +175,7 @@ Observation: [What was seen, without interpretation]
 Evidence: [Tool or source + screenshot reference or citation]
 Source: [Competitor name, surface, date]
 Cause: [Why this pattern likely exists — labeled as inferred if not confirmed]
+Rationale (The "Why"): [Why would a customer value this? Address the core motivation for purchase or usage. Back this with data signals.]
 Impact: [What this means for the current product or design decision]
 Confidence: [High / Medium / Low + rationale]
 ```
@@ -179,6 +200,7 @@ Do not include more than eight standalone findings. Surface-level observations t
 After the pattern inventory is complete, the agent must identify:
 
 - **Recurring patterns**: Interaction conventions or UI approaches used by 3+ competitors — these signal a settled category norm.
+- **White Space Opportunities**: Gaps where multiple competitors struggle or have entirely missed a user need. **Mandatory Questioning:** For every white space identified, explicitly answer: *Why would a customer pay for this?* Back the answer with quantitative data (e.g., SimilarWeb traffic growth in related niches) or qualitative signals (e.g., common user complaints in competitor reviews).
 - **System-level problems**: Where multiple competitors struggle with the same flow or state (e.g., all handle empty state poorly), indicating an opportunity rather than a benchmark to follow.
 - **Broken mental models**: Where competitors have converged on a pattern that user research suggests conflicts with user expectations — flag these explicitly.
 - **Differentiators**: Where one competitor departs from the norm in a way that is meaningfully better or worse.
@@ -190,6 +212,8 @@ Distinguish category convergence (what the market has settled on) from category 
 Recommendations must:
 - Link to a specific finding by ID
 - Be directional, not prescriptive — state what to consider, not what to build
+- **Pass the "Why Buy" test**: Explicitly state why a customer would value this recommendation over the status quo.
+- **Be data-backed**: Provide at least one data signal (market trend, competitor engagement metric, or user signal) that supports the recommendation.
 - Acknowledge evidence limits where confidence is Medium or Low
 - Avoid recommending copying a competitor pattern without stating why it is appropriate for this product and user context
 
@@ -239,7 +263,12 @@ Do not omit this section or collapse it to a single line. Low-confidence areas m
 ## Required Deliverable Sections
 
 Within `## Skill: competitor-research`, include:
-- `### Visual artifacts`: (Mandatory if visual tools were used) Embed all generated screens, concepts, or images.
+- `### Visual artifacts`: (Mandatory) Embed high-fidelity screenshots for every competitor analyzed. This MUST include:
+    - **Landing Page Overview**: Full-page capture of the primary value proposition.
+    - **Live Links**: Include the website URL and direct product links for each competitor.
+    - **Key Interface Screens**: Dashboard, primary workspace, or core functional areas.
+    - **Pattern Highlights**: Focused screenshots of the specific UI patterns being benchmarked.
+    - Reference these using relative paths: `![Competitor Name - Landing Page](assets/competitor-landing.png)`.
 
 - `### Landscape model`: Competitive set (direct + adjacent), comparison dimensions, evidence availability per competitor.
 - `### Pattern inventory`: How each competitor handles each comparison dimension. Grouped by dimension, not by competitor.

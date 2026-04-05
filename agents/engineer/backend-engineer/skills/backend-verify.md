@@ -2,6 +2,13 @@
 name: backend-verify
 description: Build a verification model for backend changes, then confirm contract, failure-path, and operational behavior against present-state evidence.
 trigger: When backend work needs a final verification pass before handoff or release.
+mesh:
+  inputs:
+    - backend-engineer:integration-flow-build
+    - backend-engineer:api-implementation
+  next:
+    - qa-reviewer:requirements-trace-review
+  context: "Final check of backend logic before QA and release gating."
 primary_mcp: repository
 fallback_tools:
   - reference/verify

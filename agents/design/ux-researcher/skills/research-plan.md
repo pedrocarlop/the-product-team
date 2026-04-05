@@ -2,6 +2,12 @@
 name: research-plan
 description: Apply decision-first research planning — audit what decisions need to be made, formulate questions that reduce uncertainty, select methods by attitudinal/behavioral × qualitative/quantitative fit, design samples tied to questions not availability, and scope outputs before the study runs.
 trigger: When the team needs a structured study plan rather than ad hoc interviews, or when research scope, method, or sample has not been formally decided.
+mesh:
+  inputs:
+    - product-lead:write-prd
+  next:
+    - ux-researcher:research-synthesis
+  context: "Starts the research cycle by framing decisions and questions."
 required_inputs:
   - Product or design decision to be informed
   - Known constraints (timeline, budget, access to participants)

@@ -2,6 +2,12 @@
 name: microcopy-flow-design
 description: Applies Torrey Podmajersky's Strategic UX Writing method, the STEM framework (Situation, Task, Expectation, Message), and Jobs-to-be-Done copy framing to produce a flow-level microcopy set — covering every screen, state, and decision point in a user flow with consistent voice, vocabulary, and sequencing logic.
 trigger: When a feature or flow needs coherent UX writing — including new flows, redesigned flows with stale copy, flows with inconsistent nomenclature, or any surface where copy ambiguity is causing user drop-off or support volume.
+mesh:
+  inputs:
+    - product-designer:wireframe-structure
+  next:
+    - ui-designer:screen-production-design
+  context: "Ensures all user-facing strings are strategically mapped and consistent."
 required_inputs:
   - the flow to be written (name, entry point, exit point, and key steps)
   - the user job or goal the flow supports (what the user is trying to accomplish)

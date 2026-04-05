@@ -2,6 +2,13 @@
 name: infra-release
 description: Execute a rollback-first infrastructure release by building a release model, selecting the narrowest safe tool path, and verifying rollout, rollback, and operational readiness from present-state evidence.
 trigger: When infra, platform, IaC, or deployment changes must be released safely.
+mesh:
+  inputs:
+    - platform-engineer:pipeline-orchestration
+    - qa-reviewer:test-plan-review
+  next:
+    - go-to-market:launch-plan
+  context: "Deploys the necessary infrastructure to support the feature."
 decision_framework: rollback-first infra release execution
 primary_mcp: repository
 fallback_tools:

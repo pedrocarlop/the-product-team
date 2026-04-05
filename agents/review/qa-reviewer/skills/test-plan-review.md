@@ -2,6 +2,14 @@
 name: test-plan-review
 description: Review a test strategy by building a risk model and a coverage matrix that separates missing coverage, shallow coverage, environment blind spots, and residual uncertainty instead of treating test type counts as adequacy.
 trigger: When a feature, milestone, or release needs a structured review of whether the proposed test plan covers the real risks.
+mesh:
+  inputs:
+    - qa-reviewer:requirements-trace-review
+    - frontend-engineer:component-implementation
+  next:
+    - qa-reviewer:release-gate
+    - platform-engineer:infra-release
+  context: "Validates the test strategy before moving to the final release gate."
 analysis_framework: risk-based coverage review across product risk, technical depth, environment variance, and release criticality
 primary_mcp: repository, logs
 fallback_tools:
@@ -37,6 +45,14 @@ tool_routing:
 best_guess_output: A test plan review with explicit risk coverage, gaps, and priority recommendations.
 output_artifacts: knowledge/reviews/qa-reviewer.md
 done_when: Critical risks have explicit coverage mapping, missing depth is visible, blind spots are named, and the highest-value additions are prioritized.
+mesh:
+  inputs:
+    - qa-reviewer:requirements-trace-review
+    - frontend-engineer:frontend-verify
+    - backend-engineer:backend-verify
+  next:
+    - qa-reviewer:release-gate
+  context: "Reviews the test strategy against identified risks to ensure adequate coverage before final release gating."
 ---
 
 # Test Plan Review

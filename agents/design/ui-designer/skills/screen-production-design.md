@@ -2,6 +2,14 @@
 name: screen-production-design
 description: Converge an approved UI direction into implementation-ready screens by locking hierarchy, layout, tokens, states, and any required `project-ds-spec.md` deltas.
 trigger: When a concept must become a production-ready design.
+mesh:
+  inputs:
+    - ui-designer:ui-concept-direction
+    - content-designer:microcopy-flow-design
+  next:
+    - design-systems-designer:design-code-mapping
+    - design-reviewer:design-fidelity-review
+  context: "Produces the final high-fidelity design spec for implementation."
 primary_mcp: figma
 fallback_tools: paper
 best_guess_output: A production-ready screen spec or screen set with handoff notes and required `project-ds-spec.md` updates.
@@ -43,6 +51,15 @@ tool_routing:
     use: [storybook, playwright]
   - if: only static artifacts or annotations exist
     use: [paper, open]
+mesh:
+  inputs:
+    - ui-designer:ui-concept-direction
+    - product-designer:wireframe-structure
+  next:
+    - frontend-engineer:implement-from-design
+    - ui-designer:visual-polish-and-consistency
+    - ui-designer:responsive-and-state-spec
+  context: "Screen production translates conceptual direction and structural wireframes into high-fidelity, implementation-ready screens."
 ---
 
 # Screen Production Design

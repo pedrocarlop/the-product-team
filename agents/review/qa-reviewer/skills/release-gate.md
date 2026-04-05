@@ -2,6 +2,12 @@
 name: release-gate
 description: Make a release recommendation by building a release-readiness model and weighing blockers, residual risk, evidence quality, rollback posture, and operating readiness instead of treating test completion as automatic safety.
 trigger: When work is nearing release and needs a structured ship, conditional-ship, or no-ship QA gate.
+mesh:
+  inputs:
+    - qa-reviewer:test-plan-review
+  next:
+    - go-to-market:launch-plan
+  context: "Final QA gate before handing off to GTM for launch."
 decision_framework: release-readiness synthesis across blockers, residual risk, evidence quality, rollback posture, and owner readiness
 primary_mcp: repository, logs
 fallback_tools:

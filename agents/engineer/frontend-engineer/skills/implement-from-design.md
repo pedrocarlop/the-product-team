@@ -55,6 +55,15 @@ tool_routing:
 best_guess_output: A working UI implementation that faithfully reproduces the approved design, covers all required states and interactions, and is aligned to the project design system spec.
 output_artifacts: knowledge/frontend-engineer-implement-from-design.md
 done_when: The implemented surface matches the approved design's structure, spacing, typography, color, and behavioral states; all required states are covered in code; the fidelity gaps section explicitly accounts for any deviations; and the code touchpoints are identified so downstream review can verify the right surface.
+mesh:
+  inputs:
+    - ui-designer:screen-production-design
+    - product-designer:handoff-spec
+  next:
+    - frontend-engineer:stateful-ui-build
+    - frontend-engineer:component-implementation
+    - frontend-engineer:browser-debug
+  context: "Implementation translates high-fidelity designs and handoff specs into structural frontend code."
 ---
 
 # Implement From Design

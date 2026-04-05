@@ -2,6 +2,12 @@
 name: domain-model-build
 description: Model backend entities, invariants, state transitions, persistence boundaries, and transformation rules before implementing or changing domain behavior.
 trigger: When business rules, lifecycle changes, authorization relationships, or backend data transformations must be encoded.
+mesh:
+  inputs:
+    - product-lead:write-prd
+  next:
+    - backend-engineer:api-implementation
+  context: "Defines the core business logic and data structures for the backend."
 primary_mcp: repository
 fallback_tools:
   - reference/ground

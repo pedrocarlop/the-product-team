@@ -2,6 +2,14 @@
 name: api-implementation
 description: Implement or extend backend APIs by modeling the contract, invariants, compatibility boundaries, and verification path before changing code.
 trigger: When product or platform work requires backend endpoints, handlers, RPCs, queue consumers, or service-call surfaces.
+mesh:
+  inputs:
+    - backend-engineer:domain-model-build
+    - product-designer:journey-and-flow-design
+  next:
+    - frontend-engineer:stateful-ui-build
+    - backend-engineer:integration-flow-build
+  context: "Implements the data and logic layer for the feature."
 primary_mcp: repository
 fallback_tools:
   - reference/trace

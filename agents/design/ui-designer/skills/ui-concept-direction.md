@@ -2,6 +2,12 @@
 name: ui-concept-direction
 description: Compare and shape multiple visually distinct concept directions, grounded in reference systems and implementation constraints, so the team can choose a direction and seed the shared design spec.
 trigger: When a new UI direction or concept needs exploration.
+mesh:
+  inputs:
+    - product-designer:wireframe-structure
+  next:
+    - ui-designer:screen-production-design
+  context: "Explores visual directions before locking in production screens."
 primary_mcp: paper
 fallback_tools: search_query
 best_guess_output: A concept direction with clear visual thesis and promising directions.
@@ -34,6 +40,14 @@ tool_routing:
   - if motion or breakpoint behavior needs to be felt, use Framer preview
   - if open, collaborative boards or component libraries are the better fit, use Penpot
   - if only static references or notes exist, use search_query
+mesh:
+  inputs:
+    - product-designer:wireframe-structure # Concepts are the visual skinning and aesthetic exploration of the wireframes
+    - ux-researcher:visual-inspiration-curation # Informs the style pillars and visual thesis
+  next:
+    - ui-designer:screen-production-design
+    - design-systems-designer:system-audit
+  context: "Concept direction bridges structural wireframes and final production design by establishing the visual language and design system seeds."
 ---
 
 # Ui Concept Direction

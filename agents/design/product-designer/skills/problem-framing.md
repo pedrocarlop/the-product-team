@@ -2,6 +2,13 @@
 name: problem-framing
 description: Translate product goals, evidence, user context, and delivery constraints into a design-ready frame by building an actor-job-constraint-success model before exploring solutions.
 trigger: When design work needs a stable problem definition, bounded scope, and evidence-backed success criteria before flows or screens are produced.
+mesh:
+  inputs:
+    - ux-researcher:research-synthesis
+    - product-lead:write-prd
+  next:
+    - product-designer:journey-and-flow-design
+  context: "Frames the problem space before mapping user journeys."
 analysis_framework: JTBD-informed problem framing with assumption mapping, constraint analysis, and success-signal definition
 primary_mcp: notion, repository
 fallback_tools:
@@ -48,6 +55,14 @@ output_artifacts:
   - knowledge/runs/<run-id>/product-designer-problem-framing.md
   - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: The design problem is bounded, evidence-tagged, and stable enough that downstream flow and wireframe work can proceed without rediscovering the brief.
+mesh:
+  inputs:
+    - product-lead:frame-problem # Designer framing deepens the product lead's initial problem frame
+    - ux-researcher:foundational-research # User behaviors ground the design problem model
+  next:
+    - product-designer:journey-and-flow-design
+    - product-designer:wireframe-structure
+  context: "Design-led problem framing ensures the user-centered problems, jobs, and frictions are clearly bounded before any solution flows are drafted."
 ---
 
 # Problem Framing

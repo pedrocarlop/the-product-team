@@ -5,6 +5,14 @@ trigger: When the team is debating success criteria, defining feature goals, or 
 best_guess_output: A structured metric model including NSM/Input hierarchies, SQL/DBT logic, and instrumentation mapping (Amplitude/Mixpanel).
 output_artifacts: knowledge/analyst-metric-definition.md
 done_when: The metric model is mathematically sound, mapped to business value, and instrumentable in modern analytics tools.
+mesh:
+  inputs:
+    - product-lead:write-prd
+    - product-lead:prioritize-roadmap
+  next:
+    - analyst:funnel-analysis
+    - product-lead:experiment-brief
+  context: "Defines the success criteria and measurement framework (NSM, HEART) before detailed analysis or experiment design."
 ---
 
 ## 1. Purpose

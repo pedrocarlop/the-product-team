@@ -26,13 +26,13 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 
 ## `journey-and-flow-design`
 
-- Description: Map the end-to-end journey by building an experience model of actors, entry points, states, branches, and operational dependencies before defining screens or polished UI.
-- Trigger: When a feature, service, or multi-step task needs clear behavioral structure before wireframes, prototyping, or implementation.
-- Primary MCP/tool: figma
-- Fallback: paper, notion
-- Best guess: A journey map or flow artifact with entry points, primary and alternate paths, decision points, service dependencies, and explicit edge-case coverage.
-- Output: knowledge/runs/<run-id>/product-designer-journey-and-flow-design.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
-- Done when: The main path, critical branches, decision points, and operational dependencies are explicit enough that downstream structure and interaction work does not have to infer route logic.
+- Description: Missing description.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.
 
 ## `problem-framing`
 
@@ -56,10 +56,10 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 
 ## `wireframe-structure`
 
-- Description: Build low-to-mid fidelity structural wireframes by converting an approved flow into screen-level hierarchy, navigation, and content scaffolding before visual polish begins.
-- Trigger: When teams need screen structure, hierarchy, and task flow clarity before detailed visual design or implementation.
-- Primary MCP/tool: figma
-- Fallback: paper, reference/ground
-- Best guess: A wireframe set aligned to the flow, with explicit hierarchy, navigation logic, and unresolved structural gaps.
-- Output: knowledge/runs/<run-id>/product-designer-wireframe-structure.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
-- Done when: Screen structure is clear enough that reviewers can assess hierarchy and task completion without needing visual polish to infer intent.
+- Description: Missing description.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.

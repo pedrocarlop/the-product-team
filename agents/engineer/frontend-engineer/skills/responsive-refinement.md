@@ -2,6 +2,12 @@
 name: responsive-refinement
 description: Adapt and improve a surface so it works cleanly across breakpoints and devices by constructing a breakpoint matrix, auditing layout behavior per viewport, and producing a prioritized set of responsive fixes — grounded in real tool evidence.
 trigger: When responsive behavior is missing, inconsistent, or under-specified across breakpoints or device classes.
+mesh:
+  inputs:
+    - frontend-engineer:component-implementation
+  next:
+    - design-reviewer:design-fidelity-review
+  context: "Ensures implementation holds up across all required breakpoints."
 required_inputs:
   - the surface or component set being refined
   - the intended breakpoint set or device targets

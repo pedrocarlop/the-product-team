@@ -2,6 +2,13 @@
 name: component-implementation
 description: Build or extend reusable frontend components by constructing the component API surface model first — props, variants, states, composition boundaries — then implementing against the design system spec, primitives layer, and component workshop.
 trigger: When implementation needs a reusable component, not just a one-off screen. When a design handoff is ready and the component must integrate into or bootstrap a design system foundation.
+mesh:
+  inputs:
+    - design-systems-designer:design-code-mapping
+  next:
+    - frontend-engineer:responsive-refinement
+    - qa-reviewer:test-plan-review
+  context: "Core UI implementation based on system mappings."
 required_inputs:
   - the component name and the interaction or UI pattern it must cover
   - the design artifact (Figma frame, spec, or annotated screenshot) for the target component
@@ -49,6 +56,14 @@ tool_routing:
 best_guess_output: A reusable component with a defined props API, all required variants and interactive states, a Storybook story covering the key states, and adoption notes for downstream implementers.
 output_artifacts: knowledge/frontend-engineer-component-implementation.md
 done_when: The component is reusable, aligned to the design system spec, all variants and states are implemented and documented in Storybook stories, and downstream consumers can adopt it without inferring unsupported patterns.
+mesh:
+  inputs:
+    - frontend-engineer:implement-from-design
+    - frontend-engineer:stateful-ui-build
+    - ui-designer:visual-polish-and-consistency
+  next:
+    - frontend-engineer:browser-debug
+  context: "Component implementation focuses on atomic reuse, library alignment, and individual unit verification."
 ---
 
 # Component Implementation

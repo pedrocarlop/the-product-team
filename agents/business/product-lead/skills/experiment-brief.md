@@ -5,6 +5,14 @@ trigger: When the team wants to validate an idea before full commitment.
 best_guess_output: An experiment brief with metrics, decision rules, and model-based rationale.
 output_artifacts: knowledge/product-lead-experiment-brief.md
 done_when: The experiment can be run and judged without inventing criteria later.
+mesh:
+  inputs:
+    - product-lead:prioritize-roadmap
+    - analyst:metric-definition
+  next:
+    - analyst:experiment-readout
+    - product-designer:wireframe-structure
+  context: "Experimentation turns high-priority roadmap items into testable hypotheses with clear metrics for success."
 ---
 
 # Experiment Brief

@@ -5,6 +5,16 @@ trigger: When a product or feature needs a market-facing position, or existing m
 best_guess_output: A comprehensive positioning brief with audience segments, competitive alternatives, unique attributes, value propositions, and message testing evidence.
 output_artifacts: knowledge/go-to-market-positioning-brief.md
 done_when: Positioning is validated via internal alignment and external buyer signals (e.g., Wynter/Ignition validation).
+mesh:
+  inputs:
+    - product-lead:write-prd
+    - ux-researcher:competitor-research
+    - product-lead:prioritize-roadmap
+  next:
+    - go-to-market:campaign-brief
+    - go-to-market:launch-plan
+    - content-designer:microcopy-flow-design
+  context: "Positioning defines the strategic 'why' and 'who' before tactical launch planning and creative execution."
 required_inputs:
   - Product capabilities (feature list or technical spec)
   - Target audience definition (ICP/Personas)

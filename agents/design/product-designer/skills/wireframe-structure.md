@@ -1,7 +1,13 @@
----
 name: wireframe-structure
 description: Build low-to-mid fidelity structural wireframes by converting an approved flow into screen-level hierarchy, navigation, and content scaffolding before visual polish begins.
 trigger: When teams need screen structure, hierarchy, and task flow clarity before detailed visual design or implementation.
+mesh:
+  inputs:
+    - product-designer:journey-and-flow-design
+  next:
+    - ui-designer:ui-concept-direction
+    - content-designer:microcopy-flow-design
+  context: "Converts behavioral flows into structural screen layouts."
 analysis_framework: information architecture plus task-flow and hierarchy modeling
 primary_mcp: figma
 fallback_tools:
@@ -46,6 +52,13 @@ output_artifacts:
   - knowledge/runs/<run-id>/product-designer-wireframe-structure.md
   - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: Screen structure is clear enough that reviewers can assess hierarchy and task completion without needing visual polish to infer intent.
+mesh:
+  inputs:
+    - product-designer:journey-and-flow-design # Wireframes are the structural realization of the journey flows
+  next:
+    - ui-designer:ui-concept-direction
+    - product-designer:prototype-and-usability-validation
+  context: "Wireframing is the structural bridge between flow logic and visual interaction, defining the hierarchy and navigation that the UI designer will then skin."
 ---
 
 # Wireframe Structure

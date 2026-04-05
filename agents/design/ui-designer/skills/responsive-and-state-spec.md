@@ -41,6 +41,13 @@ output_artifacts:
   - knowledge/runs/<run-id>/ui-designer-responsive-and-state-spec.md
   - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: Desktop, mobile, and critical states are explicitly covered, unsupported combinations are named, and implementation signals are clear enough for engineering to preserve.
+mesh:
+  inputs:
+    - ui-designer:screen-production-design
+  next:
+    - frontend-engineer:implement-from-design
+    - frontend-engineer:stateful-ui-build
+  context: "State and responsive specifications provide the behavioral contract for engineering to implement robust, interactive components."
 ---
 
 # Responsive And State Spec

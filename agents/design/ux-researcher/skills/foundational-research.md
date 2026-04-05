@@ -14,7 +14,14 @@ tool_stack:
   artifacts:
     primary: [repository, notion]
   fallback:
-    primary: [search_query, open_browser]
+    primary: [search_query, chrome_devtools_navigate_page, chrome_devtools_take_screenshot, chrome_devtools_click, browser_subagent]
+mesh:
+  inputs:
+    - none # Often the start of the discovery phase
+  next:
+    - product-lead:venture-discovery
+    - product-designer:problem-framing
+  context: "Foundational research identifies unmet needs, which must then be framed into a business case or a specific user-problem statement."
 ---
 
 # Foundational Research
@@ -39,7 +46,12 @@ This skill uncovers the qualitative "Why" behind a category before a single scre
 - **Pattern Detection:** Find clusters of dissatisfaction across reviews, social signals, or forum discussions.
 
 ### Step 3: Competitor UX Benchmarking
-- Perform qualitative teardowns of the top 3-5 competitors using `Refero` and `Mobbin`.
+- Perform qualitative teardowns of an **extensive list of competitors (aim for 10+)** using `Refero` and `Mobbin`. This broad selection ensures a truly representative survey of the category and avoids over-reliance on a few dominant players.
+- **Visual Evidence:** Every competitor in the set must be documented with:
+    - **Brand Imagery:** Logos, color palettes, and typography that define their brand identity.
+    - **Products Sold:** Clear screenshots or gallery captures showing the core products or services offered.
+    - **Key Interfaces:** Landing pages, onboarding flows, and primary functional areas.
+    - **Live Links:** Direct clickable URLs to their website, products, and documented flows.
 - **Benchmarking Focus:** How do they handle onboarding, the "aha moment," and the core value delivery?
 - **Gap Analysis:** Where is the UX breaking down for competitors?
 
@@ -51,13 +63,16 @@ This skill uncovers the qualitative "Why" behind a category before a single scre
 The deliverable must contain:
 - `### The User Problem`: One-line problem statement grounded in qualitative evidence.
 - `### Behavioral Clusters`: Narratives of how users currently interact with the category.
-- `### Competitor UX Teardown`: Multi-screen/flow benchmark with gap identification.
-- `### Unmet Needs`: The specific opportunities for differentiation.
+- `### Competitor UX Teardown`: Detailed teardowns for each competitor including brand/product imagery, **live website links**, and specific flow benchmarks.
+- `### Category Screenshots`: A curated gallery of the competition, showing brand aesthetics and products sold. Reference them with relative paths (e.g., `![Competitor Brand](assets/competitor-brand.png)`). Include URLs below each exhibit.
+- `### Unmet Needs & White Space Opportunities`: Detailed analysis of the specific gaps where differentiation is possible. **Mandatory Questioning:** For each opportunity, explicitly answer: *Why would a customer buy/use this specifically?* Back every claim with a data signal (market trend, search volume, or user frustration pattern).
+- `### Recommendations`: Directional recommendations for the next phase. Must be data-backed and address customer motivation.
 
 ## 5. Output Contract
 - **Target Path:** `knowledge/ux-researcher-foundational-research.md`
 - **Format:** High-fidelity Markdown (Pitch/Notion ready).
-- **Mandatory Ask:** End with "### Insights for Design" listing specific design-direction recommendations.
+- **Mandatory Ask:** End with "### Insights for Design" listing specific design-direction recommendations. These must pass the "Why Buy" test and be linked to evidence.
+- **Hypothesis Validation:** Frame any "White Space Opportunity" as a testable hypothesis with a clear "Why" (customer motivation) and supporting data.
 
 ## 6. Lossless Deliverable Contract
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ux-researcher-foundational-research.md`).

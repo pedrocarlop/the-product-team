@@ -5,6 +5,15 @@ trigger: When multiple candidate bets compete for attention or quarterly plannin
 best_guess_output: A ranked roadmap or priority decision with rationale grounded in strategic fit and resource constraints.
 output_artifacts: knowledge/product-lead-prioritize-roadmap.md
 done_when: The ordering is explicit, tradeoffs are documented, and North Star alignment is verified.
+mesh:
+  inputs:
+    - product-lead:write-prd
+    - analyst:funnel-analysis
+    - go-to-market:customer-signal-synthesis
+  next:
+    - product-lead:stakeholder-memo
+    - product-lead:experiment-brief
+  context: "Roadmap prioritization organizes validated requirements into a sequenced execution plan based on impact and effort."
 ---
 
 # Prioritize Roadmap

@@ -2,6 +2,13 @@
 name: design-fidelity-review
 description: Compare the implemented surface against the design source of truth by building source and implementation models, then classifying meaningful drift by component, state, breakpoint, and layout behavior.
 trigger: When a design or implemented surface needs fidelity review before sign-off, bug filing, or remediation planning.
+mesh:
+  inputs:
+    - frontend-engineer:responsive-refinement
+    - ui-designer:screen-production-design
+  next:
+    - qa-reviewer:requirements-trace-review
+  context: "Validates visual fidelity before passing to QA."
 comparison_framework: drift taxonomy across layout, spacing, typography, color, imagery, motion, component structure, interaction, and state coverage
 primary_mcp: figma, chrome_devtools
 fallback_tools:
@@ -36,6 +43,13 @@ tool_routing:
 best_guess_output: A fidelity review with evidence-tagged drift findings, grouped patterns, and directional remediation guidance.
 output_artifacts: knowledge/reviews/design-reviewer.md
 done_when: Meaningful design drift is identified with evidence, taxonomy, priority, and clear separation between implementation error and source ambiguity.
+mesh:
+  inputs:
+    - ui-designer:screen-production-design
+    - frontend-engineer:component-implementation
+  next:
+    - qa-reviewer:requirements-trace-review
+  context: "Validates that the implemented UI matches the design source of truth (Figma) before shipping."
 ---
 
 # Design Fidelity Review

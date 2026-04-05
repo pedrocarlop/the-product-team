@@ -2,6 +2,14 @@
 name: frame-problem
 description: Turn a raw, vague, or outcome-first request into a clear product problem, constraints, success criteria, and decision frame using 2026 AI-first discovery methods.
 trigger: When the request is vague, outcome-first, or lacks a bounded problem definition.
+mesh:
+  inputs:
+    - business-ops:tooling-audit
+    - analyst:funnel-analysis
+  next:
+    - product-lead:write-prd
+    - ux-researcher:research-plan
+  context: "Frames the problem and success criteria before writing the PRD."
 best_guess_output: A structured framing brief with a JTBD model, root-cause analysis (5 Whys), and crisp success criteria.
 output_artifacts: knowledge/product-lead-frame-problem.md
 done_when: The problem is crisply bounded, success measures are defined, and the decision frame is clear to the team.
@@ -20,6 +28,14 @@ tool_routing:
     use: [lane]
   - if: "iterative logic-checking or edge-case discovery is required"
     use: [chat_prd]
+mesh:
+  inputs:
+    - product-lead:venture-discovery # The business thesis provides the context for the product problem
+    - ux-researcher:foundational-research # User behaviors ground the JTBD model
+  next:
+    - product-designer:problem-framing
+    - product-lead:write-prd
+  context: "Problem framing is the bridge between a broad business opportunity and a specific product specification or design challenge."
 ---
 
 # Frame Problem

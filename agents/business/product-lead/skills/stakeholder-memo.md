@@ -6,6 +6,15 @@ best_guess_output: A stakeholder memo with recommendation, risks, and asks.
 output_artifacts: knowledge/product-lead-stakeholder-memo.md
 section_anchor: stakeholder-memo
 done_when: All primary stakeholders have received a clear, evidence-based recommendation with explicit asks and identified risks.
+mesh:
+  inputs:
+    - product-lead:prioritize-roadmap
+    - analyst:experiment-readout
+    - product-lead:venture-discovery
+  next:
+    - go-to-market:launch-plan
+    - business-ops:process-map
+  context: "Memos consolidate delivery outcomes and strategic decisions for stakeholder alignment and external communication."
 tool_stack:
   runtime:
     primary: [notion, loom, grain]

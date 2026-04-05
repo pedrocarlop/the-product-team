@@ -2,6 +2,12 @@
 name: pipeline-orchestration
 description: Build a durable-flow model for platform pipelines by clarifying sequencing, scheduling, retries, ownership, observability, and rollout risk before choosing implementation changes.
 trigger: When build, data, or platform pipelines need orchestration, recovery, or operational hardening.
+mesh:
+  inputs:
+    - backend-engineer:integration-flow-build
+  next:
+    - platform-engineer:infra-release
+  context: "Orchestrates the build and deployment pipelines for the feature."
 primary_mcp: repository, logs
 fallback_tools:
   - reference/ground

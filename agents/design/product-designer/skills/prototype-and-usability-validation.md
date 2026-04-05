@@ -48,6 +48,14 @@ output_artifacts:
   - knowledge/runs/<run-id>/product-designer-prototype-and-usability-validation.md
   - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: The prototype answers a real decision, the strongest usability risks are explicit, and any unresolved risk is clearly labeled.
+mesh:
+  inputs:
+    - product-designer:wireframe-structure
+    - ui-designer:screen-production-design
+  next:
+    - ux-researcher:foundational-research
+    - product-designer:problem-framing
+  context: "Validation tests the current design against user needs, identifying gaps that may require re-framing or foundational research."
 ---
 
 # Prototype And Usability Validation

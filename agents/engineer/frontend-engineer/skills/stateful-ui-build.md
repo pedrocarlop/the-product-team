@@ -2,6 +2,13 @@
 name: stateful-ui-build
 description: Build the full async state model for a UI surface by constructing a state inventory first, then implementing loading, error, empty, and interactive states with explicit transitions — grounded in the state machine before any code is written.
 trigger: When a frontend feature surface has async data dependencies, user-triggered state changes, or behavioral requirements across more than one lifecycle state (loading, error, empty, interactive, optimistic).
+mesh:
+  inputs:
+    - backend-engineer:api-implementation
+    - ui-designer:screen-production-design
+  next:
+    - frontend-engineer:frontend-verify
+  context: "Implements the async state logic and interactive behaviors of the UI."
 required_inputs:
   - the surface name and its primary async operations (data fetches, mutations, side effects)
   - the API contract or data shape each operation returns
@@ -44,6 +51,14 @@ tool_routing:
 best_guess_output: A stateful UI implementation covering all critical lifecycle states, with a documented state inventory, MSW-backed Storybook stories for each state, and a verification log confirming state coverage.
 output_artifacts: knowledge/frontend-engineer-stateful-ui-build.md
 done_when: The state inventory is complete, all critical states (loading, error, empty, interactive) are implemented and verifiable in code or Storybook, transitions are explicit and tested, and no state is handled only by silence or missing UI.
+mesh:
+  inputs:
+    - frontend-engineer:implement-from-design
+    - product-designer:interaction-spec
+  next:
+    - frontend-engineer:component-implementation
+    - frontend-engineer:browser-debug
+  context: "Stateful UI building handles complex logic, data binding, and interactive transitions after the base layout is set."
 ---
 
 # Stateful UI Build

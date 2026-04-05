@@ -2,6 +2,13 @@
 name: research-readout-deck
 description: Structure and deliver research findings as a stakeholder-ready readout using the Pyramid Principle and narrative arc — leading with conclusions, anchoring every recommendation to evidence, and making the ask explicit.
 trigger: When research findings must be socialized to decision-makers, sponsors, or cross-functional partners — especially when alignment, prioritization, or a go/no-go decision is on the line.
+mesh:
+  inputs:
+    - ux-researcher:research-synthesis
+  next:
+    - product-lead:prioritize-roadmap
+    - go-to-market:launch-plan
+  context: "Communicates research impact to stakeholders and leadership."
 required_inputs:
   - Synthesized research findings or a completed research-synthesis output
   - Audience list with roles and stake in the decision

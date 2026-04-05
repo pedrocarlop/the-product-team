@@ -83,3 +83,13 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Best guess: A structured study ops plan with recruiting pipeline, scheduling setup, consent process, incentive plan, and contingency design for each lifecycle phase.
 - Output: knowledge/runs/<run-id>/ux-researcher-study-ops-and-recruiting.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
 - Done when: Every ops component has a named owner, a tool, a handoff point, and a documented contingency. The study can be scheduled, staffed, and launched without open operational blockers.
+
+## `visual-inspiration-curation`
+
+- Description: Systematically gather visual inspiration, aesthetic cues, and layout patterns from Pinterest and design-first sources to seed moodboards and concept directions.
+- Trigger: When a new project needs visual grounding, a style direction needs validation, or the team requires a moodboard to align on aesthetic posture.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: A visual inspiration report (moodboard) with curated evidence, aesthetic pillars, and a link to the canvas artifact.
+- Output: knowledge/runs/<run-id>/ux-researcher-visual-inspiration.md, knowledge/runs/<run-id>/assets/ (for captured inspiration)
+- Done when: The inspiration board is assembled, visual pillars are defined from the curated set, and the artifact is linked for the design team.

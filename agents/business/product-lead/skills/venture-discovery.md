@@ -13,6 +13,13 @@ tool_stack:
     primary: [repository, notion]
   fallback:
     primary: [search_query, reference_ground]
+mesh:
+  inputs:
+    - ux-researcher:foundational-research # Uses the behavior/category research to ground the venture thesis
+  next:
+    - product-lead:frame-problem
+    - analyst:forecast-model
+  context: "Venture discovery translates category research into a business model and market thesis, which then needs a bounded product problem to solve."
 ---
 
 # Venture Discovery
@@ -32,10 +39,11 @@ Turn a generic venture-level request into a structured business thesis. This ski
 - **SOM (Serviceable Obtainable Market):** The portion of SAM you can realistically capture.
 Use `search_query` and `SimilarWeb` (if available) to pull recent market reports and competitor traffic.
 
-### Step 2: Competitor Mapping (Swot)
-- Map the current landscape: Incumbents, Disruptors, and Niche players.
-- Identify the "Gap in the Market" (White Space).
-*Note: Collaborate with `ux-researcher` for detailed UX benchmarking.*
+### Step 2: Competitor Mapping (Landscape and Visuals)
+- **Extensive List:** Map a comprehensive landscape of **10+ competitors**, ranging from direct incumbents and disruptive startups to indirect or niche players.
+- **Visual Branding & Product Evidence:** For each major player, capture high-fidelity images of their **branding (logos, aesthetic)** and **products sold (screenshots of current offerings)**. **Mandatory:** Include the live website URL and direct product links for each competitor to allow direct validation.
+- **Gap analysis (White Space):** Identify where the current landscape fails to address specific user needs or market segments. **Critical Questioning:** For every white space or opportunity identified, explicitly answer: *Why would a customer buy/use this specifically over existing solutions?* Back this with data signals (market reports, search trends, or traffic growth in adjacent niches).
+*Note: Collaborate with `ux-researcher` for detailed UX benchmarking and full flow captures.*
 
 ### Step 3: Business Model Canvas
 Complete the 9 building blocks:
@@ -59,11 +67,12 @@ Complete the 9 building blocks:
 
 ## 4. Structured Findings
 The deliverable must contain:
-- `### Opportunity Statement`: The "Why Now" and the core thesis.
+- `### Opportunity Statement`: The "Why Now" and the core thesis. **Must include the "Why Buy" rationale** (customer motivation) and supporting data signals.
+- `### Competitor Landscape & Brand Imagery`: An extensive list of competitors paired with screenshots of their brand architecture and products sold. Include **live links** to their websites and core product pages. Reference screenshots with relative paths: `![Competitor Brand](assets/competitor-name.png)`.
 - `### Market Dynamics`: TAM/SAM/SOM numbers with sources.
 - `### Business Model Canvas`: Structured table or list.
 - `### Monetization Strategy`: Specific pricing models and revenue levers.
-- `### Strategic Recommendations`: 3-5 high-leverage directions.
+- `### Strategic Recommendations`: 3-5 high-leverage directions. Each recommendation must pass the "Why Buy" test and be linked to at least one data signal.
 
 ## 5. Output Contract
 - **Target Path:** `knowledge/product-lead-venture-discovery.md`
@@ -71,4 +80,6 @@ The deliverable must contain:
 - **Mandatory Ask:** End with "### Decisions for the User" listing the specific go/no-go calls needed.
 
 ## 6. Lossless Deliverable Contract
-Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+

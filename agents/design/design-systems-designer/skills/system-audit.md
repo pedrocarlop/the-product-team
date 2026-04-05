@@ -28,9 +28,9 @@ tool_stack:
     secondary: [paper]
   code_truth:
     primary: [storybook, chromatic]
-    secondary: [repository]
+    secondary: [repository, chrome_devtools]
   fallback:
-    primary: [reference/ground, paper]
+    primary: [reference/ground, paper, chrome_devtools_take_screenshot, lighthouse_audit]
 tool_routing:
   - if: live design files and code artifacts are both accessible
     use: [figma, repository]
@@ -124,6 +124,7 @@ Within `## Skill: system-audit`, include:
 ## Tool Path
 
 - Start with `figma, repository`.
+- Use `chrome_devtools` when auditing a live implementation for token correctness, computed styles, or accessibility compliance.
 - Use `zeroheight` or `supernova` when documentation status, component status, or system metadata is better maintained there than in the repo.
 - Use `storybook` or `chromatic` when isolated implementation states or regression evidence materially improve confidence.
 - Use `paper` or `reference/ground` only when live surfaces are missing or blocked.

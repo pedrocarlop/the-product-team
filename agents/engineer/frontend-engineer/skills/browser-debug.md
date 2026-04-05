@@ -50,6 +50,15 @@ tool_routing:
 best_guess_output: A structured debugging report with a browser evidence model, reproduction steps, root cause hypothesis, fix direction, and open unknowns — labeled as sourced, fallback, or inferred to match the evidence path used.
 output_artifacts: knowledge/frontend-engineer-browser-debug.md
 done_when: The issue is localized to a specific component, state boundary, network dependency, or JavaScript execution path, with reproduction steps verified and a concrete fix direction stated.
+mesh:
+  inputs:
+    - frontend-engineer:implement-from-design
+    - frontend-engineer:stateful-ui-build
+    - frontend-engineer:component-implementation
+  next:
+    - design-reviewer:design-fidelity-review
+    - qa-reviewer:release-gate
+  context: "Browser debugging ensures the implementation is free of runtime errors and visual glitches before handoff for review."
 ---
 
 # Browser Debug

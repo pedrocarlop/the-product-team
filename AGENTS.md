@@ -13,7 +13,7 @@ This repository packages an installable Codex workflow called `Product Team`. It
 | `analyst` | Analyst | Business Roles | executor | 5 | never | Own metric definition, funnel diagnosis, forecasting, experiment readouts, and data storytelling for product decisions |
 | `go-to-market` | Go-To-Market | Business Roles | executor | 6 | never | Own positioning, launch planning, campaign briefs, sales enablement, partner strategy, and customer-signal synthesis |
 | `business-ops` | Business Ops | Business Roles | executor | 5 | never | Own process mapping, operating cadence, tooling design, and execution tracking for cross-functional operations |
-| `ux-researcher` | UX Researcher | Design Roles | executor | 8 | never | Own research planning, participant screeners, interview guides, competitor benchmarking, synthesis, and insight readouts |
+| `ux-researcher` | UX Researcher | Design Roles | executor | 9 | never | Own research planning, participant screeners, interview guides, competitor benchmarking, synthesis, and insight readouts |
 | `product-designer` | Product Designer | Design Roles | executor | 6 | never | Own problem framing, journeys, flows, wireframes, interaction specifications, and validation-ready handoffs for product experiences |
 | `ui-designer` | UI Designer | Design Roles | executor | 6 | never | Own visual concept direction, screen production design, responsive/state specs, component design, and final visual polish |
 | `content-designer` | Content Designer | Design Roles | executor | 6 | never | Own microcopy systems, state messaging, naming, guidance, localization preparation, and product content reviews |

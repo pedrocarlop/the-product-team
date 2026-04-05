@@ -2,6 +2,12 @@
 name: requirements-trace-review
 description: Trace delivered behavior back to stated requirements and constraints by building a requirement model and an evidence matrix that separates confirmed matches, gaps, ambiguities, and unverified assumptions.
 trigger: When implementation, design, or release readiness must be validated against upstream requirements, acceptance criteria, or policy constraints.
+mesh:
+  inputs:
+    - design-reviewer:design-fidelity-review
+  next:
+    - qa-reviewer:test-plan-review
+  context: "Ensures all requirements are met by the delivered implementation."
 comparison_framework: requirement-to-evidence traceability across intent, delivered behavior, constraints, and confidence
 primary_mcp: repository, logs
 fallback_tools:
@@ -37,6 +43,15 @@ tool_routing:
 best_guess_output: A requirements trace review with explicit matches, gaps, ambiguities, and unverified areas.
 output_artifacts: knowledge/reviews/qa-reviewer.md
 done_when: The team can see where delivery matches intent, where it drifts, which constraints are unverified, and which gaps matter most for sign-off or release.
+mesh:
+  inputs:
+    - product-lead:prioritize-roadmap
+    - product-designer:handoff-spec
+    - design-reviewer:design-fidelity-review
+  next:
+    - qa-reviewer:test-plan-review
+    - qa-reviewer:release-gate
+  context: "Traces delivered behavior back to stated requirements and constraints to ensure intent is met before release."
 ---
 
 # Requirements Trace Review

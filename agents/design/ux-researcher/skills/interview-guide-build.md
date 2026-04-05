@@ -2,6 +2,12 @@
 name: interview-guide-build
 description: Applies semi-structured interview method, laddering technique, JTBD probing, and think-aloud protocol to construct a moderated session guide with sequencing, probes, evidence goals, and bias review.
 trigger: When live research sessions need a structured guide — generative interviews, evaluative sessions, or concept walkthroughs.
+mesh:
+  inputs:
+    - ux-researcher:research-plan
+  next:
+    - ux-researcher:foundational-research
+  context: "Translates research questions into a structured session script."
 best_guess_output: An interview guide with session structure, questions, probes, evidence goals, and moderator notes that supports comparable sessions across participants.
 output_artifacts:
   - knowledge/runs/<run-id>/ux-researcher-interview-guide-build.md

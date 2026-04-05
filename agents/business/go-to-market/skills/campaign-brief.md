@@ -6,6 +6,14 @@ best_guess_output: A comprehensive campaign brief including asset mapping, chann
 output_artifacts: knowledge/go-to-market-campaign-brief.md
 section_anchor: Campaign Execution
 done_when: All 17 sections are complete and the campaign-audience-asset model is fully mapped with evidence-based tool routing.
+mesh:
+  inputs:
+    - go-to-market:positioning-brief
+    - product-lead:prioritize-roadmap
+  next:
+    - content-designer:content-review
+    - ui-designer:ui-concept-direction
+  context: "Campaign briefs turn strategic positioning into execution-ready creative and channel instructions."
 required_inputs:
   - product_update_specs
   - target_audience_segments

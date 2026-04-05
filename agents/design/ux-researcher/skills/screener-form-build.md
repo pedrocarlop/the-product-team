@@ -2,6 +2,12 @@
 name: screener-form-build
 description: Applies participant profiling, quota sampling logic, and screener design best practices to build a form that recruits the right people with minimum respondent burden.
 trigger: When a study needs recruitment filtering — qualitative or quantitative — and inclusion/exclusion criteria must be operationalized into a form.
+mesh:
+  inputs:
+    - ux-researcher:research-plan
+  next:
+    - ux-researcher:study-ops-and-recruiting
+  context: "Filters potential participants to ensure study validity."
 best_guess_output: A structured screener with participant profile model, qualification logic per question, quota targets, and backup plan.
 output_artifacts:
   - knowledge/runs/<run-id>/ux-researcher-screener-form-build.md

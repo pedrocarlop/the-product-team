@@ -5,6 +5,14 @@ trigger: When engineering or design need a precise, lossless product specificati
 best_guess_output: A PRD or equivalent product specification.
 output_artifacts: knowledge/product-lead-write-prd.md
 done_when: Executors can build without product ambiguity, and logic/design edge cases are resolved.
+mesh:
+  inputs:
+    - product-lead:frame-problem
+    - ux-researcher:research-synthesis
+  next:
+    - product-designer:problem-framing
+    - product-lead:prioritize-roadmap
+  context: "Creates the primary product specification for execution."
 ---
 
 ## 1. Purpose

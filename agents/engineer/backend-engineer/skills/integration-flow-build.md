@@ -2,6 +2,12 @@
 name: integration-flow-build
 description: Build integration flows by modeling cross-system boundaries first, then validating contracts, timing, retries, idempotency, compensations, observability, and rollout risk.
 trigger: When data or actions must move across system boundaries, especially through APIs, queues, webhooks, brokers, or long-running workflows.
+mesh:
+  inputs:
+    - backend-engineer:api-implementation
+  next:
+    - platform-engineer:infra-release
+  context: "Validates that backend services communicate correctly."
 required_inputs:
   - the systems, services, vendors, queues, topics, or jobs involved
   - the trigger that starts the flow and the expected downstream effect

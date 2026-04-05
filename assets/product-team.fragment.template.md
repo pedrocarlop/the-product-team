@@ -28,7 +28,7 @@ This repository has the Product Team workflow installed.
 - When `project-ds-spec.md` recommends shadcn/ui for a blank or near-empty frontend, only the explicit engineering repo-write owner may initialize it, and the install must follow the product's recorded implementation-foundation decisions instead of generic shadcn defaults.
 - Escalate only for setup, account access, destructive actions, or external publishing/sharing.
 - Staff the minimum viable set of roles and keep one explicit repo-write owner per stage by default.
-- Read installed role definitions in `{{PACKAGE_DIR}}/agents/product-team-<discipline>/<role>/`.
+- Read installed role definitions in `{{PACKAGE_DIR}}/agents/product-team-<discipline>/<role>/`. Each role has a `skill-catalog.md`; skills are at `{{PACKAGE_DIR}}/agents/product-team-<discipline>/<role>/skills/<skill-name>.md` — construct the path, do not list the directory.
 - Use `{{PACKAGE_DIR}}/product-team/references/role-catalog.md` as the canonical staffing reference.
 
 ## Verification

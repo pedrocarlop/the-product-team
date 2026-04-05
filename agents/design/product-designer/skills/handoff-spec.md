@@ -43,6 +43,14 @@ output_artifacts:
   - knowledge/runs/<run-id>/product-designer-handoff-spec.md
   - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: A downstream role can continue without reopening the design problem, behavior rules, or missing-state questions.
+mesh:
+  inputs:
+    - ui-designer:screen-production-design
+    - ui-designer:responsive-and-state-spec
+    - product-designer:interaction-spec
+  next:
+    - frontend-engineer:implement-from-design
+  context: "Handoff specifications package all design artifacts and rules into a single source of truth for engineering."
 ---
 
 # Handoff Spec

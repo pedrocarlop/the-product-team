@@ -2,6 +2,13 @@
 name: frontend-verify
 description: Applies structured UI verification — behavior checks, layout fidelity, visual regression, and basic accessibility — to confirm the implemented frontend matches design intent and quality expectations before handoff.
 trigger: When frontend implementation is complete and requires validation before handoff to design review, QA, or release.
+mesh:
+  inputs:
+    - frontend-engineer:responsive-refinement
+    - frontend-engineer:stateful-ui-build
+  next:
+    - design-reviewer:design-fidelity-review
+  context: "Confirms frontend matches design intent before review."
 required_inputs:
   - the surface, flow, or component scope to be verified
   - the design source (Figma file, Storybook URL, or design spec) used as the fidelity reference

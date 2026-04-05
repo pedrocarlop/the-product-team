@@ -41,6 +41,13 @@ output_artifacts:
   - knowledge/runs/<run-id>/product-designer-interaction-spec.md
   - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: An engineer can implement the interaction without guessing behaviors, hidden state rules, or recovery logic.
+mesh:
+  inputs:
+    - product-designer:journey-and-flow-design
+    - ui-designer:screen-production-design
+  next:
+    - frontend-engineer:stateful-ui-build
+  context: "Interaction specifications define the behavioral logic and state transitions for interactive components."
 ---
 
 # Interaction Spec

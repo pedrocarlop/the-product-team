@@ -2,6 +2,13 @@
 name: research-synthesis
 description: Applies thematic analysis, affinity diagramming, and the atomic research model to convert raw qualitative data into traceable findings, themes, and design-ready recommendations.
 trigger: After interviews, workshops, usability sessions, diary studies, or any qualitative data collection. Run when raw notes, transcripts, or recordings exist and the team needs actionable insight.
+mesh:
+  inputs:
+    - ux-researcher:research-plan
+  next:
+    - product-designer:journey-and-flow-design
+    - product-lead:write-prd
+  context: "Translates research findings into actionable insights for design and product specs."
 required_inputs:
   - Raw notes, transcripts, recordings, or observation artifacts from at least one research session
   - Research questions or study goals (to anchor coding and theme formation)

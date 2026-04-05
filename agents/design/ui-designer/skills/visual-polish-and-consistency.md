@@ -44,7 +44,14 @@ tool_routing:
   - if: browser, viewport, or device variance is suspected
     use: [browserstack]
   - if: only screenshots, exports, or recordings exist
-    use: [screenshots, video_capture]
+    use: [screenshots, video_capture, chrome_devtools_take_screenshot]
+mesh:
+  inputs:
+    - ui-designer:screen-production-design
+  next:
+    - design-reviewer:design-fidelity-review
+    - design-reviewer:design-system-compliance-review
+  context: "Final polish ensures the UI is pixel-perfect and consistent before formal design review."
 ---
 
 # Visual Polish And Consistency

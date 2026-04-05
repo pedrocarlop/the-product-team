@@ -1,7 +1,13 @@
----
 name: journey-and-flow-design
 description: Map the end-to-end journey by building an experience model of actors, entry points, states, branches, and operational dependencies before defining screens or polished UI.
 trigger: When a feature, service, or multi-step task needs clear behavioral structure before wireframes, prototyping, or implementation.
+mesh:
+  inputs:
+    - ux-researcher:research-synthesis
+    - product-lead:write-prd
+  next:
+    - product-designer:wireframe-structure
+  context: "Defines the behavioral skeleton of the experience before structural design."
 analysis_framework: journey mapping and task-flow modeling with service-blueprint thinking for cross-channel dependencies
 primary_mcp: figma
 fallback_tools:
@@ -46,6 +52,14 @@ output_artifacts:
   - knowledge/runs/<run-id>/product-designer-journey-and-flow-design.md
   - knowledge/runs/<run-id>/assets/ (for visual artifacts)
 done_when: The main path, critical branches, decision points, and operational dependencies are explicit enough that downstream structure and interaction work does not have to infer route logic.
+mesh:
+  inputs:
+    - product-designer:problem-framing # The journey maps the specific problem/job defined in the frame
+    - product-lead:write-prd # Ensures the journey aligns with the functional requirements
+  next:
+    - product-designer:wireframe-structure
+    - ui-designer:ui-concept-direction
+  context: "Journey mapping translates a bounded problem into a sequence of steps and decision points, providing the backbone for structural wireframes."
 ---
 
 # Journey And Flow Design

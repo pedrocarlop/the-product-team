@@ -2,6 +2,12 @@
 name: design-code-mapping
 description: Build a canonical system model of components, tokens, states, and ownership anchors before tracing how design artifacts map to implementation reality.
 trigger: When design and engineering need a reliable bridge between system primitives, or when drift makes handoff and maintenance ambiguous.
+mesh:
+  inputs:
+    - ui-designer:screen-production-design
+  next:
+    - frontend-engineer:component-implementation
+  context: "Bridges the gap between design primitives and code components."
 analysis_framework: Design-to-code traceability with system-model construction, anchor matching, drift analysis, and ownership routing
 primary_mcp: figma, repository
 fallback_tools:

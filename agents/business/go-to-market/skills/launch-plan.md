@@ -6,6 +6,14 @@ best_guess_output: A predictive launch plan with integrated readiness gates, wor
 output_artifacts: knowledge/go-to-market-launch-plan.md
 section_anchor: launch-plan
 done_when: The launch plan is signed off with all critical path dependencies mapped and readiness gates defined.
+mesh:
+  inputs:
+    - platform-engineer:infra-release
+    - go-to-market:positioning-brief
+    - go-to-market:campaign-brief
+  next:
+    - go-to-market:sales-enablement
+  context: "Orchestrates the transition from product development to market execution."
 required_inputs:
   - Positioning Brief (positioning-brief.md)
   - Campaign Brief (campaign-brief.md)
