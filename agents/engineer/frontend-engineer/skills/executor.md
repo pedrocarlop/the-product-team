@@ -249,7 +249,10 @@ Run axe-core across all primary routes:
    - Count against fix budget
 4. `moderate` and `minor` violations → document as open findings, not blockers
 
-**Step 7 — Ship report**
+**Step 7 — Evidentiary Eval Harness**
+Run the `scripts/eval-harness.sh` to generate the deterministic `eval-report.json`. This replaces the loose test output check. Only proceed to the ship report if the eval harness returns exit code 0.
+
+**Step 8 — Ship report**
 Produce the structured deliverable.
 
 ---

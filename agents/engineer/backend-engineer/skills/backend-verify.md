@@ -197,8 +197,9 @@ No judgment about pass or fail should be written before the model is complete.
 3. Check contract behavior with the strongest available tool path.
 4. Exercise failure paths, including validation errors, dependency failures, retries, and recovery behavior.
 5. Confirm operational behavior: logs, traces, metrics, alerts, and deployment readiness.
-6. Compare observed behavior to expected behavior and separate confirmed findings from inferred concerns.
-7. Group repeated issues into patterns and state the residual risk clearly.
+6. **Evidentiary Eval Harness**: Run the `scripts/eval-harness.sh` script to verify tests systematically before claiming verification success. Output must be exit code 0.
+7. Compare observed behavior to expected behavior and separate confirmed findings from inferred concerns.
+8. Group repeated issues into patterns and state the residual risk clearly.
 
 ## Workflow Notes
 

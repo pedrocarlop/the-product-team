@@ -4,6 +4,16 @@ Read this file first when you are staffed for orchestrated work.
 Use this catalog to choose or confirm the exact role-local workflow to run.
 Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
 
+## `git-workflow`
+
+- Description: Git workflow patterns including branching strategies, commit conventions, merge vs rebase, conflict resolution, and collaborative development best practices for teams of all sizes.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.
+
 ## `regression-triage`
 
 - Description: Triage regressions by building a regression model, validating reproduction status, and separating user impact, scope, evidence strength, and release impact instead of collapsing them into raw bug counts.
@@ -43,6 +53,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Best guess: A runtime and network audit with evidence-tagged failures, dependency context, and observability gaps.
 - Output: knowledge/reviews/qa-reviewer.md
 - Done when: The main runtime issues are identified with reproducible evidence, request context, dependency mapping, and explicit limits on what could not be observed directly.
+
+## `security-scan`
+
+- Description: Inspects code changes and configuration for vulnerabilities, hardcoded secrets, and permission regressions before release.
+- Trigger: Before a release gate, or when explicitly asked to verify the security posture of an implementation.
+- Primary MCP/tool: repository
+- Fallback: reference/ground
+- Best guess: A QA security triage report identifying vulnerabilities or granting passage.
+- Output: knowledge/runs/<run-id>/qa-security-scan.md
+- Done when: All changed files within the release scope have been audited against basic security constraints.
 
 ## `test-plan-review`
 

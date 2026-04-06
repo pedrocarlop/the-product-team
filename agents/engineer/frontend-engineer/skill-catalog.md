@@ -34,6 +34,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Output: knowledge/frontend-engineer-executor.md
 - Done when: The test suite exits green (zero failing tests), the E2E smoke suite passes across primary viewports, axe-core reports zero critical or serious violations, and the build produces a deployable artifact — OR the fix budget is exhausted and all remaining blockers are surfaced as structured findings.
 
+## `framework-patterns`
+
+- Description: Reference guiding framework-specific technical implementations (e.g. Next.js, React, Shadcn) ensuring best practice usage imported from established industry patterns.
+- Trigger: When building or modifying UI using a specific framework, before starting implementation to anchor assumptions.
+- Primary MCP/tool: repository
+- Fallback: reference/ground
+- Best guess: A set of framework-specific rules to adhere to in the resulting implementation deliverable.
+- Output: knowledge/runs/<run-id>/framework-spec.md
+- Done when: Framework-specific constraints have been reviewed and applied to the implementation plan.
+
 ## `frontend-verify`
 
 - Description: Applies structured UI verification — behavior checks, layout fidelity, visual regression, and basic accessibility — to confirm the implemented frontend matches design intent and quality expectations before handoff.
@@ -73,3 +83,13 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Best guess: A stateful UI implementation covering all critical lifecycle states, with a documented state inventory, MSW-backed Storybook stories for each state, and a verification log confirming state coverage.
 - Output: knowledge/frontend-engineer-stateful-ui-build.md
 - Done when: The state inventory is complete, all critical states (loading, error, empty, interactive) are implemented and verifiable in code or Storybook, transitions are explicit and tested, and no state is handled only by silence or missing UI.
+
+## `tdd-workflow`
+
+- Description: Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ coverage including unit, integration, and E2E tests.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.

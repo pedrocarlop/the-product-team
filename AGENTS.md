@@ -8,7 +8,7 @@ This repository packages an installable Codex workflow called `Product Team`. It
 
 | Role | Display Name | Discipline | Kind | Skills | Repo Writes | Description |
 | ---- | ------------ | ---------- | ---- | -----: | ----------- | ----------- |
-| `orchestrator` | Orchestrator | Orchestrator | orchestrator | 9 | direct | Route work cheaply, assign exact skill workflows, enforce MCP-first execution with fallback, and coordinate staffed specialists only when needed |
+| `orchestrator` | Orchestrator | Orchestrator | orchestrator | 11 | direct | Route work cheaply, assign exact skill workflows, enforce MCP-first execution with fallback, and coordinate staffed specialists only when needed |
 | `product-lead` | Product Lead | Business Roles | executor | 6 | never | Own problem framing, product specification, prioritization, and decision communication for cross-functional delivery using AI-first discovery and framing methods |
 | `analyst` | Analyst | Business Roles | executor | 5 | never | Own metric definition, funnel diagnosis, forecasting, experiment readouts, and data storytelling for product decisions |
 | `go-to-market` | Go-To-Market | Business Roles | executor | 6 | never | Own positioning, launch planning, campaign briefs, sales enablement, partner strategy, and customer-signal synthesis |
@@ -18,12 +18,12 @@ This repository packages an installable Codex workflow called `Product Team`. It
 | `ui-designer` | UI Designer | Design Roles | executor | 6 | never | Own visual concept direction, screen production design, responsive/state specs, component design, and final visual polish |
 | `content-designer` | Content Designer | Design Roles | executor | 6 | never | Own microcopy systems, state messaging, naming, guidance, localization preparation, and product content reviews |
 | `design-systems-designer` | Design Systems Designer | Design Roles | executor | 7 | never | Own system audits, token architecture, spacing scales, atomic libraries, component governance, design-code mapping, and system QA |
-| `frontend-engineer` | Frontend Engineer | Engineering Roles | executor | 7 | scoped | Own implementation from design, stateful UI behavior, responsive refinement, component implementation, browser debugging, and frontend verification |
-| `backend-engineer` | Backend Engineer | Engineering Roles | executor | 5 | scoped | Own API implementation, domain models, integration flows, backend observability, and backend verification |
-| `platform-engineer` | Platform Engineer | Engineering Roles | executor | 6 | scoped | Own schema migrations, pipeline orchestration, infrastructure releases, performance investigation, security hardening, and CI/CD governance |
-| `reference` | Reference | Engineering Roles | reference | 4 | never | Ground decisions in the real repo, trace implementation paths, reuse approved patterns, and verify claims before specialists commit to a direction |
+| `frontend-engineer` | Frontend Engineer | Engineering Roles | executor | 9 | scoped | Own implementation from design, stateful UI behavior, responsive refinement, component implementation, browser debugging, and frontend verification |
+| `backend-engineer` | Backend Engineer | Engineering Roles | executor | 7 | scoped | Own API implementation, domain models, integration flows, backend observability, and backend verification |
+| `platform-engineer` | Platform Engineer | Engineering Roles | executor | 8 | scoped | Own schema migrations, pipeline orchestration, infrastructure releases, performance investigation, security hardening, and CI/CD governance |
+| `reference` | Reference | Engineering Roles | reference | 5 | never | Ground decisions in the real repo, trace implementation paths, reuse approved patterns, and verify claims before specialists commit to a direction |
 | `design-reviewer` | Design Reviewer | Review Roles | reviewer | 5 | never | Validate visual fidelity, usability, accessibility, copy quality, and design-system compliance before release |
-| `qa-reviewer` | QA Reviewer | Review Roles | reviewer | 5 | never | Validate requirements traceability, test plans, runtime behavior, regressions, and release readiness |
+| `qa-reviewer` | QA Reviewer | Review Roles | reviewer | 7 | never | Validate requirements traceability, test plans, runtime behavior, regressions, and release readiness |
 
 <!-- AGENT_ROSTER:END -->
 

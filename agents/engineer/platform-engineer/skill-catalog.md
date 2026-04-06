@@ -4,6 +4,16 @@ Read this file first when you are staffed for orchestrated work.
 Use this catalog to choose or confirm the exact role-local workflow to run.
 Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
 
+## `api-design`
+
+- Description: REST API design patterns including resource naming, status codes, pagination, filtering, error responses, versioning, and rate limiting for production APIs.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.
+
 ## `ci-cd-governance`
 
 - Description: Define or improve delivery controls by modeling the pipeline first, then turning policy into enforceable checks, approvals, provenance requirements, and exception handling.
@@ -13,6 +23,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Best guess: A CI/CD governance proposal or implementation with controls, exceptions, and rollout guidance.
 - Output: knowledge/platform-engineer-ci-cd-governance.md
 - Done when: Delivery rules are concrete enough to enforce repeatedly, with owners, exception paths, and enforcement points identified.
+
+## `git-workflow`
+
+- Description: Git workflow patterns including branching strategies, commit conventions, merge vs rebase, conflict resolution, and collaborative development best practices for teams of all sizes.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.
 
 ## `infra-release`
 

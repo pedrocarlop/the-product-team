@@ -4,6 +4,16 @@ Read this file first when you are staffed for orchestrated work.
 Use this catalog to choose or confirm the exact role-local workflow to run.
 Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, and end your handoff with `Read <skill-paths> skills for this task.`
 
+## `api-design`
+
+- Description: REST API design patterns including resource naming, status codes, pagination, filtering, error responses, versioning, and rate limiting for production APIs.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.
+
 ## `api-implementation`
 
 - Description: Implement or extend backend APIs by modeling the contract, invariants, compatibility boundaries, and verification path before changing code.
@@ -53,3 +63,13 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Best guess: An integration implementation or flow design with explicit contracts, retries, failure handling, and boundary notes.
 - Output: knowledge/backend-engineer-integration-flow-build.md
 - Done when: The integration path, contract boundaries, retries, idempotency, compensations, observability, and rollout constraints are explicit enough to implement and verify.
+
+## `tdd-workflow`
+
+- Description: Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ coverage including unit, integration, and E2E tests.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.

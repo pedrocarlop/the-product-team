@@ -39,7 +39,7 @@ purpose_tag = "reference"
 
 [capabilities]
 developer_tools = ["exec_command", "read_thread_terminal", "view_image"]
-local_skills = ["ground", "reuse", "trace", "verify"]
+local_skills = ["ground", "reuse", "trace", "verify", "codebase-onboarding"]
 mcp_servers = ["github", "notion"]
 mcp_tools = []
 recommended_external_mcp = []

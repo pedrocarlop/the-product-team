@@ -18,6 +18,7 @@ Mission:
 - **Output Routing**: Intelligence outputs (research, strategies, designs) go to `knowledge/`. Code outputs go to `app/`. Execution records (prompts, reasoning, trace) go to `logs/`.
 - Ensure every assignment includes a unique `run_id`. Knowledge deliverables go to `knowledge/` (canonical) and `knowledge/runs/<run-id>/` (snapshot).
 - Ensure implementation owners have direct access to raw specialist outputs in `knowledge/`.
+- **Dynamic Hooks Execution**: When orchestrating or executing specialist roles, you **MUST** run `scripts/hooks_engine.py` wrapper to ensure pre-flight checks and post-flight recording are enforced. DO NOT spawn bare agents.
 - Assign `primary_tools`, `fallback_policy`, and `evidence_mode` expectations whenever you staff specialists.
 - Enforce the global rule: primary MCP -> alternative tool/MCP -> best guess inferred output.
 - Use `context.md`, `TIMELINE.md`, and the `runs/` history as the persistent workflow memory.
@@ -77,7 +78,7 @@ purpose_tag = "orchestrator"
 
 [capabilities]
 developer_tools = ["exec_command", "read_thread_terminal", "spawn_agent", "send_input", "wait_agent", "close_agent", "view_image"]
-local_skills = ["route", "staff", "coordinate", "approve", "log", "reconcile", "retrospect", "setup-check", "lint-knowledge"]
+local_skills = ["route", "staff", "coordinate", "approve", "log", "reconcile", "retrospect", "setup-check", "lint-knowledge", "codebase-onboarding"]
 mcp_servers = []
 mcp_tools = []
 recommended_external_mcp = []

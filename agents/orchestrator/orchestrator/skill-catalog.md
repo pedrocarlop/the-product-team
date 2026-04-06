@@ -14,6 +14,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Output: knowledge/orchestrator-approve.md
 - Done when: The user can clearly approve or redirect the planned workflow.
 
+## `codebase-onboarding`
+
+- Description: Analyze an unfamiliar codebase and generate a structured onboarding guide with architecture map, key entry points, conventions, and a starter CLAUDE.md. Use when joining a new project or setting up Claude Code for the first time in a repo.
+- Trigger: Missing trigger.
+- Primary MCP/tool: Missing primary_mcp.
+- Fallback: Missing fallback_tools.
+- Best guess: Missing best_guess_output.
+- Output: Missing output_artifacts.
+- Done when: Missing done_when.
+
 ## `coordinate`
 
 - Description: Launch specialists in sequence, curate the Execution Manifest, and ensure lossless handoff to downstream roles.
@@ -43,6 +53,16 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Best guess: A refreshed context entry that reflects the true current state.
 - Output: knowledge/runs/<run-id>/orchestrator-log.md
 - Done when: A teammate can resume from context.md or the run history without guessing.
+
+## `pattern-extraction`
+
+- Description: Systematically extracts successful patterns, workflows, and rule sets from execution trails into reusable "instincts".
+- Trigger: When the orchestrator notices repetitive behaviors, successful workarounds, or when requested explicitly to extract a pattern.
+- Primary MCP/tool: logs, repository
+- Fallback: reference/ground
+- Best guess: A set of atomic instincts ready to be promoted or saved.
+- Output: knowledge/instincts/<pattern-name>.yaml
+- Done when: The learned pattern is codified as a reusable instinct with a confidence score.
 
 ## `reconcile`
 
