@@ -52,6 +52,9 @@ If inputs are missing, infer a provisional "vibe" based on the product descripti
 
 ## Core Method Execution
 
+### Step 0 — Setup for Visual Excellence
+**Mandatory Setup**: Initialize the project assets directory for this run using `mkdir -p knowledge/runs/<run-id>/assets/`. Replace `<run-id>` with the current session identifier.
+
 ### Step 1 — Inspiration Search
 Use `browser_subagent` to search Pinterest, Dribbble, or layers.is for the defined keywords. Browse for high-quality, relevant results that match the aesthetic goal. Look for:
 - Color harmonies
@@ -62,8 +65,9 @@ Use `browser_subagent` to search Pinterest, Dribbble, or layers.is for the defin
 ### Step 2 — Evidence Capture
 For setiap relevant pin or design:
 1. Navigate to the high-resolution view.
-2. Use `take_screenshot(fullPage=false)` to capture the specific design or interaction.
-3. Save the image to `knowledge/runs/<run-id>/assets/` with a descriptive name (e.g., `inspiration-glass-dashboard-01.png`).
+2. Use **`take_screenshot(filePath='knowledge/runs/<run-id>/assets/<name>.png', fullPage=false)`** to capture the specific design or interaction.
+3. If using tools that do not support `filePath` (like `generate_image`), move the resulting file using `mv` into the project assets folder immediately.
+4. Save the image with a descriptive name (e.g., `inspiration-glass-dashboard-01.png`).
 
 ### Step 3 — Canvas Assembly ("FigJam" / "Notion")
 If a "FigJam" board or "Notion" gallery is requested:
@@ -86,10 +90,11 @@ Synthesize the collected evidence into 3-5 "Visual Pillars." Each pillar should 
 Produce the deliverable at `knowledge/runs/<run-id>/ux-researcher-visual-inspiration.md`.
 
 ### Required Deliverable Sections:
-- `### Curated Inspiration`: Embed all captured screenshots with captions and source links.
+- `### Curated Inspiration`: Embed all captured screenshots with captions and source links. Use RELATIVE paths: `![Caption](assets/image.png)`.
 - `### Visual Pillars`: List the 3-5 synthesized themes with evidence links.
 - `### Canvas Link`: Link to the FigJam board, Notion page, or Miro board used for assembly.
 - `### Reflection`: Professional reflection on the inspiration quality and next steps for the UI team.
+- **Project-Local Storage Mandate**: All visual artifacts MUST be saved in the project's workspace. Absolute paths to the agent's brain or internal directories are prohibited.
 
 ---
 *Read visual-inspiration-curation skills for this task.*
