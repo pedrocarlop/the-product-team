@@ -533,11 +533,15 @@ def install_knowledge(root: Path, target_root: Path) -> bool:
     assets_dir = knowledge_root / "assets"
     entities_dir = knowledge_root / "entities"
     raw_dir = knowledge_root / "raw"
+    summaries_dir = knowledge_root / "summaries"
+    concepts_dir = knowledge_root / "concepts"
     ensure_directory(runs_dir)
     ensure_directory(reviews_dir)
     ensure_directory(assets_dir)
     ensure_directory(entities_dir)
     ensure_directory(raw_dir)
+    ensure_directory(summaries_dir)
+    ensure_directory(concepts_dir)
 
     for keep_path in (
         runs_dir / ".gitkeep",
@@ -545,6 +549,8 @@ def install_knowledge(root: Path, target_root: Path) -> bool:
         assets_dir / ".gitkeep",
         entities_dir / ".gitkeep",
         raw_dir / ".gitkeep",
+        summaries_dir / ".gitkeep",
+        concepts_dir / ".gitkeep",
     ):
         if not keep_path.exists():
             keep_path.write_text("", encoding="utf-8")
@@ -560,30 +566,17 @@ def install_knowledge(root: Path, target_root: Path) -> bool:
     if not index_path.exists():
         index_content = (
             "# Knowledge Index\n\n"
-            "This index is the content-oriented catalog of all product knowledge. Updated by the orchestrator.\n\n"
             "## Market & Product\n"
-            "- [analyst-market-analysis.md](analyst-market-analysis.md) — TAM/SAM and competition\n"
-            "- [product-lead-prd.md](product-lead-prd.md) — Product requirements and roadmap\n\n"
             "## User Research\n"
-            "- [ux-researcher-synthesis.md](ux-researcher-synthesis.md) — User pain points and personas\n\n"
             "## Design & Visual\n"
-            "- [ui-designer-concept-direction.md](ui-designer-concept-direction.md) — Visual concept and theme\n"
-            "- [project-ds-spec.md](project-ds-spec.md) — Shared design system specification\n\n"
             "## Engineering & Architecture\n"
-            "- [backend-engineer-api-design.md](backend-engineer-api-design.md) — API and domain models\n\n"
             "## Entities\n"
-            "- [entities/competitors.md](entities/competitors.md) — Aggregated competitive intelligence\n"
-            "- [entities/personas.md](entities/personas.md) — Aggregated user personas\n"
         )
         index_path.write_text(index_content, encoding="utf-8")
 
-
     log_path = knowledge_root / "log.md"
     if not log_path.exists():
-        log_content = (
-            "# Knowledge Log\n\n"
-            "Chronological record of wiki evolution. Entries should follow: `## [YYYY-MM-DD] type | title`.\n\n"
-        )
+        log_content = "# Knowledge Log\n\n"
         log_path.write_text(log_content, encoding="utf-8")
 
     return True

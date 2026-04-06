@@ -28,7 +28,7 @@ project: <slug-or-maintenance>
 run_id: <run-id>
 deliverable: orchestrator-lint.md
 confidence: <0.0-1.0>
-inputs_used: [knowledge/index.md, knowledge/changelog.md, knowledge/*.md]
+inputs_used: [knowledge/index.md, knowledge/log.md, knowledge/*.md]
 evidence_mode: sourced|fallback|inferred
 related: []
 ---
@@ -37,7 +37,7 @@ related: []
 ### Step 2: Load the Knowledge State
 
 1. Read `knowledge/index.md` to get the full catalog of known deliverables.
-2. Read the tail of `knowledge/changelog.md` (last 30 entries) to understand recent mutations.
+2. Read the tail of `knowledge/log.md` (last 30 entries) to understand recent mutations.
 3. List all `.md` files in `knowledge/` (top-level) and `knowledge/entities/`.
 4. For each file, read the YAML frontmatter and `## TL;DR` section only.
 
@@ -45,7 +45,7 @@ related: []
 
 #### Check 1: Stale Deliverables
 
-- For each deliverable in `knowledge/`, check whether it appears in any `reads_from` or `related` field of deliverables updated in the last 3 months (use `changelog.md` dates).
+- For each deliverable in `knowledge/`, check whether it appears in any `reads_from` or `related` field of deliverables updated in the last 3 months (use `log.md` dates).
 - Flag files with no references and no changelog activity in 3+ months.
 - Severity: `warning`.
 
@@ -77,7 +77,7 @@ related: []
 #### Check 6: Entity Drift
 
 - For each entity page in `knowledge/entities/`, check its `sources` list.
-- If any source deliverable has been superseded (per `changelog.md`), the entity page is stale.
+- If any source deliverable has been superseded (per `log.md`), the entity page is stale.
 - Flag with the superseding deliverable path.
 - Severity: `warning`.
 
@@ -122,7 +122,7 @@ If a check category has no findings, write "No issues found." under its heading.
 ### Step 5: Update Index and Changelog
 
 - If new findings require index.md updates (orphan files that should be added), note them but do not auto-fix — list them as recommendations.
-- Append a `lint` entry to `knowledge/changelog.md`:
+- Append a `lint` entry to `knowledge/log.md`:
   ```
   ## [YYYY-MM-DD] lint | <run-id> | orchestrator-lint.md | <summary of findings>
   ```

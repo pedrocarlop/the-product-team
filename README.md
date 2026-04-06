@@ -171,12 +171,12 @@ Key rules:
 
 - **Flat organization**: No project slug nesting so agents can find relevant knowledge across all projects.
 - **Wiki index** (`knowledge/index.md`): Topic-oriented catalog of all deliverables, organized by domain. The orchestrator reads this first to find relevant knowledge without scanning every file.
-- **Changelog** (`knowledge/changelog.md`): Append-only log of every knowledge mutation (`created`, `updated`, `superseded`, `archived`). Lets the orchestrator see what changed since the last project.
+- **Changelog** (`knowledge/log.md`): Append-only log of every knowledge mutation (`created`, `updated`, `superseded`, `archived`). Lets the orchestrator see what changed since the last project.
 - **Deliverable headers**: Every file starts with YAML frontmatter (`role`, `project`, `run_id`, `confidence`, `inputs_used`, `evidence_mode`, `related`). The `related` field creates cross-reference trails between deliverables.
 - **Mandatory TL;DR**: Every deliverable includes a `## TL;DR` section (1-3 sentences) immediately after the header, enabling fast scanning without reading full files.
 - **Entity pages** (`knowledge/entities/`): Cross-cutting concepts (competitors, personas, patterns, decisions) get dedicated pages that aggregate findings from multiple deliverables.
-- **Lossless history**: When updating a deliverable, agents write to `knowledge/runs/<run-id>/` first, then may update the canonical file. Previous versions are never overwritten. Every mutation appends to `changelog.md`.
-- **Progressive scan order**: (1) `index.md` for domain categories, (2) `changelog.md` tail for recent changes, (3) TL;DR sections of relevant files, (4) full files only when directly needed, (5) `related` links for context.
+- **Lossless history**: When updating a deliverable, agents write to `knowledge/runs/<run-id>/` first, then may update the canonical file. Previous versions are never overwritten. Every mutation appends to `log.md`.
+- **Progressive scan order**: (1) `index.md` for domain categories, (2) `log.md` tail for recent changes, (3) TL;DR sections of relevant files, (4) full files only when directly needed, (5) `related` links for context.
 - **Knowledge continuity**: Before every assignment, the orchestrator follows the progressive scan order and includes relevant files in `reads_from`. Decisions compound across projects.
 - **Lint** (`lint-knowledge` skill): Periodic health check detecting stale files, contradictions, orphans, missing cross-references, knowledge gaps, and entity drift. Results go to `knowledge/orchestrator-lint.md`.
 - **Mandatory reflection**: Every deliverable ends with a `## Reflection` section (What worked, What didn't, Next steps).

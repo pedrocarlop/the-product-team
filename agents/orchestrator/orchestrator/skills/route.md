@@ -44,7 +44,7 @@ evidence_mode: sourced|fallback|inferred
 
 ### Step 2b-ii: Knowledge Continuity Scan (Progressive Disclosure)
 1. Read `knowledge/index.md` to identify relevant domain categories for this request.
-2. Read the tail of `knowledge/changelog.md` (last 20 entries) to see recent mutations.
+2. Read the tail of `knowledge/log.md` (last 20 entries) to see recent mutations.
 3. Read TL;DR sections of deliverables in the matching categories.
 4. Read full deliverables only for files directly relevant to the current request.
 5. Follow `related` links for additional cross-cutting context.

@@ -67,7 +67,7 @@ After each subagent returns, check its output for an `hta_setup_required` signal
 - After all specialists have completed, update `knowledge/index.md`:
   - Add any new deliverable files under the appropriate domain category.
   - Remove entries for superseded files.
-- Append entries to `knowledge/changelog.md` for every deliverable created or updated during this coordination cycle:
+- Append entries to `knowledge/log.md` for every deliverable created or updated during this coordination cycle:
   ```
   ## [YYYY-MM-DD] <action> | <run-id> | <deliverable-file> | <one-line description>
   ```

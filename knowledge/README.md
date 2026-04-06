@@ -1,59 +1,82 @@
-# `/knowledge` — Business Intelligence (LLM Wiki)
+# `/knowledge` — Business Intelligence
 
-`/knowledge` is the persistent, compounding knowledge base for the business. It aligns with the **LLM Wiki** pattern: a structured, interlinked collection of markdown files that sits between the agent and raw sources. Unlike retrieval systems that rediscover knowledge on each query, this wiki is compiled once and kept current.
+`/knowledge` is the persistent knowledge base for the business. It accumulates across projects and is organized flat (no project slug nesting) so agents and humans can find what matters.
 
-## Three-Layer Architecture
+Agent execution records go to `/logs`. Code outputs go to `/app`.
 
-1.  **Raw Sources** (`knowledge/raw/`): Immutable collection of source documents (articles, transcripts, data). Agents read from here but never modify them.
-2.  **The Wiki** (`knowledge/`): Synthesized markdown files. Summaries, entity pages, concept pages, and project deliverables. Agents own this layer entirely.
-3.  **The Schema** (`ANTIGRAVITY.md`, etc.): The instructions that tell the agents how the wiki is structured and what workflows to follow.
+## Wiki Model
+
+Knowledge is a **persistent, compounding wiki** maintained by agents. Unlike retrieval systems that rediscover knowledge on each query, knowledge files are compiled once and kept current. Cross-references exist between deliverables, contradictions are flagged, and synthesis reflects everything consumed across all projects.
+
+The orchestrator maintains the wiki structure. Specialists produce deliverables. The orchestrator indexes, cross-links, and health-checks them.
 
 ## Directory Layout
 
 ```text
 knowledge/
-  index.md                           # Content-oriented catalog (Knowledge Index)
-  log.md                             # Chronological record of wiki evolution
-  raw/                               # Immutable source documents (articles, papers)
-  <role>-<skill>.md                  # Latest stable synthesized deliverables
-  entities/                          # Cross-cutting entity pages (competitors, personas)
-  reviews/                           # Quality assurance records
-  assets/                            # Visual artifacts (screenshots, mockups)
-  runs/                              # Lossless run history
+  index.md                           # Topic-oriented catalog (maintained by orchestrator)
+  log.md                             # Append-only chronological mutation log
+  raw/                               # Immutable curated collection of source documents
+    assets/                          # Images and visual materials
+  summaries/                         # Synthesized overviews of raw documents
+  concepts/                          # Deep dives into specific domain concepts
+  <role>-<skill>.md                  # Latest stable deliverables
+  project-ds-spec.md                 # Shared cross-role deliverables
+  orchestrator.md                    # Execution manifest
+  entities/                          # Cross-cutting concept pages
+    <entity-type>-<name>.md          # e.g., competitor-acme.md, persona-admin.md
+  reviews/
+    <reviewer>.md
+  runs/                              # Lossless history
     <run-id>-<YYYYMMDD-HHMM>/
+      <role>-<skill>.md              # Snapshot from this run
 ```
-
-## Rules for Agents
-
-1.  **Two Output Rule**: Every task produces two outputs: the primary deliverable for the user, and an update to the relevant wiki articles. Knowledge must not evaporate into chat history.
-2.  **Lossless Snapshots**: When updating a deliverable, always write a copy to `knowledge/runs/<run-id>/` before updating the canonical version at the root.
-3.  **Log Requirement**: Every meaningful change (ingest, query, lint) must be appended to `knowledge/log.md`.
-4.  **TL;DR Sections**: Every synthesized page must include a `## TL;DR` section at the top for fast scanning.
-5.  **Direct File Tools**: If specialized MCPs are missing, use direct filesystem tools (`write_to_file`) to maintain the structure.
-
-## Operations
-
-### Ingest
-Processing a new source from `knowledge/raw/` into the wiki. This involves reading the source, writing/updating summaries and entity pages, and updating `index.md` and `log.md`.
-
-### Query
-Answering questions against the wiki. Agents should synthesize answers with citations. **Good answers must be filed back into the wiki** as new pages or updates to existing ones.
-
-### Lint (Health Check)
-Periodically auditing the wiki for contradictions, stale claims, orphan pages, and gaps.
 
 ## Special Files
 
-### `index.md` — Knowledge Index
+### `index.md` — Knowledge Catalog
 
-A content-oriented catalog organized by **domain**. Updated after every ingest or significant change. Enables agents to find relevant pages without scanning the entire directory.
+A content-oriented catalog organized by **domain** (not by role or date). Updated by the orchestrator after every project completion or significant knowledge change. Enables the orchestrator to find relevant knowledge without scanning every file.
 
-### `log.md` — Knowledge Log
+Structure:
 
-Append-only chronological record. Parseable format:
-`## [YYYY-MM-DD] <type> | <description>` (e.g., `## [2026-04-05] ingest | Market Report`)
+```markdown
+# Knowledge Index
 
-Types: `ingest`, `query`, `lint`, `created`, `updated`, `superseded`.
+## Market & Product
+- [analyst-market-analysis.md](analyst-market-analysis.md) — TAM/SAM for B2B analytics (2026-03)
+- [product-lead-prd.md](product-lead-prd.md) — Dashboard MVP requirements
+
+## User Research
+- [ux-researcher-synthesis.md](ux-researcher-synthesis.md) — Async collaboration pain points
+
+## Design & Visual
+- [ui-designer-concept-direction.md](ui-designer-concept-direction.md) — Glassmorphic dark theme
+- [project-ds-spec.md](project-ds-spec.md) — Design system specification
+
+## Engineering & Architecture
+- [backend-engineer-api-design.md](backend-engineer-api-design.md) — REST API v1
+
+## Entities
+- [entities/competitor-acme.md](entities/competitor-acme.md) — Acme Corp competitive profile
+- [entities/persona-enterprise-admin.md](entities/persona-enterprise-admin.md) — Enterprise admin persona
+```
+
+The index is the **first file the orchestrator reads** when scanning knowledge for a new assignment. It replaces the need to `ls knowledge/` and read every file.
+
+### `log.md` — Knowledge Mutation Log
+
+Append-only chronological record of every knowledge change. Parseable format:
+
+```markdown
+# Knowledge Log
+
+## [2026-03-15] created | 20260315-analytics-mvp | analyst-market-analysis.md | TAM/SAM analysis for B2B analytics vertical
+## [2026-03-16] created | 20260315-analytics-mvp | ux-researcher-synthesis.md | Async collaboration pain point synthesis
+## [2026-03-20] updated | 20260320-dashboard-v2 | analyst-market-analysis.md | Added SMB segment sizing from new survey data
+## [2026-03-20] created | 20260320-dashboard-v2 | entities/competitor-acme.md | Competitive profile from market analysis + user interviews
+## [2026-04-01] superseded | 20260401-rebrand | ui-designer-concept-direction.md | Visual direction replaced by rebrand initiative
+```
 
 Actions: `created`, `updated`, `superseded`, `archived`.
 
@@ -129,7 +152,7 @@ When an agent "updates" a deliverable:
 1. It **MUST** write the new version to `knowledge/runs/<run-id>/` first.
 2. It **MAY** then update the canonical file at `knowledge/<deliverable>.md` to reflect the latest state.
 3. It **MUST NOT** overwrite previous versions in the `runs/` history.
-4. It **MUST** append an entry to `changelog.md`.
+4. It **MUST** append an entry to `log.md`.
 
 ## Knowledge Continuity Rule (CRITICAL)
 
@@ -137,7 +160,7 @@ The orchestrator MUST read `knowledge/index.md` before every assignment. When st
 
 **Scan order** (progressive disclosure):
 1. Read `index.md` to identify relevant domain categories.
-2. Read `changelog.md` tail to see recent changes.
+2. Read `log.md` tail to see recent changes.
 3. Read TL;DR sections of relevant deliverables.
 4. Read full deliverables only for files directly relevant to the current assignment.
 5. Follow `related` links for additional context.

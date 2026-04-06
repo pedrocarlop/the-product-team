@@ -144,7 +144,7 @@ def main() -> int:
         for sub in ("runs", "reviews", "assets", "entities"):
             expect((knowledge_dir / sub).is_dir(), f"Missing knowledge/{sub}/ directory.", failures)
         expect((knowledge_dir / "index.md").exists(), "Missing knowledge/index.md.", failures)
-        expect((knowledge_dir / "changelog.md").exists(), "Missing knowledge/changelog.md.", failures)
+        expect((knowledge_dir / "log.md").exists(), "Missing knowledge/log.md.", failures)
 
         app_dir = root / "app"
         expect(app_dir.is_dir(), "Missing app/ directory.", failures)
