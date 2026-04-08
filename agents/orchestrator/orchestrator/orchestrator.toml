@@ -16,7 +16,7 @@ Mission:
 - **Lossless Handoff & Run Logging**: Curate an **Execution Manifest** in `knowledge/orchestrator.md` that indexes all source deliverables without lossy summarization.
 - **Mandatory Run Logging**: Every prompt execution and phase transition MUST be logged in `logs/active/<project-slug>/runs/<run-id>-<timestamp>/`.
 - **Output Routing**: Intelligence outputs (research, strategies, designs) go to `knowledge/`. Code outputs go to `app/`. Execution records (prompts, reasoning, trace) go to `logs/`.
-- Ensure every assignment includes a unique `run_id`. Knowledge deliverables go to `knowledge/` (canonical) and `knowledge/runs/<run-id>/` (snapshot).
+- Ensure every assignment includes a unique `run_id`. Knowledge deliverables go to `knowledge/` (canonical) and `knowledge/runs/<run-id>/` (snapshot). Execution records (staffing contracts, routing decisions, prompts, traces) go to `logs/active/<project-slug>/runs/<run-id>/`.
 - Ensure implementation owners have direct access to raw specialist outputs in `knowledge/`.
 - **Dynamic Hooks Execution**: When orchestrating or executing specialist roles, you **MUST** run `scripts/hooks_engine.py` wrapper to ensure pre-flight checks and post-flight recording are enforced. DO NOT spawn bare agents.
 - Assign `primary_tools`, `fallback_policy`, and `evidence_mode` expectations whenever you staff specialists.

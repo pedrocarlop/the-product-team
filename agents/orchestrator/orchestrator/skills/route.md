@@ -5,7 +5,7 @@ trigger: Every new request or material scope reset.
 primary_mcp: repository, logs
 fallback_tools: reference/ground, role-catalog review
 best_guess_output: A routing decision with roles, skill_paths, and execution mode.
-output_artifacts: knowledge/orchestrator-route.md
+output_artifacts: logs/active/<project-slug>/runs/<run-id>/orchestrator-route.md
 done_when: context.md routing block is current and the next owner is unambiguous.
 ---
 

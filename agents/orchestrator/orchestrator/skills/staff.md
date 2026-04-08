@@ -5,7 +5,7 @@ trigger: Once orchestration is needed or a staffed role must change.
 primary_mcp: repository, role metadata
 fallback_tools: reference/verify, context review
 best_guess_output: A staffing table with run_id, output_path, role, skill_paths, target_deliverables, primary_tools, and fallback policy.
-output_artifacts: knowledge/runs/<run-id>/orchestrator-staff.md
+output_artifacts: logs/active/<project-slug>/runs/<run-id>/orchestrator-staff.md
 done_when: Every staffed role has one contract and target deliverables are explicitly named for each assigned skill within a unique run directory.
 ---
 

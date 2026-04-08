@@ -1,36 +1,55 @@
-# `/knowledge` — Business Intelligence
+# `/knowledge` — Business Intelligence (LLM Wiki)
 
-`/knowledge` is the persistent knowledge base for the business. It accumulates across projects and is organized flat (no project slug nesting) so agents and humans can find what matters.
+`/knowledge` is the persistent, compounding knowledge base for the business. It aligns with the **LLM Wiki** pattern: a structured, interlinked collection of markdown files that sits between the agent and raw sources. Unlike retrieval systems that rediscover knowledge on each query, this wiki is compiled once and kept current.
 
 Agent execution records go to `/logs`. Code outputs go to `/app`.
 
-## Wiki Model
+## Three-Layer Architecture
 
-Knowledge is a **persistent, compounding wiki** maintained by agents. Unlike retrieval systems that rediscover knowledge on each query, knowledge files are compiled once and kept current. Cross-references exist between deliverables, contradictions are flagged, and synthesis reflects everything consumed across all projects.
-
-The orchestrator maintains the wiki structure. Specialists produce deliverables. The orchestrator indexes, cross-links, and health-checks them.
+1.  **Raw Sources** (`knowledge/raw/`): Immutable collection of source documents (articles, transcripts, data). Agents read from here but never modify them.
+2.  **The Wiki** (`knowledge/`): Synthesized markdown files. Summaries, entity pages, concept pages, and project deliverables. Agents own this layer entirely.
+3.  **The Schema** (`AGENTS.md`, `CLAUDE.md`, `ANTIGRAVITY.md`): The instructions that tell the agents how the wiki is structured and what workflows to follow.
 
 ## Directory Layout
 
 ```text
 knowledge/
-  index.md                           # Topic-oriented catalog (maintained by orchestrator)
-  log.md                             # Append-only chronological mutation log
-  raw/                               # Immutable curated collection of source documents
-    assets/                          # Images and visual materials
+  index.md                           # Content-oriented catalog (Knowledge Index)
+  log.md                             # Chronological record of wiki evolution
+  raw/                               # Immutable source documents (articles, papers)
   summaries/                         # Synthesized overviews of raw documents
   concepts/                          # Deep dives into specific domain concepts
-  <role>-<skill>.md                  # Latest stable deliverables
+  <role>-<skill>.md                  # Latest stable synthesized deliverables
   project-ds-spec.md                 # Shared cross-role deliverables
   orchestrator.md                    # Execution manifest
-  entities/                          # Cross-cutting concept pages
+  entities/                          # Cross-cutting entity pages (competitors, personas)
     <entity-type>-<name>.md          # e.g., competitor-acme.md, persona-admin.md
   reviews/
     <reviewer>.md
-  runs/                              # Lossless history
+  assets/                            # Visual artifacts (screenshots, mockups)
+  runs/                              # Lossless run history
     <run-id>-<YYYYMMDD-HHMM>/
       <role>-<skill>.md              # Snapshot from this run
 ```
+
+## Rules for Agents
+
+1.  **Two Output Rule**: Every task produces two outputs: the primary deliverable for the user, and an update to the relevant wiki articles. Knowledge must not evaporate into chat history.
+2.  **Lossless Snapshots**: When updating a deliverable, always write a copy to `knowledge/runs/<run-id>/` before updating the canonical version at the root.
+3.  **Log Requirement**: Every meaningful change (ingest, query, lint) must be appended to `knowledge/log.md`.
+4.  **TL;DR Sections**: Every synthesized page must include a `## TL;DR` section at the top for fast scanning.
+5.  **Direct File Tools**: If specialized MCPs are missing, use direct filesystem tools (`write_to_file`) to maintain the structure.
+
+## Operations
+
+### Ingest
+Processing a new source from `knowledge/raw/` into the wiki. This involves reading the source, writing/updating summaries and entity pages, and updating `index.md` and `log.md`.
+
+### Query
+Answering questions against the wiki. Agents should synthesize answers with citations. **Good answers must be filed back into the wiki** as new pages or updates to existing ones.
+
+### Lint (Health Check)
+Periodically auditing the wiki for contradictions, stale claims, orphan pages, and gaps.
 
 ## Special Files
 
@@ -79,6 +98,7 @@ Append-only chronological record of every knowledge change. Parseable format:
 ```
 
 Actions: `created`, `updated`, `superseded`, `archived`.
+Types: `ingest`, `query`, `lint`, `created`, `updated`, `superseded`.
 
 This lets the orchestrator quickly see what changed since the last project without re-reading every file.
 

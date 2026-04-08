@@ -16,7 +16,7 @@ fi
 
 cd "$PROJECT_DIR" || exit 1
 
-EVAL_REPORT="knowledge/runs/run-current/eval-report.json"
+EVAL_REPORT="logs/hooks/eval-report.json"
 mkdir -p "$(dirname "$EVAL_REPORT")"
 
 pass_count=0

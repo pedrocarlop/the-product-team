@@ -63,8 +63,8 @@ PLATFORM_CONFIGS: dict[str, PlatformConfig] = {
         fragment_name="CLAUDE.fragment.md",
         target_file="CLAUDE.md",
         label="Claude Code",
-        with_knowledge=False,
-        with_app=False,
+        with_knowledge=True,
+        with_app=True,
     ),
     "antigravity": PlatformConfig(
         platform="antigravity",

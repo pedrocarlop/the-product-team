@@ -5,7 +5,7 @@ trigger: Any time routing, staffing, status, or risks change.
 primary_mcp: logs
 fallback_tools: repository review
 best_guess_output: A refreshed context entry that reflects the true current state.
-output_artifacts: knowledge/runs/<run-id>/orchestrator-log.md
+output_artifacts: logs/active/<project-slug>/runs/<run-id>/orchestrator-log.md
 done_when: A teammate can resume from context.md or the run history without guessing.
 ---
 
