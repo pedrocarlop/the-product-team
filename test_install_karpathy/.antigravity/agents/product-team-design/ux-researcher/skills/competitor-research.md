@@ -40,8 +40,8 @@ tool_routing:
     use: [search_query, open, take_screenshot, browser_subagent]
 best_guess_output: A competitive landscape report with a comparison set, pattern inventory, evidence citations, gap analysis, and design implications.
 output_artifacts:
-  - knowledge/runs/<run-id>/ux-researcher-competitor-research.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/ux-researcher-competitor-research.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: The competitive landscape model is constructed, relevant patterns are documented with sourced evidence or explicitly labeled as inferred, and implications are linked to the originating design decision.
 mesh:
   inputs:
@@ -163,7 +163,7 @@ To ensure "Visual Excellence" and "Rich Aesthetics" in the research deliverable,
 - **Resolution**: Ensure screenshots are captured at standard desktop (1440px width) or mobile resolutions to maintain fidelity.
 - **Contextual Annotations**: If the tool allows, or in the markdown description, highlight specific areas of interest within the screenshot to guide the reader's eye.
 
-Every screenshot MUST be stored in `knowledge/runs/<run-id>/assets/` and linked with a descriptive caption.
+Every screenshot MUST be stored in `knowledge/assets/` and linked with a descriptive caption.
 
 ## Structured Findings
 
@@ -251,14 +251,14 @@ Do not omit this section or collapse it to a single line. Low-confidence areas m
 - Do not hallucinate competitor UI details. If a surface cannot be sourced, mark it as `Not accessed` and lower confidence accordingly.
 - Record the tool path used for each competitor or surface so the evidence is reproducible.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ux-researcher-competitor-research.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 

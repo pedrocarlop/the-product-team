@@ -52,7 +52,7 @@ This skill applies structured QA reasoning across reproducibility, user impact, 
 
 This skill does not replace root-cause analysis, full remediation planning, or product prioritization beyond the evidence-supported release decision.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/qa-reviewer-regression-triage.md`).
 - Do not merge this output into a shared role-level document.

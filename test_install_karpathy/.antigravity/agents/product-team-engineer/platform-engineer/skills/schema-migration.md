@@ -77,7 +77,7 @@ Plan and execute schema changes with operational safety. This skill builds the m
 
 This skill covers schema shape, constraints, indexes, backfills, compatibility windows, rollback posture, and verification. It does not own product data modeling, application feature design, or unrelated infra change.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-schema-migration.md`).
 - Do not merge this output into a shared role-level document.

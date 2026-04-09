@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository
 - Fallback: reference/ground
 - Best guess: A set of framework-specific rules to adhere to in the resulting implementation deliverable.
-- Output: knowledge/runs/<run-id>/framework-spec.md
+- Output: knowledge/framework-spec.md
 - Done when: Framework-specific constraints have been reviewed and applied to the implementation plan.
 
 ## `frontend-verify`

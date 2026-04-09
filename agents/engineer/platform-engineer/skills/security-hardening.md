@@ -49,7 +49,7 @@ This skill applies threat-to-control reasoning across dependency, container, sec
 
 This skill does not invent threats, replace formal security review, or claim safety without evidence.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-security-hardening.md`).
 - Do not merge this output into a shared role-level document.

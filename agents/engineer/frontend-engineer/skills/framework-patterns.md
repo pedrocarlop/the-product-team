@@ -5,7 +5,7 @@ trigger: When building or modifying UI using a specific framework, before starti
 primary_mcp: repository
 fallback_tools: reference/ground
 best_guess_output: A set of framework-specific rules to adhere to in the resulting implementation deliverable.
-output_artifacts: knowledge/runs/<run-id>/framework-spec.md
+output_artifacts: knowledge/framework-spec.md
 done_when: Framework-specific constraints have been reviewed and applied to the implementation plan.
 ---
 

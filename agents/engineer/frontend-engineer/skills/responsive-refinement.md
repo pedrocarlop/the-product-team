@@ -320,7 +320,7 @@ Do not collapse this section to a single line. Specific unknowns must be named.
 
 ---
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-responsive-refinement.md`).
 - Do not merge this output into a shared role-level document.

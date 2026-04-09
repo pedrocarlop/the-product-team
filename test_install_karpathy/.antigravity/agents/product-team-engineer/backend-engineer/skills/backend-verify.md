@@ -72,7 +72,7 @@ This skill applies structured verification reasoning across implementation surfa
 
 This skill does not assume a passing unit test suite proves release readiness, does not treat happy-path checks as sufficient, and does not hide unresolved risk behind generic approval language.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-backend-verify.md`).
 - Do not merge this output into a shared role-level document.

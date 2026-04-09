@@ -15,7 +15,7 @@ fallback_tools: paper
 best_guess_output: A production-ready screen spec or screen set with handoff notes and required `project-ds-spec.md` updates.
 output_artifacts:
   - knowledge/ui-designer-screen-production-design.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/assets/ (for visual artifacts)
 done_when: Layout, hierarchy, tokens, and core states are specified clearly.
 required_inputs:
   - upstream direction or winning variant section
@@ -195,14 +195,14 @@ Include:
 
 Do not present inferred structure as if it were observed.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ui-designer-screen-production-design.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 

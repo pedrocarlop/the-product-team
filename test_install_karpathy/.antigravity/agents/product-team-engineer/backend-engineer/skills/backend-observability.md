@@ -56,7 +56,7 @@ Add or refine backend telemetry by first modeling what must be observable, then 
 
 This skill is for improving inspectability, alertability, and debugging speed. It is not for generic dashboard sprawl, incident command ownership, or rewriting product behavior without evidence.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-backend-observability.md`).
 - Do not merge this output into a shared role-level document.

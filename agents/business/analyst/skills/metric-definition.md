@@ -119,7 +119,7 @@ Identify systemic measurement issues:
 - **Fact vs. Inference:** Clearly label source-backed data vs. benchmark-based assumptions.
 - **Traceability:** Maintain exact naming for source tables/events where they exist in the repo.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/analyst-metric-definition.md`).
 - Do not merge this output into a shared role-level document.

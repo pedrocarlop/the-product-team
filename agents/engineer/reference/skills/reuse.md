@@ -15,7 +15,7 @@ done_when: The preferred reusable pattern is explicit and justified.
 
 Find approved patterns, components, and prior deliverables worth reusing before inventing new ones.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/reference-reuse.md`).
 - Do not merge this output into a shared role-level document.

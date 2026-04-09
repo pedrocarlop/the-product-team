@@ -52,7 +52,7 @@ This skill evaluates whether the language helps the intended user understand wha
 
 This skill does not invent brand strategy, replace legal review, or claim that copy effectiveness has been validated with real users unless such evidence is explicitly provided.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-copy-review.md`).
 - Do not merge this output into a shared role-level document.

@@ -70,7 +70,7 @@ Define or improve delivery controls by modeling the pipeline first, then turning
 
 This skill is for pipeline governance, not product release judgment, incident response, or app-code review. It does not own deployment decisions — it governs the rules that make those decisions consistent and auditable.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-ci-cd-governance.md`).
 - Do not merge this output into a shared role-level document.

@@ -281,7 +281,7 @@ Do not collapse this section to a single line. Unconfirmed decisions carry compo
 - Extend over rebuild: if a sibling component covers 70%+ of the needed behavior, extend it. Document the extension boundary.
 - Avoid adding props that have no declared use case in the current scope. API surface grows; it rarely shrinks cleanly.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-component-implementation.md`).
 - Do not merge this output into a shared role-level document.

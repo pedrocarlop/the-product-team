@@ -110,7 +110,7 @@ State explicitly:
 - Note attribution windows (e.g., "7-day view-through conversion").
 - Disclose any data sampling applied by the tool.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/analyst-funnel-analysis.md`).
 - Do not merge this output into a shared role-level document.

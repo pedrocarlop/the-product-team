@@ -88,7 +88,7 @@ This skill builds a release model before action, prefers deterministic previews 
 
 This skill does not replace incident command, product approval, or hands-on execution by the owner of the target system.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-infra-release.md`).
 - Do not merge this output into a shared role-level document.

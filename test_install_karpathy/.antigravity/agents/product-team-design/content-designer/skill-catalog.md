@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A content review with a surface inventory, heuristic findings in structured schema, readability scores, voice/tone ratings, severity-prioritized issues, and directional rewrite recommendations — labeled as inferred where no direct source access exists.
-- Output: knowledge/runs/<run-id>/content-designer-content-review.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/content-designer-content-review.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every string in scope has been evaluated against the content heuristics, every finding has a location reference and severity score, and the team can prioritize rewrites without reading the raw copy themselves.
 
 ## `conversation-and-guidance-design`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A guidance and conversation design pack including a user intent map, guidance model, structured message library per flow state, escalation and fallback copy, and a pattern audit — labeled sourced, fallback, or inferred to match the evidence path used.
-- Output: knowledge/runs/<run-id>/content-designer-conversation-and-guidance-design.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/content-designer-conversation-and-guidance-design.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every user intent in scope has guidance copy for each flow state (entry, in-progress, reassurance, escalation, fallback); all copy passes Grice's relevance and quantity maxims; no guidance gap or missing escalation path remains undocumented.
 
 ## `error-empty-success-states`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A state inventory covering all system states, with a headline, body, CTA, recovery action, voice constraint, and confidence level per state — labeled as inferred where no live product access exists.
-- Output: knowledge/runs/<run-id>/content-designer-error-empty-success-states.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/content-designer-error-empty-success-states.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every critical state has explicit user-facing messaging with a recovery action, no state exposes raw technical codes to users, severity voice is consistent across the message set, and the coverage map confirms all enumerated states are addressed or explicitly deferred.
 
 ## `localization-prep`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A localization-ready content package including a categorized string inventory, string risk table with severity ratings, ICU format recommendations, pseudo-localization expansion estimates, locale-sensitive data rules, terminology lockdown list, and translator notes — labeled as inferred where no primary tool access exists.
-- Output: knowledge/runs/<run-id>/content-designer-localization-prep.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/content-designer-localization-prep.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every string in scope is inventoried by surface type, every high and critical risk has a recommended fix, ICU format is validated or flagged, expansion estimates are documented for all strings, translator notes are written for all ambiguous strings, and the package is actionable for both the localization team and engineering without further clarification.
 
 ## `microcopy-flow-design`
@@ -51,7 +51,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A flow-level microcopy set organized as a step-by-step copy table — with screen name, copy element type, proposed copy, STEM rationale, and voice rule applied — covering all reachable states in the flow. Labeled as inferred where no primary tool access exists.
-- Output: knowledge/runs/<run-id>/content-designer-microcopy-flow-design.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/content-designer-microcopy-flow-design.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every step in the flow has copy for all reachable states (default, loading, error, empty, success), copy is internally consistent in terminology and voice, all decision points have clear action labels, and the flow can be navigated without ambiguity by a first-time user.
 
 ## `naming-and-taxonomy`
@@ -61,5 +61,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A naming and taxonomy proposal with a concept model, naming criteria, scored candidate table, recommended naming system with rationale, and a list of terms to retire — labeled as inferred where no primary tool access was used.
-- Output: knowledge/runs/<run-id>/content-designer-naming-and-taxonomy.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/content-designer-naming-and-taxonomy.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every label in scope has a recommended name with rationale, naming candidates are scored against the rubric, terms to retire are documented, the naming system is internally consistent, and at least one validation path (card sort, tree test, or expert review) has been applied or explicitly deferred with justification.

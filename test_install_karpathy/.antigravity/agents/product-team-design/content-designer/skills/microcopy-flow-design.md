@@ -46,8 +46,8 @@ tool_routing:
     use: search_query and reference/ground; produce best-guess output labeled as inferred
 best_guess_output: A flow-level microcopy set organized as a step-by-step copy table — with screen name, copy element type, proposed copy, STEM rationale, and voice rule applied — covering all reachable states in the flow. Labeled as inferred where no primary tool access exists.
 output_artifacts:
-  - knowledge/runs/<run-id>/content-designer-microcopy-flow-design.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/content-designer-microcopy-flow-design.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: Every step in the flow has copy for all reachable states (default, loading, error, empty, success), copy is internally consistent in terminology and voice, all decision points have clear action labels, and the flow can be navigated without ambiguity by a first-time user.
 ---
 
@@ -405,14 +405,14 @@ Do not omit this section. Presenting copy as finalized when key unknowns exist s
 
 ---
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/content-designer-microcopy-flow-design.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ---
 

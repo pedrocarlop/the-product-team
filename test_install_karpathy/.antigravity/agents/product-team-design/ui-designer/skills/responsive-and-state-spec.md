@@ -38,8 +38,8 @@ tool_routing:
   - if only static artifacts exist, use figma plus open or search_query.
 best_guess_output: A responsive and state specification with breakpoint matrix, state matrix, exceptions, stress cases, and implementation signals.
 output_artifacts:
-  - knowledge/runs/<run-id>/ui-designer-responsive-and-state-spec.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/ui-designer-responsive-and-state-spec.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: Desktop, mobile, and critical states are explicitly covered, unsupported combinations are named, and implementation signals are clear enough for engineering to preserve.
 mesh:
   inputs:
@@ -150,14 +150,14 @@ If no findings are present, say that explicitly and summarize the covered matrix
 - State clearly where confidence is low because the evidence path was static or partial.
 - Do not imply that a visual parity check or accessibility audit has already been completed unless it actually was.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ui-designer-responsive-and-state-spec.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 

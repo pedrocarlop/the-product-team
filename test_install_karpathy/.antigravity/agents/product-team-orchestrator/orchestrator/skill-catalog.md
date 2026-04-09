@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: logs
 - Fallback: repository review
 - Best guess: A refreshed context entry that reflects the true current state.
-- Output: knowledge/runs/<run-id>/orchestrator-log.md
+- Output: knowledge/orchestrator-log.md
 - Done when: A teammate can resume from context.md or the run history without guessing.
 
 ## `reconcile`
@@ -91,5 +91,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository, role metadata
 - Fallback: reference/verify, context review
 - Best guess: A staffing table with run_id, output_path, role, skill_paths, target_deliverables, primary_tools, and fallback policy.
-- Output: knowledge/runs/<run-id>/orchestrator-staff.md
+- Output: knowledge/orchestrator-staff.md
 - Done when: Every staffed role has one contract and target deliverables are explicitly named for each assigned skill within a unique run directory.

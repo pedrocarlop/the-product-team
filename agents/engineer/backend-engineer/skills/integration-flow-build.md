@@ -68,7 +68,7 @@ This skill constructs an integration model before any implementation judgment: w
 
 This skill does not replace API implementation or domain modeling. It focuses on the cross-system path, the timing semantics, and the operational edge cases that make integrations durable.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-integration-flow-build.md`).
 - Do not merge this output into a shared role-level document.

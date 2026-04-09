@@ -159,7 +159,7 @@ La regla global de fallback es: `primary MCP -> alternative tool/MCP -> best gue
 4. Si el trabajo es transversal o tiene mas riesgo, el orquestador staffea el conjunto minimo de roles util.
 5. Los roles reciben un contrato explicito de asignacion.
 6. Cada especialista lee `skill-catalog.md`, abre los `skill_paths` asignados, y ejecuta ese flujo.
-7. Los entregables van a `knowledge/` (canonico + snapshot en `knowledge/runs/<run-id>/`). El codigo va a `app/`. Los registros de ejecucion van a `logs/`.
+7. Los entregables van a `knowledge/`. El codigo va a `app/`. Los registros de ejecucion van a `logs/`.
 
 Para trabajo de diseno nuevo, el flujo no debe ir en linea recta. La parte de diseno debe **divergir antes de converger**: explorar direcciones materialmente distintas, compararlas, y solo entonces pasar a diseno de produccion e implementacion.
 
@@ -175,7 +175,7 @@ Reglas clave:
 - **Cabeceras de entregable**: Cada archivo empieza con frontmatter YAML (`role`, `project`, `run_id`, `confidence`, `inputs_used`, `evidence_mode`, `related`). El campo `related` crea enlaces cruzados entre entregables.
 - **TL;DR obligatorio**: Cada entregable incluye una seccion `## TL;DR` (1-3 frases) inmediatamente despues de la cabecera, permitiendo escaneo rapido sin leer archivos completos.
 - **Paginas de entidad** (`knowledge/entities/`): Conceptos transversales (competidores, personas, patrones, decisiones) tienen paginas dedicadas que agregan hallazgos de multiples entregables.
-- **Historial sin perdida**: Al actualizar un entregable, los agentes escriben primero en `knowledge/runs/<run-id>/`, luego pueden actualizar el archivo canonico. Las versiones previas nunca se sobrescriben. Cada mutacion se registra en `log.md`.
+- **Historial de versiones**: Git proporciona el historial de versiones para todos los entregables. Los agentes actualizan archivos en `knowledge/` directamente. Cada mutacion se registra en `log.md`.
 - **Orden progresivo de escaneo**: (1) `index.md` para categorias de dominio, (2) cola de `log.md` para cambios recientes, (3) secciones TL;DR de archivos relevantes, (4) archivos completos solo cuando es directamente necesario, (5) enlaces `related` para contexto.
 - **Continuidad de conocimiento**: Antes de cada asignacion, el orquestador sigue el orden progresivo de escaneo e incluye archivos relevantes en `reads_from`. Las decisiones se acumulan entre proyectos.
 - **Lint** (skill `lint-knowledge`): Chequeo de salud periodico que detecta archivos obsoletos, contradicciones, huerfanos, referencias cruzadas faltantes, lagunas de conocimiento y deriva de entidades. Resultados en `knowledge/orchestrator-lint.md`.

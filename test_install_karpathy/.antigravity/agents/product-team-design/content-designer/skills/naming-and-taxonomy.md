@@ -46,8 +46,8 @@ tool_routing:
     use: search_query and reference/reuse; label all output as fallback or inferred
 best_guess_output: A naming and taxonomy proposal with a concept model, naming criteria, scored candidate table, recommended naming system with rationale, and a list of terms to retire — labeled as inferred where no primary tool access was used.
 output_artifacts:
-  - knowledge/runs/<run-id>/content-designer-naming-and-taxonomy.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/content-designer-naming-and-taxonomy.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: Every label in scope has a recommended name with rationale, naming candidates are scored against the rubric, terms to retire are documented, the naming system is internally consistent, and at least one validation path (card sort, tree test, or expert review) has been applied or explicitly deferred with justification.
 ---
 
@@ -352,14 +352,14 @@ Do not omit this section. Naming decisions made on inferred evidence can propaga
 
 ---
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/content-designer-naming-and-taxonomy.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ---
 

@@ -159,7 +159,7 @@ The global fallback rule is: `primary MCP -> alternative tool/MCP -> best guess 
 4. If the work is cross-functional or high-risk, the orchestrator staffs the minimum viable set of roles.
 5. Staffed roles receive an explicit assignment contract.
 6. Each specialist reads `skill-catalog.md`, opens the assigned `skill_paths`, and executes that workflow.
-7. Deliverables go to `knowledge/` (canonical + snapshot in `knowledge/runs/<run-id>/`). Code goes to `app/`. Execution records go to `logs/`.
+7. Deliverables go to `knowledge/`. Code goes to `app/`. Execution records go to `logs/`.
 
 For new design work, the workflow is intentionally not linear. The design path should **diverge before it converges**: explore materially different directions first, compare them, and only then move into production design and implementation.
 
@@ -175,7 +175,7 @@ Key rules:
 - **Deliverable headers**: Every file starts with YAML frontmatter (`role`, `project`, `run_id`, `confidence`, `inputs_used`, `evidence_mode`, `related`). The `related` field creates cross-reference trails between deliverables.
 - **Mandatory TL;DR**: Every deliverable includes a `## TL;DR` section (1-3 sentences) immediately after the header, enabling fast scanning without reading full files.
 - **Entity pages** (`knowledge/entities/`): Cross-cutting concepts (competitors, personas, patterns, decisions) get dedicated pages that aggregate findings from multiple deliverables.
-- **Lossless history**: When updating a deliverable, agents write to `knowledge/runs/<run-id>/` first, then may update the canonical file. Previous versions are never overwritten. Every mutation appends to `log.md`.
+- **Version history**: Git provides version history for all deliverables. Agents update files in `knowledge/` directly. Every mutation appends to `log.md`.
 - **Progressive scan order**: (1) `index.md` for domain categories, (2) `log.md` tail for recent changes, (3) TL;DR sections of relevant files, (4) full files only when directly needed, (5) `related` links for context.
 - **Knowledge continuity**: Before every assignment, the orchestrator follows the progressive scan order and includes relevant files in `reads_from`. Decisions compound across projects.
 - **Lint** (`lint-knowledge` skill): Periodic health check detecting stale files, contradictions, orphans, missing cross-references, knowledge gaps, and entity drift. Results go to `knowledge/orchestrator-lint.md`.

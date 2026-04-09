@@ -40,8 +40,8 @@ tool_routing:
     use: search_query + reference/verify; produce best-guess output labeled as inferred
 best_guess_output: A localization-ready content package including a categorized string inventory, string risk table with severity ratings, ICU format recommendations, pseudo-localization expansion estimates, locale-sensitive data rules, terminology lockdown list, and translator notes — labeled as inferred where no primary tool access exists.
 output_artifacts:
-  - knowledge/runs/<run-id>/content-designer-localization-prep.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/content-designer-localization-prep.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: Every string in scope is inventoried by surface type, every high and critical risk has a recommended fix, ICU format is validated or flagged, expansion estimates are documented for all strings, translator notes are written for all ambiguous strings, and the package is actionable for both the localization team and engineering without further clarification.
 ---
 
@@ -344,14 +344,14 @@ Document honestly:
 
 ---
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/content-designer-localization-prep.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ---
 

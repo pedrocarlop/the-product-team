@@ -61,7 +61,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: repository
 - Fallback: reference/ground
 - Best guess: A QA security triage report identifying vulnerabilities or granting passage.
-- Output: knowledge/runs/<run-id>/qa-security-scan.md
+- Output: knowledge/qa-security-scan.md
 - Done when: All changed files within the release scope have been audited against basic security constraints.
 
 ## `test-plan-review`

@@ -5,7 +5,7 @@ trigger: Once orchestration is needed or a staffed role must change.
 primary_mcp: repository, role metadata
 fallback_tools: reference/verify, context review
 best_guess_output: A staffing table with run_id, output_path, role, skill_paths, target_deliverables, primary_tools, and fallback policy.
-output_artifacts: knowledge/runs/<run-id>/orchestrator-staff.md
+output_artifacts: knowledge/orchestrator-staff.md
 done_when: Every staffed role has one contract and target deliverables are explicitly named for each assigned skill within a unique run directory.
 ---
 
@@ -72,8 +72,7 @@ hta_declared: [notion]
 
 ### Step 4: Produce The Staffing Execution Plan
 - Synthesize the result into the `orchestrator.md` as the start of the Execution Manifest.
-- For each role, define `target_deliverables` as a list of skill-specific filenames: `knowledge/<role>-<skill>.md` (canonical) with snapshots in `knowledge/runs/<run-id>/`.
-- Ensure run snapshots are written before updating canonical files to preserve history.
+- For each role, define `target_deliverables` as a list of skill-specific filenames: `knowledge/<role>-<skill>.md`.
 - Carry forward any details downstream roles must preserve from the orientation phase.
 
 ### Step 5: Mandatory Reflection (Interleaved Thinking)

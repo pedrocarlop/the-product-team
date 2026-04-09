@@ -528,29 +528,17 @@ def install_logs(root: Path, target_root: Path) -> bool:
 
 def install_knowledge(root: Path, target_root: Path) -> bool:
     knowledge_root = target_root / "knowledge"
-    runs_dir = knowledge_root / "runs"
     reviews_dir = knowledge_root / "reviews"
     assets_dir = knowledge_root / "assets"
     entities_dir = knowledge_root / "entities"
-    raw_dir = knowledge_root / "raw"
-    summaries_dir = knowledge_root / "summaries"
-    concepts_dir = knowledge_root / "concepts"
-    ensure_directory(runs_dir)
     ensure_directory(reviews_dir)
     ensure_directory(assets_dir)
     ensure_directory(entities_dir)
-    ensure_directory(raw_dir)
-    ensure_directory(summaries_dir)
-    ensure_directory(concepts_dir)
 
     for keep_path in (
-        runs_dir / ".gitkeep",
         reviews_dir / ".gitkeep",
         assets_dir / ".gitkeep",
         entities_dir / ".gitkeep",
-        raw_dir / ".gitkeep",
-        summaries_dir / ".gitkeep",
-        concepts_dir / ".gitkeep",
     ):
         if not keep_path.exists():
             keep_path.write_text("", encoding="utf-8")

@@ -36,8 +36,8 @@ tool_routing:
     use: fallback — produce best-guess review from provided context; label all output as inferred
 best_guess_output: A content review with a surface inventory, heuristic findings in structured schema, readability scores, voice/tone ratings, severity-prioritized issues, and directional rewrite recommendations — labeled as inferred where no direct source access exists.
 output_artifacts:
-  - knowledge/runs/<run-id>/content-designer-content-review.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/content-designer-content-review.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: Every string in scope has been evaluated against the content heuristics, every finding has a location reference and severity score, and the team can prioritize rewrites without reading the raw copy themselves.
 ---
 

@@ -51,7 +51,7 @@ This skill applies runtime QA reasoning across observable behavior, network sequ
 
 This skill does not replace deep backend root-cause analysis, long-horizon performance profiling, or production monitoring ownership.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/qa-reviewer-runtime-network-audit.md`).
 - Do not merge this output into a shared role-level document.

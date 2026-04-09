@@ -18,7 +18,7 @@ fail() {
 [[ -f references/role-catalog.md ]] || fail "Missing references/role-catalog.md."
 [[ -d logs/active ]] || fail "Missing logs/active directory."
 [[ -d logs/archive ]] || fail "Missing logs/archive directory."
-[[ -d knowledge/runs ]] || fail "Missing knowledge/runs directory."
+[[ -d knowledge/assets ]] || fail "Missing knowledge/assets directory."
 [[ -d knowledge/reviews ]] || fail "Missing knowledge/reviews directory."
 
 python3 scripts/render_role_catalog.py --check >"${CHECK_DIR}/role-catalog-check.txt" || {

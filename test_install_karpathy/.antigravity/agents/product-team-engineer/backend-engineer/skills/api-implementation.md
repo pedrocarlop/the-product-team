@@ -79,7 +79,7 @@ This skill applies backend implementation reasoning: request and response design
 
 This skill does not decide product scope, invent unsupported endpoints, or collapse domain logic into transport concerns.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-api-implementation.md`).
 - Do not merge this output into a shared role-level document.

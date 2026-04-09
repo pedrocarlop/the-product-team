@@ -41,8 +41,8 @@ tool_routing:
     use: search_query, reference/ground — best-guess output; label as inferred
 best_guess_output: A research plan with decision context, prioritized research questions, method selection rationale, sample design, risk register, and output scope.
 output_artifacts:
-  - knowledge/runs/<run-id>/ux-researcher-research-plan.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/ux-researcher-research-plan.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: Every research question maps to a product decision, every method choice is justified against the question type, sample is specified with profile and size rationale, risks are documented, and the plan can be executed without inventing protocol details later.
 ---
 
@@ -277,16 +277,16 @@ These limits must be stated in the plan. Do not imply higher confidence than the
 ---
 
 
-### Lossless Deliverable Contract
+### Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ux-researcher-research-plan.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: When capturing or creating visual artifacts (e.g., using Chrome DevTools `take_screenshot`, `generate_image`, or `browser_subagent`), you MUST ensure they are saved directly in the project's local directory: `knowledge/runs/<run-id>/assets/`. 
+- **Embed and Store Visual Artifacts**: When capturing or creating visual artifacts (e.g., using Chrome DevTools `take_screenshot`, `generate_image`, or `browser_subagent`), you MUST ensure they are saved directly in the project's local directory: `knowledge/assets/`. 
   - For `take_screenshot`, you MUST supply the `filePath` parameter using an absolute path pointing to the project's assets directory.
-  - If a tool auto-saves to `.gemini`, `.antigravity`, or `/tmp/`, you MUST use the `run_command` tool to copy (`cp`) those images/videos into the project's `knowledge/runs/<run-id>/assets/` folder.
+  - If a tool auto-saves to `.gemini`, `.antigravity`, or `/tmp/`, you MUST use the `run_command` tool to copy (`cp`) those images/videos into the project's `knowledge/assets/` folder.
   - Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/screenshot.png)`. NEVER link to `.gemini` or `.antigravity` paths.
   - For `take_screenshot`, you MUST supply the `filePath` parameter pointing directly to the destination in the project workspace.
   - For `generate_image`, or tools that save to your `.gemini`/`.antigravity` brain directory or `/tmp`, you MUST use bash to manually move the image file into the project directory.

@@ -48,7 +48,7 @@ This skill evaluates whether the reviewed work is using the system as intended, 
 
 This skill does not assume every difference is a violation, treat the current implementation as canonical, or replace design-system governance decisions.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-design-system-compliance-review.md`).
 - Do not merge this output into a shared role-level document.

@@ -62,7 +62,7 @@ This skill evaluates observable drift in hierarchy, structure, styling, behavior
 
 This skill does not treat every difference as a bug, assume the design source of truth is complete, or claim that implementation fixes have already been validated.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-design-fidelity-review.md`).
 - Do not merge this output into a shared role-level document.

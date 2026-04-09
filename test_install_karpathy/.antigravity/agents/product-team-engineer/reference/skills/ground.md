@@ -15,7 +15,7 @@ done_when: The team can cite concrete repo/system evidence instead of assumption
 
 Ground decisions in the real target repo and any named source system before proposing work.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/reference-ground.md`).
 - Do not merge this output into a shared role-level document.

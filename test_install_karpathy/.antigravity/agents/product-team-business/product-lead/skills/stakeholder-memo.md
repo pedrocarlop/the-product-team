@@ -111,7 +111,7 @@ Identify and call out:
 - **No Hallucinations**: Every quote must be traceable to Grain or repository logs.
 
 ## 17. Output Contract
-### Lossless Deliverable Contract
+### Deliverable Contract
 - Produce a standalone deliverable at the path specified in `output_artifacts`.
 - **Formatting**: `knowledge/product-lead-stakeholder-memo.md`.
 - **Do not merge** into primary role docs.

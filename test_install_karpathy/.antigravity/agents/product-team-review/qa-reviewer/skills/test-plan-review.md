@@ -65,7 +65,7 @@ This skill applies risk-based QA reasoning across product risk, technical depth,
 
 This skill does not equate more tests with better coverage, replace implementation of the tests themselves, or promise that a reviewed plan guarantees safety.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/qa-reviewer-test-plan-review.md`).
 - Do not merge this output into a shared role-level document.

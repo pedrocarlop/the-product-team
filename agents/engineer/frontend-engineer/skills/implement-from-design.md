@@ -355,7 +355,7 @@ Do not omit this section or collapse it to a single line. Gaps that are not name
 
 ---
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-implement-from-design.md`).
 - Do not merge this output into a shared role-level document.

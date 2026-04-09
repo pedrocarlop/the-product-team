@@ -67,7 +67,7 @@ This skill evaluates observable accessibility risk and likely assistive technolo
 
 This skill does not claim formal compliance certification, replace full screen-reader or human assistive testing, or assert that code-level remediation has already been validated.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-accessibility-review.md`).
 - Do not merge this output into a shared role-level document.

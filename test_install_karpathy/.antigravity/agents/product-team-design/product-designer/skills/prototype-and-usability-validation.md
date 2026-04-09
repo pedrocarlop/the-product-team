@@ -45,8 +45,8 @@ tool_routing:
     use: [figma, chrome_devtools]
 best_guess_output: A prototype summary with validation findings, decision guidance, and clearly labeled evidence limits.
 output_artifacts:
-  - knowledge/runs/<run-id>/product-designer-prototype-and-usability-validation.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/product-designer-prototype-and-usability-validation.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: The prototype answers a real decision, the strongest usability risks are explicit, and any unresolved risk is clearly labeled.
 mesh:
   inputs:
@@ -68,14 +68,14 @@ This skill applies task-based prototype testing and ISO 9241-11 usability dimens
 
 This skill does not treat a prototype as proof of production readiness or replace full research, analytics, or accessibility validation.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/product-designer-prototype-and-usability-validation.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 

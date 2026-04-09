@@ -66,7 +66,7 @@ This skill evaluates likely friction, confusion, and recovery risk from an exper
 
 This skill does not replace moderated research, analytics-backed behavioral evidence, or product prioritization decisions.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-reviewer-usability-review.md`).
 - Do not merge this output into a shared role-level document.

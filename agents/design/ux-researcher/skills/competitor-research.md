@@ -40,8 +40,8 @@ tool_routing:
     use: [search_query, open, take_screenshot, browser_subagent]
 best_guess_output: A competitive landscape report with a comparison set, pattern inventory, evidence citations, gap analysis, and design implications.
 output_artifacts:
-  - knowledge/runs/<run-id>/ux-researcher-competitor-research.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/ux-researcher-competitor-research.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: The competitive landscape model is constructed, relevant patterns are documented with sourced evidence or explicitly labeled as inferred, and implications are linked to the originating design decision.
 mesh:
   inputs:
@@ -163,7 +163,7 @@ To ensure "Visual Excellence" and "Rich Aesthetics" in the research deliverable,
 - **Resolution**: Ensure screenshots are captured at standard desktop (1440px width) or mobile resolutions to maintain fidelity.
 - **Contextual Annotations**: If the tool allows, or in the markdown description, highlight specific areas of interest within the screenshot to guide the reader's eye.
 
-Every screenshot MUST be stored in `knowledge/runs/<run-id>/assets/` and linked with a descriptive caption.
+Every screenshot MUST be stored in `knowledge/assets/` and linked with a descriptive caption.
 
 ## Structured Findings
 
@@ -251,16 +251,16 @@ Do not omit this section or collapse it to a single line. Low-confidence areas m
 - Do not hallucinate competitor UI details. If a surface cannot be sourced, mark it as `Not accessed` and lower confidence accordingly.
 - Record the tool path used for each competitor or surface so the evidence is reproducible.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/ux-researcher-competitor-research.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: When capturing or creating visual artifacts (e.g., using Chrome DevTools `take_screenshot`, `generate_image`, or `browser_subagent`), you MUST ensure they are saved directly in the project's local directory: `knowledge/runs/<run-id>/assets/`. 
+- **Embed and Store Visual Artifacts**: When capturing or creating visual artifacts (e.g., using Chrome DevTools `take_screenshot`, `generate_image`, or `browser_subagent`), you MUST ensure they are saved directly in the project's local directory: `knowledge/assets/`. 
   - For `take_screenshot`, you MUST supply the `filePath` parameter using an absolute path pointing to the project's assets directory.
-  - If a tool auto-saves to `.gemini`, `.antigravity`, or `/tmp/`, you MUST use the `run_command` tool to copy (`cp`) those images/videos into the project's `knowledge/runs/<run-id>/assets/` folder.
+  - If a tool auto-saves to `.gemini`, `.antigravity`, or `/tmp/`, you MUST use the `run_command` tool to copy (`cp`) those images/videos into the project's `knowledge/assets/` folder.
   - Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/screenshot.png)`. NEVER link to `.gemini` or `.antigravity` paths.
   - For `take_screenshot`, you MUST supply the `filePath` parameter pointing directly to the destination in the project workspace.
   - For `generate_image`, or tools that save to your `.gemini`/`.antigravity` brain directory or `/tmp`, you MUST use bash to manually move the image file into the project directory.

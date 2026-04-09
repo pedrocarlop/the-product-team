@@ -2,11 +2,7 @@
 
 `/knowledge` is the persistent, compounding knowledge base for the business. It aligns with the **LLM Wiki** pattern: a structured, interlinked collection of markdown files that sits between the agent and raw sources. Unlike retrieval systems that rediscover knowledge on each query, this wiki is compiled once and kept current.
 
-## Three-Layer Architecture
-
-1.  **Raw Sources** (`knowledge/raw/`): Immutable collection of source documents (articles, transcripts, data). Agents read from here but never modify them.
-2.  **The Wiki** (`knowledge/`): Synthesized markdown files. Summaries, entity pages, concept pages, and project deliverables. Agents own this layer entirely.
-3.  **The Schema** (`ANTIGRAVITY.md`, etc.): The instructions that tell the agents how the wiki is structured and what workflows to follow.
+Agent execution records go to `/logs`. Code outputs go to `/app`.
 
 ## Directory Layout
 
@@ -14,27 +10,23 @@
 knowledge/
   index.md                           # Content-oriented catalog (Knowledge Index)
   log.md                             # Chronological record of wiki evolution
-  raw/                               # Immutable source documents (articles, papers)
-  <role>-<skill>.md                  # Latest stable synthesized deliverables
+  <role>-<skill>.md                  # Synthesized deliverables
   entities/                          # Cross-cutting entity pages (competitors, personas)
   reviews/                           # Quality assurance records
   assets/                            # Visual artifacts (screenshots, mockups)
-  runs/                              # Lossless run history
-    <run-id>-<YYYYMMDD-HHMM>/
 ```
 
 ## Rules for Agents
 
-1.  **Two Output Rule**: Every task produces two outputs: the primary deliverable for the user, and an update to the relevant wiki articles. Knowledge must not evaporate into chat history.
-2.  **Lossless Snapshots**: When updating a deliverable, always write a copy to `knowledge/runs/<run-id>/` before updating the canonical version at the root.
-3.  **Log Requirement**: Every meaningful change (ingest, query, lint) must be appended to `knowledge/log.md`.
-4.  **TL;DR Sections**: Every synthesized page must include a `## TL;DR` section at the top for fast scanning.
-5.  **Direct File Tools**: If specialized MCPs are missing, use direct filesystem tools (`write_to_file`) to maintain the structure.
+1.  **Write to `knowledge/`**: Every task produces its deliverable at `knowledge/<role>-<skill>.md`. Git provides version history — no manual snapshots needed.
+2.  **Log Requirement**: Every meaningful change (ingest, query, lint) must be appended to `knowledge/log.md`.
+3.  **TL;DR Sections**: Every synthesized page must include a `## TL;DR` section at the top for fast scanning.
+4.  **Direct File Tools**: If specialized MCPs are missing, use direct filesystem tools (`write_to_file`) to maintain the structure.
 
 ## Operations
 
 ### Ingest
-Processing a new source from `knowledge/raw/` into the wiki. This involves reading the source, writing/updating summaries and entity pages, and updating `index.md` and `log.md`.
+Processing a new source into the wiki. This involves reading the source, writing/updating deliverables and entity pages, and updating `index.md` and `log.md`.
 
 ### Query
 Answering questions against the wiki. Agents should synthesize answers with citations. **Good answers must be filed back into the wiki** as new pages or updates to existing ones.
@@ -123,13 +115,9 @@ sources: [analyst-market-analysis.md, ux-researcher-synthesis.md]
 Acme Corp is the market leader in sync-first analytics. Weak in async workflows and SMB pricing.
 ```
 
-## Lossless History Policy
+## Version History
 
-When an agent "updates" a deliverable:
-1. It **MUST** write the new version to `knowledge/runs/<run-id>/` first.
-2. It **MAY** then update the canonical file at `knowledge/<deliverable>.md` to reflect the latest state.
-3. It **MUST NOT** overwrite previous versions in the `runs/` history.
-4. It **MUST** append an entry to `changelog.md`.
+Git is the version history for all deliverables. When an agent updates a deliverable, it writes directly to `knowledge/<deliverable>.md`. Previous versions are available through `git log` and `git diff`.
 
 ## Knowledge Continuity Rule (CRITICAL)
 
@@ -137,7 +125,7 @@ The orchestrator MUST read `knowledge/index.md` before every assignment. When st
 
 **Scan order** (progressive disclosure):
 1. Read `index.md` to identify relevant domain categories.
-2. Read `changelog.md` tail to see recent changes.
+2. Read `log.md` tail to see recent changes.
 3. Read TL;DR sections of relevant deliverables.
 4. Read full deliverables only for files directly relevant to the current assignment.
 5. Follow `related` links for additional context.

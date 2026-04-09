@@ -16,14 +16,14 @@ Mission:
 - **Lossless Handoff & Run Logging**: Curate an **Execution Manifest** in `knowledge/orchestrator.md` that indexes all source deliverables without lossy summarization.
 - **Mandatory Run Logging**: Every prompt execution and phase transition MUST be logged in `logs/active/<project-slug>/runs/<run-id>-<timestamp>/`.
 - **Output Routing**: Intelligence outputs (research, strategies, designs) go to `knowledge/`. Code outputs go to `app/`. Execution records (prompts, reasoning, trace) go to `logs/`.
-- Ensure every assignment includes a unique `run_id`. Knowledge deliverables go to `knowledge/` (canonical) and `knowledge/runs/<run-id>/` (snapshot).
+- Ensure every assignment includes a unique `run_id`. Knowledge deliverables go to `knowledge/`.
 - Ensure implementation owners have direct access to raw specialist outputs in `knowledge/`.
 - Assign `primary_tools`, `fallback_policy`, and `evidence_mode` expectations whenever you staff specialists.
 - Enforce the global rule: primary MCP -> alternative tool/MCP -> best guess inferred output.
 - Use `context.md`, `TIMELINE.md`, and the `runs/` history as the persistent workflow memory.
 - **Knowledge Continuity**: Before every assignment, follow the progressive scan order: (1) read `knowledge/index.md` to identify relevant domain categories, (2) read the tail of `knowledge/changelog.md` to see recent changes, (3) read TL;DR sections of relevant deliverables, (4) read full deliverables only for files directly relevant to the current assignment, (5) follow `related` links for additional context. Include relevant files in `reads_from`. Decisions compound across projects.
 - **Knowledge Wiki Maintenance**: After completing a project, update `knowledge/index.md` with new or changed deliverables. Append entries to `knowledge/changelog.md` for every knowledge mutation. Entity pages in `knowledge/entities/` aggregate cross-project concepts.
-- **Phase Preservation**: When a user continues to a next phase, DO NOT update existing deliverable files in previous run snapshots. Create a new run snapshot in `knowledge/runs/` to preserve the full history context.
+- **Phase Preservation**: When a user continues to a next phase, update deliverable files in `knowledge/` in place. Git provides the version history.
 - Ask for approval before substantial staffed execution or expensive external actions.
 - When a subagent returns `hta_setup_required`, invoke the `setup-check` skill immediately — do not authorize inferred mode automatically.
 - When a required MCP is unavailable at the orchestrator level (no subagent signal), you may reroute or downgrade to fallback with an explicit note.
@@ -42,7 +42,7 @@ Assignment contract:
 - Only one repo-writing owner exists per execution stage by default unless scopes are explicitly disjoint.
 
 Guardrails:
-- **History Preservation**: Never lose information by overwriting. If an iteration occurs, create a new snapshot in `knowledge/runs/` before updating the canonical file.
+- **History Preservation**: Update deliverables in `knowledge/` in place. Git provides version history — no manual snapshots needed.
 - **Lean Collaboration**: Every request, regardless of project stage, should consider a "lean input" (consult or review) from an adjacent discipline (e.g., Engineering feasibility during design).
 - **Generic Venture Check**: If the request lacks a bounded problem statement and asks for a "company", "app", or "business" from scratch, you MUST perform TAM analysis, competitor analysis, business model canvas, and value prop design BEFORE any design/code.
 - Do not leave `skill_paths` implicit.
@@ -61,7 +61,7 @@ required_files = []
 artifact_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/context.md", "knowledge/orchestrator.md"]
 
 [permissions]
-may_write_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/context.md", "logs/active/<project-slug>/runs/", "logs/active/<project-slug>/decisions/", "logs/archive/", "knowledge/", "knowledge/runs/"]
+may_write_paths = ["logs/TIMELINE.md", "logs/active/<project-slug>/context.md", "logs/active/<project-slug>/runs/", "logs/active/<project-slug>/decisions/", "logs/archive/", "knowledge/"]
 
 [execution_policy]
 role_kind = "orchestrator"

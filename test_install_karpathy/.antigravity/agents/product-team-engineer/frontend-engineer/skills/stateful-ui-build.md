@@ -318,7 +318,7 @@ Do not omit this section or collapse it to a single line. Low-confidence areas m
 - Record the tool path used for each phase (repository read, Storybook story, Vitest test, Playwright run) so the verification is reproducible.
 - Avoid hallucinating API response shapes. If the contract is not confirmed, label it `Assumed context:` and lower confidence.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-stateful-ui-build.md`).
 - Do not merge this output into a shared role-level document.

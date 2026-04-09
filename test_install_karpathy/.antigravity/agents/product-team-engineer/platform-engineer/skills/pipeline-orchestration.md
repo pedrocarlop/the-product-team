@@ -102,7 +102,7 @@ done_when: The pipeline model, failure behavior, ownership, and observability ar
 
 Build or improve platform pipeline orchestration by modeling the flow first, then choosing the least risky orchestration path for the platform. This skill focuses on durable execution, scheduling, retries, handoffs, and operator visibility. It does not own domain modeling, API contract design, or generic backend implementation guidance unless those affect the pipeline directly.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-pipeline-orchestration.md`).
 - Do not merge this output into a shared role-level document.

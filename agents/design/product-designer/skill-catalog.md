@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: notion, figma
 - Fallback: paper, reference/verify
 - Best guess: A handoff spec linking flow, structure, behavior, open questions, and downstream ownership with clearly labeled evidence limits.
-- Output: knowledge/runs/<run-id>/product-designer-handoff-spec.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/product-designer-handoff-spec.md, knowledge/assets/ (for visual artifacts)
 - Done when: A downstream role can continue without reopening the design problem, behavior rules, or missing-state questions.
 
 ## `interaction-spec`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: figma, repository
 - Fallback: paper, reference/trace
 - Best guess: An interaction spec tied to triggers, state transitions, rules, and clearly labeled ambiguities.
-- Output: knowledge/runs/<run-id>/product-designer-interaction-spec.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/product-designer-interaction-spec.md, knowledge/assets/ (for visual artifacts)
 - Done when: An engineer can implement the interaction without guessing behaviors, hidden state rules, or recovery logic.
 
 ## `journey-and-flow-design`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: notion, repository
 - Fallback: reference/ground, search_query
 - Best guess: A design framing artifact with explicit users, jobs, constraints, risks, success criteria, and decision-driving unknowns.
-- Output: knowledge/runs/<run-id>/product-designer-problem-framing.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/product-designer-problem-framing.md, knowledge/assets/ (for visual artifacts)
 - Done when: The design problem is bounded, evidence-tagged, and stable enough that downstream flow and wireframe work can proceed without rediscovering the brief.
 
 ## `prototype-and-usability-validation`
@@ -51,7 +51,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: paper
 - Fallback: figma, chrome_devtools
 - Best guess: A prototype summary with validation findings, decision guidance, and clearly labeled evidence limits.
-- Output: knowledge/runs/<run-id>/product-designer-prototype-and-usability-validation.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/product-designer-prototype-and-usability-validation.md, knowledge/assets/ (for visual artifacts)
 - Done when: The prototype answers a real decision, the strongest usability risks are explicit, and any unresolved risk is clearly labeled.
 
 ## `wireframe-structure`

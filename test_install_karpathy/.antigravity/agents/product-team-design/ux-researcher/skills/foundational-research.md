@@ -4,8 +4,8 @@ description: Conduct high-level problem-space research and category behavior ana
 trigger: When the request is category-first or lacks a bounded user problem. Usually staffed alongside `venture-discovery`.
 best_guess_output: A Foundations Deck with detailed category user behaviors, frustration mapping, and qualitative competitor UX teardowns.
 output_artifacts:
-  - knowledge/runs/<run-id>/ux-researcher-foundational-research.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/ux-researcher-foundational-research.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: The category's "unmet needs" are identified, and the team has qualitative evidence for why current solutions are failing.
 tool_stack:
   runtime:
@@ -80,4 +80,4 @@ The deliverable must contain:
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.

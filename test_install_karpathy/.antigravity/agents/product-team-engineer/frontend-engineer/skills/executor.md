@@ -373,7 +373,7 @@ Mandatory section. State:
 
 ---
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at `knowledge/frontend-engineer-executor.md`.
 - Do not merge this output into a shared role-level document.

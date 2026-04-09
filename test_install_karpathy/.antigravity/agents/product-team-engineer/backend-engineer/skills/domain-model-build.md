@@ -65,7 +65,7 @@ This skill builds the conceptual and structural model for entities, rules, state
 
 This skill does not own endpoint design, frontend behavior, or generic implementation guidance detached from the domain model.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/backend-engineer-domain-model-build.md`).
 - Do not merge this output into a shared role-level document.

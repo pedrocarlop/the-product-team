@@ -15,7 +15,7 @@ done_when: The claimed conclusion is defended by present-state evidence.
 
 Re-open evidence and confirm that the chosen conclusion still holds before handoff or approval.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/reference-verify.md`).
 - Do not merge this output into a shared role-level document.

@@ -433,7 +433,7 @@ Do not omit this section or collapse to a single sentence. Confidence gaps must 
 
 ---
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/frontend-engineer-browser-debug.md`).
 - Do not merge this output into a shared role-level document.

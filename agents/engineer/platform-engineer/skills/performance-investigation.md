@@ -85,7 +85,7 @@ Localize a performance bottleneck by building a USE/RED model first, then testin
 
 This skill is for diagnosis and localization. It does not make the final infra change unless the user explicitly asks for implementation.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/platform-engineer-performance-investigation.md`).
 - Do not merge this output into a shared role-level document.

@@ -57,7 +57,7 @@ This skill applies evidence-based release decision reasoning across blockers, re
 
 This skill does not replace product leadership approval, incident command authority, or execution of rollback and monitoring plans.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/qa-reviewer-release-gate.md`).
 - Do not merge this output into a shared role-level document.

@@ -42,8 +42,8 @@ tool_routing:
     use: [paper, repository]
 best_guess_output: A spacing and layout scale with explicit primitives, semantic usage rules, breakpoint behavior, migration guidance, and known exceptions.
 output_artifacts:
-  - knowledge/runs/<run-id>/design-systems-designer-spacing-and-layout-scale.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/design-systems-designer-spacing-and-layout-scale.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: Designers and engineers have a scale and semantic usage map they can apply to real layouts without reinventing spacing, breakpoint, or density rules.
 ---
 
@@ -61,14 +61,14 @@ Read `../references/shared-method.md` for the shared deliverable contract, findi
 
 Read `../references/tooling-landscape.md` when the assignment references token tooling, Storybook, Penpot, or other system platforms that may hold stronger layout evidence.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-systems-designer-spacing-and-layout-scale.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Inputs And Assumptions
 

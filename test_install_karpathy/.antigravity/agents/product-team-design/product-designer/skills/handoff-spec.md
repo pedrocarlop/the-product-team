@@ -40,8 +40,8 @@ tool_routing:
     use: [paper, reference/verify]
 best_guess_output: A handoff spec linking flow, structure, behavior, open questions, and downstream ownership with clearly labeled evidence limits.
 output_artifacts:
-  - knowledge/runs/<run-id>/product-designer-handoff-spec.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/product-designer-handoff-spec.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: A downstream role can continue without reopening the design problem, behavior rules, or missing-state questions.
 mesh:
   inputs:
@@ -63,14 +63,14 @@ This skill applies delivery traceability so the approved problem frame, flow, st
 
 This skill does not replace implementation planning, engineering estimation, or final acceptance criteria owned by downstream roles.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/product-designer-handoff-spec.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Deliverable Sections
 

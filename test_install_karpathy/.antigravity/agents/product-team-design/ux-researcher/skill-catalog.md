@@ -11,7 +11,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A competitive landscape report with a comparison set, pattern inventory, evidence citations, gap analysis, and design implications.
-- Output: knowledge/runs/<run-id>/ux-researcher-competitor-research.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/ux-researcher-competitor-research.md, knowledge/assets/ (for visual artifacts)
 - Done when: The competitive landscape model is constructed, relevant patterns are documented with sourced evidence or explicitly labeled as inferred, and implications are linked to the originating design decision.
 
 ## `foundational-research`
@@ -21,7 +21,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A Foundations Deck with detailed category user behaviors, frustration mapping, and qualitative competitor UX teardowns.
-- Output: knowledge/runs/<run-id>/ux-researcher-foundational-research.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/ux-researcher-foundational-research.md, knowledge/assets/ (for visual artifacts)
 - Done when: The category's "unmet needs" are identified, and the team has qualitative evidence for why current solutions are failing.
 
 ## `interview-guide-build`
@@ -31,7 +31,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: An interview guide with session structure, questions, probes, evidence goals, and moderator notes that supports comparable sessions across participants.
-- Output: knowledge/runs/<run-id>/ux-researcher-interview-guide-build.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/ux-researcher-interview-guide-build.md, knowledge/assets/ (for visual artifacts)
 - Done when: A moderator can run all sessions from the guide without improvising the core script, every question is traceable to a research objective, and mandatory and optional probes are explicitly separated.
 
 ## `research-plan`
@@ -41,7 +41,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A research plan with decision context, prioritized research questions, method selection rationale, sample design, risk register, and output scope.
-- Output: knowledge/runs/<run-id>/ux-researcher-research-plan.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/ux-researcher-research-plan.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every research question maps to a product decision, every method choice is justified against the question type, sample is specified with profile and size rationale, risks are documented, and the plan can be executed without inventing protocol details later.
 
 ## `research-readout-deck`
@@ -51,7 +51,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A structured research readout with audience model, insight hierarchy, narrative arc, evidence highlights, recommendations, and stakeholder asks.
-- Output: knowledge/runs/<run-id>/ux-researcher-research-readout-deck.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/ux-researcher-research-readout-deck.md, knowledge/assets/ (for visual artifacts)
 - Done when: The readout contains a complete audience-decision model, findings ordered by decision relevance, at least one recommendation linked to evidence with a stated confidence level, and an explicit stakeholder ask — and a stakeholder unfamiliar with the research could act on it in one pass.
 
 ## `research-synthesis`
@@ -61,7 +61,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A structured synthesis with source inventory, coded observations, themes with evidence, and directional design implications — labeled as inferred where no primary tool access exists.
-- Output: knowledge/runs/<run-id>/ux-researcher-research-synthesis.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/ux-researcher-research-synthesis.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every research question is addressed by at least one theme with traceable evidence, every finding has a source ID, and the team can make a product or design decision without reading raw notes.
 
 ## `screener-form-build`
@@ -71,7 +71,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A structured screener with participant profile model, qualification logic per question, quota targets, and backup plan.
-- Output: knowledge/runs/<run-id>/ux-researcher-screener-form-build.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/ux-researcher-screener-form-build.md, knowledge/assets/ (for visual artifacts)
 - Done when: The screener contains a documented participant profile model, ≤10 questions with explicit qualify/disqualify logic per answer, quota targets, and a named tool path used to deploy it.
 
 ## `study-ops-and-recruiting`
@@ -81,7 +81,7 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A structured study ops plan with recruiting pipeline, scheduling setup, consent process, incentive plan, and contingency design for each lifecycle phase.
-- Output: knowledge/runs/<run-id>/ux-researcher-study-ops-and-recruiting.md, knowledge/runs/<run-id>/assets/ (for visual artifacts)
+- Output: knowledge/ux-researcher-study-ops-and-recruiting.md, knowledge/assets/ (for visual artifacts)
 - Done when: Every ops component has a named owner, a tool, a handoff point, and a documented contingency. The study can be scheduled, staffed, and launched without open operational blockers.
 
 ## `visual-inspiration-curation`
@@ -91,5 +91,5 @@ Open only the matching `skills/*.md` files, follow their MCP/fallback sequence, 
 - Primary MCP/tool: Missing primary_mcp.
 - Fallback: Missing fallback_tools.
 - Best guess: A visual inspiration report (moodboard) with curated evidence, aesthetic pillars, and a link to the canvas artifact.
-- Output: knowledge/runs/<run-id>/ux-researcher-visual-inspiration.md, knowledge/runs/<run-id>/assets/ (for captured inspiration)
+- Output: knowledge/ux-researcher-visual-inspiration.md, knowledge/assets/ (for captured inspiration)
 - Done when: The inspiration board is assembled, visual pillars are defined from the curated set, and the artifact is linked for the design team.

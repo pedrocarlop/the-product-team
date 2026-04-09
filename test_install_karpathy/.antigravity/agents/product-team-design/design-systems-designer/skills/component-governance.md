@@ -41,8 +41,8 @@ tool_routing:
     use: [reference/reuse, repository]
 best_guess_output: A governance model covering ownership, contribution, variants, exceptions, deprecation, and the minimum process needed to keep the library healthy.
 output_artifacts:
-  - knowledge/runs/<run-id>/design-systems-designer-component-governance.md
-  - knowledge/runs/<run-id>/assets/ (for visual artifacts)
+  - knowledge/design-systems-designer-component-governance.md
+  - knowledge/assets/ (for visual artifacts)
 done_when: Teams can explain who decides, who reviews, which lifecycle state a component is in, and how components are introduced, changed, or removed without informal side channels.
 ---
 
@@ -60,14 +60,14 @@ Read `../references/shared-method.md` for the shared deliverable contract, findi
 
 Read `../references/tooling-landscape.md` when governance evidence lives in zeroheight, Supernova, Storybook, or other specialist systems instead of only in workspace docs.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/design-systems-designer-component-governance.md`).
 - Do not merge this output into a shared role-level document.
 - Ensure the deliverable preserves all nuance, edge cases, and rationale for direct consumption by implementation owners.
 - Link this deliverable in the Execution Manifest (`orchestrator.md`) once complete.
 - Include a `## Reflection` section at the end of the deliverable with `What worked`, `What didn't`, and `Next steps`.
-- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/runs/<run-id>/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
+- **Embed and Store Visual Artifacts**: If tools like `stitch`, `v0`, or `generate_image` were used, you MUST copy the resulting images/screenshots to the project's run-specific assets directory: `knowledge/assets/`. Reference them in the markdown deliverable using a RELATIVE path: `![Caption](assets/image-name.png)`. NEVER use absolute paths to your local brain directory.
 
 ## Required Inputs And Assumptions
 

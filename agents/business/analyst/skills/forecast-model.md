@@ -112,7 +112,7 @@ Before executing a forecast, the agent must construct a **Driver Model**:
 - **Probabilistic over Deterministic**: Always provide ranges (P10-P90), never just one number.
 - **Grounding**: Every assumption must be linked to a specific piece of evidence or labeled as "Working Hypothesis".
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
 - Produce a standalone deliverable at the path specified in the YAML `output_artifacts` (formatted as `knowledge/analyst-forecast-model.md`).
 - Do not merge this output into a shared role-level document.

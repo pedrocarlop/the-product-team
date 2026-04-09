@@ -5,7 +5,7 @@ trigger: Before a release gate, or when explicitly asked to verify the security 
 primary_mcp: repository
 fallback_tools: reference/ground
 best_guess_output: A QA security triage report identifying vulnerabilities or granting passage.
-output_artifacts: knowledge/runs/<run-id>/qa-security-scan.md
+output_artifacts: knowledge/qa-security-scan.md
 done_when: All changed files within the release scope have been audited against basic security constraints.
 ---
 

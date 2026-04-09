@@ -29,8 +29,8 @@ tool_routing:
     use: [refero, mobbin]
 best_guess_output: A visual inspiration report (moodboard) with curated evidence, aesthetic pillars, and a link to the canvas artifact.
 output_artifacts:
-  - knowledge/runs/<run-id>/ux-researcher-visual-inspiration.md
-  - knowledge/runs/<run-id>/assets/ (for captured inspiration)
+  - knowledge/ux-researcher-visual-inspiration.md
+  - knowledge/assets/ (for captured inspiration)
 done_when: The inspiration board is assembled, visual pillars are defined from the curated set, and the artifact is linked for the design team.
 ---
 
@@ -53,7 +53,7 @@ If inputs are missing, infer a provisional "vibe" based on the product descripti
 ## Core Method Execution
 
 ### Step 0 — Setup for Visual Excellence
-**Mandatory Setup**: Initialize the project assets directory for this run using `mkdir -p knowledge/runs/<run-id>/assets/`. Replace `<run-id>` with the current session identifier.
+**Mandatory Setup**: Initialize the project assets directory for this run using `mkdir -p knowledge/assets/`. Replace `<run-id>` with the current session identifier.
 
 ### Step 1 — Inspiration Search
 Use `browser_subagent` to search Pinterest, Dribbble, or layers.is for the defined keywords. Browse for high-quality, relevant results that match the aesthetic goal. Look for:
@@ -65,7 +65,7 @@ Use `browser_subagent` to search Pinterest, Dribbble, or layers.is for the defin
 ### Step 2 — Evidence Capture
 For setiap relevant pin or design:
 1. Navigate to the high-resolution view.
-2. Use **`take_screenshot(filePath='knowledge/runs/<run-id>/assets/<name>.png', fullPage=false)`** to capture the specific design or interaction.
+2. Use **`take_screenshot(filePath='knowledge/assets/<name>.png', fullPage=false)`** to capture the specific design or interaction.
 3. If using tools that do not support `filePath` (like `generate_image`), move the resulting file using `mv` into the project assets folder immediately.
 4. Save the image with a descriptive name (e.g., `inspiration-glass-dashboard-01.png`).
 
@@ -85,9 +85,9 @@ Synthesize the collected evidence into 3-5 "Visual Pillars." Each pillar should 
 - **Contextual Captions**: Every screenshot MUST have a caption explaining *why* it was saved (e.g., "Saved for its use of subtle borders and high-contrast text").
 - **Organized Storage**: Use the standard assets folder.
 
-## Lossless Deliverable Contract
+## Deliverable Contract
 
-Produce the deliverable at `knowledge/runs/<run-id>/ux-researcher-visual-inspiration.md`.
+Produce the deliverable at `knowledge/ux-researcher-visual-inspiration.md`.
 
 ### Required Deliverable Sections:
 - `### Curated Inspiration`: Embed all captured screenshots with captions and source links. Use RELATIVE paths: `![Caption](assets/image.png)`.
